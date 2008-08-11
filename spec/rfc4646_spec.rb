@@ -7,35 +7,35 @@ describe Rfc4646 do
   end
 end
 
-describe Rfc4646::Simple do
-  it "given a valid tag 'de' returns an array of subtags from #match" do
+describe Rfc4646::Simple, '#match' do
+  it "given a valid tag 'de' returns an array of subtags" do
     Rfc4646::Simple.match('de').should == ['de', nil, nil, nil, nil, nil, nil]
   end
   
-  it "given a valid tag 'de' returns an array of subtags from #match" do
+  it "given a valid tag 'de' returns an array of subtags" do
     Rfc4646::Simple.match('de-DE').should == ['de', nil, 'DE', nil, nil, nil, nil]
   end
   
-  it "given a valid tag 'de-Latn-DE-1996-x-phonebk' returns an array of subtags from #match" do
-    Rfc4646::Simple.match('de-Latn-DE-1996-x-phonebk').should == ['de', 'Latn', 'DE', '1996', nil, 'x-phonebk', nil]
+  it "given a valid lowercase tag 'de-latn-de-variant-x-phonebk' returns an array of subtags" do
+    Rfc4646::Simple.match('de-latn-de-variant-x-phonebk').should == ['de', 'latn', 'de', 'variant', nil, 'x-phonebk', nil]
   end
   
-  it "given a valid tag 'de-latn-DE-1996-x-phonebk' returns an array of subtags from #match" do
-    Rfc4646::Simple.match('de-latn-de-1996-x-phonebk').should == ['de', 'latn', 'de', '1996', nil, 'x-phonebk', nil]
+  it "given a valid uppercase tag 'DE-LATN-DE-VARIANT-X-PHONEBK' returns an array of subtags" do
+    Rfc4646::Simple.match('DE-LATN-DE-VARIANT-X-PHONEBK').should == ['DE', 'LATN', 'DE', 'VARIANT', nil, 'X-PHONEBK', nil]
   end
   
-  it "given an invalid tag 'a-DE' it returns false from #match" do
+  it "given an invalid tag 'a-DE' it returns false" do
     Rfc4646::Simple.match('a-DE').should == false
   end
   
-  it "given an invalid tag 'de-419-DE' it returns false from #match" do
+  it "given an invalid tag 'de-419-DE' it returns false" do
     Rfc4646::Simple.match('de-419-DE').should == false
   end
 end
 
 describe "Rfc4646::Tag for the locale 'DE-latn-de-Variant-a-ext-x-phonebk-i-klingon'" do
   before :each do
-    subtags = %w(de latn DE variant a-ext x-phonebk i-klingon)
+    subtags = %w(de Latn DE variant a-ext x-phonebk i-klingon)
     @tag = Rfc4646::Tag.new *subtags
   end
 
@@ -43,7 +43,7 @@ describe "Rfc4646::Tag for the locale 'DE-latn-de-Variant-a-ext-x-phonebk-i-klin
     @tag.language.should == 'de'
   end
 
-  it "returns 'latn' as the script subtag in titlecase" do
+  it "returns 'Latn' as the script subtag in titlecase" do
     @tag.script.should == 'Latn'
   end
 
