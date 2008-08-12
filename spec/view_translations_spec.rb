@@ -1,0 +1,11 @@
+require File.dirname(__FILE__) + '/spec_helper.rb'
+require 'view_translation'
+
+describe ViewTranslation do
+  include Spec::Matchers::HaveAttribute
+  
+  it "has the attributes :locale, :key, :options, :requested_locale, :grammatical_number, :original" do
+    translation = ViewTranslation.new 'foo'
+    translation.should have_attr_accessors(:locale, :key, :options, :requested_locale, :grammatical_number, :original)
+  end
+end
