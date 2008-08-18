@@ -24,13 +24,13 @@ describe I18n::LoadPath do
   
   it "allows to specify an array of file extensions while adding a path" do
     load_path = I18n::LoadPath.new
-    load_path.add(@locale_dir, ['rb', 'yml'])
+    load_path.add(@locale_dir, 'rb', 'yml')
     load_path.should == [[@locale_dir, ['rb', 'yml']]]
   end
   
   it "creates glob patterns which enforce the default directory structure" do
     load_path = I18n::LoadPath.new
-    load_path.add(@locale_dir, ['rb', 'yml'])
+    load_path.add(@locale_dir, 'rb', 'yml')
     locale = 'en-US'
     patterns = %W( #{@locale_dir}/#{locale}/**/*.rb 
                    #{@locale_dir}/#{locale}.rb 

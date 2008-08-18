@@ -2,12 +2,8 @@
 #
 # Clients can add load_paths using:
 #
-#   I18n.load_path << 'path/to/dir'
-#   I18n.load_path.extensions = ['yml', 'rb']
-#   I18n.load_path.patterns << "#{load_path}/#{locale}/**/*.yml" << "#{load_path}/#{locale}.yml" << "#{load_path}/all.yml"
-#   I18n.default_load_paths base_path, extension
-#   I18n.load_path << I18n.default_load_paths(load_path, 'rb')
-#   I18n.load_path.add load_path, 'rb'
+#   I18n.load_path.add load_path, 'rb', 'yml'   # pass any number of extensions like this
+#   I18n.load_path << 'path/to/dir'             # usage without an extension, defaults to 'yml'
 #
 # And load locale data using either of:
 #
@@ -49,8 +45,8 @@ module I18n
       add path
     end
     
-    def add(path, extensions = ['yml'])
-      extensions = [extensions] unless extensions.is_a? Array
+    def add(path, *extensions)
+      extensions = ['yml'] if extensions.empty?
       push [path, extensions]
     end
     
