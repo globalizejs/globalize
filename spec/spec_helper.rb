@@ -16,6 +16,7 @@ require 'spec'
 require 'i18n'
 
 require 'spec/matchers/have_attribute'
+require 'spec/helpers/active_record'
 
 Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
