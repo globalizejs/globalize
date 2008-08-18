@@ -53,10 +53,16 @@ module Globalize
   
       module ClassMethods
         def find_with_translation(*args)
-          find_without_translation(*args)
+          results = scoped( :include => :post_translations ).find_without_translation(*args)
+          [ results ].flatten.each do |rec|
+            self.options.each do |attr_name|
+              rec.instance_variable_set "@#{attr_name}", rec.post_translations.first.send(attr_name)
+            end
+          end
+          results
         end
-      end
-       
+      end       
+      
     end      
   end
 end

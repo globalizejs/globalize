@@ -33,6 +33,8 @@ describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
     post.subject.should == 'foo' 
     post.content.should == 'bar'
     post.save.should == true 
+    
+    # This doesn't work yet, because we haven't done saving code
     post.reload
     post.subject.should == 'foo' 
     post.content.should == 'bar'
@@ -41,6 +43,6 @@ describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
   it "finds a post" do
     Factory :post
     lambda { Post.first }.should_not raise_error
-    Post.first.should_not be_nil
+    Post.first.subject.should == 'foo'
   end
 end
