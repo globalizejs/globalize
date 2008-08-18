@@ -37,4 +37,10 @@ describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
     post.subject.should == 'foo' 
     post.content.should == 'bar'
   end
+  
+  it "finds a post" do
+    Factory :post
+    lambda { Post.first }.should_not raise_error
+    Post.first.should_not be_nil
+  end
 end

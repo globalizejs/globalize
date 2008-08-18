@@ -15,9 +15,14 @@ module Globalize
             class_inheritable_accessor :options
             extend ClassMethods
             include InstanceMethods
-          
+             
             create_proxy_class
             has_many proxy_records
+
+            class << self
+              alias_method_chain :find, :translation
+            end
+
           end
           self.options = options
 
@@ -47,6 +52,9 @@ module Globalize
       end
   
       module ClassMethods
+        def find_with_translation(*args)
+          find_without_translation(*args)
+        end
       end
        
     end      
