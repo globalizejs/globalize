@@ -1,3 +1,5 @@
+# TODO rename this according to http://en.wikipedia.org/wiki/IETF_language_tag
+
 module Rfc4646
   SUBTAGS = [:language, :script, :region, :variant, :extension, :privateuse, :grandfathered]
   FORMATS = {:language => :downcase, :script => :capitalize, :region => :upcase, :variant => :downcase}

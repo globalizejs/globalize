@@ -3,14 +3,17 @@
 ENV["RAILS_ENV"] = "test"
 $:.unshift File.expand_path(File.dirname(__FILE__) + "/..")
 $:.unshift File.expand_path(File.dirname(__FILE__) + "/../lib")
+$:.unshift File.expand_path(File.dirname(__FILE__) + "/../vendor/gems/i18n/lib")
 
 # require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 # $:.unshift File.expand_path(File.dirname(__FILE__) + "/../vendor/gems/rspec-rails-1.1.4/lib")
 # $:.unshift File.expand_path(File.dirname(__FILE__) + "/../vendor/gems/rspec-1.1.4/lib")
 
 require 'rubygems'
+require 'yaml'
 require 'spec'
 # require 'spec/rails'
+require 'i18n'
 
 require 'spec/matchers/have_attribute'
 
