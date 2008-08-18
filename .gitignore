@@ -1,4 +1,4 @@
 doc
-spec/**/test.db
+db/*
 vendor
 NOTES

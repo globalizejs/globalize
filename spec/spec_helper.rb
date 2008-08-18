@@ -12,6 +12,7 @@ $:.unshift File.expand_path(File.dirname(__FILE__) + "/../vendor/gems/i18n/lib")
 require 'rubygems'
 require 'yaml'
 require 'spec'
+require 'factory_girl'
 # require 'spec/rails'
 require 'i18n'
 
