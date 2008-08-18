@@ -1,0 +1,2 @@
+class ModelTranslation
+end
