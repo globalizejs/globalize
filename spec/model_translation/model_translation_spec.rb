@@ -58,4 +58,22 @@ describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
     post.subject.should == 'foo' 
     post.content.should == 'bar'    
   end
+  
+  it "updates an attribute" do
+    post = Post.create :subject => 'foo', :content => 'bar'
+    post.update_attribute :subject, 'baz'
+    Post.first.subject.should == 'baz'    
+  end
+  
+  it "validates presence of :subject" do
+    class Post
+      validates_presence_of :subject
+    end
+    
+    post = Post.new
+    post.save.should == false
+    
+    post = Post.new :subject => 'foo'
+    post.save.should == true
+  end
 end

@@ -1,3 +1,5 @@
+require 'globalize/attribute_translation'
+
 module Globalize
   module ActiveRecord
     module Translated
@@ -16,36 +18,43 @@ module Globalize
             extend ClassMethods
             include InstanceMethods
              
-            proxy_class = create_proxy_class
+            proxy_class = globalize_create_proxy_class
             has_many :globalize_translations, :class_name => proxy_class.name
           end
           self.options = options
+          globalize_define_accessors(options)
+        end
 
-          self.options.each do |attr_name|
+        private
+        
+        def globalize_define_accessors(attr_names)
+          attr_names.each do |attr_name|
             iv = "@#{attr_name}"
             define_method attr_name, lambda {
-              instance_variable_get(iv) || instance_variable_set( iv,
-                ( gt = globalize_translations.find_by_locale(locale) ) &&
-                gt.send(attr_name) )
+              cached = instance_variable_get(iv)
+              if cached then cached else
+                gt    = globalize_translations.find_by_locale(locale)
+                val   = gt && gt.send(attr_name)
+                val &&= Globalize::AttributeTranslation.new( val, :locale => gt.locale, 
+                  :requested_locale => I18n.locale, :fallback => false )
+                instance_variable_set iv, val
+              end
             }
             define_method "#{attr_name}=", lambda {|val|
               instance_variable_set iv, val
             }
           end 
-
         end
-
-        private
         
-        def create_ar_class(class_name, &block)
+        def globalize_create_ar_class(class_name, &block)
           klass = Class.new ::ActiveRecord::Base, &block
           Object.const_set class_name, klass
           klass
         end
         
-        def create_proxy_class
+        def globalize_create_proxy_class
           original_class_name = name
-          create_ar_class "#{name}Translation" do
+          globalize_create_ar_class "#{name}Translation" do
             belongs_to "#{original_class_name.underscore}".intern
           end
         end

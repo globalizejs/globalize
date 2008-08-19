@@ -1,15 +1,19 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
-require 'attribute_translation'
+require 'globalize/attribute_translation'
+
+include Globalize
 
 describe AttributeTranslation do
   include Spec::Matchers::HaveAttribute
   
   before do
-    @translation = AttributeTranslation.new 'foo'
+    @translation = AttributeTranslation.new 'foo', :locale => 'en-US', 
+      :requested_locale => 'de-DE'
   end
   
   it "has the attributes :locale, :requested_locale" do
-    @translation.should have_attr_accessors(:locale, :requested_locale)
+    @translation.locale.should == 'en-US'
+    @translation.requested_locale.should == 'de-DE'
   end
 
   it "has the method fallback?" do

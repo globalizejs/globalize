@@ -2,3 +2,4 @@ doc
 spec/db/*
 vendor
 NOTES
+test.rb
