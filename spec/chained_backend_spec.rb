@@ -23,29 +23,61 @@ end
 
 describe I18n::Backend::Chain, '#translate' do
   before :each do
-    I18n.backend = I18n::Backend::Chain.new
-    @spec_backend = I18n::Backend::Spec.new
-    @simple_backend = I18n::Backend::Simple.new
-    I18n.backend.add @spec_backend
-    I18n.backend.add @simple_backend
+    I18n.backend = I18n::Backend::Chain.new    
+    @first_backend = I18n::Backend::Simple.new
+    @last_backend = I18n::Backend::Simple.new    
+    I18n.backend.add @first_backend
+    I18n.backend.add @last_backend
   end
   
   it "delegates #translate to all backends in the order they were added" do
-    @spec_backend.should_receive(:translate).with('en-US', :foo, {})
-    @simple_backend.should_receive(:translate).with('en-US', :foo, {})
+    @first_backend.should_receive(:translate).with('en-US', :foo, {})
+    @last_backend.should_receive(:translate).with('en-US', :foo, {})
     I18n.translate :foo
   end
   
   it "returns the result from #translate from the first backend if it's not nil" do
-    @spec_backend.should_receive(:translate).and_return('result from first backend')
+    @first_backend.store_translations :'en-US', {:foo => 'foo from first backend'}
+    @last_backend.store_translations :'en-US', {:foo => 'foo from last backend'}
     result = I18n.translate :foo
-    result.should == 'result from first backend'
+    result.should == 'foo from first backend'
   end
   
   it "returns the result from #translate from the second backend if the first one returned nil" do
-    @spec_backend.should_receive(:translate).and_return(nil)
-    @simple_backend.should_receive(:translate).and_return('result from second backend')
+    @first_backend.store_translations :'en-US', {}
+    @last_backend.store_translations :'en-US', {:foo => 'foo from last backend'}    
     result = I18n.translate :foo
-    result.should == 'result from second backend'
+    result.should == 'foo from last backend'
+  end
+  
+  # --------------------------------------------------------------------------
+  
+  it "looks up a namespace from all backends and merges them (if a result is a hash and no count option is present)" do
+    @first_backend.store_translations :'en-US', {:foo => {:bar => 'bar from first backend'}}    
+    @last_backend.store_translations :'en-US', {:foo => {:baz => 'baz from last backend'}}    
+    result = I18n.translate :foo
+    result.should == {:bar => 'bar from first backend', :baz => 'baz from last backend'}
+  end
+  
+end
+
+describe I18n::Backend::Chain, '#namespace_lookup?' do
+  before :each do 
+    @backend = I18n::Backend::Chain.new
+  end
+  
+  it "returns false if the given result is not a Hash" do
+    @backend.send(:namespace_lookup?, 'foo', {}).should be_false
+  end
+  
+  it "returns false if a count option is present" do
+    @backend.send(:namespace_lookup?, {:foo => 'foo'}, {:count => 1}).should be_false
+  end
+  
+  it "returns true if the given result is a Hash AND no count option is present" do
+    @backend.send(:namespace_lookup?, {:foo => 'foo'}, {}).should be_true
   end
 end
+
+
+

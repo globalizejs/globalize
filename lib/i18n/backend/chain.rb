@@ -21,7 +21,7 @@ module I18n
         # Exceptions:
         # Make sure that we catch MissingTranslationData exceptions and raise
         # one in the end when no translation was found at all.
-        backends.each do |backend|
+        backends.inject({}) do |result, backend|
           # For defaults:
           # Never pass any default option to the backends but instead implement our own default
           # mechanism (e.g. symbols as defaults would need to be passed to the whole chain to
@@ -31,13 +31,26 @@ module I18n
           # Only return if the result is not a hash OR count is not present, otherwise merge them.
           # So in effect the count variable would control whether we have a namespace lookup or a 
           # pluralization going on.
-          result = backend.translate(locale, key, options) and return result
+          begin
+            translation = backend.translate(locale, key, options) 
+            if namespace_lookup?(translation, options)
+              result.merge! translation
+            elsif translation
+              return translation 
+            end
+          rescue I18n::MissingTranslationData
+          end
+          result
         end
       end
     
       protected
         def backends
           @backends ||= []
+        end
+        
+        def namespace_lookup?(result, options)
+          result.is_a?(Hash) and not options.has_key?(:count)
         end
     end
   end
