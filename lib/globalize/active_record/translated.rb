@@ -17,15 +17,20 @@ module Globalize
             include InstanceMethods
              
             create_proxy_class
-            has_many proxy_records
+            has_many proxy_records do
+              def current_locale
+                find_by_locale I18n.locale
+              end
+            end
           end
           self.options = options
 
+          proxy_association = :"#{name.underscore}_translations"
           self.options.each do |attr_name|
             iv = "@#{attr_name}"
             define_method attr_name, lambda {
-              instance_variable_get(iv) || 
-                instance_variable_set(iv, post_translations.first.send(attr_name))
+              instance_variable_get(iv) || instance_variable_set(iv, 
+                send(proxy_association).current_locale.send(attr_name))
             }
             define_method "#{attr_name}=", lambda {|val|
               instance_variable_set iv, val

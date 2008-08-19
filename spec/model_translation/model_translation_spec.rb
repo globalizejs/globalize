@@ -33,16 +33,19 @@ describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
     post.subject.should == 'foo' 
     post.content.should == 'bar'
     post.save.should == true 
-    
-    # This doesn't work yet, because we haven't done saving code
     post.reload
     post.subject.should == 'foo' 
     post.content.should == 'bar'
   end
   
   it "finds a post" do
-    Factory :post
-    lambda { Post.first }.should_not raise_error
+    Factory :post_translation   # This creates a Post, too
     Post.first.subject.should == 'foo'
+  end
+
+  it "finds a German post" do
+    Factory :de_post_translation  # This creates a Post, too
+    I18n.locale = 'de-DE'
+    Post.first.subject.should == 'fü'    
   end
 end
