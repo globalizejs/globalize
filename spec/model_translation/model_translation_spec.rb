@@ -15,12 +15,13 @@ describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
   include Spec::Helpers::ActiveRecord  
 
   before do
+    I18n.locale = 'en-US'
     reset_db
   end
   
   it "has post_translations" do
     post = Post.create
-    lambda { post.post_translations }.should_not raise_error
+    lambda { post.globalize_translations }.should_not raise_error
   end
 
   it "returns the value passed to :subject" do
@@ -38,14 +39,41 @@ describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
     post.content.should == 'bar'
   end
   
-  it "finds a post" do
-    Factory :post_translation   # This creates a Post, too
-    Post.first.subject.should == 'foo'
-  end
-
   it "finds a German post" do
-    Factory :de_post_translation  # This creates a Post, too
+    post = Post.create :subject => 'foo', :content => 'bar'
     I18n.locale = 'de-DE'
+    post = Post.first
+    post.subject = 'fü'
+    post.save
     Post.first.subject.should == 'fü'    
+    I18n.locale = 'en-US'
+    Post.first.subject.should == 'foo'    
+  end
+  
+  it "saves an English post and loads it correctly" do
+    Post.first.should == nil
+    post = Post.create :subject => 'foo', :content => 'bar'
+    post.save.should == true 
+    post = Post.first
+    post.subject.should == 'foo' 
+    post.content.should == 'bar'    
+  end
+  
+  it "updates an attribute" do
+    post = Post.create :subject => 'foo', :content => 'bar'
+    post.update_attribute :subject, 'baz'
+    Post.first.subject.should == 'baz'    
+  end
+  
+  it "validates presence of :subject" do
+    class Post
+      validates_presence_of :subject
+    end
+    
+    post = Post.new
+    post.save.should == false
+    
+    post = Post.new :subject => 'foo'
+    post.save.should == true
   end
 end
