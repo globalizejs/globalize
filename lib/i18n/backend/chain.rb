@@ -13,6 +13,16 @@ module I18n
         backends << backend
       end
     
+      # For defaults:
+      # Never pass any default option to the backends but instead implement our own default
+      # mechanism (e.g. symbols as defaults would need to be passed to the whole chain to
+      # be translated).
+      #
+      # For namespace lookup: 
+      # Only return if the result is not a hash OR count is not present, otherwise merge them.
+      # So in effect the count variable would control whether we have a namespace lookup or a 
+      # pluralization going on.
+      
       def translate(locale, key, options = {})
         # For bulk translation:
         # If the key is an array we need to call #translate for each of the
@@ -21,16 +31,8 @@ module I18n
         # Exceptions:
         # Make sure that we catch MissingTranslationData exceptions and raise
         # one in the end when no translation was found at all.
-        backends.inject({}) do |namespace, backend|
-          # For defaults:
-          # Never pass any default option to the backends but instead implement our own default
-          # mechanism (e.g. symbols as defaults would need to be passed to the whole chain to
-          # be translated).
-          #
-          # For namespace lookup: 
-          # Only return if the result is not a hash OR count is not present, otherwise merge them.
-          # So in effect the count variable would control whether we have a namespace lookup or a 
-          # pluralization going on.
+        default = options.delete(:default)
+        result = backends.inject({}) do |namespace, backend|
           begin
             translation = backend.translate(locale, key, options) 
             if namespace_lookup?(translation, options)
@@ -40,13 +42,25 @@ module I18n
             end
           rescue I18n::MissingTranslationData
           end
-          namespace
         end
+        result || default(locale, default, options)
       end
     
       protected
         def backends
           @backends ||= []
+        end
+        
+        def default(locale, default, options = {})
+          case default
+            when String then default
+            when Symbol then translate locale, default, options
+            when Array  then default.each do |obj| 
+              result = default(locale, obj, options.dup) and return result
+            end and nil
+          end
+        rescue MissingTranslationData
+          nil
         end
         
         def namespace_lookup?(result, options)

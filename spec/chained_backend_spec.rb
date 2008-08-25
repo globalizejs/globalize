@@ -10,16 +10,16 @@ module I18n
   end
 end
 
-describe I18n::Backend::Chain, '#add' do
-  before :each do
-    I18n.backend = I18n::Backend::Chain.new
-  end
-  
-  it "allows to add backends" do
-    lambda{ I18n.backend.add I18n::Backend::Spec.new }.should_not raise_error
-    I18n.backend.send(:backends).first.should be_instance_of(I18n::Backend::Spec)
-  end
-end
+# describe I18n::Backend::Chain, '#add' do
+#   before :each do
+#     I18n.backend = I18n::Backend::Chain.new
+#   end
+#   
+#   it "allows to add backends" do
+#     lambda{ I18n.backend.add I18n::Backend::Spec.new }.should_not raise_error
+#     I18n.backend.send(:backends).first.should be_instance_of(I18n::Backend::Spec)
+#   end
+# end
 
 describe I18n::Backend::Chain, '#translate' do
   before :each do
@@ -50,8 +50,6 @@ describe I18n::Backend::Chain, '#translate' do
     result.should == 'foo from last backend'
   end
   
-  # --------------------------------------------------------------------------
-  
   it "looks up a namespace from all backends and merges them (if a result is a hash and no count option is present)" do
     @first_backend.store_translations :'en-US', {:foo => {:bar => 'bar from first backend'}}    
     @last_backend.store_translations :'en-US', {:foo => {:baz => 'baz from last backend'}}    
@@ -59,6 +57,17 @@ describe I18n::Backend::Chain, '#translate' do
     result.should == {:bar => 'bar from first backend', :baz => 'baz from last backend'}
   end
   
+  describe 'when called with a default option' do
+    it "still calls #translate on all the backends" do
+      @last_backend.should_receive :translate
+      I18n.translate :not_here, :default => 'default'
+    end
+    
+    it "returns a given default string when no backend returns a translation" do
+      result = I18n.translate :not_here, :default => 'default'
+      result.should == 'default'
+    end
+  end
 end
 
 describe I18n::Backend::Chain, '#namespace_lookup?' do
