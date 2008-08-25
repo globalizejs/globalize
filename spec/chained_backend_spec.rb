@@ -10,16 +10,16 @@ module I18n
   end
 end
 
-# describe I18n::Backend::Chain, '#add' do
-#   before :each do
-#     I18n.backend = I18n::Backend::Chain.new
-#   end
-#   
-#   it "allows to add backends" do
-#     lambda{ I18n.backend.add I18n::Backend::Spec.new }.should_not raise_error
-#     I18n.backend.send(:backends).first.should be_instance_of(I18n::Backend::Spec)
-#   end
-# end
+describe I18n::Backend::Chain, '#add' do
+  before :each do
+    I18n.backend = I18n::Backend::Chain.new
+  end
+  
+  it "allows to add backends" do
+    lambda{ I18n.backend.add I18n::Backend::Spec.new }.should_not raise_error
+    I18n.backend.send(:backends).first.should be_instance_of(I18n::Backend::Spec)
+  end
+end
 
 describe I18n::Backend::Chain, '#translate' do
   before :each do
@@ -82,6 +82,41 @@ describe I18n::Backend::Chain, '#translate' do
       result = I18n.translate :not_here, :default => 'default'
       result.should == 'default'
     end
+  end
+end
+
+class CustomLocalizeBackend < I18n::Backend::Simple
+  def localize(locale, object, format = :default)
+    "result from custom localize backend" if locale == 'custom'
+  end
+end
+
+describe I18n::Backend::Chain, '#localize' do
+  before :each do
+    I18n.backend = I18n::Backend::Chain.new    
+    @first_backend = CustomLocalizeBackend.new
+    @last_backend = I18n::Backend::Simple.new    
+    I18n.backend.add @first_backend
+    I18n.backend.add @last_backend
+    @time = Time.now
+  end
+  
+  it "delegates #localize to all backends in the order they were added" do
+    @first_backend.should_receive(:localize).with('en-US', @time, :default)
+    @last_backend.should_receive(:localize).with('en-US', @time, :default)
+    I18n.localize @time
+  end
+  
+  it "returns the result from #localize from the first backend if it's not nil" do
+    @last_backend.should_not_receive :localize
+    result = I18n.localize @time, :locale => 'custom'
+    result.should == 'result from custom localize backend'
+  end
+  
+  it "returns the result from #localize from the second backend if the first one returned nil" do
+    @last_backend.should_receive(:localize).and_return "value from last backend"
+    result = I18n.localize @time
+    result.should == "value from last backend"
   end
 end
 
