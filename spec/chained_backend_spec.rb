@@ -61,6 +61,17 @@ describe I18n::Backend::Chain, '#translate' do
     lambda{ I18n.translate :not_here, :raise => true }.should raise_error(I18n::MissingTranslationData)
   end
   
+  it "raises an InvalidLocale exception if the locale is nil" do
+    lambda{ I18n::Backend::Chain.new.translate nil, :foo }.should raise_error(I18n::InvalidLocale)
+  end
+  
+  it "bulk translates a number of keys from different backends" do
+    @first_backend.store_translations :'en-US', {:foo => 'foo from first backend'}
+    @last_backend.store_translations :'en-US', {:bar => 'bar from last backend'}
+    result = I18n.translate [:foo, :bar]
+    result.should == ['foo from first backend', 'bar from last backend']
+  end
+  
   describe 'when called with a default option' do
     it "still calls #translate on all the backends" do
       @last_backend.should_receive :translate

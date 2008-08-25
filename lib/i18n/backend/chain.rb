@@ -22,15 +22,19 @@ module I18n
       # Only return if the result is not a hash OR count is not present, otherwise merge them.
       # So in effect the count variable would control whether we have a namespace lookup or a 
       # pluralization going on.
+      #
+      # Exceptions:
+      # Make sure that we catch MissingTranslationData exceptions and raise
+      # one in the end when no translation was found at all.
+      #
+      # For bulk translation:
+      # If the key is an array we need to call #translate for each of the
+      # keys and collect the results.
       
       def translate(locale, key, options = {})
-        # For bulk translation:
-        # If the key is an array we need to call #translate for each of the
-        # keys and collect the results.
-        #
-        # Exceptions:
-        # Make sure that we catch MissingTranslationData exceptions and raise
-        # one in the end when no translation was found at all.
+        raise InvalidLocale.new(locale) if locale.nil?
+        return key.map{|k| translate locale, k, options } if key.is_a? Array
+        
         default = options.delete(:default)
         result = backends.inject({}) do |namespace, backend|
           begin
