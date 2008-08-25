@@ -57,6 +57,10 @@ describe I18n::Backend::Chain, '#translate' do
     result.should == {:bar => 'bar from first backend', :baz => 'baz from last backend'}
   end
   
+  it "raises a MissingTranslationData exception if no translation was found" do
+    lambda{ I18n.translate :not_here, :raise => true }.should raise_error(I18n::MissingTranslationData)
+  end
+  
   describe 'when called with a default option' do
     it "still calls #translate on all the backends" do
       @last_backend.should_receive :translate

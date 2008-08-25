@@ -43,7 +43,7 @@ module I18n
           rescue I18n::MissingTranslationData
           end
         end
-        result || default(locale, default, options)
+        result || default(locale, default, options) || raise(I18n::MissingTranslationData.new(locale, key, options))
       end
     
       protected
