@@ -21,7 +21,7 @@ module I18n
         # Exceptions:
         # Make sure that we catch MissingTranslationData exceptions and raise
         # one in the end when no translation was found at all.
-        backends.inject({}) do |result, backend|
+        backends.inject({}) do |namespace, backend|
           # For defaults:
           # Never pass any default option to the backends but instead implement our own default
           # mechanism (e.g. symbols as defaults would need to be passed to the whole chain to
@@ -34,13 +34,13 @@ module I18n
           begin
             translation = backend.translate(locale, key, options) 
             if namespace_lookup?(translation, options)
-              result.merge! translation
+              namespace.merge! translation
             elsif translation
               return translation 
             end
           rescue I18n::MissingTranslationData
           end
-          result
+          namespace
         end
       end
     
