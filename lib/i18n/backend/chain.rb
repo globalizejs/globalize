@@ -1,6 +1,15 @@
-module I18n
+module I18n  
+  class << self
+    def chain_backends(*args)
+      backend = Backend::Chain.new(*args)
+    end
+  end
+  
   module Backend
-    class Chain # < Simple extend this to get the default method from the Simple backend?
+    class Chain      
+      def initialize(*args)
+        add(*args) unless args.empty?
+      end
       
       # Change this to a) accept any number of backends and b) accept classes.
       # When classes are passed instantiate them and add the instances as backends.
@@ -9,8 +18,22 @@ module I18n
       # Add an initialize method that accepts the same arguments and passes them
       # to #add, so we could:
       #   I18n.backend = I18n::Backend::Chain.new(I18n::Backend::Spec, I18n::Backend::Simple)
-      def add(backend)
-        backends << backend
+      #   I18n::Backend::Chain.new(:spec, :simple)
+      #   I18n.chain_backends :spec, :simple
+      def add(*backends)
+        backends.each do |backend|
+          backend = I18n::Backend.const_get(backend.to_s.capitalize) if backend.is_a? Symbol
+          backend = backend.new if backend.is_a? Class
+          self.backends << backend
+        end
+      end
+      
+      def load_translations(*args)
+        backends.each{|backend| backend.load_translations(*args) }
+      end
+
+      def store_translations(*args)
+        backends.each{|backend| backend.store_translations(*args) }
       end
     
       # For defaults:

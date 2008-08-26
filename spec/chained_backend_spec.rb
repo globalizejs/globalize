@@ -10,14 +10,69 @@ module I18n
   end
 end
 
+describe I18n, '.chain_backends' do
+  it "instantiates a chained backend and sets it as backend" do
+    lambda{ I18n.chain_backends }.should_not raise_error
+    I18n.backend.should be_instance_of(I18n::Backend::Chain)
+  end
+  
+  it "passes all given arguments to the chained backends #initialize method" do
+    I18n::Backend::Chain.should_receive(:new).with(:spec, :simple)
+    I18n.chain_backends :spec, :simple
+  end 
+end
+
+describe I18n::Backend::Chain, '#initialize' do
+  it "passes all given arguments to #add assuming that they are backends" do
+    # no idea how to spec that
+  end
+end
+
 describe I18n::Backend::Chain, '#add' do
   before :each do
     I18n.backend = I18n::Backend::Chain.new
   end
   
-  it "allows to add backends" do
+  it "accepts an instance of a backend" do
     lambda{ I18n.backend.add I18n::Backend::Spec.new }.should_not raise_error
     I18n.backend.send(:backends).first.should be_instance_of(I18n::Backend::Spec)
+  end
+  
+  it "accepts a class and instantiates the backend" do
+    lambda{ I18n.backend.add I18n::Backend::Spec }.should_not raise_error
+    I18n.backend.send(:backends).first.should be_instance_of(I18n::Backend::Spec)
+  end
+  
+  it "accepts a symbol, constantizes it as a backend class and instantiates the backend" do
+    lambda{ I18n.backend.add :spec }.should_not raise_error
+    I18n.backend.send(:backends).first.should be_instance_of(I18n::Backend::Spec)
+  end
+  
+  it "accepts any number of backend instances, classes or symbols" do
+    lambda{ I18n.backend.add I18n::Backend::Spec.new, I18n::Backend::Spec, :spec }.should_not raise_error
+    I18n.backend.send(:backends).map{|backend| backend.class }.should == [I18n::Backend::Spec, I18n::Backend::Spec, I18n::Backend::Spec]
+  end
+end
+
+describe I18n::Backend::Chain do
+  before :each do
+    I18n.backend = I18n::Backend::Chain.new    
+    @first_backend = mock 'first backend'
+    @last_backend = mock 'last backend'
+    I18n.backend.add @first_backend
+    I18n.backend.add @last_backend
+  end
+  
+  it "delegates #load_translations to every backend on a chain" do
+    @first_backend.should_receive(:load_translations).with('translations.rb')
+    @last_backend.should_receive(:load_translations).with('translations.rb')
+    I18n.load_translations 'translations.rb'
+  end
+  
+  it "delegates #store_translations to every backend on a chain" do
+    @first_backend.should_receive(:store_translations).with('en-US', :foo => 'foo')
+    @last_backend.should_receive(:store_translations).with('en-US', :foo => 'foo')
+    I18n.store_translations 'en-US', :foo => 'foo'
   end
 end
 
