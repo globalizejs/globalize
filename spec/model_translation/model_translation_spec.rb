@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
+#$:.unshift File.expand_path(File.dirname(__FILE__) + "/../../vendor/rails/activerecord/lib")
 require 'active_record'
 require 'globalize/active_record/translated'
 
@@ -9,7 +10,6 @@ require 'spec/helpers/active_record'
 require 'factory_girl'
 require 'spec/models/post'
 
-  
 describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
   include Spec::Matchers::HaveAttribute
   include Spec::Helpers::ActiveRecord  
