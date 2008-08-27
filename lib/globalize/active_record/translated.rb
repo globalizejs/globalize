@@ -29,19 +29,21 @@ module Globalize
         
         def globalize_define_accessors(attr_names)
           attr_names.each do |attr_name|
-            iv = "@#{attr_name}"
             define_method attr_name, lambda {
-              cached = instance_variable_get(iv)
+              locale = I18n.locale
+              cached = @map && @map[locale] && @map[locale][attr_name]
               if cached then cached else
                 gt    = globalize_translations.find_by_locale(locale)
                 val   = gt && gt.send(attr_name)
                 val &&= Globalize::AttributeTranslation.new( val, :locale => gt.locale, 
-                  :requested_locale => I18n.locale, :fallback => false )
-                instance_variable_set iv, val
+                  :requested_locale => locale, :fallback => false )
+                send("#{attr_name}=", val)
               end
             }
             define_method "#{attr_name}=", lambda {|val|
-              instance_variable_set iv, val
+              @map ||= Hash.new
+              @map[I18n.locale] ||= Hash.new
+              @map[I18n.locale][attr_name] = val
             }
           end 
         end
@@ -62,15 +64,16 @@ module Globalize
       end
       
       module InstanceMethods
-        def locale; I18n.locale end   # Probably should save original locale here
-        
         private
         def globalize_save_translations
-          gt = globalize_translations.find_or_initialize_by_locale locale
-          self.class.options.each do |attr_name|
-            gt[attr_name] = send(attr_name)
+          return unless @map
+          @map.each do |locale, attrs|
+            gt = globalize_translations.find_or_initialize_by_locale locale
+            attrs.each do |attr_name, val|
+              gt[attr_name] = val
+            end
+            gt.save
           end
-          gt.save
         end
       end
   

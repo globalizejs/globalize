@@ -43,9 +43,9 @@ describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
     post = Post.create :subject => 'foo', :content => 'bar'
     I18n.locale = 'de-DE'
     post = Post.first
-    post.subject = 'fü'
+    post.subject = 'baz'
     post.save
-    Post.first.subject.should == 'fü'    
+    Post.first.subject.should == 'baz'    
     I18n.locale = 'en-US'
     Post.first.subject.should == 'foo'    
   end
@@ -75,5 +75,45 @@ describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
     
     post = Post.new :subject => 'foo'
     post.save.should == true
+  end
+  
+  it "returns the value for the correct locale, after locale switching" do
+    post = Post.create :subject => 'foo'
+    I18n.locale = 'de-DE'
+    post.subject = 'bar'
+    post.save
+    I18n.locale = 'en-US'
+    post = Post.first
+    post.subject.should == 'foo'
+    I18n.locale = 'de-DE'
+    post.subject.should == 'bar'   
+  end
+
+  it "saves all locales, even after locale switching" do
+    post = Post.new :subject => 'foo'
+    I18n.locale = 'de-DE'
+    post.subject = 'bar'
+    I18n.locale = 'he-IL'
+    post.subject = 'baz'
+    post.save
+    I18n.locale = 'en-US'
+    post = Post.first
+    post.subject.should == 'foo'
+    I18n.locale = 'de-DE'
+    post.subject.should == 'bar'   
+    I18n.locale = 'he-IL'
+    post.subject.should == 'baz'   
+  end
+  
+  it "resolves a simple fallback" do
+    I18n.locale = 'de-DE'
+    post = Post.create :subject => 'foo'
+    I18n.locale = 'de'
+    post.subject = 'baz'
+    post.content = 'bar'
+    post.save
+    I18n.locale = 'de-DE'
+    post.subject.should == 'foo'
+    post.content.should == 'bar'    
   end
 end
