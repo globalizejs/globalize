@@ -7,7 +7,7 @@ module Globalize
     # TODO make this code handle real cases
     def compute(tag)
       tag = Rfc4646::tag(tag) if String === tag
-      [ tag.parent ].compact + (@map[tag] || [])
+      [ tag, tag.parent ].compact + (@map[tag] || [])
     end
     
     def add(from, to)

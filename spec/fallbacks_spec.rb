@@ -10,24 +10,25 @@ describe Fallbacks do
   end
   
   it "returns correct fallbacks for en" do
-    @fallbacks.compute('en').should be_empty
+    fallbacks = @fallbacks.compute('en')
+    fallbacks.map {|tag| tag.to_s }.should == %w[ en ]
   end
 
   it "returns correct fallbacks for en-US" do
-    @fallbacks.compute('en-US').should include(Rfc4646::tag('en'))
+    fallbacks = @fallbacks.compute('en-US')
+    fallbacks.map {|tag| tag.to_s }.should == %w[ en-US en ]
   end
 
   it "returns correct fallbacks for de, given en as default" do
     @fallbacks.add 'de', 'en'
-    @fallbacks.compute('de').should include(Rfc4646::tag('en'))
+    fallbacks = @fallbacks.compute('de')
+    fallbacks.map {|tag| tag.to_s }.should == %w[ de en ]
   end
 
   # Add lots of other tests that won't pass and will require changes in code
   it "returns correct fallbacks for en-Latn-US" do
     fallbacks = @fallbacks.compute('en-Latn-US') 
-    fallbacks.should include(Rfc4646::tag('en'))
-    fallbacks.should include(Rfc4646::tag('en-Latn'))
-    fallbacks.should include(Rfc4646::tag('en-US'))
+    fallbacks.map {|tag| tag.to_s }.should == %w[ en-Latn-US en-US en-Latn en ]
   end
   
   # Test for correct resolution down fallback tree; e.g., 'de-DE' -> 'de' -> 'en'
