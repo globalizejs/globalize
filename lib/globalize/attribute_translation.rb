@@ -10,13 +10,12 @@ module Globalize
     attr_reader :requested_locale
   
     # True, if the requested locale wasn't available and a fallback was used instead.
-    def fallback?; @fallback end
+    def fallback?; locale != requested_locale end
     
     def initialize(str, rec)
       super str
       @locale = rec[:locale]
       @requested_locale = rec[:requested_locale]
-      @fallback = rec[:fallback]
     end
   end
 end

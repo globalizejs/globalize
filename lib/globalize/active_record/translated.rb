@@ -1,4 +1,5 @@
 require 'globalize/attribute_translation'
+require 'globalize/fallbacks'
 
 module Globalize
   module ActiveRecord
@@ -19,9 +20,14 @@ module Globalize
             include InstanceMethods
              
             proxy_class = globalize_create_proxy_class
-            has_many :globalize_translations, :class_name => proxy_class.name
+            has_many :globalize_translations, :class_name => proxy_class.name do
+              def by_locales(locales)
+                find :all, :conditions => { :locale => locales }
+              end
+            end
           end
-          self.options = options
+          self.options = options.extract_options!
+          self.options[:translated_fields] = options
           globalize_define_accessors(options)
         end
 
@@ -33,10 +39,16 @@ module Globalize
               locale = I18n.locale
               cached = @map && @map[locale] && @map[locale][attr_name]
               if cached then cached else
-                gt    = globalize_translations.find_by_locale(locale)
-                val   = gt && gt.send(attr_name)
-                val &&= Globalize::AttributeTranslation.new( val, :locale => gt.locale, 
-                  :requested_locale => locale, :fallback => false )
+                fallbacks = globalize_compute_fallbacks(locale)
+                gts = globalize_translations.by_locales(fallbacks)
+                val = nil; real_locale = locale
+                gts.sort {|a, b| 
+                  fallbacks.index(a.locale) <=> fallbacks.index(b.locale) }.each do |gt|
+                    val = gt.send(attr_name)
+                    real_locale = gt.locale if val
+                  end
+                val &&= Globalize::AttributeTranslation.new( val, :locale => real_locale, 
+                  :requested_locale => locale )
                 send("#{attr_name}=", val)
               end
             }
@@ -72,11 +84,16 @@ module Globalize
             attrs.each do |attr_name, val|
               gt[attr_name] = val
             end
-            gt.save
+            gt.save!
           end
         end
-      end
   
+        def globalize_compute_fallbacks(locale)
+          @globalize_fallbacks ||= self.class.options[:fallbacks] || Globalize::Fallbacks.new
+          @globalize_fallbacks.compute(locale)
+        end
+      end
+        
       module ClassMethods
       end       
       
