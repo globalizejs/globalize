@@ -37,26 +37,15 @@ module Globalize
           attr_names.each do |attr_name|
             define_method attr_name, lambda {
               locale = I18n.locale 
-              fallbacks = globalize_compute_fallbacks(locale)
-              translation_recs = globalize_translations.by_locales(fallbacks)
-              val = nil; real_locale = locale
               
-              # Walk through the fallbacks, starting with the current locale itself, and moving
-              # to the next best choice, until we find a match.
-              # Check the @globalize_set_translations cache first to see if we've just changed the attribute and not saved yet.
-              fallbacks.each do |fallback|
-                val = @globalize_set_translations && @globalize_set_translations[fallback] && @globalize_set_translations[fallback][attr_name]
-                unless val
-                  translation_rec = translation_recs.detect {|tr| tr.locale == fallback }
-                  val = translation_rec && translation_rec.send(attr_name)
-                end
-                if val
-                  real_locale = fallback
-                  break
-                end
+              cached = @globalize_cache && @globalize_cache[locale] && 
+                @globalize_cache[locale][attr_name] 
+              if cached then cached else
+                val = globalize_fetch_attribute(attr_name, locale)
+                @globalize_cache ||= Hash.new
+                @globalize_cache[locale] ||= Hash.new
+                @globalize_cache[locale][attr_name] = val                
               end
-              val &&= Globalize::AttributeTranslation.new( val, :locale => real_locale, 
-                :requested_locale => locale )
             }
             define_method "#{attr_name}=", lambda {|val|
               @globalize_set_translations ||= Hash.new
@@ -98,8 +87,33 @@ module Globalize
           @globalize_fallbacks ||= self.class.options[:fallbacks] || Globalize::Fallbacks.new
           @globalize_fallbacks.compute(locale)
         end
+      
+        def globalize_fetch_attribute(attr_name, locale)
+          fallbacks = globalize_compute_fallbacks(locale)
+          translation_recs = globalize_translations.by_locales(fallbacks)
+          val = nil; real_locale = locale
+          
+          # Walk through the fallbacks, starting with the current locale itself, and moving
+          # to the next best choice, until we find a match.
+          # Check the @globalize_set_translations cache first to see if we've just changed the 
+          # attribute and not saved yet.
+          fallbacks.each do |fallback|
+            val = @globalize_set_translations && @globalize_set_translations[fallback] && 
+              @globalize_set_translations[fallback][attr_name]
+            unless val
+              translation_rec = translation_recs.detect {|tr| tr.locale == fallback }
+              val = translation_rec && translation_rec.send(attr_name)
+            end
+            if val
+              real_locale = fallback
+              break
+            end
+          end
+          val &&= Globalize::AttributeTranslation.new( val, :locale => real_locale, 
+            :requested_locale => locale )
+        end
       end
-        
+      
       module ClassMethods
       end       
       
