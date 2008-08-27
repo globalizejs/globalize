@@ -11,9 +11,10 @@ module Globalize
             
       module ActMethods
         def translates(*options)
-          after_save :globalize_save_translations
-          
-          # Only include once per class
+          hashed_options = options.extract_options!
+          hashed_options[:translated_attributes] = options          
+
+          # Only set up once per class
           unless included_modules.include? InstanceMethods
             class_inheritable_accessor :options
             extend ClassMethods
@@ -25,9 +26,11 @@ module Globalize
                 find :all, :conditions => { :locale => locales }
               end
             end
+            
+            after_save :globalize_save_translations
           end
-          self.options = options.extract_options!
-          self.options[:translated_fields] = options
+
+          self.options = hashed_options                                        
           globalize_define_accessors(options)
         end
 

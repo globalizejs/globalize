@@ -151,4 +151,35 @@ describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
     post.content.should == 'bar'    
   end
   
+  it "returns nil if no translations are found" do
+    post = Post.new :subject => 'foo'
+    post.subject.should == 'foo'
+    post.content.should be_nil
+  end
+
+  it "returns nil if no translations are found; reloaded" do
+    post = Post.create :subject => 'foo'
+    post = Post.first
+    post.subject.should == 'foo'
+    post.content.should be_nil
+  end
+
+  it "works with associations" do
+    blog = Blog.create
+    post1 = blog.posts.create :subject => 'foo'
+    I18n.locale = 'de-DE'
+    post2 = blog.posts.create :subject => 'bar'
+    blog.posts.size.should == 2
+    I18n.locale = 'en-US'
+    blog.posts.first.subject == 'foo'
+    blog.posts.last.subject.should be_nil
+    I18n.locale = 'de-DE'
+    blog.posts.last.subject.should == 'bar'    
+  end
+  
+  # TODO error checking for fields that exist in main table, don't exist in 
+  # proxy table, aren't strings or text
+  
+  # TODO allow finding by translated attributes in conditions?
+  # TODO generate dynamic finders?  
 end
