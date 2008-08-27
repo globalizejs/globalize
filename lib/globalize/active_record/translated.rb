@@ -36,26 +36,32 @@ module Globalize
         def globalize_define_accessors(attr_names)
           attr_names.each do |attr_name|
             define_method attr_name, lambda {
-              locale = I18n.locale
-              cached = @map && @map[locale] && @map[locale][attr_name]
-              if cached then cached else
-                fallbacks = globalize_compute_fallbacks(locale)
-                translation_recs = globalize_translations.by_locales(fallbacks)
-                val = nil; real_locale = locale
-                translation_recs.sort {|a, b| 
-                  fallbacks.index(a.locale) <=> fallbacks.index(b.locale) }.each do |translation_rec|
-                    val = translation_rec.send(attr_name)
-                    real_locale = translation_rec.locale if val
-                  end
-                val &&= Globalize::AttributeTranslation.new( val, :locale => real_locale, 
-                  :requested_locale => locale )
-                send("#{attr_name}=", val)
+              locale = I18n.locale 
+              fallbacks = globalize_compute_fallbacks(locale)
+              translation_recs = globalize_translations.by_locales(fallbacks)
+              val = nil; real_locale = locale
+              
+              # Walk through the fallbacks, starting with the current locale itself, and moving
+              # to the next best choice, until we find a match.
+              # Check the @globalize_set_translations cache first to see if we've just changed the attribute and not saved yet.
+              fallbacks.each do |fallback|
+                val = @globalize_set_translations && @globalize_set_translations[fallback] && @globalize_set_translations[fallback][attr_name]
+                unless val
+                  translation_rec = translation_recs.detect {|tr| tr.locale == fallback }
+                  val = translation_rec && translation_rec.send(attr_name)
+                end
+                if val
+                  real_locale = fallback
+                  break
+                end
               end
+              val &&= Globalize::AttributeTranslation.new( val, :locale => real_locale, 
+                :requested_locale => locale )
             }
             define_method "#{attr_name}=", lambda {|val|
-              @map ||= Hash.new
-              @map[I18n.locale] ||= Hash.new
-              @map[I18n.locale][attr_name] = val
+              @globalize_set_translations ||= Hash.new
+              @globalize_set_translations[I18n.locale] ||= Hash.new
+              @globalize_set_translations[I18n.locale][attr_name] = val
             }
           end 
         end
@@ -78,13 +84,13 @@ module Globalize
       module InstanceMethods
         private
         def globalize_save_translations
-          return unless @map
-          @map.each do |locale, attrs|
-            gt = globalize_translations.find_or_initialize_by_locale locale
+          return unless @globalize_set_translations
+          @globalize_set_translations.each do |locale, attrs|
+            translation_rec = globalize_translations.find_or_initialize_by_locale locale
             attrs.each do |attr_name, val|
-              gt[attr_name] = val
+              translation_rec[attr_name] = val
             end
-            gt.save!
+            translation_rec.save!
           end
         end
   
