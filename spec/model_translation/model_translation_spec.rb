@@ -137,5 +137,18 @@ describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
     post.subject.should == 'foo'
     post.content.should == 'bar'    
   end
+
+  it "resolves a complex fallback without reloading" do
+    I18n.locale = 'de'
+    post = Post.new
+    I18n.locale = 'en'
+    post.subject = 'foo'
+    I18n.locale = 'he'
+    post.subject = 'baz'
+    post.content = 'bar'
+    I18n.locale = 'de'
+    post.subject.should == 'foo'
+    post.content.should == 'bar'    
+  end
   
 end

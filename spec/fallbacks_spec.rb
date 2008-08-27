@@ -25,6 +25,12 @@ describe Fallbacks do
     fallbacks.should == %w[ de en ]
   end
 
+  it "returns correct fallbacks for de, given en as default; rules specified at initialization" do
+    fallbacks_obj = Fallbacks.new 'de' => [ 'en', 'he' ]
+    fallbacks = fallbacks_obj.compute('de')
+    fallbacks.should == %w[ de en he ]
+  end
+
   # Add lots of other tests that won't pass and will require changes in code
   it "returns correct fallbacks for en-Latn-US" do
     fallbacks = @fallbacks.compute('en-Latn-US') 

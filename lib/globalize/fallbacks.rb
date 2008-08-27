@@ -2,8 +2,8 @@ require 'rfc4646'
 
 module Globalize
   class Fallbacks
-    def initialize
-      @map = Hash.new
+    def initialize(rules = nil)
+      @map = rules || Hash.new
     end
     
     # TODO make this code handle real cases
