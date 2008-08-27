@@ -40,12 +40,12 @@ module Globalize
               cached = @map && @map[locale] && @map[locale][attr_name]
               if cached then cached else
                 fallbacks = globalize_compute_fallbacks(locale)
-                gts = globalize_translations.by_locales(fallbacks)
+                translation_recs = globalize_translations.by_locales(fallbacks)
                 val = nil; real_locale = locale
-                gts.sort {|a, b| 
-                  fallbacks.index(a.locale) <=> fallbacks.index(b.locale) }.each do |gt|
-                    val = gt.send(attr_name)
-                    real_locale = gt.locale if val
+                translation_recs.sort {|a, b| 
+                  fallbacks.index(a.locale) <=> fallbacks.index(b.locale) }.each do |translation_rec|
+                    val = translation_rec.send(attr_name)
+                    real_locale = translation_rec.locale if val
                   end
                 val &&= Globalize::AttributeTranslation.new( val, :locale => real_locale, 
                   :requested_locale => locale )
