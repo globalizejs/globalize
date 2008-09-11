@@ -1,7 +1,7 @@
 require 'globalize/locale/rfc4646'
 
 module Globalize
-  class Locale
+  module Locale
     class Fallbacks
       def initialize(rules = nil)
         @map = rules || Hash.new

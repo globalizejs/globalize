@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec/helper.rb'
-require 'globalize/locale'
 
-Rfc4646 = Globalize::Locale::Rfc4646
+include Globalize::Locale
 
 describe Globalize::Locale::Rfc4646 do
   it "given a valid tag 'de' returns an Rfc4646::Tag from #tag" do

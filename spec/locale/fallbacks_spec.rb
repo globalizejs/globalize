@@ -2,9 +2,11 @@ require File.dirname(__FILE__) + '/../spec/helper.rb'
 require 'globalize/locale/fallbacks'
 require 'globalize/locale/rfc4646'
 
-describe Globalize::Locale::Fallbacks do
+include Globalize::Locale
+
+describe Fallbacks do
   before do
-    @fallbacks = Globalize::Locale::Fallbacks.new
+    @fallbacks = Fallbacks.new
   end
   
   it "returns correct fallbacks for en" do
@@ -24,7 +26,7 @@ describe Globalize::Locale::Fallbacks do
   end
 
   it "returns correct fallbacks for de, given en as default; rules specified at initialization" do
-    fallbacks_obj = Globalize::Locale::Fallbacks.new 'de' => [ 'en', 'he' ]
+    fallbacks_obj = Fallbacks.new 'de' => [ 'en', 'he' ]
     fallbacks = fallbacks_obj.compute('de')
     fallbacks.should == %w[ de en he ]
   end
