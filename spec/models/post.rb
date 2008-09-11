@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  translates :subject, :content, :fallbacks => Globalize::Fallbacks.new( 'de' => %w[ en he ] )
+  translates :subject, :content, :fallbacks => Globalize::Locale::Fallbacks.new( 'de' => %w[ en he ] )
 end
 
 class Blog < ActiveRecord::Base

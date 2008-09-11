@@ -87,7 +87,7 @@ module Globalize
         end
   
         def globalize_compute_fallbacks(locale)
-          @globalize_fallbacks ||= self.class.options[:fallbacks] || Globalize::Fallbacks.new
+          @globalize_fallbacks ||= self.class.options[:fallbacks] || Globalize::Locale::Fallbacks.new
           @globalize_fallbacks.compute(locale)
         end
       

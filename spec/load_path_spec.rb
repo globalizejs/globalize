@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
-require 'i18n/load_path'
+require 'globalize/load_path'
 
 describe I18n::LoadPath do
   before :each do
