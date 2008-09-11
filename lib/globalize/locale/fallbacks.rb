@@ -1,4 +1,4 @@
-require 'globalize/locale/rfc4646'
+require 'globalize/locale/language_tag'
 
 module Globalize
   module Locale
@@ -9,7 +9,7 @@ module Globalize
     
       # TODO make this code handle real cases
       def compute(tag)
-        rfc_tag = Rfc4646::tag(tag)
+        rfc_tag = LanguageTag::tag(tag)
         [ rfc_tag, rfc_tag.parent ].compact.map {|rt| rt.to_s } + (@map[tag] || [])
       end
     

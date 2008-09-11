@@ -1,14 +1,18 @@
-# TODO rename this according to http://en.wikipedia.org/wiki/IETF_language_tag
+# for specifications see http://en.wikipedia.org/wiki/IETF_language_tag
+#
+# SimpleParser does not implement advanced usages such as grandfathered tags
 
 module Globalize
   module Locale
     module Rfc4646
       SUBTAGS = [:language, :script, :region, :variant, :extension, :privateuse, :grandfathered]
       FORMATS = {:language => :downcase, :script => :capitalize, :region => :upcase, :variant => :downcase}
-  
+    end
+    
+    class LanguageTag < Struct.new(*Rfc4646::SUBTAGS)
       class << self
         def parser
-          @@parser ||= Simple
+          @@parser ||= SimpleParser
         end
     
         def parser=(parser)
@@ -17,30 +21,28 @@ module Globalize
     
         def tag(tag)
           matches = parser.match(tag)
-          Tag.new *matches if matches
+          new *matches if matches
         end
       end
   
-      class Tag < Struct.new(*SUBTAGS)
-        FORMATS.each do |name, format|
-          define_method(name) { self[name].send(format) unless self[name].nil? }
-        end
-        
-        def to_s
-          @tag ||= to_a.compact.join("-")
-        end
-    
-        def to_a
-          members.collect {|attr| self.send(attr) }
-        end
-    
-        def parent
-          segs = to_a.compact
-          segs.length < 2 ? nil : Rfc4646.tag(segs[0..(segs.length-2)].join('-'))
-        end
+      Rfc4646::FORMATS.each do |name, format|
+        define_method(name) { self[name].send(format) unless self[name].nil? }
+      end
+      
+      def to_s
+        @tag ||= to_a.compact.join("-")
       end
   
-      module Simple
+      def to_a
+        members.collect {|attr| self.send(attr) }
+      end
+  
+      def parent
+        segs = to_a.compact
+        segs.length < 2 ? nil : LanguageTag.tag(segs[0..(segs.length-2)].join('-'))
+      end
+  
+      module SimpleParser
         PATTERN = %r{\A(?:
           ([a-z]{2,3}(?:(?:-[a-z]{3}){0,3})?|[a-z]{4}|[a-z]{5,8}) # language
           (?:-([a-z]{4}))?                                        # script
