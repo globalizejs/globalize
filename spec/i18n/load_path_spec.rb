@@ -1,15 +1,17 @@
-require File.dirname(__FILE__) + '/spec/helper.rb'
-require 'globalize/load_path'
+require File.dirname(__FILE__) + '/../spec/helper.rb'
+require 'globalize/i18n/load_path'
 
-describe I18n::LoadPath do
+I18n.send :include, Globalize::LoadPath::I18n
+
+describe Globalize::LoadPath do
   before :each do
-    @locale_dir = "#{File.dirname(__FILE__)}/spec/fixtures/locale"
+    @locale_dir = "#{File.dirname(__FILE__)}/../spec/fixtures/locale"
     @load_path = I18n.load_path
     @load_path << @locale_dir if @load_path.empty?
   end
   
-  it "returns an instance of I18n::LoadPath from I18n.load_path" do
-    @load_path.should be_instance_of(I18n::LoadPath)
+  it "returns an instance of Globalize::LoadPath from I18n.load_path" do
+    @load_path.should be_instance_of(Globalize::LoadPath)
   end
   
   it "allows to add paths (using yml as a default file extension)" do
@@ -17,19 +19,19 @@ describe I18n::LoadPath do
   end
   
   it "allows to specify a single file extension while adding a path" do
-    load_path = I18n::LoadPath.new
+    load_path = Globalize::LoadPath.new
     load_path.add(@locale_dir, 'rb')
     load_path.should == [[@locale_dir, ['rb']]]
   end
   
   it "allows to specify an array of file extensions while adding a path" do
-    load_path = I18n::LoadPath.new
+    load_path = Globalize::LoadPath.new
     load_path.add(@locale_dir, 'rb', 'yml')
     load_path.should == [[@locale_dir, ['rb', 'yml']]]
   end
   
   it "creates glob patterns which enforce the default directory structure" do
-    load_path = I18n::LoadPath.new
+    load_path = Globalize::LoadPath.new
     load_path.add(@locale_dir, 'rb', 'yml')
     locale = 'en-US'
     patterns = %W( #{@locale_dir}/#{locale}/**/*.rb 
@@ -52,17 +54,17 @@ end
 
 describe I18n, "#load_locales" do
   before :each do
-    @locale_dir = "#{File.dirname(__FILE__)}/spec/fixtures/locale"
+    @locale_dir = "#{File.dirname(__FILE__)}/../spec/fixtures/locale"
     @load_path = I18n.load_path
     @load_path << @locale_dir if @load_path.empty?
   end
-  
+
   it "loading locale data for the given locales from all files in the current load_path" do
     I18n.should_receive(:load_locale).with('en-US').once.ordered
     I18n.should_receive(:load_locale).with('de-DE').once.ordered
     I18n.load_locales('en-US', 'de-DE')
   end
-  
+
   it "loading locale data for the given locale from all files in the current load_path" do
     I18n.load_locale('en-US')
     I18n.locale = 'en-US'
