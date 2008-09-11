@@ -1,10 +1,12 @@
-module Globalize  
+module I18n
   class << self
     def chain_backends(*args)
-      backend = Backend::Chain.new(*args)
+      backend = Globalize::Backend::Chain.new(*args)
     end
   end
+end
   
+module Globalize  
   module Backend
     class Chain      
       def initialize(*args)

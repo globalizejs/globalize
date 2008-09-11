@@ -12,13 +12,13 @@ end
 
 describe I18n, '.chain_backends' do
   it "instantiates a chained backend and sets it as backend" do
-    lambda{ Globalize.chain_backends }.should_not raise_error
+    lambda{ I18n.chain_backends }.should_not raise_error
     I18n.backend.should be_instance_of(Globalize::Backend::Chain)
   end
   
   it "passes all given arguments to the chained backends #initialize method" do
     Globalize::Backend::Chain.should_receive(:new).with(:spec, :simple)
-    Globalize.chain_backends :spec, :simple
+    I18n.chain_backends :spec, :simple
   end 
 end
 
