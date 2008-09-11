@@ -1,5 +1,7 @@
 require File.dirname(__FILE__) + '/spec/helper.rb'
-require 'view_translation'
+require 'globalize/view_translation'
+
+include Globalize
 
 describe ViewTranslation do
   include Spec::Matchers::HaveAttribute
