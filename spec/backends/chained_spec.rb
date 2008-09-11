@@ -68,12 +68,6 @@ describe I18n::Backend::Chain do
     @last_backend.should_receive(:load_translations).with('translations.rb')
     I18n.load_translations 'translations.rb'
   end
-  
-  it "delegates #store_translations to every backend on a chain" do
-    @first_backend.should_receive(:store_translations).with('en-US', :foo => 'foo')
-    @last_backend.should_receive(:store_translations).with('en-US', :foo => 'foo')
-    I18n.store_translations 'en-US', :foo => 'foo'
-  end
 end
 
 describe I18n::Backend::Chain, '#translate' do
@@ -100,14 +94,14 @@ describe I18n::Backend::Chain, '#translate' do
   
   it "returns the result from #translate from the second backend if the first one returned nil" do
     @first_backend.store_translations :'en-US', {}
-    @last_backend.store_translations :'en-US', {:foo => 'foo from last backend'}    
+    @last_backend.store_translations :'en-US', {:foo => 'foo from last backend'}
     result = I18n.translate :foo
     result.should == 'foo from last backend'
   end
   
   it "looks up a namespace from all backends and merges them (if a result is a hash and no count option is present)" do
-    @first_backend.store_translations :'en-US', {:foo => {:bar => 'bar from first backend'}}    
-    @last_backend.store_translations :'en-US', {:foo => {:baz => 'baz from last backend'}}    
+    @first_backend.store_translations :'en-US', {:foo => {:bar => 'bar from first backend'}}
+    @last_backend.store_translations :'en-US', {:foo => {:baz => 'baz from last backend'}}
     result = I18n.translate :foo
     result.should == {:bar => 'bar from first backend', :baz => 'baz from last backend'}
   end
