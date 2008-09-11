@@ -4,13 +4,13 @@ require 'active_record'
 require 'globalize/model/active_record/translated'
 
 # Hook up model translation
-ActiveRecord::Base.send(:include, Globalize::ActiveRecord::Translated)
+ActiveRecord::Base.send(:include, Globalize::Model::ActiveRecord::Translated)
 
 require 'spec/spec_helpers/active_record'
 require 'factory_girl'
 require 'spec/spec_models/post'
 
-describe Globalize::ActiveRecord::Translated, 'in the guise of a Post object' do
+describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post object' do
   include Spec::Matchers::HaveAttribute
   include Spec::Helpers::ActiveRecord  
 

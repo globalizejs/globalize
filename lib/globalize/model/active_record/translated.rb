@@ -113,7 +113,7 @@ module Globalize
                 break
               end
             end
-            val &&= Globalize::AttributeTranslation.new( val, :locale => real_locale, 
+            val &&= AttributeTranslation.new( val, :locale => real_locale, 
               :requested_locale => locale )
           end
         end

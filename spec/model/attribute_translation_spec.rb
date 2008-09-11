@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 require 'globalize/model/attribute_translation'
 
-include Globalize
+include Globalize::Model
 
 describe AttributeTranslation do
   include Spec::Matchers::HaveAttribute
