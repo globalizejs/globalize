@@ -31,10 +31,6 @@ module I18n
       def load_translations(*args)
         backends.each{|backend| backend.load_translations(*args) }
       end
-
-      def store_translations(*args)
-        backends.each{|backend| backend.store_translations(*args) }
-      end
     
       # For defaults:
       # Never pass any default option to the backends but instead implement our own default
