@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
-require 'i18n/backend/chain'
+require 'globalize/backend/chain'
 
 module I18n
   module Backend

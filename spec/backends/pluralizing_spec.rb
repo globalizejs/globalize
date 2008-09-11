@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
-require 'i18n/backend/pluralizing'
+require 'globalize/backend/pluralizing'
 
 describe I18n::Backend::Pluralizing do
   before :each do 
