@@ -11,7 +11,7 @@ module Spec
           :dbfile => DB_FILE
         })
         ::ActiveRecord::Base.silence do
-          load File.expand_path(File.join(File.dirname(__FILE__), '..', 'models', 'schema.rb'))
+          load File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_models', 'schema.rb'))
         end
       end
     end

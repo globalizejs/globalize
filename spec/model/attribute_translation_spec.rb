@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
-require 'globalize/attribute_translation'
+require 'globalize/model/attribute_translation'
 
 include Globalize
 

@@ -1,4 +1,4 @@
-require 'globalize/attribute_translation'
+require 'globalize/model/attribute_translation'
 require 'globalize/locale/fallbacks'
 
 module Globalize
