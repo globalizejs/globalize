@@ -1,5 +1,5 @@
 require 'globalize/attribute_translation'
-require 'globalize/fallbacks'
+require 'globalize/locale/fallbacks'
 
 module Globalize
   module ActiveRecord
@@ -12,7 +12,7 @@ module Globalize
       module ActMethods
         def translates(*options)
           hashed_options = options.extract_options!
-          hashed_options[:translated_attributes] = options          
+          hashed_options[:translated_attributes] = options
 
           # Only set up once per class
           unless included_modules.include? InstanceMethods
@@ -30,7 +30,7 @@ module Globalize
             after_save :globalize_save_translations
           end
 
-          self.options = hashed_options                                        
+          self.options = hashed_options
           globalize_define_accessors(options)
         end
 
@@ -47,7 +47,7 @@ module Globalize
                 val = globalize_fetch_attribute(attr_name, locale)
                 @globalize_cache ||= Hash.new
                 @globalize_cache[locale] ||= Hash.new
-                @globalize_cache[locale][attr_name] = val                
+                @globalize_cache[locale][attr_name] = val
               end
             }
             define_method "#{attr_name}=", lambda {|val|

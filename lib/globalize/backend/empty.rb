@@ -1,4 +1,4 @@
-module I18n
+module Globalize
   module Backend
     class Empty
       def load_translations(*filenames)

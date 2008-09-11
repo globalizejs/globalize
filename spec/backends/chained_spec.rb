@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 require 'globalize/backend/chain'
 
-module I18n
+module Globalize
   module Backend
     class Spec
       def translate(locale, key, options = {})
@@ -12,51 +12,51 @@ end
 
 describe I18n, '.chain_backends' do
   it "instantiates a chained backend and sets it as backend" do
-    lambda{ I18n.chain_backends }.should_not raise_error
-    I18n.backend.should be_instance_of(I18n::Backend::Chain)
+    lambda{ Globalize.chain_backends }.should_not raise_error
+    I18n.backend.should be_instance_of(Globalize::Backend::Chain)
   end
   
   it "passes all given arguments to the chained backends #initialize method" do
-    I18n::Backend::Chain.should_receive(:new).with(:spec, :simple)
-    I18n.chain_backends :spec, :simple
+    Globalize::Backend::Chain.should_receive(:new).with(:spec, :simple)
+    Globalize.chain_backends :spec, :simple
   end 
 end
 
-describe I18n::Backend::Chain, '#initialize' do
+describe Globalize::Backend::Chain, '#initialize' do
   it "passes all given arguments to #add assuming that they are backends" do
     # no idea how to spec that
   end
 end
 
-describe I18n::Backend::Chain, '#add' do
+describe Globalize::Backend::Chain, '#add' do
   before :each do
-    I18n.backend = I18n::Backend::Chain.new
+    I18n.backend = Globalize::Backend::Chain.new
   end
   
   it "accepts an instance of a backend" do
-    lambda{ I18n.backend.add I18n::Backend::Spec.new }.should_not raise_error
-    I18n.backend.send(:backends).first.should be_instance_of(I18n::Backend::Spec)
+    lambda{ I18n.backend.add Globalize::Backend::Spec.new }.should_not raise_error
+    I18n.backend.send(:backends).first.should be_instance_of(Globalize::Backend::Spec)
   end
   
   it "accepts a class and instantiates the backend" do
-    lambda{ I18n.backend.add I18n::Backend::Spec }.should_not raise_error
-    I18n.backend.send(:backends).first.should be_instance_of(I18n::Backend::Spec)
+    lambda{ I18n.backend.add Globalize::Backend::Spec }.should_not raise_error
+    I18n.backend.send(:backends).first.should be_instance_of(Globalize::Backend::Spec)
   end
   
   it "accepts a symbol, constantizes it as a backend class and instantiates the backend" do
     lambda{ I18n.backend.add :spec }.should_not raise_error
-    I18n.backend.send(:backends).first.should be_instance_of(I18n::Backend::Spec)
+    I18n.backend.send(:backends).first.should be_instance_of(Globalize::Backend::Spec)
   end
   
   it "accepts any number of backend instances, classes or symbols" do
-    lambda{ I18n.backend.add I18n::Backend::Spec.new, I18n::Backend::Spec, :spec }.should_not raise_error
-    I18n.backend.send(:backends).map{|backend| backend.class }.should == [I18n::Backend::Spec, I18n::Backend::Spec, I18n::Backend::Spec]
+    lambda{ I18n.backend.add Globalize::Backend::Spec.new, Globalize::Backend::Spec, :spec }.should_not raise_error
+    I18n.backend.send(:backends).map{|backend| backend.class }.should == [Globalize::Backend::Spec, Globalize::Backend::Spec, Globalize::Backend::Spec]
   end
 end
 
-describe I18n::Backend::Chain do
+describe Globalize::Backend::Chain do
   before :each do
-    I18n.backend = I18n::Backend::Chain.new    
+    I18n.backend = Globalize::Backend::Chain.new    
     @first_backend = mock 'first backend'
     @last_backend = mock 'last backend'
     I18n.backend.add @first_backend
@@ -70,9 +70,9 @@ describe I18n::Backend::Chain do
   end
 end
 
-describe I18n::Backend::Chain, '#translate' do
+describe Globalize::Backend::Chain, '#translate' do
   before :each do
-    I18n.backend = I18n::Backend::Chain.new    
+    I18n.backend = Globalize::Backend::Chain.new    
     @first_backend = I18n::Backend::Simple.new
     @last_backend = I18n::Backend::Simple.new    
     I18n.backend.add @first_backend
@@ -111,7 +111,7 @@ describe I18n::Backend::Chain, '#translate' do
   end
   
   it "raises an InvalidLocale exception if the locale is nil" do
-    lambda{ I18n::Backend::Chain.new.translate nil, :foo }.should raise_error(I18n::InvalidLocale)
+    lambda{ Globalize::Backend::Chain.new.translate nil, :foo }.should raise_error(I18n::InvalidLocale)
   end
   
   it "bulk translates a number of keys from different backends" do
@@ -140,9 +140,9 @@ class CustomLocalizeBackend < I18n::Backend::Simple
   end
 end
 
-describe I18n::Backend::Chain, '#localize' do
+describe Globalize::Backend::Chain, '#localize' do
   before :each do
-    I18n.backend = I18n::Backend::Chain.new    
+    I18n.backend = Globalize::Backend::Chain.new    
     @first_backend = CustomLocalizeBackend.new
     @last_backend = I18n::Backend::Simple.new    
     I18n.backend.add @first_backend
@@ -169,9 +169,9 @@ describe I18n::Backend::Chain, '#localize' do
   end
 end
 
-describe I18n::Backend::Chain, '#namespace_lookup?' do
+describe Globalize::Backend::Chain, '#namespace_lookup?' do
   before :each do 
-    @backend = I18n::Backend::Chain.new
+    @backend = Globalize::Backend::Chain.new
   end
   
   it "returns false if the given result is not a Hash" do

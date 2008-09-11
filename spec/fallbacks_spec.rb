@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
-require 'globalize/fallbacks'
-require 'rfc4646'
+require 'globalize/locale/fallbacks'
+require 'globalize/locale/rfc4646'
 
 include Globalize
 

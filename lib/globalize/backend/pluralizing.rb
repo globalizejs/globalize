@@ -1,8 +1,8 @@
 require 'i18n/backend/simple'
 
-module I18n
+module Globalize
   module Backend
-    class Pluralizing < Simple
+    class Pluralizing < I18n::Backend::Simple
       def pluralize(locale, entry, count)
         return entry unless entry.is_a?(Hash) and count
         key = :zero if count == 0 && entry.has_key?(:zero)

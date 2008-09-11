@@ -1,4 +1,4 @@
-require 'rfc4646'
+require 'globalize/locale/rfc4646'
 
 class Locale
   attr_reader :tag
@@ -8,7 +8,7 @@ class Locale
   end
   
   def method_missing(name, *args)
-    return @tag.send(name, *args) if @tag.respond_to? name      
+    return @tag.send(name, *args) if @tag.respond_to? name
     super
   end
 end

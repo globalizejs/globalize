@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 require 'globalize/backend/pluralizing'
 
-describe I18n::Backend::Pluralizing do
+describe Globalize::Backend::Pluralizing do
   before :each do 
-    @backend = I18n::Backend::Pluralizing.new
+    @backend = Globalize::Backend::Pluralizing.new
     @cz_pluralizer = lambda{|c| c == 1 ? :one : (2..4).include?(c) ? :few : :other }
   end
   

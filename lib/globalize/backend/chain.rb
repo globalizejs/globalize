@@ -1,4 +1,4 @@
-module I18n  
+module Globalize  
   class << self
     def chain_backends(*args)
       backend = Backend::Chain.new(*args)
@@ -17,12 +17,12 @@ module I18n
       #
       # Add an initialize method that accepts the same arguments and passes them
       # to #add, so we could:
-      #   I18n.backend = I18n::Backend::Chain.new(I18n::Backend::Spec, I18n::Backend::Simple)
-      #   I18n::Backend::Chain.new(:spec, :simple)
-      #   I18n.chain_backends :spec, :simple
+      #   I18n.backend = Globalize::Backend::Chain.new(Globalize::Backend::Foo, Globalize::Backend::Bar)
+      #   Globalize::Backend::Chain.new(:foo, :bar)
+      #   Globalize.chain_backends :foo, :bar
       def add(*backends)
         backends.each do |backend|
-          backend = I18n::Backend.const_get(backend.to_s.capitalize) if backend.is_a? Symbol
+          backend = Globalize::Backend.const_get(backend.to_s.capitalize) if backend.is_a? Symbol
           backend = backend.new if backend.is_a? Class
           self.backends << backend
         end
@@ -51,7 +51,7 @@ module I18n
       # keys and collect the results.
       
       def translate(locale, key, options = {})
-        raise InvalidLocale.new(locale) if locale.nil?
+        raise I18n::InvalidLocale.new(locale) if locale.nil?
         return key.map{|k| translate locale, k, options } if key.is_a? Array
         
         default = options.delete(:default)

@@ -1,4 +1,4 @@
-require 'rfc4646'
+require 'globalize/locale/rfc4646'
 
 module Globalize
   class Fallbacks
