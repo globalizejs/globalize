@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../../spec_helper.rb'
+require File.dirname(__FILE__) + '/../../spec/helper.rb'
 $:.unshift File.expand_path(File.dirname(__FILE__) + "/../../vendor/rails/activerecord/lib")
 require 'active_record'
 require 'globalize/model/active_record/translated'
@@ -6,9 +6,9 @@ require 'globalize/model/active_record/translated'
 # Hook up model translation
 ActiveRecord::Base.send(:include, Globalize::Model::ActiveRecord::Translated)
 
-require 'spec/spec_helpers/active_record'
+require 'spec/spec/helpers/active_record'
 require 'factory_girl'
-require 'spec/spec_models/post'
+require 'spec/spec/models/post'
 
 describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post object' do
   include Spec::Matchers::HaveAttribute

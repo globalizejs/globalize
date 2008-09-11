@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+require File.dirname(__FILE__) + '/../spec/helper.rb'
 require 'globalize/locale'
 
 Rfc4646 = Globalize::Locale::Rfc4646

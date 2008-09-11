@@ -1,9 +1,9 @@
-require File.dirname(__FILE__) + '/spec_helper.rb'
+require File.dirname(__FILE__) + '/spec/helper.rb'
 require 'globalize/load_path'
 
 describe I18n::LoadPath do
   before :each do
-    @locale_dir = "#{File.dirname(__FILE__)}/fixtures/locale"
+    @locale_dir = "#{File.dirname(__FILE__)}/spec/fixtures/locale"
     @load_path = I18n.load_path
     @load_path << @locale_dir if @load_path.empty?
   end
@@ -52,7 +52,7 @@ end
 
 describe I18n, "#load_locales" do
   before :each do
-    @locale_dir = "#{File.dirname(__FILE__)}/fixtures/locale"
+    @locale_dir = "#{File.dirname(__FILE__)}/spec/fixtures/locale"
     @load_path = I18n.load_path
     @load_path << @locale_dir if @load_path.empty?
   end

@@ -1,9 +1,9 @@
 # This file is copied to ~/spec when you run 'ruby script/generate rspec'
 # from the project root directory.
 ENV["RAILS_ENV"] = "test"
-$:.unshift File.expand_path(File.dirname(__FILE__) + "/..")
-$:.unshift File.expand_path(File.dirname(__FILE__) + "/../lib")
-$:.unshift File.expand_path(File.dirname(__FILE__) + "/../vendor/gems/i18n/lib")
+$:.unshift File.expand_path(File.dirname(__FILE__) + "/../..")
+$:.unshift File.expand_path(File.dirname(__FILE__) + "/../../lib")
+$:.unshift File.expand_path(File.dirname(__FILE__) + "/../../vendor/gems/i18n/lib")
 
 # require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 # $:.unshift File.expand_path(File.dirname(__FILE__) + "/../vendor/gems/rspec-rails-1.1.4/lib")
@@ -15,7 +15,7 @@ require 'spec'
 # require 'spec/rails'
 require 'i18n'
 
-require 'spec/spec_matchers/have_attribute'
+require 'spec/spec/matchers/have_attribute'
 
 Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
