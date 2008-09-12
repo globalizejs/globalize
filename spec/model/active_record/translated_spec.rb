@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../spec/helper.rb'
 $:.unshift File.expand_path(File.dirname(__FILE__) + "/../../vendor/rails/activerecord/lib")
 require 'active_record'
-require 'globalize/model/active_record/translated'
+require 'globalize/model/active_record'
 
 # Hook up model translation
 ActiveRecord::Base.send(:include, Globalize::Model::ActiveRecord::Translated)
