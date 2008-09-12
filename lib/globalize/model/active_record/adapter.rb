@@ -13,8 +13,6 @@ module Globalize
     end
     
     class Adapter
-      attr_reader :cache, :stash
-      
       def initialize(record)
         @record = record
         @cache = AttributeStash.new
@@ -24,14 +22,18 @@ module Globalize
       
       def fetch(locale, attr_name)
         locale = I18n.locale 
-        cache.read(locale, attr_name) || begin
-          val = fetch_attribute locale, attr_name
-          cache.write locale, attr_name, val
+        @cache.read(locale, attr_name) || begin
+          value = fetch_attribute locale, attr_name
+          @cache.write locale, attr_name, value
         end
       end
       
+      def stash(locale, attr_name, value)
+        @stash.write locale, attr_name, value
+      end
+      
       def update_translations!
-        stash.each do |locale, attrs|
+        @stash.each do |locale, attrs|
           translation = @record.globalize_translations.find_or_initialize_by_locale(locale)
           attrs.each{|attr_name, value| translation[attr_name] = value }
           translation.save!
@@ -50,7 +52,7 @@ module Globalize
         # Check the @globalize_set_translations cache first to see if we've just changed the 
         # attribute and not saved yet.
         fallbacks.each do |fallback|
-          result = stash.read(fallback, attr_name) || begin
+          result = @stash.read(fallback, attr_name) || begin
             translation = translations.detect {|tr| tr.locale == fallback }
             translation && translation.send(attr_name)
           end

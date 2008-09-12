@@ -19,7 +19,7 @@ module Globalize
               globalize.fetch I18n.locale, attr_name
             }
             klass.send :define_method, "#{attr_name}=", lambda {|val|
-              globalize.stash.write I18n.locale, attr_name, val
+              globalize.stash I18n.locale, attr_name, val
             }
           end 
         end
