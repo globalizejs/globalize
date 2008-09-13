@@ -54,7 +54,7 @@ describe Globalize::Backend::Static, '#translate' do
   end
 end
 
-describe 'the ViewTranslation returned by Globalize::Backend::Static#translate' do
+describe 'the Translation object returned by Globalize::Backend::Static#translate' do
   before :each do
     I18n.backend = Globalize::Backend::Static.new 
     translations = {

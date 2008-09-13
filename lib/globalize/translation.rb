@@ -1,34 +1,32 @@
 module Globalize
-  # Translations are simple valueobjects that carry some context information
+  # Translations are simple value objects that carry some context information
   # alongside the actual translation string.
 
   class Translation < String
-    ATTRS = [:requested_locale, :locale, :key, :options, :plural_key, :original]
-    ATTRS.each do |name|
-      define_method(name){ attributes[name] }
-      define_method("#{name}="){ |value| attributes[name] = value}
+    class Attribute < Translation
+      attr_accessor :requested_locale, :locale, :key
     end
     
-    def initialize(string, attributes = {})
-      self.original = string
-      set_attributes attributes
-      super string
-    end
-    
-    def attributes
-      @attributes ||= {}
-    end
-    
-    def set_attributes(attributes)
-      attributes.each do |name, value|
-        raise "unknown attribute #{name}" unless ATTRS.include?(name)
-        value = value.to_sym if [:requested_locale, :locale, :key, :plural_key].include?(name)
-        self.attributes[name] = value 
+    class Static < Translation
+      attr_accessor :requested_locale, :locale, :key, :options, :plural_key, :original
+      
+      def initialize(string, meta = nil)
+        self.original = string
+        super
       end
+    end
+    
+    def initialize(string, meta = nil)
+      set_meta meta
+      super string
     end
   
     def fallback?
       locale != requested_locale
+    end
+    
+    def set_meta(meta)
+      meta.each {|name, value| send :"#{name}=", value } if meta
     end
   end
 end

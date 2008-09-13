@@ -31,10 +31,10 @@ module Globalize
           translation(string).replace result
         end
       
-        def translation(result, attributes = nil)
+        def translation(result, meta = nil)
           return unless result
-          result = Translation.new(result) unless result.is_a? Translation
-          result.set_attributes attributes if attributes
+          result = Translation::Static.new(result) unless result.is_a? Translation::Static
+          result.set_meta meta
           result
         end
     end
