@@ -31,7 +31,7 @@ describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post obj
 
   it "translates subject and content into en-US" do
     post = Post.create :subject => 'foo', :content => 'bar'
-    post.subject.should == 'foo' 
+    post.subject.should == 'foo'
     post.content.should == 'bar'
     post.save.should == true 
     post.reload

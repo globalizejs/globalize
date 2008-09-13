@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../spec/helper.rb'
+require 'globalize/locale/language_tag'
 
 include Globalize::Locale
 
@@ -78,40 +79,68 @@ describe "LanguageTag for the locale 'DE-latn-de-Variant-a-ext-x-phonebk-i-kling
 end
 
 describe "LanguageTag inheritance" do
-  it "returns 'de-Latn-DE-variant-a-ext-x-phonebk' as the parent of 'de-Latn-DE-variant-a-ext-x-phonebk-i-klingon'" do
-    tag = LanguageTag.new *%w(de Latn DE variant a-ext x-phonebk i-klingon)
-    tag.parent.to_s.should == 'de-Latn-DE-variant-a-ext-x-phonebk'
+  describe "#parent" do  
+    it "returns 'de-Latn-DE-variant-a-ext-x-phonebk' as the parent of 'de-Latn-DE-variant-a-ext-x-phonebk-i-klingon'" do
+      tag = LanguageTag.new *%w(de Latn DE variant a-ext x-phonebk i-klingon)
+      tag.parent.to_s.should == 'de-Latn-DE-variant-a-ext-x-phonebk'
+    end
+  
+    it "returns 'de-Latn-DE-variant-a-ext' as the parent of 'de-Latn-DE-variant-a-ext-x-phonebk'" do
+      tag = LanguageTag.new *%w(de Latn DE variant a-ext x-phonebk)
+      tag.parent.to_s.should == 'de-Latn-DE-variant-a-ext'
+    end
+  
+    it "returns 'de-Latn-DE-variant' as the parent of 'de-Latn-DE-variant-a-ext'" do
+      tag = LanguageTag.new *%w(de Latn DE variant a-ext)
+      tag.parent.to_s.should == 'de-Latn-DE-variant'
+    end
+  
+    it "returns 'de-Latn-DE' as the parent of 'de-Latn-DE-variant'" do
+      tag = LanguageTag.new *%w(de Latn DE variant)
+      tag.parent.to_s.should == 'de-Latn-DE'
+    end
+  
+    it "returns 'de-Latn' as the parent of 'de-Latn-DE'" do
+      tag = LanguageTag.new *%w(de Latn DE)
+      tag.parent.to_s.should == 'de-Latn'
+    end
+  
+    it "returns 'de' as the parent of 'de-Latn'" do
+      tag = LanguageTag.new *%w(de Latn)
+      tag.parent.to_s.should == 'de'
+    end
+  
+    # TODO RFC4647 says: "If no language tag matches the request, the "default" value is returned."
+    # where should we set the default language?
+    # it "returns '' as the parent of 'de'" do
+    #   tag = LanguageTag.new *%w(de)
+    #   tag.parent.to_s.should == ''
+    # end
   end
   
-  it "returns 'de-Latn-DE-variant-a-ext' as the parent of 'de-Latn-DE-variant-a-ext-x-phonebk'" do
-    tag = LanguageTag.new *%w(de Latn DE variant a-ext x-phonebk)
-    tag.parent.to_s.should == 'de-Latn-DE-variant-a-ext'
+  describe "#parents" do  
+    it "returns an array of 5 parents for 'de-Latn-DE-variant-a-ext-x-phonebk-i-klingon'" do
+      parents = %w(de-Latn-DE-variant-a-ext-x-phonebk-i-klingon 
+                   de-Latn-DE-variant-a-ext-x-phonebk 
+                   de-Latn-DE-variant-a-ext 
+                   de-Latn-DE-variant 
+                   de-Latn-DE 
+                   de-Latn 
+                   de) 
+      tag = LanguageTag.new *%w(de Latn DE variant a-ext x-phonebk i-klingon)
+      tag.parents.map{|tag| tag.to_s}.should == parents
+    end
+    
+    it "returns an array of 5 parents for 'de-Latn-DE-variant-a-ext-x-phonebk-i-klingon'" do
+      parents = %w(de-Latn-DE-variant-a-ext-x-phonebk-i-klingon 
+                   de-Latn-DE-variant-a-ext-x-phonebk 
+                   de-Latn-DE-variant-a-ext 
+                   de-Latn-DE-variant 
+                   de-Latn-DE 
+                   de-Latn 
+                   de) 
+      tag = LanguageTag.new *%w(de Latn DE variant a-ext x-phonebk i-klingon)
+      tag.parents.map{|tag| tag.to_s}.should == parents
+    end
   end
-  
-  it "returns 'de-Latn-DE-variant' as the parent of 'de-Latn-DE-variant-a-ext'" do
-    tag = LanguageTag.new *%w(de Latn DE variant a-ext)
-    tag.parent.to_s.should == 'de-Latn-DE-variant'
-  end
-  
-  it "returns 'de-Latn-DE' as the parent of 'de-Latn-DE-variant'" do
-    tag = LanguageTag.new *%w(de Latn DE variant)
-    tag.parent.to_s.should == 'de-Latn-DE'
-  end
-  
-  it "returns 'de-Latn' as the parent of 'de-Latn-DE'" do
-    tag = LanguageTag.new *%w(de Latn DE)
-    tag.parent.to_s.should == 'de-Latn'
-  end
-  
-  it "returns 'de' as the parent of 'de-Latn'" do
-    tag = LanguageTag.new *%w(de Latn)
-    tag.parent.to_s.should == 'de'
-  end
-  
-  # TODO RFC4647 says: "If no language tag matches the request, the "default" value is returned."
-  # where should we set the default language?
-  # it "returns '' as the parent of 'de'" do
-  #   tag = LanguageTag.new *%w(de)
-  #   tag.parent.to_s.should == ''
-  # end
 end

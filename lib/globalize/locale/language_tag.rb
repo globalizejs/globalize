@@ -29,6 +29,10 @@ module Globalize
         define_method(name) { self[name].send(format) unless self[name].nil? }
       end
       
+      def to_sym
+        to_s.to_sym
+      end
+      
       def to_s
         @tag ||= to_a.compact.join("-")
       end
@@ -40,6 +44,15 @@ module Globalize
       def parent
         segs = to_a.compact
         segs.length < 2 ? nil : LanguageTag.tag(segs[0..(segs.length-2)].join('-'))
+      end
+      
+      def parents(include_self = true)
+        result, parent = [], self.dup
+        result << parent if include_self
+        while parent = parent.parent
+          result << parent
+        end
+        result
       end
   
       module SimpleParser
@@ -56,7 +69,7 @@ module Globalize
 
         class << self
           def match(tag)
-            c = PATTERN.match(tag).captures
+            c = PATTERN.match(tag.to_s).captures
             c[0..4] << (c[5].nil? ? c[6] : c[5])  << c[7] # TODO c[7] is grandfathered, throw a NotImplemented exception here?
           rescue
             false

@@ -13,10 +13,10 @@ module Globalize
       # True, if the requested locale wasn't available and a fallback was used instead.
       def fallback?; locale != requested_locale end
     
-      def initialize(str, rec)
+      def initialize(str, options)
         super str
-        @locale = rec[:locale]
-        @requested_locale = rec[:requested_locale]
+        @locale = options[:locale].to_sym if options[:locale]
+        @requested_locale = options[:requested_locale].to_sym if options[:requested_locale]
       end
     end
   end
