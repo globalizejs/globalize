@@ -61,7 +61,7 @@ module Globalize
             break
           end
         end
-        result && AttributeTranslation.new(result, :locale => locale, :requested_locale => requested_locale)
+        result && Translation.new(result, :locale => locale, :requested_locale => requested_locale)
       end
     end
   end

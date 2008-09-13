@@ -1,7 +1,7 @@
+require 'globalize/translation'
+require 'globalize/locale/fallbacks'
 require 'globalize/model/active_record/adapter'
 require 'globalize/model/active_record/translated'
-require 'globalize/model/attribute_translation'
-require 'globalize/locale/fallbacks'
 
 module Globalize
   module Model
