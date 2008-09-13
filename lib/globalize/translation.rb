@@ -10,6 +10,7 @@ module Globalize
     end
     
     def initialize(string, attributes = {})
+      self.original = string
       set_attributes attributes
       super string
     end

@@ -29,18 +29,13 @@ module Globalize
         alias :orig_interpolate :interpolate unless method_defined? :orig_interpolate
         def interpolate(locale, string, values = {})
           result = orig_interpolate(locale, string, values)
-          translation result, merge_attributes(string, :original => string)
+          translation(string).replace result
         end
       
-        def translation(result, attributes = {})
+        def translation(result, attributes = nil)
           result = Translation.new(result) unless result.is_a? Translation
-          result.set_attributes attributes
+          result.set_attributes attributes if attributes
           result
-        end
-        
-        def merge_attributes(translation, attributes)
-          result = translation.respond_to?(:attributes) ? translation.attributes : {}
-          result.merge attributes
         end
     end
   end
