@@ -41,6 +41,17 @@ describe Globalize::Backend::Static, '#translate' do
       I18n.translate(:bar, :locale => :"de-DE").should == "bar in en"
     end
   end
+  
+  describe "using defaults" do
+    it "returns the given default String when the key is not present for any locale" do
+      I18n.translate(:missing, :default => "default").should == "default"
+    end
+
+    it "returns the fallback translation for the key if present for a fallback locale" do
+      I18n.backend.store_translations :de, :non_default => "non_default in de"
+      I18n.translate(:non_default, :default => "default", :locale => :"de-DE").should == "non_default in de"
+    end
+  end
 end
 
 describe 'the ViewTranslation returned by Globalize::Backend::Static#translate' do

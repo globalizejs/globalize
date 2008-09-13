@@ -16,12 +16,11 @@ module Globalize
             result = super(fallback, key, options) and break
           rescue I18n::MissingTranslationData
           end
-        end
+        end        
+        result ||= default locale, default, options
         
-        attributes = { :requested_locale => locale, :locale => fallback, :key => key, :options => options }
-        result = translation(result, attributes) if result
-        
-        result || default(locale, default, options) || raise(I18n::MissingTranslationData.new(locale, key, options))
+        attrs = {:requested_locale => locale, :locale => fallback, :key => key, :options => options}
+        translation(result, attrs) || raise(I18n::MissingTranslationData.new(locale, key, options))
       end
       
       protected
@@ -33,6 +32,7 @@ module Globalize
         end
       
         def translation(result, attributes = nil)
+          return unless result
           result = Translation.new(result) unless result.is_a? Translation
           result.set_attributes attributes if attributes
           result
