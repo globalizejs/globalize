@@ -3,28 +3,25 @@ module Globalize
   # alongside the actual translation string.
 
   class ViewTranslation < String
+    ATTRS = [:requested_locale, :locale, :key, :options, :plural_key, :original]
+    ATTRS.each do |name|
+      define_method(name){ attributes[name] }
+      define_method("#{name}="){ |value| attributes[name] = value}
+    end
+    
     def attributes
       @attributes ||= {}
     end
     
     def set_attributes(attributes)
       attributes.each do |name, value|
-        raise "unknown attribute #{name}" unless ATTR_READERS.include?(name)
+        raise "unknown attribute #{name}" unless ATTRS.include?(name)
         self.attributes[name] = value 
       end
     end
   
     def fallback?
       @locale != @requested_locale
-    end
-    
-    ATTR_READERS = [:requested_locale, :locale, :key, :options, :plural_key, :original]
-    ATTR_WRITERS = [:requested_locale=, :locale=, :key=, :options=, :plural_key=, :original=]
-    
-    def method_missing(name, *args)
-      return attributes[name] if ATTR_READERS.include?(name)
-      return attributes[name] = args.first if ATTR_WRITERS.include?(name)
-      super
     end
   end
 end
