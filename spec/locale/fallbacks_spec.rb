@@ -4,14 +4,32 @@ require 'globalize/locale/language_tag'
 
 include Globalize::Locale
 
-describe Fallbacks, '#[]' do
+describe Fallbacks do
   before do
-    @fallbacks = Fallbacks.new(:'en-US')
+    I18n.fallbacks = Fallbacks.new
   end
   
-  it "caches computed results" do
-    @fallbacks['en']
-    @fallbacks.should == { :en => [:en, :"en-US"] }
+  after do
+    I18n.default_locale = :'en-US'
+  end
+  
+  it "#[] caches computed results" do
+    I18n.fallbacks['en']
+    I18n.fallbacks.should == { :en => [:en, :"en-US"] }
+  end
+  
+  it "#root always reflects the I18n.default_locale if no root has been set manually" do
+    I18n.default_locale = :'en-US'
+    I18n.fallbacks.root.should == I18n.default_locale
+    I18n.default_locale = :'de-DE'
+    I18n.fallbacks.root.should == I18n.default_locale
+  end
+  
+  it "#root always reflects the manually set locale if present" do
+    I18n.fallbacks = Fallbacks.new(:'fi-FI')
+    I18n.fallbacks.root.should == :'fi-FI'
+    I18n.default_locale = :'de-DE'
+    I18n.fallbacks.root.should == :'fi-FI'
   end
 end
 
@@ -22,26 +40,26 @@ describe Fallbacks, "#compute with root set to en-US" do
   
   describe "with no mappings defined" do
     it "returns [:es, :en-US] for :es" do
-      @fallbacks.compute(:es).should == [:es, :"en-US"]
+      @fallbacks[:es].should == [:es, :"en-US"]
     end
   
     it "returns [:es-ES, :es, :en-US] for :es-ES" do
-      @fallbacks.compute(:"es-ES").should == [:"es-ES", :es, :"en-US"]
+      @fallbacks[:"es-ES"].should == [:"es-ES", :es, :"en-US"]
     end
     
     it "returns [:es-MX, :es, :en-US] for :es-MX" do
-      @fallbacks.compute(:"es-MX").should == [:"es-MX", :es, :"en-US"]
+      @fallbacks[:"es-MX"].should == [:"es-MX", :es, :"en-US"]
     end
     
     it "returns [:es-Latn-ES, :es-Latn, :es, :en-US] for :es-Latn-ES" do
-      @fallbacks.compute(:'es-Latn-ES').should == [:"es-Latn-ES", :"es-Latn", :es, :"en-US"]
+      @fallbacks[:'es-Latn-ES'].should == [:"es-Latn-ES", :"es-Latn", :es, :"en-US"]
     end
     it "returns [:en, :en-US] for :en" do
-      @fallbacks.compute(:en).should == [:en, :"en-US"]
+      @fallbacks[:en].should == [:en, :"en-US"]
     end
       
-    it "returns [:en-US] for :en-US (special case: locale == root)" do 
-      @fallbacks.compute(:"en-US").should == [:"en-US"]
+    it "returns [:en-US, :en] for :en-US (special case: locale == root)" do 
+      @fallbacks[:"en-US"].should == [:"en-US", :en]
     end
   end
   
@@ -53,11 +71,11 @@ describe Fallbacks, "#compute with root set to en-US" do
     end
     
     it "returns [:ca, :es-ES, :es, :en-US] for :ca" do
-      @fallbacks.compute(:ca).should == [:ca, :"es-ES", :es, :"en-US"]
+      @fallbacks[:ca].should == [:ca, :"es-ES", :es, :"en-US"]
     end
     
     it "returns [:ca-ES, :ca, :es-ES, :es, :en-US] for :ca-ES" do
-      @fallbacks.compute(:"ca-ES").should == [:"ca-ES", :ca, :"es-ES", :es, :"en-US"]
+      @fallbacks[:"ca-ES"].should == [:"ca-ES", :ca, :"es-ES", :es, :"en-US"]
     end
   end
   
@@ -70,15 +88,15 @@ describe Fallbacks, "#compute with root set to en-US" do
     end
     
     it "returns [:ar, :en-US] for :ar" do
-      @fallbacks.compute(:ar).should == [:ar, :"en-US"]
+      @fallbacks[:ar].should == [:ar, :"en-US"]
     end
     
     it "returns [:ar-EG, :ar, :en-US] for :ar-EG" do
-      @fallbacks.compute(:"ar-EG").should == [:"ar-EG", :ar, :"en-US"]
+      @fallbacks[:"ar-EG"].should == [:"ar-EG", :ar, :"en-US"]
     end
     
     it "returns [:ar-PA, :ar, :he-IL, :he, :en-US] for :ar-PA" do
-      @fallbacks.compute(:"ar-PA").should == [:"ar-PA", :ar, :"he-IL", :he, :"en-US"]
+      @fallbacks[:"ar-PA"].should == [:"ar-PA", :ar, :"he-IL", :he, :"en-US"]
     end
   end
   
@@ -91,7 +109,7 @@ describe Fallbacks, "#compute with root set to en-US" do
     end
     
     it "returns [:sms-FI, :sms, :se-FI, :se, :fi-FI, :fi, :en-US] for :sms-FI" do
-      @fallbacks.compute(:"sms-FI").should == [:"sms-FI", :sms, :"se-FI", :se, :"fi-FI", :fi, :"en-US"]
+      @fallbacks[:"sms-FI"].should == [:"sms-FI", :sms, :"se-FI", :se, :"fi-FI", :fi, :"en-US"]
     end
   end
   
@@ -101,15 +119,15 @@ describe Fallbacks, "#compute with root set to en-US" do
     end
     
     it "returns [:de, :en-US] for de" do
-      @fallbacks.compute(:"de").should == [:de, :"en-US"]
+      @fallbacks[:"de"].should == [:de, :"en-US"]
     end
     
     it "returns [:de-DE, :de, :en-US] for de-DE" do
-      @fallbacks.compute(:"de-DE").should == [:"de-DE", :de, :"en-US"]
+      @fallbacks[:"de-DE"].should == [:"de-DE", :de, :"en-US"]
     end
     
     it "returns [:de-AT, :de, :de-DE, :en-US] for de-AT" do
-      @fallbacks.compute(:"de-AT").should == [:"de-AT", :de, :"de-DE", :"en-US"]
+      @fallbacks[:"de-AT"].should == [:"de-AT", :de, :"de-DE", :"en-US"]
     end
   end
 end

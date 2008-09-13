@@ -43,7 +43,7 @@ module Globalize
       private
       
       def fetch_attribute(locale, attr_name)
-        fallbacks = @fallbacks.compute(locale).map{|tag| tag.to_s}
+        fallbacks = @fallbacks[locale].map{|tag| tag.to_s}
         translations = @record.globalize_translations.by_locales(fallbacks)
         result, requested_locale = nil, locale
       

@@ -3,35 +3,28 @@ module Globalize
   # alongside the actual translation string.
 
   class ViewTranslation < String
-    # the Locale which this translation belongs to
-    attr_accessor :locale
-  
-    # the key that was used to lookup this translation
-    attr_accessor :key
-  
-    # the options that were passed when looking up this translation
-    attr_accessor :options
-  
-    # the originally requested Locale (might be different from locale in case of fallbacks)
-    attr_accessor :requested_locale
-  
-    # the grammatical number that this translation has
-    attr_accessor :grammatical_number
-  
-    # the original translation string before any variables were interpolated to it
-    attr_accessor :original
-  
-    def initialize(translation, locale = nil, key = nil, options = nil, requested_locale = nil, grammatical_number = nil)
-      @locale             = locale
-      @key                = key
-      @options            = options
-      @requested_locale   = requested_locale
-      @grammatical_number = grammatical_number
-      @original           = translation
-      super translation
+    def attributes
+      @attributes ||= {}
+    end
+    
+    def set_attributes(attributes)
+      attributes.each do |name, value|
+        raise "unknown attribute #{name}" unless ATTR_READERS.include?(name)
+        self.attributes[name] = value 
+      end
     end
   
     def fallback?
-    end  
+      @locale != @requested_locale
+    end
+    
+    ATTR_READERS = [:requested_locale, :locale, :key, :options, :plural_key, :original]
+    ATTR_WRITERS = [:requested_locale=, :locale=, :key=, :options=, :plural_key=, :original=]
+    
+    def method_missing(name, *args)
+      return attributes[name] if ATTR_READERS.include?(name)
+      return attributes[name] = args.first if ATTR_WRITERS.include?(name)
+      super
+    end
   end
 end

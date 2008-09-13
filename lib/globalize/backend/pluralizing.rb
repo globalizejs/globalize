@@ -8,7 +8,7 @@ module Globalize
         key = :zero if count == 0 && entry.has_key?(:zero)
         key ||= pluralizer(locale).call(count)
         raise InvalidPluralizationData.new(entry, count) unless entry.has_key?(key)
-        entry[key]
+        translation entry[key], :plural_key => key
       end
       
       def add_pluralizer(locale, pluralizer)
@@ -26,6 +26,11 @@ module Globalize
       
         def pluralizers
           @pluralizers ||= { :en => lambda{|n| n == 1 ? :one : :other } }
+        end
+        
+        # Overwrite this method to return something other than a String
+        def translation(string, attributes)
+          string
         end
     end
   end
