@@ -1,6 +1,6 @@
 require 'globalize/backend/pluralizing'
 require 'globalize/locale/fallbacks'
-require 'globalize/view_translation'
+require 'globalize/translation'
 
 module Globalize  
   module Backend
@@ -33,7 +33,7 @@ module Globalize
         end
       
         def translation(result, attributes = {})
-          result = ViewTranslation.new(result) unless result.is_a? ViewTranslation
+          result = Translation.new(result) unless result.is_a? Translation
           result.set_attributes attributes
           result
         end
