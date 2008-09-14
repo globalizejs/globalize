@@ -139,6 +139,7 @@ describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post obj
   end
 
   it "resolves a complex fallback without reloading" do
+    I18n.fallbacks.map 'de' => %w(en he) # fallbacks are now being set globally [Sv]
     I18n.locale = 'de'
     post = Post.new
     I18n.locale = 'en'

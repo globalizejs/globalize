@@ -17,7 +17,6 @@ module Globalize
         @record = record
         @cache = AttributeStash.new
         @stash = AttributeStash.new
-        @fallbacks = record.class.globalize_options[:fallbacks] || Globalize::Locale::Fallbacks.new
       end
       
       def fetch(locale, attr_name)
@@ -43,7 +42,7 @@ module Globalize
       private
       
       def fetch_attribute(locale, attr_name)
-        fallbacks = @fallbacks[locale].map{|tag| tag.to_s}
+        fallbacks = I18n.fallbacks[locale].map{|tag| tag.to_s}
         translations = @record.globalize_translations.by_locales(fallbacks)
         result, requested_locale = nil, locale
       

@@ -38,7 +38,7 @@ module Globalize
         def load_path
           @@load_path ||= LoadPath.new
         end
-    
+
         def load_locales(*locales)
           locales.each{|locale| load_locale locale }
         end
@@ -77,4 +77,3 @@ module Globalize
     end
   end
 end
-

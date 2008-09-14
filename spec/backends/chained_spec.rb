@@ -54,21 +54,23 @@ describe Globalize::Backend::Chain, '#add' do
   end
 end
 
-describe Globalize::Backend::Chain do
-  before :each do
-    I18n.backend = Globalize::Backend::Chain.new    
-    @first_backend = mock 'first backend'
-    @last_backend = mock 'last backend'
-    I18n.backend.add @first_backend
-    I18n.backend.add @last_backend
-  end
-  
-  it "delegates #load_translations to every backend on a chain" do
-    @first_backend.should_receive(:load_translations).with('translations.rb')
-    @last_backend.should_receive(:load_translations).with('translations.rb')
-    I18n.load_translations 'translations.rb'
-  end
-end
+# #load_translations was removed from I18n public api
+#
+# describe Globalize::Backend::Chain do
+#   before :each do
+#     I18n.backend = Globalize::Backend::Chain.new
+#     @first_backend = mock 'first backend'
+#     @last_backend = mock 'last backend'
+#     I18n.backend.add @first_backend
+#     I18n.backend.add @last_backend
+#   end
+#
+#   it "delegates #load_translations to every backend on a chain" do
+#     @first_backend.should_receive(:load_translations).with('translations.rb')
+#     @last_backend.should_receive(:load_translations).with('translations.rb')
+#     I18n.load_translations 'translations.rb'
+#   end
+# end
 
 describe Globalize::Backend::Chain, '#translate' do
   before :each do
