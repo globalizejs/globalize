@@ -27,53 +27,37 @@
 
 module Globalize
   class LoadPath < Array
-    module I18n
-      class << self
-        def included(base)
-          base.send :extend, ClassMethods
-        end
-      end
-      
-      module ClassMethods
-        def load_path
-          @@load_path ||= LoadPath.new
-        end
-
-        def load_locales(*locales)
-          locales.each{|locale| load_locale locale }
-        end
-    
-        def load_locale(locale)
-          load_path.filenames(locale).each do |filename|
-            backend.load_translations filename
-          end
-        end
-      end
+    def extensions
+      @extensions ||= ['rb', 'yml']
     end
+    attr_writer :extensions
   
-    # Adds a path to the locale load paths so it will be searched for locale
-    # classes and translation files. 
+    def locales
+      @locales ||= ['*']
+    end
+    attr_writer :locales
+  
     def <<(path)
-      add path
+      push path
     end
   
-    def add(path, *extensions)
-      extensions = ['yml'] if extensions.empty?
-      push [path, extensions]
-    end
-  
-    def filenames(locale)
-      patterns(locale).map{|pattern| Dir[pattern] }.flatten.uniq.sort
+    def push(*paths)
+      super(*paths.map{|path| filenames(path) }.flatten.uniq.sort)
     end
   
     protected
   
-    def patterns(locale)
-      map do |path, extensions|
-        extensions.map do |extension|
-          %W(#{path}/#{locale}/**/*.#{extension} #{path}/#{locale}.#{extension} #{path}/all.#{extension})
-        end
-      end.flatten
-    end
+      def filenames(path)
+        return [path] if File.file? path
+        patterns(path).map{|pattern| Dir[pattern] }
+      end
+  
+      def patterns(path)
+        locales.map do |locale|
+          extensions.map do |extension|
+            %W(#{path}/all.#{extension} #{path}/#{locale}.#{extension} #{path}/#{locale}/**/*.#{extension})
+          end
+        end.flatten.uniq
+      end
   end
 end
