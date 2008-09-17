@@ -8,23 +8,23 @@ describe Fallbacks do
   before do
     I18n.fallbacks = Fallbacks.new
   end
-  
+
   after do
     I18n.default_locale = :'en-US'
   end
-  
+
   it "#[] caches computed results" do
     I18n.fallbacks['en']
     I18n.fallbacks.should == { :en => [:en, :"en-US"] }
   end
-  
+
   it "#root always reflects the I18n.default_locale if no root has been set manually" do
     I18n.default_locale = :'en-US'
     I18n.fallbacks.root.should == I18n.default_locale
     I18n.default_locale = :'de-DE'
     I18n.fallbacks.root.should == I18n.default_locale
   end
-  
+
   it "#root always reflects the manually set locale if present" do
     I18n.fallbacks = Fallbacks.new(:'fi-FI')
     I18n.fallbacks.root.should == :'fi-FI'
@@ -37,97 +37,112 @@ describe Fallbacks, "#compute with root set to en-US" do
   before do
     @fallbacks = Fallbacks.new(:'en-US')
   end
-  
+
   describe "with no mappings defined" do
     it "returns [:es, :en-US] for :es" do
-      @fallbacks[:es].should == [:es, :"en-US"]
+      @fallbacks[:es].should == [:es, :"en-US", :en]
     end
-  
+
     it "returns [:es-ES, :es, :en-US] for :es-ES" do
-      @fallbacks[:"es-ES"].should == [:"es-ES", :es, :"en-US"]
+      @fallbacks[:"es-ES"].should == [:"es-ES", :es, :"en-US", :en]
     end
-    
+
     it "returns [:es-MX, :es, :en-US] for :es-MX" do
-      @fallbacks[:"es-MX"].should == [:"es-MX", :es, :"en-US"]
+      @fallbacks[:"es-MX"].should == [:"es-MX", :es, :"en-US", :en]
     end
-    
+
     it "returns [:es-Latn-ES, :es-Latn, :es, :en-US] for :es-Latn-ES" do
-      @fallbacks[:'es-Latn-ES'].should == [:"es-Latn-ES", :"es-Latn", :es, :"en-US"]
+      @fallbacks[:'es-Latn-ES'].should == [:"es-Latn-ES", :"es-Latn", :es, :"en-US", :en]
     end
+
     it "returns [:en, :en-US] for :en" do
       @fallbacks[:en].should == [:en, :"en-US"]
     end
-      
-    it "returns [:en-US, :en] for :en-US (special case: locale == root)" do 
+
+    it "returns [:en-US, :en] for :en-US (special case: locale == root)" do
       @fallbacks[:"en-US"].should == [:"en-US", :en]
     end
   end
-  
+
   # Most people who speak Catalan also live in Spain, so it is safe to assume
   # that they also speak Spanish as spoken in Spain.
   describe "with a mapping :ca => es-ES defined" do
     before :each do
       @fallbacks.map :ca => :"es-ES"
     end
-    
+
     it "returns [:ca, :es-ES, :es, :en-US] for :ca" do
-      @fallbacks[:ca].should == [:ca, :"es-ES", :es, :"en-US"]
+      @fallbacks[:ca].should == [:ca, :"es-ES", :es, :"en-US", :en]
     end
-    
+
     it "returns [:ca-ES, :ca, :es-ES, :es, :en-US] for :ca-ES" do
-      @fallbacks[:"ca-ES"].should == [:"ca-ES", :ca, :"es-ES", :es, :"en-US"]
+      @fallbacks[:"ca-ES"].should == [:"ca-ES", :ca, :"es-ES", :es, :"en-US", :en]
     end
   end
-  
+
   # People who speak Arabic as spoken in Palestine often times also speak
-  # Hebrew as spoken in Israel. However it is in no way safe to assume that 
+  # Hebrew as spoken in Israel. However it is in no way safe to assume that
   # everybody who speaks Arabic also speaks Hebrew.
   describe "with a mapping :ar-PA => he-IL defined" do
     before :each do
       @fallbacks.map :"ar-PA" => :"he-IL"
     end
-    
+
     it "returns [:ar, :en-US] for :ar" do
-      @fallbacks[:ar].should == [:ar, :"en-US"]
+      @fallbacks[:ar].should == [:ar, :"en-US", :en]
     end
-    
+
     it "returns [:ar-EG, :ar, :en-US] for :ar-EG" do
-      @fallbacks[:"ar-EG"].should == [:"ar-EG", :ar, :"en-US"]
+      @fallbacks[:"ar-EG"].should == [:"ar-EG", :ar, :"en-US", :en]
     end
-    
+
     it "returns [:ar-PA, :ar, :he-IL, :he, :en-US] for :ar-PA" do
-      @fallbacks[:"ar-PA"].should == [:"ar-PA", :ar, :"he-IL", :he, :"en-US"]
+      @fallbacks[:"ar-PA"].should == [:"ar-PA", :ar, :"he-IL", :he, :"en-US", :en]
     end
   end
-  
+
   # Sami people live in several scandinavian countries. In Finnland many people
-  # know Swedish and Finnish. Thus, it can be assumed that Sami living in 
+  # know Swedish and Finnish. Thus, it can be assumed that Sami living in
   # Finnland also speak Swedish and Finnish.
   describe "with a mapping sms => [se-FI, fi-FI] defined" do
     before :each do
       @fallbacks.map :sms => [:"se-FI", :"fi-FI"]
     end
-    
+
     it "returns [:sms-FI, :sms, :se-FI, :se, :fi-FI, :fi, :en-US] for :sms-FI" do
-      @fallbacks[:"sms-FI"].should == [:"sms-FI", :sms, :"se-FI", :se, :"fi-FI", :fi, :"en-US"]
+      @fallbacks[:"sms-FI"].should == [:"sms-FI", :sms, :"se-FI", :se, :"fi-FI", :fi, :"en-US", :en]
     end
   end
-  
+
   describe "with a mapping de-AT => de-DE defined" do
     before :each do
       @fallbacks.map :"de-AT" => :"de-DE"
     end
-    
+
     it "returns [:de, :en-US] for de" do
-      @fallbacks[:"de"].should == [:de, :"en-US"]
+      @fallbacks[:"de"].should == [:de, :"en-US", :en]
     end
-    
+
     it "returns [:de-DE, :de, :en-US] for de-DE" do
-      @fallbacks[:"de-DE"].should == [:"de-DE", :de, :"en-US"]
+      @fallbacks[:"de-DE"].should == [:"de-DE", :de, :"en-US", :en]
+    end
+
+    it "returns [:de-AT, :de, :de-DE, :en-US] for de-AT" do
+      @fallbacks[:"de-AT"].should == [:"de-AT", :de, :"de-DE", :"en-US", :en]
+    end
+  end
+
+  describe "with a mapping de => en, he => en" do
+    before :each do
+      @fallbacks.map :de => :en, :he => :en
     end
     
-    it "returns [:de-AT, :de, :de-DE, :en-US] for de-AT" do
-      @fallbacks[:"de-AT"].should == [:"de-AT", :de, :"de-DE", :"en-US"]
+    it "returns [:de, :en] for :de" do
+      @fallbacks[:de].should == [:de, :en, :"en-US"]
+    end
+    
+    it "returns [:he, :en] for :de" do
+      @fallbacks[:he].should == [:he, :en, :"en-US"]
     end
   end
 end

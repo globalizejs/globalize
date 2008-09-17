@@ -11,7 +11,7 @@ describe Globalize::Backend::Static, '#translate' do
     translations.each do |locale, data| 
       I18n.backend.store_translations locale, data 
     end
-    I18n.fallbacks.map :"de-DE" => :"en-US"
+    I18n.fallbacks.map :"de-DE" => :"en-US", :he => :en
   end
   
   describe "requesting en-US" do
@@ -39,6 +39,12 @@ describe Globalize::Backend::Static, '#translate' do
   
     it "returns the translation in en if none of de-DE, de and en-US are present" do
       I18n.translate(:bar, :locale => :"de-DE").should == "bar in en"
+    end
+  end
+  
+  describe "requesting he" do
+    it "returns the translation in en if none in he is present" do
+      I18n.translate(:bar, :locale => :he).should == "bar in en"
     end
   end
   

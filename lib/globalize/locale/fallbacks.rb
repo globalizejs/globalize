@@ -26,7 +26,11 @@ module Globalize
       end
       
       def root
-        @root || I18n.default_locale.to_sym # TODO default_locale should always be a Symbol
+        @root || I18n.default_locale.to_sym
+      end
+      
+      def defaults
+        @defaults ||= Array(compute(root, false))
       end
       
       def [](tag)
@@ -46,14 +50,14 @@ module Globalize
       
       protected
     
-      def compute(tags, include_root = true)
+      def compute(tags, include_defaults = true)
         result = Array(tags).collect do |tag|
           tags = LanguageTag::tag(tag.to_sym).parents(true).map! {|t| t.to_sym }
           tags.each{|tag| tags += compute(@map[tag]) if @map[tag] }
           tags
         end.flatten
         
-        result << root if root and include_root
+        result += defaults if include_defaults
         result.uniq
       end
     end
