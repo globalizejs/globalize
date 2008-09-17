@@ -1,0 +1,91 @@
+h1. Globalize2
+
+Globalize2 is the successor of Globalize for Rails. 
+
+It is compatible with and builds on the new "I18n api in Ruby on Rails":http://rails-i18n.org and adds model translations as well as a bunch of other useful features, such as Locale fallbacks (RFC4647 compliant) and automatic loading of Locale data from defined directory/file locations.
+
+Globalize2 is much more lightweight and modular than its predecessor was. Content translations in Globalize2 use default ActiveRecord features and do not limit any functionality any more. 
+
+All features and tools in Globalize2 are implemented in the most unobstrusive and loosely-coupled way possible, so you can pick whatever features or tools you need for your application and combine them with other tools from other libraries or plugins.
+
+h2. Installation
+
+To install Globalize2 with its default setup just use:
+
+<pre><code>
+script/plugin install git://github.com/joshmh/globalize2.git
+</code></pre>
+
+This will:
+
+* activate model translations
+* set I18n.load_path to an instance of Globalize::LoadPath
+* set I18n.backend to an instance of Globalize::Backend::Static
+
+h2. Configuration
+
+You might want to add additional configuration to an initializer, e.g. config/initializers/globalize.rb
+
+h2. Model translations
+
+Model translations (or content translations) allow you to translate your models' attribute values. E.g.
+
+<pre><code>
+class Post < ActiveRecord::Base
+  translates :title, :text
+end
+</code></pre>
+
+Allows you to values for the attributes :title and :text per locale:
+
+<pre><code>
+I18n.locale = :en
+post.title # Globalize2 rocks!
+
+I18n.locale = :he
+post.title # גלובאלייז2 שולט!
+</code></pre>
+
+In order to make this work you currently need to take care of creating the appropriate database migrations manually. Globalize2 will provide a handy helper method for doing this in future.
+
+The migration for the above Post model could look like this:
+
+<pre><code>
+class CreatePosts < ActiveRecord::Migration
+  def self.up
+    create_table :posts do |t|
+      t.timestamps
+    end
+
+    create_table :post_translations do |t|
+      t.string     :locale
+      t.references :post
+      t.string     :title
+      t.text       :text
+    end
+  end
+
+  def self.down
+    drop_table :posts
+  end
+end
+</code></pre>
+
+h2. Globalize::Backend::Static
+
+TODO
+
+h2. Locale Fallbacks
+
+TODO
+
+h2. Globalize::LoadPath
+
+TODO
+
+
+
+
+
+
+

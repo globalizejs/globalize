@@ -22,7 +22,7 @@ module Globalize
     end
   
     def fallback?
-      locale != requested_locale
+      locale.to_sym != requested_locale.to_sym
     end
     
     def set_meta(meta)

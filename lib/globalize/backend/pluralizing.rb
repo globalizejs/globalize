@@ -10,24 +10,24 @@ module Globalize
         raise InvalidPluralizationData.new(entry, count) unless entry.has_key?(key)
         translation entry[key], :plural_key => key
       end
-      
+
       def add_pluralizer(locale, pluralizer)
         pluralizers[locale.to_sym] = pluralizer
       end
-      
+
       def pluralizer(locale)
         pluralizers[locale.to_sym] || default_pluralizer
       end
-      
-      protected      
+
+      protected
         def default_pluralizer
           pluralizers[:en]
         end
-      
+
         def pluralizers
           @pluralizers ||= { :en => lambda{|n| n == 1 ? :one : :other } }
         end
-        
+
         # Overwrite this method to return something other than a String
         def translation(string, attributes)
           string
