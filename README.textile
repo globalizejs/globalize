@@ -2,7 +2,7 @@ h1. Globalize2
 
 Globalize2 is the successor of Globalize for Rails. 
 
-It adds model translations as well as a bunch of other useful features, such as Locale fallbacks (RFC4647 compliant) and automatic loading of Locale data from defined directory/file locations.
+It is compatible with and builds on the new "I18n api in Ruby on Rails":http://rails-i18n.org. and adds model translations as well as a bunch of other useful features, such as Locale fallbacks (RFC4647 compliant) and automatic loading of Locale data from defined directory/file locations.
 
 Globalize2 is much more lightweight and modular than its predecessor was. Content translations in Globalize2 use default ActiveRecord features and do not limit any functionality any more. 
 
@@ -10,7 +10,7 @@ All features and tools in Globalize2 are implemented in the most unobstrusive an
 
 h2. Requirements
 
-Globalize2 is compatible with and builds on the new "I18n api in Ruby on Rails":http://rails-i18n.org and thus requires Rails 2.2 (currently Rails edge).
+Rails 2.2 (currently Rails edge)
 
 *PLEASE NOTE: because of a "pending patch to Rails edge":http://rails.lighthouseapp.com/projects/8994/tickets/1048-i18n-introduce-i18nload_path-in-favor-of-i18nload_translations-and-change-simple-backend-to-load-translations-lazily Globalize2 currently only works with "this Rails fork":http://github.com/svenfuchs/rails*
 
@@ -79,19 +79,109 @@ end
 
 h2. Globalize::Backend::Static
 
-TODO
+Globalize2 ships with a Static backend that builds on the Simple backend from the I18n library (which is shipped with Rails) and adds the following features:
+
+* It uses locale fallbacks when looking up translation data.
+* It returns an instance of Globalize::Translation::Static instead of a plain Ruby String as a translation.
+* It allows to hook in custom pluralization logic as lambdas.
+
+h2. Custom pluralization logic
+
+The Simple backend has its pluralization algorithm baked in hardcoded. This algorithm is only suitable for English and other languages that have the same pluralization rules. It is not suitable for, e.g., Czech though.
+
+To add custom pluralization logic to Globalize' Static backend you can do something like this:
+
+<pre><code>
+@backend.add_pluralizer :cz, lambda{|c| 
+  c == 1 ? :one : (2..4).include?(c) ? :few : :other 
+}
+</code></pre>
 
 h2. Locale Fallbacks
 
-TODO
+Globalize2 ships with a Locale fallback tool which extends the I18n module to hold a fallbacks instance which is set to an instance of Globalize::Locale::Fallbacks by default but can be swapped with a different implementation. 
+
+Globalize2 fallbacks will compute a number of other locales for a given locale. For example:
+
+<pre><code>
+I18n.fallbacks[:"es-MX"] # => [:"es-MX", :es, :"en-US", :en]
+</code></pre>
+
+Globalize2 fallbacks by default always fall back to all parents of a locale (e.g. :es for :"es-MX") and then to the current root locale and all of the root locale's parents. The root locale is set to en-US by default but can be set to something else.
+
+One can additionally add any number of additional fallback locales which will be added before the root locale to the fallback chain. For example:
+
+<pre><code>
+fb = I18n.fallbacks
+
+fb.map :ca => :"es-ES"
+fb[:ca] # => [:ca, :"es-ES", :es, :"en-US", :en]
+
+fb.map :"ar-PS" => :"he-IL"
+fb[:"ar-PS"] # => [:"ar-PS", :ar, :"he-IL", :he, :"en-US", :en]
+fb[:"ar-EG"] # => [:"ar-EG", :ar, :"en-US", :en]
+
+fb.map :sms => [:"se-FI", :"fi-FI"]
+fb[:sms] # => [:sms, :"se-FI", :se, :"fi-FI", :fi, :"en-US", :en]
+</code></pre>
 
 h2. Globalize::LoadPath
 
-TODO
+Globalize2 replaces the plain Ruby array that is set to I18n.load_path by default through an instance of Globalize::LoadPath.
+
+This object can be populated with both paths to files and directories. If a path to a directory is added to it it will look up all locale data files present in that directory enforcing the following convention:
+
+<pre><code>
+I18n.load_path << "#{RAILS_ROOT}/lib/locales"
+
+# will load all the following files if present:
+lib/locales/all.yml
+lib/locales/fr.yml
+lib/locales/fr/*.yaml
+lib/locales/ru.yml
+lib/locales/ru/*.yaml
+...
+</code></pre>
+
+One can also specify which locales are used. By default this is set to "*" meaning that files for all locales are added. To define that only files for the locale :es are added one can specify:
+
+<pre><code>
+I18n.load_path.locales = [:es]
+</code></pre>
+
+One can also specify which file extensions are used. By default this is set to ['rb', 'yml'] so plain Ruby and YAML files are added if found. To define that only *.sql files are added one can specify:
+
+<pre><code>
+I18n.load_path.extensions = ['sql']
+</code></pre>
+
+Note that Globalize::LoadPath "expands" a directory to its contained file paths immediately when you add it to the load_path. Thus, if you change the locales or extensions settings in the middle of your application the change won't be applied to already added file paths.
 
 
+h2. Globalize::Translation classes
 
+Globalize2's Static backend as well as Globalize2 model translations return instances of Globalize::Translation classes (instead of plain Ruby Strings). These are simple and lightweight value objects that carry some additional meta data about the translation and how it was looked up.
 
+Model translations return instances of Globalize::Translation::Attribute, the Statis backend returns instances of Globalize::Translation::Static.
 
+For example:
+
+<pre><code>
+I18n.locale = :de
+
+title = Post.first.title  # assuming that no translation can be found:
+title.locale              # => :en
+title.requested_locale    # => :de 
+title.fallback?           # => true
+
+rails = I18n.t :rails     # assuming that no translation can be found:
+rails.locale              # => :en
+rails.requested_locale    # => :de 
+rails.fallback?           # => true
+rails.options             # returns the options passed to #t
+rails.plural_key          # returns the plural_key (e.g. :one, :other)
+rails.original            # returns the original translation with no values 
+                          # interpolated to it (e.g. "Hi {{name}}!")
+</code></pre>
 
 
