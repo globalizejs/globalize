@@ -1,7 +1,7 @@
 module I18n
   class << self
     def chain_backends(*args)
-      backend = Globalize::Backend::Chain.new(*args)
+      self.backend = Globalize::Backend::Chain.new(*args)
     end
   end
 end
@@ -59,7 +59,7 @@ module Globalize
         default = options.delete(:default)
         result = backends.inject({}) do |namespace, backend|
           begin
-            translation = backend.translate(locale, key, options) 
+            translation = backend.translate(locale.to_sym, key, options) 
             if namespace_lookup?(translation, options)
               namespace.merge! translation
             elsif translation

@@ -15,11 +15,11 @@ describe I18n, '.chain_backends' do
     lambda{ I18n.chain_backends }.should_not raise_error
     I18n.backend.should be_instance_of(Globalize::Backend::Chain)
   end
-  
+
   it "passes all given arguments to the chained backends #initialize method" do
     Globalize::Backend::Chain.should_receive(:new).with(:spec, :simple)
     I18n.chain_backends :spec, :simple
-  end 
+  end
 end
 
 describe Globalize::Backend::Chain, '#initialize' do
@@ -32,22 +32,22 @@ describe Globalize::Backend::Chain, '#add' do
   before :each do
     I18n.backend = Globalize::Backend::Chain.new
   end
-  
+
   it "accepts an instance of a backend" do
     lambda{ I18n.backend.add Globalize::Backend::Spec.new }.should_not raise_error
     I18n.backend.send(:backends).first.should be_instance_of(Globalize::Backend::Spec)
   end
-  
+
   it "accepts a class and instantiates the backend" do
     lambda{ I18n.backend.add Globalize::Backend::Spec }.should_not raise_error
     I18n.backend.send(:backends).first.should be_instance_of(Globalize::Backend::Spec)
   end
-  
+
   it "accepts a symbol, constantizes it as a backend class and instantiates the backend" do
     lambda{ I18n.backend.add :spec }.should_not raise_error
     I18n.backend.send(:backends).first.should be_instance_of(Globalize::Backend::Spec)
   end
-  
+
   it "accepts any number of backend instances, classes or symbols" do
     lambda{ I18n.backend.add Globalize::Backend::Spec.new, Globalize::Backend::Spec, :spec }.should_not raise_error
     I18n.backend.send(:backends).map{|backend| backend.class }.should == [Globalize::Backend::Spec, Globalize::Backend::Spec, Globalize::Backend::Spec]
@@ -74,61 +74,61 @@ end
 
 describe Globalize::Backend::Chain, '#translate' do
   before :each do
-    I18n.backend = Globalize::Backend::Chain.new    
+    I18n.backend = Globalize::Backend::Chain.new
     @first_backend = I18n::Backend::Simple.new
-    @last_backend = I18n::Backend::Simple.new    
+    @last_backend = I18n::Backend::Simple.new
     I18n.backend.add @first_backend
     I18n.backend.add @last_backend
   end
-  
+
   it "delegates #translate to all backends in the order they were added" do
-    @first_backend.should_receive(:translate).with('en-US', :foo, {})
-    @last_backend.should_receive(:translate).with('en-US', :foo, {})
+    @first_backend.should_receive(:translate).with(:'en-US', :foo, {})
+    @last_backend.should_receive(:translate).with(:'en-US', :foo, {})
     I18n.translate :foo
   end
-  
+
   it "returns the result from #translate from the first backend if it's not nil" do
     @first_backend.store_translations :'en-US', {:foo => 'foo from first backend'}
     @last_backend.store_translations :'en-US', {:foo => 'foo from last backend'}
     result = I18n.translate :foo
     result.should == 'foo from first backend'
   end
-  
+
   it "returns the result from #translate from the second backend if the first one returned nil" do
     @first_backend.store_translations :'en-US', {}
     @last_backend.store_translations :'en-US', {:foo => 'foo from last backend'}
     result = I18n.translate :foo
     result.should == 'foo from last backend'
   end
-  
+
   it "looks up a namespace from all backends and merges them (if a result is a hash and no count option is present)" do
     @first_backend.store_translations :'en-US', {:foo => {:bar => 'bar from first backend'}}
     @last_backend.store_translations :'en-US', {:foo => {:baz => 'baz from last backend'}}
     result = I18n.translate :foo
     result.should == {:bar => 'bar from first backend', :baz => 'baz from last backend'}
   end
-  
+
   it "raises a MissingTranslationData exception if no translation was found" do
     lambda{ I18n.translate :not_here, :raise => true }.should raise_error(I18n::MissingTranslationData)
   end
-  
+
   it "raises an InvalidLocale exception if the locale is nil" do
     lambda{ Globalize::Backend::Chain.new.translate nil, :foo }.should raise_error(I18n::InvalidLocale)
   end
-  
+
   it "bulk translates a number of keys from different backends" do
     @first_backend.store_translations :'en-US', {:foo => 'foo from first backend'}
     @last_backend.store_translations :'en-US', {:bar => 'bar from last backend'}
     result = I18n.translate [:foo, :bar]
     result.should == ['foo from first backend', 'bar from last backend']
   end
-  
+
   describe 'when called with a default option' do
     it "still calls #translate on all the backends" do
       @last_backend.should_receive :translate
       I18n.translate :not_here, :default => 'default'
     end
-    
+
     it "returns a given default string when no backend returns a translation" do
       result = I18n.translate :not_here, :default => 'default'
       result.should == 'default'
@@ -144,26 +144,26 @@ end
 
 describe Globalize::Backend::Chain, '#localize' do
   before :each do
-    I18n.backend = Globalize::Backend::Chain.new    
+    I18n.backend = Globalize::Backend::Chain.new
     @first_backend = CustomLocalizeBackend.new
-    @last_backend = I18n::Backend::Simple.new    
+    @last_backend = I18n::Backend::Simple.new
     I18n.backend.add @first_backend
     I18n.backend.add @last_backend
     @time = Time.now
   end
-  
+
   it "delegates #localize to all backends in the order they were added" do
-    @first_backend.should_receive(:localize).with('en-US', @time, :default)
-    @last_backend.should_receive(:localize).with('en-US', @time, :default)
+    @first_backend.should_receive(:localize).with(:'en-US', @time, :default)
+    @last_backend.should_receive(:localize).with(:'en-US', @time, :default)
     I18n.localize @time
   end
-  
+
   it "returns the result from #localize from the first backend if it's not nil" do
     @last_backend.should_not_receive :localize
     result = I18n.localize @time, :locale => 'custom'
     result.should == 'result from custom localize backend'
   end
-  
+
   it "returns the result from #localize from the second backend if the first one returned nil" do
     @last_backend.should_receive(:localize).and_return "value from last backend"
     result = I18n.localize @time
@@ -172,18 +172,18 @@ describe Globalize::Backend::Chain, '#localize' do
 end
 
 describe Globalize::Backend::Chain, '#namespace_lookup?' do
-  before :each do 
+  before :each do
     @backend = Globalize::Backend::Chain.new
   end
-  
+
   it "returns false if the given result is not a Hash" do
     @backend.send(:namespace_lookup?, 'foo', {}).should be_false
   end
-  
+
   it "returns false if a count option is present" do
     @backend.send(:namespace_lookup?, {:foo => 'foo'}, {:count => 1}).should be_false
   end
-  
+
   it "returns true if the given result is a Hash AND no count option is present" do
     @backend.send(:namespace_lookup?, {:foo => 'foo'}, {}).should be_true
   end

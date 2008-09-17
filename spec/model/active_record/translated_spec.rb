@@ -12,13 +12,14 @@ require 'spec/spec/models/post'
 
 describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post object' do
   include Spec::Matchers::HaveAttribute
-  include Spec::Helpers::ActiveRecord  
+  include Spec::Helpers::ActiveRecord
 
   before do
     I18n.locale = 'en-US'
+    I18n.fallbacks.clear 
     reset_db
   end
-  
+
   it "has post_translations" do
     post = Post.create
     lambda { post.globalize_translations }.should_not raise_error
@@ -26,57 +27,57 @@ describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post obj
 
   it "returns the value passed to :subject" do
     post = Post.new
-    (post.subject = 'foo').should == 'foo'    
-  end 
+    (post.subject = 'foo').should == 'foo'
+  end
 
   it "translates subject and content into en-US" do
     post = Post.create :subject => 'foo', :content => 'bar'
     post.subject.should == 'foo'
     post.content.should == 'bar'
-    post.save.should == true 
+    post.save.should == true
     post.reload
-    post.subject.should == 'foo' 
+    post.subject.should == 'foo'
     post.content.should == 'bar'
   end
-  
+
   it "finds a German post" do
     post = Post.create :subject => 'foo', :content => 'bar'
     I18n.locale = 'de-DE'
     post = Post.first
     post.subject = 'baz'
     post.save
-    Post.first.subject.should == 'baz'    
+    Post.first.subject.should == 'baz'
     I18n.locale = 'en-US'
-    Post.first.subject.should == 'foo'    
+    Post.first.subject.should == 'foo'
   end
-  
+
   it "saves an English post and loads it correctly" do
     Post.first.should == nil
     post = Post.create :subject => 'foo', :content => 'bar'
-    post.save.should == true 
+    post.save.should == true
     post = Post.first
-    post.subject.should == 'foo' 
-    post.content.should == 'bar'    
+    post.subject.should == 'foo'
+    post.content.should == 'bar'
   end
-  
+
   it "updates an attribute" do
     post = Post.create :subject => 'foo', :content => 'bar'
     post.update_attribute :subject, 'baz'
-    Post.first.subject.should == 'baz'    
+    Post.first.subject.should == 'baz'
   end
-  
+
   it "validates presence of :subject" do
     class Post
       validates_presence_of :subject
     end
-    
+
     post = Post.new
     post.save.should == false
-    
+
     post = Post.new :subject => 'foo'
     post.save.should == true
   end
-  
+
   it "returns the value for the correct locale, after locale switching" do
     post = Post.create :subject => 'foo'
     I18n.locale = 'de-DE'
@@ -86,7 +87,7 @@ describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post obj
     post = Post.first
     post.subject.should == 'foo'
     I18n.locale = 'de-DE'
-    post.subject.should == 'bar'   
+    post.subject.should == 'bar'
   end
 
   it "returns the value for the correct locale, after locale switching, without saving" do
@@ -96,7 +97,7 @@ describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post obj
     I18n.locale = 'en-US'
     post.subject.should == 'foo'
     I18n.locale = 'de-DE'
-    post.subject.should == 'bar'   
+    post.subject.should == 'bar'
   end
 
   it "saves all locales, even after locale switching" do
@@ -110,11 +111,11 @@ describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post obj
     post = Post.first
     post.subject.should == 'foo'
     I18n.locale = 'de-DE'
-    post.subject.should == 'bar'   
+    post.subject.should == 'bar'
     I18n.locale = 'he-IL'
-    post.subject.should == 'baz'   
+    post.subject.should == 'baz'
   end
-  
+
   it "resolves a simple fallback" do
     I18n.locale = 'de-DE'
     post = Post.create :subject => 'foo'
@@ -124,9 +125,9 @@ describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post obj
     post.save
     I18n.locale = 'de-DE'
     post.subject.should == 'foo'
-    post.content.should == 'bar'    
+    post.content.should == 'bar'
   end
-  
+
   it "resolves a simple fallback without reloading" do
     I18n.locale = 'de-DE'
     post = Post.new :subject => 'foo'
@@ -135,11 +136,11 @@ describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post obj
     post.content = 'bar'
     I18n.locale = 'de-DE'
     post.subject.should == 'foo'
-    post.content.should == 'bar'    
+    post.content.should == 'bar'
   end
 
   it "resolves a complex fallback without reloading" do
-    I18n.fallbacks.map 'de' => %w(en he) # fallbacks are now being set globally [Sv]
+    I18n.fallbacks.map 'de' => %w(en he)
     I18n.locale = 'de'
     post = Post.new
     I18n.locale = 'en'
@@ -149,9 +150,9 @@ describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post obj
     post.content = 'bar'
     I18n.locale = 'de'
     post.subject.should == 'foo'
-    post.content.should == 'bar'    
+    post.content.should == 'bar'
   end
-  
+
   it "returns nil if no translations are found" do
     post = Post.new :subject => 'foo'
     post.subject.should == 'foo'
@@ -175,12 +176,12 @@ describe Globalize::Model::ActiveRecord::Translated, 'in the guise of a Post obj
     blog.posts.first.subject == 'foo'
     blog.posts.last.subject.should be_nil
     I18n.locale = 'de-DE'
-    blog.posts.last.subject.should == 'bar'    
+    blog.posts.last.subject.should == 'bar'
   end
-  
-  # TODO error checking for fields that exist in main table, don't exist in 
+
+  # TODO error checking for fields that exist in main table, don't exist in
   # proxy table, aren't strings or text
-  
+
   # TODO allow finding by translated attributes in conditions?
-  # TODO generate dynamic finders?  
+  # TODO generate dynamic finders?
 end

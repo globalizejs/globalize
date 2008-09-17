@@ -1,5 +1,4 @@
 doc
-spec/db/*
+spec/spec/db/*
 vendor
 NOTES
-test.rb
