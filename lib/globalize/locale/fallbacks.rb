@@ -22,15 +22,15 @@ module Globalize
       def initialize(*args)
         @map = {}
         map args.pop if args.last.is_a?(Hash)
-        @root = args.shift
+        @default = args.shift
       end
       
-      def root
-        @root || I18n.default_locale.to_sym
+      def default
+        @default || I18n.default_locale.to_sym
       end
       
       def defaults
-        @defaults ||= Array(compute(root, false))
+        @defaults ||= Array(compute(default, false))
       end
       
       def [](tag)
@@ -58,6 +58,7 @@ module Globalize
         end.flatten
         
         result += defaults if include_defaults
+        result << :root
         result.uniq
       end
     end
