@@ -83,9 +83,9 @@ describe Fallbacks, "#compute with root set to en-US" do
   # People who speak Arabic as spoken in Palestine often times also speak
   # Hebrew as spoken in Israel. However it is in no way safe to assume that
   # everybody who speaks Arabic also speaks Hebrew.
-  describe "with a mapping :ar-PA => he-IL defined" do
+  describe "with a mapping :ar-PS => he-IL defined" do
     before :each do
-      @fallbacks.map :"ar-PA" => :"he-IL"
+      @fallbacks.map :"ar-PS" => :"he-IL"
     end
 
     it "returns [:ar, :en-US] for :ar" do
@@ -96,8 +96,8 @@ describe Fallbacks, "#compute with root set to en-US" do
       @fallbacks[:"ar-EG"].should == [:"ar-EG", :ar, :"en-US", :en]
     end
 
-    it "returns [:ar-PA, :ar, :he-IL, :he, :en-US] for :ar-PA" do
-      @fallbacks[:"ar-PA"].should == [:"ar-PA", :ar, :"he-IL", :he, :"en-US", :en]
+    it "returns [:ar-PS, :ar, :he-IL, :he, :en-US] for :ar-PS" do
+      @fallbacks[:"ar-PS"].should == [:"ar-PS", :ar, :"he-IL", :he, :"en-US", :en]
     end
   end
 
