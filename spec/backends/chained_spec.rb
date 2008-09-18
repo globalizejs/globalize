@@ -144,6 +144,7 @@ end
 
 describe Globalize::Backend::Chain, '#localize' do
   before :each do
+    I18n.locale = :"en-US"
     I18n.backend = Globalize::Backend::Chain.new
     @first_backend = CustomLocalizeBackend.new
     @last_backend = I18n::Backend::Simple.new

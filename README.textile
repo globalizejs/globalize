@@ -107,9 +107,15 @@ Globalize2 fallbacks will compute a number of other locales for a given locale. 
 I18n.fallbacks[:"es-MX"] # => [:"es-MX", :es, :"en-US", :en]
 </code></pre>
 
-Globalize2 fallbacks by default always fall back to all parents of a locale (e.g. :es for :"es-MX") and then to the current root locale and all of the root locale's parents. The root locale is set to en-US by default but can be set to something else.
+Globalize2 fallbacks always fall back to 
 
-One can additionally add any number of additional fallback locales which will be added before the root locale to the fallback chain. For example:
+* all parents of a given locale (e.g. :es for :"es-MX"), 
+* then to the fallbacks' default locales and all of their parents and 
+* finally to the :root locale. 
+
+The default locales are set to [:"en-US"] by default but can be set to something else. The root locale is a concept borrowed from "CLDR":http://unicode.org and makes sense for storing common locale data which works as a last default fallback (e.g. "ltr" for bidi directions).
+
+One can additionally add any number of additional fallback locales manually. These will be added before the root locale to the fallback chain. For example:
 
 <pre><code>
 fb = I18n.fallbacks

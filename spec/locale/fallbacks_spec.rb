@@ -20,16 +20,14 @@ describe Fallbacks do
 
   it "#default always reflects the I18n.default_locale if no default has been set manually" do
     I18n.default_locale = :'en-US'
-    I18n.fallbacks.default.should == I18n.default_locale
-    I18n.default_locale = :'de-DE'
-    I18n.fallbacks.default.should == I18n.default_locale
+    I18n.fallbacks.defaults.should == [:'en-US', :en, :root]
   end
 
   it "#default always reflects the manually set locale if present" do
     I18n.fallbacks = Fallbacks.new(:'fi-FI')
-    I18n.fallbacks.default.should == :'fi-FI'
+    I18n.fallbacks.defaults.should == [:'fi-FI', :fi, :root]
     I18n.default_locale = :'de-DE'
-    I18n.fallbacks.default.should == :'fi-FI'
+    I18n.fallbacks.defaults.should == [:'fi-FI', :fi, :root]
   end
 end
 

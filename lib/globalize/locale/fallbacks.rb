@@ -19,19 +19,18 @@ end
 module Globalize
   module Locale
     class Fallbacks < Hash
-      def initialize(*args)
+      def initialize(*defaults)
         @map = {}
-        map args.pop if args.last.is_a?(Hash)
-        @default = args.shift
+        map defaults.pop if defaults.last.is_a?(Hash)
+        
+        defaults = [I18n.default_locale.to_sym] if defaults.empty?
+        self.defaults = defaults 
       end
       
-      def default
-        @default || I18n.default_locale.to_sym
+      def defaults=(defaults)
+        @defaults = defaults.map{|default| compute(default, false) }.flatten
       end
-      
-      def defaults
-        @defaults ||= Array(compute(default, false))
-      end
+      attr_reader :defaults
       
       def [](tag)
         tag = tag.to_sym
@@ -56,7 +55,6 @@ module Globalize
           tags.each{|tag| tags += compute(@map[tag]) if @map[tag] }
           tags
         end.flatten
-        
         result += defaults if include_defaults
         result << :root
         result.uniq
