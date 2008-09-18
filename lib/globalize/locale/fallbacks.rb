@@ -28,7 +28,7 @@ module Globalize
       end
       
       def defaults=(defaults)
-        @defaults = defaults.map{|default| compute(default, false) }.flatten
+        @defaults = defaults.map{|default| compute(default, false) }.flatten << :root
       end
       attr_reader :defaults
       
@@ -55,8 +55,7 @@ module Globalize
           tags.each{|tag| tags += compute(@map[tag]) if @map[tag] }
           tags
         end.flatten
-        result += defaults if include_defaults
-        result << :root
+        result.push *defaults if include_defaults
         result.uniq
       end
     end
