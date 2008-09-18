@@ -62,17 +62,17 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.timestamps
     end
-
     create_table :post_translations do |t|
       t.string     :locale
       t.references :post
       t.string     :title
       t.text       :text
+      t.timestamps
     end
   end
-
   def self.down
     drop_table :posts
+    drop_table :post_translations
   end
 end
 </code></pre>
@@ -115,7 +115,7 @@ Globalize2 fallbacks always fall back to
 
 The default locales are set to [:"en-US"] by default but can be set to something else. The root locale is a concept borrowed from "CLDR":http://unicode.org and makes sense for storing common locale data which works as a last default fallback (e.g. "ltr" for bidi directions).
 
-One can additionally add any number of additional fallback locales manually. These will be added before the root locale to the fallback chain. For example:
+One can additionally add any number of additional fallback locales manually. These will be added before the default locales to the fallback chain. For example:
 
 <pre><code>
 fb = I18n.fallbacks
@@ -168,18 +168,20 @@ h2. Globalize::Translation classes
 
 Globalize2's Static backend as well as Globalize2 model translations return instances of Globalize::Translation classes (instead of plain Ruby Strings). These are simple and lightweight value objects that carry some additional meta data about the translation and how it was looked up.
 
-Model translations return instances of Globalize::Translation::Attribute, the Statis backend returns instances of Globalize::Translation::Static.
+Model translations return instances of Globalize::Translation::Attribute, the Static backend returns instances of Globalize::Translation::Static.
 
 For example:
 
 <pre><code>
 I18n.locale = :de
 
+# Translation::Attribute
 title = Post.first.title  # assuming that no translation can be found:
 title.locale              # => :en
 title.requested_locale    # => :de 
 title.fallback?           # => true
 
+# Translation::Static
 rails = I18n.t :rails     # assuming that no translation can be found:
 rails.locale              # => :en
 rails.requested_locale    # => :de 
