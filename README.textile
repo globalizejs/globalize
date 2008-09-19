@@ -190,4 +190,7 @@ rails.original            # returns the original translation with no values
                           # interpolated to it (e.g. "Hi {{name}}!")
 </code></pre>
 
+h2. Other notes
+
+Please note that the Globalize2 Static backend (just like the Simple backend) does not support reloading translation data between subsequent requests.
 
