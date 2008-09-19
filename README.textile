@@ -12,8 +12,6 @@ h2. Requirements
 
 Rails 2.2 (currently Rails edge)
 
-*PLEASE NOTE: because of a "pending patch to Rails edge":http://rails.lighthouseapp.com/projects/8994/tickets/1048-i18n-introduce-i18nload_path-in-favor-of-i18nload_translations-and-change-simple-backend-to-load-translations-lazily Globalize2 currently only works with "this Rails fork":http://github.com/svenfuchs/rails*
-
 h2. Installation
 
 To install Globalize2 with its default setup just use:
