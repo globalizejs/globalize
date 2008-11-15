@@ -1,10 +1,11 @@
 require File.dirname(__FILE__) + '/../spec/helper.rb'
 require 'globalize/backend/static'
+require 'globalize/translation'
 
 describe Globalize::Backend::Static, '#translate' do
   before :each do
     I18n.backend = Globalize::Backend::Static.new
-    translations = {:"en-US" => {:foo => "foo in en-US"},
+    translations = {:"en-US" => {:foo => "foo in en-US", :boz => 'boz', :buz => {:bum => 'bum'}},
                     :"en"    => {:bar => "bar in en"},
                     :"de-DE" => {:baz => "baz in de-DE"},
                     :"de"    => {:boo => "boo in de"}}
@@ -14,48 +15,75 @@ describe Globalize::Backend::Static, '#translate' do
     I18n.fallbacks.map :"de-DE" => :"en-US", :he => :en
   end
   
-  describe "requesting en-US" do
-    it "returns the translation in en-US if present" do
-      I18n.translate(:foo, :locale => :"en-US").should == "foo in en-US"
+  describe "when passed a single key for a translation" do
+    it "returns an instance of Translation:Static" do
+      translation = I18n.translate :foo
+      translation.should be_instance_of(Globalize::Translation::Static)
+    end
+    
+    describe "requesting en-US" do
+      it "returns the translation in en-US if present" do
+        I18n.translate(:foo, :locale => :"en-US").should == "foo in en-US"
+      end
+  
+      it "returns the translation in en if en-US is not present" do
+        I18n.translate(:bar, :locale => :"en-US").should == "bar in en"
+      end
     end
   
-    it "returns the translation in en if en-US is not present" do
-      I18n.translate(:bar, :locale => :"en-US").should == "bar in en"
-    end
-  end
-  
-  describe "requesting de-DE" do
-    it "returns the translation in de-DE if present" do
-      I18n.translate(:baz, :locale => :"de-DE").should == "baz in de-DE"
-    end
+    describe "requesting de-DE" do
+      it "returns the translation in de-DE if present" do
+        I18n.translate(:baz, :locale => :"de-DE").should == "baz in de-DE"
+      end
       
-    it "returns the translation in de if de-DE is not present" do
-      I18n.translate(:boo, :locale => :"de-DE").should == "boo in de"
-    end
+      it "returns the translation in de if de-DE is not present" do
+        I18n.translate(:boo, :locale => :"de-DE").should == "boo in de"
+      end
       
-    it "returns the translation in en-US if none of de-DE and de are present" do
-      I18n.translate(:foo, :locale => :"de-DE").should == "foo in en-US"
+      it "returns the translation in en-US if none of de-DE and de are present" do
+        I18n.translate(:foo, :locale => :"de-DE").should == "foo in en-US"
+      end
+  
+      it "returns the translation in en if none of de-DE, de and en-US are present" do
+        I18n.translate(:bar, :locale => :"de-DE").should == "bar in en"
+      end
     end
   
-    it "returns the translation in en if none of de-DE, de and en-US are present" do
-      I18n.translate(:bar, :locale => :"de-DE").should == "bar in en"
+    describe "requesting he" do
+      it "returns the translation in en if none in he is present" do
+        I18n.translate(:bar, :locale => :he).should == "bar in en"
+      end
     end
-  end
   
-  describe "requesting he" do
-    it "returns the translation in en if none in he is present" do
-      I18n.translate(:bar, :locale => :he).should == "bar in en"
-    end
-  end
-  
-  describe "using defaults" do
-    it "returns the given default String when the key is not present for any locale" do
-      I18n.translate(:missing, :default => "default").should == "default"
-    end
+    describe "using defaults" do
+      it "returns the given default String when the key is not present for any locale" do
+        I18n.translate(:missing, :default => "default").should == "default"
+      end
 
-    it "returns the fallback translation for the key if present for a fallback locale" do
-      I18n.backend.store_translations :de, :non_default => "non_default in de"
-      I18n.translate(:non_default, :default => "default", :locale => :"de-DE").should == "non_default in de"
+      it "returns the fallback translation for the key if present for a fallback locale" do
+        I18n.backend.store_translations :de, :non_default => "non_default in de"
+        I18n.translate(:non_default, :default => "default", :locale => :"de-DE").should == "non_default in de"
+      end
+    end
+  end
+  
+  describe "when looking up an array of translations (bulk lookup)" do
+    it "returns an array of translations" do
+      I18n.translate([:foo, :boz]).should be_instance_of(Array)
+    end
+    
+    it "returns an array of instances of Translation::Static" do
+      I18n.translate([:foo, :boz]).map(&:class).uniq.should == [Globalize::Translation::Static]
+    end
+  end
+  
+  describe "when looking up a namespace" do
+    it "returns a hash of translations" do
+      I18n.translate(:"buz").should be_instance_of(Hash)
+    end
+    
+    it "returns an array of translations" do
+      I18n.translate(:"buz").values.map(&:class).should == [Globalize::Translation::Static]
     end
   end
 end

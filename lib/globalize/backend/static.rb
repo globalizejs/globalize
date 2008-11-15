@@ -33,9 +33,22 @@ module Globalize
 
         def translation(result, meta = nil)
           return unless result
-          result = Translation::Static.new(result) unless result.is_a? Translation::Static
-          result.set_meta meta
-          result
+          case result
+          when String
+            result = Translation::Static.new(result) unless result.is_a? Translation::Static
+            result.set_meta meta
+            result
+          when Hash
+            Hash[*result.map do |key, value|
+              [key, translation(value, meta)]
+            end.flatten]
+          when Array
+            result.map do |value|
+              translation(value, meta)
+            end
+          else
+            raise "unexpected translation type: #{result.inspect}"
+          end
         end
     end
   end
