@@ -19,7 +19,7 @@ module Globalize
               proxy_class = Globalize::Model::ActiveRecord.create_proxy_class(self)
               has_many :globalize_translations, :class_name => proxy_class.name do
                 def by_locales(locales)
-                  find :all, :conditions => { :locale => locales }
+                  find :all, :conditions => { :locale => locales.map(&:to_s) }
                 end
               end
 

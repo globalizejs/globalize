@@ -2,11 +2,13 @@ module Globalize
   module Model
     class AttributeStash < Hash
       def read(locale, attr_name)
+        locale = locale.to_sym
         self[locale] ||= {}
         self[locale][attr_name]
       end
       
       def write(locale, attr_name, value)
+        locale = locale.to_sym
         self[locale] ||= {}
         self[locale][attr_name] = value
       end
@@ -20,7 +22,7 @@ module Globalize
       end
       
       def fetch(locale, attr_name)
-        locale = I18n.locale 
+        # locale = I18n.locale
         @cache.read(locale, attr_name) || begin
           value = fetch_attribute locale, attr_name
           @cache.write locale, attr_name, value
@@ -33,7 +35,7 @@ module Globalize
       
       def update_translations!
         @stash.each do |locale, attrs|
-          translation = @record.globalize_translations.find_or_initialize_by_locale(locale)
+          translation = @record.globalize_translations.find_or_initialize_by_locale(locale.to_s)
           attrs.each{|attr_name, value| translation[attr_name] = value }
           translation.save!
         end
@@ -42,7 +44,7 @@ module Globalize
       private
       
       def fetch_attribute(locale, attr_name)
-        fallbacks = I18n.fallbacks[locale].map{|tag| tag.to_s}
+        fallbacks = I18n.fallbacks[locale].map{|tag| tag.to_s}.map(&:to_sym)
         translations = @record.globalize_translations.by_locales(fallbacks)
         result, requested_locale = nil, locale
       
