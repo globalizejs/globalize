@@ -1,0 +1,51 @@
+Stopped DB Backend in the middle, here's where we left off:
+
+h1. Some Notes
+
+* Started doing the migration generator in generators/db_backend.rb
+* Translation keys will be in dotted string format
+* Question: Do we need a plural_key column, or can we build it in to the dotted key?
+* We will probably have to code the following methods from scratch, to optimize db calls:
+** translate
+** localize
+** pluralize
+* We should refactor @interpolation@ code so that it can be included into backend code without inheriting SimpleBackend
+** Rationale: interpolation is something done entirely after a string is fetched from the data store
+** Alternately, it could be done from within the I18n module
+
+h1. Schema
+
+There will be two db tables. 
+
+# globalize_translations will have: locale, key, translation, created_at, updated_at.
+# globalize_translations_map will have: key, translation_id.
+
+globalize_translations_map will let us easily fetch entire sub-trees of namespaces. 
+However, this table may not be necessary, as it may be feasible to just use key LIKE "some.namespace.%".
+
+h1. Caching
+
+We'll almost certainly want to implement caching in the backend. Should probably be a customized
+implementation based on the Rails caching mechanism, to support memcached, etc.
+
+h1. Queries
+
+We'll want to pull in lots of stuff at once and return a single translation based on some
+quick Ruby selection. The query will look something like this:
+
+<pre>
+<code>
+SELECT * FROM globalize_translations
+WHERE locale in (<fallbacks>) AND
+key IN (key, default_key)
+</code>
+</pre>
+
+The Ruby code would then pick the first translation that satisfies a fallback, in fallback order. 
+Of course, the records with the supplied key would take precedence of those with the default key.
+
+h1. Misc
+
+We should revisit the :zero plural code. On the one hand it's certainly useful for 
+many apps in many languages. On the other hand it's not mentioned in CLDR, and not a real
+concept in language pluralization. Right now, I'm feeling it's still a good idea to keep it in. 
