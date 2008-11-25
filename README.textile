@@ -190,7 +190,19 @@ rails.original            # returns the original translation with no values
                           # interpolated to it (e.g. "Hi {{name}}!")
 </code></pre>
 
-h2. Other notes
+h2. Missing Translations Log Handler
 
-Please note that the Globalize2 Static backend (just like the Simple backend) does not support reloading translation data between subsequent requests.
+A simple exception handler that behaves like the default exception handler but additionally logs missing translations to a given log.
 
+Useful for identifying missing translations during testing.
+
+E.g. 
+
+  require 'globalize/i18n/missing_translations_log_handler
+  I18n.missing_translations_logger = RAILS_DEFAULT_LOGGER
+  I18n.exception_handler = :missing_translations_log_handler
+
+To set up a different log file:
+
+  logger = Logger.new("#{RAILS_ROOT}/log/missing_translations.log")
+  I18n.missing_translations_logger = logger
