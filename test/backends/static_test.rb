@@ -1,0 +1,137 @@
+require File.join( File.dirname(__FILE__), '..', 'test_helper' )
+require 'globalize/backend/static'
+require 'globalize/translation'
+
+class StaticTest < ActiveSupport::TestCase
+  def setup
+    I18n.backend = Globalize::Backend::Static.new
+    translations = {:"en-US" => {:foo => "foo in en-US", :boz => 'boz', :buz => {:bum => 'bum'}},
+                    :"en"    => {:bar => "bar in en"},
+                    :"de-DE" => {:baz => "baz in de-DE"},
+                    :"de"    => {:boo => "boo in de"}}
+    translations.each do |locale, data| 
+      I18n.backend.store_translations locale, data 
+    end
+    I18n.fallbacks.map :"de-DE" => :"en-US", :he => :en
+    I18n.locale = :'en-US'    # Need to set this, since I18n defaults to 'en'
+  end
+  
+  test "returns an instance of Translation:Static" do
+    translation = I18n.translate :foo
+    assert_instance_of Globalize::Translation::Static, translation
+  end
+    
+  test "returns the translation in en-US if present" do
+    assert_equal "foo in en-US", I18n.translate(:foo, :locale => :"en-US") 
+  end
+
+  test "returns the translation in en if en-US is not present" do
+    assert_equal "bar in en", I18n.translate(:bar, :locale => :"en-US") 
+  end
+  
+  test "returns the translation in de-DE if present" do
+    assert_equal "baz in de-DE", I18n.translate(:baz, :locale => :"de-DE") 
+  end
+  
+  test "returns the translation in de if de-DE is not present" do
+    assert_equal "boo in de", I18n.translate(:boo, :locale => :"de-DE") 
+  end
+  
+  test "returns the translation in en-US if none of de-DE and de are present" do
+    assert_equal "foo in en-US", I18n.translate(:foo, :locale => :"de-DE") 
+  end
+
+  test "returns the translation in en if none of de-DE, de and en-US are present" do
+    assert_equal "bar in en", I18n.translate(:bar, :locale => :"de-DE") 
+  end
+  
+  test "returns the translation in en if none in he is present" do
+    assert_equal "bar in en", I18n.translate(:bar, :locale => :he) 
+  end
+  
+  test "returns the given default String when the key is not present for any locale" do
+    assert_equal "default", I18n.translate(:missing, :default => "default") 
+  end
+
+  test "returns the fallback translation for the key if present for a fallback locale" do
+    I18n.backend.store_translations :de, :non_default => "non_default in de"
+    assert_equal "non_default in de", I18n.translate(:non_default, :default => "default", :locale => :"de-DE") 
+  end  
+
+  test "returns an array of translations" do
+    assert_instance_of Array, I18n.translate([:foo, :boz])
+  end
+  
+  test "returns an array of instances of Translation::Static" do
+    assert_equal [Globalize::Translation::Static], I18n.translate([:foo, :boz]).map(&:class).uniq
+  end
+  
+  test "returns a hash of translations" do
+    assert_instance_of Hash, I18n.translate(:"buz")
+  end
+  
+  test "returns an array of translations 2" do
+    assert_equal [Globalize::Translation::Static], I18n.translate(:"buz").values.map(&:class) 
+  end
+end
+
+=begin
+describe Globalize::Backend::Static, '#translate' do
+  before :each do
+    I18n.backend = Globalize::Backend::Static.new
+    translations = {:"en-US" => {:foo => "foo in en-US", :boz => 'boz', :buz => {:bum => 'bum'}},
+                    :"en"    => {:bar => "bar in en"},
+                    :"de-DE" => {:baz => "baz in de-DE"},
+                    :"de"    => {:boo => "boo in de"}}
+    translations.each do |locale, data| 
+      I18n.backend.store_translations locale, data 
+    end
+    I18n.fallbacks.map :"de-DE" => :"en-US", :he => :en
+  end
+  
+
+describe 'the Translation object returned by Globalize::Backend::Static#translate' do
+  before :each do
+    I18n.backend = Globalize::Backend::Static.new 
+    translations = {
+      :greeting => "Hi {{name}}",
+      :messages => { :one => "You have one message.", :other => "You have {{count}} messages."}
+    }
+    I18n.backend.store_translations :"en", translations
+  end
+  
+  def greeting
+    I18n.translate :greeting, :locale => :"en-US", :name => "Joshua"
+  end
+  
+  test "stores the actual locale" do
+    greeting.locale.should == :en
+  end
+  
+  test "stores the requested locale" do
+    greeting.requested_locale.should == :"en-US"
+  end
+  
+  test "stores the requested key" do
+    greeting.key.should == :greeting
+  end
+  
+  test "stores the options given to #translate" do
+    greeting.options.should == {:name => "Joshua"}
+  end
+  
+  test "stores the original translation before test was interpolated" do
+    greeting.original.should == "Hi {{name}}"
+  end
+  
+  test "stores the plural_key :one if pluralized as such" do
+    message = I18n.translate :messages, :locale => :"en-US", :count => 1
+    message.plural_key.should == :one
+  end
+  
+  test "stores the plural_key :other if pluralized as such" do
+    messages = I18n.translate :messages, :locale => :"en-US", :count => 2
+    messages.plural_key.should == :other
+  end
+end
+=end
