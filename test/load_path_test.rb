@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.join( File.dirname(__FILE__), 'test_helper' )
 require 'globalize/load_path'
 
 class LoadPathTest < ActiveSupport::TestCase
