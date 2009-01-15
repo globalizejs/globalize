@@ -56,5 +56,18 @@ class MigrationTest < ActiveSupport::TestCase
     assert_raise Globalize::Model::BadMigrationFieldType do
       Post.create_translation_table! :subject => :string, :content => :integer
     end
-  end  
+  end
+  
+  test 'create_translation_table! should not be called on non-translated models' do
+    assert_raise NoMethodError do
+      Blog.create_translation_table! :name => :string      
+    end
+  end
+
+  test 'drop_translation_table! should not be called on non-translated models' do
+    assert_raise NoMethodError do
+      Blog.drop_translation_table!      
+    end
+  end
+
 end

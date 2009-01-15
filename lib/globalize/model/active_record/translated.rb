@@ -21,7 +21,8 @@ module Globalize
             unless included_modules.include? InstanceMethods
               class_inheritable_accessor :globalize_options
               include InstanceMethods
-
+              extend  ClassMethods
+              
               proxy_class = Globalize::Model::ActiveRecord.create_proxy_class(self)
               has_many :globalize_translations, :class_name => proxy_class.name do
                 def by_locales(locales)
@@ -38,6 +39,9 @@ module Globalize
             Globalize::Model::ActiveRecord.define_accessors(self, attr_names)
           end
           
+        end
+
+        module ClassMethods
           def create_translation_table!(fields)
             translated_fields = self.globalize_options[:translated_attributes]
             translated_fields.each do |f|
@@ -67,7 +71,7 @@ module Globalize
             self.connection.drop_table translation_table_name
           end
         end
-
+        
         module InstanceMethods
           def globalize
             @globalize ||= Adapter.new self
