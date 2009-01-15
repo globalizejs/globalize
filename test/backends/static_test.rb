@@ -75,23 +75,8 @@ class StaticTest < ActiveSupport::TestCase
   end
 end
 
-=begin
-describe Globalize::Backend::Static, '#translate' do
-  before :each do
-    I18n.backend = Globalize::Backend::Static.new
-    translations = {:"en-US" => {:foo => "foo in en-US", :boz => 'boz', :buz => {:bum => 'bum'}},
-                    :"en"    => {:bar => "bar in en"},
-                    :"de-DE" => {:baz => "baz in de-DE"},
-                    :"de"    => {:boo => "boo in de"}}
-    translations.each do |locale, data| 
-      I18n.backend.store_translations locale, data 
-    end
-    I18n.fallbacks.map :"de-DE" => :"en-US", :he => :en
-  end
-  
-
-describe 'the Translation object returned by Globalize::Backend::Static#translate' do
-  before :each do
+class TranslationStaticTest < ActiveSupport::TestCase
+  def setup
     I18n.backend = Globalize::Backend::Static.new 
     translations = {
       :greeting => "Hi {{name}}",
@@ -99,39 +84,38 @@ describe 'the Translation object returned by Globalize::Backend::Static#translat
     }
     I18n.backend.store_translations :"en", translations
   end
-  
+
   def greeting
     I18n.translate :greeting, :locale => :"en-US", :name => "Joshua"
   end
   
   test "stores the actual locale" do
-    greeting.locale.should == :en
+    assert_equal :en, greeting.locale
   end
   
   test "stores the requested locale" do
-    greeting.requested_locale.should == :"en-US"
+    assert_equal :'en-US', greeting.requested_locale
   end
   
   test "stores the requested key" do
-    greeting.key.should == :greeting
+    assert_equal :greeting, greeting.key
   end
   
   test "stores the options given to #translate" do
-    greeting.options.should == {:name => "Joshua"}
+    assert_equal( {:name => "Joshua"}, greeting.options ) 
   end
   
   test "stores the original translation before test was interpolated" do
-    greeting.original.should == "Hi {{name}}"
+    assert_equal "Hi {{name}}", greeting.original 
   end
   
   test "stores the plural_key :one if pluralized as such" do
     message = I18n.translate :messages, :locale => :"en-US", :count => 1
-    message.plural_key.should == :one
+    assert_equal :one, message.plural_key
   end
   
   test "stores the plural_key :other if pluralized as such" do
     messages = I18n.translate :messages, :locale => :"en-US", :count => 2
-    messages.plural_key.should == :other
+    assert_equal :other, messages.plural_key
   end
 end
-=end
