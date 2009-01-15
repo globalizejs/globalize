@@ -4,7 +4,7 @@ require 'globalize/load_path'
 class LoadPathTest < ActiveSupport::TestCase
   def setup
     @plugin_dir = "#{File.dirname(__FILE__)}/.."
-    @locale_dir = "#{File.dirname(__FILE__)}/spec/fixtures/locale"
+    @locale_dir = "#{File.dirname(__FILE__)}/data/locale"
     @load_path = Globalize::LoadPath.new
   end
   
