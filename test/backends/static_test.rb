@@ -2,6 +2,8 @@ require File.join( File.dirname(__FILE__), '..', 'test_helper' )
 require 'globalize/backend/static'
 require 'globalize/translation'
 
+I18n.locale = :'en-US'    # Need to set this, since I18n defaults to 'en'
+
 class StaticTest < ActiveSupport::TestCase
   def setup
     I18n.backend = Globalize::Backend::Static.new
@@ -13,7 +15,6 @@ class StaticTest < ActiveSupport::TestCase
       I18n.backend.store_translations locale, data 
     end
     I18n.fallbacks.map :"de-DE" => :"en-US", :he => :en
-    I18n.locale = :'en-US'    # Need to set this, since I18n defaults to 'en'
   end
   
   test "returns an instance of Translation:Static" do
