@@ -50,9 +50,7 @@ I18n.locale = :he
 post.title # גלובאלייז2 שולט!
 </code></pre>
 
-In order to make this work you currently need to take care of creating the appropriate database migrations manually. Globalize2 will provide a handy helper method for doing this in future.
-
-The migration for the above Post model could look like this:
+In order to make this work, you'll need to add the appropriate translation tables. Globalize2 comes with a handy helper method to help you do this. It's called @create_translation_table!@. Here's an example:
 
 <pre><code>
 class CreatePosts < ActiveRecord::Migration
@@ -60,20 +58,16 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.timestamps
     end
-    create_table :post_translations do |t|
-      t.string     :locale
-      t.references :post
-      t.string     :title
-      t.text       :text
-      t.timestamps
-    end
+    Post.create_translation_table! :title => :string, :text => :text
   end
   def self.down
     drop_table :posts
-    drop_table :post_translations
+    Post.drop_translation_table!
   end
 end
 </code></pre>
+
+Note that the ActiveRecord model @Post@ must already exist and have a @translates@ directive listing the translated fields.
 
 h2. Globalize::Backend::Static
 
