@@ -90,7 +90,7 @@ module Globalize
               result = default(locale, obj, options.dup) and return result
             end and nil
           end
-        rescue MissingTranslationData
+        rescue I18n::MissingTranslationData
           nil
         end
         

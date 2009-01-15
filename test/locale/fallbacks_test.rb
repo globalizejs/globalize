@@ -1,6 +1,5 @@
 require File.join( File.dirname(__FILE__), '..', 'test_helper' )
 require 'globalize/locale/fallbacks'
-require 'globalize/locale/language_tag'
 
 include Globalize::Locale
 I18n.default_locale = :'en-US'    # This has to be set explicitly, no longer default for I18n
