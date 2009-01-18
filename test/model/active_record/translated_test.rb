@@ -169,10 +169,17 @@ class TranslatedTest < ActiveSupport::TestCase
     I18n.locale = 'de-DE'
     assert_equal 'bar', blog.posts.last.subject
   end
+  
+  test "works with simple dynamic finders" do
+    foo = Post.create :subject => 'foo'
+    Post.create :subject => 'bar'
+    post = Post.find_by_subject('foo')
+    assert_equal foo, post
+  end
 end
 
 # TODO error checking for fields that exist in main table, don't exist in
 # proxy table, aren't strings or text
 # 
 # TODO allow finding by translated attributes in conditions?
-# TODO generate dynamic finders?
+# TODO generate advanced dynamic finders?
