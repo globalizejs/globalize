@@ -91,6 +91,10 @@ class StaticTest < ActiveSupport::TestCase
     currency = number_to_currency(10, :format => "%n %u", :unit => '€')
     assert_equal "10.00 €", currency
   end
+
+  test "makes sure interpolation does not break even with False as string" do
+    assert_equal "translation missing: en, support, array, skip_last_comma", I18n.translate(:"support.array.skip_last_comma")
+  end
 end
 
 class TranslationStaticTest < ActiveSupport::TestCase
