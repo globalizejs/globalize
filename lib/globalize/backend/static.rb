@@ -33,7 +33,10 @@ module Globalize
 
         def translation(result, meta = nil)
           return unless result
+
           case result
+          when Numeric
+            result
           when String
             result = Translation::Static.new(result) unless result.is_a? Translation::Static
             result.set_meta meta
