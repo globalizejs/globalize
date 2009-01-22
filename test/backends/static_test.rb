@@ -1,6 +1,8 @@
 require File.join( File.dirname(__FILE__), '..', 'test_helper' )
 require 'globalize/backend/static'
 require 'globalize/translation'
+require 'action_view'
+include ActionView::Helpers::NumberHelper
 
 I18n.locale = :'en-US'    # Need to set this, since I18n defaults to 'en'
 
@@ -10,7 +12,7 @@ class StaticTest < ActiveSupport::TestCase
     translations = {:"en-US" => {:foo => "foo in en-US", :boz => 'boz', :buz => {:bum => 'bum'}},
                     :"en"    => {:bar => "bar in en"},
                     :"de-DE" => {:baz => "baz in de-DE"},
-                    :"de"    => {:boo => "boo in de"}}
+                    :"de"    => {:boo => "boo in de", :number => { :currency => { :format => { :unit => '€', :format => '%n %u'}}}}}
     translations.each do |locale, data| 
       I18n.backend.store_translations locale, data 
     end
@@ -73,6 +75,25 @@ class StaticTest < ActiveSupport::TestCase
   
   test "returns an array of translations 2" do
     assert_equal [Globalize::Translation::Static], I18n.translate(:"buz").values.map(&:class) 
+  end
+
+  test "returns currency properly formated" do
+    currency = number_to_currency(10)
+    assert_equal "$10.00", currency
+  end
+
+  test "returns currency properly formated for locale" do
+    currency = number_to_currency(10, :locale => :'de')
+    assert_equal "10.000 €", currency
+  end
+
+  test "returns currency properly formated from parameters" do
+    currency = number_to_currency(10, :format => "%n %u", :unit => '€')
+    assert_equal "10.00 €", currency
+  end
+
+  test "makes sure interpolation does not break even with False as string" do
+    assert_equal "translation missing: en, support, array, skip_last_comma", I18n.translate(:"support.array.skip_last_comma")
   end
 end
 

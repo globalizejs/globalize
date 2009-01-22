@@ -28,12 +28,16 @@ module Globalize
         alias :orig_interpolate :interpolate unless method_defined? :orig_interpolate
         def interpolate(locale, string, values = {})
           result = orig_interpolate(locale, string, values)
-          translation(string).replace result
+          translation = translation(string)
+          translation.nil? ? result : translation.replace(result)
         end
 
         def translation(result, meta = nil)
           return unless result
+
           case result
+          when Numeric
+            result
           when String
             result = Translation::Static.new(result) unless result.is_a? Translation::Static
             result.set_meta meta

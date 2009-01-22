@@ -33,6 +33,10 @@ module Globalize
               after_save do |record|
                 record.globalize.update_translations!
               end
+              
+              def i18n_attr(attribute_name)
+                self.name.underscore + "_translations.#{attribute_name}"
+              end
             end
 
             self.globalize_options = options
@@ -42,6 +46,16 @@ module Globalize
         end
 
         module ClassMethods
+          def method_missing(method, *args)
+            if method.to_s =~ /^find_by_(\w+)$/ && globalize_options[:translated_attributes].include?($1.to_sym)
+              find(:first, :joins => :globalize_translations,
+                   :conditions => [i18n_attr($1)+" = ? AND "+i18n_attr('locale')+" IN (?)",
+                                   args.first,I18n.fallbacks[I18n.locale].map{|tag| tag.to_s}])
+            else
+              super
+            end
+          end
+          
           def create_translation_table!(fields)
             translated_fields = self.globalize_options[:translated_attributes]
             translated_fields.each do |f|
