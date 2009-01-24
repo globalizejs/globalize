@@ -15,6 +15,25 @@ class TranslatedTest < ActiveSupport::TestCase
     reset_db!
   end
 
+  test "modifiying translated fields" do
+    post = Post.create :subject => 'foo'
+    assert_equal 'foo', post.subject
+    post.subject = 'bar'
+    assert_equal 'bar', post.subject    
+  end
+
+  test "modifiying translated fields while switching locales" do
+    post = Post.create :subject => 'foo'
+    assert_equal 'foo', post.subject
+    I18n.locale = :'de-DE'
+    post.subject = 'bar'
+    assert_equal 'bar', post.subject
+    I18n.locale = :'en-US'
+    assert_equal 'foo', post.subject
+    I18n.locale = :'de-DE'
+    post.subject = 'bar'
+  end
+  
   test "has post_translations" do
     post = Post.create
     assert_nothing_raised { post.globalize_translations }

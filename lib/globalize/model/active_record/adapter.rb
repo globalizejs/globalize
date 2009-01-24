@@ -31,6 +31,7 @@ module Globalize
       
       def stash(locale, attr_name, value)
         @stash.write locale, attr_name, value
+        @cache.write locale, attr_name, value
       end
       
       def update_translations!
