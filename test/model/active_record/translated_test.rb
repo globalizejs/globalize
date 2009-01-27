@@ -14,6 +14,10 @@ class TranslatedTest < ActiveSupport::TestCase
     I18n.fallbacks.clear 
     reset_db!
   end
+  
+  def teardown
+    I18n.fallbacks.clear 
+  end
 
   test "modifiying translated fields" do
     post = Post.create :subject => 'foo'
@@ -100,6 +104,22 @@ class TranslatedTest < ActiveSupport::TestCase
     assert_equal 'bar', post.subject 
   end
 
+  test "keeping one field in new locale when other field is changed" do
+    I18n.fallbacks.map 'de-DE' => [ 'en-US' ]    
+    post = Post.create :subject => 'foo'
+    I18n.locale = 'de-DE'
+    post.content = 'bar'
+    assert_equal 'foo', post.subject    
+  end
+  
+  test "modifying non-required field in a new locale" do
+    I18n.fallbacks.map 'de-DE' => [ 'en-US' ]    
+    post = Post.create :subject => 'foo'
+    I18n.locale = 'de-DE'
+    post.content = 'bar'
+    assert post.save    
+  end
+  
   test "returns the value for the correct locale, after locale switching, without saving" do
     post = Post.create :subject => 'foo'
     I18n.locale = 'de-DE'
