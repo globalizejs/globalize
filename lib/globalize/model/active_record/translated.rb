@@ -30,9 +30,7 @@ module Globalize
                 end
               end
 
-              after_save do |record|
-                record.globalize.update_translations!
-              end
+              after_save :update_globalize_record
               
               def i18n_attr(attribute_name)
                 self.name.underscore + "_translations.#{attribute_name}"
@@ -89,6 +87,10 @@ module Globalize
         module InstanceMethods
           def globalize
             @globalize ||= Adapter.new self
+          end
+          
+          def update_globalize_record
+            globalize.update_translations!
           end
         end
       end
