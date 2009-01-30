@@ -28,6 +28,7 @@ module Globalize
             }
             klass.send :define_method, "#{attr_name}=", lambda {|val|
               globalize.stash I18n.locale, attr_name, val
+              self[attr_name] = val
             }
           end
         end

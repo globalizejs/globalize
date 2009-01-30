@@ -215,6 +215,25 @@ class TranslatedTest < ActiveSupport::TestCase
     post = Post.find_by_subject('foo')
     assert_equal foo, post
   end
+  
+  test 'change attribute on globalized model' do
+    post = Post.create :subject => 'foo', :content => 'bar'
+    assert_equal [], post.changed
+    post.subject = 'baz'
+    assert_equal [ 'subject' ], post.changed
+    post.content = 'quux'
+    assert_member 'subject', post.changed
+    assert_member 'content', post.changed
+  end
+
+  test 'change attribute on globalized model after locale switching' do
+    post = Post.create :subject => 'foo', :content => 'bar'
+    assert_equal [], post.changed
+    post.subject = 'baz'
+    I18n.locale = :de
+    assert_equal [ 'subject' ], post.changed
+  end
+    
 end
 
 # TODO error checking for fields that exist in main table, don't exist in

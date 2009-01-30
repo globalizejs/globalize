@@ -17,4 +17,10 @@ class ActiveSupport::TestCase
       load File.expand_path(File.join(File.dirname(__FILE__), 'data', schema + '.rb'))
     end
   end
+  
+  def assert_member(item, arr)
+    assert_block "Item #{item} is not in array #{arr}" do
+      arr.member? item
+    end
+  end
 end
