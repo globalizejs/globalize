@@ -236,6 +236,8 @@ class TranslatedTest < ActiveSupport::TestCase
     
 end
 
+# TODO should validate_presence_of take fallbacks into account? maybe we need
+#   an extra validation call, or more options for validate_presence_of.
 # TODO error checking for fields that exist in main table, don't exist in
 # proxy table, aren't strings or text
 # 
