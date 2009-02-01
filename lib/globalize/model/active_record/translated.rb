@@ -24,11 +24,7 @@ module Globalize
               extend  ClassMethods
               
               proxy_class = Globalize::Model::ActiveRecord.create_proxy_class(self)
-              has_many :globalize_translations, :class_name => proxy_class.name do
-                def by_locales(locales)
-                  find :all, :conditions => { :locale => locales.map(&:to_s) }
-                end
-              end
+              has_many :globalize_translations, :class_name => proxy_class.name, :extend => Extensions
 
               after_save :update_globalize_record
               
@@ -50,6 +46,13 @@ module Globalize
         # Dummy Callbacks module. Extensions to Globalize2 can insert methods into here
         # and they'll be called at the end of the translates class method.
         module Callbacks
+        end
+        
+        # Extension to the has_many :globalize_translations association
+        module Extensions
+          def by_locales(locales)
+            find :all, :conditions => { :locale => locales.map(&:to_s) }
+          end
         end
         
         module ClassMethods          

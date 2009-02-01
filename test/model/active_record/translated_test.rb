@@ -43,6 +43,14 @@ class TranslatedTest < ActiveSupport::TestCase
     assert_nothing_raised { post.globalize_translations }
   end
 
+  test "has German post_translations" do
+    I18n.locale = :de
+    post = Post.create :subject => 'foo'
+    assert_equal 1, post.globalize_translations.size
+    I18n.locale = :en
+    assert_equal 1, post.globalize_translations.size    
+  end
+  
   test "returns the value passed to :subject" do
     post = Post.new
     assert_equal 'foo', (post.subject = 'foo')
