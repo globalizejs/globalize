@@ -25,7 +25,8 @@ module Globalize
         # locale = I18n.locale
         @cache.read(locale, attr_name) || begin
           value = fetch_attribute locale, attr_name
-          @cache.write locale, attr_name, value
+          @cache.write locale, attr_name, value if value && value.locale == locale
+          value
         end
       end
       
@@ -40,6 +41,7 @@ module Globalize
           attrs.each{|attr_name, value| translation[attr_name] = value }
           translation.save!
         end
+        @stash.clear
       end
       
       private

@@ -241,7 +241,20 @@ class TranslatedTest < ActiveSupport::TestCase
     I18n.locale = :de
     assert_equal [ 'subject' ], post.changed
   end
+
+  test 'fallbacks with lots of locale switching' do
+    I18n.fallbacks.map :'de-DE' => [ :'en-US' ]
+    post = Post.create :subject => 'foo'
     
+    I18n.locale = :'de-DE'
+    assert_equal 'foo', post.subject
+    
+    I18n.locale = :'en-US'
+    post.update_attribute :subject, 'bar'
+    
+    I18n.locale = :'de-DE'
+    assert_equal 'bar', post.subject
+  end
 end
 
 # TODO should validate_presence_of take fallbacks into account? maybe we need
