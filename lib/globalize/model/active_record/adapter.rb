@@ -44,13 +44,18 @@ module Globalize
         @stash.clear
       end
       
+      # Clears the cache
+      def clear
+        @cache.clear
+      end
+      
       private
       
       def fetch_attribute(locale, attr_name)
         fallbacks = I18n.fallbacks[locale].map{|tag| tag.to_s}.map(&:to_sym)
         translations = @record.globalize_translations.by_locales(fallbacks)
         result, requested_locale = nil, locale
-      
+
         # Walk through the fallbacks, starting with the current locale itself, and moving
         # to the next best choice, until we find a match.
         # Check the @globalize_set_translations cache first to see if we've just changed the 
