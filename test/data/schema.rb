@@ -1,6 +1,7 @@
 ActiveRecord::Schema.define do
   
   create_table :blogs, :force => true do |t|
+    t.string      :description
   end
 
   create_table :posts, :force => true do |t|

@@ -54,7 +54,6 @@ module Globalize
         module ClassMethods          
           def method_missing(method, *args)
             if method.to_s =~ /^find_by_(\w+)$/ && globalize_options[:translated_attributes].include?($1.to_sym)
-              base_table = base_class.table_name
               find(:first, :joins => :globalize_translations,
                    :conditions => [ "#{i18n_attr($1)} = ? AND #{i18n_attr('locale')} IN (?)",
                                    args.first,I18n.fallbacks[I18n.locale].map{|tag| tag.to_s}])
