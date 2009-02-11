@@ -10,7 +10,7 @@ require File.join( File.dirname(__FILE__), '..', '..', 'data', 'post' )
 
 class MigrationTest < ActiveSupport::TestCase
   def setup
-    reset_db! 'no_globalize_schema'
+    reset_db! File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'data', 'no_globalize_schema.rb'))
   end
   
   test 'globalize table added' do

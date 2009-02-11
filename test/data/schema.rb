@@ -13,5 +13,16 @@ ActiveRecord::Schema.define do
     t.string     :subject
     t.text       :content
   end
+  
+  create_table :parents, :force => true do |t|
+  end
+
+  create_table :parent_translations, :force => true do |t|
+    t.string     :locale
+    t.references :parent
+    t.text       :content
+    t.string     :type
+  end
+  
 end
   

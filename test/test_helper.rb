@@ -7,14 +7,14 @@ require 'mocha'
 $LOAD_PATH << File.expand_path( File.dirname(__FILE__) + '/../lib' )
 
 class ActiveSupport::TestCase
-  def reset_db!( schema = 'schema' )
+  def reset_db!( schema_path )
     ::ActiveRecord::Migration.verbose = false   # Quiet down the migration engine
     ::ActiveRecord::Base.establish_connection({
       :adapter => 'sqlite3',
       :dbfile => ':memory:'
     })
     ::ActiveRecord::Base.silence do
-      load File.expand_path(File.join(File.dirname(__FILE__), 'data', schema + '.rb'))
+      load schema_path
     end
   end
   

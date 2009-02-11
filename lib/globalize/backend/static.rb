@@ -20,7 +20,7 @@ module Globalize
         result ||= default locale, default, options
 
         attrs = {:requested_locale => locale, :locale => fallback, :key => key, :options => options}
-        translation(result, attrs)
+        translation(result, attrs) || raise(I18n::MissingTranslationData.new(locale, key, options))
       end
 
       protected

@@ -26,11 +26,7 @@ module Globalize
               proxy_class = Globalize::Model::ActiveRecord.create_proxy_class(self)
               has_many :globalize_translations, :class_name => proxy_class.name, :extend => Extensions
 
-              after_save :update_globalize_record
-              
-              def i18n_attr(attribute_name)
-                self.name.underscore + "_translations.#{attribute_name}"
-              end
+              after_save :update_globalize_record              
             end
 
             self.globalize_options = options
@@ -58,8 +54,9 @@ module Globalize
         module ClassMethods          
           def method_missing(method, *args)
             if method.to_s =~ /^find_by_(\w+)$/ && globalize_options[:translated_attributes].include?($1.to_sym)
+              base_table = base_class.table_name
               find(:first, :joins => :globalize_translations,
-                   :conditions => [i18n_attr($1)+" = ? AND "+i18n_attr('locale')+" IN (?)",
+                   :conditions => [ "#{i18n_attr($1)} = ? AND #{i18n_attr('locale')} IN (?)",
                                    args.first,I18n.fallbacks[I18n.locale].map{|tag| tag.to_s}])
             else
               super
@@ -94,6 +91,12 @@ module Globalize
             translation_table_name = self.name.underscore + '_translations'
             self.connection.drop_table translation_table_name
           end
+          
+          private
+          
+          def i18n_attr(attribute_name)
+            self.base_class.name.underscore + "_translations.#{attribute_name}"
+          end          
         end
         
         module InstanceMethods
