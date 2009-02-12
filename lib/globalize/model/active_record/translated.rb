@@ -19,13 +19,13 @@ module Globalize
 
             # Only set up once per class
             unless included_modules.include? InstanceMethods
-              class_inheritable_accessor :globalize_options
+              class_inheritable_accessor :globalize_options, :globalize_proxy
               include InstanceMethods
               extend  ClassMethods
               alias_method_chain :reload, :globalize
               
-              proxy_class = Globalize::Model::ActiveRecord.create_proxy_class(self)
-              has_many :globalize_translations, :class_name => proxy_class.name, :extend => Extensions
+              self.globalize_proxy = Globalize::Model::ActiveRecord.create_proxy_class(self)
+              has_many :globalize_translations, :class_name => globalize_proxy.name, :extend => Extensions
 
               after_save :update_globalize_record              
             end
