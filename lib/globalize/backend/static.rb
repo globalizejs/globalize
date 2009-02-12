@@ -52,7 +52,8 @@ module Globalize
               translation(value, meta)
             end
           else
-            raise "unexpected translation type: #{result.inspect}"
+            result
+            # raise "unexpected translation type: #{result.inspect}"
           end
         end
     end
