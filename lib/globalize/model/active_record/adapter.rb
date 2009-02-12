@@ -17,6 +17,8 @@ module Globalize
     class Adapter
       def initialize(record)
         @record = record
+        
+        # TODO what exactly are the roles of cache and stash
         @cache = AttributeStash.new
         @stash = AttributeStash.new
       end
@@ -47,6 +49,7 @@ module Globalize
       # Clears the cache
       def clear
         @cache.clear
+        @stash.clear
       end
       
       private
@@ -61,6 +64,7 @@ module Globalize
         # Check the @globalize_set_translations cache first to see if we've just changed the 
         # attribute and not saved yet.
         fallbacks.each do |fallback|
+          # TODO should we be checking stash or just cache?
           result = @stash.read(fallback, attr_name) || begin
             translation = translations.detect {|tr| tr.locale == fallback }
             translation && translation.send(attr_name)

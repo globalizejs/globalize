@@ -255,6 +255,12 @@ class TranslatedTest < ActiveSupport::TestCase
     I18n.locale = :'de-DE'
     assert_equal 'bar', post.subject
   end
+  
+  test 'reload' do
+    post = Post.create :subject => 'foo', :content => 'bar'
+    post.subject = 'baz'
+    assert_equal 'foo', post.reload.subject    
+  end
 end
 
 # TODO should validate_presence_of take fallbacks into account? maybe we need

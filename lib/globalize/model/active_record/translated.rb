@@ -22,6 +22,7 @@ module Globalize
               class_inheritable_accessor :globalize_options
               include InstanceMethods
               extend  ClassMethods
+              alias_method_chain :reload, :globalize
               
               proxy_class = Globalize::Model::ActiveRecord.create_proxy_class(self)
               has_many :globalize_translations, :class_name => proxy_class.name, :extend => Extensions
@@ -99,6 +100,11 @@ module Globalize
         end
         
         module InstanceMethods
+          def reload_with_globalize
+            globalize.clear
+            reload_without_globalize
+          end
+          
           def globalize
             @globalize ||= Adapter.new self
           end
