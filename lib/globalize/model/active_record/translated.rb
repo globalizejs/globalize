@@ -102,6 +102,13 @@ module Globalize
         module InstanceMethods
           def reload_with_globalize
             globalize.clear
+            
+            # clear all globalized attributes
+            # TODO what's the best way to handle this?
+            self.class.globalize_options[:translated_attributes].each do |attr|
+              @attributes.delete attr.to_s
+            end
+            
             reload_without_globalize
           end
           
