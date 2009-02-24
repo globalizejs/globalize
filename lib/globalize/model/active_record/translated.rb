@@ -20,7 +20,7 @@ module Globalize
             # Only set up once per class
             unless included_modules.include? InstanceMethods
               class_inheritable_accessor :globalize_options, :globalize_proxy
-              class_inheritable_writer :locale
+              
               include InstanceMethods
               extend  ClassMethods
               alias_method_chain :reload, :globalize
@@ -39,6 +39,14 @@ module Globalize
             extend Callbacks
             Callbacks.instance_methods.each {|cb| send cb }
           end
+
+          def locale=(locale)
+            @@locale = locale
+          end
+          
+          def locale
+            @@locale || I18n.locale          
+          end          
         end
 
         # Dummy Callbacks module. Extensions to Globalize2 can insert methods into here
@@ -63,11 +71,7 @@ module Globalize
               super
             end
           end
-          
-          def locale
-            read_inheritable_attribute(:locale) || I18n.locale          
-          end
-          
+                    
           def create_translation_table!(fields)
             translated_fields = self.globalize_options[:translated_attributes]
             translated_fields.each do |f|
