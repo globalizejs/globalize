@@ -14,7 +14,6 @@ class TranslatedTest < ActiveSupport::TestCase
     I18n.fallbacks.clear 
     reset_db! File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'data', 'schema.rb'))
     ActiveRecord::Base.locale = nil
-    Parent.locale = nil
   end
   
   def teardown
@@ -322,6 +321,11 @@ class TranslatedTest < ActiveSupport::TestCase
     assert_equal 'foo [de]', Post.first.subject    
     ActiveRecord::Base.locale = :'en-US'
     assert_equal 'foo', Post.first.subject    
+  end
+
+  test "access content locale before setting" do
+    Globalize::Model::ActiveRecord::Translated::ActMethods.class_eval "remove_class_variable(:@@locale)"
+    assert_nothing_raised { ActiveRecord::Base.locale }
   end
 end
 

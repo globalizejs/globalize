@@ -45,7 +45,7 @@ module Globalize
           end
           
           def locale
-            @@locale || I18n.locale          
+            (defined?(@@locale) && @@locale) || I18n.locale
           end          
         end
 
