@@ -130,7 +130,7 @@ module Globalize
           end
           
           def translated_locales
-            globalize_translations.map {|gt| gt.locale.to_sym }
+            globalize_translations.scoped(:select => 'DISTINCT locale').map {|gt| gt.locale.to_sym }
           end
         end
       end
