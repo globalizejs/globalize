@@ -1,6 +1,12 @@
 module Globalize
   module Model
     class AttributeStash < Hash
+      def contains?(locale, attr_name)
+        locale = locale.to_sym
+        self[locale] ||= {}
+        self[locale].has_key? attr_name        
+      end
+      
       def read(locale, attr_name)
         locale = locale.to_sym
         self[locale] ||= {}
@@ -25,7 +31,8 @@ module Globalize
       
       def fetch(locale, attr_name)
         # locale = I18n.locale
-        @cache.read(locale, attr_name) || begin
+        is_cached = @cache.contains?(locale, attr_name)
+        is_cached ? @cache.read(locale, attr_name) : begin
           value = fetch_attribute locale, attr_name
           @cache.write locale, attr_name, value if value && value.locale == locale
           value

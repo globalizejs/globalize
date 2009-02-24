@@ -268,6 +268,13 @@ class TranslatedTest < ActiveSupport::TestCase
     post.subject = 'baz'
     assert_equal 'foo', post.reload.subject    
   end
+  
+  test 'complex writing and stashing' do
+    post = Post.create :subject => 'foo', :content => 'bar'
+    post.subject = nil
+    assert_nil post.subject
+    assert !post.valid?    
+  end
 end
 
 # TODO should validate_presence_of take fallbacks into account? maybe we need
