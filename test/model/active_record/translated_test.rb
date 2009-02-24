@@ -327,6 +327,17 @@ class TranslatedTest < ActiveSupport::TestCase
     Globalize::Model::ActiveRecord::Translated::ActMethods.class_eval "remove_class_variable(:@@locale)"
     assert_nothing_raised { ActiveRecord::Base.locale }
   end
+  
+  test "translated_locales" do
+    Post.locale = :de
+    post = Post.create :subject => 'foo'
+    Post.locale = :es
+    post.update_attribute :subject, 'bar'
+    Post.locale = :fr
+    post.update_attribute :subject, 'baz'
+    assert_equal [ :de, :es, :fr ], post.translated_locales
+    assert_equal [ :de, :es, :fr ], Post.first.translated_locales
+  end
 end
 
 # TODO should validate_presence_of take fallbacks into account? maybe we need

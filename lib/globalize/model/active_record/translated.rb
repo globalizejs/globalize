@@ -128,6 +128,10 @@ module Globalize
           def update_globalize_record
             globalize.update_translations!
           end
+          
+          def translated_locales
+            globalize_translations.map {|gt| gt.locale.to_sym }
+          end
         end
       end
     end
