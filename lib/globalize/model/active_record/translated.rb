@@ -20,6 +20,7 @@ module Globalize
             # Only set up once per class
             unless included_modules.include? InstanceMethods
               class_inheritable_accessor :globalize_options, :globalize_proxy
+              class_inheritable_writer :locale
               include InstanceMethods
               extend  ClassMethods
               alias_method_chain :reload, :globalize
@@ -61,6 +62,10 @@ module Globalize
             else
               super
             end
+          end
+          
+          def locale
+            read_inheritable_attribute(:locale) || I18n.locale          
           end
           
           def create_translation_table!(fields)

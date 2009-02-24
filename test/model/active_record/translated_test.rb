@@ -13,6 +13,8 @@ class TranslatedTest < ActiveSupport::TestCase
     I18n.locale = :'en-US'
     I18n.fallbacks.clear 
     reset_db! File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'data', 'schema.rb'))
+    Post.locale = nil
+    Parent.locale = nil
   end
   
   def teardown
@@ -274,6 +276,52 @@ class TranslatedTest < ActiveSupport::TestCase
     post.subject = nil
     assert_nil post.subject
     assert !post.valid?    
+  end
+  
+  test 'translated class locale setting' do
+    assert Post.respond_to?(:locale)
+    assert_equal :'en-US', I18n.locale
+    assert_equal :'en-US', Post.locale
+    I18n.locale = :de
+    assert_equal :de, I18n.locale
+    assert_equal :de, Post.locale
+    Post.locale = :es
+    assert_equal :de, I18n.locale
+    assert_equal :es, Post.locale
+    I18n.locale = :fr
+    assert_equal :fr, I18n.locale
+    assert_equal :es, Post.locale
+  end
+  
+  test "untranslated class doesn't respond to locale" do
+    assert !Blog.respond_to?(:locale)
+  end
+  
+  test "to ensure locales in different classes don't clash" do
+    Post.locale = :de
+    assert_equal :de, Post.locale
+    assert_equal :'en-US', Parent.locale
+    Parent.locale = :es
+    assert_equal :de, Post.locale
+    assert_equal :es, Parent.locale
+  end
+  
+  test "attribute saving goes by content locale and not global locale" do
+    Post.locale = :de
+    assert_equal :'en-US', I18n.locale
+    Post.create :subject => 'foo'
+    assert_equal :de, Post.first.globalize_translations.first.locale
+  end
+  
+  test "attribute loading goes by content locale and not global locale" do
+    post = Post.create :subject => 'foo'
+    assert_equal :'en-US', Post.locale
+    Post.locale = :de
+    assert_equal :'en-US', I18n.locale
+    post.update_attribute :subject, 'foo [de]'
+    assert_equal 'foo [de]', Post.first.subject    
+    Post.locale = :'en-US'
+    assert_equal 'foo', Post.first.subject    
   end
 end
 
