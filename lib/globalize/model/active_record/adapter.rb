@@ -63,7 +63,15 @@ module Globalize
       
       def fetch_attribute(locale, attr_name)
         fallbacks = I18n.fallbacks[locale].map{|tag| tag.to_s}.map(&:to_sym)
-        translations = @record.globalize_translations.by_locales(fallbacks)
+        
+        # If the translations were included with 
+        # :include => globalize_translations
+        # there is no need to query them again.
+        unless @record.globalize_translations.loaded?
+          translations = @record.globalize_translations.by_locales(fallbacks) 
+        else
+          translations = @record.globalize_translations
+        end
         result, requested_locale = nil, locale
 
         # Walk through the fallbacks, starting with the current locale itself, and moving
