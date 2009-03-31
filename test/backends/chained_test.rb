@@ -58,6 +58,7 @@ end
 
 class TranslateChainedTest < ActiveSupport::TestCase
   def setup
+    I18n.locale = :en
     I18n.backend = Globalize::Backend::Chain.new
     @first_backend = I18n::Backend::Simple.new
     @last_backend = I18n::Backend::Simple.new
