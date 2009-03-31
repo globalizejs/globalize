@@ -338,6 +338,22 @@ class TranslatedTest < ActiveSupport::TestCase
     assert_equal [ :de, :es, :fr ], post.translated_locales
     assert_equal [ :de, :es, :fr ], Post.first.translated_locales
   end
+  
+  test "including globalize_translations" do
+    I18n.locale = :de
+    Post.create :subject => "Foo1", :content => "Bar1"
+    Post.create :subject => "Foo2", :content => "Bar2"
+        
+    class << Post
+      def tranlsations_included
+        self.all(:include => :globalize_translations)
+      end
+    end
+    
+    default       = Post.all.map {|x| [x.subject, x.content]}
+    with_include  = Post.tranlsations_included.map {|x| [x.subject, x.content]}
+    assert_equal default, with_include
+  end
 end
 
 # TODO should validate_presence_of take fallbacks into account? maybe we need
