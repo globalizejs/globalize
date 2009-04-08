@@ -132,6 +132,18 @@ module Globalize
           def translated_locales
             globalize_translations.scoped(:select => 'DISTINCT locale').map {|gt| gt.locale.to_sym }
           end
+          
+          def set_translations options
+            options.keys.each do |key|
+
+              unless translation = globalize_translations.find_by_locale(key.to_s)
+                translation = globalize_translations.create!(:locale => key.to_s)
+              end
+              
+              translation.update_attributes!(options[key])
+            end
+          end
+          
         end
       end
     end

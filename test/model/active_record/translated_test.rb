@@ -354,6 +354,65 @@ class TranslatedTest < ActiveSupport::TestCase
     with_include  = Post.tranlsations_included.map {|x| [x.subject, x.content]}
     assert_equal default, with_include
   end
+  
+  test "setting multiple translations at once with options hash" do
+    Post.locale = :de
+    post = Post.create :subject => "foo1", :content => "foo1"
+    Post.locale = :en
+    post.update_attributes( :subject => "bar1", :content => "bar1" )
+    
+    options = { :de => {:subject => "foo2", :content => "foo2"},
+                :en => {:subject => "bar2", :content => "bar2"} }
+    post.set_translations options
+    post.reload
+    
+    assert ["bar2", "bar2"], [post.subject, post.content]
+    Post.locale = :de
+    assert ["foo2", "foo2"], [post.subject, post.content]
+  end
+  
+  test "setting only one translation with set_translations" do
+    Post.locale = :de
+    post = Post.create :subject => "foo1", :content => "foo1"
+    Post.locale = :en
+    post.update_attributes( :subject => "bar1", :content => "bar1" )
+    
+    options = { :en => {:subject => "bar2", :content => "bar2"} }
+    post.set_translations options
+    post.reload
+    
+    assert ["bar2", "bar2"], [post.subject, post.content]
+    Post.locale = :de
+    assert ["foo1", "foo1"], [post.subject, post.content]
+  end
+  
+  test "setting only selected attributes with set_translations" do
+    Post.locale = :de
+    post = Post.create :subject => "foo1", :content => "foo1"
+    Post.locale = :en
+    post.update_attributes( :subject => "bar1", :content => "bar1" )
+    
+    options = { :de => {:content => "foo2"}, :en => {:subject => "bar2"} }
+    post.set_translations options
+    post.reload
+    
+    assert ["bar2", "bar1"], [post.subject, post.content]
+    Post.locale = :de
+    assert ["foo1", "foo2"], [post.subject, post.content]
+  end
+  
+  test "setting invalid attributes raises ArgumentError" do
+    Post.locale = :de
+    post = Post.create :subject => "foo1", :content => "foo1"
+    Post.locale = :en
+    post.update_attributes( :subject => "bar1", :content => "bar1" )
+    
+    options = { :de => {:fake => "foo2"} }
+    exception = assert_raise(ActiveRecord::UnknownAttributeError) do
+      post.set_translations options
+    end
+    assert_equal "unknown attribute: fake", exception.message
+  end
 end
 
 # TODO should validate_presence_of take fallbacks into account? maybe we need
