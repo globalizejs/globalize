@@ -413,6 +413,12 @@ class TranslatedTest < ActiveSupport::TestCase
     end
     assert_equal "unknown attribute: fake", exception.message
   end
+  
+  test "reload accepting find options" do
+    p = Post.create :subject => "Foo", :content => "Bar"
+    assert p.reload(:readonly => true, :lock => true)
+    assert_raise(ArgumentError) { p.reload(:foo => :bar) }
+  end
 end
 
 # TODO should validate_presence_of take fallbacks into account? maybe we need

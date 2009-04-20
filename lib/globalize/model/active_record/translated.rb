@@ -23,7 +23,6 @@ module Globalize
               
               include InstanceMethods
               extend  ClassMethods
-              alias_method_chain :reload, :globalize
               
               self.globalize_proxy = Globalize::Model::ActiveRecord.create_proxy_class(self)
               has_many :globalize_translations, :class_name => globalize_proxy.name, :extend => Extensions
@@ -109,7 +108,7 @@ module Globalize
         end
         
         module InstanceMethods
-          def reload_with_globalize
+          def reload(options = nil)
             globalize.clear
             
             # clear all globalized attributes
@@ -118,7 +117,7 @@ module Globalize
               @attributes.delete attr.to_s
             end
             
-            reload_without_globalize
+            super options
           end
           
           def globalize
