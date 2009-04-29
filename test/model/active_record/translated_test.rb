@@ -426,6 +426,27 @@ class TranslatedTest < ActiveSupport::TestCase
     p.destroy
     assert_equal 0, PostTranslation.count
   end
+  
+  test "translating subclass of untranslated comment model" do
+    translated_comment = TranslatedComment.create(:post => @post)
+    assert_nothing_raised { translated_comment.globalize_translations }
+  end
+  
+  test "modifiying translated comments works as expected" do
+    I18n.locale = :en
+    translated_comment = TranslatedComment.create(:post => @post, :content => 'foo')
+    assert_equal 'foo', translated_comment.content
+    
+    I18n.locale = :de
+    translated_comment.content = 'bar'
+    assert translated_comment.save
+    assert_equal 'bar', translated_comment.content
+    
+    I18n.locale = :en
+    assert_equal 'foo', translated_comment.content
+    
+    assert_equal 2, translated_comment.globalize_translations.size
+  end
 end
 
 # TODO should validate_presence_of take fallbacks into account? maybe we need

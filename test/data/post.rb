@@ -13,3 +13,12 @@ end
 
 class Child < Parent
 end
+
+class Comment < ActiveRecord::Base
+  validates_presence_of :content
+  belongs_to :post
+end
+ 
+class TranslatedComment < Comment
+  translates :content
+end

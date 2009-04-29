@@ -25,5 +25,15 @@ ActiveRecord::Schema.define do
     t.string     :type
   end
   
-end
+  create_table :comments, :force => true do |t|
+    t.references :post
+  end
+
+  create_table :translated_comment_translations, :force => true do |t|
+    t.string     :locale
+    t.references :comment
+    t.string     :subject
+    t.text       :content
+  end
   
+end
