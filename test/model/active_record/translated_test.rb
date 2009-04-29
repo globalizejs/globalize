@@ -419,6 +419,13 @@ class TranslatedTest < ActiveSupport::TestCase
     assert p.reload(:readonly => true, :lock => true)
     assert_raise(ArgumentError) { p.reload(:foo => :bar) }
   end
+  
+  test "dependent destroy of translation" do
+    p = Post.create :subject => "Foo", :content => "Bar"
+    assert_equal 1, PostTranslation.count
+    p.destroy
+    assert_equal 0, PostTranslation.count
+  end
 end
 
 # TODO should validate_presence_of take fallbacks into account? maybe we need

@@ -25,7 +25,12 @@ module Globalize
               extend  ClassMethods
               
               self.globalize_proxy = Globalize::Model::ActiveRecord.create_proxy_class(self)
-              has_many :globalize_translations, :class_name => globalize_proxy.name, :extend => Extensions
+              has_many(
+                :globalize_translations,
+                :class_name => globalize_proxy.name,
+                :extend => Extensions,
+                :dependent => :delete_all
+              )
 
               after_save :update_globalize_record              
             end
