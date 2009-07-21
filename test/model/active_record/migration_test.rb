@@ -15,8 +15,10 @@ class MigrationTest < ActiveSupport::TestCase
   
   test 'globalize table added' do
     assert !Post.connection.table_exists?( :post_translations )
+    assert !Post.connection.index_exists?( :post_translations, :post_id )
     Post.create_translation_table! :subject => :string, :content => :text
     assert Post.connection.table_exists?( :post_translations )      
+    assert Post.connection.index_exists?( :post_translations, :post_id )
     columns = Post.connection.columns( :post_translations )
     assert locale = columns.detect {|c| c.name == 'locale' }
     assert_equal :string, locale.type
@@ -34,10 +36,13 @@ class MigrationTest < ActiveSupport::TestCase
   
   test 'globalize table dropped' do
     assert !Post.connection.table_exists?( :post_translations )
+    assert !Post.connection.index_exists?( :post_translations, :post_id )
     Post.create_translation_table! :subject => :string, :content => :text
-    assert Post.connection.table_exists?( :post_translations )      
+    assert Post.connection.table_exists?( :post_translations )
+    assert Post.connection.index_exists?( :post_translations, :post_id )
     Post.drop_translation_table!
     assert !Post.connection.table_exists?( :post_translations )
+    assert !Post.connection.index_exists?( :post_translations, :post_id )
   end
 
   test 'exception on untranslated field inputs' do
