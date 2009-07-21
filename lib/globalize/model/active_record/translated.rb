@@ -99,6 +99,10 @@ module Globalize
               end
               t.timestamps              
             end
+            
+            self.connection.add_index(
+              translation_table_name, "#{self.table_name.singularize}_id"
+            )
           end
 
           def drop_translation_table!
