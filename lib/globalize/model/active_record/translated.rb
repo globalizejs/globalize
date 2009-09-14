@@ -102,7 +102,7 @@ module Globalize
           end
 
           def translation_table_name
-            self.name.underscore + '_translations'
+            self.name.underscore.gsub('/', '_') + '_translations'
           end
 
           def translation_index_name
@@ -112,7 +112,7 @@ module Globalize
           end
 
           def drop_translation_table!
-            translation_table_name = self.name.underscore + '_translations'
+            translation_table_name = self.name.underscore.gsub('/', '_') + '_translations'
             self.connection.remove_index(
               translation_table_name, "#{self.table_name.singularize}_id"
             )
@@ -122,7 +122,7 @@ module Globalize
           private
 
           def i18n_attr(attribute_name)
-            self.base_class.name.underscore + "_translations.#{attribute_name}"
+            self.base_class.name.underscore.gsub('/', '_') + "_translations.#{attribute_name}"
           end
         end
 

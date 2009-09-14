@@ -83,7 +83,7 @@ class MigrationTest < ActiveSupport::TestCase
     class UltraLongModelName1337Haxx0rWeirdShit < ActiveRecord::Base
       translates :foo
     end
-    expected = 'index_699fca3525afc23e43c94b13b91eb7e9bba2cde9'
+    expected = 'index_66b0e8338df15baebb30ef534192b1b8ec9359a8'
     actual = UltraLongModelName1337Haxx0rWeirdShit.send(:translation_index_name)
 
     assert_equal expected, actual

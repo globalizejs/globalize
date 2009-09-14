@@ -13,7 +13,7 @@ module Globalize
           target       = module_names.empty? ? Object : module_names.join('::').constantize
 
           target.const_set "#{klass_name}Translation", Class.new(::ActiveRecord::Base) {
-            belongs_to "#{klass.name.underscore}".intern
+            belongs_to "#{klass.name.underscore.gsub('/', '_')}".intern
 
             def locale
               read_attribute(:locale).to_sym
