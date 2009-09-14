@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 module Globalize
   module Model
     class MigrationError < StandardError; end
@@ -80,12 +82,13 @@ module Globalize
             translated_fields.each do |f|
               raise MigrationMissingTranslatedField, "Missing translated field #{f}" unless fields[f]
             end
+
             fields.each do |name, type|
               if translated_fields.include?(name) && ![:string, :text].include?(type)
                 raise BadMigrationFieldType, "Bad field type for #{name}, should be :string or :text"
               end
             end
-            translation_table_name = self.name.underscore + '_translations'
+
             self.connection.create_table(translation_table_name) do |t|
               t.references self.table_name.singularize
               t.string :locale
@@ -95,9 +98,17 @@ module Globalize
               t.timestamps
             end
 
-            self.connection.add_index(
-              translation_table_name, "#{self.table_name.singularize}_id"
-            )
+            self.connection.add_index(translation_table_name, "#{self.table_name.singularize}_id", :name => translation_index_name)
+          end
+
+          def translation_table_name
+            self.name.underscore + '_translations'
+          end
+
+          def translation_index_name
+            # FIXME what's the max size of an index name?
+            index_name = "index_#{translation_table_name}_on_#{self.table_name.singularize}_id"
+            index_name.size < 50 ? index_name : "index_#{Digest::SHA1.hexdigest(index_name)}"
           end
 
           def drop_translation_table!
@@ -137,7 +148,7 @@ module Globalize
           end
 
           def translated_locales
-            globalize_translations.scoped(:select => 'DISTINCT locale').map do |translation| 
+            globalize_translations.scoped(:select => 'DISTINCT locale').map do |translation|
               translation.locale.to_sym
             end
           end

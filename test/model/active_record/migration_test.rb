@@ -74,5 +74,19 @@ class MigrationTest < ActiveSupport::TestCase
       Blog.drop_translation_table!
     end
   end
+  
+  test "translation_index_name returns a readable index name when it's not longer than 50 characters" do
+    assert_equal 'index_post_translations_on_post_id', Post.send(:translation_index_name)
+  end
+  
+  test "translation_index_name returns a hashed index name when it's longer than 50 characters" do
+    class UltraLongModelName1337Haxx0rWeirdShit < ActiveRecord::Base
+      translates :foo
+    end
+    expected = 'index_699fca3525afc23e43c94b13b91eb7e9bba2cde9'
+    actual = UltraLongModelName1337Haxx0rWeirdShit.send(:translation_index_name)
+
+    assert_equal expected, actual
+  end
 
 end
