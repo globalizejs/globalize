@@ -45,12 +45,6 @@ class MigrationTest < ActiveSupport::TestCase
     assert !Post.connection.index_exists?( :post_translations, :post_id )
   end
 
-  test 'exception on untranslated field inputs' do
-    assert_raise Globalize::Model::UntranslatedMigrationField do
-      Post.create_translation_table! :subject => :string, :content => :text, :bogus => :string
-    end
-  end
-
   test 'exception on missing field inputs' do
     assert_raise Globalize::Model::MigrationMissingTranslatedField do
       Post.create_translation_table! :content => :text
@@ -60,6 +54,12 @@ class MigrationTest < ActiveSupport::TestCase
   test 'exception on bad input type' do
     assert_raise Globalize::Model::BadMigrationFieldType do
       Post.create_translation_table! :subject => :string, :content => :integer
+    end
+  end
+
+  test "exception on bad input type isn't raised for untranslated fields" do
+    assert_nothing_raised do
+      Post.create_translation_table! :subject => :string, :content => :string, :views_count => :integer
     end
   end
 

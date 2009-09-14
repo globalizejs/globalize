@@ -1,8 +1,6 @@
 module Globalize
   module Model
-
     class MigrationError < StandardError; end
-    class UntranslatedMigrationField < MigrationError; end
     class MigrationMissingTranslatedField < MigrationError; end
     class BadMigrationFieldType < MigrationError; end
 
@@ -42,7 +40,7 @@ module Globalize
             # Import any callbacks that have been defined by extensions to Globalize2
             # and run them.
             extend Callbacks
-            Callbacks.instance_methods.each {|cb| send cb }
+            Callbacks.instance_methods.each { |callback| send(callback) }
           end
 
           def locale=(locale)
@@ -83,10 +81,7 @@ module Globalize
               raise MigrationMissingTranslatedField, "Missing translated field #{f}" unless fields[f]
             end
             fields.each do |name, type|
-              unless translated_fields.member? name
-                raise UntranslatedMigrationField, "Can't migrate untranslated field: #{name}"
-              end
-              unless [ :string, :text ].member? type
+              if translated_fields.include?(name) && ![:string, :text].include?(type)
                 raise BadMigrationFieldType, "Bad field type for #{name}, should be :string or :text"
               end
             end
@@ -127,10 +122,10 @@ module Globalize
             # clear all globalized attributes
             # TODO what's the best way to handle this?
             self.class.globalize_options[:translated_attributes].each do |attr|
-              @attributes.delete attr.to_s
+              @attributes.delete(attr.to_s)
             end
 
-            super options
+            super(options)
           end
 
           def globalize
@@ -142,18 +137,18 @@ module Globalize
           end
 
           def translated_locales
-            globalize_translations.scoped(:select => 'DISTINCT locale').map {|gt| gt.locale.to_sym }
+            globalize_translations.scoped(:select => 'DISTINCT locale').map do |translation| 
+              translation.locale.to_sym
+            end
           end
 
           def set_translations options
             options.keys.each do |key|
-
               translation = globalize_translations.find_by_locale(key.to_s) ||
                 globalize_translations.build(:locale => key.to_s)
               translation.update_attributes!(options[key])
             end
           end
-
         end
       end
     end
