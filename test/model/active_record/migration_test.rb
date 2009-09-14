@@ -33,7 +33,7 @@ class MigrationTest < ActiveSupport::TestCase
     assert updated_at = columns.detect {|c| c.name == 'updated_at' }
     assert_equal :datetime, updated_at.type
   end
-  
+
   test 'globalize table dropped' do
     assert !Post.connection.table_exists?( :post_translations )
     assert !Post.connection.index_exists?( :post_translations, :post_id )
@@ -50,28 +50,28 @@ class MigrationTest < ActiveSupport::TestCase
       Post.create_translation_table! :subject => :string, :content => :text, :bogus => :string
     end
   end
-  
+
   test 'exception on missing field inputs' do
     assert_raise Globalize::Model::MigrationMissingTranslatedField do
       Post.create_translation_table! :content => :text
     end
   end
-  
+
   test 'exception on bad input type' do
     assert_raise Globalize::Model::BadMigrationFieldType do
       Post.create_translation_table! :subject => :string, :content => :integer
     end
   end
-  
+
   test 'create_translation_table! should not be called on non-translated models' do
     assert_raise NoMethodError do
-      Blog.create_translation_table! :name => :string      
+      Blog.create_translation_table! :name => :string
     end
   end
 
   test 'drop_translation_table! should not be called on non-translated models' do
     assert_raise NoMethodError do
-      Blog.drop_translation_table!      
+      Blog.drop_translation_table!
     end
   end
 
