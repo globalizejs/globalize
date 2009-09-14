@@ -6,25 +6,25 @@ require 'globalize/model/active_record'
 ActiveRecord::Base.send(:include, Globalize::Model::ActiveRecord::Translated)
 
 # Load Post model
-require File.join( File.dirname(__FILE__), '..', '..', 'data', 'post' )
+require File.join( File.dirname(__FILE__), '..', '..', 'data', 'models' )
 
 class TranslatedTest < ActiveSupport::TestCase
   def setup
     I18n.locale = :'en-US'
-    I18n.fallbacks.clear 
+    I18n.fallbacks.clear
     reset_db! File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'data', 'schema.rb'))
     ActiveRecord::Base.locale = nil
   end
-  
+
   def teardown
-    I18n.fallbacks.clear 
+    I18n.fallbacks.clear
   end
 
   test "modifiying translated fields" do
     post = Post.create :subject => 'foo'
     assert_equal 'foo', post.subject
     post.subject = 'bar'
-    assert_equal 'bar', post.subject    
+    assert_equal 'bar', post.subject
   end
 
   test "modifiying translated fields while switching locales" do

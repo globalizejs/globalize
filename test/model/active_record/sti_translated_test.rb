@@ -6,17 +6,17 @@ require 'globalize/model/active_record'
 ActiveRecord::Base.send(:include, Globalize::Model::ActiveRecord::Translated)
 
 # Load Post model
-require File.join( File.dirname(__FILE__), '..', '..', 'data', 'post' )
+require File.join( File.dirname(__FILE__), '..', '..', 'data', 'models' )
 
 class StiTranslatedTest < ActiveSupport::TestCase
   def setup
     I18n.locale = :'en-US'
-    I18n.fallbacks.clear 
+    I18n.fallbacks.clear
     reset_db! File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'data', 'schema.rb'))
   end
-  
+
   def teardown
-    I18n.fallbacks.clear 
+    I18n.fallbacks.clear
   end
 
   test "works with simple dynamic finders" do

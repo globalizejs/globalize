@@ -6,18 +6,18 @@ require 'globalize/model/active_record'
 ActiveRecord::Base.send(:include, Globalize::Model::ActiveRecord::Translated)
 
 # Load Post model
-require File.join( File.dirname(__FILE__), '..', '..', 'data', 'post' )
+require File.join( File.dirname(__FILE__), '..', '..', 'data', 'models' )
 
 class MigrationTest < ActiveSupport::TestCase
   def setup
     reset_db! File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'data', 'no_globalize_schema.rb'))
   end
-  
+
   test 'globalize table added' do
     assert !Post.connection.table_exists?( :post_translations )
     assert !Post.connection.index_exists?( :post_translations, :post_id )
     Post.create_translation_table! :subject => :string, :content => :text
-    assert Post.connection.table_exists?( :post_translations )      
+    assert Post.connection.table_exists?( :post_translations )
     assert Post.connection.index_exists?( :post_translations, :post_id )
     columns = Post.connection.columns( :post_translations )
     assert locale = columns.detect {|c| c.name == 'locale' }
