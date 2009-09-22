@@ -129,7 +129,7 @@ module Globalize
 
         module InstanceMethods
           def reload(options = nil)
-            globalize.clear
+            globalize.clear_cache
 
             # clear all globalized attributes
             # TODO what's the best way to handle this?
@@ -140,6 +140,10 @@ module Globalize
             super(options)
           end
 
+          def translated_attributes
+            self.class.globalize_options[:translated_attributes].inject({}) {|h, tf| h[tf] = send(tf); h }
+          end
+          
           def globalize
             @globalize ||= Adapter.new self
           end
@@ -154,7 +158,7 @@ module Globalize
             end
           end
 
-          def set_translations options
+          def set_translations(options)
             options.keys.each do |key|
               translation = globalize_translations.find_by_locale(key.to_s) ||
                 globalize_translations.build(:locale => key.to_s)
@@ -166,3 +170,5 @@ module Globalize
     end
   end
 end
+
+ActiveRecord::Base.send(:include, Globalize::Model::ActiveRecord::Translated)

@@ -18,7 +18,7 @@ class Comment < ActiveRecord::Base
   validates_presence_of :content
   belongs_to :post
 end
- 
+
 class TranslatedComment < Comment
   translates :content
 end
@@ -26,4 +26,12 @@ end
 class UltraLongModelNameWithoutProper < ActiveRecord::Base
   translates :subject, :content
   validates_presence_of :subject
+end
+
+class Reloader < Parent
+  after_create :do_reload
+
+  def do_reload
+    reload
+  end
 end

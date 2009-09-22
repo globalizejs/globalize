@@ -1,6 +1,4 @@
-require 'rails_edge_load_path_patch.rb' unless I18n.respond_to?(:load_path)
-
-ActiveRecord::Base.send :include, Globalize::Model::ActiveRecord::Translated
+require 'globalize/model/active_record'
 
 I18n.backend = Globalize::Backend::Static.new
 

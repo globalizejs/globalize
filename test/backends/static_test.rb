@@ -9,10 +9,10 @@ I18n.locale = :'en-US'    # Need to set this, since I18n defaults to 'en'
 class StaticTest < ActiveSupport::TestCase
   def setup
     I18n.backend = Globalize::Backend::Static.new
-    translations = {:"en-US" => {:foo => "foo in en-US", :boz => 'boz', :buz => {:bum => 'bum'}},
-                    :"en"    => {:bar => "bar in en"},
-                    :"de-DE" => {:baz => "baz in de-DE"},
-                    :"de"    => {:boo => "boo in de", :number => { :currency => { :format => { :unit => '€', :format => '%n %u'}}}}}
+    translations = { :"en-US" => { :foo => "foo in en-US", :boz => 'boz', :buz => { :bum => 'bum' } },
+                     :"en"    => { :bar => "bar in en", :skip_last_comma => "false" },
+                     :"de-DE" => { :baz => "baz in de-DE" },
+                     :"de"    => { :boo => "boo in de", :number => { :currency => { :format => { :unit => '€', :format => '%n %u' } } } } }
     translations.each do |locale, data| 
       I18n.backend.store_translations locale, data 
     end
@@ -59,7 +59,7 @@ class StaticTest < ActiveSupport::TestCase
   test "returns the fallback translation for the key if present for a fallback locale" do
     I18n.backend.store_translations :de, :non_default => "non_default in de"
     assert_equal "non_default in de", I18n.translate(:non_default, :default => "default", :locale => :"de-DE") 
-  end  
+  end
 
   test "returns an array of translations" do
     assert_instance_of Array, I18n.translate([:foo, :boz])
@@ -92,9 +92,13 @@ class StaticTest < ActiveSupport::TestCase
     assert_equal "10.00 €", currency
   end
 
-  test "makes sure interpolation does not break even with False as string" do
-    assert_equal "translation missing: en, support, array, skip_last_comma", I18n.translate(:"support.array.skip_last_comma")
-  end
+  # test "makes sure interpolation does not break even with False as string" do
+  #   result = ''
+  #   assert_nothing_raised do
+  #     result = I18n.t(:missing, :default => "{{value}}", :value => false)
+  #   end
+  #   assert_equal "false", result
+  # end
 end
 
 class TranslationStaticTest < ActiveSupport::TestCase

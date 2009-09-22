@@ -4,31 +4,31 @@ module Globalize
       def contains?(locale, attr_name)
         locale = locale.to_sym
         self[locale] ||= {}
-        self[locale].has_key? attr_name        
+        self[locale].has_key? attr_name
       end
-      
+
       def read(locale, attr_name)
         locale = locale.to_sym
         self[locale] ||= {}
         self[locale][attr_name]
       end
-      
+
       def write(locale, attr_name, value)
         locale = locale.to_sym
         self[locale] ||= {}
         self[locale][attr_name] = value
       end
     end
-    
+
     class Adapter
       def initialize(record)
         @record = record
-        
+
         # TODO what exactly are the roles of cache and stash
         @cache = AttributeStash.new
         @stash = AttributeStash.new
       end
-      
+
       def fetch(locale, attr_name)
         # locale = I18n.locale
         is_cached = @cache.contains?(locale, attr_name)
@@ -38,12 +38,12 @@ module Globalize
           value
         end
       end
-      
+
       def stash(locale, attr_name, value)
         @stash.write locale, attr_name, value
         @cache.write locale, attr_name, value
       end
-      
+
       def update_translations!
         @stash.each do |locale, attrs|
           translation = @record.globalize_translations.find_or_initialize_by_locale(locale.to_s)
@@ -52,15 +52,19 @@ module Globalize
         end
         @stash.clear
       end
-      
+
       # Clears the cache
       def clear
         @cache.clear
         @stash.clear
       end
+
+      def clear_cache
+        @cache.clear
+      end
       
       private
-      
+
       def fetch_attribute(locale, attr_name)
         fallbacks = I18n.fallbacks[locale].map{|tag| tag.to_s}.map(&:to_sym)
         
@@ -76,11 +80,11 @@ module Globalize
 
         # Walk through the fallbacks, starting with the current locale itself, and moving
         # to the next best choice, until we find a match.
-        # Check the @globalize_set_translations cache first to see if we've just changed the 
+        # Check the @globalize_set_translations cache first to see if we've just changed the
         # attribute and not saved yet.
         fallbacks.each do |fallback|
           # TODO should we be checking stash or just cache?
-          result = @stash.read(fallback, attr_name) || begin
+          result = @cache.read(fallback, attr_name) || begin
             translation = translations.detect {|tr| tr.locale == fallback }
             translation && translation.send(attr_name)
           end

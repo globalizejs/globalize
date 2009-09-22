@@ -74,31 +74,29 @@ class MigrationTest < ActiveSupport::TestCase
       Blog.drop_translation_table!
     end
   end
-  
+
   test "translation_index_name returns a readable index name when it's not longer than 50 characters" do
     assert_equal 'index_post_translations_on_post_id', Post.send(:translation_index_name)
   end
-  
+
   test "translation_index_name returns a hashed index name when it's longer than 50 characters" do
     class UltraLongModelNameWithoutProper < ActiveRecord::Base
       translates :foo
     end
-    expected = 'index_44eba0f057e01a590ffccd0b8a3b5c78979539cd'
-    actual = UltraLongModelNameWithoutProper.send(:translation_index_name)
-
-    assert_equal expected, actual
+    name = UltraLongModelNameWithoutProper.send(:translation_index_name)
+    assert_match /^index_[a-z0-9]{40}$/, name
   end
-  
+
   test 'globalize table added when table has long name' do
     UltraLongModelNameWithoutProper.create_translation_table!(
       :subject => :string, :content => :text
     )
-    
+
     assert UltraLongModelNameWithoutProper.connection.table_exists?(
       :ultra_long_model_name_without_proper_translations
     )
-    assert UltraLongModelNameWithoutProper.connection.index_exists?( 
-      :ultra_long_model_name_without_proper_translations, 
+    assert UltraLongModelNameWithoutProper.connection.index_exists?(
+      :ultra_long_model_name_without_proper_translations,
       :name => UltraLongModelNameWithoutProper.send(
         :translation_index_name
       )
@@ -109,15 +107,15 @@ class MigrationTest < ActiveSupport::TestCase
     UltraLongModelNameWithoutProper.create_translation_table!(
       :subject => :string, :content => :text
     )
-    
+
     UltraLongModelNameWithoutProper.drop_translation_table!
-    
+
     assert !UltraLongModelNameWithoutProper.connection.table_exists?(
       :ultra_long_model_name_without_proper_translations
     )
-    
+
     assert !UltraLongModelNameWithoutProper.connection.index_exists?(
-      :ultra_long_model_name_without_proper_translations, 
+      :ultra_long_model_name_without_proper_translations,
       :ultra_long_model_name_without_proper_id
     )
   end
