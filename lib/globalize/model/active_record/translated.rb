@@ -101,8 +101,12 @@ module Globalize
             self.connection.add_index(translation_table_name, "#{self.table_name.singularize}_id", :name => translation_index_name)
           end
 
+          def set_translation_table_name(table_name)
+            globalize_proxy.set_table_name(table_name)
+          end
+
           def translation_table_name
-            self.name.underscore.gsub('/', '_') + '_translations'
+            globalize_proxy.table_name
           end
 
           def translation_index_name
