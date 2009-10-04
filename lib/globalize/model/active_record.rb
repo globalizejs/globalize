@@ -12,9 +12,18 @@ module Globalize
           klass_name   = module_names.pop
           target       = module_names.empty? ? Object : module_names.join('::').constantize
 
-          target.const_set "#{klass_name}Translation", Class.new(::ActiveRecord::Base) {
-            belongs_to "#{klass.name.underscore.gsub('/', '_')}".intern
+          proxy_class_name = "#{klass_name}Translation"
+          proxy_class = nil
+          begin
+            proxy_class = proxy_class_name.constantize
+          rescue NameError
+            proxy_class = target.const_set proxy_class_name, Class.new(::ActiveRecord::Base)
+          end
 
+          proxy_class.instance_eval do
+            belongs_to "#{klass.name.underscore.gsub('/', '_')}".intern
+          end
+          proxy_class.class_eval do
             def locale
               read_attribute(:locale).to_sym
             end
@@ -22,7 +31,9 @@ module Globalize
             def locale=(locale)
               write_attribute(:locale, locale.to_s)
             end
-          }
+          end
+
+          return proxy_class
         end
 
         def define_accessors(klass, attr_names)
