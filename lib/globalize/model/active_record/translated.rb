@@ -112,10 +112,7 @@ module Globalize
           end
 
           def drop_translation_table!
-            translation_table_name = self.name.underscore.gsub('/', '_') + '_translations'
-            self.connection.remove_index(
-              translation_table_name, "#{self.table_name.singularize}_id"
-            )
+            self.connection.remove_index(translation_table_name, :name => translation_index_name)
             self.connection.drop_table translation_table_name
           end
 

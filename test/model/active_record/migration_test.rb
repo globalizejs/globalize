@@ -80,13 +80,46 @@ class MigrationTest < ActiveSupport::TestCase
   end
   
   test "translation_index_name returns a hashed index name when it's longer than 50 characters" do
-    class UltraLongModelName1337Haxx0rWeirdShit < ActiveRecord::Base
+    class UltraLongModelNameWithoutProper < ActiveRecord::Base
       translates :foo
     end
-    expected = 'index_66b0e8338df15baebb30ef534192b1b8ec9359a8'
-    actual = UltraLongModelName1337Haxx0rWeirdShit.send(:translation_index_name)
+    expected = 'index_44eba0f057e01a590ffccd0b8a3b5c78979539cd'
+    actual = UltraLongModelNameWithoutProper.send(:translation_index_name)
 
     assert_equal expected, actual
+  end
+  
+  test 'globalize table added when table has long name' do
+    UltraLongModelNameWithoutProper.create_translation_table!(
+      :subject => :string, :content => :text
+    )
+    
+    assert UltraLongModelNameWithoutProper.connection.table_exists?(
+      :ultra_long_model_name_without_proper_translations
+    )
+    assert UltraLongModelNameWithoutProper.connection.index_exists?( 
+      :ultra_long_model_name_without_proper_translations, 
+      :name => UltraLongModelNameWithoutProper.send(
+        :translation_index_name
+      )
+    )
+  end
+
+  test 'globalize table dropped when table has long name' do
+    UltraLongModelNameWithoutProper.create_translation_table!(
+      :subject => :string, :content => :text
+    )
+    
+    UltraLongModelNameWithoutProper.drop_translation_table!
+    
+    assert !UltraLongModelNameWithoutProper.connection.table_exists?(
+      :ultra_long_model_name_without_proper_translations
+    )
+    
+    assert !UltraLongModelNameWithoutProper.connection.index_exists?(
+      :ultra_long_model_name_without_proper_translations, 
+      :ultra_long_model_name_without_proper_id
+    )
   end
 
 end

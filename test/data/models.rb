@@ -22,3 +22,8 @@ end
 class TranslatedComment < Comment
   translates :content
 end
+
+class UltraLongModelNameWithoutProper < ActiveRecord::Base
+  translates :subject, :content
+  validates_presence_of :subject
+end
