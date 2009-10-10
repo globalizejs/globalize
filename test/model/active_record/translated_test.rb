@@ -472,6 +472,10 @@ class TranslatedTest < ActiveSupport::TestCase
     Post.locale = :en
     assert_equal 'foo', post.subject_before_type_cast
   end
+  
+  test "don't override existing translation model" do
+    assert PostTranslation.new.respond_to?(:existing_method)
+  end
 end
 
 # TODO should validate_presence_of take fallbacks into account? maybe we need
