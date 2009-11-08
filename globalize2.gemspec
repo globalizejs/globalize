@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
      "VERSION",
      "generators/db_backend.rb",
      "generators/templates/db_backend_migration.rb",
+     "globalize2.gemspec",
      "init.rb",
      "lib/globalize/backend/chain.rb",
      "lib/globalize/backend/pluralizing.rb",
