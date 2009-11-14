@@ -2,8 +2,8 @@
 # but additionally logs missing translations to a given log.
 #
 # Useful for identifying missing translations during testing.
-# 
-# E.g. 
+#
+# E.g.
 #
 #   require 'globalize/i18n/missing_translations_log_handler
 #   I18n.missing_translations_logger = RAILS_DEFAULT_LOGGER
@@ -16,7 +16,7 @@
 
 module I18n
   @@missing_translations_logger = nil
-  
+
   class << self
     def missing_translations_logger
       @@missing_translations_logger ||= begin
@@ -24,15 +24,15 @@ module I18n
         Logger.new(STDOUT)
       end
     end
-  
+
     def missing_translations_logger=(logger)
       @@missing_translations_logger = logger
     end
-  
+
     def missing_translations_log_handler(exception, locale, key, options)
       if MissingTranslationData === exception
         missing_translations_logger.warn(exception.message)
-        return exception.message 
+        return exception.message
       else
         raise exception
       end

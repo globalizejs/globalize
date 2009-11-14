@@ -13,16 +13,16 @@
 #
 #   I18n.load_locales 'en-US', 'de-DE'
 #   I18n.load_locale 'en-US'
-# 
+#
 # This will lookup all files named like:
 #
 #   'path/to/dir/all.yml'
 #   'path/to/dir/en-US.yml'
 #   'path/to/dir/en-US/*.yml'
 #
-# The filenames will be passed to I18n.load_translations which delegates to 
+# The filenames will be passed to I18n.load_translations which delegates to
 # the backend. So the actual behaviour depends on the implementation of the
-# backend. I18n::Backend::Simple will be able to read YAML and plain Ruby 
+# backend. I18n::Backend::Simple will be able to read YAML and plain Ruby
 # files. See the documentation for I18n.load_translations for details.
 
 module Globalize
@@ -31,27 +31,27 @@ module Globalize
       @extensions ||= ['rb', 'yml']
     end
     attr_writer :extensions
-  
+
     def locales
       @locales ||= ['*']
     end
     attr_writer :locales
-  
+
     def <<(path)
       push path
     end
-  
+
     def push(*paths)
       super(*paths.map{|path| filenames(path) }.flatten.uniq.sort)
     end
-  
+
     protected
-  
+
       def filenames(path)
         return [path] if File.file? path
         patterns(path).map{|pattern| Dir[pattern] }
       end
-  
+
       def patterns(path)
         locales.map do |locale|
           extensions.map do |extension|
