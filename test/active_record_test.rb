@@ -1,34 +1,22 @@
-require File.join( File.dirname(__FILE__), '..', '..', 'test_helper' )
-require 'active_record'
-require 'globalize/model/active_record'
-
-# Hook up model translation
-ActiveRecord::Base.send(:include, Globalize::Model::ActiveRecord::Translated)
-
-# Load Post model
-require File.join( File.dirname(__FILE__), '..', '..', 'data', 'models' )
+require File.dirname(__FILE__) + '/test_helper'
+require File.join( File.dirname(__FILE__) + '/data/models' )
 
 class TranslatedTest < ActiveSupport::TestCase
   def setup
     I18n.locale = :'en-US'
-    I18n.fallbacks.clear
-    reset_db! File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'data', 'schema.rb'))
+    reset_db!
     ActiveRecord::Base.locale = nil
   end
 
-  def teardown
-    I18n.fallbacks.clear
-  end
-
   test "modifiying translated fields" do
-    post = Post.create :subject => 'foo'
+    post = Post.create(:subject => 'foo')
     assert_equal 'foo', post.subject
     post.subject = 'bar'
     assert_equal 'bar', post.subject
   end
 
   test "modifiying translated fields while switching locales" do
-    post = Post.create :subject => 'foo'
+    post = Post.create(:subject => 'foo')
     assert_equal 'foo', post.subject
     I18n.locale = :'de-DE'
     post.subject = 'bar'
@@ -41,15 +29,15 @@ class TranslatedTest < ActiveSupport::TestCase
 
   test "has post_translations" do
     post = Post.create
-    assert_nothing_raised { post.globalize_translations }
+    assert_nothing_raised { post.translations }
   end
 
   test "has German post_translations" do
     I18n.locale = :de
-    post = Post.create :subject => 'foo'
-    assert_equal 1, post.globalize_translations.size
+    post = Post.create(:subject => 'foo')
+    assert_equal 1, post.translations.size
     I18n.locale = :en
-    assert_equal 1, post.globalize_translations.size
+    assert_equal 1, post.translations.size
   end
 
   test "returns the value passed to :subject" do
@@ -58,7 +46,7 @@ class TranslatedTest < ActiveSupport::TestCase
   end
 
   test "translates subject and content into en-US" do
-    post = Post.create :subject => 'foo', :content => 'bar'
+    post = Post.create(:subject => 'foo', :content => 'bar')
     assert_equal 'foo', post.subject
     assert_equal 'bar', post.content
     assert post.save
@@ -68,7 +56,7 @@ class TranslatedTest < ActiveSupport::TestCase
   end
 
   test "finds a German post" do
-    post = Post.create :subject => 'foo (en)', :content => 'bar'
+    post = Post.create(:subject => 'foo (en)', :content => 'bar')
     I18n.locale = 'de-DE'
     post = Post.first
     post.subject = 'baz (de)'
@@ -78,7 +66,7 @@ class TranslatedTest < ActiveSupport::TestCase
     assert_equal 'foo (en)', Post.first.subject
   end
 
-  test "saves an English post and loads test correctly" do
+  test "saves an English post and loads correctly" do
     assert_nil Post.first
     post = Post.create :subject => 'foo', :content => 'bar'
     assert post.save
@@ -88,13 +76,13 @@ class TranslatedTest < ActiveSupport::TestCase
   end
 
   test "updates an attribute" do
-    post = Post.create :subject => 'foo', :content => 'bar'
+    post = Post.create(:subject => 'foo', :content => 'bar')
     post.update_attribute :subject, 'baz'
     assert_equal 'baz', Post.first.subject
   end
 
   test "update_attributes failure" do
-    post = Post.create :subject => 'foo', :content => 'bar'
+    post = Post.create(:subject => 'foo', :content => 'bar')
     assert !post.update_attributes( { :subject => '' } )
     assert_nil post.reload.attributes['subject']
     assert_equal 'foo', post.subject
@@ -118,22 +106,6 @@ class TranslatedTest < ActiveSupport::TestCase
     assert_equal 'foo', post.subject
     I18n.locale = 'de-DE'
     assert_equal 'bar', post.subject
-  end
-
-  test "keeping one field in new locale when other field is changed" do
-    I18n.fallbacks.map 'de-DE' => [ 'en-US' ]
-    post = Post.create :subject => 'foo'
-    I18n.locale = 'de-DE'
-    post.content = 'bar'
-    assert_equal 'foo', post.subject
-  end
-
-  test "modifying non-required field in a new locale" do
-    I18n.fallbacks.map 'de-DE' => [ 'en-US' ]
-    post = Post.create :subject => 'foo'
-    I18n.locale = 'de-DE'
-    post.content = 'bar'
-    assert post.save
   end
 
   test "returns the value for the correct locale, after locale switching, without saving" do
@@ -162,51 +134,14 @@ class TranslatedTest < ActiveSupport::TestCase
     assert_equal 'baz', post.subject
   end
 
-  test "resolves a simple fallback" do
-    I18n.locale = 'de-DE'
-    post = Post.create :subject => 'foo'
-    I18n.locale = 'de'
-    post.subject = 'baz'
-    post.content = 'bar'
-    post.save
-    I18n.locale = 'de-DE'
-    assert_equal 'foo', post.subject
-    assert_equal 'bar', post.content
-  end
-
-  test "resolves a simple fallback without reloading" do
-    I18n.locale = 'de-DE'
-    post = Post.new :subject => 'foo'
-    I18n.locale = 'de'
-    post.subject = 'baz'
-    post.content = 'bar'
-    I18n.locale = 'de-DE'
-    assert_equal 'foo', post.subject
-    assert_equal 'bar', post.content
-  end
-
-  test "resolves a complex fallback without reloading" do
-    I18n.fallbacks.map 'de' => %w(en he)
-    I18n.locale = 'de'
-    post = Post.new
-    I18n.locale = 'en'
-    post.subject = 'foo'
-    I18n.locale = 'he'
-    post.subject = 'baz'
-    post.content = 'bar'
-    I18n.locale = 'de'
-    assert_equal 'foo', post.subject
-    assert_equal 'bar', post.content
-  end
-
   test "returns nil if no translations are found" do
-    post = Post.new :subject => 'foo'
+    post = Post.new(:subject => 'foo')
     assert_equal 'foo', post.subject
     assert_nil post.content
   end
 
   test "returns nil if no translations are found; reloaded" do
-    post = Post.create :subject => 'foo'
+    post = Post.create(:subject => 'foo')
     post = Post.first
     assert_equal 'foo', post.subject
     assert_nil post.content
@@ -214,9 +149,9 @@ class TranslatedTest < ActiveSupport::TestCase
 
   test "works with associations" do
     blog = Blog.create
-    post1 = blog.posts.create :subject => 'foo'
+    post1 = blog.posts.create(:subject => 'foo')
     I18n.locale = 'de-DE'
-    post2 = blog.posts.create :subject => 'bar'
+    post2 = blog.posts.create(:subject => 'bar')
     assert_equal 2, blog.posts.size
     I18n.locale = 'en-US'
     assert_equal 'foo', blog.posts.first.subject
@@ -226,17 +161,17 @@ class TranslatedTest < ActiveSupport::TestCase
   end
 
   test "works with simple dynamic finders" do
-    foo = Post.create :subject => 'foo'
-    Post.create :subject => 'bar'
+    foo = Post.create(:subject => 'foo')
+    Post.create(:subject => 'bar')
     post = Post.find_by_subject('foo')
     assert_equal foo, post
   end
 
   test 'change attribute on globalized model' do
-    post = Post.create :subject => 'foo', :content => 'bar'
+    post = Post.create(:subject => 'foo', :content => 'bar')
     assert_equal [], post.changed
     post.subject = 'baz'
-    assert_equal [ 'subject' ], post.changed
+    assert_equal ['subject'], post.changed
     post.content = 'quux'
     assert_member 'subject', post.changed
     assert_member 'content', post.changed
@@ -248,20 +183,6 @@ class TranslatedTest < ActiveSupport::TestCase
     post.subject = 'baz'
     I18n.locale = :de
     assert_equal [ 'subject' ], post.changed
-  end
-
-  test 'fallbacks with lots of locale switching' do
-    I18n.fallbacks.map :'de-DE' => [ :'en-US' ]
-    post = Post.create :subject => 'foo'
-
-    I18n.locale = :'de-DE'
-    assert_equal 'foo', post.subject
-
-    I18n.locale = :'en-US'
-    post.update_attribute :subject, 'bar'
-
-    I18n.locale = :'de-DE'
-    assert_equal 'bar', post.subject
   end
 
   test 'reload' do
@@ -309,7 +230,7 @@ class TranslatedTest < ActiveSupport::TestCase
     ActiveRecord::Base.locale = :de
     assert_equal :'en-US', I18n.locale
     Post.create :subject => 'foo'
-    assert_equal :de, Post.first.globalize_translations.first.locale
+    assert_equal :de, Post.first.translations.first.locale
   end
 
   test "attribute loading goes by content locale and not global locale" do
@@ -317,54 +238,54 @@ class TranslatedTest < ActiveSupport::TestCase
     assert_equal :'en-US', ActiveRecord::Base.locale
     ActiveRecord::Base.locale = :de
     assert_equal :'en-US', I18n.locale
-    post.update_attribute :subject, 'foo [de]'
+    post.update_attribute(:subject, 'foo [de]')
     assert_equal 'foo [de]', Post.first.subject
     ActiveRecord::Base.locale = :'en-US'
     assert_equal 'foo', Post.first.subject
   end
 
   test "access content locale before setting" do
-    Globalize::Model::ActiveRecord::Translated::ActMethods.class_eval "remove_class_variable(:@@locale)"
+    Globalize::ActiveRecord::ActMacro.class_eval "remove_class_variable(:@@locale)"
     assert_nothing_raised { ActiveRecord::Base.locale }
   end
 
-  test "translated_locales" do
+  test "available_locales" do
     Post.locale = :de
     post = Post.create :subject => 'foo'
     Post.locale = :es
     post.update_attribute :subject, 'bar'
     Post.locale = :fr
     post.update_attribute :subject, 'baz'
-    assert_equal [ :de, :es, :fr ], post.translated_locales
-    assert_equal [ :de, :es, :fr ], Post.first.translated_locales
+    assert_equal [ :de, :es, :fr ], post.available_locales
+    assert_equal [ :de, :es, :fr ], Post.first.available_locales
   end
-  
+
   test "saving record correctly after post-save reload" do
-    reloader = Reloader.create :content => 'foo'
+    reloader = Reloader.create(:content => 'foo')
     assert_equal 'foo', reloader.content
   end
 
-  test "including globalize_translations" do
+  test "including translations" do
     I18n.locale = :de
-    Post.create :subject => "Foo1", :content => "Bar1"
-    Post.create :subject => "Foo2", :content => "Bar2"
+    Post.create(:subject => "Foo1", :content => "Bar1")
+    Post.create(:subject => "Foo2", :content => "Bar2")
 
     class << Post
-      def tranlsations_included
-        self.all(:include => :globalize_translations)
+      def translations_included
+        self.all(:include => :translations)
       end
     end
 
     default       = Post.all.map {|x| [x.subject, x.content]}
-    with_include  = Post.tranlsations_included.map {|x| [x.subject, x.content]}
+    with_include  = Post.translations_included.map {|x| [x.subject, x.content]}
     assert_equal default, with_include
   end
 
   test "setting multiple translations at once with options hash" do
     Post.locale = :de
-    post = Post.create :subject => "foo1", :content => "foo1"
+    post = Post.create(:subject => "foo1", :content => "foo1")
     Post.locale = :en
-    post.update_attributes( :subject => "bar1", :content => "bar1" )
+    post.update_attributes(:subject => "bar1", :content => "bar1")
 
     options = { :de => {:subject => "foo2", :content => "foo2"},
                 :en => {:subject => "bar2", :content => "bar2"} }
@@ -434,7 +355,7 @@ class TranslatedTest < ActiveSupport::TestCase
 
   test "translating subclass of untranslated comment model" do
     translated_comment = TranslatedComment.create(:post => @post)
-    assert_nothing_raised { translated_comment.globalize_translations }
+    assert_nothing_raised { translated_comment.translations }
   end
 
   test "modifiying translated comments works as expected" do
@@ -450,9 +371,9 @@ class TranslatedTest < ActiveSupport::TestCase
     I18n.locale = :en
     assert_equal 'foo', translated_comment.content
 
-    assert_equal 2, translated_comment.globalize_translations.size
+    assert_equal 2, translated_comment.translations.size
   end
-  
+
   test "can create a proxy class for a namespaced model" do
     module Foo
       module Bar
@@ -462,7 +383,7 @@ class TranslatedTest < ActiveSupport::TestCase
       end
     end
   end
-  
+
   test "attribute translated before type cast" do
     Post.locale = :en
     post = Post.create :subject => 'foo', :content => 'bar'
@@ -472,14 +393,12 @@ class TranslatedTest < ActiveSupport::TestCase
     Post.locale = :en
     assert_equal 'foo', post.subject_before_type_cast
   end
-  
+
   test "don't override existing translation model" do
     assert PostTranslation.new.respond_to?(:existing_method)
   end
 end
 
-# TODO should validate_presence_of take fallbacks into account? maybe we need
-#   an extra validation call, or more options for validate_presence_of.
 # TODO error checking for fields that exist in main table, don't exist in
 # proxy table, aren't strings or text
 #

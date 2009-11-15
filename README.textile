@@ -1,10 +1,10 @@
 h1. Globalize2
 
-Globalize2 is the successor of Globalize for Rails. 
+Globalize2 is the successor of Globalize for Rails.
 
 It is compatible with and builds on the new "I18n api in Ruby on Rails":http://rails-i18n.org. and adds model translations as well as a bunch of other useful features, such as Locale fallbacks (RFC4647 compliant) and automatic loading of Locale data from defined directory/file locations.
 
-Globalize2 is much more lightweight and modular than its predecessor was. Content translations in Globalize2 use default ActiveRecord features and do not limit any functionality any more. 
+Globalize2 is much more lightweight and modular than its predecessor was. Content translations in Globalize2 use default ActiveRecord features and do not limit any functionality any more.
 
 All features and tools in Globalize2 are implemented in the most unobstrusive and loosely-coupled way possible, so you can pick whatever features or tools you need for your application and combine them with other tools from other libraries or plugins.
 
@@ -84,14 +84,14 @@ The Simple backend has its pluralization algorithm baked in hardcoded. This algo
 To add custom pluralization logic to Globalize' Static backend you can do something like this:
 
 <pre><code>
-@backend.add_pluralizer :cz, lambda{|c| 
-  c == 1 ? :one : (2..4).include?(c) ? :few : :other 
+@backend.add_pluralizer :cz, lambda{|c|
+  c == 1 ? :one : (2..4).include?(c) ? :few : :other
 }
 </code></pre>
 
 h2. Locale Fallbacks
 
-Globalize2 ships with a Locale fallback tool which extends the I18n module to hold a fallbacks instance which is set to an instance of Globalize::Locale::Fallbacks by default but can be swapped with a different implementation. 
+Globalize2 ships with a Locale fallback tool which extends the I18n module to hold a fallbacks instance which is set to an instance of Globalize::Locale::Fallbacks by default but can be swapped with a different implementation.
 
 Globalize2 fallbacks will compute a number of other locales for a given locale. For example:
 
@@ -99,11 +99,11 @@ Globalize2 fallbacks will compute a number of other locales for a given locale. 
 I18n.fallbacks[:"es-MX"] # => [:"es-MX", :es, :"en-US", :en]
 </code></pre>
 
-Globalize2 fallbacks always fall back to 
+Globalize2 fallbacks always fall back to
 
-* all parents of a given locale (e.g. :es for :"es-MX"), 
-* then to the fallbacks' default locales and all of their parents and 
-* finally to the :root locale. 
+* all parents of a given locale (e.g. :es for :"es-MX"),
+* then to the fallbacks' default locales and all of their parents and
+* finally to the :root locale.
 
 The default locales are set to [:"en-US"] by default but can be set to something else. The root locale is a concept borrowed from "CLDR":http://unicode.org and makes sense for storing common locale data which works as a last default fallback (e.g. "ltr" for bidi directions).
 
@@ -170,17 +170,17 @@ I18n.locale = :de
 # Translation::Attribute
 title = Post.first.title  # assuming that no translation can be found:
 title.locale              # => :en
-title.requested_locale    # => :de 
+title.requested_locale    # => :de
 title.fallback?           # => true
 
 # Translation::Static
 rails = I18n.t :rails     # assuming that no translation can be found:
 rails.locale              # => :en
-rails.requested_locale    # => :de 
+rails.requested_locale    # => :de
 rails.fallback?           # => true
 rails.options             # returns the options passed to #t
 rails.plural_key          # returns the plural_key (e.g. :one, :other)
-rails.original            # returns the original translation with no values 
+rails.original            # returns the original translation with no values
                           # interpolated to it (e.g. "Hi {{name}}!")
 </code></pre>
 
@@ -190,7 +190,7 @@ A simple exception handler that behaves like the default exception handler but a
 
 Useful for identifying missing translations during testing.
 
-E.g. 
+E.g.
 
   require 'globalize/i18n/missing_translations_log_handler
   I18n.missing_translations_logger = RAILS_DEFAULT_LOGGER

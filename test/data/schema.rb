@@ -1,7 +1,7 @@
 ActiveRecord::Schema.define do
-  
+
   create_table :blogs, :force => true do |t|
-    t.string      :description
+    t.string   :description
   end
 
   create_table :posts, :force => true do |t|
@@ -14,7 +14,7 @@ ActiveRecord::Schema.define do
     t.string     :subject
     t.text       :content
   end
-  
+
   create_table :parents, :force => true do |t|
   end
 
@@ -24,16 +24,16 @@ ActiveRecord::Schema.define do
     t.text       :content
     t.string     :type
   end
-  
+
   create_table :comments, :force => true do |t|
     t.references :post
   end
 
-  create_table :translated_comment_translations, :force => true do |t|
+  create_table :comment_translations, :force => true do |t|
     t.string     :locale
     t.references :comment
     t.string     :subject
     t.text       :content
   end
-  
+
 end

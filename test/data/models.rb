@@ -1,6 +1,7 @@
 class PostTranslation < ActiveRecord::Base
   def existing_method ; end
 end
+
 class Post < ActiveRecord::Base
   translates :subject, :content
   validates_presence_of :subject
