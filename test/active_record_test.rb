@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/test_helper'
 require File.join( File.dirname(__FILE__) + '/data/models' )
 
-class TranslatedTest < ActiveSupport::TestCase
+class ActiveRecordTest < ActiveSupport::TestCase
   def setup
     I18n.locale = :'en-US'
     reset_db!
@@ -178,7 +178,7 @@ class TranslatedTest < ActiveSupport::TestCase
   end
 
   test 'change attribute on globalized model after locale switching' do
-    post = Post.create :subject => 'foo', :content => 'bar'
+    post = Post.create(:subject => 'foo', :content => 'bar')
     assert_equal [], post.changed
     post.subject = 'baz'
     I18n.locale = :de
@@ -186,16 +186,18 @@ class TranslatedTest < ActiveSupport::TestCase
   end
 
   test 'reload' do
-    post = Post.create :subject => 'foo', :content => 'bar'
+    post = Post.create(:subject => 'foo', :content => 'bar')
     post.subject = 'baz'
     assert_equal 'foo', post.reload.subject
   end
 
   test 'complex writing and stashing' do
-    post = Post.create :subject => 'foo', :content => 'bar'
+    post = Post.create(:subject => 'foo', :content => 'bar')
     post.subject = nil
     assert_nil post.subject
     assert !post.valid?
+    post.subject = 'stashed_foo'
+    assert_equal 'stashed_foo', post.subject
   end
 
   test 'translated class locale setting' do

@@ -54,15 +54,9 @@ module Globalize
           translations = fetch_translations(locale)
           value, requested_locale = nil, locale
 
-          # Walk through the fallbacks, starting with the current locale itself,
-          # and moving to the next best choice, until we find a match. Check the
-          # cache first to see if we've changed the attribute and not saved yet.
           Globalize.fallbacks(locale).each do |fallback|
-            # TODO should we be checking stash or just cache?
-            value = cache.read(fallback, attr_name) || begin
-              translation = translations.detect { |t| t.locale == fallback }
-              translation && translation.send(attr_name)
-            end
+            translation = translations.detect { |t| t.locale == fallback }
+            value  = translation && translation.send(attr_name)
             locale = fallback && break if value
           end
 

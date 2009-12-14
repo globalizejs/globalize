@@ -88,15 +88,19 @@ module Globalize
 
       def method_missing(method, *args)
         if method.to_s =~ /^find_by_(\w+)$/ && translated_attribute_names.include?($1.to_sym)
-          find(:first, :joins => :translations, :conditions => [
-            "#{translated_attr_name($1)} = ? AND #{translated_attr_name('locale')} IN (?)",
-            args.first, Globalize.fallbacks(locale).map(&:to_s)])
+          find_first_by_translated_attr_and_locales($1, args.first)
         else
           super
         end
       end
 
       protected
+
+        def find_first_by_translated_attr_and_locales(name, value)
+          query = "#{translated_attr_name(name)} = ? AND #{translated_attr_name('locale')} IN (?)"
+          locales = Globalize.fallbacks(locale).map(&:to_s)
+          find(:first, :joins => :translations, :conditions => [query, value, locales])
+        end
 
         def translated_attr_accessor(name)
           define_method "#{name}=", lambda { |value|
