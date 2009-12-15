@@ -1,1 +1,3 @@
-require 'globalize/active_record'
+require 'globalize'
+
+ActiveRecord::Base.send(:include, Globalize::ActiveRecord)
