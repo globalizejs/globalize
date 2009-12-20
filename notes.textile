@@ -1,3 +1,13 @@
+virtual locale attribute for translated records:
+
+Post.create(:title => 'Titel', :locale => :de)
+
+maybe allow to set the locale attribute name for separating display and content locales.
+
+
+
+------------------------------------------------------------------------------
+
 Stopped DB Backend in the middle, here's where we left off:
 
 h1. Some Notes

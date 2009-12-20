@@ -1,5 +1,5 @@
-require File.join( File.dirname(__FILE__) + '/../test_helper' )
-require File.join( File.dirname(__FILE__) + '/../data/models' )
+require File.expand_path(File.dirname(__FILE__) + '/../test_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../data/models')
 
 class TranslatesTest < ActiveSupport::TestCase
   def setup

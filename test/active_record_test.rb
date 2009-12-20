@@ -1,162 +1,167 @@
-require File.dirname(__FILE__) + '/test_helper'
-require File.join( File.dirname(__FILE__) + '/data/models' )
+require File.expand_path(File.dirname(__FILE__) + '/test_helper')
+require File.expand_path(File.dirname(__FILE__) + '/data/models')
+
+# Higher level tests.
 
 class ActiveRecordTest < ActiveSupport::TestCase
   def setup
-    I18n.locale = :'en-US'
+    I18n.locale = :en
     reset_db!
     ActiveRecord::Base.locale = nil
   end
 
-  test "modifiying translated fields" do
-    post = Post.create(:subject => 'foo')
-    assert_equal 'foo', post.subject
-    post.subject = 'bar'
-    assert_equal 'bar', post.subject
+  def assert_translated(locale, record, names, expected)
+    I18n.locale = locale
+    assert_equal Array(expected), Array(names).map { |name| record.send(name) }
   end
 
-  test "modifiying translated fields while switching locales" do
-    post = Post.create(:subject => 'foo')
-    assert_equal 'foo', post.subject
-    I18n.locale = :'de-DE'
-    post.subject = 'bar'
-    assert_equal 'bar', post.subject
-    I18n.locale = :'en-US'
-    assert_equal 'foo', post.subject
-    I18n.locale = :'de-DE'
-    post.subject = 'bar'
+  test "a translated record has translations" do
+    assert_equal [], Post.new.translations
   end
 
-  test "has post_translations" do
-    post = Post.create
-    assert_nothing_raised { post.translations }
+  test "saves a translated version of the record for each locale" do
+    post = Post.create(:subject => 'title')
+    I18n.locale = :de
+    post.update_attributes(:subject => 'Titel')
+
+    assert_equal 2, post.translations.size
+    assert_equal %w(de en), post.translations.map(&:locale).map(&:to_s).sort
+    assert_equal %w(Titel title), post.translations.map(&:subject).sort
   end
 
-  test "has German post_translations" do
+  test "a translated record has German translations" do
     I18n.locale = :de
     post = Post.create(:subject => 'foo')
     assert_equal 1, post.translations.size
-    I18n.locale = :en
-    assert_equal 1, post.translations.size
+    assert_equal [:de], post.translations.map { |t| t.locale }
   end
 
-  test "returns the value passed to :subject" do
-    post = Post.new
-    assert_equal 'foo', (post.subject = 'foo')
-  end
+  test "modifiying translated fields while switching locales" do
+    post = Post.create(:subject => 'title', :content => 'content')
+    assert_equal %w(title content), [post.subject, post.content]
 
-  test "translates subject and content into en-US" do
-    post = Post.create(:subject => 'foo', :content => 'bar')
-    assert_equal 'foo', post.subject
-    assert_equal 'bar', post.content
-    assert post.save
-    post.reload
-    assert_equal 'foo', post.subject
-    assert_equal 'bar', post.content
-  end
+    I18n.locale = :de
+    post.subject, post.content = 'Titel', 'Inhalt'
 
-  test "finds a German post" do
-    post = Post.create(:subject => 'foo (en)', :content => 'bar')
-    I18n.locale = 'de-DE'
-    post = Post.first
-    post.subject = 'baz (de)'
+    assert_translated(:de, post, [:subject, :content], %w(Titel Inhalt))
+    assert_translated(:en, post, [:subject, :content], %w(title content))
+    assert_translated(:de, post, [:subject, :content], %w(Titel Inhalt))
+
     post.save
-    assert_equal 'baz (de)', Post.first.subject
-    I18n.locale = :'en-US'
-    assert_equal 'foo (en)', Post.first.subject
+    post.reload
+
+    assert_translated(:en, post, [:subject, :content], %w(title content))
+    assert_translated(:de, post, [:subject, :content], %w(Titel Inhalt))
   end
 
-  test "saves an English post and loads correctly" do
-    assert_nil Post.first
-    post = Post.create :subject => 'foo', :content => 'bar'
-    assert post.save
-    post = Post.first
-    assert_equal 'foo', post.subject
-    assert_equal 'bar', post.content
+  test "attribute writers do return their argument" do
+    value = (Post.new.subject = 'foo')
+    assert_equal 'foo', value
   end
 
-  test "updates an attribute" do
+  test "update_attribute succeeds with valid values" do
     post = Post.create(:subject => 'foo', :content => 'bar')
-    post.update_attribute :subject, 'baz'
+    post.update_attribute(:subject, 'baz')
     assert_equal 'baz', Post.first.subject
   end
 
-  test "update_attributes failure" do
+  test "update_attributes fails with invalid values" do
     post = Post.create(:subject => 'foo', :content => 'bar')
     assert !post.update_attributes( { :subject => '' } )
     assert_nil post.reload.attributes['subject']
     assert_equal 'foo', post.subject
   end
 
-  test "validates presence of :subject" do
-    post = Post.new
-    assert !post.save
-
-    post = Post.new :subject => 'foo'
-    assert post.save
-  end
-
-  test "returns the value for the correct locale, after locale switching" do
-    post = Post.create :subject => 'foo'
-    I18n.locale = 'de-DE'
-    post.subject = 'bar'
-    post.save
-    I18n.locale = 'en-US'
-    post = Post.first
-    assert_equal 'foo', post.subject
-    I18n.locale = 'de-DE'
-    assert_equal 'bar', post.subject
-  end
-
-  test "returns the value for the correct locale, after locale switching, without saving" do
-    post = Post.create :subject => 'foo'
-    I18n.locale = 'de-DE'
-    post.subject = 'bar'
-    I18n.locale = 'en-US'
-    assert_equal 'foo', post.subject
-    I18n.locale = 'de-DE'
-    assert_equal 'bar', post.subject
-  end
-
-  test "saves all locales, even after locale switching" do
-    post = Post.new :subject => 'foo'
-    I18n.locale = 'de-DE'
-    post.subject = 'bar'
-    I18n.locale = 'he-IL'
+  test 'reload works' do
+    post = Post.create(:subject => 'foo', :content => 'bar')
     post.subject = 'baz'
-    post.save
-    I18n.locale = 'en-US'
-    post = Post.first
+    post.reload
     assert_equal 'foo', post.subject
-    I18n.locale = 'de-DE'
-    assert_equal 'bar', post.subject
-    I18n.locale = 'he-IL'
-    assert_equal 'baz', post.subject
   end
 
-  test "returns nil if no translations are found" do
+  test "returns nil if no translations are found (unsaved record)" do
     post = Post.new(:subject => 'foo')
     assert_equal 'foo', post.subject
     assert_nil post.content
   end
 
-  test "returns nil if no translations are found; reloaded" do
+  test "returns nil if no translations are found (saved record)" do
     post = Post.create(:subject => 'foo')
-    post = Post.first
+    post.reload
     assert_equal 'foo', post.subject
     assert_nil post.content
+  end
+
+  test "finds a German post" do
+    post = Post.create(:subject => 'foo (en)', :content => 'bar')
+    I18n.locale = :de
+    post = Post.first
+    post.subject = 'baz (de)'
+    post.save
+    assert_equal 'baz (de)', Post.first.subject
+    I18n.locale = :en
+    assert_equal 'foo (en)', Post.first.subject
+  end
+
+  test "saves an English post and loads correctly" do
+    post = Post.create(:subject => 'foo', :content => 'bar')
+    assert post.save
+    post = Post.first
+    assert_equal 'foo', post.subject
+    assert_equal 'bar', post.content
+  end
+
+  test "returns the value for the correct locale, after locale switching" do
+    post = Post.create(:subject => 'foo')
+    I18n.locale = :de
+    post.subject = 'bar'
+    post.save
+    I18n.locale = :en
+    post = Post.first
+    assert_equal 'foo', post.subject
+    I18n.locale = :de
+    assert_equal 'bar', post.subject
+  end
+
+  test "returns the value for the correct locale, after locale switching, without saving" do
+    post = Post.create :subject => 'foo'
+    I18n.locale = :de
+    post.subject = 'bar'
+    I18n.locale = :en
+    assert_equal 'foo', post.subject
+    I18n.locale = :de
+    assert_equal 'bar', post.subject
+  end
+
+  test "saves all locales, even after locale switching" do
+    post = Post.new :subject => 'foo'
+    I18n.locale = :de
+    post.subject = 'bar'
+    I18n.locale = :he
+    post.subject = 'baz'
+    post.save
+    I18n.locale = :en
+    post = Post.first
+    assert_equal 'foo', post.subject
+    I18n.locale = :de
+    assert_equal 'bar', post.subject
+    I18n.locale = :he
+    assert_equal 'baz', post.subject
   end
 
   test "works with associations" do
     blog = Blog.create
     post1 = blog.posts.create(:subject => 'foo')
-    I18n.locale = 'de-DE'
+
+    I18n.locale = :de
     post2 = blog.posts.create(:subject => 'bar')
     assert_equal 2, blog.posts.size
-    I18n.locale = 'en-US'
+
+    I18n.locale = :en
     assert_equal 'foo', blog.posts.first.subject
     assert_nil blog.posts.last.subject
-    I18n.locale = 'de-DE'
+
+    I18n.locale = :de
     assert_equal 'bar', blog.posts.last.subject
   end
 
@@ -185,12 +190,6 @@ class ActiveRecordTest < ActiveSupport::TestCase
     assert_equal [ 'subject' ], post.changed
   end
 
-  test 'reload' do
-    post = Post.create(:subject => 'foo', :content => 'bar')
-    post.subject = 'baz'
-    assert_equal 'foo', post.reload.subject
-  end
-
   test 'complex writing and stashing' do
     post = Post.create(:subject => 'foo', :content => 'bar')
     post.subject = nil
@@ -202,8 +201,8 @@ class ActiveRecordTest < ActiveSupport::TestCase
 
   test 'translated class locale setting' do
     assert ActiveRecord::Base.respond_to?(:locale)
-    assert_equal :'en-US', I18n.locale
-    assert_equal :'en-US', ActiveRecord::Base.locale
+    assert_equal :en, I18n.locale
+    assert_equal :en, ActiveRecord::Base.locale
     I18n.locale = :de
     assert_equal :de, I18n.locale
     assert_equal :de, ActiveRecord::Base.locale
@@ -230,19 +229,19 @@ class ActiveRecordTest < ActiveSupport::TestCase
 
   test "attribute saving goes by content locale and not global locale" do
     ActiveRecord::Base.locale = :de
-    assert_equal :'en-US', I18n.locale
+    assert_equal :en, I18n.locale
     Post.create :subject => 'foo'
     assert_equal :de, Post.first.translations.first.locale
   end
 
   test "attribute loading goes by content locale and not global locale" do
     post = Post.create :subject => 'foo'
-    assert_equal :'en-US', ActiveRecord::Base.locale
+    assert_equal :en, ActiveRecord::Base.locale
     ActiveRecord::Base.locale = :de
-    assert_equal :'en-US', I18n.locale
+    assert_equal :en, I18n.locale
     post.update_attribute(:subject, 'foo [de]')
     assert_equal 'foo [de]', Post.first.subject
-    ActiveRecord::Base.locale = :'en-US'
+    ActiveRecord::Base.locale = :en
     assert_equal 'foo', Post.first.subject
   end
 

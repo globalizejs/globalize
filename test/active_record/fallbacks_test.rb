@@ -1,5 +1,5 @@
-require File.dirname(__FILE__) + '/../test_helper'
-require File.join( File.dirname(__FILE__) + '/../data/models' )
+require File.expand_path(File.dirname(__FILE__) + '/../test_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../data/models')
 
 if I18n.respond_to?(:fallbacks)
   class TranslatedTest < ActiveSupport::TestCase

@@ -1,3 +1,8 @@
+require 'ruby2ruby'
+require 'parse_tree'
+require 'parse_tree_extensions'
+require 'pp'
+
 class PostTranslation < ActiveRecord::Base
   def existing_method ; end
 end
@@ -38,4 +43,8 @@ class Reloader < Parent
   def do_reload
     reload
   end
+end
+
+class Validatee < ActiveRecord::Base
+  translates :string
 end
