@@ -7,6 +7,7 @@ require 'active_support'
 require 'active_support/test_case'
 require 'mocha'
 require 'globalize'
+require 'validation_reflection'
 
 config = { :adapter => 'sqlite3', :database => ':memory:' }
 ActiveRecord::Base.establish_connection(config)

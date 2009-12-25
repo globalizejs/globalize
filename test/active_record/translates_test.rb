@@ -26,6 +26,11 @@ class TranslatesTest < ActiveSupport::TestCase
     assert_has_many Post, :translations
   end
 
+  test 'defines a scope for retrieving locales that have complete translations' do
+    post = Post.create!(:subject => 'subject', :content => 'content')
+    assert_equal [:en], post.translated_locales
+  end
+
   test 'sets the given attributes to translated_attribute_names' do
     assert_equal [:subject, :content], Post.translated_attribute_names
   end

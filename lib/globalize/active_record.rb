@@ -48,14 +48,22 @@ module Globalize
         self.translation_class = ActiveRecord.build_translation_class(self, options)
         self.translated_attribute_names = attr_names.map(&:to_sym)
 
+        include InstanceMethods
+        extend  ClassMethods, Migration
+
         after_save :save_translations!
         has_many :translations, :class_name  => translation_class.name,
                                 :foreign_key => class_name.foreign_key,
                                 :dependent   => :delete_all,
                                 :extend      => HasManyExtensions
 
-        include InstanceMethods
-        extend  ClassMethods, Migration
+        named_scope :with_translations, lambda { |locale|
+          conditions = required_attributes.map do |attribute|
+            "#{quoted_translation_table_name}.#{attribute} IS NOT NULL"
+          end
+          conditions << "#{quoted_translation_table_name}.locale = ?"
+          { :include => :translations, :conditions => [conditions.join(' AND '), locale] }
+        }
 
         attr_names.each { |attr_name| translated_attr_accessor(attr_name) }
       end
@@ -80,6 +88,16 @@ module Globalize
 
       def translation_table_name
         translation_class.table_name
+      end
+
+      def quoted_translation_table_name
+        translation_class.quoted_table_name
+      end
+
+      def required_attributes
+        validations = reflect_on_all_validations.select do |validation|
+          validation.macro == :validates_presence_of
+        end.map(&:name)
       end
 
       def respond_to?(method)
@@ -124,9 +142,11 @@ module Globalize
       end
 
       def available_locales
-        translations.scoped(:select => 'DISTINCT locale').map do |translation|
-          translation.locale.to_sym
-        end
+        translations.scoped(:select => 'DISTINCT locale').map(&:locale)
+      end
+
+      def translated_locales
+        translations.map(&:locale)
       end
 
       def translated_attributes
