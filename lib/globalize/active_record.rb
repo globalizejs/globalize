@@ -132,8 +132,8 @@ module Globalize
             globalize.write(self.class.locale || I18n.locale, name, value)
             self[name] = value
           }
-          define_method name, lambda {
-            globalize.fetch(self.class.locale || I18n.locale, name)
+          define_method name, lambda { |*args|
+            globalize.fetch(args.first || self.class.locale || I18n.locale, name)
           }
           alias_method "#{name}_before_type_cast", name
         end

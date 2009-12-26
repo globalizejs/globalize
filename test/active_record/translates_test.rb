@@ -52,4 +52,36 @@ class TranslatesTest < ActiveSupport::TestCase
     assert post.respond_to?(:subject)
     assert post.respond_to?(:subject=)
   end
+
+  test 'attribute reader without arguments will use the current locale on ActiveRecord::Base or I18n' do
+    post = Post.with_locale(:de) do
+      Post.create!(:subject => 'Titel', :content => 'Inhalt')
+    end
+    I18n.locale = :de
+    assert_equal 'Titel', post.subject
+
+    I18n.locale = :en
+    ActiveRecord::Base.locale = :de
+    assert_equal 'Titel', post.subject
+  end
+
+  test 'attribute reader when passed a locale will use the given locale' do
+    post = Post.with_locale(:de) do
+      Post.create!(:subject => 'Titel', :content => 'Inhalt')
+    end
+    assert_equal 'Titel', post.subject(:de)
+  end
+
+  test 'attribute reader will use the current locale on ActiveRecord::Base or I18n' do
+    post = Post.with_locale(:en) do
+      Post.create!(:subject => 'title', :content => 'content')
+    end
+    I18n.locale = :de
+    post.subject = 'Titel'
+    assert_equal 'Titel', post.subject
+
+    ActiveRecord::Base.locale = :en
+    post.subject = 'title'
+    assert_equal 'title', post.subject
+  end
 end

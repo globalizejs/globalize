@@ -55,7 +55,7 @@ class ActiveRecordTest < ActiveSupport::TestCase
   end
 
   test "attribute writers do return their argument" do
-    value = (Post.new.subject = 'foo')
+    value = Post.new.subject = 'foo'
     assert_equal 'foo', value
   end
 
@@ -67,9 +67,18 @@ class ActiveRecordTest < ActiveSupport::TestCase
 
   test "update_attributes fails with invalid values" do
     post = Post.create(:subject => 'foo', :content => 'bar')
-    assert !post.update_attributes( { :subject => '' } )
+    assert !post.update_attributes(:subject => '')
     assert_nil post.reload.attributes['subject']
     assert_equal 'foo', post.subject
+  end
+
+  test "passing the locale to create uses the given locale" do
+    post = Post.create(:subject => 'Titel', :content => 'Inhalt', :locale => :de)
+    assert_equal :en, I18n.locale
+    assert_nil ActiveRecord::Base.locale
+
+    I18n.locale = :de
+    assert_equal 'Titel', post.subject
   end
 
   test "passing the locale to attributes= uses the given locale" do
