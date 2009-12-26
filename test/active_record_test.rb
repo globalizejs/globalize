@@ -187,7 +187,7 @@ class ActiveRecordTest < ActiveSupport::TestCase
     assert_equal [], post.changed
     post.subject = 'baz'
     I18n.locale = :de
-    assert_equal [ 'subject' ], post.changed
+    assert_equal ['subject'], post.changed
   end
 
   test 'complex writing and stashing' do
@@ -235,7 +235,7 @@ class ActiveRecordTest < ActiveSupport::TestCase
   end
 
   test "attribute loading goes by content locale and not global locale" do
-    post = Post.create :subject => 'foo'
+    post = Post.create(:subject => 'foo')
     assert_equal :en, ActiveRecord::Base.locale
     ActiveRecord::Base.locale = :de
     assert_equal :en, I18n.locale
@@ -252,13 +252,13 @@ class ActiveRecordTest < ActiveSupport::TestCase
 
   test "available_locales" do
     Post.locale = :de
-    post = Post.create :subject => 'foo'
+    post = Post.create(:subject => 'foo')
     Post.locale = :es
-    post.update_attribute :subject, 'bar'
+    post.update_attribute(:subject, 'bar')
     Post.locale = :fr
-    post.update_attribute :subject, 'baz'
-    assert_equal [ :de, :es, :fr ], post.available_locales
-    assert_equal [ :de, :es, :fr ], Post.first.available_locales
+    post.update_attribute(:subject, 'baz')
+    assert_equal [:de, :es, :fr], post.available_locales
+    assert_equal [:de, :es, :fr], Post.first.available_locales
   end
 
   test "saving record correctly after post-save reload" do
@@ -277,8 +277,8 @@ class ActiveRecordTest < ActiveSupport::TestCase
       end
     end
 
-    default       = Post.all.map {|x| [x.subject, x.content]}
-    with_include  = Post.translations_included.map {|x| [x.subject, x.content]}
+    default       = Post.all.map { |x| [x.subject, x.content] }
+    with_include  = Post.translations_included.map { |x| [x.subject, x.content] }
     assert_equal default, with_include
   end
 
@@ -300,11 +300,11 @@ class ActiveRecordTest < ActiveSupport::TestCase
 
   test "setting only one translation with set_translations" do
     Post.locale = :de
-    post = Post.create :subject => "foo1", :content => "foo1"
+    post = Post.create(:subject => "foo1", :content => "foo1")
     Post.locale = :en
-    post.update_attributes( :subject => "bar1", :content => "bar1" )
+    post.update_attributes(:subject => "bar1", :content => "bar1")
 
-    options = { :en => {:subject => "bar2", :content => "bar2"} }
+    options = { :en => { :subject => "bar2", :content => "bar2" } }
     post.set_translations options
     post.reload
 
@@ -315,11 +315,11 @@ class ActiveRecordTest < ActiveSupport::TestCase
 
   test "setting only selected attributes with set_translations" do
     Post.locale = :de
-    post = Post.create :subject => "foo1", :content => "foo1"
+    post = Post.create(:subject => "foo1", :content => "foo1")
     Post.locale = :en
-    post.update_attributes( :subject => "bar1", :content => "bar1" )
+    post.update_attributes(:subject => "bar1", :content => "bar1")
 
-    options = { :de => {:content => "foo2"}, :en => {:subject => "bar2"} }
+    options = { :de => { :content => "foo2" }, :en => { :subject => "bar2" } }
     post.set_translations options
     post.reload
 
@@ -330,9 +330,9 @@ class ActiveRecordTest < ActiveSupport::TestCase
 
   test "setting invalid attributes raises ArgumentError" do
     Post.locale = :de
-    post = Post.create :subject => "foo1", :content => "foo1"
+    post = Post.create(:subject => "foo1", :content => "foo1")
     Post.locale = :en
-    post.update_attributes( :subject => "bar1", :content => "bar1" )
+    post.update_attributes(:subject => "bar1", :content => "bar1")
 
     options = { :de => {:fake => "foo2"} }
     exception = assert_raise(ActiveRecord::UnknownAttributeError) do
@@ -342,13 +342,13 @@ class ActiveRecordTest < ActiveSupport::TestCase
   end
 
   test "reload accepting find options" do
-    p = Post.create :subject => "Foo", :content => "Bar"
+    p = Post.create(:subject => "Foo", :content => "Bar")
     assert p.reload(:readonly => true, :lock => true)
     assert_raise(ArgumentError) { p.reload(:foo => :bar) }
   end
 
   test "dependent destroy of translation" do
-    p = Post.create :subject => "Foo", :content => "Bar"
+    p = Post.create(:subject => "Foo", :content => "Bar")
     assert_equal 1, PostTranslation.count
     p.destroy
     assert_equal 0, PostTranslation.count
@@ -376,10 +376,12 @@ class ActiveRecordTest < ActiveSupport::TestCase
   end
 
   test "can create a proxy class for a namespaced model" do
-    module Foo
-      module Bar
-        class Baz < ActiveRecord::Base
-          translates :bumm
+    assert_nothing_raised do
+      module Foo
+        module Bar
+          class Baz < ActiveRecord::Base
+            translates :bumm
+          end
         end
       end
     end
@@ -387,15 +389,15 @@ class ActiveRecordTest < ActiveSupport::TestCase
 
   test "attribute translated before type cast" do
     Post.locale = :en
-    post = Post.create :subject => 'foo', :content => 'bar'
+    post = Post.create(:subject => 'foo', :content => 'bar')
     Post.locale = :de
-    post.update_attribute :subject, "German foo"
+    post.update_attribute(:subject, "German foo")
     assert_equal 'German foo', post.subject_before_type_cast
     Post.locale = :en
     assert_equal 'foo', post.subject_before_type_cast
   end
 
-  test "don't override existing translation model" do
+  test "don't override existing translation class" do
     assert PostTranslation.new.respond_to?(:existing_method)
   end
 end
