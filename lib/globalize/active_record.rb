@@ -171,10 +171,10 @@ module Globalize
       end
 
       def set_translations(options)
-        options.keys.each do |key|
-          translation = translations.find_by_locale(key.to_s) ||
-            translations.build(:locale => key.to_s)
-          translation.update_attributes!(options[key])
+        options.keys.each do |locale|
+          translation = translations.find_by_locale(locale.to_s) ||
+            translations.build(:locale => locale.to_s)
+          translation.update_attributes!(options[locale])
         end
       end
 
