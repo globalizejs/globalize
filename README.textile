@@ -200,3 +200,7 @@ To set up a different log file:
 
   logger = Logger.new("#{RAILS_ROOT}/log/missing_translations.log")
   I18n.missing_translations_logger = logger
+
+h2. Migration from Globalize
+
+See this script by Tomasz Stachewicz: http://gist.github.com/120867
