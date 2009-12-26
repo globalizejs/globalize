@@ -33,7 +33,7 @@ module Globalize
 
     module ActMacro
       def locale
-        (defined?(@@locale) && @@locale) || I18n.locale
+        (defined?(@@locale) && @@locale)
       end
 
       def locale=(locale)
@@ -86,6 +86,13 @@ module Globalize
     module ClassMethods
       delegate :set_translation_table_name, :to => :translation_class
 
+      def with_locale(locale)
+        previous_locale, self.locale = self.locale, locale
+        result = yield
+        self.locale = previous_locale
+        result
+      end
+
       def translation_table_name
         translation_class.table_name
       end
@@ -116,17 +123,17 @@ module Globalize
 
         def find_first_by_translated_attr_and_locales(name, value)
           query = "#{translated_attr_name(name)} = ? AND #{translated_attr_name('locale')} IN (?)"
-          locales = Globalize.fallbacks(locale).map(&:to_s)
+          locales = Globalize.fallbacks(locale || I18n.locale).map(&:to_s)
           find(:first, :joins => :translations, :conditions => [query, value, locales])
         end
 
         def translated_attr_accessor(name)
           define_method "#{name}=", lambda { |value|
-            globalize.write(self.class.locale, name, value)
+            globalize.write(self.class.locale || I18n.locale, name, value)
             self[name] = value
           }
           define_method name, lambda {
-            globalize.fetch(self.class.locale, name)
+            globalize.fetch(self.class.locale || I18n.locale, name)
           }
           alias_method "#{name}_before_type_cast", name
         end
@@ -139,6 +146,14 @@ module Globalize
     module InstanceMethods
       def globalize
         @globalize ||= Adapter.new self
+      end
+
+      def attributes=(attributes, *args)
+        if attributes.respond_to?(:delete) && locale = attributes.delete(:locale)
+          self.class.with_locale(locale) { super }
+        else
+          super
+        end
       end
 
       def available_locales

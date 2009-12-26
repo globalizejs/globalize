@@ -9,13 +9,25 @@ class TranslatesTest < ActiveSupport::TestCase
   end
 
   test 'defines a :locale accessors on ActiveRecord::Base' do
-    ActiveRecord::Base.locale = :'de-DE'
-    assert_equal :'de-DE', ActiveRecord::Base.locale
+    ActiveRecord::Base.locale = :de
+    assert_equal :de, ActiveRecord::Base.locale
   end
 
-  test 'the :locale reader on ActiveRecord::Base defaults to I18n.locale' do
-    I18n.locale = :'en-US'
-    assert_equal I18n.locale, ActiveRecord::Base.locale
+  test 'the :locale reader on ActiveRecord::Base does not default to I18n.locale (anymore)' do
+    I18n.locale = :en
+    assert_nil ActiveRecord::Base.locale
+  end
+
+  test 'ActiveRecord::Base.with_locale temporarily sets the given locale and yields the block' do
+    I18n.locale = :en
+    post = Post.with_locale(:de) do
+      Post.create!(:subject => 'Titel', :content => 'Inhalt')
+    end
+    assert_nil Post.locale
+    assert_equal :en, I18n.locale
+
+    I18n.locale = :de
+    assert_equal 'Titel', post.subject
   end
 
   test 'translation_class returns the Translation class' do

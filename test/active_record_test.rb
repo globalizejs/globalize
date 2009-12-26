@@ -72,6 +72,19 @@ class ActiveRecordTest < ActiveSupport::TestCase
     assert_equal 'foo', post.subject
   end
 
+  test "passing the locale to attributes= uses the given locale" do
+    post = Post.create(:subject => 'title', :content => 'content')
+    post.update_attributes(:subject => 'Titel', :content => 'Inhalt', :locale => :de)
+    post.reload
+
+    assert_equal :en, I18n.locale
+    assert_nil ActiveRecord::Base.locale
+
+    assert_equal 'title', post.subject
+    I18n.locale = :de
+    assert_equal 'Titel', post.subject
+  end
+
   test 'reload works' do
     post = Post.create(:subject => 'foo', :content => 'bar')
     post.subject = 'baz'
@@ -202,13 +215,16 @@ class ActiveRecordTest < ActiveSupport::TestCase
   test 'translated class locale setting' do
     assert ActiveRecord::Base.respond_to?(:locale)
     assert_equal :en, I18n.locale
-    assert_equal :en, ActiveRecord::Base.locale
+    assert_nil ActiveRecord::Base.locale
+
     I18n.locale = :de
     assert_equal :de, I18n.locale
-    assert_equal :de, ActiveRecord::Base.locale
+    assert_nil ActiveRecord::Base.locale
+
     ActiveRecord::Base.locale = :es
     assert_equal :de, I18n.locale
     assert_equal :es, ActiveRecord::Base.locale
+
     I18n.locale = :fr
     assert_equal :fr, I18n.locale
     assert_equal :es, ActiveRecord::Base.locale
@@ -222,6 +238,7 @@ class ActiveRecordTest < ActiveSupport::TestCase
     ActiveRecord::Base.locale = :de
     assert_equal :de, ActiveRecord::Base.locale
     assert_equal :de, Parent.locale
+
     Parent.locale = :es
     assert_equal :es, ActiveRecord::Base.locale
     assert_equal :es, Parent.locale
@@ -236,11 +253,13 @@ class ActiveRecordTest < ActiveSupport::TestCase
 
   test "attribute loading goes by content locale and not global locale" do
     post = Post.create(:subject => 'foo')
-    assert_equal :en, ActiveRecord::Base.locale
+    assert_nil ActiveRecord::Base.locale
+
     ActiveRecord::Base.locale = :de
     assert_equal :en, I18n.locale
     post.update_attribute(:subject, 'foo [de]')
     assert_equal 'foo [de]', Post.first.subject
+
     ActiveRecord::Base.locale = :en
     assert_equal 'foo', Post.first.subject
   end
