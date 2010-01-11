@@ -107,7 +107,7 @@ module Globalize
         end.map(&:name)
       end
 
-      def respond_to?(method, *args)
+      def respond_to?(method, *args, &block)
         method.to_s =~ /^find_by_(\w+)$/ && translated_attribute_names.include?($1.to_sym) || super
       end
 
