@@ -428,6 +428,11 @@ class ActiveRecordTest < ActiveSupport::TestCase
   test "don't override existing translation class" do
     assert PostTranslation.new.respond_to?(:existing_method)
   end
+  
+  test "has_many and named scopes work with globalize" do
+    blog = Blog.create
+    assert_nothing_raised { blog.posts.foobar }
+  end
 end
 
 # TODO error checking for fields that exist in main table, don't exist in

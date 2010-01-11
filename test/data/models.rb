@@ -1,7 +1,7 @@
-require 'ruby2ruby'
-require 'parse_tree'
-require 'parse_tree_extensions'
-require 'pp'
+#require 'ruby2ruby'
+#require 'parse_tree'
+#require 'parse_tree_extensions'
+#require 'pp'
 
 class PostTranslation < ActiveRecord::Base
   def existing_method ; end
@@ -10,6 +10,7 @@ end
 class Post < ActiveRecord::Base
   translates :subject, :content
   validates_presence_of :subject
+  named_scope :foobar, :conditions => { :title => "foobar" }
 end
 
 class Blog < ActiveRecord::Base
