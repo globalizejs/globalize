@@ -63,3 +63,24 @@ Note that the ActiveRecord model @Post@ must already exist and have a @translate
 h2. Migration from Globalize
 
 See this script by Tomasz Stachewicz: http://gist.github.com/120867
+
+h2. Changes since Globalize2 v0.1.0
+
+* The association globalize_translations has been renamed to translations.
+
+h2. Alternative Solutions
+
+* "Veger's fork":http://github.com/veger/globalize2 - uses default AR schema for the default locale, delegates to the translations table for other locales only
+* "TranslatableColumns":http://github.com/iain/translatable_columns - have multiple languages of the same attribute in a model (Iain Hecker)
+* "localized_record":http://github.com/glennpow/localized_record - allows records to have localized attributes without any modifications to the database (Glenn Powell)
+* "model_translations":http://github.com/janne/model_translations - Minimal implementation of Globalize2 style model translations (Jan Andersson)
+
+h2. Related solutions
+
+* "globalize2_versioning":http://github.com/joshmh/globalize2_versioning - acts_as_versioned style versioning for Globalize2 (Joshua Harvey)
+* "i18n_multi_locales_validations":http://github.com/ZenCocoon/i18n_multi_locales_validations - multi-locales attributes validations to validates attributes from Globalize2 translations models (Sébastien Grosjean)
+* "Globalize2 Demo App":http://github.com/svenfuchs/globalize2-demo - demo application for Globalize2 (Sven Fuchs)</li>
+* "migrate_from_globalize1":http://gist.github.com/120867 - migrate model translations from Globalize1 to Globalize2 (Tomasz Stachewicz)</li>
+* "easy_globalize2_accessors":http://github.com/astropanic/easy_globalize2_accessors - easily access (read and write) globalize2-translated fields (astropanic, Tomasz Stachewicz)</li>
+* "globalize2-easy-translate":http://github.com/bsamman/globalize2-easy-translate - adds methods to easily access or set translated attributes to your model (bsamman)</li>
+* "batch_translations":http://github.com/alvarezrilla/batch_translations - allow saving multiple Globalize2 translations in the same request (Jose Alvarez Rilla)</li>
