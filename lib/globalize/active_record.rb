@@ -45,6 +45,7 @@ module Globalize
         options = attr_names.extract_options!
 
         class_inheritable_accessor :translation_class, :translated_attribute_names
+        class_inheritable_writer :required_attributes
         self.translation_class = ActiveRecord.build_translation_class(self, options)
         self.translated_attribute_names = attr_names.map(&:to_sym)
 
@@ -102,8 +103,8 @@ module Globalize
       end
 
       def required_attributes
-        validations = reflect_on_all_validations.select do |validation|
-          validation.macro == :validates_presence_of
+        @required_attributes ||= reflect_on_all_validations.select do |validation|
+          validation.macro == :validates_presence_of && translated_attribute_names.include?(validation.name.to_s)
         end.map(&:name)
       end
 
