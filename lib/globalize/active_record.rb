@@ -104,7 +104,7 @@ module Globalize
 
       def required_attributes
         @required_attributes ||= reflect_on_all_validations.select do |validation|
-          validation.macro == :validates_presence_of && translated_attribute_names.include?(validation.name.to_s)
+          validation.macro == :validates_presence_of && translated_attribute_names.include?(validation.name)
         end.map(&:name)
       end
 

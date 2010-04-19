@@ -49,3 +49,8 @@ end
 class Validatee < ActiveRecord::Base
   translates :string
 end
+
+class User < ActiveRecord::Base
+  translates :name
+  validates_presence_of :name, :email
+end

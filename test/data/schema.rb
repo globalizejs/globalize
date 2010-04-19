@@ -43,4 +43,13 @@ ActiveRecord::Schema.define do
     t.references :validatee
     t.string     :string
   end
+
+  create_table :users, :force => true do |t|
+    t.string :email
+  end
+
+  create_table :users_translations, :force => true do |t|
+    t.references :user
+    t.string     :name
+  end
 end

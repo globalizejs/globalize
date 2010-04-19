@@ -433,6 +433,15 @@ class ActiveRecordTest < ActiveSupport::TestCase
     blog = Blog.create
     assert_nothing_raised { blog.posts.foobar }
   end
+
+  test "required_attribuets don't include non-translated attributes" do
+    validations = [
+      stub(:name => :name, :macro => :validates_presence_of),
+      stub(:name => :email, :macro => :validates_presence_of)
+    ]
+    User.expects(:reflect_on_all_validations => validations)
+    assert_equal [:name], User.required_attributes
+  end
 end
 
 # TODO error checking for fields that exist in main table, don't exist in
