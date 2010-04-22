@@ -68,7 +68,7 @@ class ActiveRecordTest < ActiveSupport::TestCase
   test "update_attributes fails with invalid values" do
     post = Post.create(:subject => 'foo', :content => 'bar')
     assert !post.update_attributes(:subject => '')
-    assert_nil post.reload.attributes['subject']
+    assert_not_nil post.reload.attributes['subject']
     assert_equal 'foo', post.subject
   end
 
