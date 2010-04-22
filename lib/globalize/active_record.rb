@@ -125,7 +125,12 @@ module Globalize
         def find_first_by_translated_attr_and_locales(name, value)
           query = "#{translated_attr_name(name)} = ? AND #{translated_attr_name('locale')} IN (?)"
           locales = Globalize.fallbacks(locale || I18n.locale).map(&:to_s)
-          find(:first, :joins => :translations, :conditions => [query, value, locales])
+          find(
+            :first,
+            :joins => :translations,
+            :conditions => [query, value, locales],
+            :readonly => false
+          )
         end
 
         def translated_attr_accessor(name)
