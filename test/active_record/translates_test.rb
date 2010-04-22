@@ -84,4 +84,13 @@ class TranslatesTest < ActiveSupport::TestCase
     post.subject = 'title'
     assert_equal 'title', post.subject
   end
+  
+  test "find_by_xx records have writable attributes" do
+    Post.create :subject => "change me"
+    p = Post.find_by_subject("change me")
+    p.subject = "changed"
+    assert_nothing_raised(ActiveRecord::ReadOnlyRecord) do
+      p.save
+    end
+  end
 end
