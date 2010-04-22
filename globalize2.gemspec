@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Sven Fuchs, Joshua Harvey, Clemens Kofler"]
-  s.date = %q{2009-12-25}
+  s.authors = ["Sven Fuchs, Joshua Harvey, Clemens Kofler, John-Paul Bader"]
+  s.date = %q{2010-04-22}
   s.description = %q{Rails I18n: de-facto standard library for ActiveRecord data translation}
   s.email = %q{joshmh@gmail.com}
   s.extra_rdoc_files = [
@@ -33,7 +33,6 @@ Gem::Specification.new do |s|
      "lib/globalize/active_record/migration.rb",
      "lib/i18n/missing_translations_log_handler.rb",
      "lib/i18n/missing_translations_raise_handler.rb",
-     "notes.textile",
      "test/active_record/fallbacks_test.rb",
      "test/active_record/migration_test.rb",
      "test/active_record/sti_translated_test.rb",
@@ -51,7 +50,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/joshmh/globalize2}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Rails I18n: de-facto standard library for ActiveRecord data translation}
   s.test_files = [
     "test/active_record/fallbacks_test.rb",
