@@ -442,6 +442,22 @@ class ActiveRecordTest < ActiveSupport::TestCase
     User.expects(:reflect_on_all_validations => validations)
     assert_equal [:name], User.required_attributes
   end
+  
+  test "attribute_names returns translated and regular attribute names" do
+    Post.create :subject => "foo", :content => "bar"
+    assert_equal Post.last.attribute_names.sort, %w[blog_id content id subject]
+  end
+  
+  test "attributes returns translated and regular attributes" do
+    Post.create :subject => "foo", :content => "bar"
+    assert_equal Post.last.attributes.keys.sort, %w[blog_id content id subject]
+  end
+  
+  test "to_xml includes translated fields" do
+    Post.create :subject => "foo", :content => "bar"
+    assert Post.last.to_xml =~ /subject/
+    assert Post.last.to_xml =~ /content/
+  end
 end
 
 # TODO error checking for fields that exist in main table, don't exist in

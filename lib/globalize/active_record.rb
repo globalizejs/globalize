@@ -154,12 +154,24 @@ module Globalize
         @globalize ||= Adapter.new self
       end
 
+      def attributes
+        self.attribute_names.inject({}) do |attrs, name|
+          attrs[name] = read_attribute(name) ||
+            (globalize.fetch(I18n.locale, name) rescue nil)
+          attrs
+        end
+      end
+
       def attributes=(attributes, *args)
         if attributes.respond_to?(:delete) && locale = attributes.delete(:locale)
           self.class.with_locale(locale) { super }
         else
           super
         end
+      end
+
+      def attribute_names
+        translated_attribute_names.map(&:to_s) + super
       end
 
       def available_locales
