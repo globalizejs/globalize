@@ -30,7 +30,7 @@ begin
     s.email = "joshmh@gmail.com"
     s.homepage = "http://github.com/joshmh/globalize2"
     # s.rubyforge_project = ''
-    s.authors = ["Sven Fuchs, Joshua Harvey, Clemens Kofler"]
+    s.authors = ["Sven Fuchs, Joshua Harvey, Clemens Kofler, John-Paul Bader"]
     # s.add_development_dependency ''
   end
   Jeweler::GemcutterTasks.new
