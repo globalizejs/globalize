@@ -22,10 +22,10 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Ku wa mbere","Ku wa kabiri","Ku wa gatatu","Ku wa kane","Ku wa gatanu","Ku wa gatandatu","Ku cyumweru"],["mbe.","kab.","gat.","kan.","gat.","gat.","cyu."]],
+                days: [["Ku wa mbere","Ku wa kabiri","Ku wa gatatu","Ku wa kane","Ku wa gatanu","Ku wa gatandatu","Ku cyumweru"],["mbe.","kab.","gat.","kan.","gat.","gat.","cyu."],["mb","ka","ga","ka","ga","ga","cy"]],
                 months: [["Mutarama","Gashyantare","Werurwe","Mata","Gicurasi","Kamena","Nyakanga","Kanama","Nzeli","Ukwakira","Ugushyingo","Ukuboza",""],["Mut","Gas","Wer","Mat","Gic","Kam","Nya","Kan","Nze","Ukwa","Ugu","Uku",""]],
-                AM: "saa moya z.m.",
-                PM: "saa moya z.n.",
+                AM: ["saa moya z.m.","saa moya z.m.","SAA MOYA Z.M."],
+                PM: ["saa moya z.n.","saa moya z.n.","SAA MOYA Z.N."],
                 eras: [{"name":"AD","start":null,"offset":0}],
                 patterns: {
                     d: "M/d/yyyy",

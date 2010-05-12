@@ -17,7 +17,7 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["iCawa","uMvulo","uLwesibini","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]],
+                days: [["iCawa","uMvulo","uLwesibini","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],["Ca","Mv","Lb","Lt","Ln","Lh","Mg"]],
                 months: [["Mqungu","Mdumba","Kwindla","Tshazimpuzi","Canzibe","Silimela","Khala","Thupha","Msintsi","Dwarha","Nkanga","Mnga",""],["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]],
                 patterns: {
                     d: "yyyy/MM/dd",

@@ -17,7 +17,7 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Naattiinguja","Naggajjau","Aippiq","Pingatsiq","Sitammiq","Tallirmiq","Sivataarvik"],["Nat","Nag","Aip","Pi","Sit","Tal","Siv"]],
+                days: [["Naattiinguja","Naggajjau","Aippiq","Pingatsiq","Sitammiq","Tallirmiq","Sivataarvik"],["Nat","Nag","Aip","Pi","Sit","Tal","Siv"],["N","N","A","P","S","T","S"]],
                 months: [["Jaannuari","Viivvuari","Maatsi","Iipuri","Mai","Juuni","Julai","Aaggiisi","Sitipiri","Utupiri","Nuvipiri","Tisipiri",""],["Jan","Viv","Mas","Ipu","Mai","Jun","Jul","Agi","Sii","Uut","Nuv","Tis",""]],
                 patterns: {
                     d: "d/MM/yyyy",

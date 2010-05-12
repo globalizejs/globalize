@@ -23,10 +23,11 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"],["zo","ma","di","wo","do","vr","za"]],
+                firstDay: 1,
+                days: [["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"],["zo","ma","di","wo","do","vr","za"],["zo","ma","di","wo","do","vr","za"]],
                 months: [["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december",""],["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec",""]],
-                AM: "",
-                PM: "",
+                AM: null,
+                PM: null,
                 patterns: {
                     d: "d/MM/yyyy",
                     D: "dddd d MMMM yyyy",

@@ -23,11 +23,12 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["ájllek","mánnodahka","dijstahka","gasskavahkko","duorastahka","bierjjedahka","lávvodahka"],["ájl","mán","dis","gas","duor","bier","láv"]],
+                firstDay: 1,
+                days: [["ájllek","mánnodahka","dijstahka","gasskavahkko","duorastahka","bierjjedahka","lávvodahka"],["ájl","mán","dis","gas","duor","bier","láv"],["á","m","d","g","d","b","l"]],
                 months: [["ådåjakmánno","guovvamánno","sjnjuktjamánno","vuoratjismánno","moarmesmánno","biehtsemánno","sjnjilltjamánno","bårggemánno","ragátmánno","gålgådismánno","basádismánno","javllamánno",""],["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]],
                 monthsGenitive: [["ådåjakmáno","guovvamáno","sjnjuktjamáno","vuoratjismáno","moarmesmáno","biehtsemáno","sjnjilltjamáno","bårggemáno","ragátmáno","gålgådismáno","basádismáno","javllamáno",""],["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]],
-                AM: "",
-                PM: "",
+                AM: null,
+                PM: null,
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "MMMM d\u0027. b. \u0027yyyy",

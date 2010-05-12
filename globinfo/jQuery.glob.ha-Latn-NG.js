@@ -14,10 +14,10 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Lahadi","Litinin","Talata","Laraba","Alhamis","Juma\u0027a","Asabar"],["Lah","Lit","Tal","Lar","Alh","Jum","Asa"]],
+                days: [["Lahadi","Litinin","Talata","Laraba","Alhamis","Juma\u0027a","Asabar"],["Lah","Lit","Tal","Lar","Alh","Jum","Asa"],["L","L","T","L","A","J","A"]],
                 months: [["Januwaru","Febreru","Maris","Afrilu","Mayu","Yuni","Yuli","Agusta","Satumba","Oktocba","Nuwamba","Disamba",""],["Jan","Feb","Mar","Afr","May","Yun","Yul","Agu","Sat","Okt","Nuw","Dis",""]],
-                AM: "Safe",
-                PM: "Yamma",
+                AM: ["Safe","safe","SAFE"],
+                PM: ["Yamma","yamma","YAMMA"],
                 eras: [{"name":"AD","start":null,"offset":0}],
                 patterns: {
                     d: "d/M/yyyy",

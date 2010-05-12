@@ -156,7 +156,14 @@ $.extend({
         // You can use $.extend to copy an existing culture and provide only the differing values.
         // e.g. $.extend(true, {}, $.cultures.invariant, { ... })
         invariant: {
+            // A unique name for the culture in the form <language code>-<country/region code>
             name: "invariant",
+            // the name of the culture in the english language
+            englishName: "Invariant",
+            // the name of the culture in its own language
+            nativeName: "Invariant",
+            // whether the culture uses right-to-left text
+            isRTL: false,
             numberFormat: {
                 // [negativePattern]
                 // Note, numberFormat.pattern has no 'positivePattern' unlike percent and currency,
@@ -213,13 +220,21 @@ $.extend({
             },
             calendars: {
                 standard: {
+                    // name that identifies the type of calendar this is
                     name: "Gregorian_USEnglish",
+                    // separator of parts of a date (e.g. '/' in 11/05/1955)
                     '/': "/",
+                    // separator of parts of a time (e.g. ':' in 05:44 PM)
+                    ':': ":",
+                    // the first day of the week (0 = Sunday, 1 = Monday, etc)
+                    firstDay: 0,
                     days: [
                         // full day names
                         ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
                         // abbreviated day names
                         ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+                        // shortest day names
+                        ["Su","Mo","Tu","We","Th","Fr","Sa"]
                     ],
                     months: [
                         // full month names (13 months for lunar calendards -- 13th month should be "" if not lunar)
@@ -227,8 +242,13 @@ $.extend({
                         // abbreviated month names
                         ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]
                     ],
-                    AM: "AM",
-                    PM: "PM",
+                    // AM and PM designators in one of these forms:
+                    // The usual view, and the upper and lower case versions
+                    //      [standard,lowercase,uppercase] 
+                    // The culture does not use AM or PM (likely all standard date formats use 24 hour time)
+                    //      null
+                    AM: ["AM", "am", "AM"],
+                    PM: ["PM", "pm", "PM"],
                     eras: [
                         // eras in reverse chronological order.
                         // name: the name of the era in this culture (e.g. A.D., C.E.)
@@ -531,15 +551,27 @@ function getEraYear(date, cal, era, sortable) {
 }
 
 function getDayIndex(cal, value, abbr) {
-    var days = cal.days,
+    var ret,
+        days = cal.days,
         upperDays = cal._upperDays;
     if ( !upperDays ) {
         cal._upperDays = upperDays = [
             toUpperArray( days[0] ),
-            toUpperArray( days[1] )
+            toUpperArray( days[1] ),
+            toUpperArray( days[2] )
         ];
     }
-    return $.inArray( toUpper( value ), upperDays[ abbr ? 1 : 0 ] );
+    value = toUpper( value );
+    if ( abbr ) {
+        ret = $.inArray( value, upperDays[1] );
+        if ( ret === -1 ) {
+            ret = $.inArray( value, upperDays[2] );
+        }
+    }
+    else {
+        ret = $.inArray( value, upperDays[0] );
+    }
+    return ret;
 }
 
 function getMonthIndex(cal, value, abbr) {
@@ -785,9 +817,10 @@ function parseExact(value, format, culture) {
                     break;
                 case 'tt': case 't':
                     // AM/PM designator.
-                    var upperToken = matchGroup.toUpperCase();
-                    pmHour = upperToken === cal.PM.toUpperCase();
-                    if ( !pmHour && (upperToken !== cal.AM.toUpperCase()) ) return null;
+                    // see if it is standard, upper, or lower case PM. If not, ensure it is at least one of
+                    // the AM tokens. If not, fail the parse for this format.
+                    pmHour = cal.PM && ( matchGroup === cal.PM[0] || matchGroup === cal.PM[1] || matchGroup === cal.PM[2] );
+                    if ( !pmHour && ( !cal.AM || (matchGroup !== cal.AM[0] && matchGroup !== cal.AM[1] && matchGroup !== cal.AM[2]) ) ) return null;
                     break;
                 case 'f':
                     // Deciseconds.
@@ -1058,7 +1091,7 @@ function formatDate(value, format, culture) {
                 // One character am/pm indicator ("a" or "p")
             case "tt":
                 // Multicharacter am/pm indicator
-                part = value.getHours() < 12 ? cal.AM : cal.PM;
+                part = value.getHours() < 12 ? (cal.AM ? cal.AM[0] : " ") : (cal.PM ? cal.PM[0] : " ");
                 ret.push( clength === 1 ? part.charAt( 0 ) : part );
                 break;
             case "f":

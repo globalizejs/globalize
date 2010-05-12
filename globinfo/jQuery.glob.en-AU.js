@@ -14,6 +14,7 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
+                firstDay: 1,
                 patterns: {
                     d: "d/MM/yyyy",
                     D: "dddd, d MMMM yyyy",

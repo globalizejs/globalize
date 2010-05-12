@@ -13,7 +13,7 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Jumapili","Jumatatu","Jumanne","Jumatano","Alhamisi","Ijumaa","Jumamosi"],["Jumap.","Jumat.","Juman.","Jumat.","Alh.","Iju.","Jumam."]],
+                days: [["Jumapili","Jumatatu","Jumanne","Jumatano","Alhamisi","Ijumaa","Jumamosi"],["Jumap.","Jumat.","Juman.","Jumat.","Alh.","Iju.","Jumam."],["P","T","N","T","A","I","M"]],
                 months: [["Januari","Februari","Machi","Aprili","Mei","Juni","Julai","Agosti","Septemba","Oktoba","Novemba","Decemba",""],["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ago","Sep","Okt","Nov","Dec",""]],
                 patterns: {
                     d: "M/d/yyyy",

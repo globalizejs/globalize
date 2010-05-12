@@ -17,7 +17,7 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Sondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrydag","Saterdag"],["Son","Maan","Dins","Woen","Dond","Vry","Sat"]],
+                days: [["Sondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrydag","Saterdag"],["Son","Maan","Dins","Woen","Dond","Vry","Sat"],["So","Ma","Di","Wo","Do","Vr","Sa"]],
                 months: [["Januarie","Februarie","Maart","April","Mei","Junie","Julie","Augustus","September","Oktober","November","Desember",""],["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nov","Des",""]],
                 patterns: {
                     d: "yyyy/MM/dd",

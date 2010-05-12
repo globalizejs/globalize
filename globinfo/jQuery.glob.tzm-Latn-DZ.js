@@ -22,10 +22,11 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["Acer","Arime","Aram","Ahad","Amhadh","Sem","Sedh"],["Ace","Ari","Ara","Aha","Amh","Sem","Sed"]],
+                firstDay: 6,
+                days: [["Acer","Arime","Aram","Ahad","Amhadh","Sem","Sedh"],["Ace","Ari","Ara","Aha","Amh","Sem","Sed"],["Ac","Ar","Ar","Ah","Am","Se","Se"]],
                 months: [["Yenayer","Furar","Maghres","Yebrir","Mayu","Yunyu","Yulyu","Ghuct","Cutenber","Ktuber","Wambir","Dujanbir",""],["Yen","Fur","Mag","Yeb","May","Yun","Yul","Ghu","Cut","Ktu","Wam","Duj",""]],
-                AM: "",
-                PM: "",
+                AM: null,
+                PM: null,
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM, yyyy",

@@ -23,10 +23,11 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],["sø","ma","ti","on","to","fr","lø"]],
+                firstDay: 1,
+                days: [["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],["sø","ma","ti","on","to","fr","lø"],["sø","ma","ti","on","to","fr","lø"]],
                 months: [["januar","februar","marts","april","maj","juni","juli","august","september","oktober","november","december",""],["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec",""]],
-                AM: "",
-                PM: "",
+                AM: null,
+                PM: null,
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "d. MMMM yyyy",

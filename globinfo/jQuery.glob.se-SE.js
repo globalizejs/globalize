@@ -23,11 +23,12 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["sotnabeaivi","mánnodat","disdat","gaskavahkku","duorastat","bearjadat","lávvardat"],["sotn","mán","dis","gask","duor","bear","láv"]],
+                firstDay: 1,
+                days: [["sotnabeaivi","mánnodat","disdat","gaskavahkku","duorastat","bearjadat","lávvardat"],["sotn","mán","dis","gask","duor","bear","láv"],["s","m","d","g","d","b","l"]],
                 months: [["ođđajagemánnu","guovvamánnu","njukčamánnu","cuoŋománnu","miessemánnu","geassemánnu","suoidnemánnu","borgemánnu","čakčamánnu","golggotmánnu","skábmamánnu","juovlamánnu",""],["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]],
                 monthsGenitive: [["ođđajagimánu","guovvamánu","njukčamánu","cuoŋománu","miessemánu","geassemánu","suoidnemánu","borgemánu","čakčamánu","golggotmánu","skábmamánu","juovlamánu",""],["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]],
-                AM: "",
-                PM: "",
+                AM: null,
+                PM: null,
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "MMMM d\u0027. b. \u0027yyyy",

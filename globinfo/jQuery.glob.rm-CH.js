@@ -20,10 +20,11 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["dumengia","glindesdi","mardi","mesemna","gievgia","venderdi","sonda"],["du","gli","ma","me","gie","ve","so"]],
+                firstDay: 1,
+                days: [["dumengia","glindesdi","mardi","mesemna","gievgia","venderdi","sonda"],["du","gli","ma","me","gie","ve","so"],["du","gli","ma","me","gie","ve","so"]],
                 months: [["schaner","favrer","mars","avrigl","matg","zercladur","fanadur","avust","settember","october","november","december",""],["schan","favr","mars","avr","matg","zercl","fan","avust","sett","oct","nov","dec",""]],
-                AM: "",
-                PM: "",
+                AM: null,
+                PM: null,
                 eras: [{"name":"s. Cr.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",

@@ -14,10 +14,11 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Dé Domhnaigh","Dé Luain","Dé Máirt","Dé Céadaoin","Déardaoin","Dé hAoine","Dé Sathairn"],["Domh","Luan","Máir","Céad","Déar","Aoi","Sath"]],
+                firstDay: 1,
+                days: [["Dé Domhnaigh","Dé Luain","Dé Máirt","Dé Céadaoin","Déardaoin","Dé hAoine","Dé Sathairn"],["Domh","Luan","Máir","Céad","Déar","Aoi","Sath"],["Do","Lu","Má","Cé","De","Ao","Sa"]],
                 months: [["Eanáir","Feabhra","Márta","Aibreán","Bealtaine","Meitheamh","Iúil","Lúnasa","Meán Fómhair","Deireadh Fómhair","Samhain","Nollaig",""],["Ean","Feabh","Már","Aib","Bealt","Meith","Iúil","Lún","M.Fómh","D.Fómh","Samh","Noll",""]],
-                AM: "r.n.",
-                PM: "i.n.",
+                AM: ["r.n.","r.n.","R.N."],
+                PM: ["i.n.","i.n.","I.N."],
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "d MMMM yyyy",

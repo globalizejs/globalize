@@ -17,10 +17,11 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Dydd Sul","Dydd Llun","Dydd Mawrth","Dydd Mercher","Dydd Iau","Dydd Gwener","Dydd Sadwrn"],["Sul","Llun","Maw","Mer","Iau","Gwe","Sad"]],
+                firstDay: 1,
+                days: [["Dydd Sul","Dydd Llun","Dydd Mawrth","Dydd Mercher","Dydd Iau","Dydd Gwener","Dydd Sadwrn"],["Sul","Llun","Maw","Mer","Iau","Gwe","Sad"],["Su","Ll","Ma","Me","Ia","Gw","Sa"]],
                 months: [["Ionawr","Chwefror","Mawrth","Ebrill","Mai","Mehefin","Gorffennaf","Awst","Medi","Hydref","Tachwedd","Rhagfyr",""],["Ion","Chwe","Maw","Ebr","Mai","Meh","Gor","Aws","Med","Hyd","Tach","Rhag",""]],
-                AM: "a.m.",
-                PM: "p.m.",
+                AM: ["a.m.","a.m.","A.M."],
+                PM: ["p.m.","p.m.","P.M."],
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",

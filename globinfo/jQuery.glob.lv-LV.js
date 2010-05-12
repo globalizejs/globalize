@@ -24,11 +24,12 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': ".",
-                days: [["svētdiena","pirmdiena","otrdiena","trešdiena","ceturtdiena","piektdiena","sestdiena"],["sv","pr","ot","tr","ce","pk","se"]],
+                firstDay: 1,
+                days: [["svētdiena","pirmdiena","otrdiena","trešdiena","ceturtdiena","piektdiena","sestdiena"],["sv","pr","ot","tr","ce","pk","se"],["sv","pr","ot","tr","ce","pk","se"]],
                 months: [["janvāris","februāris","marts","aprīlis","maijs","jūnijs","jūlijs","augusts","septembris","oktobris","novembris","decembris",""],["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]],
                 monthsGenitive: [["janvārī","februārī","martā","aprīlī","maijā","jūnijā","jūlijā","augustā","septembrī","oktobrī","novembrī","decembrī",""],["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]],
-                AM: "",
-                PM: "",
+                AM: null,
+                PM: null,
                 patterns: {
                     d: "yyyy.MM.dd.",
                     D: "dddd, yyyy\u0027. gada \u0027d. MMMM",

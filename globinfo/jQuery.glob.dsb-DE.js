@@ -23,11 +23,12 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': ". ",
-                days: [["njeźela","ponjeźele","wałtora","srjoda","stwortk","pětk","sobota"],["nje","pon","wał","srj","stw","pět","sob"]],
+                firstDay: 1,
+                days: [["njeźela","ponjeźele","wałtora","srjoda","stwortk","pětk","sobota"],["nje","pon","wał","srj","stw","pět","sob"],["n","p","w","s","s","p","s"]],
                 months: [["januar","februar","měrc","apryl","maj","junij","julij","awgust","september","oktober","nowember","december",""],["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]],
                 monthsGenitive: [["januara","februara","měrca","apryla","maja","junija","julija","awgusta","septembra","oktobra","nowembra","decembra",""],["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]],
-                AM: "",
-                PM: "",
+                AM: null,
+                PM: null,
                 eras: [{"name":"po Chr.","start":null,"offset":0}],
                 patterns: {
                     d: "d. M. yyyy",

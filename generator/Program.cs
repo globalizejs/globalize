@@ -17,6 +17,7 @@ namespace Globalization {
         public string name = "";
         public string englishName;
         public string nativeName;
+        public bool isRTL;
         public NumberFormatInfo numberFormat;
         public Dictionary<String, DateFormatInfo> calendars;
         public static Dictionary<String, Object> InvariantGlobInfo;
@@ -33,6 +34,7 @@ namespace Globalization {
                 name = String.IsNullOrEmpty(culture.Name) ? "invariant" : culture.Name,
                 englishName = String.IsNullOrEmpty(culture.Name) ? "invariant" : culture.EnglishName,
                 nativeName = String.IsNullOrEmpty(culture.Name) ? "invariant" : culture.NativeName,
+                isRTL = culture.TextInfo.IsRightToLeft,
                 numberFormat = GetNumberFormatInfo(culture),
                 calendars = GetCalendars(culture)
             };
@@ -134,6 +136,10 @@ namespace Globalization {
             };
         }
 
+        public static string[] GetAMPMDesignators(CultureInfo culture, string ampm) {
+            return String.IsNullOrEmpty(ampm) ? null : new string[] { ampm, culture.TextInfo.ToLower(ampm), culture.TextInfo.ToUpper(ampm) };
+        }
+
         public static GlobalizationInfo.DateFormatInfo GetDateTimeFormatInfo(CultureInfo culture, string calendarName) {
             var df = culture.DateTimeFormat;
             var info = new GlobalizationInfo.DateFormatInfo {
@@ -146,14 +152,16 @@ namespace Globalization {
                     df.MonthGenitiveNames,
                     df.AbbreviatedMonthGenitiveNames
                 },
-                AM = df.AMDesignator,
+                firstDay = (int) df.FirstDayOfWeek,
                 dateSeparator = df.DateSeparator,
-                days = new string[][] { df.DayNames, df.AbbreviatedDayNames },
+                timeSeparator = df.TimeSeparator,
+                days = new string[][] { df.DayNames, df.AbbreviatedDayNames, df.ShortestDayNames },
                 eras = GetEraInfo(culture),
-                PM = df.PMDesignator,
                 twoDigitYearMax = df.Calendar.TwoDigitYearMax,
                 patterns = GetPatterns(df)
             };
+            info.AM = GetAMPMDesignators(culture, df.AMDesignator);
+            info.PM = GetAMPMDesignators(culture, df.PMDesignator);
             if (df.Calendar != null) {
                 var type = df.Calendar.GetType();
                 if (type == typeof(HijriCalendar)) {
@@ -373,6 +381,9 @@ namespace Globalization {
                 else if (pair.Key.Equals("dateSeparator")) {
                     sb.AppendFormat("{0}'/': {1}", padding, _jss.Serialize(pair.Value));
                 }
+                else if (pair.Key.Equals("timeSeparator")) {
+                    sb.AppendFormat("{0}':': {1}", padding, _jss.Serialize(pair.Value));
+                }
                 else {
                     sb.AppendFormat("{0}{1}: {2}", padding, pair.Key, _jss.Serialize(pair.Value));
                 }
@@ -475,11 +486,13 @@ namespace Globalization {
         public class DateFormatInfo {
             public string name;
             public string dateSeparator;
+            public string timeSeparator;
+            public int firstDay;
             public string[][] days;
             public string[][] months;
             public string[][] monthsGenitive;
-            public string AM;
-            public string PM;
+            public string[] AM;
+            public string[] PM;
             public EraInfo[] eras;
             public int twoDigitYearMax;
             public Dictionary<String, String> patterns;

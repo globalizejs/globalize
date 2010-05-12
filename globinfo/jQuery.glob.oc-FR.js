@@ -22,11 +22,12 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["dimenge","diluns","dimars","dimècres","dijòus","divendres","dissabte"],["dim.","lun.","mar.","mèc.","jòu.","ven.","sab."]],
+                firstDay: 1,
+                days: [["dimenge","diluns","dimars","dimècres","dijòus","divendres","dissabte"],["dim.","lun.","mar.","mèc.","jòu.","ven.","sab."],["di","lu","ma","mè","jò","ve","sa"]],
                 months: [["genier","febrier","març","abril","mai","junh","julh","agost","setembre","octobre","novembre","desembre",""],["gen.","feb.","mar.","abr.","mai.","jun.","jul.","ag.","set.","oct.","nov.","des.",""]],
                 monthsGenitive: [["de genier","de febrier","de març","d\u0027abril","de mai","de junh","de julh","d\u0027agost","de setembre","d\u0027octobre","de novembre","de desembre",""],["gen.","feb.","mar.","abr.","mai.","jun.","jul.","ag.","set.","oct.","nov.","des.",""]],
-                AM: "",
-                PM: "",
+                AM: null,
+                PM: null,
                 eras: [{"name":"après Jèsus-Crist","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",

@@ -22,10 +22,11 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte"],["dg.","dl.","dt.","dc.","dj.","dv.","ds."]],
+                firstDay: 1,
+                days: [["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte"],["dg.","dl.","dt.","dc.","dj.","dv.","ds."],["dg","dl","dt","dc","dj","dv","ds"]],
                 months: [["gener","febrer","març","abril","maig","juny","juliol","agost","setembre","octubre","novembre","desembre",""],["gen","feb","març","abr","maig","juny","jul","ag","set","oct","nov","des",""]],
-                AM: "",
-                PM: "",
+                AM: null,
+                PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",

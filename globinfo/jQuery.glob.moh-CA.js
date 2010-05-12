@@ -17,7 +17,7 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Awentatokentì:ke","Awentataón\u0027ke","Ratironhia\u0027kehronòn:ke","Soséhne","Okaristiiáhne","Ronwaia\u0027tanentaktonhne","Entákta"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]],
+                days: [["Awentatokentì:ke","Awentataón\u0027ke","Ratironhia\u0027kehronòn:ke","Soséhne","Okaristiiáhne","Ronwaia\u0027tanentaktonhne","Entákta"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],["S","M","T","W","T","F","S"]],
                 months: [["Tsothohrkó:Wa","Enniska","Enniskó:Wa","Onerahtókha","Onerahtohkó:Wa","Ohiari:Ha","Ohiarihkó:Wa","Seskéha","Seskehkó:Wa","Kenténha","Kentenhkó:Wa","Tsothóhrha",""],["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]],
                 patterns: {
                     d: "M/d/yyyy",

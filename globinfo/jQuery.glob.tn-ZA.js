@@ -17,7 +17,7 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Latshipi","Mosupologo","Labobedi","Laboraro","Labone","Labotlhano","Lamatlhatso"],["Ltp.","Mos.","Lbd.","Lbr.","Lbn.","Lbt.","Lmt."]],
+                days: [["Latshipi","Mosupologo","Labobedi","Laboraro","Labone","Labotlhano","Lamatlhatso"],["Ltp.","Mos.","Lbd.","Lbr.","Lbn.","Lbt.","Lmt."],["Lp","Ms","Lb","Lr","Ln","Lt","Lm"]],
                 months: [["Ferikgong","Tlhakole","Mopitloe","Moranang","Motsheganong","Seetebosigo","Phukwi","Phatwe","Lwetse","Diphalane","Ngwanatsele","Sedimothole",""],["Fer.","Tlhak.","Mop.","Mor.","Motsh.","Seet.","Phukw.","Phatw.","Lwets.","Diph.","Ngwan.","Sed.",""]],
                 patterns: {
                     d: "yyyy/MM/dd",

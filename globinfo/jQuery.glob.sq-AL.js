@@ -23,10 +23,11 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["e diel","e hënë","e martë","e mërkurë","e enjte","e premte","e shtunë"],["Die","Hën","Mar","Mër","Enj","Pre","Sht"]],
+                firstDay: 1,
+                days: [["e diel","e hënë","e martë","e mërkurë","e enjte","e premte","e shtunë"],["Die","Hën","Mar","Mër","Enj","Pre","Sht"],["Di","Hë","Ma","Më","En","Pr","Sh"]],
                 months: [["janar","shkurt","mars","prill","maj","qershor","korrik","gusht","shtator","tetor","nëntor","dhjetor",""],["Jan","Shk","Mar","Pri","Maj","Qer","Kor","Gsh","Sht","Tet","Nën","Dhj",""]],
-                AM: "PD",
-                PM: "MD",
+                AM: ["PD","pd","PD"],
+                PM: ["MD","md","MD"],
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "yyyy-MM-dd",

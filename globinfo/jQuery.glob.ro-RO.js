@@ -24,10 +24,11 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': ".",
-                days: [["duminică","luni","marţi","miercuri","joi","vineri","sâmbătă"],["D","L","Ma","Mi","J","V","S"]],
+                firstDay: 1,
+                days: [["duminică","luni","marţi","miercuri","joi","vineri","sâmbătă"],["D","L","Ma","Mi","J","V","S"],["D","L","Ma","Mi","J","V","S"]],
                 months: [["ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie",""],["ian.","feb.","mar.","apr.","mai.","iun.","iul.","aug.","sep.","oct.","nov.","dec.",""]],
-                AM: "",
-                PM: "",
+                AM: null,
+                PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "d MMMM yyyy",

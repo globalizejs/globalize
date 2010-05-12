@@ -97,6 +97,7 @@ jQuery(function($) {
 
         $("#englishName").text($.culture.englishName);
         $("#nativeName").text($.culture.nativeName);
+        $("#isRTL").text($.culture.isRTL ? "YES" : "no");
 
         $("#infonumber").empty();
         $("#infonumbertmpl").render($.culture.numberFormat).appendTo("#infonumber");
