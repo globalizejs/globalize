@@ -178,8 +178,8 @@ $.extend({
                 '-': "-",
                 percent: {
                     // [negativePattern, positivePattern]
-                    //     positivePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
-                    //     negativePattern: one of "n %|n%|%n|% n"
+                    //     negativePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
+                    //     positivePattern: one of "n %|n%|%n|% n"
                     pattern: ["-n %","n %"], 
                     // number of decimal places normally shown
                     decimals: 2,
@@ -515,7 +515,7 @@ function toUpper(value) {
 }
 
 function toUpperArray(arr) {
-    return $.map(function(e) {
+    return $.map(arr, function(e) {
         return toUpper(e);
     });
 }
@@ -539,7 +539,7 @@ function getDayIndex(cal, value, abbr) {
             toUpperArray( days[1] )
         ];
     }
-    return $.inArray( upperDays[ abbr ? 1 : 0 ], toUpper( value ) );
+    return $.inArray( toUpper( value ), upperDays[ abbr ? 1 : 0 ] );
 }
 
 function getMonthIndex(cal, value, abbr) {
@@ -558,9 +558,9 @@ function getMonthIndex(cal, value, abbr) {
         ];
     }
     value = toUpper( value );
-    var i = indexOf(abbr ? upperMonths[1] : upperMonths[0], value);
+    var i = $.inArray( value, abbr ? upperMonths[1] : upperMonths[0] );
     if (i < 0) {
-        i = indexOf(abbr ? upperMonthsGen[1] : upperMonthsGen[0], value);
+        i = $.inArray( value, abbr ? upperMonthsGen[1] : upperMonthsGen[0] );
     }
     return i;
 }
@@ -728,13 +728,11 @@ function parseExact(value, format, culture) {
     if (match === null) {
         return null;
     }
-    
     // found a date format that matches the input.
     var groups = parseInfo.groups,
         era = null, year = null, month = null, date = null, weekDay = null,
         hour = 0, hourOffset, min = 0, sec = 0, msec = 0, tzMinOffset = null,
         pmHour = false;
-    
     // iterate the format groups to extract and set the date fields.
     for ( var j = 0, jl = groups.length; j < jl; j++ ) {
         var matchGroup = match[ j + 1 ];
