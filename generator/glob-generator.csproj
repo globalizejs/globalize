@@ -49,12 +49,16 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="class.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UmAlQuraCalendar.js" />
     <EmbeddedResource Include="HijriCalendar.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="datepicker\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>

@@ -150,154 +150,177 @@ $.extend({
             });
         }
         return date || null;
-    },
-    cultures: {
-        // When defining a culture, all fields are required except the ones stated as optional.
-        // You can use $.extend to copy an existing culture and provide only the differing values.
-        // e.g. $.extend(true, {}, $.cultures.invariant, { ... })
-        invariant: {
-            // A unique name for the culture in the form <language code>-<country/region code>
-            name: "invariant",
-            // the name of the culture in the english language
-            englishName: "Invariant",
-            // the name of the culture in its own language
-            nativeName: "Invariant",
-            // whether the culture uses right-to-left text
-            isRTL: false,
-            numberFormat: {
-                // [negativePattern]
-                // Note, numberFormat.pattern has no 'positivePattern' unlike percent and currency,
-                // but is still defined as an array for consistency with them.
-                //  negativePattern: one of "(n)|-n|- n|n-|n -"
-                pattern: ["-n"], 
-                // number of decimal places normally shown
-                decimals: 2,
-                // string that separates number groups, as in 1,000,000
-                ',': ",",
-                // string that separates a number from the fractional portion, as in 1.99
-                '.': ".",
-                // array of numbers indicating the size of each number group.
-                // TODO: more detailed description and example
-                groupSizes: [3],
-                // symbol used for positive numbers
-                '+': "+",
-                // symbol used for negative numbers
-                '-': "-",
-                percent: {
-                    // [negativePattern, positivePattern]
-                    //     negativePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
-                    //     positivePattern: one of "n %|n%|%n|% n"
-                    pattern: ["-n %","n %"], 
-                    // number of decimal places normally shown
-                    decimals: 2,
-                    // array of numbers indicating the size of each number group.
-                    // TODO: more detailed description and example
-                    groupSizes: [3],
-                    // string that separates number groups, as in 1,000,000
-                    ',': ",",
-                    // string that separates a number from the fractional portion, as in 1.99
-                    '.': ".",
-                    // symbol used to represent a percentage
-                    symbol: "%"
-                },
-                currency: {
-                    // [negativePattern, positivePattern]
-                    //     negativePattern: one of "($n)|-$n|$-n|$n-|(n$)|-n$|n-$|n$-|-n $|-$ n|n $-|$ n-|$ -n|n- $|($ n)|(n $)"
-                    //     positivePattern: one of "$n|n$|$ n|n $"
-                    pattern: ["($n)","$n"],
-                    // number of decimal places normally shown
-                    decimals: 2,
-                    // array of numbers indicating the size of each number group.
-                    // TODO: more detailed description and example
-                    groupSizes: [3],
-                    // string that separates number groups, as in 1,000,000
-                    ',': ",",
-                    // string that separates a number from the fractional portion, as in 1.99
-                    '.': ".",
-                    // symbol used to represent a percentage
-                    symbol: "¤"
-                }
-            },
-            calendars: {
-                standard: {
-                    // name that identifies the type of calendar this is
-                    name: "Gregorian_USEnglish",
-                    // separator of parts of a date (e.g. '/' in 11/05/1955)
-                    '/': "/",
-                    // separator of parts of a time (e.g. ':' in 05:44 PM)
-                    ':': ":",
-                    // the first day of the week (0 = Sunday, 1 = Monday, etc)
-                    firstDay: 0,
-                    days: [
-                        // full day names
-                        ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-                        // abbreviated day names
-                        ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
-                        // shortest day names
-                        ["Su","Mo","Tu","We","Th","Fr","Sa"]
-                    ],
-                    months: [
-                        // full month names (13 months for lunar calendards -- 13th month should be "" if not lunar)
-                        ["January","February","March","April","May","June","July","August","September","October","November","December",""],
-                        // abbreviated month names
-                        ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]
-                    ],
-                    // AM and PM designators in one of these forms:
-                    // The usual view, and the upper and lower case versions
-                    //      [standard,lowercase,uppercase] 
-                    // The culture does not use AM or PM (likely all standard date formats use 24 hour time)
-                    //      null
-                    AM: ["AM", "am", "AM"],
-                    PM: ["PM", "pm", "PM"],
-                    eras: [
-                        // eras in reverse chronological order.
-                        // name: the name of the era in this culture (e.g. A.D., C.E.)
-                        // start: when the era starts in ticks, null if it is the earliest supported era.
-                        // offset: offset in years from gregorian calendar
-                        {"name":"A.D.","start":null,"offset":0}
-                    ],
-                    // when a two digit year is given, it will never be parsed as a four digit
-                    // year great than this year (in the appropriate era for the culture)
-                    twoDigitYearMax: 2029,
-                    // set of predefined date and time patterns used by the culture
-                    // these represent the format someone in this culture would expect
-                    // to see given the portions of the date that are shown.
-                    patterns: {
-                        d: "MM/dd/yyyy",
-                        D: "dddd, dd MMMM yyyy",
-                        t: "HH:mm",
-                        T: "HH:mm:ss",
-                        f: "dddd, dd MMMM yyyy HH:mm",
-                        F: "dddd, dd MMMM yyyy HH:mm:ss",
-                        M: "MMMM dd",
-                        Y: "yyyy MMMM",
-                        // S is a sortable format that does not vary by culture
-                        S: "yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss"
-                    }
-                    // optional fields:
-                    /*
-                    monthsGenitive:
-                        Same as months but used when the day preceeds the month.
-                        Omit if the culture has no genitive distinction in month names.
-                        For an explaination of genitive months, see http://blogs.msdn.com/michkap/archive/2004/12/25/332259.aspx
-                    convert:
-                        Allows for the support of non-gregorian based calendars. This 'convert' object is used to
-                        to convert a date to and from a gregorian date to handle parsing and formatting.
-                        The two functions:
-                            fromGregorian(date)
-                                Given the date as a parameter, return an array with parts [year, month, day]
-                                corresponding to the non-gregorian based year, month, and day for the calendar.
-                            toGregorian(year, month, day)
-                                Given the non-gregorian year, month, and day, return a new Date() object 
-                                set to the corresponding date in the gregorian calendar.
-                    */
-                }
-            }
-        }
     }
 });
-var invariant = $.culture = $.cultures.invariant;
-invariant.calendar = invariant.calendars.standard;
+
+// 1.    When defining a culture, all fields are required except the ones stated as optional.
+// 2.    You can use $.extend to copy an existing culture and provide only the differing values,
+//       a good practice since most cultures do not differ too much from the invariant culture.
+//       DO use the invariant culture if you do this, as it is the only one that definitely
+//       exists.
+// 3.    Other plugins may add to the culture information provided by extending it. However,
+//       that plugin may extend it prior to the culture being defined, or after. Therefore,
+//       do not overwrite values that already exist when defining the baseline for a culture,
+//       by extending your culture object with the existing one.
+// 4.    Each culture should have a ".calendars" object with at least one calendar named "standard"
+//       which serves as the default calendar in use by that culture.
+// 5.    Each culture should have a ".calendar" object which is the current calendar being used,
+//       it may be dynamically changed at any time to one of the calendars in ".calendars".
+
+// To define a culture, use the following pattern, which handles defining the culture based
+// on the invariant culture, extending it with the existing culture if it exists, and defining
+// it if it does not exist.
+// $.cultures.foo = $.extend(true, $.extend(true, {}, $.cultures.invariant, fooCulture), $.cultures.foo)
+
+var cultures = $.cultures = $.cultures || {};
+var invariant = cultures.invariant = $.extend(true, {
+    // A unique name for the culture in the form <language code>-<country/region code>
+    name: "invariant",
+    // the name of the culture in the english language
+    englishName: "Invariant",
+    // the name of the culture in its own language
+    nativeName: "Invariant",
+    // whether the culture uses right-to-left text
+    isRTL: false,
+    numberFormat: {
+        // [negativePattern]
+        // Note, numberFormat.pattern has no 'positivePattern' unlike percent and currency,
+        // but is still defined as an array for consistency with them.
+        //  negativePattern: one of "(n)|-n|- n|n-|n -"
+        pattern: ["-n"], 
+        // number of decimal places normally shown
+        decimals: 2,
+        // string that separates number groups, as in 1,000,000
+        ',': ",",
+        // string that separates a number from the fractional portion, as in 1.99
+        '.': ".",
+        // array of numbers indicating the size of each number group.
+        // TODO: more detailed description and example
+        groupSizes: [3],
+        // symbol used for positive numbers
+        '+': "+",
+        // symbol used for negative numbers
+        '-': "-",
+        percent: {
+            // [negativePattern, positivePattern]
+            //     negativePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
+            //     positivePattern: one of "n %|n%|%n|% n"
+            pattern: ["-n %","n %"], 
+            // number of decimal places normally shown
+            decimals: 2,
+            // array of numbers indicating the size of each number group.
+            // TODO: more detailed description and example
+            groupSizes: [3],
+            // string that separates number groups, as in 1,000,000
+            ',': ",",
+            // string that separates a number from the fractional portion, as in 1.99
+            '.': ".",
+            // symbol used to represent a percentage
+            symbol: "%"
+        },
+        currency: {
+            // [negativePattern, positivePattern]
+            //     negativePattern: one of "($n)|-$n|$-n|$n-|(n$)|-n$|n-$|n$-|-n $|-$ n|n $-|$ n-|$ -n|n- $|($ n)|(n $)"
+            //     positivePattern: one of "$n|n$|$ n|n $"
+            pattern: ["($n)","$n"],
+            // number of decimal places normally shown
+            decimals: 2,
+            // array of numbers indicating the size of each number group.
+            // TODO: more detailed description and example
+            groupSizes: [3],
+            // string that separates number groups, as in 1,000,000
+            ',': ",",
+            // string that separates a number from the fractional portion, as in 1.99
+            '.': ".",
+            // symbol used to represent a percentage
+            symbol: "¤"
+        }
+    },
+    calendars: {
+        standard: {
+            // name that identifies the type of calendar this is
+            name: "Gregorian_USEnglish",
+            // separator of parts of a date (e.g. '/' in 11/05/1955)
+            '/': "/",
+            // separator of parts of a time (e.g. ':' in 05:44 PM)
+            ':': ":",
+            // the first day of the week (0 = Sunday, 1 = Monday, etc)
+            firstDay: 0,
+            days: [
+                // full day names
+                ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                // abbreviated day names
+                ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+                // shortest day names
+                ["Su","Mo","Tu","We","Th","Fr","Sa"]
+            ],
+            months: [
+                // full month names (13 months for lunar calendards -- 13th month should be "" if not lunar)
+                ["January","February","March","April","May","June","July","August","September","October","November","December",""],
+                // abbreviated month names
+                ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]
+            ],
+            // AM and PM designators in one of these forms:
+            // The usual view, and the upper and lower case versions
+            //      [standard,lowercase,uppercase] 
+            // The culture does not use AM or PM (likely all standard date formats use 24 hour time)
+            //      null
+            AM: ["AM", "am", "AM"],
+            PM: ["PM", "pm", "PM"],
+            eras: [
+                // eras in reverse chronological order.
+                // name: the name of the era in this culture (e.g. A.D., C.E.)
+                // start: when the era starts in ticks, null if it is the earliest supported era.
+                // offset: offset in years from gregorian calendar
+                {"name":"A.D.","start":null,"offset":0}
+            ],
+            // when a two digit year is given, it will never be parsed as a four digit
+            // year great than this year (in the appropriate era for the culture)
+            twoDigitYearMax: 2029,
+            // set of predefined date and time patterns used by the culture
+            // these represent the format someone in this culture would expect
+            // to see given the portions of the date that are shown.
+            patterns: {
+                // short date pattern
+                d: "MM/dd/yyyy",
+                // long date pattern
+                D: "dddd, dd MMMM yyyy",
+                // short time pattern
+                t: "HH:mm",
+                // long time pattern
+                T: "HH:mm:ss",
+                // long date, short time pattern
+                f: "dddd, dd MMMM yyyy HH:mm",
+                // long date, long time pattern
+                F: "dddd, dd MMMM yyyy HH:mm:ss",
+                // month/day pattern
+                M: "MMMM dd",
+                // month/year pattern
+                Y: "yyyy MMMM",
+                // S is a sortable format that does not vary by culture
+                S: "yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss"
+            }
+            // optional fields:
+            /*
+            monthsGenitive:
+                Same as months but used when the day preceeds the month.
+                Omit if the culture has no genitive distinction in month names.
+                For an explaination of genitive months, see http://blogs.msdn.com/michkap/archive/2004/12/25/332259.aspx
+            convert:
+                Allows for the support of non-gregorian based calendars. This convert object is used to
+                to convert a date to and from a gregorian calendar date to handle parsing and formatting.
+                The two functions:
+                    fromGregorian(date)
+                        Given the date as a parameter, return an array with parts [year, month, day]
+                        corresponding to the non-gregorian based year, month, and day for the calendar.
+                    toGregorian(year, month, day)
+                        Given the non-gregorian year, month, and day, return a new Date() object 
+                        set to the corresponding date in the gregorian calendar.
+            */
+        }
+    }
+}, cultures.invariant);
+invariant.calendar = invariant.calendar || invariant.calendars.standard;
 
 var regexTrim = /^\s+|\s+$/g,
     regexInfinity = /^[+-]?infinity$/i,
@@ -307,6 +330,7 @@ var regexTrim = /^\s+|\s+$/g,
 function startsWith(value, pattern) {
     return value.indexOf( pattern ) === 0;
 }
+
 function endsWith(value, pattern) {
     return value.substr( value.length - pattern.length ) === pattern;
 }

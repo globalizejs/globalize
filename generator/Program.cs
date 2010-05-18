@@ -331,18 +331,19 @@ namespace Globalization {
             if (aggregateScript != null) {
                 aggregateScript.AppendFormat(CultureInfo.InvariantCulture, @"    culture = cultures[""{0}""] = $.extend(true, {{}}, invariant, {{
 {1}
-    }});
-    culture.calendar = culture.calendars.standard;
+    }}, cultures[""{0}""]);
+    culture.calendar = culture.calendar || culture.calendars.standard;
 ", name, cultureFragment);
             }
 
             return string.Format(CultureInfo.InvariantCulture, @"(function($) {{
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures[""{0}""] = $.extend(true, {{}}, invariant, {{
+        culture = cultures[""{0}""] = $.extend(true, {{}}, invariant, {{
 {1}
-    }});
-    culture.calendar = culture.calendars.standard;
+    }}, cultures[""{0}""]);
+    culture.calendar = culture.calendar || culture.calendars.standard;
 }})(jQuery);", name, cultureFragment);
         }
 
@@ -507,7 +508,6 @@ namespace Globalization {
     }
 
     public class Program {
-        //private static Regex _date = new Regex("\"\\\\/Date\\((-?[0-9]+)\\)\\\\/\"", RegexOptions.Compiled);
         private static Minifier minifier = new Minifier();
         private static CodeSettings codeSettings = new CodeSettings {
             CombineDuplicateLiterals = true
@@ -520,8 +520,6 @@ namespace Globalization {
             var script = GlobalizationInfo.GenerateJavaScript(culture, culture.Name, diff, aggregateScript);
             var filePath = Path.Combine(outputdir, "jQuery.glob." + (String.IsNullOrEmpty(culture.Name) ? "invariant" : culture.Name) + ".js");
 
-            // fix dates into javascript
-            //script = _date.Replace(script, "new Date($1)");
             File.WriteAllText(filePath, script);
             Console.WriteLine(filePath);
             // minimize
