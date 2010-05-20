@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["dv-MV"] = $.extend(true, {}, invariant, {
+        culture = cultures["dv-MV"] = $.extend(true, {}, invariant, {
         name: "dv-MV",
         englishName: "Divehi (Maldives)",
         nativeName: "ދިވެހިބަސް (ދިވެހި ރާއްޖެ)",
+        language: "dv",
         isRTL: true,
         numberFormat: {
             currency: {
@@ -118,6 +120,6 @@
                 }
             })
         }
-    });
+    }, cultures["dv-MV"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

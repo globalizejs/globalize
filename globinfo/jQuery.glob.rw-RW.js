@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["rw-RW"] = $.extend(true, {}, invariant, {
+        culture = cultures["rw-RW"] = $.extend(true, {}, invariant, {
         name: "rw-RW",
         englishName: "Kinyarwanda (Rwanda)",
         nativeName: "Kinyarwanda (Rwanda)",
+        language: "rw",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["rw-RW"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

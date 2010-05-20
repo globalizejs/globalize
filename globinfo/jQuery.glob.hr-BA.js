@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["hr-BA"] = $.extend(true, {}, invariant, {
+        culture = cultures["hr-BA"] = $.extend(true, {}, invariant, {
         name: "hr-BA",
         englishName: "Croatian (Latin, Bosnia and Herzegovina)",
         nativeName: "hrvatski (Bosna i Hercegovina)",
+        language: "hr",
         numberFormat: {
             pattern: ["- n"],
             ',': ".",
@@ -42,6 +44,6 @@
                 }
             })
         }
-    });
+    }, cultures["hr-BA"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["km-KH"] = $.extend(true, {}, invariant, {
+        culture = cultures["km-KH"] = $.extend(true, {}, invariant, {
         name: "km-KH",
         englishName: "Khmer (Cambodia)",
         nativeName: "ខ្មែរ (កម្ពុជា)",
+        language: "km",
         numberFormat: {
             pattern: ["- n"],
             groupSizes: [3,0],
@@ -52,6 +54,6 @@
                 }
             })
         }
-    });
+    }, cultures["km-KH"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["hu-HU"] = $.extend(true, {}, invariant, {
+        culture = cultures["hu-HU"] = $.extend(true, {}, invariant, {
         name: "hu-HU",
         englishName: "Hungarian (Hungary)",
         nativeName: "magyar (Magyarország)",
+        language: "hu",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -41,6 +43,6 @@
                 }
             })
         }
-    });
+    }, cultures["hu-HU"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

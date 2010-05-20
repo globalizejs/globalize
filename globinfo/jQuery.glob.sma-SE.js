@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["sma-SE"] = $.extend(true, {}, invariant, {
+        culture = cultures["sma-SE"] = $.extend(true, {}, invariant, {
         name: "sma-SE",
         englishName: "Sami, Southern (Sweden)",
         nativeName: "åarjelsaemiengiele (Sveerje)",
+        language: "sma",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["sma-SE"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

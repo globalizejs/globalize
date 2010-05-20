@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["sms-FI"] = $.extend(true, {}, invariant, {
+        culture = cultures["sms-FI"] = $.extend(true, {}, invariant, {
         name: "sms-FI",
         englishName: "Sami, Skolt (Finland)",
         nativeName: "sääm´ǩiõll (Lää´ddjânnam)",
+        language: "sms",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -41,6 +43,6 @@
                 }
             })
         }
-    });
+    }, cultures["sms-FI"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

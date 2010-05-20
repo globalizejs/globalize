@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["gd-GB"] = $.extend(true, {}, invariant, {
+        culture = cultures["gd-GB"] = $.extend(true, {}, invariant, {
         name: "gd-GB",
         englishName: "Scottish Gaelic (United Kingdom)",
         nativeName: "Gàidhlig (An Rìoghachd Aonaichte)",
+        language: "gd",
         numberFormat: {
             currency: {
                 pattern: ["-$n","$n"],
@@ -29,6 +31,6 @@
                 }
             })
         }
-    });
+    }, cultures["gd-GB"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

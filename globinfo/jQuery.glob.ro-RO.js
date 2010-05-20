@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ro-RO"] = $.extend(true, {}, invariant, {
+        culture = cultures["ro-RO"] = $.extend(true, {}, invariant, {
         name: "ro-RO",
         englishName: "Romanian (Romania)",
         nativeName: "română (România)",
+        language: "ro",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["ro-RO"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

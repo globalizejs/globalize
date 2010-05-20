@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["quz-PE"] = $.extend(true, {}, invariant, {
+        culture = cultures["quz-PE"] = $.extend(true, {}, invariant, {
         name: "quz-PE",
         englishName: "Quechua (Peru)",
         nativeName: "runasimi (Piruw)",
+        language: "quz",
         numberFormat: {
             percent: {
                 pattern: ["-%n","%n"]
@@ -32,6 +34,6 @@
                 }
             })
         }
-    });
+    }, cultures["quz-PE"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

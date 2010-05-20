@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["dsb-DE"] = $.extend(true, {}, invariant, {
+        culture = cultures["dsb-DE"] = $.extend(true, {}, invariant, {
         name: "dsb-DE",
         englishName: "Lower Sorbian (Germany)",
         nativeName: "dolnoserbšćina (Nimska)",
+        language: "dsb",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -42,6 +44,6 @@
                 }
             })
         }
-    });
+    }, cultures["dsb-DE"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

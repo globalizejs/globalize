@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["af-ZA"] = $.extend(true, {}, invariant, {
+        culture = cultures["af-ZA"] = $.extend(true, {}, invariant, {
         name: "af-ZA",
         englishName: "Afrikaans (South Africa)",
         nativeName: "Afrikaans (Suid Afrika)",
+        language: "af",
         numberFormat: {
             percent: {
                 pattern: ["-n%","n%"]
@@ -31,6 +33,6 @@
                 }
             })
         }
-    });
+    }, cultures["af-ZA"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

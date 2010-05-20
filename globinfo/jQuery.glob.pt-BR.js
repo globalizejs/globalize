@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["pt-BR"] = $.extend(true, {}, invariant, {
+        culture = cultures["pt-BR"] = $.extend(true, {}, invariant, {
         name: "pt-BR",
         englishName: "Portuguese (Brazil)",
         nativeName: "Português (Brasil)",
+        language: "pt",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["pt-BR"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["mr-IN"] = $.extend(true, {}, invariant, {
+        culture = cultures["mr-IN"] = $.extend(true, {}, invariant, {
         name: "mr-IN",
         englishName: "Marathi (India)",
         nativeName: "मराठी (भारत)",
+        language: "mr",
         numberFormat: {
             groupSizes: [3,2],
             percent: {
@@ -35,6 +37,6 @@
                 }
             })
         }
-    });
+    }, cultures["mr-IN"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

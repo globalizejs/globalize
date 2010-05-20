@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["es-SV"] = $.extend(true, {}, invariant, {
+        culture = cultures["es-SV"] = $.extend(true, {}, invariant, {
         name: "es-SV",
         englishName: "Spanish (El Salvador)",
         nativeName: "Español (El Salvador)",
+        language: "es",
         numberFormat: {
             currency: {
                 groupSizes: [3,0],
@@ -31,6 +33,6 @@
                 }
             })
         }
-    });
+    }, cultures["es-SV"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

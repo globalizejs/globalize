@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["si-LK"] = $.extend(true, {}, invariant, {
+        culture = cultures["si-LK"] = $.extend(true, {}, invariant, {
         name: "si-LK",
         englishName: "Sinhala (Sri Lanka)",
         nativeName: "සිංහල (ශ්‍රී ලංකා)",
+        language: "si",
         numberFormat: {
             groupSizes: [3,2],
             percent: {
@@ -35,6 +37,6 @@
                 }
             })
         }
-    });
+    }, cultures["si-LK"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

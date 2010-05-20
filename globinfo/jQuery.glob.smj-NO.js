@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["smj-NO"] = $.extend(true, {}, invariant, {
+        culture = cultures["smj-NO"] = $.extend(true, {}, invariant, {
         name: "smj-NO",
         englishName: "Sami, Lule (Norway)",
         nativeName: "julevusámegiella (Vuodna)",
+        language: "smj",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -40,6 +42,6 @@
                 }
             })
         }
-    });
+    }, cultures["smj-NO"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

@@ -3,9 +3,12 @@
  * http://github.com/nje
  */
 (function($) {
+
+var localized = { invariant: {} };
+
 $.extend({
     findClosestCulture: function(name) {
-        var match = null;
+        var match;
         if ( !name ) {
             match = $.culture || $.cultures.invariant;
         }
@@ -14,12 +17,7 @@ $.extend({
         }
         else {
             do {
-                $.each($.cultures, function(n, value) {
-                    if ( name === n ) {
-                        match = value;
-                        return false;
-                    }
-                });
+                match = $.cultures[ name ];
                 if ( !match ) {
                     var index = name.lastIndexOf("-");
                     if ( index === -1 ) {
@@ -33,10 +31,38 @@ $.extend({
             }
             while ( !match );
         }
-        return match;
+        return match || null;
     },
     preferCulture: function(name) {
         $.culture = $.findClosestCulture( name ) || $.cultures.invariant;
+    },
+    localize: function(key, culture, value) {
+        if (typeof culture === 'string') {
+            culture = culture || "invariant";
+            culture = $.cultures[ culture ] || { name: culture };
+        }
+        var local = localized[ culture.name ];
+        if ( arguments.length === 3 ) {
+            if ( !local) {
+                local = localized[ culture.name ] = {};
+            }
+            local[ key ] = value;
+        }
+        else {
+            if ( local ) {
+                value = local[ key ];
+            }
+            if ( typeof value === 'undefined' ) {
+                var language = localized[ culture.language ];
+                if ( language ) {
+                    value = language[ key ];
+                }
+                if ( typeof value === 'undefined' ) {
+                    value = localized[ 'invariant' ][ key ];
+                }
+            }
+        }
+        return typeof value === "undefined" ? null : value;
     },
     format: function(value, format, culture) {
         culture = $.findClosestCulture( culture );
@@ -182,6 +208,26 @@ var invariant = cultures.invariant = $.extend(true, {
     nativeName: "Invariant",
     // whether the culture uses right-to-left text
     isRTL: false,
+    // 'language' is used for so-called "specific" cultures.
+    // For example, the culture "es-CL" means "Spanish, in Chili".
+    // It represents the Spanish-speaking culture as it is in Chili,
+    // which might have different formatting rules or even translations
+    // than Spanish in Spain. A "neutral" culture is one that is not
+    // specific to a region. For example, the culture "es" is the generic
+    // Spanish culture, which may be a more generalized version of the language
+    // that may or may not be what a specific culture expects.
+    // For a specific culture like "es-CL", the 'language' field refers to the
+    // neutral, generic culture information for the language it is using.
+    // This is not always a simple matter of the string before the dash.
+    // For example, the "zh-Hans" culture is netural (Simplified Chinese).
+    // And the 'zh-SG' culture is Simplified Chinese in Singapore, whose lanugage
+    // field is "zh-CHS", not "zh".
+    // This field should be used to navigate from a specific culture to it's
+    // more general, neutral culture. If a culture is already as general as it 
+    // can get, the language may refer to itself.
+    language: "",
+    // numberFormat defines general number formatting rules, like the digits in
+    // each grouping, the group separator, and how negative numbers are displayed.
     numberFormat: {
         // [negativePattern]
         // Note, numberFormat.pattern has no 'positivePattern' unlike percent and currency,
@@ -236,6 +282,13 @@ var invariant = cultures.invariant = $.extend(true, {
             symbol: "¤"
         }
     },
+    // calendars defines all the possible calendars used by this culture.
+    // There should be at least one defined with name 'standard', and is the default
+    // calendar used by the culture.
+    // A calendar contains information about how dates are formatted, information about
+    // the calendar's eras, a standard set of the date formats,
+    // translations for day and month names, and if the calendar is not based on the Gregorian
+    // calendar, conversion functions to and from the Gregorian calendar.
     calendars: {
         standard: {
             // name that identifies the type of calendar this is
@@ -250,7 +303,7 @@ var invariant = cultures.invariant = $.extend(true, {
                 // full day names
                 ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
                 // abbreviated day names
-                ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+                ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
                 // shortest day names
                 ["Su","Mo","Tu","We","Th","Fr","Sa"]
             ],
@@ -300,7 +353,7 @@ var invariant = cultures.invariant = $.extend(true, {
                 // S is a sortable format that does not vary by culture
                 S: "yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss"
             }
-            // optional fields:
+            // optional fields for each calendar:
             /*
             monthsGenitive:
                 Same as months but used when the day preceeds the month.
@@ -532,9 +585,11 @@ function expandYear(cal, year) {
     var now = new Date(),
         era = getEra(now);
     if ( year < 100 ) {
+        var twoDigitYearMax = cal.twoDigitYearMax;
+        twoDigitYearMax = typeof twoDigitYearMax === 'string' ? new Date().getFullYear() % 100 + parseInt( twoDigitYearMax, 10 ) : twoDigitYearMax;
         var curr = getEraYear( now, cal, era );
         year += curr - ( curr % 100 );
-        if ( year > cal.twoDigitYearMax ) {
+        if ( year > twoDigitYearMax ) {
             year -= 100;
         }
     }
@@ -958,7 +1013,7 @@ function formatDate(value, format, culture) {
             }
             else {
                 var eraDate = new Date( value.getTime() ),
-                    era = getEra( this, cal.eras );
+                    era = getEra( value, cal.eras );
                 eraDate.setFullYear( getEraYear( value, cal, era ) );
                 ret = eraDate.toLocaleString();
             }

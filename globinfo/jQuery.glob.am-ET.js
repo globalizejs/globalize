@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["am-ET"] = $.extend(true, {}, invariant, {
+        culture = cultures["am-ET"] = $.extend(true, {}, invariant, {
         name: "am-ET",
         englishName: "Amharic (Ethiopia)",
         nativeName: "አማርኛ (ኢትዮጵያ)",
+        language: "am",
         numberFormat: {
             decimals: 1,
             groupSizes: [3,0],
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["am-ET"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

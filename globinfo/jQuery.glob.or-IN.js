@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["or-IN"] = $.extend(true, {}, invariant, {
+        culture = cultures["or-IN"] = $.extend(true, {}, invariant, {
         name: "or-IN",
         englishName: "Oriya (India)",
         nativeName: "ଓଡ଼ିଆ (ଭାରତ)",
+        language: "or",
         numberFormat: {
             groupSizes: [3,2],
             percent: {
@@ -33,6 +35,6 @@
                 }
             })
         }
-    });
+    }, cultures["or-IN"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

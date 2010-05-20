@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["es-US"] = $.extend(true, {}, invariant, {
+        culture = cultures["es-US"] = $.extend(true, {}, invariant, {
         name: "es-US",
         englishName: "Spanish (United States)",
         nativeName: "Español (Estados Unidos)",
+        language: "es",
         numberFormat: {
             groupSizes: [3,0],
             percent: {
@@ -32,6 +34,6 @@
                 }
             })
         }
-    });
+    }, cultures["es-US"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

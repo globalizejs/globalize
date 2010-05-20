@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["sr-Latn-RS"] = $.extend(true, {}, invariant, {
+        culture = cultures["sr-Latn-RS"] = $.extend(true, {}, invariant, {
         name: "sr-Latn-RS",
         englishName: "Serbian (Latin, Serbia)",
         nativeName: "srpski (Srbija)",
+        language: "sr-Latn",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -42,6 +44,6 @@
                 }
             })
         }
-    });
+    }, cultures["sr-Latn-RS"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

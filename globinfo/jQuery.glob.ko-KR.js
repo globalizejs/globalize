@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ko-KR"] = $.extend(true, {}, invariant, {
+        culture = cultures["ko-KR"] = $.extend(true, {}, invariant, {
         name: "ko-KR",
         englishName: "Korean (Korea)",
         nativeName: "한국어 (대한민국)",
+        language: "ko",
         numberFormat: {
             currency: {
                 pattern: ["-$n","$n"],
@@ -53,6 +55,6 @@
                 }
             })
         }
-    });
+    }, cultures["ko-KR"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

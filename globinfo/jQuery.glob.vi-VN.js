@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["vi-VN"] = $.extend(true, {}, invariant, {
+        culture = cultures["vi-VN"] = $.extend(true, {}, invariant, {
         name: "vi-VN",
         englishName: "Vietnamese (Vietnam)",
         nativeName: "Tiếng Việt (Việt Nam)",
+        language: "vi",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["vi-VN"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

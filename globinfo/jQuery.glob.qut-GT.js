@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["qut-GT"] = $.extend(true, {}, invariant, {
+        culture = cultures["qut-GT"] = $.extend(true, {}, invariant, {
         name: "qut-GT",
         englishName: "K\u0027iche (Guatemala)",
         nativeName: "K\u0027iche (Guatemala)",
+        language: "qut",
         numberFormat: {
             currency: {
                 symbol: "Q"
@@ -30,6 +32,6 @@
                 }
             })
         }
-    });
+    }, cultures["qut-GT"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

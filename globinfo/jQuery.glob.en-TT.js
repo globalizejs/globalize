@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["en-TT"] = $.extend(true, {}, invariant, {
+        culture = cultures["en-TT"] = $.extend(true, {}, invariant, {
         name: "en-TT",
         englishName: "English (Trinidad and Tobago)",
         nativeName: "English (Trinidad y Tobago)",
+        language: "en",
         numberFormat: {
             currency: {
                 groupSizes: [3,0],
@@ -25,6 +27,6 @@
                 }
             })
         }
-    });
+    }, cultures["en-TT"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

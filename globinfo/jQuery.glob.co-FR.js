@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["co-FR"] = $.extend(true, {}, invariant, {
+        culture = cultures["co-FR"] = $.extend(true, {}, invariant, {
         name: "co-FR",
         englishName: "Corsican (France)",
         nativeName: "Corsu (France)",
+        language: "co",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["co-FR"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

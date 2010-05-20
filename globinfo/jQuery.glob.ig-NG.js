@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ig-NG"] = $.extend(true, {}, invariant, {
+        culture = cultures["ig-NG"] = $.extend(true, {}, invariant, {
         name: "ig-NG",
         englishName: "Igbo (Nigeria)",
         nativeName: "Igbo (Nigeria)",
+        language: "ig",
         numberFormat: {
             currency: {
                 pattern: ["$-n","$ n"],
@@ -30,6 +32,6 @@
                 }
             })
         }
-    });
+    }, cultures["ig-NG"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

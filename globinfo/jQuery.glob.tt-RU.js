@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["tt-RU"] = $.extend(true, {}, invariant, {
+        culture = cultures["tt-RU"] = $.extend(true, {}, invariant, {
         name: "tt-RU",
         englishName: "Tatar (Russia)",
         nativeName: "Татар (Россия)",
+        language: "tt",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -42,6 +44,6 @@
                 }
             })
         }
-    });
+    }, cultures["tt-RU"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

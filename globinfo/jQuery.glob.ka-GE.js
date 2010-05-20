@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ka-GE"] = $.extend(true, {}, invariant, {
+        culture = cultures["ka-GE"] = $.extend(true, {}, invariant, {
         name: "ka-GE",
         englishName: "Georgian (Georgia)",
         nativeName: "ქართული (საქართველო)",
+        language: "ka",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -40,6 +42,6 @@
                 }
             })
         }
-    });
+    }, cultures["ka-GE"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

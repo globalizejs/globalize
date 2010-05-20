@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ar-LB"] = $.extend(true, {}, invariant, {
+        culture = cultures["ar-LB"] = $.extend(true, {}, invariant, {
         name: "ar-LB",
         englishName: "Arabic (Lebanon)",
         nativeName: "العربية (لبنان)",
+        language: "ar",
         isRTL: true,
         numberFormat: {
             pattern: ["n-"],
@@ -389,6 +391,6 @@
                 }
             })
         }
-    });
+    }, cultures["ar-LB"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

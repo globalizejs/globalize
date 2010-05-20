@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ms-MY"] = $.extend(true, {}, invariant, {
+        culture = cultures["ms-MY"] = $.extend(true, {}, invariant, {
         name: "ms-MY",
         englishName: "Malay (Malaysia)",
         nativeName: "Bahasa Melayu (Malaysia)",
+        language: "ms",
         numberFormat: {
             currency: {
                 decimals: 0,
@@ -31,6 +33,6 @@
                 }
             })
         }
-    });
+    }, cultures["ms-MY"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

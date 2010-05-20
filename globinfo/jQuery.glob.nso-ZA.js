@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["nso-ZA"] = $.extend(true, {}, invariant, {
+        culture = cultures["nso-ZA"] = $.extend(true, {}, invariant, {
         name: "nso-ZA",
         englishName: "Sesotho sa Leboa (South Africa)",
         nativeName: "Sesotho sa Leboa (Afrika Borwa)",
+        language: "nso",
         numberFormat: {
             percent: {
                 pattern: ["-%n","%n"]
@@ -31,6 +33,6 @@
                 }
             })
         }
-    });
+    }, cultures["nso-ZA"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

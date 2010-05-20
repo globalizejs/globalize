@@ -1,5 +1,4 @@
 jQuery(function($) {
-
     // setup sample data
     window.numbers = [
        0, 1, 10, 100, 1000, 10000, 0.1, 0.12, 0.123, 0.1234, 0.12345, 1000.123, 10000.12345,
@@ -108,6 +107,5 @@ jQuery(function($) {
 
     // initial rendering
     selectCulture();
-
 });
 

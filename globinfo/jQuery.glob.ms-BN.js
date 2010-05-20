@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ms-BN"] = $.extend(true, {}, invariant, {
+        culture = cultures["ms-BN"] = $.extend(true, {}, invariant, {
         name: "ms-BN",
         englishName: "Malay (Brunei Darussalam)",
         nativeName: "Bahasa Melayu (Brunei Darussalam)",
+        language: "ms",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["ms-BN"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

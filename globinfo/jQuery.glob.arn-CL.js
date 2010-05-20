@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["arn-CL"] = $.extend(true, {}, invariant, {
+        culture = cultures["arn-CL"] = $.extend(true, {}, invariant, {
         name: "arn-CL",
         englishName: "Mapudungun (Chile)",
         nativeName: "Mapudungun (Chile)",
+        language: "arn",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -40,6 +42,6 @@
                 }
             })
         }
-    });
+    }, cultures["arn-CL"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

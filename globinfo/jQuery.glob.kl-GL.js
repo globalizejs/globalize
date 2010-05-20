@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["kl-GL"] = $.extend(true, {}, invariant, {
+        culture = cultures["kl-GL"] = $.extend(true, {}, invariant, {
         name: "kl-GL",
         englishName: "Greenlandic (Greenland)",
         nativeName: "kalaallisut (Kalaallit Nunaat)",
+        language: "kl",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -41,6 +43,6 @@
                 }
             })
         }
-    });
+    }, cultures["kl-GL"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

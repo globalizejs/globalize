@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["hy-AM"] = $.extend(true, {}, invariant, {
+        culture = cultures["hy-AM"] = $.extend(true, {}, invariant, {
         name: "hy-AM",
         englishName: "Armenian (Armenia)",
         nativeName: "Հայերեն (Հայաստան)",
+        language: "hy",
         numberFormat: {
             currency: {
                 pattern: ["-n $","n $"],
@@ -32,6 +34,6 @@
                 }
             })
         }
-    });
+    }, cultures["hy-AM"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

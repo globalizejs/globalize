@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["es-DO"] = $.extend(true, {}, invariant, {
+        culture = cultures["es-DO"] = $.extend(true, {}, invariant, {
         name: "es-DO",
         englishName: "Spanish (Dominican Republic)",
         nativeName: "Español (República Dominicana)",
+        language: "es",
         numberFormat: {
             currency: {
                 symbol: "RD$"
@@ -30,6 +32,6 @@
                 }
             })
         }
-    });
+    }, cultures["es-DO"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["smn-FI"] = $.extend(true, {}, invariant, {
+        culture = cultures["smn-FI"] = $.extend(true, {}, invariant, {
         name: "smn-FI",
         englishName: "Sami, Inari (Finland)",
         nativeName: "sämikielâ (Suomâ)",
+        language: "smn",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -40,6 +42,6 @@
                 }
             })
         }
-    });
+    }, cultures["smn-FI"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

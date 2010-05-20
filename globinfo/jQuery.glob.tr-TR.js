@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["tr-TR"] = $.extend(true, {}, invariant, {
+        culture = cultures["tr-TR"] = $.extend(true, {}, invariant, {
         name: "tr-TR",
         englishName: "Turkish (Turkey)",
         nativeName: "Türkçe (Türkiye)",
+        language: "tr",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["tr-TR"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

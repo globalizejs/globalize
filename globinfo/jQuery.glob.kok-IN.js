@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["kok-IN"] = $.extend(true, {}, invariant, {
+        culture = cultures["kok-IN"] = $.extend(true, {}, invariant, {
         name: "kok-IN",
         englishName: "Konkani (India)",
         nativeName: "कोंकणी (भारत)",
+        language: "kok",
         numberFormat: {
             groupSizes: [3,2],
             percent: {
@@ -35,6 +37,6 @@
                 }
             })
         }
-    });
+    }, cultures["kok-IN"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

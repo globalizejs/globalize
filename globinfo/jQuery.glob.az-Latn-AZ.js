@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["az-Latn-AZ"] = $.extend(true, {}, invariant, {
+        culture = cultures["az-Latn-AZ"] = $.extend(true, {}, invariant, {
         name: "az-Latn-AZ",
         englishName: "Azeri (Latin, Azerbaijan)",
         nativeName: "Azərbaycan­ılı (Azərbaycan)",
+        language: "az-Latn",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -42,6 +44,6 @@
                 }
             })
         }
-    });
+    }, cultures["az-Latn-AZ"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

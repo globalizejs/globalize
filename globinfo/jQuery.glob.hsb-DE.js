@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["hsb-DE"] = $.extend(true, {}, invariant, {
+        culture = cultures["hsb-DE"] = $.extend(true, {}, invariant, {
         name: "hsb-DE",
         englishName: "Upper Sorbian (Germany)",
         nativeName: "hornjoserbšćina (Němska)",
+        language: "hsb",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -42,6 +44,6 @@
                 }
             })
         }
-    });
+    }, cultures["hsb-DE"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

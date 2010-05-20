@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["el-GR"] = $.extend(true, {}, invariant, {
+        culture = cultures["el-GR"] = $.extend(true, {}, invariant, {
         name: "el-GR",
         englishName: "Greek (Greece)",
         nativeName: "Ελληνικά (Ελλάδα)",
+        language: "el",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -42,6 +44,6 @@
                 }
             })
         }
-    });
+    }, cultures["el-GR"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

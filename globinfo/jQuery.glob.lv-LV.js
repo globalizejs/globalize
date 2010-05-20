@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["lv-LV"] = $.extend(true, {}, invariant, {
+        culture = cultures["lv-LV"] = $.extend(true, {}, invariant, {
         name: "lv-LV",
         englishName: "Latvian (Latvia)",
         nativeName: "latviešu (Latvija)",
+        language: "lv",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -42,6 +44,6 @@
                 }
             })
         }
-    });
+    }, cultures["lv-LV"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

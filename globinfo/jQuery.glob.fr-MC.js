@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["fr-MC"] = $.extend(true, {}, invariant, {
+        culture = cultures["fr-MC"] = $.extend(true, {}, invariant, {
         name: "fr-MC",
         englishName: "French (Monaco)",
         nativeName: "français (Principauté de Monaco)",
+        language: "fr",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["fr-MC"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

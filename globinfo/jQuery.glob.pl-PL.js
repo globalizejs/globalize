@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["pl-PL"] = $.extend(true, {}, invariant, {
+        culture = cultures["pl-PL"] = $.extend(true, {}, invariant, {
         name: "pl-PL",
         englishName: "Polish (Poland)",
         nativeName: "polski (Polska)",
+        language: "pl",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -40,6 +42,6 @@
                 }
             })
         }
-    });
+    }, cultures["pl-PL"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

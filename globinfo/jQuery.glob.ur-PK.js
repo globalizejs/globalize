@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ur-PK"] = $.extend(true, {}, invariant, {
+        culture = cultures["ur-PK"] = $.extend(true, {}, invariant, {
         name: "ur-PK",
         englishName: "Urdu (Islamic Republic of Pakistan)",
         nativeName: "اُردو (پاکستان)",
+        language: "ur",
         isRTL: true,
         numberFormat: {
             currency: {
@@ -120,6 +122,6 @@
                 }
             })
         }
-    });
+    }, cultures["ur-PK"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

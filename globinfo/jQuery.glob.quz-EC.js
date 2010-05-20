@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["quz-EC"] = $.extend(true, {}, invariant, {
+        culture = cultures["quz-EC"] = $.extend(true, {}, invariant, {
         name: "quz-EC",
         englishName: "Quechua (Ecuador)",
         nativeName: "runasimi (Ecuador)",
+        language: "quz",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["quz-EC"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

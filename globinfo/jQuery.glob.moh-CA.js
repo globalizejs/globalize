@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["moh-CA"] = $.extend(true, {}, invariant, {
+        culture = cultures["moh-CA"] = $.extend(true, {}, invariant, {
         name: "moh-CA",
         englishName: "Mohawk (Mohawk)",
         nativeName: "Kanien\u0027kéha",
+        language: "moh",
         numberFormat: {
             groupSizes: [3,0],
             percent: {
@@ -30,6 +32,6 @@
                 }
             })
         }
-    });
+    }, cultures["moh-CA"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

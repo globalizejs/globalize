@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["lb-LU"] = $.extend(true, {}, invariant, {
+        culture = cultures["lb-LU"] = $.extend(true, {}, invariant, {
         name: "lb-LU",
         englishName: "Luxembourgish (Luxembourg)",
         nativeName: "Lëtzebuergesch (Luxembourg)",
+        language: "lb",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["lb-LU"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

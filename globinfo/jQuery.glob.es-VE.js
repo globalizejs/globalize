@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["es-VE"] = $.extend(true, {}, invariant, {
+        culture = cultures["es-VE"] = $.extend(true, {}, invariant, {
         name: "es-VE",
         englishName: "Spanish (Bolivarian Republic of Venezuela)",
         nativeName: "Español (Republica Bolivariana de Venezuela)",
+        language: "es",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["es-VE"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

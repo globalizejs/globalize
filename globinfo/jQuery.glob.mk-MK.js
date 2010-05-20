@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["mk-MK"] = $.extend(true, {}, invariant, {
+        culture = cultures["mk-MK"] = $.extend(true, {}, invariant, {
         name: "mk-MK",
         englishName: "Macedonian (Former Yugoslav Republic of Macedonia)",
         nativeName: "македонски јазик (Македонија)",
+        language: "mk",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -35,6 +37,6 @@
                 }
             })
         }
-    });
+    }, cultures["mk-MK"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

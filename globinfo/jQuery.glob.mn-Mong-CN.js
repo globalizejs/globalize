@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["mn-Mong-CN"] = $.extend(true, {}, invariant, {
+        culture = cultures["mn-Mong-CN"] = $.extend(true, {}, invariant, {
         name: "mn-Mong-CN",
         englishName: "Mongolian (Traditional Mongolian, PRC)",
         nativeName: "ᠮᠤᠨᠭᠭᠤᠯ ᠬᠡᠯᠡ (ᠪᠦᠭᠦᠳᠡ ᠨᠠᠢᠷᠠᠮᠳᠠᠬᠤ ᠳᠤᠮᠳᠠᠳᠤ ᠠᠷᠠᠳ ᠣᠯᠣᠰ)",
+        language: "mn-Mong",
         numberFormat: {
             groupSizes: [3,0],
             percent: {
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["mn-Mong-CN"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

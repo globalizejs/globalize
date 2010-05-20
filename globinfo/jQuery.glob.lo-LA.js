@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["lo-LA"] = $.extend(true, {}, invariant, {
+        culture = cultures["lo-LA"] = $.extend(true, {}, invariant, {
         name: "lo-LA",
         englishName: "Lao (Lao P.D.R.)",
         nativeName: "ລາວ (ສ.ປ.ປ. ລາວ)",
+        language: "lo",
         numberFormat: {
             pattern: ["(n)"],
             groupSizes: [3,0],
@@ -35,6 +37,6 @@
                 }
             })
         }
-    });
+    }, cultures["lo-LA"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

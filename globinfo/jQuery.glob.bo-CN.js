@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["bo-CN"] = $.extend(true, {}, invariant, {
+        culture = cultures["bo-CN"] = $.extend(true, {}, invariant, {
         name: "bo-CN",
         englishName: "Tibetan (PRC)",
         nativeName: "བོད་ཡིག (ཀྲུང་ཧྭ་མི་དམངས་སྤྱི་མཐུན་རྒྱལ་ཁབ།)",
+        language: "bo",
         numberFormat: {
             groupSizes: [3,0],
             percent: {
@@ -36,6 +38,6 @@
                 }
             })
         }
-    });
+    }, cultures["bo-CN"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

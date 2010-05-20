@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ne-NP"] = $.extend(true, {}, invariant, {
+        culture = cultures["ne-NP"] = $.extend(true, {}, invariant, {
         name: "ne-NP",
         englishName: "Nepali (Nepal)",
         nativeName: "नेपाली (नेपाल)",
+        language: "ne",
         numberFormat: {
             groupSizes: [3,2],
             percent: {
@@ -35,6 +37,6 @@
                 }
             })
         }
-    });
+    }, cultures["ne-NP"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

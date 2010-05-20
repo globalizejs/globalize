@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["oc-FR"] = $.extend(true, {}, invariant, {
+        culture = cultures["oc-FR"] = $.extend(true, {}, invariant, {
         name: "oc-FR",
         englishName: "Occitan (France)",
         nativeName: "Occitan (França)",
+        language: "oc",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["oc-FR"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

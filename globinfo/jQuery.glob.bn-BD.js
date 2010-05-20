@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["bn-BD"] = $.extend(true, {}, invariant, {
+        culture = cultures["bn-BD"] = $.extend(true, {}, invariant, {
         name: "bn-BD",
         englishName: "Bengali (Bangladesh)",
         nativeName: "বাংলা (বাংলাদেশ)",
+        language: "bn",
         numberFormat: {
             groupSizes: [3,2],
             percent: {
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["bn-BD"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

@@ -1,0 +1,48 @@
+(function($) {
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
+        standard = invariant.calendars.standard,
+        culture = cultures["hu"] = $.extend(true, {}, invariant, {
+        name: "hu",
+        englishName: "Hungarian",
+        nativeName: "magyar",
+        language: "hu",
+        numberFormat: {
+            ',': " ",
+            '.': ",",
+            percent: {
+                ',': " ",
+                '.': ","
+            },
+            currency: {
+                pattern: ["-n $","n $"],
+                ',': " ",
+                '.': ",",
+                symbol: "Ft"
+            }
+        },
+        calendars: {
+            standard: $.extend(true, {}, standard, {
+                name: "Gregorian_Localized",
+                '/': ".",
+                firstDay: 1,
+                days: [["vasárnap","hétfő","kedd","szerda","csütörtök","péntek","szombat"],["V","H","K","Sze","Cs","P","Szo"],["V","H","K","Sze","Cs","P","Szo"]],
+                months: [["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december",""],["jan.","febr.","márc.","ápr.","máj.","jún.","júl.","aug.","szept.","okt.","nov.","dec.",""]],
+                AM: ["de.","de.","DE."],
+                PM: ["du.","du.","DU."],
+                eras: [{"name":"i.sz.","start":null,"offset":0}],
+                patterns: {
+                    d: "yyyy.MM.dd.",
+                    D: "yyyy. MMMM d.",
+                    t: "H:mm",
+                    T: "H:mm:ss",
+                    f: "yyyy. MMMM d. H:mm",
+                    F: "yyyy. MMMM d. H:mm:ss",
+                    M: "MMMM d.",
+                    Y: "yyyy. MMMM"
+                }
+            })
+        }
+    }, cultures["hu"]);
+    culture.calendar = culture.calendars.standard;
+})(jQuery);

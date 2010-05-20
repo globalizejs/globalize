@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["nl-BE"] = $.extend(true, {}, invariant, {
+        culture = cultures["nl-BE"] = $.extend(true, {}, invariant, {
         name: "nl-BE",
         englishName: "Dutch (Belgium)",
         nativeName: "Nederlands (België)",
+        language: "nl",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -40,6 +42,6 @@
                 }
             })
         }
-    });
+    }, cultures["nl-BE"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

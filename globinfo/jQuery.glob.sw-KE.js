@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["sw-KE"] = $.extend(true, {}, invariant, {
+        culture = cultures["sw-KE"] = $.extend(true, {}, invariant, {
         name: "sw-KE",
         englishName: "Kiswahili (Kenya)",
         nativeName: "Kiswahili (Kenya)",
+        language: "sw",
         numberFormat: {
             currency: {
                 symbol: "S"
@@ -26,6 +28,6 @@
                 }
             })
         }
-    });
+    }, cultures["sw-KE"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

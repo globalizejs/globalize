@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["eu-ES"] = $.extend(true, {}, invariant, {
+        culture = cultures["eu-ES"] = $.extend(true, {}, invariant, {
         name: "eu-ES",
         englishName: "Basque (Basque)",
         nativeName: "euskara (euskara)",
+        language: "eu",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["eu-ES"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

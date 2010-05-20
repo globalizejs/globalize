@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["cs-CZ"] = $.extend(true, {}, invariant, {
+        culture = cultures["cs-CZ"] = $.extend(true, {}, invariant, {
         name: "cs-CZ",
         englishName: "Czech (Czech Republic)",
         nativeName: "čeština (Česká republika)",
+        language: "cs",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -43,6 +45,6 @@
                 }
             })
         }
-    });
+    }, cultures["cs-CZ"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

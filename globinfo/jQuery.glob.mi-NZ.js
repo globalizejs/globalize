@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["mi-NZ"] = $.extend(true, {}, invariant, {
+        culture = cultures["mi-NZ"] = $.extend(true, {}, invariant, {
         name: "mi-NZ",
         englishName: "Maori (New Zealand)",
         nativeName: "Reo Māori (Aotearoa)",
+        language: "mi",
         numberFormat: {
             percent: {
                 pattern: ["-%n","%n"]
@@ -34,6 +36,6 @@
                 }
             })
         }
-    });
+    }, cultures["mi-NZ"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

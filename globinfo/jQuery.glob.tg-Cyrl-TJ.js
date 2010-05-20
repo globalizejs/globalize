@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["tg-Cyrl-TJ"] = $.extend(true, {}, invariant, {
+        culture = cultures["tg-Cyrl-TJ"] = $.extend(true, {}, invariant, {
         name: "tg-Cyrl-TJ",
         englishName: "Tajik (Cyrillic, Tajikistan)",
         nativeName: "Тоҷикӣ (Тоҷикистон)",
+        language: "tg-Cyrl",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -43,6 +45,6 @@
                 }
             })
         }
-    });
+    }, cultures["tg-Cyrl-TJ"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

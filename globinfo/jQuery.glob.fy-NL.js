@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["fy-NL"] = $.extend(true, {}, invariant, {
+        culture = cultures["fy-NL"] = $.extend(true, {}, invariant, {
         name: "fy-NL",
         englishName: "Frisian (Netherlands)",
         nativeName: "Frysk (Nederlân)",
+        language: "fy",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -40,6 +42,6 @@
                 }
             })
         }
-    });
+    }, cultures["fy-NL"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

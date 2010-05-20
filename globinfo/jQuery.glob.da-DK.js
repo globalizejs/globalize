@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["da-DK"] = $.extend(true, {}, invariant, {
+        culture = cultures["da-DK"] = $.extend(true, {}, invariant, {
         name: "da-DK",
         englishName: "Danish (Denmark)",
         nativeName: "dansk (Danmark)",
+        language: "da",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["da-DK"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

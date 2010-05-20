@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["gsw-FR"] = $.extend(true, {}, invariant, {
+        culture = cultures["gsw-FR"] = $.extend(true, {}, invariant, {
         name: "gsw-FR",
         englishName: "Alsatian (France)",
         nativeName: "Elsässisch (Frànkrisch)",
+        language: "gsw",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["gsw-FR"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["sq-AL"] = $.extend(true, {}, invariant, {
+        culture = cultures["sq-AL"] = $.extend(true, {}, invariant, {
         name: "sq-AL",
         englishName: "Albanian (Albania)",
         nativeName: "shqipe (Shqipëria)",
+        language: "sq",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["sq-AL"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

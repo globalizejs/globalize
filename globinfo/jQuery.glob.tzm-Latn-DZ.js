@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["tzm-Latn-DZ"] = $.extend(true, {}, invariant, {
+        culture = cultures["tzm-Latn-DZ"] = $.extend(true, {}, invariant, {
         name: "tzm-Latn-DZ",
         englishName: "Tamazight (Latin, Algeria)",
         nativeName: "Tamazight (Djazaïr)",
+        language: "tzm-Latn",
         numberFormat: {
             pattern: ["n-"],
             ',': ".",
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["tzm-Latn-DZ"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

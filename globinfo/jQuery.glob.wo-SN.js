@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["wo-SN"] = $.extend(true, {}, invariant, {
+        culture = cultures["wo-SN"] = $.extend(true, {}, invariant, {
         name: "wo-SN",
         englishName: "Wolof (Senegal)",
         nativeName: "Wolof (Sénégal)",
+        language: "wo",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["wo-SN"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

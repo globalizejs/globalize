@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["en-PH"] = $.extend(true, {}, invariant, {
+        culture = cultures["en-PH"] = $.extend(true, {}, invariant, {
         name: "en-PH",
         englishName: "English (Republic of the Philippines)",
         nativeName: "English (Philippines)",
+        language: "en",
         numberFormat: {
             currency: {
                 symbol: "Php"
@@ -24,6 +26,6 @@
                 }
             })
         }
-    });
+    }, cultures["en-PH"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

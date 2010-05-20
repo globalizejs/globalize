@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["quz-BO"] = $.extend(true, {}, invariant, {
+        culture = cultures["quz-BO"] = $.extend(true, {}, invariant, {
         name: "quz-BO",
         englishName: "Quechua (Bolivia)",
         nativeName: "runasimi (Qullasuyu)",
+        language: "quz",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["quz-BO"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

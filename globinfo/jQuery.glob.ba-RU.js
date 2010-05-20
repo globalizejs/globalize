@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ba-RU"] = $.extend(true, {}, invariant, {
+        culture = cultures["ba-RU"] = $.extend(true, {}, invariant, {
         name: "ba-RU",
         englishName: "Bashkir (Russia)",
         nativeName: "Башҡорт (Россия)",
+        language: "ba",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -43,6 +45,6 @@
                 }
             })
         }
-    });
+    }, cultures["ba-RU"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

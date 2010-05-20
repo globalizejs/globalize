@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["uk-UA"] = $.extend(true, {}, invariant, {
+        culture = cultures["uk-UA"] = $.extend(true, {}, invariant, {
         name: "uk-UA",
         englishName: "Ukrainian (Ukraine)",
         nativeName: "українська (Україна)",
+        language: "uk",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -42,6 +44,6 @@
                 }
             })
         }
-    });
+    }, cultures["uk-UA"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

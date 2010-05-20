@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["rm-CH"] = $.extend(true, {}, invariant, {
+        culture = cultures["rm-CH"] = $.extend(true, {}, invariant, {
         name: "rm-CH",
         englishName: "Romansh (Switzerland)",
         nativeName: "Rumantsch (Svizra)",
+        language: "rm",
         numberFormat: {
             ',': "\u0027",
             percent: {
@@ -36,6 +38,6 @@
                 }
             })
         }
-    });
+    }, cultures["rm-CH"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

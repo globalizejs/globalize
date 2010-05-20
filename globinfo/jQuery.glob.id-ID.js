@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["id-ID"] = $.extend(true, {}, invariant, {
+        culture = cultures["id-ID"] = $.extend(true, {}, invariant, {
         name: "id-ID",
         englishName: "Indonesian (Indonesia)",
         nativeName: "Bahasa Indonesia (Indonesia)",
+        language: "id",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["id-ID"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

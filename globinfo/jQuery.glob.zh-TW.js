@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["zh-TW"] = $.extend(true, {}, invariant, {
+        culture = cultures["zh-TW"] = $.extend(true, {}, invariant, {
         name: "zh-TW",
         englishName: "Chinese (Traditional, Taiwan)",
         nativeName: "中文(台灣)",
+        language: "zh-CHT",
         numberFormat: {
             percent: {
                 pattern: ["-n%","n%"]
@@ -53,6 +55,6 @@
                 }
             })
         }
-    });
+    }, cultures["zh-TW"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

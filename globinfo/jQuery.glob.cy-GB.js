@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["cy-GB"] = $.extend(true, {}, invariant, {
+        culture = cultures["cy-GB"] = $.extend(true, {}, invariant, {
         name: "cy-GB",
         englishName: "Welsh (United Kingdom)",
         nativeName: "Cymraeg (y Deyrnas Unedig)",
+        language: "cy",
         numberFormat: {
             percent: {
                 pattern: ["-%n","%n"]
@@ -32,6 +34,6 @@
                 }
             })
         }
-    });
+    }, cultures["cy-GB"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

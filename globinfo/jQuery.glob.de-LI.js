@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["de-LI"] = $.extend(true, {}, invariant, {
+        culture = cultures["de-LI"] = $.extend(true, {}, invariant, {
         name: "de-LI",
         englishName: "German (Liechtenstein)",
         nativeName: "Deutsch (Liechtenstein)",
+        language: "de",
         numberFormat: {
             ',': "\u0027",
             percent: {
@@ -37,6 +39,6 @@
                 }
             })
         }
-    });
+    }, cultures["de-LI"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["nb-NO"] = $.extend(true, {}, invariant, {
+        culture = cultures["nb-NO"] = $.extend(true, {}, invariant, {
         name: "nb-NO",
         englishName: "Norwegian, Bokmål (Norway)",
         nativeName: "norsk, bokmål (Norge)",
+        language: "nb",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -38,6 +40,6 @@
                 }
             })
         }
-    });
+    }, cultures["nb-NO"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

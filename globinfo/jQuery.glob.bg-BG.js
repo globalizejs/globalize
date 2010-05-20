@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["bg-BG"] = $.extend(true, {}, invariant, {
+        culture = cultures["bg-BG"] = $.extend(true, {}, invariant, {
         name: "bg-BG",
         englishName: "Bulgarian (Bulgaria)",
         nativeName: "български (България)",
+        language: "bg",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -41,6 +43,6 @@
                 }
             })
         }
-    });
+    }, cultures["bg-BG"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

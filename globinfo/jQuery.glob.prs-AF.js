@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["prs-AF"] = $.extend(true, {}, invariant, {
+        culture = cultures["prs-AF"] = $.extend(true, {}, invariant, {
         name: "prs-AF",
         englishName: "Dari (Afghanistan)",
         nativeName: "درى (افغانستان)",
+        language: "prs",
         isRTL: true,
         numberFormat: {
             pattern: ["n-"],
@@ -133,6 +135,6 @@
                 }
             })
         }
-    });
+    }, cultures["prs-AF"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

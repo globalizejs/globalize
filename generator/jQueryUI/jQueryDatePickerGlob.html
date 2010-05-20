@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+        <script type="text/javascript">
+        jQuery.datepicker = {
+            regional: {
+	            '': { // Default regional settings
+		            closeText: 'Done', // Display text for close link
+		            prevText: 'Prev', // Display text for previous month link
+		            nextText: 'Next', // Display text for next month link
+		            currentText: 'Today', // Display text for current month link
+		            monthNames: ['January','February','March','April','May','June',
+			            'July','August','September','October','November','December'], // Names of months for drop-down and formatting
+		            monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], // For formatting
+		            dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], // For formatting
+		            dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], // For formatting
+		            dayNamesMin: ['Su','Mo','Tu','We','Th','Fr','Sa'], // Column headings for days starting at Sunday
+		            weekHeader: 'Wk', // Column header for week of the year
+		            dateFormat: 'mm/dd/yy', // See format options on parseDate
+		            firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
+		            isRTL: false, // True if right-to-left language, false if left-to-right
+		            showMonthAfterYear: false, // True if the year select precedes month, false for month then year
+		            yearSuffix: '' // Additional text to append to the year in the month headers
+	            }
+            },
+            // no op
+            setDefaults: function() { }
+        };
+        </script>
+        <script src="../../jquery.glob.js" type="text/javascript"></script>
+        <script src="../../globinfo/jquery.glob.all.min.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-af.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-zh-TW.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-ar.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-az.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-bg.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-bs.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-ca.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-cs.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-da.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-de.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-el.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-en-GB.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-eo.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-es.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-et.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-eu.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-fa.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-fi.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-fo.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-fr-CH.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-fr.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-he.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-hr.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-hu.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-hy.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-id.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-is.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-it.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-ja.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-ko.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-lt.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-lv.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-ms.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-nl.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-no.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-pl.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-pt-BR.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-ro.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-ru.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-sk.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-sl.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-sq.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-sr-SR.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-sr.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-sv.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-ta.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-th.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-tr.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-uk.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-vi.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+        <script src="jquery.ui.datepicker-zh-HK.js" type="text/javascript"></script>
+	</head>
+	<body>
+	    <textarea id="results" rows="15" cols="40">
+        </textarea>
+	</body>
+    <script type="text/javascript">
+    //<![CDATA[
+    function convertFormat(name, format) {
+        format = format
+            .replace(/DD/g, "dddd")
+            .replace(/D/g, "ddd")
+            .replace(/m/g, "#")
+            .replace(/MM/g, "####")
+            .replace(/M/g, "###")
+            .replace(/\#/g, "M")
+            .replace(/y/g, "yy");
+        var culture = $.cultures[name];
+        if (!culture) {
+            alert('unknown culture: ' + name);
+        }
+        return (culture ? "d" : format);
+    }
+
+    $(function() {
+        var count = 0;
+        var regionData = {};
+        $.each($.datepicker.regional, function(name, value) {
+            name = name || "invariant";
+            regionData[name] = {
+                closeText: value.closeText,
+                prevText: value.prevText,
+                nextText: value.nextText,
+                currentText: value.currentText,
+                weekHeader: value.weekHeader,
+                dateFormat: convertFormat(name, value.dateFormat)
+            }
+            count++;
+        });
+
+        var script = "(function($) {\n\n\
+var regions = " + JSON.stringify(regionData, null, 4) + ";\n\
+$.each(regions, function(name, value) {\n\
+    $.localize('datepicker', name, value);\n\
+});\n\
+\n\
+})(jQuery);";
+        $("#results").val(script);
+        alert(count + " regional data processed.");
+    });
+
+    //]]>
+    </script>
+</html>

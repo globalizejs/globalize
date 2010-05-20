@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["fi-FI"] = $.extend(true, {}, invariant, {
+        culture = cultures["fi-FI"] = $.extend(true, {}, invariant, {
         name: "fi-FI",
         englishName: "Finnish (Finland)",
         nativeName: "suomi (Suomi)",
+        language: "fi",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -40,6 +42,6 @@
                 }
             })
         }
-    });
+    }, cultures["fi-FI"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

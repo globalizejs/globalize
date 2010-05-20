@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ug-CN"] = $.extend(true, {}, invariant, {
+        culture = cultures["ug-CN"] = $.extend(true, {}, invariant, {
         name: "ug-CN",
         englishName: "Uyghur (PRC)",
         nativeName: "ئۇيغۇرچە (جۇڭخۇا خەلق جۇمھۇرىيىتى)",
+        language: "ug",
         isRTL: true,
         numberFormat: {
             percent: {
@@ -36,6 +38,6 @@
                 }
             })
         }
-    });
+    }, cultures["ug-CN"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

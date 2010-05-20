@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["fo-FO"] = $.extend(true, {}, invariant, {
+        culture = cultures["fo-FO"] = $.extend(true, {}, invariant, {
         name: "fo-FO",
         englishName: "Faroese (Faroe Islands)",
         nativeName: "føroyskt (Føroyar)",
+        language: "fo",
         numberFormat: {
             ',': ".",
             '.': ",",
@@ -39,6 +41,6 @@
                 }
             })
         }
-    });
+    }, cultures["fo-FO"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

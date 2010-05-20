@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["uz-Cyrl-UZ"] = $.extend(true, {}, invariant, {
+        culture = cultures["uz-Cyrl-UZ"] = $.extend(true, {}, invariant, {
         name: "uz-Cyrl-UZ",
         englishName: "Uzbek (Cyrillic, Uzbekistan)",
         nativeName: "Ўзбек (Ўзбекистон)",
+        language: "uz-Cyrl",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -40,6 +42,6 @@
                 }
             })
         }
-    });
+    }, cultures["uz-Cyrl-UZ"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

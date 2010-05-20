@@ -49,7 +49,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="class.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,6 +58,61 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="datepicker\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="jQueryUI\jquery.ui.datepicker-af.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-ar.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-az.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-bg.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-bs.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-ca.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-cs.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-da.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-de.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-el.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-en-GB.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-eo.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-es.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-et.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-eu.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-fa.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-fi.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-fo.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-fr-CH.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-fr.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-he.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-hr.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-hu.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-hy.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-id.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-is.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-it.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-ja.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-ko.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-lt.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-lv.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-ms.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-nl.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-no.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-pl.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-pt-BR.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-ro.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-ru.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-sk.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-sl.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-sq.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-sr-SR.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-sr.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-sv.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-ta.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-th.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-tr.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-uk.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-vi.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-zh-CN.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-zh-HK.js" />
+    <Content Include="jQueryUI\jquery.ui.datepicker-zh-TW.js" />
+    <Content Include="jQueryUI\jQueryDatePickerGlob.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>

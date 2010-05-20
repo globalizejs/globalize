@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ha-Latn-NG"] = $.extend(true, {}, invariant, {
+        culture = cultures["ha-Latn-NG"] = $.extend(true, {}, invariant, {
         name: "ha-Latn-NG",
         englishName: "Hausa (Latin, Nigeria)",
         nativeName: "Hausa (Nigeria)",
+        language: "ha-Latn",
         numberFormat: {
             currency: {
                 pattern: ["$-n","$ n"],
@@ -30,6 +32,6 @@
                 }
             })
         }
-    });
+    }, cultures["ha-Latn-NG"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

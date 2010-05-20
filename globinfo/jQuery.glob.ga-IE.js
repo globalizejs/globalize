@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ga-IE"] = $.extend(true, {}, invariant, {
+        culture = cultures["ga-IE"] = $.extend(true, {}, invariant, {
         name: "ga-IE",
         englishName: "Irish (Ireland)",
         nativeName: "Gaeilge (Éire)",
+        language: "ga",
         numberFormat: {
             currency: {
                 pattern: ["-$n","$n"],
@@ -29,6 +31,6 @@
                 }
             })
         }
-    });
+    }, cultures["ga-IE"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

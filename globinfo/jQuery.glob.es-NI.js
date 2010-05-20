@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["es-NI"] = $.extend(true, {}, invariant, {
+        culture = cultures["es-NI"] = $.extend(true, {}, invariant, {
         name: "es-NI",
         englishName: "Spanish (Nicaragua)",
         nativeName: "Español (Nicaragua)",
+        language: "es",
         numberFormat: {
             currency: {
                 pattern: ["($ n)","$ n"],
@@ -32,6 +34,6 @@
                 }
             })
         }
-    });
+    }, cultures["es-NI"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

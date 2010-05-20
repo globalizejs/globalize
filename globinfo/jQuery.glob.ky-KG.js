@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["ky-KG"] = $.extend(true, {}, invariant, {
+        culture = cultures["ky-KG"] = $.extend(true, {}, invariant, {
         name: "ky-KG",
         englishName: "Kyrgyz (Kyrgyzstan)",
         nativeName: "Кыргыз (Кыргызстан)",
+        language: "ky",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -41,6 +43,6 @@
                 }
             })
         }
-    });
+    }, cultures["ky-KG"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

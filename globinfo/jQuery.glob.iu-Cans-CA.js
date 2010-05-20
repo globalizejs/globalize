@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["iu-Cans-CA"] = $.extend(true, {}, invariant, {
+        culture = cultures["iu-Cans-CA"] = $.extend(true, {}, invariant, {
         name: "iu-Cans-CA",
         englishName: "Inuktitut (Syllabics, Canada)",
         nativeName: "ᐃᓄᒃᑎᑐᑦ (ᑲᓇᑕᒥ)",
+        language: "iu-Cans",
         numberFormat: {
             groupSizes: [3,0],
             percent: {
@@ -32,6 +34,6 @@
                 }
             })
         }
-    });
+    }, cultures["iu-Cans-CA"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);

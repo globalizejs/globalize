@@ -1,10 +1,12 @@
 (function($) {
-    var invariant = $.cultures.invariant,
+    var cultures = $.cultures,
+        invariant = cultures.invariant,
         standard = invariant.calendars.standard,
-        culture = $.cultures["sah-RU"] = $.extend(true, {}, invariant, {
+        culture = cultures["sah-RU"] = $.extend(true, {}, invariant, {
         name: "sah-RU",
         englishName: "Yakut (Russia)",
         nativeName: "саха (Россия)",
+        language: "sah",
         numberFormat: {
             ',': " ",
             '.': ",",
@@ -41,6 +43,6 @@
                 }
             })
         }
-    });
+    }, cultures["sah-RU"]);
     culture.calendar = culture.calendars.standard;
 })(jQuery);
