@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "glob-generator", "glob-generator.csproj", "{6EBDAB07-7C5E-4CF5-91CA-368ED36D6600}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4C0E66A7-F722-4410-8612-AF97F54F25E3}"
+	ProjectSection(SolutionItems) = preProject
+		..\jquery.glob.js = ..\jquery.glob.js
+		..\demo\jquery.ui.datepicker.js = ..\demo\jquery.ui.datepicker.js
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
