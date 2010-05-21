@@ -921,18 +921,18 @@ $.extend(Datepicker.prototype, {
 	},
 
 	/* Standard date formats. */
-	ATOM: 'yy-mm-dd', // RFC 3339 (ISO 8601)
-	COOKIE: 'D, dd M yy',
-	ISO_8601: 'yy-mm-dd',
-	RFC_822: 'D, d M y',
-	RFC_850: 'DD, dd-M-y',
-	RFC_1036: 'D, d M y',
-	RFC_1123: 'D, d M yy',
-	RFC_2822: 'D, d M yy',
-	RSS: 'D, d M y', // RFC 822
+	ATOM: 'yyyy-mm-dd', // RFC 3339 (ISO 8601)
+	COOKIE: 'ddd, dd mmm yyyy',
+	ISO_8601: 'yyyy-mm-dd',
+	RFC_822: 'ddd, d mmm yy',
+	RFC_850: 'dddd, dd-mmm-yy',
+	RFC_1036: 'ddd, d mmm yy',
+	RFC_1123: 'ddd, d mmm yyyy',
+	RFC_2822: 'ddd, d mmm yyyy',
+	RSS: 'ddd, d mmm yy', // RFC 822
 	TICKS: '!',
 	TIMESTAMP: '@',
-	W3C: 'yy-mm-dd', // ISO 8601
+	W3C: 'yyyy-mm-dd', // ISO 8601
 
 	_ticksTo1970: (((1970 - 1) * 365 + Math.floor(1970 / 4) - Math.floor(1970 / 100) +
 		Math.floor(1970 / 400)) * 24 * 60 * 60 * 10000000),
