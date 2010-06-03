@@ -26,8 +26,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["e diel","e hënë","e martë","e mërkurë","e enjte","e premte","e shtunë"],["Die","Hën","Mar","Mër","Enj","Pre","Sht"],["Di","Hë","Ma","Më","En","Pr","Sh"]],
-                months: [["janar","shkurt","mars","prill","maj","qershor","korrik","gusht","shtator","tetor","nëntor","dhjetor",""],["Jan","Shk","Mar","Pri","Maj","Qer","Kor","Gsh","Sht","Tet","Nën","Dhj",""]],
+                days: {
+                    names: ["e diel","e hënë","e martë","e mërkurë","e enjte","e premte","e shtunë"],
+                    namesAbbr: ["Die","Hën","Mar","Mër","Enj","Pre","Sht"],
+                    namesShort: ["Di","Hë","Ma","Më","En","Pr","Sh"]
+                },
+                months: {
+                    names: ["janar","shkurt","mars","prill","maj","qershor","korrik","gusht","shtator","tetor","nëntor","dhjetor",""],
+                    namesAbbr: ["Jan","Shk","Mar","Pri","Maj","Qer","Kor","Gsh","Sht","Tet","Nën","Dhj",""]
+                },
                 AM: ["PD","pd","PD"],
                 PM: ["MD","md","MD"],
                 patterns: {

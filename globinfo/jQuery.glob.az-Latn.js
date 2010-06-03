@@ -27,9 +27,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Bazar","Bazar ertəsi","Çərşənbə axşamı","Çərşənbə","Cümə axşamı","Cümə","Şənbə"],["B","Be","Ça","Ç","Ca","C","Ş"],["B","Be","Ça","Ç","Ca","C","Ş"]],
-                months: [["Yanvar","Fevral","Mart","Aprel","May","İyun","İyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr",""],["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]],
-                monthsGenitive: [["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]],
+                days: {
+                    names: ["Bazar","Bazar ertəsi","Çərşənbə axşamı","Çərşənbə","Cümə axşamı","Cümə","Şənbə"],
+                    namesAbbr: ["B","Be","Ça","Ç","Ca","C","Ş"],
+                    namesShort: ["B","Be","Ça","Ç","Ca","C","Ş"]
+                },
+                months: {
+                    names: ["Yanvar","Fevral","Mart","Aprel","May","İyun","İyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr",""],
+                    namesAbbr: ["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]
+                },
+                monthsGenitive: {
+                    names: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],
+                    namesAbbr: ["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {

@@ -296,19 +296,19 @@ jQuery.cultures.invariant = {
             ':': ":",
             // the first day of the week (0 = Sunday, 1 = Monday, etc)
             firstDay: 0,
-            days: [
+            days: {
                 // full day names
-                ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                names: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
                 // abbreviated day names
-                ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+                namesAbbr: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
                 // shortest day names
-                ["Su","Mo","Tu","We","Th","Fr","Sa"]
-            ],
+                namesShort: ["Su","Mo","Tu","We","Th","Fr","Sa"]
+            },
             months: [
                 // full month names (13 months for lunar calendars -- 13th month should be "" if not lunar)
-                ["January","February","March","April","May","June","July","August","September","October","November","December",""],
+                names: ["January","February","March","April","May","June","July","August","September","October","November","December",""],
                 // abbreviated month names
-                ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]
+                namesAbbr: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]
             ],
             // AM and PM designators in one of these forms:
             // The usual view, and the upper and lower case versions
@@ -421,7 +421,7 @@ Parsing with parseInt and parseFloat also accepts any of these formats.
 <a name="dates"></a>
 <h2 id="dates">Date Formatting</h2>
 <p>
-Date formatting varies wildly by culture, not just in the spelling of month and day names, and the date separator, but by the expected order of the various date components, whether to use a 12 or 24 hour clock, and how months and days are abbreivated. Many cultures even include "genative" month names, which are different from the typical names and are used only in certain cases.
+Date formatting varies wildly by culture, not just in the spelling of month and day names, and the date separator, but by the expected order of the various date components, whether to use a 12 or 24 hour clock, and how months and days are abbreivated. Many cultures even include "genitive" month names, which are different from the typical names and are used only in certain cases.
 </p>
 <p>
 Also, each culture has a set of "standard" or "typical" formats. For example, in en-US, when displaying a date in its fullest form, it looks like "Saturday, November 05, 1955". Note the non-abbreivated day and month name, the zero padded date, and four digit year. So, jQuery.glob.js defines a certain set of "standard" formatting strings for dates that are aliases to the specific formats for the culture. See the 2nd table below for the meaning of each token in the en-US examples.

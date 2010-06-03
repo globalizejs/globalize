@@ -25,8 +25,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 6,
-                days: [["Acer","Arime","Aram","Ahad","Amhadh","Sem","Sedh"],["Ace","Ari","Ara","Aha","Amh","Sem","Sed"],["Ac","Ar","Ar","Ah","Am","Se","Se"]],
-                months: [["Yenayer","Furar","Maghres","Yebrir","Mayu","Yunyu","Yulyu","Ghuct","Cutenber","Ktuber","Wambir","Dujanbir",""],["Yen","Fur","Mag","Yeb","May","Yun","Yul","Ghu","Cut","Ktu","Wam","Duj",""]],
+                days: {
+                    names: ["Acer","Arime","Aram","Ahad","Amhadh","Sem","Sedh"],
+                    namesAbbr: ["Ace","Ari","Ara","Aha","Amh","Sem","Sed"],
+                    namesShort: ["Ac","Ar","Ar","Ah","Am","Se","Se"]
+                },
+                months: {
+                    names: ["Yenayer","Furar","Maghres","Yebrir","Mayu","Yunyu","Yulyu","Ghuct","Cutenber","Ktuber","Wambir","Dujanbir",""],
+                    namesAbbr: ["Yen","Fur","Mag","Yeb","May","Yun","Yul","Ghu","Cut","Ktu","Wam","Duj",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {

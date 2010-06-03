@@ -25,8 +25,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Sonndeg","Méindeg","Dënschdeg","Mëttwoch","Donneschdeg","Freideg","Samschdeg"],["Son","Méi","Dën","Mët","Don","Fre","Sam"],["So","Mé","Dë","Më","Do","Fr","Sa"]],
-                months: [["Januar","Februar","Mäerz","Abrëll","Mee","Juni","Juli","August","September","Oktober","November","Dezember",""],["Jan","Feb","Mäe","Abr","Mee","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]],
+                days: {
+                    names: ["Sonndeg","Méindeg","Dënschdeg","Mëttwoch","Donneschdeg","Freideg","Samschdeg"],
+                    namesAbbr: ["Son","Méi","Dën","Mët","Don","Fre","Sam"],
+                    namesShort: ["So","Mé","Dë","Më","Do","Fr","Sa"]
+                },
+                months: {
+                    names: ["Januar","Februar","Mäerz","Abrëll","Mee","Juni","Juli","August","September","Oktober","November","Dezember",""],
+                    namesAbbr: ["Jan","Feb","Mäe","Abr","Mee","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. Chr","start":null,"offset":0}],

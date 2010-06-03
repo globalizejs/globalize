@@ -27,9 +27,19 @@
                 name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
-                days: [["nedeľa","pondelok","utorok","streda","štvrtok","piatok","sobota"],["ne","po","ut","st","št","pi","so"],["ne","po","ut","st","št","pi","so"]],
-                months: [["január","február","marec","apríl","máj","jún","júl","august","september","október","november","december",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
-                monthsGenitive: [["januára","februára","marca","apríla","mája","júna","júla","augusta","septembra","októbra","novembra","decembra",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["nedeľa","pondelok","utorok","streda","štvrtok","piatok","sobota"],
+                    namesAbbr: ["ne","po","ut","st","št","pi","so"],
+                    namesShort: ["ne","po","ut","st","št","pi","so"]
+                },
+                months: {
+                    names: ["január","február","marec","apríl","máj","jún","júl","august","september","október","november","december",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
+                monthsGenitive: {
+                    names: ["januára","februára","marca","apríla","mája","júna","júla","augusta","septembra","októbra","novembra","decembra",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. l.","start":null,"offset":0}],

@@ -27,8 +27,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"],["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"],["Pz","Pt","Sa","Ça","Pe","Cu","Ct"]],
-                months: [["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık",""],["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara",""]],
+                days: {
+                    names: ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"],
+                    namesAbbr: ["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"],
+                    namesShort: ["Pz","Pt","Sa","Ça","Pe","Cu","Ct"]
+                },
+                months: {
+                    names: ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık",""],
+                    namesAbbr: ["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {

@@ -8,14 +8,14 @@
         nativeName: "Rumantsch (Svizra)",
         language: "rm",
         numberFormat: {
-            ',': "\u0027",
+            ',': "'",
             percent: {
                 pattern: ["-n%","n%"],
-                ',': "\u0027"
+                ',': "'"
             },
             currency: {
                 pattern: ["$-n","$ n"],
-                ',': "\u0027",
+                ',': "'",
                 symbol: "fr."
             }
         },
@@ -23,8 +23,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dumengia","glindesdi","mardi","mesemna","gievgia","venderdi","sonda"],["du","gli","ma","me","gie","ve","so"],["du","gli","ma","me","gie","ve","so"]],
-                months: [["schaner","favrer","mars","avrigl","matg","zercladur","fanadur","avust","settember","october","november","december",""],["schan","favr","mars","avr","matg","zercl","fan","avust","sett","oct","nov","dec",""]],
+                days: {
+                    names: ["dumengia","glindesdi","mardi","mesemna","gievgia","venderdi","sonda"],
+                    namesAbbr: ["du","gli","ma","me","gie","ve","so"],
+                    namesShort: ["du","gli","ma","me","gie","ve","so"]
+                },
+                months: {
+                    names: ["schaner","favrer","mars","avrigl","matg","zercladur","fanadur","avust","settember","october","november","december",""],
+                    namesAbbr: ["schan","favr","mars","avr","matg","zercl","fan","avust","sett","oct","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"s. Cr.","start":null,"offset":0}],

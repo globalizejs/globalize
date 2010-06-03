@@ -129,7 +129,7 @@
                 <td>Days</td>
                 <td colspan="3">
                     <ol>
-                        {{each days[0]}}
+                        {{each days.names}}
                         <li>{{=}}</li>
                         {{/each}}
                     </ol>
@@ -139,7 +139,17 @@
                 <td>Days (abbreviated)</td>
                 <td colspan="3">
                     <ol>
-                        {{each days[1]}}
+                        {{each days.namesAbbr}}
+                        <li>{{=}}</li>
+                        {{/each}}
+                    </ol>
+                </td>
+            </tr>
+            <tr>
+                <td>Days (shortest)</td>
+                <td colspan="3">
+                    <ol>
+                        {{each days.namesShort}}
                         <li>{{=}}</li>
                         {{/each}}
                     </ol>
@@ -149,7 +159,7 @@
                 <td>Months</td>
                 <td colspan="3">
                     <ol>
-                        {{each months[0]}}
+                        {{each months.names}}
                         <li>{{=}}</li>
                         {{/each}}
                     </ol>
@@ -159,7 +169,7 @@
                 <td>Months (abbreviated)</td>
                 <td colspan="3">
                     <ol>
-                        {{each months[1]}}
+                        {{each months.namesAbbr}}
                         <li>{{=}}</li>
                         {{/each}}
                     </ol>
@@ -168,9 +178,9 @@
             {{if typeof monthsGenitive !== 'undefined'}}
             <tr>
                 <td>Months (Genitive)</td>
-                <td>${monthsGenitive[0]}</td>
+                <td>${monthsGenitive.names}</td>
                 <td>Months (Abbr. Gen.)</td>
-                <td>${monthsGenitive[1]}</td>
+                <td>${monthsGenitive.namesAbbr}</td>
             </tr>
             {{/if}}
             <tr>

@@ -17,8 +17,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Didòmhnaich","Diluain","Dimàirt","Diciadain","Diardaoin","Dihaoine","Disathairne"],["Dòm","Lua","Mài","Cia","Ard","Hao","Sat"],["D","L","M","C","A","H","S"]],
-                months: [["Am Faoilleach","An Gearran","Am Màrt","An Giblean","An Cèitean","An t-Ògmhios","An t-Iuchar","An Lùnastal","An t-Sultain","An Dàmhair","An t-Samhain","An Dùbhlachd",""],["Fao","Gea","Màr","Gib","Cèi","Ògm","Iuc","Lùn","Sul","Dàm","Sam","Dùb",""]],
+                days: {
+                    names: ["Didòmhnaich","Diluain","Dimàirt","Diciadain","Diardaoin","Dihaoine","Disathairne"],
+                    namesAbbr: ["Dòm","Lua","Mài","Cia","Ard","Hao","Sat"],
+                    namesShort: ["D","L","M","C","A","H","S"]
+                },
+                months: {
+                    names: ["Am Faoilleach","An Gearran","Am Màrt","An Giblean","An Cèitean","An t-Ògmhios","An t-Iuchar","An Lùnastal","An t-Sultain","An Dàmhair","An t-Samhain","An Dùbhlachd",""],
+                    namesAbbr: ["Fao","Gea","Màr","Gib","Cèi","Ògm","Iuc","Lùn","Sul","Dàm","Sam","Dùb",""]
+                },
                 AM: ["m","m","M"],
                 PM: ["f","f","F"],
                 patterns: {

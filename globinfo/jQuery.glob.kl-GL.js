@@ -29,8 +29,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["sapaat","ataasinngorneq","marlunngorneq","pingasunngorneq","sisamanngorneq","tallimanngorneq","arfininngorneq"],["sap","ata","mar","ping","sis","tal","arf"],["sa","at","ma","pi","si","ta","ar"]],
-                months: [["januari","februari","martsi","apriili","maaji","juni","juli","aggusti","septembari","oktobari","novembari","decembari",""],["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["sapaat","ataasinngorneq","marlunngorneq","pingasunngorneq","sisamanngorneq","tallimanngorneq","arfininngorneq"],
+                    namesAbbr: ["sap","ata","mar","ping","sis","tal","arf"],
+                    namesShort: ["sa","at","ma","pi","si","ta","ar"]
+                },
+                months: {
+                    names: ["januari","februari","martsi","apriili","maaji","juni","juli","aggusti","septembari","oktobari","novembari","decembari",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {

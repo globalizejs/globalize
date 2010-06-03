@@ -5,7 +5,7 @@
         culture = cultures["moh"] = $.extend(true, {}, invariant, {
         name: "moh",
         englishName: "Mohawk",
-        nativeName: "Kanien\u0027kéha",
+        nativeName: "Kanien'kéha",
         language: "moh",
         numberFormat: {
             groupSizes: [3,0],
@@ -19,8 +19,13 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Awentatokentì:ke","Awentataón\u0027ke","Ratironhia\u0027kehronòn:ke","Soséhne","Okaristiiáhne","Ronwaia\u0027tanentaktonhne","Entákta"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],["S","M","T","W","T","F","S"]],
-                months: [["Tsothohrkó:Wa","Enniska","Enniskó:Wa","Onerahtókha","Onerahtohkó:Wa","Ohiari:Ha","Ohiarihkó:Wa","Seskéha","Seskehkó:Wa","Kenténha","Kentenhkó:Wa","Tsothóhrha",""],["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]],
+                days: {
+                    names: ["Awentatokentì:ke","Awentataón'ke","Ratironhia'kehronòn:ke","Soséhne","Okaristiiáhne","Ronwaia'tanentaktonhne","Entákta"],
+                    namesShort: ["S","M","T","W","T","F","S"]
+                },
+                months: {
+                    names: ["Tsothohrkó:Wa","Enniska","Enniskó:Wa","Onerahtókha","Onerahtohkó:Wa","Ohiari:Ha","Ohiarihkó:Wa","Seskéha","Seskehkó:Wa","Kenténha","Kentenhkó:Wa","Tsothóhrha",""]
+                },
                 patterns: {
                     d: "M/d/yyyy",
                     D: "dddd, MMMM dd, yyyy",

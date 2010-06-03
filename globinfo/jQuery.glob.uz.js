@@ -5,7 +5,7 @@
         culture = cultures["uz"] = $.extend(true, {}, invariant, {
         name: "uz",
         englishName: "Uzbek",
-        nativeName: "U\u0027zbek",
+        nativeName: "U'zbek",
         language: "uz",
         numberFormat: {
             ',': " ",
@@ -20,22 +20,29 @@
                 decimals: 0,
                 ',': " ",
                 '.': ",",
-                symbol: "so\u0027m"
+                symbol: "so'm"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"],["yak.","dsh.","sesh.","chr.","psh.","jm.","sh."],["ya","d","s","ch","p","j","sh"]],
-                months: [["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""]],
+                days: {
+                    names: ["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"],
+                    namesAbbr: ["yak.","dsh.","sesh.","chr.","psh.","jm.","sh."],
+                    namesShort: ["ya","d","s","ch","p","j","sh"]
+                },
+                months: {
+                    names: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],
+                    namesAbbr: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd/MM yyyy",
-                    D: "yyyy \u0027yil\u0027 d-MMMM",
-                    f: "yyyy \u0027yil\u0027 d-MMMM HH:mm",
-                    F: "yyyy \u0027yil\u0027 d-MMMM HH:mm:ss",
+                    D: "yyyy 'yil' d-MMMM",
+                    f: "yyyy 'yil' d-MMMM HH:mm",
+                    F: "yyyy 'yil' d-MMMM HH:mm:ss",
                     M: "d-MMMM",
                     Y: "MMMM yyyy"
                 }

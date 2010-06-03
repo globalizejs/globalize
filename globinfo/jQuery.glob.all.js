@@ -20,8 +20,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -232,8 +239,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -324,8 +338,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -342,8 +363,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -359,8 +387,15 @@
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -377,8 +412,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -418,20 +460,27 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["неделя","понеделник","вторник","сряда","четвъртък","петък","събота"],["нед","пон","вт","ср","четв","пет","съб"],["н","п","в","с","ч","п","с"]],
-                months: [["януари","февруари","март","април","май","юни","юли","август","септември","октомври","ноември","декември",""],["ян","февр","март","апр","май","юни","юли","авг","септ","окт","ноември","дек",""]],
+                days: {
+                    names: ["неделя","понеделник","вторник","сряда","четвъртък","петък","събота"],
+                    namesAbbr: ["нед","пон","вт","ср","четв","пет","съб"],
+                    namesShort: ["н","п","в","с","ч","п","с"]
+                },
+                months: {
+                    names: ["януари","февруари","март","април","май","юни","юли","август","септември","октомври","ноември","декември",""],
+                    namesAbbr: ["ян","февр","март","апр","май","юни","юли","авг","септ","окт","ноември","дек",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"след новата ера","start":null,"offset":0}],
                 patterns: {
-                    d: "d.M.yyyy \u0027г.\u0027",
-                    D: "dd MMMM yyyy \u0027г.\u0027",
-                    t: "HH:mm \u0027ч.\u0027",
-                    T: "HH:mm:ss \u0027ч.\u0027",
-                    f: "dd MMMM yyyy \u0027г.\u0027 HH:mm \u0027ч.\u0027",
-                    F: "dd MMMM yyyy \u0027г.\u0027 HH:mm:ss \u0027ч.\u0027",
+                    d: "d.M.yyyy 'г.'",
+                    D: "dd MMMM yyyy 'г.'",
+                    t: "HH:mm 'ч.'",
+                    T: "HH:mm:ss 'ч.'",
+                    f: "dd MMMM yyyy 'г.' HH:mm 'ч.'",
+                    F: "dd MMMM yyyy 'г.' HH:mm:ss 'ч.'",
                     M: "dd MMMM",
-                    Y: "MMMM yyyy \u0027г.\u0027"
+                    Y: "MMMM yyyy 'г.'"
                 }
             })
         }
@@ -460,18 +509,25 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte"],["dg.","dl.","dt.","dc.","dj.","dv.","ds."],["dg","dl","dt","dc","dj","dv","ds"]],
-                months: [["gener","febrer","març","abril","maig","juny","juliol","agost","setembre","octubre","novembre","desembre",""],["gen","feb","març","abr","maig","juny","jul","ag","set","oct","nov","des",""]],
+                days: {
+                    names: ["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte"],
+                    namesAbbr: ["dg.","dl.","dt.","dc.","dj.","dv.","ds."],
+                    namesShort: ["dg","dl","dt","dc","dj","dv","ds"]
+                },
+                months: {
+                    names: ["gener","febrer","març","abril","maig","juny","juliol","agost","setembre","octubre","novembre","desembre",""],
+                    namesAbbr: ["gen","feb","març","abr","maig","juny","jul","ag","set","oct","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, d\u0027 / \u0027MMMM\u0027 / \u0027yyyy",
-                    f: "dddd, d\u0027 / \u0027MMMM\u0027 / \u0027yyyy HH:mm",
-                    F: "dddd, d\u0027 / \u0027MMMM\u0027 / \u0027yyyy HH:mm:ss",
+                    D: "dddd, d' / 'MMMM' / 'yyyy",
+                    f: "dddd, d' / 'MMMM' / 'yyyy HH:mm",
+                    F: "dddd, d' / 'MMMM' / 'yyyy HH:mm:ss",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 / \u0027yyyy"
+                    Y: "MMMM' / 'yyyy"
                 }
             })
         }
@@ -494,20 +550,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],["周日","周一","周二","周三","周四","周五","周六"],["日","一","二","三","四","五","六"]],
-                months: [["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]],
+                days: {
+                    names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+                    namesAbbr: ["周日","周一","周二","周三","周四","周五","周六"],
+                    namesShort: ["日","一","二","三","四","五","六"]
+                },
+                months: {
+                    names: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],
+                    namesAbbr: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]
+                },
                 AM: ["上午","上午","上午"],
                 PM: ["下午","下午","下午"],
                 eras: [{"name":"公元","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' H:mm",
+                    F: "yyyy'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             })
         }
@@ -538,9 +601,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["neděle","pondělí","úterý","středa","čtvrtek","pátek","sobota"],["ne","po","út","st","čt","pá","so"],["ne","po","út","st","čt","pá","so"]],
-                months: [["leden","únor","březen","duben","květen","červen","červenec","srpen","září","říjen","listopad","prosinec",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
-                monthsGenitive: [["ledna","února","března","dubna","května","června","července","srpna","září","října","listopadu","prosince",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["neděle","pondělí","úterý","středa","čtvrtek","pátek","sobota"],
+                    namesAbbr: ["ne","po","út","st","čt","pá","so"],
+                    namesShort: ["ne","po","út","st","čt","pá","so"]
+                },
+                months: {
+                    names: ["leden","únor","březen","duben","květen","červen","červenec","srpen","září","říjen","listopad","prosinec",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
+                monthsGenitive: {
+                    names: ["ledna","února","března","dubna","května","června","července","srpna","září","října","listopadu","prosince",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: ["dop.","dop.","DOP."],
                 PM: ["odp.","odp.","ODP."],
                 eras: [{"name":"n. l.","start":null,"offset":0}],
@@ -582,8 +655,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],["sø","ma","ti","on","to","fr","lø"],["sø","ma","ti","on","to","fr","lø"]],
-                months: [["januar","februar","marts","april","maj","juni","juli","august","september","oktober","november","december",""],["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],
+                    namesAbbr: ["sø","ma","ti","on","to","fr","lø"],
+                    namesShort: ["sø","ma","ti","on","to","fr","lø"]
+                },
+                months: {
+                    names: ["januar","februar","marts","april","maj","juni","juli","august","september","oktober","november","december",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -623,8 +703,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],["So","Mo","Di","Mi","Do","Fr","Sa"],["So","Mo","Di","Mi","Do","Fr","Sa"]],
-                months: [["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]],
+                days: {
+                    names: ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],
+                    namesAbbr: ["So","Mo","Di","Mi","Do","Fr","Sa"],
+                    namesShort: ["So","Mo","Di","Mi","Do","Fr","Sa"]
+                },
+                months: {
+                    names: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],
+                    namesAbbr: ["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. Chr.","start":null,"offset":0}],
@@ -664,9 +751,19 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"],["Κυρ","Δευ","Τρι","Τετ","Πεμ","Παρ","Σαβ"],["Κυ","Δε","Τρ","Τε","Πε","Πα","Σά"]],
-                months: [["Ιανουάριος","Φεβρουάριος","Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος",""],["Ιαν","Φεβ","Μαρ","Απρ","Μαϊ","Ιουν","Ιουλ","Αυγ","Σεπ","Οκτ","Νοε","Δεκ",""]],
-                monthsGenitive: [["Ιανουαρίου","Φεβρουαρίου","Μαρτίου","Απριλίου","Μαΐου","Ιουνίου","Ιουλίου","Αυγούστου","Σεπτεμβρίου","Οκτωβρίου","Νοεμβρίου","Δεκεμβρίου",""],["Ιαν","Φεβ","Μαρ","Απρ","Μαϊ","Ιουν","Ιουλ","Αυγ","Σεπ","Οκτ","Νοε","Δεκ",""]],
+                days: {
+                    names: ["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"],
+                    namesAbbr: ["Κυρ","Δευ","Τρι","Τετ","Πεμ","Παρ","Σαβ"],
+                    namesShort: ["Κυ","Δε","Τρ","Τε","Πε","Πα","Σά"]
+                },
+                months: {
+                    names: ["Ιανουάριος","Φεβρουάριος","Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος",""],
+                    namesAbbr: ["Ιαν","Φεβ","Μαρ","Απρ","Μαϊ","Ιουν","Ιουλ","Αυγ","Σεπ","Οκτ","Νοε","Δεκ",""]
+                },
+                monthsGenitive: {
+                    names: ["Ιανουαρίου","Φεβρουαρίου","Μαρτίου","Απριλίου","Μαΐου","Ιουνίου","Ιουλίου","Αυγούστου","Σεπτεμβρίου","Οκτωβρίου","Νοεμβρίου","Δεκεμβρίου",""],
+                    namesAbbr: ["Ιαν","Φεβ","Μαρ","Απρ","Μαϊ","Ιουν","Ιουλ","Αυγ","Σεπ","Οκτ","Νοε","Δεκ",""]
+                },
                 AM: ["πμ","πμ","ΠΜ"],
                 PM: ["μμ","μμ","ΜΜ"],
                 eras: [{"name":"μ.Χ.","start":null,"offset":0}],
@@ -733,20 +830,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm:ss",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy H:mm",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy H:mm:ss",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -776,18 +880,25 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sunnuntai","maanantai","tiistai","keskiviikko","torstai","perjantai","lauantai"],["su","ma","ti","ke","to","pe","la"],["su","ma","ti","ke","to","pe","la"]],
-                months: [["tammikuu","helmikuu","maaliskuu","huhtikuu","toukokuu","kesäkuu","heinäkuu","elokuu","syyskuu","lokakuu","marraskuu","joulukuu",""],["tammi","helmi","maalis","huhti","touko","kesä","heinä","elo","syys","loka","marras","joulu",""]],
+                days: {
+                    names: ["sunnuntai","maanantai","tiistai","keskiviikko","torstai","perjantai","lauantai"],
+                    namesAbbr: ["su","ma","ti","ke","to","pe","la"],
+                    namesShort: ["su","ma","ti","ke","to","pe","la"]
+                },
+                months: {
+                    names: ["tammikuu","helmikuu","maaliskuu","huhtikuu","toukokuu","kesäkuu","heinäkuu","elokuu","syyskuu","lokakuu","marraskuu","joulukuu",""],
+                    namesAbbr: ["tammi","helmi","maalis","huhti","touko","kesä","heinä","elo","syys","loka","marras","joulu",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "d.M.yyyy",
-                    D: "d. MMMM\u0027ta \u0027yyyy",
+                    D: "d. MMMM'ta 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d. MMMM\u0027ta \u0027yyyy H:mm",
-                    F: "d. MMMM\u0027ta \u0027yyyy H:mm:ss",
-                    M: "d. MMMM\u0027ta\u0027",
+                    f: "d. MMMM'ta 'yyyy H:mm",
+                    F: "d. MMMM'ta 'yyyy H:mm:ss",
+                    M: "d. MMMM'ta'",
                     Y: "MMMM yyyy"
                 }
             })
@@ -817,8 +928,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -852,8 +970,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","שבת"],["יום א","יום ב","יום ג","יום ד","יום ה","יום ו","שבת"],["א","ב","ג","ד","ה","ו","ש"]],
-                months: [["ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר",""],["ינו","פבר","מרץ","אפר","מאי","יונ","יול","אוג","ספט","אוק","נוב","דצמ",""]],
+                days: {
+                    names: ["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","שבת"],
+                    namesAbbr: ["יום א","יום ב","יום ג","יום ד","יום ה","יום ו","שבת"],
+                    namesShort: ["א","ב","ג","ד","ה","ו","ש"]
+                },
+                months: {
+                    names: ["ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר",""],
+                    namesAbbr: ["ינו","פבר","מרץ","אפר","מאי","יונ","יול","אוג","ספט","אוק","נוב","דצמ",""]
+                },
                 eras: [{"name":"לספירה","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
@@ -867,8 +992,15 @@
             Hebrew: $.extend(true, {}, standard, {
                 name: "Hebrew",
                 '/': " ",
-                days: [["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","שבת"],["א","ב","ג","ד","ה","ו","ש"],["א","ב","ג","ד","ה","ו","ש"]],
-                months: [["תשרי","חשון","כסלו","טבת","שבט","אדר","אדר ב","ניסן","אייר","סיון","תמוז","אב","אלול"],["תשרי","חשון","כסלו","טבת","שבט","אדר","אדר ב","ניסן","אייר","סיון","תמוז","אב","אלול"]],
+                days: {
+                    names: ["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","שבת"],
+                    namesAbbr: ["א","ב","ג","ד","ה","ו","ש"],
+                    namesShort: ["א","ב","ג","ד","ה","ו","ש"]
+                },
+                months: {
+                    names: ["תשרי","חשון","כסלו","טבת","שבט","אדר","אדר ב","ניסן","אייר","סיון","תמוז","אב","אלול"],
+                    namesAbbr: ["תשרי","חשון","כסלו","טבת","שבט","אדר","אדר ב","ניסן","אייר","סיון","תמוז","אב","אלול"]
+                },
                 eras: [{"name":"C.E.","start":null,"offset":0}],
                 twoDigitYearMax: 5790,
                 patterns: {
@@ -907,8 +1039,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["vasárnap","hétfő","kedd","szerda","csütörtök","péntek","szombat"],["V","H","K","Sze","Cs","P","Szo"],["V","H","K","Sze","Cs","P","Szo"]],
-                months: [["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december",""],["jan.","febr.","márc.","ápr.","máj.","jún.","júl.","aug.","szept.","okt.","nov.","dec.",""]],
+                days: {
+                    names: ["vasárnap","hétfő","kedd","szerda","csütörtök","péntek","szombat"],
+                    namesAbbr: ["V","H","K","Sze","Cs","P","Szo"],
+                    namesShort: ["V","H","K","Sze","Cs","P","Szo"]
+                },
+                months: {
+                    names: ["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december",""],
+                    namesAbbr: ["jan.","febr.","márc.","ápr.","máj.","jún.","júl.","aug.","szept.","okt.","nov.","dec.",""]
+                },
                 AM: ["de.","de.","DE."],
                 PM: ["du.","du.","DU."],
                 eras: [{"name":"i.sz.","start":null,"offset":0}],
@@ -952,8 +1091,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sunnudagur","mánudagur","þriðjudagur","miðvikudagur","fimmtudagur","föstudagur","laugardagur"],["sun.","mán.","þri.","mið.","fim.","fös.","lau."],["su","má","þr","mi","fi","fö","la"]],
-                months: [["janúar","febrúar","mars","apríl","maí","júní","júlí","ágúst","september","október","nóvember","desember",""],["jan.","feb.","mar.","apr.","maí","jún.","júl.","ágú.","sep.","okt.","nóv.","des.",""]],
+                days: {
+                    names: ["sunnudagur","mánudagur","þriðjudagur","miðvikudagur","fimmtudagur","föstudagur","laugardagur"],
+                    namesAbbr: ["sun.","mán.","þri.","mið.","fim.","fös.","lau."],
+                    namesShort: ["su","má","þr","mi","fi","fö","la"]
+                },
+                months: {
+                    names: ["janúar","febrúar","mars","apríl","maí","júní","júlí","ágúst","september","október","nóvember","desember",""],
+                    namesAbbr: ["jan.","feb.","mar.","apr.","maí","jún.","júl.","ágú.","sep.","okt.","nóv.","des.",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -992,8 +1138,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"],["dom","lun","mar","mer","gio","ven","sab"],["do","lu","ma","me","gi","ve","sa"]],
-                months: [["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre",""],["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic",""]],
+                days: {
+                    names: ["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"],
+                    namesAbbr: ["dom","lun","mar","mer","gio","ven","sab"],
+                    namesShort: ["do","lu","ma","me","gi","ve","sa"]
+                },
+                months: {
+                    names: ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre",""],
+                    namesAbbr: ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
@@ -1027,39 +1180,53 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],["日","月","火","水","木","金","土"],["日","月","火","水","木","金","土"]],
-                months: [["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],
+                    namesAbbr: ["日","月","火","水","木","金","土"],
+                    namesShort: ["日","月","火","水","木","金","土"]
+                },
+                months: {
+                    names: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: ["午前","午前","午前"],
                 PM: ["午後","午後","午後"],
                 eras: [{"name":"西暦","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/MM/dd",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' H:mm",
+                    F: "yyyy'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             }),
             Japanese: $.extend(true, {}, standard, {
                 name: "Japanese",
-                days: [["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],["日","月","火","水","木","金","土"],["日","月","火","水","木","金","土"]],
-                months: [["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],
+                    namesAbbr: ["日","月","火","水","木","金","土"],
+                    namesShort: ["日","月","火","水","木","金","土"]
+                },
+                months: {
+                    names: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: ["午前","午前","午前"],
                 PM: ["午後","午後","午後"],
                 eras: [{"name":"平成","start":null,"offset":1867},{"name":"昭和","start":-1812153600000,"offset":1911},{"name":"大正","start":-1357603200000,"offset":1925},{"name":"明治","start":60022080000,"offset":1988}],
                 twoDigitYearMax: 99,
                 patterns: {
                     d: "gg y/M/d",
-                    D: "gg y\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "gg y'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "gg y\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "gg y\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "gg y\u0027年\u0027M\u0027月\u0027"
+                    f: "gg y'年'M'月'd'日' H:mm",
+                    F: "gg y'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "gg y'年'M'月'"
                 }
             })
         }
@@ -1081,40 +1248,54 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],["일","월","화","수","목","금","토"],["일","월","화","수","목","금","토"]],
-                months: [["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
+                    namesAbbr: ["일","월","화","수","목","금","토"],
+                    namesShort: ["일","월","화","수","목","금","토"]
+                },
+                months: {
+                    names: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: ["오전","오전","오전"],
                 PM: ["오후","오후","오후"],
                 eras: [{"name":"서기","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy-MM-dd",
-                    D: "yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd",
+                    D: "yyyy'년' M'월' d'일' dddd",
                     t: "tt h:mm",
                     T: "tt h:mm:ss",
-                    f: "yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd tt h:mm",
-                    F: "yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd tt h:mm:ss",
-                    M: "M\u0027월\u0027 d\u0027일\u0027",
-                    Y: "yyyy\u0027년\u0027 M\u0027월\u0027"
+                    f: "yyyy'년' M'월' d'일' dddd tt h:mm",
+                    F: "yyyy'년' M'월' d'일' dddd tt h:mm:ss",
+                    M: "M'월' d'일'",
+                    Y: "yyyy'년' M'월'"
                 }
             }),
             Korean: $.extend(true, {}, standard, {
                 name: "Korean",
                 '/': "-",
-                days: [["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],["일","월","화","수","목","금","토"],["일","월","화","수","목","금","토"]],
-                months: [["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
+                    namesAbbr: ["일","월","화","수","목","금","토"],
+                    namesShort: ["일","월","화","수","목","금","토"]
+                },
+                months: {
+                    names: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: ["오전","오전","오전"],
                 PM: ["오후","오후","오후"],
                 eras: [{"name":"단기","start":null,"offset":-2333}],
                 twoDigitYearMax: 4362,
                 patterns: {
                     d: "gg yyyy-MM-dd",
-                    D: "gg yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd",
+                    D: "gg yyyy'년' M'월' d'일' dddd",
                     t: "tt h:mm",
                     T: "tt h:mm:ss",
-                    f: "gg yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd tt h:mm",
-                    F: "gg yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd tt h:mm:ss",
-                    M: "M\u0027월\u0027 d\u0027일\u0027",
-                    Y: "gg yyyy\u0027년\u0027 M\u0027월\u0027"
+                    f: "gg yyyy'년' M'월' d'일' dddd tt h:mm",
+                    F: "gg yyyy'년' M'월' d'일' dddd tt h:mm:ss",
+                    M: "M'월' d'일'",
+                    Y: "gg yyyy'년' M'월'"
                 }
             })
         }
@@ -1144,8 +1325,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"],["zo","ma","di","wo","do","vr","za"],["zo","ma","di","wo","do","vr","za"]],
-                months: [["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december",""],["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"],
+                    namesAbbr: ["zo","ma","di","wo","do","vr","za"],
+                    namesShort: ["zo","ma","di","wo","do","vr","za"]
+                },
+                months: {
+                    names: ["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december",""],
+                    namesAbbr: ["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -1186,8 +1374,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],["sø","ma","ti","on","to","fr","lø"],["sø","ma","ti","on","to","fr","lø"]],
-                months: [["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember",""],["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]],
+                days: {
+                    names: ["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],
+                    namesAbbr: ["sø","ma","ti","on","to","fr","lø"],
+                    namesShort: ["sø","ma","ti","on","to","fr","lø"]
+                },
+                months: {
+                    names: ["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -1227,9 +1422,19 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["niedziela","poniedziałek","wtorek","środa","czwartek","piątek","sobota"],["N","Pn","Wt","Śr","Cz","Pt","So"],["N","Pn","Wt","Śr","Cz","Pt","So"]],
-                months: [["styczeń","luty","marzec","kwiecień","maj","czerwiec","lipiec","sierpień","wrzesień","październik","listopad","grudzień",""],["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru",""]],
-                monthsGenitive: [["stycznia","lutego","marca","kwietnia","maja","czerwca","lipca","sierpnia","września","października","listopada","grudnia",""],["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru",""]],
+                days: {
+                    names: ["niedziela","poniedziałek","wtorek","środa","czwartek","piątek","sobota"],
+                    namesAbbr: ["N","Pn","Wt","Śr","Cz","Pt","So"],
+                    namesShort: ["N","Pn","Wt","Śr","Cz","Pt","So"]
+                },
+                months: {
+                    names: ["styczeń","luty","marzec","kwiecień","maj","czerwiec","lipiec","sierpień","wrzesień","październik","listopad","grudzień",""],
+                    namesAbbr: ["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru",""]
+                },
+                monthsGenitive: {
+                    names: ["stycznia","lutego","marca","kwietnia","maja","czerwca","lipca","sierpnia","września","października","listopada","grudnia",""],
+                    namesAbbr: ["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -1267,18 +1472,25 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],["dom","seg","ter","qua","qui","sex","sáb"],["D","S","T","Q","Q","S","S"]],
-                months: [["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""],["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""]],
+                days: {
+                    names: ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],
+                    namesAbbr: ["dom","seg","ter","qua","qui","sex","sáb"],
+                    namesShort: ["D","S","T","Q","Q","S","S"]
+                },
+                months: {
+                    names: ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""],
+                    namesAbbr: ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
-                    f: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm",
-                    F: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm:ss",
-                    M: "dd\u0027 de \u0027MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    D: "dddd, d' de 'MMMM' de 'yyyy",
+                    f: "dddd, d' de 'MMMM' de 'yyyy HH:mm",
+                    F: "dddd, d' de 'MMMM' de 'yyyy HH:mm:ss",
+                    M: "dd' de 'MMMM",
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -1290,14 +1502,14 @@
         nativeName: "Rumantsch",
         language: "rm",
         numberFormat: {
-            ',': "\u0027",
+            ',': "'",
             percent: {
                 pattern: ["-n%","n%"],
-                ',': "\u0027"
+                ',': "'"
             },
             currency: {
                 pattern: ["$-n","$ n"],
-                ',': "\u0027",
+                ',': "'",
                 symbol: "fr."
             }
         },
@@ -1305,8 +1517,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dumengia","glindesdi","mardi","mesemna","gievgia","venderdi","sonda"],["du","gli","ma","me","gie","ve","so"],["du","gli","ma","me","gie","ve","so"]],
-                months: [["schaner","favrer","mars","avrigl","matg","zercladur","fanadur","avust","settember","october","november","december",""],["schan","favr","mars","avr","matg","zercl","fan","avust","sett","oct","nov","dec",""]],
+                days: {
+                    names: ["dumengia","glindesdi","mardi","mesemna","gievgia","venderdi","sonda"],
+                    namesAbbr: ["du","gli","ma","me","gie","ve","so"],
+                    namesShort: ["du","gli","ma","me","gie","ve","so"]
+                },
+                months: {
+                    names: ["schaner","favrer","mars","avrigl","matg","zercladur","fanadur","avust","settember","october","november","december",""],
+                    namesAbbr: ["schan","favr","mars","avr","matg","zercl","fan","avust","sett","oct","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"s. Cr.","start":null,"offset":0}],
@@ -1347,8 +1566,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["duminică","luni","marţi","miercuri","joi","vineri","sâmbătă"],["D","L","Ma","Mi","J","V","S"],["D","L","Ma","Mi","J","V","S"]],
-                months: [["ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie",""],["ian.","feb.","mar.","apr.","mai.","iun.","iul.","aug.","sep.","oct.","nov.","dec.",""]],
+                days: {
+                    names: ["duminică","luni","marţi","miercuri","joi","vineri","sâmbătă"],
+                    namesAbbr: ["D","L","Ma","Mi","J","V","S"],
+                    namesShort: ["D","L","Ma","Mi","J","V","S"]
+                },
+                months: {
+                    names: ["ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie",""],
+                    namesAbbr: ["ian.","feb.","mar.","apr.","mai.","iun.","iul.","aug.","sep.","oct.","nov.","dec.",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -1388,18 +1614,28 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["воскресенье","понедельник","вторник","среда","четверг","пятница","суббота"],["Вс","Пн","Вт","Ср","Чт","Пт","Сб"],["Вс","Пн","Вт","Ср","Чт","Пт","Сб"]],
-                months: [["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]],
-                monthsGenitive: [["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря",""],["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]],
+                days: {
+                    names: ["воскресенье","понедельник","вторник","среда","четверг","пятница","суббота"],
+                    namesAbbr: ["Вс","Пн","Вт","Ср","Чт","Пт","Сб"],
+                    namesShort: ["Вс","Пн","Вт","Ср","Чт","Пт","Сб"]
+                },
+                months: {
+                    names: ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],
+                    namesAbbr: ["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]
+                },
+                monthsGenitive: {
+                    names: ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря",""],
+                    namesAbbr: ["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "d MMMM yyyy \u0027г.\u0027",
+                    D: "d MMMM yyyy 'г.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d MMMM yyyy \u0027г.\u0027 H:mm",
-                    F: "d MMMM yyyy \u0027г.\u0027 H:mm:ss",
+                    f: "d MMMM yyyy 'г.' H:mm",
+                    F: "d MMMM yyyy 'г.' H:mm:ss",
                     Y: "MMMM yyyy"
                 }
             })
@@ -1432,9 +1668,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],["ned","pon","uto","sri","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["siječanj","veljača","ožujak","travanj","svibanj","lipanj","srpanj","kolovoz","rujan","listopad","studeni","prosinac",""],["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]],
-                monthsGenitive: [["siječnja","veljače","ožujka","travnja","svibnja","lipnja","srpnja","kolovoza","rujna","listopada","studenog","prosinca",""],["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]],
+                days: {
+                    names: ["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sri","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["siječanj","veljača","ožujak","travanj","svibanj","lipanj","srpanj","kolovoz","rujan","listopad","studeni","prosinac",""],
+                    namesAbbr: ["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]
+                },
+                monthsGenitive: {
+                    names: ["siječnja","veljače","ožujka","travnja","svibnja","lipnja","srpnja","kolovoza","rujna","listopada","studenog","prosinca",""],
+                    namesAbbr: ["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -1476,9 +1722,19 @@
                 name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
-                days: [["nedeľa","pondelok","utorok","streda","štvrtok","piatok","sobota"],["ne","po","ut","st","št","pi","so"],["ne","po","ut","st","št","pi","so"]],
-                months: [["január","február","marec","apríl","máj","jún","júl","august","september","október","november","december",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
-                monthsGenitive: [["januára","februára","marca","apríla","mája","júna","júla","augusta","septembra","októbra","novembra","decembra",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["nedeľa","pondelok","utorok","streda","štvrtok","piatok","sobota"],
+                    namesAbbr: ["ne","po","ut","st","št","pi","so"],
+                    namesShort: ["ne","po","ut","st","št","pi","so"]
+                },
+                months: {
+                    names: ["január","február","marec","apríl","máj","jún","júl","august","september","október","november","december",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
+                monthsGenitive: {
+                    names: ["januára","februára","marca","apríla","mája","júna","júla","augusta","septembra","októbra","novembra","decembra",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. l.","start":null,"offset":0}],
@@ -1520,8 +1776,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["e diel","e hënë","e martë","e mërkurë","e enjte","e premte","e shtunë"],["Die","Hën","Mar","Mër","Enj","Pre","Sht"],["Di","Hë","Ma","Më","En","Pr","Sh"]],
-                months: [["janar","shkurt","mars","prill","maj","qershor","korrik","gusht","shtator","tetor","nëntor","dhjetor",""],["Jan","Shk","Mar","Pri","Maj","Qer","Kor","Gsh","Sht","Tet","Nën","Dhj",""]],
+                days: {
+                    names: ["e diel","e hënë","e martë","e mërkurë","e enjte","e premte","e shtunë"],
+                    namesAbbr: ["Die","Hën","Mar","Mër","Enj","Pre","Sht"],
+                    namesShort: ["Di","Hë","Ma","Më","En","Pr","Sh"]
+                },
+                months: {
+                    names: ["janar","shkurt","mars","prill","maj","qershor","korrik","gusht","shtator","tetor","nëntor","dhjetor",""],
+                    namesAbbr: ["Jan","Shk","Mar","Pri","Maj","Qer","Kor","Gsh","Sht","Tet","Nën","Dhj",""]
+                },
                 AM: ["PD","pd","PD"],
                 PM: ["MD","md","MD"],
                 patterns: {
@@ -1561,16 +1824,23 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["söndag","måndag","tisdag","onsdag","torsdag","fredag","lördag"],["sö","må","ti","on","to","fr","lö"],["sö","må","ti","on","to","fr","lö"]],
-                months: [["januari","februari","mars","april","maj","juni","juli","augusti","september","oktober","november","december",""],["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["söndag","måndag","tisdag","onsdag","torsdag","fredag","lördag"],
+                    namesAbbr: ["sö","må","ti","on","to","fr","lö"],
+                    namesShort: ["sö","må","ti","on","to","fr","lö"]
+                },
+                months: {
+                    names: ["januari","februari","mars","april","maj","juni","juli","augusti","september","oktober","november","december",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy-MM-dd",
-                    D: "\u0027den \u0027d MMMM yyyy",
-                    f: "\u0027den \u0027d MMMM yyyy HH:mm",
-                    F: "\u0027den \u0027d MMMM yyyy HH:mm:ss",
-                    M: "\u0027den \u0027d MMMM",
+                    D: "'den 'd MMMM yyyy",
+                    f: "'den 'd MMMM yyyy HH:mm",
+                    F: "'den 'd MMMM yyyy HH:mm:ss",
+                    M: "'den 'd MMMM",
                     Y: "MMMM yyyy"
                 }
             })
@@ -1592,8 +1862,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "ThaiBuddhist",
                 firstDay: 1,
-                days: [["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."],["อ","จ","อ","พ","พ","ศ","ส"]],
-                months: [["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",""],["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.",""]],
+                days: {
+                    names: ["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],
+                    namesAbbr: ["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."],
+                    namesShort: ["อ","จ","อ","พ","พ","ศ","ส"]
+                },
+                months: {
+                    names: ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",""],
+                    namesAbbr: ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.",""]
+                },
                 eras: [{"name":"พ.ศ.","start":null,"offset":-543}],
                 twoDigitYearMax: 2572,
                 patterns: {
@@ -1610,15 +1887,22 @@
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."],["อ","จ","อ","พ","พ","ศ","ส"]],
-                months: [["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",""],["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.",""]],
+                days: {
+                    names: ["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],
+                    namesAbbr: ["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."],
+                    namesShort: ["อ","จ","อ","พ","พ","ศ","ส"]
+                },
+                months: {
+                    names: ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",""],
+                    namesAbbr: ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.",""]
+                },
                 patterns: {
                     d: "d/M/yyyy",
-                    D: "\u0027วัน\u0027dddd\u0027ที่\u0027 d MMMM yyyy",
+                    D: "'วัน'dddd'ที่' d MMMM yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "\u0027วัน\u0027dddd\u0027ที่\u0027 d MMMM yyyy H:mm",
-                    F: "\u0027วัน\u0027dddd\u0027ที่\u0027 d MMMM yyyy H:mm:ss",
+                    f: "'วัน'dddd'ที่' d MMMM yyyy H:mm",
+                    F: "'วัน'dddd'ที่' d MMMM yyyy H:mm:ss",
                     M: "dd MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -1651,8 +1935,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"],["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"],["Pz","Pt","Sa","Ça","Pe","Cu","Ct"]],
-                months: [["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık",""],["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara",""]],
+                days: {
+                    names: ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"],
+                    namesAbbr: ["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"],
+                    namesShort: ["Pz","Pt","Sa","Ça","Pe","Cu","Ct"]
+                },
+                months: {
+                    names: ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık",""],
+                    namesAbbr: ["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -1683,8 +1974,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["اتوار","پير","منگل","بدھ","جمعرات","جمعه","هفته"],["اتوار","پير","منگل","بدھ","جمعرات","جمعه","هفته"],["ا","پ","م","ب","ج","ج","ه"]],
-                months: [["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر",""],["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر",""]],
+                days: {
+                    names: ["اتوار","پير","منگل","بدھ","جمعرات","جمعه","هفته"],
+                    namesAbbr: ["اتوار","پير","منگل","بدھ","جمعرات","جمعه","هفته"],
+                    namesShort: ["ا","پ","م","ب","ج","ج","ه"]
+                },
+                months: {
+                    names: ["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر",""],
+                    namesAbbr: ["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر",""]
+                },
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM, yyyy",
@@ -1699,8 +1997,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
                 twoDigitYearMax: 1451,
                 patterns: {
@@ -1812,8 +2117,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"],["Minggu","Sen","Sel","Rabu","Kamis","Jumat","Sabtu"],["M","S","S","R","K","J","S"]],
-                months: [["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","Nopember","Desember",""],["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agust","Sep","Okt","Nop","Des",""]],
+                days: {
+                    names: ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"],
+                    namesAbbr: ["Minggu","Sen","Sel","Rabu","Kamis","Jumat","Sabtu"],
+                    namesShort: ["M","S","S","R","K","J","S"]
+                },
+                months: {
+                    names: ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","Nopember","Desember",""],
+                    namesAbbr: ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agust","Sep","Okt","Nop","Des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -1855,20 +2167,30 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["неділя","понеділок","вівторок","середа","четвер","п\u0027ятниця","субота"],["Нд","Пн","Вт","Ср","Чт","Пт","Сб"],["Нд","Пн","Вт","Ср","Чт","Пт","Сб"]],
-                months: [["Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень",""],["Січ","Лют","Бер","Кві","Тра","Чер","Лип","Сер","Вер","Жов","Лис","Гру",""]],
-                monthsGenitive: [["січня","лютого","березня","квітня","травня","червня","липня","серпня","вересня","жовтня","листопада","грудня",""],["січ","лют","бер","кві","тра","чер","лип","сер","вер","жов","лис","гру",""]],
+                days: {
+                    names: ["неділя","понеділок","вівторок","середа","четвер","п'ятниця","субота"],
+                    namesAbbr: ["Нд","Пн","Вт","Ср","Чт","Пт","Сб"],
+                    namesShort: ["Нд","Пн","Вт","Ср","Чт","Пт","Сб"]
+                },
+                months: {
+                    names: ["Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень",""],
+                    namesAbbr: ["Січ","Лют","Бер","Кві","Тра","Чер","Лип","Сер","Вер","Жов","Лис","Гру",""]
+                },
+                monthsGenitive: {
+                    names: ["січня","лютого","березня","квітня","травня","червня","липня","серпня","вересня","жовтня","листопада","грудня",""],
+                    namesAbbr: ["січ","лют","бер","кві","тра","чер","лип","сер","вер","жов","лис","гру",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "d MMMM yyyy\u0027 р.\u0027",
+                    D: "d MMMM yyyy' р.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d MMMM yyyy\u0027 р.\u0027 H:mm",
-                    F: "d MMMM yyyy\u0027 р.\u0027 H:mm:ss",
+                    f: "d MMMM yyyy' р.' H:mm",
+                    F: "d MMMM yyyy' р.' H:mm:ss",
                     M: "d MMMM",
-                    Y: "MMMM yyyy\u0027 р.\u0027"
+                    Y: "MMMM yyyy' р.'"
                 }
             })
         }
@@ -1898,9 +2220,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["нядзеля","панядзелак","аўторак","серада","чацвер","пятніца","субота"],["нд","пн","аў","ср","чц","пт","сб"],["нд","пн","аў","ср","чц","пт","сб"]],
-                months: [["Студзень","Люты","Сакавік","Красавік","Май","Чэрвень","Ліпень","Жнівень","Верасень","Кастрычнік","Лістапад","Снежань",""],["Сту","Лют","Сак","Кра","Май","Чэр","Ліп","Жні","Вер","Кас","Ліс","Сне",""]],
-                monthsGenitive: [["студзеня","лютага","сакавіка","красавіка","мая","чэрвеня","ліпеня","жніўня","верасня","кастрычніка","лістапада","снежня",""],["Сту","Лют","Сак","Кра","Май","Чэр","Ліп","Жні","Вер","Кас","Ліс","Сне",""]],
+                days: {
+                    names: ["нядзеля","панядзелак","аўторак","серада","чацвер","пятніца","субота"],
+                    namesAbbr: ["нд","пн","аў","ср","чц","пт","сб"],
+                    namesShort: ["нд","пн","аў","ср","чц","пт","сб"]
+                },
+                months: {
+                    names: ["Студзень","Люты","Сакавік","Красавік","Май","Чэрвень","Ліпень","Жнівень","Верасень","Кастрычнік","Лістапад","Снежань",""],
+                    namesAbbr: ["Сту","Лют","Сак","Кра","Май","Чэр","Ліп","Жні","Вер","Кас","Ліс","Сне",""]
+                },
+                monthsGenitive: {
+                    names: ["студзеня","лютага","сакавіка","красавіка","мая","чэрвеня","ліпеня","жніўня","верасня","кастрычніка","лістапада","снежня",""],
+                    namesAbbr: ["Сту","Лют","Сак","Кра","Май","Чэр","Ліп","Жні","Вер","Кас","Ліс","Сне",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -1942,8 +2274,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedelja","ponedeljek","torek","sreda","četrtek","petek","sobota"],["ned","pon","tor","sre","čet","pet","sob"],["ne","po","to","sr","če","pe","so"]],
-                months: [["januar","februar","marec","april","maj","junij","julij","avgust","september","oktober","november","december",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedelja","ponedeljek","torek","sreda","četrtek","petek","sobota"],
+                    namesAbbr: ["ned","pon","tor","sre","čet","pet","sob"],
+                    namesShort: ["ne","po","to","sr","če","pe","so"]
+                },
+                months: {
+                    names: ["januar","februar","marec","april","maj","junij","julij","avgust","september","oktober","november","december",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -1984,19 +2323,26 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["pühapäev","esmaspäev","teisipäev","kolmapäev","neljapäev","reede","laupäev"],["P","E","T","K","N","R","L"],["P","E","T","K","N","R","L"]],
-                months: [["jaanuar","veebruar","märts","aprill","mai","juuni","juuli","august","september","oktoober","november","detsember",""],["jaan","veebr","märts","apr","mai","juuni","juuli","aug","sept","okt","nov","dets",""]],
+                days: {
+                    names: ["pühapäev","esmaspäev","teisipäev","kolmapäev","neljapäev","reede","laupäev"],
+                    namesAbbr: ["P","E","T","K","N","R","L"],
+                    namesShort: ["P","E","T","K","N","R","L"]
+                },
+                months: {
+                    names: ["jaanuar","veebruar","märts","aprill","mai","juuni","juuli","august","september","oktoober","november","detsember",""],
+                    namesAbbr: ["jaan","veebr","märts","apr","mai","juuni","juuli","aug","sept","okt","nov","dets",""]
+                },
                 AM: ["EL","el","EL"],
                 PM: ["PL","pl","PL"],
                 patterns: {
                     d: "d.MM.yyyy",
-                    D: "d. MMMM yyyy\u0027. a.\u0027",
+                    D: "d. MMMM yyyy'. a.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d. MMMM yyyy\u0027. a.\u0027 H:mm",
-                    F: "d. MMMM yyyy\u0027. a.\u0027 H:mm:ss",
+                    f: "d. MMMM yyyy'. a.' H:mm",
+                    F: "d. MMMM yyyy'. a.' H:mm:ss",
                     M: "d. MMMM",
-                    Y: "MMMM yyyy\u0027. a.\u0027"
+                    Y: "MMMM yyyy'. a.'"
                 }
             })
         }
@@ -2027,18 +2373,28 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["svētdiena","pirmdiena","otrdiena","trešdiena","ceturtdiena","piektdiena","sestdiena"],["sv","pr","ot","tr","ce","pk","se"],["sv","pr","ot","tr","ce","pk","se"]],
-                months: [["janvāris","februāris","marts","aprīlis","maijs","jūnijs","jūlijs","augusts","septembris","oktobris","novembris","decembris",""],["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]],
-                monthsGenitive: [["janvārī","februārī","martā","aprīlī","maijā","jūnijā","jūlijā","augustā","septembrī","oktobrī","novembrī","decembrī",""],["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["svētdiena","pirmdiena","otrdiena","trešdiena","ceturtdiena","piektdiena","sestdiena"],
+                    namesAbbr: ["sv","pr","ot","tr","ce","pk","se"],
+                    namesShort: ["sv","pr","ot","tr","ce","pk","se"]
+                },
+                months: {
+                    names: ["janvāris","februāris","marts","aprīlis","maijs","jūnijs","jūlijs","augusts","septembris","oktobris","novembris","decembris",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]
+                },
+                monthsGenitive: {
+                    names: ["janvārī","februārī","martā","aprīlī","maijā","jūnijā","jūlijā","augustā","septembrī","oktobrī","novembrī","decembrī",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy.MM.dd.",
-                    D: "dddd, yyyy\u0027. gada \u0027d. MMMM",
+                    D: "dddd, yyyy'. gada 'd. MMMM",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, yyyy\u0027. gada \u0027d. MMMM H:mm",
-                    F: "dddd, yyyy\u0027. gada \u0027d. MMMM H:mm:ss",
+                    f: "dddd, yyyy'. gada 'd. MMMM H:mm",
+                    F: "dddd, yyyy'. gada 'd. MMMM H:mm:ss",
                     M: "d. MMMM",
                     Y: "yyyy. MMMM"
                 }
@@ -2071,18 +2427,28 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sekmadienis","pirmadienis","antradienis","trečiadienis","ketvirtadienis","penktadienis","šeštadienis"],["Sk","Pr","An","Tr","Kt","Pn","Št"],["S","P","A","T","K","Pn","Š"]],
-                months: [["sausis","vasaris","kovas","balandis","gegužė","birželis","liepa","rugpjūtis","rugsėjis","spalis","lapkritis","gruodis",""],["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]],
-                monthsGenitive: [["sausio","vasario","kovo","balandžio","gegužės","birželio","liepos","rugpjūčio","rugsėjo","spalio","lapkričio","gruodžio",""],["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]],
+                days: {
+                    names: ["sekmadienis","pirmadienis","antradienis","trečiadienis","ketvirtadienis","penktadienis","šeštadienis"],
+                    namesAbbr: ["Sk","Pr","An","Tr","Kt","Pn","Št"],
+                    namesShort: ["S","P","A","T","K","Pn","Š"]
+                },
+                months: {
+                    names: ["sausis","vasaris","kovas","balandis","gegužė","birželis","liepa","rugpjūtis","rugsėjis","spalis","lapkritis","gruodis",""],
+                    namesAbbr: ["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]
+                },
+                monthsGenitive: {
+                    names: ["sausio","vasario","kovo","balandžio","gegužės","birželio","liepos","rugpjūčio","rugsėjo","spalio","lapkričio","gruodžio",""],
+                    namesAbbr: ["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy.MM.dd",
-                    D: "yyyy \u0027m.\u0027 MMMM d \u0027d.\u0027",
-                    f: "yyyy \u0027m.\u0027 MMMM d \u0027d.\u0027 HH:mm",
-                    F: "yyyy \u0027m.\u0027 MMMM d \u0027d.\u0027 HH:mm:ss",
-                    M: "MMMM d \u0027d.\u0027",
-                    Y: "yyyy \u0027m.\u0027 MMMM"
+                    D: "yyyy 'm.' MMMM d 'd.'",
+                    f: "yyyy 'm.' MMMM d 'd.' HH:mm",
+                    F: "yyyy 'm.' MMMM d 'd.' HH:mm:ss",
+                    M: "MMMM d 'd.'",
+                    Y: "yyyy 'm.' MMMM"
                 }
             })
         }
@@ -2115,9 +2481,19 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': ".",
-                days: [["Яш","Душанбе","Сешанбе","Чоршанбе","Панҷшанбе","Ҷумъа","Шанбе"],["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"],["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"]],
-                months: [["Январ","Феврал","Март","Апрел","Май","Июн","Июл","Август","Сентябр","Октябр","Ноябр","Декабр",""],["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
-                monthsGenitive: [["январи","феврали","марти","апрели","маи","июни","июли","августи","сентябри","октябри","ноябри","декабри",""],["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
+                days: {
+                    names: ["Яш","Душанбе","Сешанбе","Чоршанбе","Панҷшанбе","Ҷумъа","Шанбе"],
+                    namesAbbr: ["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"],
+                    namesShort: ["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"]
+                },
+                months: {
+                    names: ["Январ","Феврал","Март","Апрел","Май","Июн","Июл","Август","Сентябр","Октябр","Ноябр","Декабр",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
+                monthsGenitive: {
+                    names: ["январи","феврали","марти","апрели","маи","июни","июли","августи","сентябри","октябри","ноябри","декабри",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -2151,8 +2527,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ق.ظ","ق.ظ","ق.ظ"],
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -2168,8 +2551,15 @@
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["يكشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],["يكشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],["ی","د","س","چ","پ","ج","ش"]],
-                months: [["ژانويه","فوريه","مارس","آوريل","مى","ژوئن","ژوئيه","اوت","سپتامبر","اُكتبر","نوامبر","دسامبر",""],["ژانويه","فوريه","مارس","آوريل","مى","ژوئن","ژوئيه","اوت","سپتامبر","اُكتبر","نوامبر","دسامبر",""]],
+                days: {
+                    names: ["يكشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesAbbr: ["يكشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesShort: ["ی","د","س","چ","پ","ج","ش"]
+                },
+                months: {
+                    names: ["ژانويه","فوريه","مارس","آوريل","مى","ژوئن","ژوئيه","اوت","سپتامبر","اُكتبر","نوامبر","دسامبر",""],
+                    namesAbbr: ["ژانويه","فوريه","مارس","آوريل","مى","ژوئن","ژوئيه","اوت","سپتامبر","اُكتبر","نوامبر","دسامبر",""]
+                },
                 AM: ["ق.ظ","ق.ظ","ق.ظ"],
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 patterns: {
@@ -2186,8 +2576,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ق.ظ","ق.ظ","ق.ظ"],
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -2278,8 +2675,15 @@
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ق.ظ","ق.ظ","ق.ظ"],
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -2318,8 +2722,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Chủ Nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"],["CN","Hai","Ba","Tư","Năm","Sáu","Bảy"],["C","H","B","T","N","S","B"]],
-                months: [["Tháng Giêng","Tháng Hai","Tháng Ba","Tháng Tư","Tháng Năm","Tháng Sáu","Tháng Bảy","Tháng Tám","Tháng Chín","Tháng Mười","Tháng Mười Một","Tháng Mười Hai",""],["Thg1","Thg2","Thg3","Thg4","Thg5","Thg6","Thg7","Thg8","Thg9","Thg10","Thg11","Thg12",""]],
+                days: {
+                    names: ["Chủ Nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"],
+                    namesAbbr: ["CN","Hai","Ba","Tư","Năm","Sáu","Bảy"],
+                    namesShort: ["C","H","B","T","N","S","B"]
+                },
+                months: {
+                    names: ["Tháng Giêng","Tháng Hai","Tháng Ba","Tháng Tư","Tháng Năm","Tháng Sáu","Tháng Bảy","Tháng Tám","Tháng Chín","Tháng Mười","Tháng Mười Một","Tháng Mười Hai",""],
+                    namesAbbr: ["Thg1","Thg2","Thg3","Thg4","Thg5","Thg6","Thg7","Thg8","Thg9","Thg10","Thg11","Thg12",""]
+                },
                 AM: ["SA","sa","SA"],
                 PM: ["CH","ch","CH"],
                 patterns: {
@@ -2352,8 +2763,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Կիրակի","Երկուշաբթի","Երեքշաբթի","Չորեքշաբթի","Հինգշաբթի","ՈՒրբաթ","Շաբաթ"],["Կիր","Երկ","Երք","Չրք","Հնգ","ՈՒր","Շբթ"],["Կ","Ե","Ե","Չ","Հ","Ո","Շ"]],
-                months: [["Հունվար","Փետրվար","Մարտ","Ապրիլ","Մայիս","Հունիս","Հուլիս","Օգոստոս","Սեպտեմբեր","Հոկտեմբեր","Նոյեմբեր","Դեկտեմբեր",""],["ՀՆՎ","ՓՏՎ","ՄՐՏ","ԱՊՐ","ՄՅՍ","ՀՆՍ","ՀԼՍ","ՕԳՍ","ՍԵՊ","ՀՈԿ","ՆՈՅ","ԴԵԿ",""]],
+                days: {
+                    names: ["Կիրակի","Երկուշաբթի","Երեքշաբթի","Չորեքշաբթի","Հինգշաբթի","ՈՒրբաթ","Շաբաթ"],
+                    namesAbbr: ["Կիր","Երկ","Երք","Չրք","Հնգ","ՈՒր","Շբթ"],
+                    namesShort: ["Կ","Ե","Ե","Չ","Հ","Ո","Շ"]
+                },
+                months: {
+                    names: ["Հունվար","Փետրվար","Մարտ","Ապրիլ","Մայիս","Հունիս","Հուլիս","Օգոստոս","Սեպտեմբեր","Հոկտեմբեր","Նոյեմբեր","Դեկտեմբեր",""],
+                    namesAbbr: ["ՀՆՎ","ՓՏՎ","ՄՐՏ","ԱՊՐ","ՄՅՍ","ՀՆՍ","ՀԼՍ","ՕԳՍ","ՍԵՊ","ՀՈԿ","ՆՈՅ","ԴԵԿ",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -2395,9 +2813,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Bazar","Bazar ertəsi","Çərşənbə axşamı","Çərşənbə","Cümə axşamı","Cümə","Şənbə"],["B","Be","Ça","Ç","Ca","C","Ş"],["B","Be","Ça","Ç","Ca","C","Ş"]],
-                months: [["Yanvar","Fevral","Mart","Aprel","May","İyun","İyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr",""],["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]],
-                monthsGenitive: [["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]],
+                days: {
+                    names: ["Bazar","Bazar ertəsi","Çərşənbə axşamı","Çərşənbə","Cümə axşamı","Cümə","Şənbə"],
+                    namesAbbr: ["B","Be","Ça","Ç","Ca","C","Ş"],
+                    namesShort: ["B","Be","Ça","Ç","Ca","C","Ş"]
+                },
+                months: {
+                    names: ["Yanvar","Fevral","Mart","Aprel","May","İyun","İyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr",""],
+                    namesAbbr: ["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]
+                },
+                monthsGenitive: {
+                    names: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],
+                    namesAbbr: ["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -2437,18 +2865,25 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["igandea","astelehena","asteartea","asteazkena","osteguna","ostirala","larunbata"],["ig.","al.","as.","az.","og.","or.","lr."],["ig","al","as","az","og","or","lr"]],
-                months: [["urtarrila","otsaila","martxoa","apirila","maiatza","ekaina","uztaila","abuztua","iraila","urria","azaroa","abendua",""],["urt.","ots.","mar.","api.","mai.","eka.","uzt.","abu.","ira.","urr.","aza.","abe.",""]],
+                days: {
+                    names: ["igandea","astelehena","asteartea","asteazkena","osteguna","ostirala","larunbata"],
+                    namesAbbr: ["ig.","al.","as.","az.","og.","or.","lr."],
+                    namesShort: ["ig","al","as","az","og","or","lr"]
+                },
+                months: {
+                    names: ["urtarrila","otsaila","martxoa","apirila","maiatza","ekaina","uztaila","abuztua","iraila","urria","azaroa","abendua",""],
+                    namesAbbr: ["urt.","ots.","mar.","api.","mai.","eka.","uzt.","abu.","ira.","urr.","aza.","abe.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/MM/dd",
-                    D: "dddd, yyyy.\u0027eko\u0027 MMMM\u0027k \u0027d",
+                    D: "dddd, yyyy.'eko' MMMM'k 'd",
                     T: "H:mm:ss",
-                    f: "dddd, yyyy.\u0027eko\u0027 MMMM\u0027k \u0027d HH:mm",
-                    F: "dddd, yyyy.\u0027eko\u0027 MMMM\u0027k \u0027d H:mm:ss",
-                    Y: "yyyy.\u0027eko\u0027 MMMM"
+                    f: "dddd, yyyy.'eko' MMMM'k 'd HH:mm",
+                    F: "dddd, yyyy.'eko' MMMM'k 'd H:mm:ss",
+                    Y: "yyyy.'eko' MMMM"
                 }
             })
         }
@@ -2478,19 +2913,29 @@
                 name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
-                days: [["njedźela","póndźela","wutora","srjeda","štwórtk","pjatk","sobota"],["nje","pón","wut","srj","štw","pja","sob"],["n","p","w","s","š","p","s"]],
-                months: [["januar","februar","měrc","apryl","meja","junij","julij","awgust","september","oktober","nowember","december",""],["jan","feb","měr","apr","mej","jun","jul","awg","sep","okt","now","dec",""]],
-                monthsGenitive: [["januara","februara","měrca","apryla","meje","junija","julija","awgusta","septembra","oktobra","nowembra","decembra",""],["jan","feb","měr","apr","mej","jun","jul","awg","sep","okt","now","dec",""]],
+                days: {
+                    names: ["njedźela","póndźela","wutora","srjeda","štwórtk","pjatk","sobota"],
+                    namesAbbr: ["nje","pón","wut","srj","štw","pja","sob"],
+                    namesShort: ["n","p","w","s","š","p","s"]
+                },
+                months: {
+                    names: ["januar","februar","měrc","apryl","meja","junij","julij","awgust","september","oktober","nowember","december",""],
+                    namesAbbr: ["jan","feb","měr","apr","mej","jun","jul","awg","sep","okt","now","dec",""]
+                },
+                monthsGenitive: {
+                    names: ["januara","februara","měrca","apryla","meje","junija","julija","awgusta","septembra","oktobra","nowembra","decembra",""],
+                    namesAbbr: ["jan","feb","měr","apr","mej","jun","jul","awg","sep","okt","now","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"po Chr.","start":null,"offset":0}],
                 patterns: {
                     d: "d. M. yyyy",
-                    D: "dddd, \u0027dnja\u0027 d. MMMM yyyy",
-                    t: "H.mm \u0027hodź.\u0027",
+                    D: "dddd, 'dnja' d. MMMM yyyy",
+                    t: "H.mm 'hodź.'",
                     T: "H:mm:ss",
-                    f: "dddd, \u0027dnja\u0027 d. MMMM yyyy H.mm \u0027hodź.\u0027",
-                    F: "dddd, \u0027dnja\u0027 d. MMMM yyyy H:mm:ss",
+                    f: "dddd, 'dnja' d. MMMM yyyy H.mm 'hodź.'",
+                    F: "dddd, 'dnja' d. MMMM yyyy H:mm:ss",
                     M: "d. MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -2522,8 +2967,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["недела","понеделник","вторник","среда","четврток","петок","сабота"],["нед","пон","втр","срд","чет","пет","саб"],["не","по","вт","ср","че","пе","са"]],
-                months: [["јануари","февруари","март","април","мај","јуни","јули","август","септември","октомври","ноември","декември",""],["јан","фев","мар","апр","мај","јун","јул","авг","сеп","окт","ное","дек",""]],
+                days: {
+                    names: ["недела","понеделник","вторник","среда","четврток","петок","сабота"],
+                    namesAbbr: ["нед","пон","втр","срд","чет","пет","саб"],
+                    namesShort: ["не","по","вт","ср","че","пе","са"]
+                },
+                months: {
+                    names: ["јануари","февруари","март","април","мај","јуни","јули","август","септември","октомври","ноември","декември",""],
+                    namesAbbr: ["јан","фев","мар","апр","мај","јун","јул","авг","сеп","окт","ное","дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -2552,8 +3004,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Latshipi","Mosupologo","Labobedi","Laboraro","Labone","Labotlhano","Lamatlhatso"],["Ltp.","Mos.","Lbd.","Lbr.","Lbn.","Lbt.","Lmt."],["Lp","Ms","Lb","Lr","Ln","Lt","Lm"]],
-                months: [["Ferikgong","Tlhakole","Mopitloe","Moranang","Motsheganong","Seetebosigo","Phukwi","Phatwe","Lwetse","Diphalane","Ngwanatsele","Sedimothole",""],["Fer.","Tlhak.","Mop.","Mor.","Motsh.","Seet.","Phukw.","Phatw.","Lwets.","Diph.","Ngwan.","Sed.",""]],
+                days: {
+                    names: ["Latshipi","Mosupologo","Labobedi","Laboraro","Labone","Labotlhano","Lamatlhatso"],
+                    namesAbbr: ["Ltp.","Mos.","Lbd.","Lbr.","Lbn.","Lbt.","Lmt."],
+                    namesShort: ["Lp","Ms","Lb","Lr","Ln","Lt","Lm"]
+                },
+                months: {
+                    names: ["Ferikgong","Tlhakole","Mopitloe","Moranang","Motsheganong","Seetebosigo","Phukwi","Phatwe","Lwetse","Diphalane","Ngwanatsele","Sedimothole",""],
+                    namesAbbr: ["Fer.","Tlhak.","Mop.","Mor.","Motsh.","Seet.","Phukw.","Phatw.","Lwets.","Diph.","Ngwan.","Sed.",""]
+                },
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",
@@ -2585,8 +3044,13 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["iCawa","uMvulo","uLwesibini","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],["Ca","Mv","Lb","Lt","Ln","Lh","Mg"]],
-                months: [["Mqungu","Mdumba","Kwindla","Tshazimpuzi","Canzibe","Silimela","Khala","Thupha","Msintsi","Dwarha","Nkanga","Mnga",""],["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]],
+                days: {
+                    names: ["iCawa","uMvulo","uLwesibini","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],
+                    namesShort: ["Ca","Mv","Lb","Lt","Ln","Lh","Mg"]
+                },
+                months: {
+                    names: ["Mqungu","Mdumba","Kwindla","Tshazimpuzi","Canzibe","Silimela","Khala","Thupha","Msintsi","Dwarha","Nkanga","Mnga",""]
+                },
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",
@@ -2618,8 +3082,14 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["iSonto","uMsombuluko","uLwesibili","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],["Son.","Mso.","Bi.","Tha.","Ne.","Hla.","Mgq."],["Su","Mo","Tu","We","Th","Fr","Sa"]],
-                months: [["uMasingana","uNhlolanja","uNdasa","uMbaso","uNhlaba","uNhlangulana","uNtulikazi","uNcwaba","uMandulo","uMfumfu","uLwezi","uZibandlela",""],["Mas.","Nhlo.","Nda.","Mba.","Nhla.","Nhlang.","Ntu.","Ncwa.","Man.","Mfu.","Lwe.","Zib.",""]],
+                days: {
+                    names: ["iSonto","uMsombuluko","uLwesibili","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],
+                    namesAbbr: ["Son.","Mso.","Bi.","Tha.","Ne.","Hla.","Mgq."]
+                },
+                months: {
+                    names: ["uMasingana","uNhlolanja","uNdasa","uMbaso","uNhlaba","uNhlangulana","uNtulikazi","uNcwaba","uMandulo","uMfumfu","uLwezi","uZibandlela",""],
+                    namesAbbr: ["Mas.","Nhlo.","Nda.","Mba.","Nhla.","Nhlang.","Ntu.","Ncwa.","Man.","Mfu.","Lwe.","Zib.",""]
+                },
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",
@@ -2651,8 +3121,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Sondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrydag","Saterdag"],["Son","Maan","Dins","Woen","Dond","Vry","Sat"],["So","Ma","Di","Wo","Do","Vr","Sa"]],
-                months: [["Januarie","Februarie","Maart","April","Mei","Junie","Julie","Augustus","September","Oktober","November","Desember",""],["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nov","Des",""]],
+                days: {
+                    names: ["Sondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrydag","Saterdag"],
+                    namesAbbr: ["Son","Maan","Dins","Woen","Dond","Vry","Sat"],
+                    namesShort: ["So","Ma","Di","Wo","Do","Vr","Sa"]
+                },
+                months: {
+                    names: ["Januarie","Februarie","Maart","April","Mei","Junie","Julie","Augustus","September","Oktober","November","Desember",""],
+                    namesAbbr: ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nov","Des",""]
+                },
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",
@@ -2691,17 +3168,24 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["კვირა","ორშაბათი","სამშაბათი","ოთხშაბათი","ხუთშაბათი","პარასკევი","შაბათი"],["კვირა","ორშაბათი","სამშაბათი","ოთხშაბათი","ხუთშაბათი","პარასკევი","შაბათი"],["კ","ო","ს","ო","ხ","პ","შ"]],
-                months: [["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი",""],["იან","თებ","მარ","აპრ","მაის","ივნ","ივლ","აგვ","სექ","ოქტ","ნოემ","დეკ",""]],
+                days: {
+                    names: ["კვირა","ორშაბათი","სამშაბათი","ოთხშაბათი","ხუთშაბათი","პარასკევი","შაბათი"],
+                    namesAbbr: ["კვირა","ორშაბათი","სამშაბათი","ოთხშაბათი","ხუთშაბათი","პარასკევი","შაბათი"],
+                    namesShort: ["კ","ო","ს","ო","ხ","პ","შ"]
+                },
+                months: {
+                    names: ["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი",""],
+                    namesAbbr: ["იან","თებ","მარ","აპრ","მაის","ივნ","ივლ","აგვ","სექ","ოქტ","ნოემ","დეკ",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "yyyy \u0027წლის\u0027 dd MM, dddd",
+                    D: "yyyy 'წლის' dd MM, dddd",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy \u0027წლის\u0027 dd MM, dddd H:mm",
-                    F: "yyyy \u0027წლის\u0027 dd MM, dddd H:mm:ss",
+                    f: "yyyy 'წლის' dd MM, dddd H:mm",
+                    F: "yyyy 'წლის' dd MM, dddd H:mm:ss",
                     M: "dd MM",
                     Y: "MMMM yyyy"
                 }
@@ -2734,8 +3218,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["sunnudagur","mánadagur","týsdagur","mikudagur","hósdagur","fríggjadagur","leygardagur"],["sun","mán","týs","mik","hós","frí","leyg"],["su","má","tý","mi","hó","fr","ley"]],
-                months: [["januar","februar","mars","apríl","mai","juni","juli","august","september","oktober","november","desember",""],["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]],
+                days: {
+                    names: ["sunnudagur","mánadagur","týsdagur","mikudagur","hósdagur","fríggjadagur","leygardagur"],
+                    namesAbbr: ["sun","mán","týs","mik","hós","frí","leyg"],
+                    namesShort: ["su","má","tý","mi","hó","fr","ley"]
+                },
+                months: {
+                    names: ["januar","februar","mars","apríl","mai","juni","juli","august","september","oktober","november","desember",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -2771,8 +3262,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],["रवि.","सोम.","मंगल.","बुध.","गुरु.","शुक्र.","शनि."],["र","स","म","ब","ग","श","श"]],
-                months: [["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""],["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""]],
+                days: {
+                    names: ["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],
+                    namesAbbr: ["रवि.","सोम.","मंगल.","बुध.","गुरु.","शुक्र.","शनि."],
+                    namesShort: ["र","स","म","ब","ग","श","श"]
+                },
+                months: {
+                    names: ["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""],
+                    namesAbbr: ["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""]
+                },
                 AM: ["पूर्वाह्न","पूर्वाह्न","पूर्वाह्न"],
                 PM: ["अपराह्न","अपराह्न","अपराह्न"],
                 patterns: {
@@ -2805,14 +3303,21 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Il-Ħadd","It-Tnejn","It-Tlieta","L-Erbgħa","Il-Ħamis","Il-Ġimgħa","Is-Sibt"],["Ħad","Tne","Tli","Erb","Ħam","Ġim","Sib"],["I","I","I","L","I","I","I"]],
-                months: [["Jannar","Frar","Marzu","April","Mejju","Ġunju","Lulju","Awissu","Settembru","Ottubru","Novembru","Diċembru",""],["Jan","Fra","Mar","Apr","Mej","Ġun","Lul","Awi","Set","Ott","Nov","Diċ",""]],
+                days: {
+                    names: ["Il-Ħadd","It-Tnejn","It-Tlieta","L-Erbgħa","Il-Ħamis","Il-Ġimgħa","Is-Sibt"],
+                    namesAbbr: ["Ħad","Tne","Tli","Erb","Ħam","Ġim","Sib"],
+                    namesShort: ["I","I","I","L","I","I","I"]
+                },
+                months: {
+                    names: ["Jannar","Frar","Marzu","April","Mejju","Ġunju","Lulju","Awissu","Settembru","Ottubru","Novembru","Diċembru",""],
+                    namesAbbr: ["Jan","Fra","Mar","Apr","Mej","Ġun","Lul","Awi","Set","Ott","Nov","Diċ",""]
+                },
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, d\u0027 ta\\\u0027 \u0027MMMM yyyy",
-                    f: "dddd, d\u0027 ta\\\u0027 \u0027MMMM yyyy HH:mm",
-                    F: "dddd, d\u0027 ta\\\u0027 \u0027MMMM yyyy HH:mm:ss",
-                    M: "d\u0027 ta\\\u0027 \u0027MMMM",
+                    D: "dddd, d' ta\\' 'MMMM yyyy",
+                    f: "dddd, d' ta\\' 'MMMM yyyy HH:mm",
+                    F: "dddd, d' ta\\' 'MMMM yyyy HH:mm:ss",
+                    M: "d' ta\\' 'MMMM",
                     Y: "MMMM yyyy"
                 }
             })
@@ -2844,17 +3349,27 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sotnabeaivi","vuossárga","maŋŋebárga","gaskavahkku","duorastat","bearjadat","lávvardat"],["sotn","vuos","maŋ","gask","duor","bear","láv"],["s","m","d","g","d","b","l"]],
-                months: [["ođđajagemánnu","guovvamánnu","njukčamánnu","cuoŋománnu","miessemánnu","geassemánnu","suoidnemánnu","borgemánnu","čakčamánnu","golggotmánnu","skábmamánnu","juovlamánnu",""],["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]],
-                monthsGenitive: [["ođđajagimánu","guovvamánu","njukčamánu","cuoŋománu","miessemánu","geassemánu","suoidnemánu","borgemánu","čakčamánu","golggotmánu","skábmamánu","juovlamánu",""],["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]],
+                days: {
+                    names: ["sotnabeaivi","vuossárga","maŋŋebárga","gaskavahkku","duorastat","bearjadat","lávvardat"],
+                    namesAbbr: ["sotn","vuos","maŋ","gask","duor","bear","láv"],
+                    namesShort: ["s","m","d","g","d","b","l"]
+                },
+                months: {
+                    names: ["ođđajagemánnu","guovvamánnu","njukčamánnu","cuoŋománnu","miessemánnu","geassemánnu","suoidnemánnu","borgemánnu","čakčamánnu","golggotmánnu","skábmamánnu","juovlamánnu",""],
+                    namesAbbr: ["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]
+                },
+                monthsGenitive: {
+                    names: ["ođđajagimánu","guovvamánu","njukčamánu","cuoŋománu","miessemánu","geassemánu","suoidnemánu","borgemánu","čakčamánu","golggotmánu","skábmamánu","juovlamánu",""],
+                    namesAbbr: ["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "MMMM d\u0027. b. \u0027yyyy",
-                    f: "MMMM d\u0027. b. \u0027yyyy HH:mm",
-                    F: "MMMM d\u0027. b. \u0027yyyy HH:mm:ss",
-                    M: "MMMM d\u0027. b. \u0027",
+                    D: "MMMM d'. b. 'yyyy",
+                    f: "MMMM d'. b. 'yyyy HH:mm",
+                    F: "MMMM d'. b. 'yyyy HH:mm:ss",
+                    M: "MMMM d'. b. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -2876,8 +3391,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Dé Domhnaigh","Dé Luain","Dé Máirt","Dé Céadaoin","Déardaoin","Dé hAoine","Dé Sathairn"],["Domh","Luan","Máir","Céad","Déar","Aoi","Sath"],["Do","Lu","Má","Cé","De","Ao","Sa"]],
-                months: [["Eanáir","Feabhra","Márta","Aibreán","Bealtaine","Meitheamh","Iúil","Lúnasa","Meán Fómhair","Deireadh Fómhair","Samhain","Nollaig",""],["Ean","Feabh","Már","Aib","Bealt","Meith","Iúil","Lún","M.Fómh","D.Fómh","Samh","Noll",""]],
+                days: {
+                    names: ["Dé Domhnaigh","Dé Luain","Dé Máirt","Dé Céadaoin","Déardaoin","Dé hAoine","Dé Sathairn"],
+                    namesAbbr: ["Domh","Luan","Máir","Céad","Déar","Aoi","Sath"],
+                    namesShort: ["Do","Lu","Má","Cé","De","Ao","Sa"]
+                },
+                months: {
+                    names: ["Eanáir","Feabhra","Márta","Aibreán","Bealtaine","Meitheamh","Iúil","Lúnasa","Meán Fómhair","Deireadh Fómhair","Samhain","Nollaig",""],
+                    namesAbbr: ["Ean","Feabh","Már","Aib","Bealt","Meith","Iúil","Lún","M.Fómh","D.Fómh","Samh","Noll",""]
+                },
                 AM: ["r.n.","r.n.","R.N."],
                 PM: ["i.n.","i.n.","I.N."],
                 patterns: {
@@ -2907,8 +3429,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"],["Ahad","Isnin","Sel","Rabu","Khamis","Jumaat","Sabtu"],["A","I","S","R","K","J","S"]],
-                months: [["Januari","Februari","Mac","April","Mei","Jun","Julai","Ogos","September","Oktober","November","Disember",""],["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ogos","Sept","Okt","Nov","Dis",""]],
+                days: {
+                    names: ["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"],
+                    namesAbbr: ["Ahad","Isnin","Sel","Rabu","Khamis","Jumaat","Sabtu"],
+                    namesShort: ["A","I","S","R","K","J","S"]
+                },
+                months: {
+                    names: ["Januari","Februari","Mac","April","Mei","Jun","Julai","Ogos","September","Oktober","November","Disember",""],
+                    namesAbbr: ["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ogos","Sept","Okt","Nov","Dis",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -2950,17 +3479,24 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Жексенбі","Дүйсенбі","Сейсенбі","Сәрсенбі","Бейсенбі","Жұма","Сенбі"],["Жк","Дс","Сс","Ср","Бс","Жм","Сн"],["Жк","Дс","Сс","Ср","Бс","Жм","Сн"]],
-                months: [["қаңтар","ақпан","наурыз","сәуір","мамыр","маусым","шілде","тамыз","қыркүйек","қазан","қараша","желтоқсан",""],["Қаң","Ақп","Нау","Сәу","Мам","Мау","Шіл","Там","Қыр","Қаз","Қар","Жел",""]],
+                days: {
+                    names: ["Жексенбі","Дүйсенбі","Сейсенбі","Сәрсенбі","Бейсенбі","Жұма","Сенбі"],
+                    namesAbbr: ["Жк","Дс","Сс","Ср","Бс","Жм","Сн"],
+                    namesShort: ["Жк","Дс","Сс","Ср","Бс","Жм","Сн"]
+                },
+                months: {
+                    names: ["қаңтар","ақпан","наурыз","сәуір","мамыр","маусым","шілде","тамыз","қыркүйек","қазан","қараша","желтоқсан",""],
+                    namesAbbr: ["Қаң","Ақп","Нау","Сәу","Мам","Мау","Шіл","Там","Қыр","Қаз","Қар","Жел",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "d MMMM yyyy \u0027ж.\u0027",
+                    D: "d MMMM yyyy 'ж.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d MMMM yyyy \u0027ж.\u0027 H:mm",
-                    F: "d MMMM yyyy \u0027ж.\u0027 H:mm:ss",
+                    f: "d MMMM yyyy 'ж.' H:mm",
+                    F: "d MMMM yyyy 'ж.' H:mm:ss",
                     M: "d MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -2993,19 +3529,26 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Жекшемби","Дүйшөмбү","Шейшемби","Шаршемби","Бейшемби","Жума","Ишемби"],["Жш","Дш","Шш","Шр","Бш","Жм","Иш"],["Жш","Дш","Шш","Шр","Бш","Жм","Иш"]],
-                months: [["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
+                days: {
+                    names: ["Жекшемби","Дүйшөмбү","Шейшемби","Шаршемби","Бейшемби","Жума","Ишемби"],
+                    namesAbbr: ["Жш","Дш","Шш","Шр","Бш","Жм","Иш"],
+                    namesShort: ["Жш","Дш","Шш","Шр","Бш","Жм","Иш"]
+                },
+                months: {
+                    names: ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yy",
-                    D: "d\u0027-\u0027MMMM yyyy\u0027-ж.\u0027",
+                    D: "d'-'MMMM yyyy'-ж.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d\u0027-\u0027MMMM yyyy\u0027-ж.\u0027 H:mm",
-                    F: "d\u0027-\u0027MMMM yyyy\u0027-ж.\u0027 H:mm:ss",
+                    f: "d'-'MMMM yyyy'-ж.' H:mm",
+                    F: "d'-'MMMM yyyy'-ж.' H:mm:ss",
                     M: "d MMMM",
-                    Y: "MMMM yyyy\u0027-ж.\u0027"
+                    Y: "MMMM yyyy'-ж.'"
                 }
             })
         }
@@ -3024,8 +3567,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Jumapili","Jumatatu","Jumanne","Jumatano","Alhamisi","Ijumaa","Jumamosi"],["Jumap.","Jumat.","Juman.","Jumat.","Alh.","Iju.","Jumam."],["P","T","N","T","A","I","M"]],
-                months: [["Januari","Februari","Machi","Aprili","Mei","Juni","Julai","Agosti","Septemba","Oktoba","Novemba","Decemba",""],["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ago","Sep","Okt","Nov","Dec",""]],
+                days: {
+                    names: ["Jumapili","Jumatatu","Jumanne","Jumatano","Alhamisi","Ijumaa","Jumamosi"],
+                    namesAbbr: ["Jumap.","Jumat.","Juman.","Jumat.","Alh.","Iju.","Jumam."],
+                    namesShort: ["P","T","N","T","A","I","M"]
+                },
+                months: {
+                    names: ["Januari","Februari","Machi","Aprili","Mei","Juni","Julai","Agosti","Septemba","Oktoba","Novemba","Decemba",""],
+                    namesAbbr: ["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ago","Sep","Okt","Nov","Dec",""]
+                },
                 patterns: {
                     d: "M/d/yyyy",
                     D: "dddd, MMMM dd, yyyy",
@@ -3064,18 +3614,25 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Duşenbe","Sişenbe","Çarşenbe","Penşenbe","Anna","Şenbe","Ýekşenbe"],["Db","Sb","Çb","Pb","An","Şb","Ýb"],["D","S","Ç","P","A","Ş","Ý"]],
-                months: [["Ýanwar","Fewral","Mart","Aprel","Maý","lýun","lýul","Awgust","Sentýabr","Oktýabr","Noýabr","Dekabr",""],["Ýan","Few","Mart","Apr","Maý","lýun","lýul","Awg","Sen","Okt","Not","Dek",""]],
+                days: {
+                    names: ["Duşenbe","Sişenbe","Çarşenbe","Penşenbe","Anna","Şenbe","Ýekşenbe"],
+                    namesAbbr: ["Db","Sb","Çb","Pb","An","Şb","Ýb"],
+                    namesShort: ["D","S","Ç","P","A","Ş","Ý"]
+                },
+                months: {
+                    names: ["Ýanwar","Fewral","Mart","Aprel","Maý","lýun","lýul","Awgust","Sentýabr","Oktýabr","Noýabr","Dekabr",""],
+                    namesAbbr: ["Ýan","Few","Mart","Apr","Maý","lýun","lýul","Awg","Sen","Okt","Not","Dek",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yy",
-                    D: "yyyy \u0027ý.\u0027 MMMM d",
+                    D: "yyyy 'ý.' MMMM d",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy \u0027ý.\u0027 MMMM d H:mm",
-                    F: "yyyy \u0027ý.\u0027 MMMM d H:mm:ss",
-                    Y: "yyyy \u0027ý.\u0027 MMMM"
+                    f: "yyyy 'ý.' MMMM d H:mm",
+                    F: "yyyy 'ý.' MMMM d H:mm:ss",
+                    Y: "yyyy 'ý.' MMMM"
                 }
             })
         }
@@ -3084,7 +3641,7 @@
     culture = cultures["uz"] = $.extend(true, {}, invariant, {
         name: "uz",
         englishName: "Uzbek",
-        nativeName: "U\u0027zbek",
+        nativeName: "U'zbek",
         language: "uz",
         numberFormat: {
             ',': " ",
@@ -3099,22 +3656,29 @@
                 decimals: 0,
                 ',': " ",
                 '.': ",",
-                symbol: "so\u0027m"
+                symbol: "so'm"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"],["yak.","dsh.","sesh.","chr.","psh.","jm.","sh."],["ya","d","s","ch","p","j","sh"]],
-                months: [["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""]],
+                days: {
+                    names: ["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"],
+                    namesAbbr: ["yak.","dsh.","sesh.","chr.","psh.","jm.","sh."],
+                    namesShort: ["ya","d","s","ch","p","j","sh"]
+                },
+                months: {
+                    names: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],
+                    namesAbbr: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd/MM yyyy",
-                    D: "yyyy \u0027yil\u0027 d-MMMM",
-                    f: "yyyy \u0027yil\u0027 d-MMMM HH:mm",
-                    F: "yyyy \u0027yil\u0027 d-MMMM HH:mm:ss",
+                    D: "yyyy 'yil' d-MMMM",
+                    f: "yyyy 'yil' d-MMMM HH:mm",
+                    F: "yyyy 'yil' d-MMMM HH:mm:ss",
                     M: "d-MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -3147,9 +3711,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Якшәмбе","Дүшәмбе","Сишәмбе","Чәршәмбе","Пәнҗешәмбе","Җомга","Шимбә"],["Якш","Дүш","Сиш","Чәрш","Пәнҗ","Җом","Шим"],["Я","Д","С","Ч","П","Җ","Ш"]],
-                months: [["Гыйнвар","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],["Гыйн.","Фев.","Мар.","Апр.","Май","Июнь","Июль","Авг.","Сен.","Окт.","Нояб.","Дек.",""]],
-                monthsGenitive: [["Гыйнварның","Февральнең","Мартның","Апрельнең","Майның","Июньнең","Июльнең","Августның","Сентябрьның","Октябрьның","Ноябрьның","Декабрьның",""],["Гыйн.-ның","Фев.-нең","Мар.-ның","Апр.-нең","Майның","Июньнең","Июльнең","Авг.-ның","Сен.-ның","Окт.-ның","Нояб.-ның","Дек.-ның",""]],
+                days: {
+                    names: ["Якшәмбе","Дүшәмбе","Сишәмбе","Чәршәмбе","Пәнҗешәмбе","Җомга","Шимбә"],
+                    namesAbbr: ["Якш","Дүш","Сиш","Чәрш","Пәнҗ","Җом","Шим"],
+                    namesShort: ["Я","Д","С","Ч","П","Җ","Ш"]
+                },
+                months: {
+                    names: ["Гыйнвар","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],
+                    namesAbbr: ["Гыйн.","Фев.","Мар.","Апр.","Май","Июнь","Июль","Авг.","Сен.","Окт.","Нояб.","Дек.",""]
+                },
+                monthsGenitive: {
+                    names: ["Гыйнварның","Февральнең","Мартның","Апрельнең","Майның","Июньнең","Июльнең","Августның","Сентябрьның","Октябрьның","Ноябрьның","Декабрьның",""],
+                    namesAbbr: ["Гыйн.-ның","Фев.-нең","Мар.-ның","Апр.-нең","Майның","Июньнең","Июльнең","Авг.-ның","Сен.-ның","Окт.-ның","Нояб.-ның","Дек.-ның",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -3189,8 +3763,15 @@
                 '/': "-",
                 ':': ".",
                 firstDay: 1,
-                days: [["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"],["রবি.","সোম.","মঙ্গল.","বুধ.","বৃহস্পতি.","শুক্র.","শনি."],["র","স","ম","ব","ব","শ","শ"]],
-                months: [["জানুয়ারী","ফেব্রুয়ারী","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর",""],["জানু.","ফেব্রু.","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগ.","সেপ্টে.","অক্টো.","নভে.","ডিসে.",""]],
+                days: {
+                    names: ["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"],
+                    namesAbbr: ["রবি.","সোম.","মঙ্গল.","বুধ.","বৃহস্পতি.","শুক্র.","শনি."],
+                    namesShort: ["র","স","ম","ব","ব","শ","শ"]
+                },
+                months: {
+                    names: ["জানুয়ারী","ফেব্রুয়ারী","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর",""],
+                    namesAbbr: ["জানু.","ফেব্রু.","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগ.","সেপ্টে.","অক্টো.","নভে.","ডিসে.",""]
+                },
                 AM: ["পুর্বাহ্ন","পুর্বাহ্ন","পুর্বাহ্ন"],
                 PM: ["অপরাহ্ন","অপরাহ্ন","অপরাহ্ন"],
                 patterns: {
@@ -3228,8 +3809,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ਐਤਵਾਰ","ਸੋਮਵਾਰ","ਮੰਗਲਵਾਰ","ਬੁੱਧਵਾਰ","ਵੀਰਵਾਰ","ਸ਼ੁੱਕਰਵਾਰ","ਸ਼ਨਿੱਚਰਵਾਰ"],["ਐਤ.","ਸੋਮ.","ਮੰਗਲ.","ਬੁੱਧ.","ਵੀਰ.","ਸ਼ੁਕਰ.","ਸ਼ਨਿੱਚਰ."],["ਐ","ਸ","ਮ","ਬ","ਵ","ਸ਼","ਸ਼"]],
-                months: [["ਜਨਵਰੀ","ਫ਼ਰਵਰੀ","ਮਾਰਚ","ਅਪ੍ਰੈਲ","ਮਈ","ਜੂਨ","ਜੁਲਾਈ","ਅਗਸਤ","ਸਤੰਬਰ","ਅਕਤੂਬਰ","ਨਵੰਬਰ","ਦਸੰਬਰ",""],["ਜਨਵਰੀ","ਫ਼ਰਵਰੀ","ਮਾਰਚ","ਅਪ੍ਰੈਲ","ਮਈ","ਜੂਨ","ਜੁਲਾਈ","ਅਗਸਤ","ਸਤੰਬਰ","ਅਕਤੂਬਰ","ਨਵੰਬਰ","ਦਸੰਬਰ",""]],
+                days: {
+                    names: ["ਐਤਵਾਰ","ਸੋਮਵਾਰ","ਮੰਗਲਵਾਰ","ਬੁੱਧਵਾਰ","ਵੀਰਵਾਰ","ਸ਼ੁੱਕਰਵਾਰ","ਸ਼ਨਿੱਚਰਵਾਰ"],
+                    namesAbbr: ["ਐਤ.","ਸੋਮ.","ਮੰਗਲ.","ਬੁੱਧ.","ਵੀਰ.","ਸ਼ੁਕਰ.","ਸ਼ਨਿੱਚਰ."],
+                    namesShort: ["ਐ","ਸ","ਮ","ਬ","ਵ","ਸ਼","ਸ਼"]
+                },
+                months: {
+                    names: ["ਜਨਵਰੀ","ਫ਼ਰਵਰੀ","ਮਾਰਚ","ਅਪ੍ਰੈਲ","ਮਈ","ਜੂਨ","ਜੁਲਾਈ","ਅਗਸਤ","ਸਤੰਬਰ","ਅਕਤੂਬਰ","ਨਵੰਬਰ","ਦਸੰਬਰ",""],
+                    namesAbbr: ["ਜਨਵਰੀ","ਫ਼ਰਵਰੀ","ਮਾਰਚ","ਅਪ੍ਰੈਲ","ਮਈ","ਜੂਨ","ਜੁਲਾਈ","ਅਗਸਤ","ਸਤੰਬਰ","ਅਕਤੂਬਰ","ਨਵੰਬਰ","ਦਸੰਬਰ",""]
+                },
                 AM: ["ਸਵੇਰ","ਸਵੇਰ","ਸਵੇਰ"],
                 PM: ["ਸ਼ਾਮ","ਸ਼ਾਮ","ਸ਼ਾਮ"],
                 patterns: {
@@ -3267,8 +3855,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["રવિવાર","સોમવાર","મંગળવાર","બુધવાર","ગુરુવાર","શુક્રવાર","શનિવાર"],["રવિ","સોમ","મંગળ","બુધ","ગુરુ","શુક્ર","શનિ"],["ર","સ","મ","બ","ગ","શ","શ"]],
-                months: [["જાન્યુઆરી","ફેબ્રુઆરી","માર્ચ","એપ્રિલ","મે","જૂન","જુલાઈ","ઑગસ્ટ","સપ્ટેમ્બર","ઑક્ટ્બર","નવેમ્બર","ડિસેમ્બર",""],["જાન્યુ","ફેબ્રુ","માર્ચ","એપ્રિલ","મે","જૂન","જુલાઈ","ઑગસ્ટ","સપ્ટે","ઑક્ટો","નવે","ડિસે",""]],
+                days: {
+                    names: ["રવિવાર","સોમવાર","મંગળવાર","બુધવાર","ગુરુવાર","શુક્રવાર","શનિવાર"],
+                    namesAbbr: ["રવિ","સોમ","મંગળ","બુધ","ગુરુ","શુક્ર","શનિ"],
+                    namesShort: ["ર","સ","મ","બ","ગ","શ","શ"]
+                },
+                months: {
+                    names: ["જાન્યુઆરી","ફેબ્રુઆરી","માર્ચ","એપ્રિલ","મે","જૂન","જુલાઈ","ઑગસ્ટ","સપ્ટેમ્બર","ઑક્ટ્બર","નવેમ્બર","ડિસેમ્બર",""],
+                    namesAbbr: ["જાન્યુ","ફેબ્રુ","માર્ચ","એપ્રિલ","મે","જૂન","જુલાઈ","ઑગસ્ટ","સપ્ટે","ઑક્ટો","નવે","ડિસે",""]
+                },
                 AM: ["પૂર્વ મધ્યાહ્ન","પૂર્વ મધ્યાહ્ન","પૂર્વ મધ્યાહ્ન"],
                 PM: ["ઉત્તર મધ્યાહ્ન","ઉત્તર મધ્યાહ્ન","ઉત્તર મધ્યાહ્ન"],
                 patterns: {
@@ -3303,8 +3898,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["ରବିବାର","ସୋମବାର","ମଙ୍ଗଳବାର","ବୁଧବାର","ଗୁରୁବାର","ଶୁକ୍ରବାର","ଶନିବାର"],["ରବି.","ସୋମ.","ମଙ୍ଗଳ.","ବୁଧ.","ଗୁରୁ.","ଶୁକ୍ର.","ଶନି."],["ର","ସୋ","ମ","ବୁ","ଗୁ","ଶୁ","ଶ"]],
-                months: [["ଜାନୁୟାରୀ","ଫ୍ରେବୃୟାରୀ","ମାର୍ଚ୍ଚ","ଏପ୍ରିଲ୍‌","ମେ","ଜୁନ୍‌","ଜୁଲାଇ","ଅଗଷ୍ଟ","ସେପ୍ଟେମ୍ବର","ଅକ୍ଟୋବର","ନଭେମ୍ବର","(ଡିସେମ୍ବର",""],["ଜାନୁୟାରୀ","ଫ୍ରେବୃୟାରୀ","ମାର୍ଚ୍ଚ","ଏପ୍ରିଲ୍‌","ମେ","ଜୁନ୍‌","ଜୁଲାଇ","ଅଗଷ୍ଟ","ସେପ୍ଟେମ୍ବର","ଅକ୍ଟୋବର","ନଭେମ୍ବର","(ଡିସେମ୍ବର",""]],
+                days: {
+                    names: ["ରବିବାର","ସୋମବାର","ମଙ୍ଗଳବାର","ବୁଧବାର","ଗୁରୁବାର","ଶୁକ୍ରବାର","ଶନିବାର"],
+                    namesAbbr: ["ରବି.","ସୋମ.","ମଙ୍ଗଳ.","ବୁଧ.","ଗୁରୁ.","ଶୁକ୍ର.","ଶନି."],
+                    namesShort: ["ର","ସୋ","ମ","ବୁ","ଗୁ","ଶୁ","ଶ"]
+                },
+                months: {
+                    names: ["ଜାନୁୟାରୀ","ଫ୍ରେବୃୟାରୀ","ମାର୍ଚ୍ଚ","ଏପ୍ରିଲ୍‌","ମେ","ଜୁନ୍‌","ଜୁଲାଇ","ଅଗଷ୍ଟ","ସେପ୍ଟେମ୍ବର","ଅକ୍ଟୋବର","ନଭେମ୍ବର","(ଡିସେମ୍ବର",""],
+                    namesAbbr: ["ଜାନୁୟାରୀ","ଫ୍ରେବୃୟାରୀ","ମାର୍ଚ୍ଚ","ଏପ୍ରିଲ୍‌","ମେ","ଜୁନ୍‌","ଜୁଲାଇ","ଅଗଷ୍ଟ","ସେପ୍ଟେମ୍ବର","ଅକ୍ଟୋବର","ନଭେମ୍ବର","(ଡିସେମ୍ବର",""]
+                },
                 eras: [{"name":"ଖ୍ରୀଷ୍ଟାବ୍ଦ","start":null,"offset":0}],
                 patterns: {
                     d: "dd-MM-yy",
@@ -3339,8 +3941,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ஞாயிற்றுக்கிழமை","திங்கள்கிழமை","செவ்வாய்கிழமை","புதன்கிழமை","வியாழக்கிழமை","வெள்ளிக்கிழமை","சனிக்கிழமை"],["ஞாயிறு","திங்கள்","செவ்வாய்","புதன்","வியாழன்","வெள்ளி","சனி"],["ஞா","தி","செ","பு","வி","வெ","ச"]],
-                months: [["ஜனவரி","பிப்ரவரி","மார்ச்","ஏப்ரல்","மே","ஜூன்","ஜூலை","ஆகஸ்ட்","செப்டம்பர்","அக்டோபர்","நவம்பர்","டிசம்பர்",""],["ஜனவரி","பிப்ரவரி","மார்ச்","ஏப்ரல்","மே","ஜூன்","ஜூலை","ஆகஸ்ட்","செப்டம்பர்","அக்டோபர்","நவம்பர்","டிசம்பர்",""]],
+                days: {
+                    names: ["ஞாயிற்றுக்கிழமை","திங்கள்கிழமை","செவ்வாய்கிழமை","புதன்கிழமை","வியாழக்கிழமை","வெள்ளிக்கிழமை","சனிக்கிழமை"],
+                    namesAbbr: ["ஞாயிறு","திங்கள்","செவ்வாய்","புதன்","வியாழன்","வெள்ளி","சனி"],
+                    namesShort: ["ஞா","தி","செ","பு","வி","வெ","ச"]
+                },
+                months: {
+                    names: ["ஜனவரி","பிப்ரவரி","மார்ச்","ஏப்ரல்","மே","ஜூன்","ஜூலை","ஆகஸ்ட்","செப்டம்பர்","அக்டோபர்","நவம்பர்","டிசம்பர்",""],
+                    namesAbbr: ["ஜனவரி","பிப்ரவரி","மார்ச்","ஏப்ரல்","மே","ஜூன்","ஜூலை","ஆகஸ்ட்","செப்டம்பர்","அக்டோபர்","நவம்பர்","டிசம்பர்",""]
+                },
                 AM: ["காலை","காலை","காலை"],
                 PM: ["மாலை","மாலை","மாலை"],
                 patterns: {
@@ -3376,8 +3985,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ఆదివారం","సోమవారం","మంగళవారం","బుధవారం","గురువారం","శుక్రవారం","శనివారం"],["ఆది.","సోమ.","మంగళ.","బుధ.","గురు.","శుక్ర.","శని."],["ఆ","సో","మం","బు","గు","శు","శ"]],
-                months: [["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్",""],["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్",""]],
+                days: {
+                    names: ["ఆదివారం","సోమవారం","మంగళవారం","బుధవారం","గురువారం","శుక్రవారం","శనివారం"],
+                    namesAbbr: ["ఆది.","సోమ.","మంగళ.","బుధ.","గురు.","శుక్ర.","శని."],
+                    namesShort: ["ఆ","సో","మం","బు","గు","శు","శ"]
+                },
+                months: {
+                    names: ["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్",""],
+                    namesAbbr: ["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్",""]
+                },
                 AM: ["పూర్వాహ్న","పూర్వాహ్న","పూర్వాహ్న"],
                 PM: ["అపరాహ్న","అపరాహ్న","అపరాహ్న"],
                 patterns: {
@@ -3413,8 +4029,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ಭಾನುವಾರ","ಸೋಮವಾರ","ಮಂಗಳವಾರ","ಬುಧವಾರ","ಗುರುವಾರ","ಶುಕ್ರವಾರ","ಶನಿವಾರ"],["ಭಾನು.","ಸೋಮ.","ಮಂಗಳ.","ಬುಧ.","ಗುರು.","ಶುಕ್ರ.","ಶನಿ."],["ರ","ಸ","ಮ","ಬ","ಗ","ಶ","ಶ"]],
-                months: [["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಎಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್",""],["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಎಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್",""]],
+                days: {
+                    names: ["ಭಾನುವಾರ","ಸೋಮವಾರ","ಮಂಗಳವಾರ","ಬುಧವಾರ","ಗುರುವಾರ","ಶುಕ್ರವಾರ","ಶನಿವಾರ"],
+                    namesAbbr: ["ಭಾನು.","ಸೋಮ.","ಮಂಗಳ.","ಬುಧ.","ಗುರು.","ಶುಕ್ರ.","ಶನಿ."],
+                    namesShort: ["ರ","ಸ","ಮ","ಬ","ಗ","ಶ","ಶ"]
+                },
+                months: {
+                    names: ["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಎಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್",""],
+                    namesAbbr: ["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಎಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್",""]
+                },
                 AM: ["ಪೂರ್ವಾಹ್ನ","ಪೂರ್ವಾಹ್ನ","ಪೂರ್ವಾಹ್ನ"],
                 PM: ["ಅಪರಾಹ್ನ","ಅಪರಾಹ್ನ","ಅಪರಾಹ್ನ"],
                 patterns: {
@@ -3452,8 +4075,15 @@
                 '/': "-",
                 ':': ".",
                 firstDay: 1,
-                days: [["ഞായറാഴ്ച","തിങ്കളാഴ്ച","ചൊവ്വാഴ്ച","ബുധനാഴ്ച","വ്യാഴാഴ്ച","വെള്ളിയാഴ്ച","ശനിയാഴ്ച"],["ഞായർ.","തിങ്കൾ.","ചൊവ്വ.","ബുധൻ.","വ്യാഴം.","വെള്ളി.","ശനി."],["ഞ","ത","ച","ബ","വ","വെ","ശ"]],
-                months: [["ജനുവരി","ഫെബ്റുവരി","മാറ്ച്ച്","ഏപ്റില്","മെയ്","ജൂണ്","ജൂലൈ","ഓഗസ്ററ്","സെപ്ററംബറ്","ഒക്ടോബറ്","നവംബറ്","ഡിസംബറ്",""],["ജനുവരി","ഫെബ്റുവരി","മാറ്ച്ച്","ഏപ്റില്","മെയ്","ജൂണ്","ജൂലൈ","ഓഗസ്ററ്","സെപ്ററംബറ്","ഒക്ടോബറ്","നവംബറ്","ഡിസംബറ്",""]],
+                days: {
+                    names: ["ഞായറാഴ്ച","തിങ്കളാഴ്ച","ചൊവ്വാഴ്ച","ബുധനാഴ്ച","വ്യാഴാഴ്ച","വെള്ളിയാഴ്ച","ശനിയാഴ്ച"],
+                    namesAbbr: ["ഞായർ.","തിങ്കൾ.","ചൊവ്വ.","ബുധൻ.","വ്യാഴം.","വെള്ളി.","ശനി."],
+                    namesShort: ["ഞ","ത","ച","ബ","വ","വെ","ശ"]
+                },
+                months: {
+                    names: ["ജനുവരി","ഫെബ്റുവരി","മാറ്ച്ച്","ഏപ്റില്","മെയ്","ജൂണ്","ജൂലൈ","ഓഗസ്ററ്","സെപ്ററംബറ്","ഒക്ടോബറ്","നവംബറ്","ഡിസംബറ്",""],
+                    namesAbbr: ["ജനുവരി","ഫെബ്റുവരി","മാറ്ച്ച്","ഏപ്റില്","മെയ്","ജൂണ്","ജൂലൈ","ഓഗസ്ററ്","സെപ്ററംബറ്","ഒക്ടോബറ്","നവംബറ്","ഡിസംബറ്",""]
+                },
                 patterns: {
                     d: "dd-MM-yy",
                     D: "dd MMMM yyyy",
@@ -3490,8 +4120,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["সোমবাৰ","মঙ্গলবাৰ","বুধবাৰ","বৃহস্পতিবাৰ","শুক্রবাৰ","শনিবাৰ","ৰবিবাৰ"],["সোম.","মঙ্গল.","বুধ.","বৃহ.","শুক্র.","শনি.","ৰবি."],["সো","ম","বু","বৃ","শু","শ","র"]],
-                months: [["জানুৱাৰী","ফেব্রুৱাৰী","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগষ্ট","চেপ্টেম্বর","অক্টোবর","নবেম্বর","ডিচেম্বর",""],["জানু","ফেব্রু","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগষ্ট","চেপ্টে","অক্টো","নবে","ডিচে",""]],
+                days: {
+                    names: ["সোমবাৰ","মঙ্গলবাৰ","বুধবাৰ","বৃহস্পতিবাৰ","শুক্রবাৰ","শনিবাৰ","ৰবিবাৰ"],
+                    namesAbbr: ["সোম.","মঙ্গল.","বুধ.","বৃহ.","শুক্র.","শনি.","ৰবি."],
+                    namesShort: ["সো","ম","বু","বৃ","শু","শ","র"]
+                },
+                months: {
+                    names: ["জানুৱাৰী","ফেব্রুৱাৰী","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগষ্ট","চেপ্টেম্বর","অক্টোবর","নবেম্বর","ডিচেম্বর",""],
+                    namesAbbr: ["জানু","ফেব্রু","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগষ্ট","চেপ্টে","অক্টো","নবে","ডিচে",""]
+                },
                 AM: ["ৰাতিপু","ৰাতিপু","ৰাতিপু"],
                 PM: ["আবেলি","আবেলি","আবেলি"],
                 eras: [{"name":"খ্রীষ্টাব্দ","start":null,"offset":0}],
@@ -3530,8 +4167,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["रविवार","सोमवार","मंगळवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],["रवि.","सोम.","मंगळ.","बुध.","गुरु.","शुक्र.","शनि."],["र","स","म","ब","ग","श","श"]],
-                months: [["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोव्हेंबर","डिसेंबर",""],["जाने.","फेब्रु.","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टें.","ऑक्टो.","नोव्हें.","डिसें.",""]],
+                days: {
+                    names: ["रविवार","सोमवार","मंगळवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],
+                    namesAbbr: ["रवि.","सोम.","मंगळ.","बुध.","गुरु.","शुक्र.","शनि."],
+                    namesShort: ["र","स","म","ब","ग","श","श"]
+                },
+                months: {
+                    names: ["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोव्हेंबर","डिसेंबर",""],
+                    namesAbbr: ["जाने.","फेब्रु.","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टें.","ऑक्टो.","नोव्हें.","डिसें.",""]
+                },
                 AM: ["म.पू.","म.पू.","म.पू."],
                 PM: ["म.नं.","म.नं.","म.नं."],
                 patterns: {
@@ -3566,8 +4210,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["रविवासरः","सोमवासरः","मङ्गलवासरः","बुधवासरः","गुरुवासरः","शुक्रवासरः","शनिवासरः"],["रविवासरः","सोमवासरः","मङ्गलवासरः","बुधवासरः","गुरुवासरः","शुक्रवासरः","शनिवासरः"],["र","स","म","ब","ग","श","श"]],
-                months: [["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""],["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""]],
+                days: {
+                    names: ["रविवासरः","सोमवासरः","मङ्गलवासरः","बुधवासरः","गुरुवासरः","शुक्रवासरः","शनिवासरः"],
+                    namesAbbr: ["रविवासरः","सोमवासरः","मङ्गलवासरः","बुधवासरः","गुरुवासरः","शुक्रवासरः","शनिवासरः"],
+                    namesShort: ["र","स","म","ब","ग","श","श"]
+                },
+                months: {
+                    names: ["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""],
+                    namesAbbr: ["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""]
+                },
                 AM: ["पूर्वाह्न","पूर्वाह्न","पूर्वाह्न"],
                 PM: ["अपराह्न","अपराह्न","अपराह्न"],
                 patterns: {
@@ -3606,20 +4257,30 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Ням","Даваа","Мягмар","Лхагва","Пүрэв","Баасан","Бямба"],["Ня","Да","Мя","Лх","Пү","Ба","Бя"],["Ня","Да","Мя","Лх","Пү","Ба","Бя"]],
-                months: [["1 дүгээр сар","2 дугаар сар","3 дугаар сар","4 дүгээр сар","5 дугаар сар","6 дугаар сар","7 дугаар сар","8 дугаар сар","9 дүгээр сар","10 дугаар сар","11 дүгээр сар","12 дугаар сар",""],["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]],
-                monthsGenitive: [["1 дүгээр сарын","2 дугаар сарын","3 дугаар сарын","4 дүгээр сарын","5 дугаар сарын","6 дугаар сарын","7 дугаар сарын","8 дугаар сарын","9 дүгээр сарын","10 дугаар сарын","11 дүгээр сарын","12 дугаар сарын",""],["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]],
+                days: {
+                    names: ["Ням","Даваа","Мягмар","Лхагва","Пүрэв","Баасан","Бямба"],
+                    namesAbbr: ["Ня","Да","Мя","Лх","Пү","Ба","Бя"],
+                    namesShort: ["Ня","Да","Мя","Лх","Пү","Ба","Бя"]
+                },
+                months: {
+                    names: ["1 дүгээр сар","2 дугаар сар","3 дугаар сар","4 дүгээр сар","5 дугаар сар","6 дугаар сар","7 дугаар сар","8 дугаар сар","9 дүгээр сар","10 дугаар сар","11 дүгээр сар","12 дугаар сар",""],
+                    namesAbbr: ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]
+                },
+                monthsGenitive: {
+                    names: ["1 дүгээр сарын","2 дугаар сарын","3 дугаар сарын","4 дүгээр сарын","5 дугаар сарын","6 дугаар сарын","7 дугаар сарын","8 дугаар сарын","9 дүгээр сарын","10 дугаар сарын","11 дүгээр сарын","12 дугаар сарын",""],
+                    namesAbbr: ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yy.MM.dd",
-                    D: "yyyy \u0027оны\u0027 MMMM d",
+                    D: "yyyy 'оны' MMMM d",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy \u0027оны\u0027 MMMM d H:mm",
-                    F: "yyyy \u0027оны\u0027 MMMM d H:mm:ss",
+                    f: "yyyy 'оны' MMMM d H:mm",
+                    F: "yyyy 'оны' MMMM d H:mm:ss",
                     M: "d MMMM",
-                    Y: "yyyy \u0027он\u0027 MMMM"
+                    Y: "yyyy 'он' MMMM"
                 }
             })
         }
@@ -3646,17 +4307,24 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["གཟའ་ཉི་མ།","གཟའ་ཟླ་བ།","གཟའ་མིག་དམར།","གཟའ་ལྷག་པ།","གཟའ་ཕུར་བུ།","གཟའ་པ་སངས།","གཟའ་སྤེན་པ།"],["ཉི་མ།","ཟླ་བ།","མིག་དམར།","ལྷག་པ།","ཕུར་བུ།","པ་སངས།","སྤེན་པ།"],["༧","༡","༢","༣","༤","༥","༦"]],
-                months: [["སྤྱི་ཟླ་དང་པོ།","སྤྱི་ཟླ་གཉིས་པ།","སྤྱི་ཟླ་གསུམ་པ།","སྤྱི་ཟླ་བཞི་པ།","སྤྱི་ཟླ་ལྔ་པ།","སྤྱི་ཟླ་དྲུག་པ།","སྤྱི་ཟླ་བདུན་པ།","སྤྱི་ཟླ་བརྒྱད་པ།","སྤྱི་ཟླ་དགུ་པ།","སྤྱི་ཟླ་བཅུ་པོ།","སྤྱི་ཟླ་བཅུ་གཅིག་པ།","སྤྱི་ཟླ་བཅུ་གཉིས་པ།",""],["ཟླ་ ༡","ཟླ་ ༢","ཟླ་ ༣","ཟླ་ ༤","ཟླ་ ༥","ཟླ་ ༦","ཟླ་ ༧","ཟླ་ ༨","ཟླ་ ༩","ཟླ་ ༡༠","ཟླ་ ༡༡","ཟླ་ ༡༢",""]],
+                days: {
+                    names: ["གཟའ་ཉི་མ།","གཟའ་ཟླ་བ།","གཟའ་མིག་དམར།","གཟའ་ལྷག་པ།","གཟའ་ཕུར་བུ།","གཟའ་པ་སངས།","གཟའ་སྤེན་པ།"],
+                    namesAbbr: ["ཉི་མ།","ཟླ་བ།","མིག་དམར།","ལྷག་པ།","ཕུར་བུ།","པ་སངས།","སྤེན་པ།"],
+                    namesShort: ["༧","༡","༢","༣","༤","༥","༦"]
+                },
+                months: {
+                    names: ["སྤྱི་ཟླ་དང་པོ།","སྤྱི་ཟླ་གཉིས་པ།","སྤྱི་ཟླ་གསུམ་པ།","སྤྱི་ཟླ་བཞི་པ།","སྤྱི་ཟླ་ལྔ་པ།","སྤྱི་ཟླ་དྲུག་པ།","སྤྱི་ཟླ་བདུན་པ།","སྤྱི་ཟླ་བརྒྱད་པ།","སྤྱི་ཟླ་དགུ་པ།","སྤྱི་ཟླ་བཅུ་པོ།","སྤྱི་ཟླ་བཅུ་གཅིག་པ།","སྤྱི་ཟླ་བཅུ་གཉིས་པ།",""],
+                    namesAbbr: ["ཟླ་ ༡","ཟླ་ ༢","ཟླ་ ༣","ཟླ་ ༤","ཟླ་ ༥","ཟླ་ ༦","ཟླ་ ༧","ཟླ་ ༨","ཟླ་ ༩","ཟླ་ ༡༠","ཟླ་ ༡༡","ཟླ་ ༡༢",""]
+                },
                 AM: ["སྔ་དྲོ","སྔ་དྲོ","སྔ་དྲོ"],
                 PM: ["ཕྱི་དྲོ","ཕྱི་དྲོ","ཕྱི་དྲོ"],
                 eras: [{"name":"སྤྱི་ལོ","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027ལོའི་ཟླ\u0027 M\u0027ཚེས\u0027 d",
-                    f: "yyyy\u0027ལོའི་ཟླ\u0027 M\u0027ཚེས\u0027 d HH:mm",
-                    F: "yyyy\u0027ལོའི་ཟླ\u0027 M\u0027ཚེས\u0027 d HH:mm:ss",
-                    M: "\u0027ཟླ་\u0027 M\u0027ཚེས\u0027d",
+                    D: "yyyy'ལོའི་ཟླ' M'ཚེས' d",
+                    f: "yyyy'ལོའི་ཟླ' M'ཚེས' d HH:mm",
+                    F: "yyyy'ལོའི་ཟླ' M'ཚེས' d HH:mm:ss",
+                    M: "'ཟླ་' M'ཚེས'd",
                     Y: "yyyy.M"
                 }
             })
@@ -3681,8 +4349,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Dydd Sul","Dydd Llun","Dydd Mawrth","Dydd Mercher","Dydd Iau","Dydd Gwener","Dydd Sadwrn"],["Sul","Llun","Maw","Mer","Iau","Gwe","Sad"],["Su","Ll","Ma","Me","Ia","Gw","Sa"]],
-                months: [["Ionawr","Chwefror","Mawrth","Ebrill","Mai","Mehefin","Gorffennaf","Awst","Medi","Hydref","Tachwedd","Rhagfyr",""],["Ion","Chwe","Maw","Ebr","Mai","Meh","Gor","Aws","Med","Hyd","Tach","Rhag",""]],
+                days: {
+                    names: ["Dydd Sul","Dydd Llun","Dydd Mawrth","Dydd Mercher","Dydd Iau","Dydd Gwener","Dydd Sadwrn"],
+                    namesAbbr: ["Sul","Llun","Maw","Mer","Iau","Gwe","Sad"],
+                    namesShort: ["Su","Ll","Ma","Me","Ia","Gw","Sa"]
+                },
+                months: {
+                    names: ["Ionawr","Chwefror","Mawrth","Ebrill","Mai","Mehefin","Gorffennaf","Awst","Medi","Hydref","Tachwedd","Rhagfyr",""],
+                    namesAbbr: ["Ion","Chwe","Maw","Ebr","Mai","Meh","Gor","Aws","Med","Hyd","Tach","Rhag",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 patterns: {
@@ -3718,8 +4393,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["ថ្ងៃអាទិត្យ","ថ្ងៃច័ន្ទ","ថ្ងៃអង្គារ","ថ្ងៃពុធ","ថ្ងៃព្រហស្បតិ៍","ថ្ងៃសុក្រ","ថ្ងៃសៅរ៍"],["អាទិ.","ច.","អ.","ពុ","ព្រហ.","សុ.","ស."],["អា","ច","អ","ពុ","ព្","សុ","ស"]],
-                months: [["មករា","កុម្ភៈ","មិនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ",""],["១","២","៣","៤","៥","៦","៧","៨","៩","១០","១១","១២",""]],
+                days: {
+                    names: ["ថ្ងៃអាទិត្យ","ថ្ងៃច័ន្ទ","ថ្ងៃអង្គារ","ថ្ងៃពុធ","ថ្ងៃព្រហស្បតិ៍","ថ្ងៃសុក្រ","ថ្ងៃសៅរ៍"],
+                    namesAbbr: ["អាទិ.","ច.","អ.","ពុ","ព្រហ.","សុ.","ស."],
+                    namesShort: ["អា","ច","អ","ពុ","ព្","សុ","ស"]
+                },
+                months: {
+                    names: ["មករា","កុម្ភៈ","មិនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ",""],
+                    namesAbbr: ["១","២","៣","៤","៥","៦","៧","៨","៩","១០","១១","១២",""]
+                },
                 AM: ["ព្រឹក","ព្រឹក","ព្រឹក"],
                 PM: ["ល្ងាច","ល្ងាច","ល្ងាច"],
                 eras: [{"name":"មុនគ.ស.","start":null,"offset":0}],
@@ -3729,14 +4411,21 @@
                     t: "H:mm tt",
                     f: "d MMMM yyyy H:mm tt",
                     F: "d MMMM yyyy HH:mm:ss",
-                    M: "\u0027ថ្ងៃទី\u0027 dd \u0027ខែ\u0027 MM",
-                    Y: "\u0027ខែ\u0027 MM \u0027ឆ្នាំ\u0027 yyyy"
+                    M: "'ថ្ងៃទី' dd 'ខែ' MM",
+                    Y: "'ខែ' MM 'ឆ្នាំ' yyyy"
                 }
             }),
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ព្រឹក","ព្រឹក","ព្រឹក"],
                 PM: ["ល្ងាច","ល្ងាច","ល្ងាច"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -3771,8 +4460,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["ວັນອາທິດ","ວັນຈັນ","ວັນອັງຄານ","ວັນພຸດ","ວັນພະຫັດ","ວັນສຸກ","ວັນເສົາ"],["ອາທິດ","ຈັນ","ອັງຄານ","ພຸດ","ພະຫັດ","ສຸກ","ເສົາ"],["ອ","ຈ","ອ","ພ","ພ","ສ","ເ"]],
-                months: [["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ",""],["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ",""]],
+                days: {
+                    names: ["ວັນອາທິດ","ວັນຈັນ","ວັນອັງຄານ","ວັນພຸດ","ວັນພະຫັດ","ວັນສຸກ","ວັນເສົາ"],
+                    namesAbbr: ["ອາທິດ","ຈັນ","ອັງຄານ","ພຸດ","ພະຫັດ","ສຸກ","ເສົາ"],
+                    namesShort: ["ອ","ຈ","ອ","ພ","ພ","ສ","ເ"]
+                },
+                months: {
+                    names: ["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ",""],
+                    namesAbbr: ["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ",""]
+                },
                 AM: ["ເຊົ້າ","ເຊົ້າ","ເຊົ້າ"],
                 PM: ["ແລງ","ແລງ","ແລງ"],
                 patterns: {
@@ -3811,20 +4507,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["domingo","luns","martes","mércores","xoves","venres","sábado"],["dom","luns","mar","mér","xov","ven","sáb"],["do","lu","ma","mé","xo","ve","sá"]],
-                months: [["xaneiro","febreiro","marzo","abril","maio","xuño","xullo","agosto","setembro","outubro","novembro","decembro",""],["xan","feb","mar","abr","maio","xuñ","xull","ago","set","out","nov","dec",""]],
+                days: {
+                    names: ["domingo","luns","martes","mércores","xoves","venres","sábado"],
+                    namesAbbr: ["dom","luns","mar","mér","xov","ven","sáb"],
+                    namesShort: ["do","lu","ma","mé","xo","ve","sá"]
+                },
+                months: {
+                    names: ["xaneiro","febreiro","marzo","abril","maio","xuño","xullo","agosto","setembro","outubro","novembro","decembro",""],
+                    namesAbbr: ["xan","feb","mar","abr","maio","xuñ","xull","ago","set","out","nov","dec",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm:ss",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy H:mm",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy H:mm:ss",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -3851,8 +4554,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["आयतार","सोमार","मंगळार","बुधवार","बिरेस्तार","सुक्रार","शेनवार"],["आय.","सोम.","मंगळ.","बुध.","बिरे.","सुक्र.","शेन."],["आ","स","म","ब","ब","स","श"]],
-                months: [["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोवेम्बर","डिसेंबर",""],["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोवेम्बर","डिसेंबर",""]],
+                days: {
+                    names: ["आयतार","सोमार","मंगळार","बुधवार","बिरेस्तार","सुक्रार","शेनवार"],
+                    namesAbbr: ["आय.","सोम.","मंगळ.","बुध.","बिरे.","सुक्र.","शेन."],
+                    namesShort: ["आ","स","म","ब","ब","स","श"]
+                },
+                months: {
+                    names: ["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोवेम्बर","डिसेंबर",""],
+                    namesAbbr: ["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोवेम्बर","डिसेंबर",""]
+                },
                 AM: ["म.पू.","म.पू.","म.पू."],
                 PM: ["म.नं.","म.नं.","म.नं."],
                 patterns: {
@@ -3883,8 +4593,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["ܚܕ ܒܫܒܐ","ܬܪܝܢ ܒܫܒܐ","ܬܠܬܐ ܒܫܒܐ","ܐܪܒܥܐ ܒܫܒܐ","ܚܡܫܐ ܒܫܒܐ","ܥܪܘܒܬܐ","ܫܒܬܐ"],["܏ܐ ܏ܒܫ","܏ܒ ܏ܒܫ","܏ܓ ܏ܒܫ","܏ܕ ܏ܒܫ","܏ܗ ܏ܒܫ","܏ܥܪܘܒ","܏ܫܒ"],["ܐ","ܒ","ܓ","ܕ","ܗ","ܥ","ܫ"]],
-                months: [["ܟܢܘܢ ܐܚܪܝ","ܫܒܛ","ܐܕܪ","ܢܝܣܢ","ܐܝܪ","ܚܙܝܪܢ","ܬܡܘܙ","ܐܒ","ܐܝܠܘܠ","ܬܫܪܝ ܩܕܝܡ","ܬܫܪܝ ܐܚܪܝ","ܟܢܘܢ ܩܕܝܡ",""],["܏ܟܢ ܏ܒ","ܫܒܛ","ܐܕܪ","ܢܝܣܢ","ܐܝܪ","ܚܙܝܪܢ","ܬܡܘܙ","ܐܒ","ܐܝܠܘܠ","܏ܬܫ ܏ܐ","܏ܬܫ ܏ܒ","܏ܟܢ ܏ܐ",""]],
+                days: {
+                    names: ["ܚܕ ܒܫܒܐ","ܬܪܝܢ ܒܫܒܐ","ܬܠܬܐ ܒܫܒܐ","ܐܪܒܥܐ ܒܫܒܐ","ܚܡܫܐ ܒܫܒܐ","ܥܪܘܒܬܐ","ܫܒܬܐ"],
+                    namesAbbr: ["܏ܐ ܏ܒܫ","܏ܒ ܏ܒܫ","܏ܓ ܏ܒܫ","܏ܕ ܏ܒܫ","܏ܗ ܏ܒܫ","܏ܥܪܘܒ","܏ܫܒ"],
+                    namesShort: ["ܐ","ܒ","ܓ","ܕ","ܗ","ܥ","ܫ"]
+                },
+                months: {
+                    names: ["ܟܢܘܢ ܐܚܪܝ","ܫܒܛ","ܐܕܪ","ܢܝܣܢ","ܐܝܪ","ܚܙܝܪܢ","ܬܡܘܙ","ܐܒ","ܐܝܠܘܠ","ܬܫܪܝ ܩܕܝܡ","ܬܫܪܝ ܐܚܪܝ","ܟܢܘܢ ܩܕܝܡ",""],
+                    namesAbbr: ["܏ܟܢ ܏ܒ","ܫܒܛ","ܐܕܪ","ܢܝܣܢ","ܐܝܪ","ܚܙܝܪܢ","ܬܡܘܙ","ܐܒ","ܐܝܠܘܠ","܏ܬܫ ܏ܐ","܏ܬܫ ܏ܒ","܏ܟܢ ܏ܐ",""]
+                },
                 AM: ["ܩ.ܛ","ܩ.ܛ","ܩ.ܛ"],
                 PM: ["ܒ.ܛ","ܒ.ܛ","ܒ.ܛ"],
                 patterns: {
@@ -3921,18 +4638,25 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ඉරිදා","සඳුදා","අඟහරුවාදා","බදාදා","බ්‍රහස්පතින්දා","සිකුරාදා","සෙනසුරාදා"],["ඉරිදා","සඳුදා","කුජදා","බුදදා","ගුරුදා","කිවිදා","ශනිදා"],["ඉ","ස","අ","බ","බ්‍ර","සි","සෙ"]],
-                months: [["ජනවාරි","පෙබරවාරි","මාර්තු","අ‌ප්‍රේල්","මැයි","ජූනි","ජූලි","අ‌ගෝස්තු","සැප්තැම්බර්","ඔක්තෝබර්","නොවැම්බර්","දෙසැම්බර්",""],["ජන.","පෙබ.","මාර්තු.","අප්‍රේල්.","මැයි.","ජූනි.","ජූලි.","අගෝ.","සැප්.","ඔක්.","නොවැ.","දෙසැ.",""]],
+                days: {
+                    names: ["ඉරිදා","සඳුදා","අඟහරුවාදා","බදාදා","බ්‍රහස්පතින්දා","සිකුරාදා","සෙනසුරාදා"],
+                    namesAbbr: ["ඉරිදා","සඳුදා","කුජදා","බුදදා","ගුරුදා","කිවිදා","ශනිදා"],
+                    namesShort: ["ඉ","ස","අ","බ","බ්‍ර","සි","සෙ"]
+                },
+                months: {
+                    names: ["ජනවාරි","පෙබරවාරි","මාර්තු","අ‌ප්‍රේල්","මැයි","ජූනි","ජූලි","අ‌ගෝස්තු","සැප්තැම්බර්","ඔක්තෝබර්","නොවැම්බර්","දෙසැම්බර්",""],
+                    namesAbbr: ["ජන.","පෙබ.","මාර්තු.","අප්‍රේල්.","මැයි.","ජූනි.","ජූලි.","අගෝ.","සැප්.","ඔක්.","නොවැ.","දෙසැ.",""]
+                },
                 AM: ["පෙ.ව.","පෙ.ව.","පෙ.ව."],
                 PM: ["ප.ව.","ප.ව.","ප.ව."],
                 eras: [{"name":"ක්‍රි.ව.","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy-MM-dd",
-                    D: "yyyy MMMM\u0027 මස \u0027dd\u0027 වැනිදා \u0027dddd",
+                    D: "yyyy MMMM' මස 'dd' වැනිදා 'dddd",
                     t: "h:mm tt",
                     T: "h:mm:ss tt",
-                    f: "yyyy MMMM\u0027 මස \u0027dd\u0027 වැනිදා \u0027dddd h:mm tt",
-                    F: "yyyy MMMM\u0027 මස \u0027dd\u0027 වැනිදා \u0027dddd h:mm:ss tt"
+                    f: "yyyy MMMM' මස 'dd' වැනිදා 'dddd h:mm tt",
+                    F: "yyyy MMMM' මස 'dd' වැනිදා 'dddd h:mm:ss tt"
                 }
             })
         }
@@ -3955,8 +4679,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Naattiinguja","Naggajjau","Aippiq","Pingatsiq","Sitammiq","Tallirmiq","Sivataarvik"],["Nat","Nag","Aip","Pi","Sit","Tal","Siv"],["N","N","A","P","S","T","S"]],
-                months: [["Jaannuari","Viivvuari","Maatsi","Iipuri","Mai","Juuni","Julai","Aaggiisi","Sitipiri","Utupiri","Nuvipiri","Tisipiri",""],["Jan","Viv","Mas","Ipu","Mai","Jun","Jul","Agi","Sii","Uut","Nuv","Tis",""]],
+                days: {
+                    names: ["Naattiinguja","Naggajjau","Aippiq","Pingatsiq","Sitammiq","Tallirmiq","Sivataarvik"],
+                    namesAbbr: ["Nat","Nag","Aip","Pi","Sit","Tal","Siv"],
+                    namesShort: ["N","N","A","P","S","T","S"]
+                },
+                months: {
+                    names: ["Jaannuari","Viivvuari","Maatsi","Iipuri","Mai","Juuni","Julai","Aaggiisi","Sitipiri","Utupiri","Nuvipiri","Tisipiri",""],
+                    namesAbbr: ["Jan","Viv","Mas","Ipu","Mai","Jun","Jul","Agi","Sii","Uut","Nuv","Tis",""]
+                },
                 patterns: {
                     d: "d/MM/yyyy",
                     D: "ddd, MMMM dd,yyyy",
@@ -3992,18 +4723,25 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["እሑድ","ሰኞ","ማክሰኞ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],["እሑድ","ሰኞ","ማክሰ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],["እ","ሰ","ማ","ረ","ሐ","ዓ","ቅ"]],
-                months: [["ጃንዩወሪ","ፌብሩወሪ","ማርች","ኤፕረል","ሜይ","ጁን","ጁላይ","ኦገስት","ሴፕቴምበር","ኦክተውበር","ኖቬምበር","ዲሴምበር",""],["ጃንዩ","ፌብሩ","ማርች","ኤፕረ","ሜይ","ጁን","ጁላይ","ኦገስ","ሴፕቴ","ኦክተ","ኖቬም","ዲሴም",""]],
+                days: {
+                    names: ["እሑድ","ሰኞ","ማክሰኞ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],
+                    namesAbbr: ["እሑድ","ሰኞ","ማክሰ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],
+                    namesShort: ["እ","ሰ","ማ","ረ","ሐ","ዓ","ቅ"]
+                },
+                months: {
+                    names: ["ጃንዩወሪ","ፌብሩወሪ","ማርች","ኤፕረል","ሜይ","ጁን","ጁላይ","ኦገስት","ሴፕቴምበር","ኦክተውበር","ኖቬምበር","ዲሴምበር",""],
+                    namesAbbr: ["ጃንዩ","ፌብሩ","ማርች","ኤፕረ","ሜይ","ጁን","ጁላይ","ኦገስ","ሴፕቴ","ኦክተ","ኖቬም","ዲሴም",""]
+                },
                 AM: ["ጡዋት","ጡዋት","ጡዋት"],
                 PM: ["ከሰዓት","ከሰዓት","ከሰዓት"],
                 eras: [{"name":"ዓመተ  ምሕረት","start":null,"offset":0}],
                 patterns: {
                     d: "d/M/yyyy",
-                    D: "dddd \u0027፣\u0027 MMMM d \u0027ቀን\u0027 yyyy",
+                    D: "dddd '፣' MMMM d 'ቀን' yyyy",
                     t: "h:mm tt",
                     T: "h:mm:ss tt",
-                    f: "dddd \u0027፣\u0027 MMMM d \u0027ቀን\u0027 yyyy h:mm tt",
-                    F: "dddd \u0027፣\u0027 MMMM d \u0027ቀን\u0027 yyyy h:mm:ss tt",
+                    f: "dddd '፣' MMMM d 'ቀን' yyyy h:mm tt",
+                    F: "dddd '፣' MMMM d 'ቀን' yyyy h:mm:ss tt",
                     M: "MMMM d ቀን",
                     Y: "MMMM yyyy"
                 }
@@ -4034,8 +4772,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 6,
-                days: [["Acer","Arime","Aram","Ahad","Amhadh","Sem","Sedh"],["Ace","Ari","Ara","Aha","Amh","Sem","Sed"],["Ac","Ar","Ar","Ah","Am","Se","Se"]],
-                months: [["Yenayer","Furar","Maghres","Yebrir","Mayu","Yunyu","Yulyu","Ghuct","Cutenber","Ktuber","Wambir","Dujanbir",""],["Yen","Fur","Mag","Yeb","May","Yun","Yul","Ghu","Cut","Ktu","Wam","Duj",""]],
+                days: {
+                    names: ["Acer","Arime","Aram","Ahad","Amhadh","Sem","Sedh"],
+                    namesAbbr: ["Ace","Ari","Ara","Aha","Amh","Sem","Sed"],
+                    namesShort: ["Ac","Ar","Ar","Ah","Am","Se","Se"]
+                },
+                months: {
+                    names: ["Yenayer","Furar","Maghres","Yebrir","Mayu","Yunyu","Yulyu","Ghuct","Cutenber","Ktuber","Wambir","Dujanbir",""],
+                    namesAbbr: ["Yen","Fur","Mag","Yeb","May","Yun","Yul","Ghu","Cut","Ktu","Wam","Duj",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -4071,8 +4816,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["आइतवार","सोमवार","मङ्गलवार","बुधवार","बिहीवार","शुक्रवार","शनिवार"],["आइत","सोम","मङ्गल","बुध","बिही","शुक्र","शनि"],["आ","सो","म","बु","बि","शु","श"]],
-                months: [["जनवरी","फेब्रुअरी","मार्च","अप्रिल","मे","जून","जुलाई","अगस्त","सेप्टेम्बर","अक्टोबर","नोभेम्बर","डिसेम्बर",""],["जन","फेब","मार्च","अप्रिल","मे","जून","जुलाई","अग","सेप्ट","अक्ट","नोभ","डिस",""]],
+                days: {
+                    names: ["आइतवार","सोमवार","मङ्गलवार","बुधवार","बिहीवार","शुक्रवार","शनिवार"],
+                    namesAbbr: ["आइत","सोम","मङ्गल","बुध","बिही","शुक्र","शनि"],
+                    namesShort: ["आ","सो","म","बु","बि","शु","श"]
+                },
+                months: {
+                    names: ["जनवरी","फेब्रुअरी","मार्च","अप्रिल","मे","जून","जुलाई","अगस्त","सेप्टेम्बर","अक्टोबर","नोभेम्बर","डिसेम्बर",""],
+                    namesAbbr: ["जन","फेब","मार्च","अप्रिल","मे","जून","जुलाई","अग","सेप्ट","अक्ट","नोभ","डिस",""]
+                },
                 AM: ["विहानी","विहानी","विहानी"],
                 PM: ["बेलुकी","बेलुकी","बेलुकी"],
                 eras: [{"name":"a.d.","start":null,"offset":0}],
@@ -4113,8 +4865,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["Snein","Moandei","Tiisdei","Woansdei","Tongersdei","Freed","Sneon"],["Sn","Mo","Ti","Wo","To","Fr","Sn"],["S","M","T","W","T","F","S"]],
-                months: [["jannewaris","febrewaris","maart","april","maaie","juny","july","augustus","septimber","oktober","novimber","desimber",""],["jann","febr","mrt","apr","maaie","jun","jul","aug","sept","okt","nov","des",""]],
+                days: {
+                    names: ["Snein","Moandei","Tiisdei","Woansdei","Tongersdei","Freed","Sneon"],
+                    namesAbbr: ["Sn","Mo","Ti","Wo","To","Fr","Sn"],
+                    namesShort: ["S","M","T","W","T","F","S"]
+                },
+                months: {
+                    names: ["jannewaris","febrewaris","maart","april","maaie","juny","july","augustus","septimber","oktober","novimber","desimber",""],
+                    namesAbbr: ["jann","febr","mrt","apr","maaie","jun","jul","aug","sept","okt","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -4157,8 +4916,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["غ.م","غ.م","غ.م"],
                 PM: ["غ.و","غ.و","غ.و"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -4249,8 +5015,15 @@
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["یکشنبه","دوشنبه","سه‌شنبه","چارشنبه","پنجشنبه","جمعه","شنبه"],["یکشنبه","دوشنبه","سه‌شنبه","چارشنبه","پنجشنبه","جمعه","شنبه"],["ی","د","س","چ","پ","ج","ش"]],
-                months: [["سلواغه","كب","ورى","غويى","غبرګولى","چنګا ښزمرى","زمرى","وږى","تله","لړم","لنڈ ۍ","مرغومى",""],["سلواغه","كب","ورى","غويى","غبرګولى","چنګا ښ","زمرى","وږى","تله","لړم","لنڈ ۍ","مرغومى",""]],
+                days: {
+                    names: ["یکشنبه","دوشنبه","سه‌شنبه","چارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesAbbr: ["یکشنبه","دوشنبه","سه‌شنبه","چارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesShort: ["ی","د","س","چ","پ","ج","ش"]
+                },
+                months: {
+                    names: ["سلواغه","كب","ورى","غويى","غبرګولى","چنګا ښزمرى","زمرى","وږى","تله","لړم","لنڈ ۍ","مرغومى",""],
+                    namesAbbr: ["سلواغه","كب","ورى","غويى","غبرګولى","چنګا ښ","زمرى","وږى","تله","لړم","لنڈ ۍ","مرغومى",""]
+                },
                 AM: ["غ.م","غ.م","غ.م"],
                 PM: ["غ.و","غ.و","غ.و"],
                 eras: [{"name":"ل.ه","start":null,"offset":0}],
@@ -4281,8 +5054,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Linggo","Lunes","Martes","Mierkoles","Huebes","Biernes","Sabado"],["Lin","Lun","Mar","Mier","Hueb","Bier","Saba"],["L","L","M","M","H","B","S"]],
-                months: [["Enero","Pebrero","Marso","Abril","Mayo","Hunyo","Hulyo","Agosto","Septyembre","Oktubre","Nobyembre","Disyembre",""],["En","Peb","Mar","Abr","Mayo","Hun","Hul","Agos","Sept","Okt","Nob","Dis",""]],
+                days: {
+                    names: ["Linggo","Lunes","Martes","Mierkoles","Huebes","Biernes","Sabado"],
+                    namesAbbr: ["Lin","Lun","Mar","Mier","Hueb","Bier","Saba"],
+                    namesShort: ["L","L","M","M","H","B","S"]
+                },
+                months: {
+                    names: ["Enero","Pebrero","Marso","Abril","Mayo","Hunyo","Hulyo","Agosto","Septyembre","Oktubre","Nobyembre","Disyembre",""],
+                    namesAbbr: ["En","Peb","Mar","Abr","Mayo","Hun","Hul","Agos","Sept","Okt","Nob","Dis",""]
+                },
                 eras: [{"name":"Anno Domini","start":null,"offset":0}],
                 patterns: {
                     d: "M/d/yyyy",
@@ -4312,8 +5092,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Hijri",
-                days: [["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],["އާ","ހޯ","އަ","ބު","ބު","ހު","ހޮ"]],
-                months: [["މުޙައްރަމް","ޞަފަރު","ރަބީޢުލްއައްވަލް","ރަބީޢުލްއާޚިރު","ޖުމާދަލްއޫލާ","ޖުމާދަލްއާޚިރާ","ރަޖަބް","ޝަޢްބާން","ރަމަޟާން","ޝައްވާލް","ޛުލްޤަޢިދާ","ޛުލްޙިއްޖާ",""],["މުޙައްރަމް","ޞަފަރު","ރަބީޢުލްއައްވަލް","ރަބީޢުލްއާޚިރު","ޖުމާދަލްއޫލާ","ޖުމާދަލްއާޚިރާ","ރަޖަބް","ޝަޢްބާން","ރަމަޟާން","ޝައްވާލް","ޛުލްޤަޢިދާ","ޛުލްޙިއްޖާ",""]],
+                days: {
+                    names: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
+                    namesAbbr: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
+                    namesShort: ["އާ","ހޯ","އަ","ބު","ބު","ހު","ހޮ"]
+                },
+                months: {
+                    names: ["މުޙައްރަމް","ޞަފަރު","ރަބީޢުލްއައްވަލް","ރަބީޢުލްއާޚިރު","ޖުމާދަލްއޫލާ","ޖުމާދަލްއާޚިރާ","ރަޖަބް","ޝަޢްބާން","ރަމަޟާން","ޝައްވާލް","ޛުލްޤަޢިދާ","ޛުލްޙިއްޖާ",""],
+                    namesAbbr: ["މުޙައްރަމް","ޞަފަރު","ރަބީޢުލްއައްވަލް","ރަބީޢުލްއާޚިރު","ޖުމާދަލްއޫލާ","ޖުމާދަލްއާޚިރާ","ރަޖަބް","ޝަޢްބާން","ރަމަޟާން","ޝައްވާލް","ޛުލްޤަޢިދާ","ޛުލްޙިއްޖާ",""]
+                },
                 AM: ["މކ","މކ","މކ"],
                 PM: ["މފ","މފ","މފ"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -4401,8 +5188,15 @@
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],["އާ","ހޯ","އަ","ބު","ބު","ހު","ހޮ"]],
-                months: [["ޖަނަވަރީ","ފެބްރުއަރީ","މާޗް","އޭޕްރިލް","މެއި","ޖޫން","ޖުލައި","އޯގަސްޓް","ސެޕްޓެމްބަރ","އޮކްޓޯބަރ","ނޮވެމްބަރ","ޑިސެމްބަރ",""],["ޖަނަވަރީ","ފެބްރުއަރީ","މާޗް","އޭޕްރިލް","މެއި","ޖޫން","ޖުލައި","އޯގަސްޓް","ސެޕްޓެމްބަރ","އޮކްޓޯބަރ","ނޮވެމްބަރ","ޑިސެމްބަރ",""]],
+                days: {
+                    names: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
+                    namesAbbr: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
+                    namesShort: ["އާ","ހޯ","އަ","ބު","ބު","ހު","ހޮ"]
+                },
+                months: {
+                    names: ["ޖަނަވަރީ","ފެބްރުއަރީ","މާޗް","އޭޕްރިލް","މެއި","ޖޫން","ޖުލައި","އޯގަސްޓް","ސެޕްޓެމްބަރ","އޮކްޓޯބަރ","ނޮވެމްބަރ","ޑިސެމްބަރ",""],
+                    namesAbbr: ["ޖަނަވަރީ","ފެބްރުއަރީ","މާޗް","އޭޕްރިލް","މެއި","ޖޫން","ޖުލައި","އޯގަސްޓް","ސެޕްޓެމްބަރ","އޮކްޓޯބަރ","ނޮވެމްބަރ","ޑިސެމްބަރ",""]
+                },
                 AM: ["މކ","މކ","މކ"],
                 PM: ["މފ","މފ","މފ"],
                 eras: [{"name":"މީލާދީ","start":null,"offset":0}],
@@ -4431,8 +5225,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Lahadi","Litinin","Talata","Laraba","Alhamis","Juma\u0027a","Asabar"],["Lah","Lit","Tal","Lar","Alh","Jum","Asa"],["L","L","T","L","A","J","A"]],
-                months: [["Januwaru","Febreru","Maris","Afrilu","Mayu","Yuni","Yuli","Agusta","Satumba","Oktocba","Nuwamba","Disamba",""],["Jan","Feb","Mar","Afr","May","Yun","Yul","Agu","Sat","Okt","Nuw","Dis",""]],
+                days: {
+                    names: ["Lahadi","Litinin","Talata","Laraba","Alhamis","Juma'a","Asabar"],
+                    namesAbbr: ["Lah","Lit","Tal","Lar","Alh","Jum","Asa"],
+                    namesShort: ["L","L","T","L","A","J","A"]
+                },
+                months: {
+                    names: ["Januwaru","Febreru","Maris","Afrilu","Mayu","Yuni","Yuli","Agusta","Satumba","Oktocba","Nuwamba","Disamba",""],
+                    namesAbbr: ["Jan","Feb","Mar","Afr","May","Yun","Yul","Agu","Sat","Okt","Nuw","Dis",""]
+                },
                 AM: ["Safe","safe","SAFE"],
                 PM: ["Yamma","yamma","YAMMA"],
                 eras: [{"name":"AD","start":null,"offset":0}],
@@ -4463,8 +5264,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Aiku","Aje","Isegun","Ojo\u0027ru","Ojo\u0027bo","Eti","Abameta"],["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],["A","A","I","O","O","E","A"]],
-                months: [["Osu kinni","Osu keji","Osu keta","Osu kerin","Osu karun","Osu kefa","Osu keje","Osu kejo","Osu kesan","Osu kewa","Osu kokanla","Osu keresi",""],["kin.","kej.","ket.","ker.","kar.","kef.","kej.","kej.","kes.","kew.","kok.","ker.",""]],
+                days: {
+                    names: ["Aiku","Aje","Isegun","Ojo'ru","Ojo'bo","Eti","Abameta"],
+                    namesAbbr: ["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],
+                    namesShort: ["A","A","I","O","O","E","A"]
+                },
+                months: {
+                    names: ["Osu kinni","Osu keji","Osu keta","Osu kerin","Osu karun","Osu kefa","Osu keje","Osu kejo","Osu kesan","Osu kewa","Osu kokanla","Osu keresi",""],
+                    namesAbbr: ["kin.","kej.","ket.","ker.","kar.","kef.","kej.","kej.","kes.","kew.","kok.","ker.",""]
+                },
                 AM: ["Owuro","owuro","OWURO"],
                 PM: ["Ale","ale","ALE"],
                 eras: [{"name":"AD","start":null,"offset":0}],
@@ -4504,18 +5312,25 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["intichaw","killachaw","atipachaw","quyllurchaw","Ch\u0027 askachaw","Illapachaw","k\u0027uychichaw"],["int","kil","ati","quy","Ch\u0027","Ill","k\u0027u"],["d","k","a","m","h","b","k"]],
-                months: [["Qulla puquy","Hatun puquy","Pauqar waray","ayriwa","Aymuray","Inti raymi","Anta Sitwa","Qhapaq Sitwa","Uma raymi","Kantaray","Ayamarq\u0027a","Kapaq Raymi",""],["Qul","Hat","Pau","ayr","Aym","Int","Ant","Qha","Uma","Kan","Aya","Kap",""]],
+                days: {
+                    names: ["intichaw","killachaw","atipachaw","quyllurchaw","Ch' askachaw","Illapachaw","k'uychichaw"],
+                    namesAbbr: ["int","kil","ati","quy","Ch'","Ill","k'u"],
+                    namesShort: ["d","k","a","m","h","b","k"]
+                },
+                months: {
+                    names: ["Qulla puquy","Hatun puquy","Pauqar waray","ayriwa","Aymuray","Inti raymi","Anta Sitwa","Qhapaq Sitwa","Uma raymi","Kantaray","Ayamarq'a","Kapaq Raymi",""],
+                    namesAbbr: ["Qul","Hat","Pau","ayr","Aym","Int","Ant","Qha","Uma","Kan","Aya","Kap",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -4538,8 +5353,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Lamorena","Mošupologo","Labobedi","Laboraro","Labone","Labohlano","Mokibelo"],["Lam","Moš","Lbb","Lbr","Lbn","Lbh","Mok"],["L","M","L","L","L","L","M"]],
-                months: [["Pherekgong","Hlakola","Mopitlo","Moranang","Mosegamanye","Ngoatobošego","Phuphu","Phato","Lewedi","Diphalana","Dibatsela","Manthole",""],["Pher","Hlak","Mop","Mor","Mos","Ngwat","Phup","Phat","Lew","Dip","Dib","Man",""]],
+                days: {
+                    names: ["Lamorena","Mošupologo","Labobedi","Laboraro","Labone","Labohlano","Mokibelo"],
+                    namesAbbr: ["Lam","Moš","Lbb","Lbr","Lbn","Lbh","Mok"],
+                    namesShort: ["L","M","L","L","L","L","M"]
+                },
+                months: {
+                    names: ["Pherekgong","Hlakola","Mopitlo","Moranang","Mosegamanye","Ngoatobošego","Phuphu","Phato","Lewedi","Diphalana","Dibatsela","Manthole",""],
+                    namesAbbr: ["Pher","Hlak","Mop","Mor","Mos","Ngwat","Phup","Phat","Lew","Dip","Dib","Man",""]
+                },
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",
@@ -4582,17 +5404,24 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Йәкшәмбе","Дүшәмбе","Шишәмбе","Шаршамбы","Кесаҙна","Йома","Шәмбе"],["Йш","Дш","Шш","Шр","Кс","Йм","Шб"],["Йш","Дш","Шш","Шр","Кс","Йм","Шб"]],
-                months: [["ғинуар","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь",""],["ғин","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]],
+                days: {
+                    names: ["Йәкшәмбе","Дүшәмбе","Шишәмбе","Шаршамбы","Кесаҙна","Йома","Шәмбе"],
+                    namesAbbr: ["Йш","Дш","Шш","Шр","Кс","Йм","Шб"],
+                    namesShort: ["Йш","Дш","Шш","Шр","Кс","Йм","Шб"]
+                },
+                months: {
+                    names: ["ғинуар","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь",""],
+                    namesAbbr: ["ғин","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yy",
-                    D: "d MMMM yyyy \u0027й\u0027",
+                    D: "d MMMM yyyy 'й'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d MMMM yyyy \u0027й\u0027 H:mm",
-                    F: "d MMMM yyyy \u0027й\u0027 H:mm:ss",
+                    f: "d MMMM yyyy 'й' H:mm",
+                    F: "d MMMM yyyy 'й' H:mm:ss",
                     Y: "MMMM yyyy"
                 }
             })
@@ -4622,8 +5451,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Sonndeg","Méindeg","Dënschdeg","Mëttwoch","Donneschdeg","Freideg","Samschdeg"],["Son","Méi","Dën","Mët","Don","Fre","Sam"],["So","Mé","Dë","Më","Do","Fr","Sa"]],
-                months: [["Januar","Februar","Mäerz","Abrëll","Mee","Juni","Juli","August","September","Oktober","November","Dezember",""],["Jan","Feb","Mäe","Abr","Mee","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]],
+                days: {
+                    names: ["Sonndeg","Méindeg","Dënschdeg","Mëttwoch","Donneschdeg","Freideg","Samschdeg"],
+                    namesAbbr: ["Son","Méi","Dën","Mët","Don","Fre","Sam"],
+                    namesShort: ["So","Mé","Dë","Më","Do","Fr","Sa"]
+                },
+                months: {
+                    names: ["Januar","Februar","Mäerz","Abrëll","Mee","Juni","Juli","August","September","Oktober","November","Dezember",""],
+                    namesAbbr: ["Jan","Feb","Mäe","Abr","Mee","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. Chr","start":null,"offset":0}],
@@ -4666,8 +5502,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["sapaat","ataasinngorneq","marlunngorneq","pingasunngorneq","sisamanngorneq","tallimanngorneq","arfininngorneq"],["sap","ata","mar","ping","sis","tal","arf"],["sa","at","ma","pi","si","ta","ar"]],
-                months: [["januari","februari","martsi","apriili","maaji","juni","juli","aggusti","septembari","oktobari","novembari","decembari",""],["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["sapaat","ataasinngorneq","marlunngorneq","pingasunngorneq","sisamanngorneq","tallimanngorneq","arfininngorneq"],
+                    namesAbbr: ["sap","ata","mar","ping","sis","tal","arf"],
+                    namesShort: ["sa","at","ma","pi","si","ta","ar"]
+                },
+                months: {
+                    names: ["januari","februari","martsi","apriili","maaji","juni","juli","aggusti","septembari","oktobari","novembari","decembari",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -4696,8 +5539,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Aiku","Aje","Isegun","Ojo\u0027ru","Ojo\u0027bo","Eti","Abameta"],["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],["A","A","I","O","O","E","A"]],
-                months: [["Onwa mbu","Onwa ibua","Onwa ato","Onwa ano","Onwa ise","Onwa isi","Onwa asa","Onwa asato","Onwa itolu","Onwa iri","Onwa iri n\u0027ofu","Onwa iri n\u0027ibua",""],["mbu.","ibu.","ato.","ano.","ise","isi","asa","asa.","ito.","iri.","n\u0027of.","n\u0027ib.",""]],
+                days: {
+                    names: ["Aiku","Aje","Isegun","Ojo'ru","Ojo'bo","Eti","Abameta"],
+                    namesAbbr: ["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],
+                    namesShort: ["A","A","I","O","O","E","A"]
+                },
+                months: {
+                    names: ["Onwa mbu","Onwa ibua","Onwa ato","Onwa ano","Onwa ise","Onwa isi","Onwa asa","Onwa asato","Onwa itolu","Onwa iri","Onwa iri n'ofu","Onwa iri n'ibua",""],
+                    namesAbbr: ["mbu.","ibu.","ato.","ano.","ise","isi","asa","asa.","ito.","iri.","n'of.","n'ib.",""]
+                },
                 AM: ["Ututu","ututu","UTUTU"],
                 PM: ["Efifie","efifie","EFIFIE"],
                 eras: [{"name":"AD","start":null,"offset":0}],
@@ -4734,20 +5584,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["ꑭꆏꑍ","ꆏꊂ꒔","ꆏꊂꑍ","ꆏꊂꌕ","ꆏꊂꇖ","ꆏꊂꉬ","ꆏꊂꃘ"],["ꑭꆏ","ꆏ꒔","ꆏꑍ","ꆏꌕ","ꆏꇖ","ꆏꉬ","ꆏꃘ"],["ꆏ","꒔","ꑍ","ꌕ","ꇖ","ꉬ","ꃘ"]],
-                months: [["ꋍꆪ","ꑍꆪ","ꌕꆪ","ꇖꆪ","ꉬꆪ","ꃘꆪ","ꏃꆪ","ꉆꆪ","ꈬꆪ","ꊰꆪ","ꊯꊪꆪ","ꊰꑋꆪ",""],["ꋍꆪ","ꑍꆪ","ꌕꆪ","ꇖꆪ","ꉬꆪ","ꃘꆪ","ꏃꆪ","ꉆꆪ","ꈬꆪ","ꊰꆪ","ꊯꊪꆪ","ꊰꑋꆪ",""]],
+                days: {
+                    names: ["ꑭꆏꑍ","ꆏꊂ꒔","ꆏꊂꑍ","ꆏꊂꌕ","ꆏꊂꇖ","ꆏꊂꉬ","ꆏꊂꃘ"],
+                    namesAbbr: ["ꑭꆏ","ꆏ꒔","ꆏꑍ","ꆏꌕ","ꆏꇖ","ꆏꉬ","ꆏꃘ"],
+                    namesShort: ["ꆏ","꒔","ꑍ","ꌕ","ꇖ","ꉬ","ꃘ"]
+                },
+                months: {
+                    names: ["ꋍꆪ","ꑍꆪ","ꌕꆪ","ꇖꆪ","ꉬꆪ","ꃘꆪ","ꏃꆪ","ꉆꆪ","ꈬꆪ","ꊰꆪ","ꊯꊪꆪ","ꊰꑋꆪ",""],
+                    namesAbbr: ["ꋍꆪ","ꑍꆪ","ꌕꆪ","ꇖꆪ","ꉬꆪ","ꃘꆪ","ꏃꆪ","ꉆꆪ","ꈬꆪ","ꊰꆪ","ꊯꊪꆪ","ꊰꑋꆪ",""]
+                },
                 AM: ["ꂵꆪꈌꈐ","ꂵꆪꈌꈐ","ꂵꆪꈌꈐ"],
                 PM: ["ꂵꆪꈌꉈ","ꂵꆪꈌꉈ","ꂵꆪꈌꉈ"],
                 eras: [{"name":"ꇬꑼ","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027ꈎ\u0027 M\u0027ꆪ\u0027 d\u0027ꑍ\u0027",
+                    D: "yyyy'ꈎ' M'ꆪ' d'ꑍ'",
                     t: "tt h:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027ꈎ\u0027 M\u0027ꆪ\u0027 d\u0027ꑍ\u0027 tt h:mm",
-                    F: "yyyy\u0027ꈎ\u0027 M\u0027ꆪ\u0027 d\u0027ꑍ\u0027 H:mm:ss",
-                    M: "M\u0027ꆪ\u0027 d\u0027ꑍ\u0027",
-                    Y: "yyyy\u0027ꈎ\u0027 M\u0027ꆪ\u0027"
+                    f: "yyyy'ꈎ' M'ꆪ' d'ꑍ' tt h:mm",
+                    F: "yyyy'ꈎ' M'ꆪ' d'ꑍ' H:mm:ss",
+                    M: "M'ꆪ' d'ꑍ'",
+                    Y: "yyyy'ꈎ' M'ꆪ'"
                 }
             })
         }
@@ -4776,20 +5633,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd-MM-yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm:ss",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy H:mm",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy H:mm:ss",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -4798,7 +5662,7 @@
     culture = cultures["moh"] = $.extend(true, {}, invariant, {
         name: "moh",
         englishName: "Mohawk",
-        nativeName: "Kanien\u0027kéha",
+        nativeName: "Kanien'kéha",
         language: "moh",
         numberFormat: {
             groupSizes: [3,0],
@@ -4812,8 +5676,13 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Awentatokentì:ke","Awentataón\u0027ke","Ratironhia\u0027kehronòn:ke","Soséhne","Okaristiiáhne","Ronwaia\u0027tanentaktonhne","Entákta"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],["S","M","T","W","T","F","S"]],
-                months: [["Tsothohrkó:Wa","Enniska","Enniskó:Wa","Onerahtókha","Onerahtohkó:Wa","Ohiari:Ha","Ohiarihkó:Wa","Seskéha","Seskehkó:Wa","Kenténha","Kentenhkó:Wa","Tsothóhrha",""],["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]],
+                days: {
+                    names: ["Awentatokentì:ke","Awentataón'ke","Ratironhia'kehronòn:ke","Soséhne","Okaristiiáhne","Ronwaia'tanentaktonhne","Entákta"],
+                    namesShort: ["S","M","T","W","T","F","S"]
+                },
+                months: {
+                    names: ["Tsothohrkó:Wa","Enniska","Enniskó:Wa","Onerahtókha","Onerahtohkó:Wa","Ohiari:Ha","Ohiarihkó:Wa","Seskéha","Seskehkó:Wa","Kenténha","Kentenhkó:Wa","Tsothóhrha",""]
+                },
                 patterns: {
                     d: "M/d/yyyy",
                     D: "dddd, MMMM dd, yyyy",
@@ -4850,8 +5719,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Sul","Lun","Meurzh","Merc\u0027her","Yaou","Gwener","Sadorn"],["Sul","Lun","Meu.","Mer.","Yaou","Gwe.","Sad."],["Su","Lu","Mz","Mc","Ya","Gw","Sa"]],
-                months: [["Genver","C\u0027hwevrer","Meurzh","Ebrel","Mae","Mezheven","Gouere","Eost","Gwengolo","Here","Du","Kerzu",""],["Gen.","C\u0027hwe.","Meur.","Ebr.","Mae","Mezh.","Goue.","Eost","Gwen.","Here","Du","Kzu",""]],
+                days: {
+                    names: ["Sul","Lun","Meurzh","Merc'her","Yaou","Gwener","Sadorn"],
+                    namesAbbr: ["Sul","Lun","Meu.","Mer.","Yaou","Gwe.","Sad."],
+                    namesShort: ["Su","Lu","Mz","Mc","Ya","Gw","Sa"]
+                },
+                months: {
+                    names: ["Genver","C'hwevrer","Meurzh","Ebrel","Mae","Mezheven","Gouere","Eost","Gwengolo","Here","Du","Kerzu",""],
+                    namesAbbr: ["Gen.","C'hwe.","Meur.","Ebr.","Mae","Mezh.","Goue.","Eost","Gwen.","Here","Du","Kzu",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"g. J.-K.","start":null,"offset":0}],
@@ -4886,20 +5762,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["يەكشەنبە","دۈشەنبە","سەيشەنبە","چارشەنبە","پەيشەنبە","جۈمە","شەنبە"],["يە","دۈ","سە","چا","پە","جۈ","شە"],["ي","د","س","چ","پ","ج","ش"]],
-                months: [["1-ئاي","2-ئاي","3-ئاي","4-ئاي","5-ئاي","6-ئاي","7-ئاي","8-ئاي","9-ئاي","10-ئاي","11-ئاي","12-ئاي",""],["1-ئاي","2-ئاي","3-ئاي","4-ئاي","5-ئاي","6-ئاي","7-ئاي","8-ئاي","9-ئاي","10-ئاي","11-ئاي","12-ئاي",""]],
+                days: {
+                    names: ["يەكشەنبە","دۈشەنبە","سەيشەنبە","چارشەنبە","پەيشەنبە","جۈمە","شەنبە"],
+                    namesAbbr: ["يە","دۈ","سە","چا","پە","جۈ","شە"],
+                    namesShort: ["ي","د","س","چ","پ","ج","ش"]
+                },
+                months: {
+                    names: ["1-ئاي","2-ئاي","3-ئاي","4-ئاي","5-ئاي","6-ئاي","7-ئاي","8-ئاي","9-ئاي","10-ئاي","11-ئاي","12-ئاي",""],
+                    namesAbbr: ["1-ئاي","2-ئاي","3-ئاي","4-ئاي","5-ئاي","6-ئاي","7-ئاي","8-ئاي","9-ئاي","10-ئاي","11-ئاي","12-ئاي",""]
+                },
                 AM: ["چۈشتىن بۇرۇن","چۈشتىن بۇرۇن","چۈشتىن بۇرۇن"],
                 PM: ["چۈشتىن كېيىن","چۈشتىن كېيىن","چۈشتىن كېيىن"],
                 eras: [{"name":"مىلادى","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy-M-d",
-                    D: "yyyy-\u0027يىلى\u0027 MMMM d-\u0027كۈنى،\u0027",
+                    D: "yyyy-'يىلى' MMMM d-'كۈنى،'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy-\u0027يىلى\u0027 MMMM d-\u0027كۈنى،\u0027 H:mm",
-                    F: "yyyy-\u0027يىلى\u0027 MMMM d-\u0027كۈنى،\u0027 H:mm:ss",
-                    M: "MMMM d\u0027-كۈنى\u0027",
-                    Y: "yyyy-\u0027يىلى\u0027 MMMM"
+                    f: "yyyy-'يىلى' MMMM d-'كۈنى،' H:mm",
+                    F: "yyyy-'يىلى' MMMM d-'كۈنى،' H:mm:ss",
+                    M: "MMMM d'-كۈنى'",
+                    Y: "yyyy-'يىلى' MMMM"
                 }
             })
         }
@@ -4923,8 +5806,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Rātapu","Rāhina","Rātū","Rāapa","Rāpare","Rāmere","Rāhoroi"],["Ta","Hi","Tū","Apa","Pa","Me","Ho"],["Ta","Hi","Tū","Aa","Pa","Me","Ho"]],
-                months: [["Kohi-tātea","Hui-tanguru","Poutū-te-rangi","Paenga-whāwhā","Haratua","Pipiri","Hōngongoi","Here-turi-kōkā","Mahuru","Whiringa-ā-nuku","Whiringa-ā-rangi","Hakihea",""],["Kohi","Hui","Pou","Pae","Hara","Pipi","Hōngo","Here","Mahu","Nuku","Rangi","Haki",""]],
+                days: {
+                    names: ["Rātapu","Rāhina","Rātū","Rāapa","Rāpare","Rāmere","Rāhoroi"],
+                    namesAbbr: ["Ta","Hi","Tū","Apa","Pa","Me","Ho"],
+                    namesShort: ["Ta","Hi","Tū","Aa","Pa","Me","Ho"]
+                },
+                months: {
+                    names: ["Kohi-tātea","Hui-tanguru","Poutū-te-rangi","Paenga-whāwhā","Haratua","Pipiri","Hōngongoi","Here-turi-kōkā","Mahuru","Whiringa-ā-nuku","Whiringa-ā-rangi","Hakihea",""],
+                    namesAbbr: ["Kohi","Hui","Pou","Pae","Hara","Pipi","Hōngo","Here","Mahu","Nuku","Rangi","Haki",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 patterns: {
@@ -4964,17 +5854,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dimenge","diluns","dimars","dimècres","dijòus","divendres","dissabte"],["dim.","lun.","mar.","mèc.","jòu.","ven.","sab."],["di","lu","ma","mè","jò","ve","sa"]],
-                months: [["genier","febrier","març","abril","mai","junh","julh","agost","setembre","octobre","novembre","desembre",""],["gen.","feb.","mar.","abr.","mai.","jun.","jul.","ag.","set.","oct.","nov.","des.",""]],
-                monthsGenitive: [["de genier","de febrier","de març","d\u0027abril","de mai","de junh","de julh","d\u0027agost","de setembre","d\u0027octobre","de novembre","de desembre",""],["gen.","feb.","mar.","abr.","mai.","jun.","jul.","ag.","set.","oct.","nov.","des.",""]],
+                days: {
+                    names: ["dimenge","diluns","dimars","dimècres","dijòus","divendres","dissabte"],
+                    namesAbbr: ["dim.","lun.","mar.","mèc.","jòu.","ven.","sab."],
+                    namesShort: ["di","lu","ma","mè","jò","ve","sa"]
+                },
+                months: {
+                    names: ["genier","febrier","març","abril","mai","junh","julh","agost","setembre","octobre","novembre","desembre",""],
+                    namesAbbr: ["gen.","feb.","mar.","abr.","mai.","jun.","jul.","ag.","set.","oct.","nov.","des.",""]
+                },
+                monthsGenitive: {
+                    names: ["de genier","de febrier","de març","d'abril","de mai","de junh","de julh","d'agost","de setembre","d'octobre","de novembre","de desembre",""],
+                    namesAbbr: ["gen.","feb.","mar.","abr.","mai.","jun.","jul.","ag.","set.","oct.","nov.","des.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"après Jèsus-Crist","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd,\u0027 lo \u0027d MMMM\u0027 de \u0027yyyy",
-                    f: "dddd,\u0027 lo \u0027d MMMM\u0027 de \u0027yyyy HH:mm",
-                    F: "dddd,\u0027 lo \u0027d MMMM\u0027 de \u0027yyyy HH:mm:ss",
+                    D: "dddd,' lo 'd MMMM' de 'yyyy",
+                    f: "dddd,' lo 'd MMMM' de 'yyyy HH:mm",
+                    F: "dddd,' lo 'd MMMM' de 'yyyy HH:mm:ss",
                     M: "d MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -5005,8 +5905,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dumenica","luni","marti","mercuri","ghjovi","venderi","sabbatu"],["dum.","lun.","mar.","mer.","ghj.","ven.","sab."],["du","lu","ma","me","gh","ve","sa"]],
-                months: [["ghjennaghju","ferraghju","marzu","aprile","maghju","ghjunghju","lugliu","aostu","settembre","ottobre","nuvembre","dicembre",""],["ghje","ferr","marz","apri","magh","ghju","lugl","aost","sett","otto","nuve","dice",""]],
+                days: {
+                    names: ["dumenica","luni","marti","mercuri","ghjovi","venderi","sabbatu"],
+                    namesAbbr: ["dum.","lun.","mar.","mer.","ghj.","ven.","sab."],
+                    namesShort: ["du","lu","ma","me","gh","ve","sa"]
+                },
+                months: {
+                    names: ["ghjennaghju","ferraghju","marzu","aprile","maghju","ghjunghju","lugliu","aostu","settembre","ottobre","nuvembre","dicembre",""],
+                    namesAbbr: ["ghje","ferr","marz","apri","magh","ghju","lugl","aost","sett","otto","nuve","dice",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"dopu J-C","start":null,"offset":0}],
@@ -5045,8 +5952,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Sundàà","Mondàà","Dienschdàà","Mittwuch","Dunnerschdàà","Fridàà","Sàmschdàà"],["Su.","Mo.","Di.","Mi.","Du.","Fr.","Sà."],["Su","Mo","Di","Mi","Du","Fr","Sà"]],
-                months: [["Jänner","Feverje","März","Àpril","Mai","Jüni","Jüli","Augscht","September","Oktower","Nowember","Dezember",""],["Jän.","Fev.","März","Apr.","Mai","Jüni","Jüli","Aug.","Sept.","Okt.","Now.","Dez.",""]],
+                days: {
+                    names: ["Sundàà","Mondàà","Dienschdàà","Mittwuch","Dunnerschdàà","Fridàà","Sàmschdàà"],
+                    namesAbbr: ["Su.","Mo.","Di.","Mi.","Du.","Fr.","Sà."],
+                    namesShort: ["Su","Mo","Di","Mi","Du","Fr","Sà"]
+                },
+                months: {
+                    names: ["Jänner","Feverje","März","Àpril","Mai","Jüni","Jüli","Augscht","September","Oktower","Nowember","Dezember",""],
+                    namesAbbr: ["Jän.","Fev.","März","Apr.","Mai","Jüni","Jüli","Aug.","Sept.","Okt.","Now.","Dez.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"Vor J.-C.","start":null,"offset":0}],
@@ -5087,19 +6001,29 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["баскыһыанньа","бэнидиэнньик","оптуорунньук","сэрэдэ","чэппиэр","бээтинсэ","субуота"],["Бс","Бн","Оп","Ср","Чп","Бт","Сб"],["Бс","Бн","Оп","Ср","Чп","Бт","Сб"]],
-                months: [["Тохсунньу","Олунньу","Кулун тутар","Муус устар","Ыам ыйа","Бэс ыйа","От ыйа","Атырдьах ыйа","Балаҕан ыйа","Алтынньы","Сэтинньи","Ахсынньы",""],["тхс","олн","кул","мст","ыам","бэс","отй","атр","блҕ","алт","стн","ахс",""]],
-                monthsGenitive: [["тохсунньу","олунньу","кулун тутар","муус устар","ыам ыйын","бэс ыйын","от ыйын","атырдьах ыйын","балаҕан ыйын","алтынньы","сэтинньи","ахсынньы",""],["тхс","олн","кул","мст","ыам","бэс","отй","атр","блҕ","алт","стн","ахс",""]],
+                days: {
+                    names: ["баскыһыанньа","бэнидиэнньик","оптуорунньук","сэрэдэ","чэппиэр","бээтинсэ","субуота"],
+                    namesAbbr: ["Бс","Бн","Оп","Ср","Чп","Бт","Сб"],
+                    namesShort: ["Бс","Бн","Оп","Ср","Чп","Бт","Сб"]
+                },
+                months: {
+                    names: ["Тохсунньу","Олунньу","Кулун тутар","Муус устар","Ыам ыйа","Бэс ыйа","От ыйа","Атырдьах ыйа","Балаҕан ыйа","Алтынньы","Сэтинньи","Ахсынньы",""],
+                    namesAbbr: ["тхс","олн","кул","мст","ыам","бэс","отй","атр","блҕ","алт","стн","ахс",""]
+                },
+                monthsGenitive: {
+                    names: ["тохсунньу","олунньу","кулун тутар","муус устар","ыам ыйын","бэс ыйын","от ыйын","атырдьах ыйын","балаҕан ыйын","алтынньы","сэтинньи","ахсынньы",""],
+                    namesAbbr: ["тхс","олн","кул","мст","ыам","бэс","отй","атр","блҕ","алт","стн","ахс",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "MM.dd.yyyy",
-                    D: "MMMM d yyyy \u0027с.\u0027",
+                    D: "MMMM d yyyy 'с.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "MMMM d yyyy \u0027с.\u0027 H:mm",
-                    F: "MMMM d yyyy \u0027с.\u0027 H:mm:ss",
-                    Y: "MMMM yyyy \u0027с.\u0027"
+                    f: "MMMM d yyyy 'с.' H:mm",
+                    F: "MMMM d yyyy 'с.' H:mm:ss",
+                    Y: "MMMM yyyy 'с.'"
                 }
             })
         }
@@ -5107,8 +6031,8 @@
     culture.calendar = culture.calendars.standard;
     culture = cultures["qut"] = $.extend(true, {}, invariant, {
         name: "qut",
-        englishName: "K\u0027iche",
-        nativeName: "K\u0027iche",
+        englishName: "K'iche",
+        nativeName: "K'iche",
         language: "qut",
         numberFormat: {
             currency: {
@@ -5118,20 +6042,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["juq\u0027ij","kaq\u0027ij","oxq\u0027ij","kajq\u0027ij","joq\u0027ij","waqq\u0027ij","wuqq\u0027ij"],["juq","kaq","oxq","kajq","joq","waqq","wuqq"],["ju","ka","ox","ka","jo","wa","wu"]],
-                months: [["nab\u0027e ik\u0027","ukab\u0027 ik\u0027","rox ik\u0027","ukaj ik\u0027","uro\u0027 ik\u0027","uwaq ik\u0027","uwuq ik\u0027","uwajxaq ik\u0027","ub\u0027elej ik\u0027","ulaj ik\u0027","ujulaj ik\u0027","ukab\u0027laj ik\u0027",""],["nab\u0027e","ukab","rox","ukaj","uro","uwaq","uwuq","uwajxaq","ub\u0027elej","ulaj","ujulaj","ukab\u0027laj",""]],
+                days: {
+                    names: ["juq'ij","kaq'ij","oxq'ij","kajq'ij","joq'ij","waqq'ij","wuqq'ij"],
+                    namesAbbr: ["juq","kaq","oxq","kajq","joq","waqq","wuqq"],
+                    namesShort: ["ju","ka","ox","ka","jo","wa","wu"]
+                },
+                months: {
+                    names: ["nab'e ik'","ukab' ik'","rox ik'","ukaj ik'","uro' ik'","uwaq ik'","uwuq ik'","uwajxaq ik'","ub'elej ik'","ulaj ik'","ujulaj ik'","ukab'laj ik'",""],
+                    namesAbbr: ["nab'e","ukab","rox","ukaj","uro","uwaq","uwuq","uwajxaq","ub'elej","ulaj","ujulaj","ukab'laj",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -5159,8 +6090,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Ku wa mbere","Ku wa kabiri","Ku wa gatatu","Ku wa kane","Ku wa gatanu","Ku wa gatandatu","Ku cyumweru"],["mbe.","kab.","gat.","kan.","gat.","gat.","cyu."],["mb","ka","ga","ka","ga","ga","cy"]],
-                months: [["Mutarama","Gashyantare","Werurwe","Mata","Gicurasi","Kamena","Nyakanga","Kanama","Nzeli","Ukwakira","Ugushyingo","Ukuboza",""],["Mut","Gas","Wer","Mat","Gic","Kam","Nya","Kan","Nze","Ukwa","Ugu","Uku",""]],
+                days: {
+                    names: ["Ku wa mbere","Ku wa kabiri","Ku wa gatatu","Ku wa kane","Ku wa gatanu","Ku wa gatandatu","Ku cyumweru"],
+                    namesAbbr: ["mbe.","kab.","gat.","kan.","gat.","gat.","cyu."],
+                    namesShort: ["mb","ka","ga","ka","ga","ga","cy"]
+                },
+                months: {
+                    names: ["Mutarama","Gashyantare","Werurwe","Mata","Gicurasi","Kamena","Nyakanga","Kanama","Nzeli","Ukwakira","Ugushyingo","Ukuboza",""],
+                    namesAbbr: ["Mut","Gas","Wer","Mat","Gic","Kam","Nya","Kan","Nze","Ukwa","Ugu","Uku",""]
+                },
                 AM: ["saa moya z.m.","saa moya z.m.","SAA MOYA Z.M."],
                 PM: ["saa moya z.n.","saa moya z.n.","SAA MOYA Z.N."],
                 eras: [{"name":"AD","start":null,"offset":0}],
@@ -5200,8 +6138,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -5241,8 +6186,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 5,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["غ.م","غ.م","غ.م"],
                 PM: ["غ.و","غ.و","غ.و"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -5333,8 +6285,15 @@
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 5,
-                days: [["یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],["یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],["ی","د","س","چ","پ","ج","ش"]],
-                months: [["سلواغه","كب","ورى","غويى","غبرګولى","چنګاښ","زمرى","وږى","تله","لړم","ليندۍ","مرغومى",""],["سلواغه","كب","ورى","غويى","غبرګولى","چنګاښ","زمرى","وږى","تله","لړم","ليندۍ","مرغومى",""]],
+                days: {
+                    names: ["یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesAbbr: ["یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesShort: ["ی","د","س","چ","پ","ج","ش"]
+                },
+                months: {
+                    names: ["سلواغه","كب","ورى","غويى","غبرګولى","چنګاښ","زمرى","وږى","تله","لړم","ليندۍ","مرغومى",""],
+                    namesAbbr: ["سلواغه","كب","ورى","غويى","غبرګولى","چنګاښ","زمرى","وږى","تله","لړم","ليندۍ","مرغومى",""]
+                },
                 AM: ["غ.م","غ.م","غ.م"],
                 PM: ["غ.و","غ.و","غ.و"],
                 eras: [{"name":"ل.ه","start":null,"offset":0}],
@@ -5367,8 +6326,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Didòmhnaich","Diluain","Dimàirt","Diciadain","Diardaoin","Dihaoine","Disathairne"],["Dòm","Lua","Mài","Cia","Ard","Hao","Sat"],["D","L","M","C","A","H","S"]],
-                months: [["Am Faoilleach","An Gearran","Am Màrt","An Giblean","An Cèitean","An t-Ògmhios","An t-Iuchar","An Lùnastal","An t-Sultain","An Dàmhair","An t-Samhain","An Dùbhlachd",""],["Fao","Gea","Màr","Gib","Cèi","Ògm","Iuc","Lùn","Sul","Dàm","Sam","Dùb",""]],
+                days: {
+                    names: ["Didòmhnaich","Diluain","Dimàirt","Diciadain","Diardaoin","Dihaoine","Disathairne"],
+                    namesAbbr: ["Dòm","Lua","Mài","Cia","Ard","Hao","Sat"],
+                    namesShort: ["D","L","M","C","A","H","S"]
+                },
+                months: {
+                    names: ["Am Faoilleach","An Gearran","Am Màrt","An Giblean","An Cèitean","An t-Ògmhios","An t-Iuchar","An Lùnastal","An t-Sultain","An Dàmhair","An t-Samhain","An Dùbhlachd",""],
+                    namesAbbr: ["Fao","Gea","Màr","Gib","Cèi","Ògm","Iuc","Lùn","Sul","Dàm","Sam","Dùb",""]
+                },
                 AM: ["m","m","M"],
                 PM: ["f","f","F"],
                 patterns: {
@@ -5400,8 +6366,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -5612,8 +6585,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -5704,8 +6684,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -5722,8 +6709,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -5739,8 +6733,15 @@
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -5757,8 +6758,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -5798,20 +6806,27 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["неделя","понеделник","вторник","сряда","четвъртък","петък","събота"],["нед","пон","вт","ср","четв","пет","съб"],["н","п","в","с","ч","п","с"]],
-                months: [["януари","февруари","март","април","май","юни","юли","август","септември","октомври","ноември","декември",""],["ян","февр","март","апр","май","юни","юли","авг","септ","окт","ноември","дек",""]],
+                days: {
+                    names: ["неделя","понеделник","вторник","сряда","четвъртък","петък","събота"],
+                    namesAbbr: ["нед","пон","вт","ср","четв","пет","съб"],
+                    namesShort: ["н","п","в","с","ч","п","с"]
+                },
+                months: {
+                    names: ["януари","февруари","март","април","май","юни","юли","август","септември","октомври","ноември","декември",""],
+                    namesAbbr: ["ян","февр","март","апр","май","юни","юли","авг","септ","окт","ноември","дек",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"след новата ера","start":null,"offset":0}],
                 patterns: {
-                    d: "d.M.yyyy \u0027г.\u0027",
-                    D: "dd MMMM yyyy \u0027г.\u0027",
-                    t: "HH:mm \u0027ч.\u0027",
-                    T: "HH:mm:ss \u0027ч.\u0027",
-                    f: "dd MMMM yyyy \u0027г.\u0027 HH:mm \u0027ч.\u0027",
-                    F: "dd MMMM yyyy \u0027г.\u0027 HH:mm:ss \u0027ч.\u0027",
+                    d: "d.M.yyyy 'г.'",
+                    D: "dd MMMM yyyy 'г.'",
+                    t: "HH:mm 'ч.'",
+                    T: "HH:mm:ss 'ч.'",
+                    f: "dd MMMM yyyy 'г.' HH:mm 'ч.'",
+                    F: "dd MMMM yyyy 'г.' HH:mm:ss 'ч.'",
                     M: "dd MMMM",
-                    Y: "MMMM yyyy \u0027г.\u0027"
+                    Y: "MMMM yyyy 'г.'"
                 }
             })
         }
@@ -5840,18 +6855,25 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte"],["dg.","dl.","dt.","dc.","dj.","dv.","ds."],["dg","dl","dt","dc","dj","dv","ds"]],
-                months: [["gener","febrer","març","abril","maig","juny","juliol","agost","setembre","octubre","novembre","desembre",""],["gen","feb","març","abr","maig","juny","jul","ag","set","oct","nov","des",""]],
+                days: {
+                    names: ["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte"],
+                    namesAbbr: ["dg.","dl.","dt.","dc.","dj.","dv.","ds."],
+                    namesShort: ["dg","dl","dt","dc","dj","dv","ds"]
+                },
+                months: {
+                    names: ["gener","febrer","març","abril","maig","juny","juliol","agost","setembre","octubre","novembre","desembre",""],
+                    namesAbbr: ["gen","feb","març","abr","maig","juny","jul","ag","set","oct","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, d\u0027 / \u0027MMMM\u0027 / \u0027yyyy",
-                    f: "dddd, d\u0027 / \u0027MMMM\u0027 / \u0027yyyy HH:mm",
-                    F: "dddd, d\u0027 / \u0027MMMM\u0027 / \u0027yyyy HH:mm:ss",
+                    D: "dddd, d' / 'MMMM' / 'yyyy",
+                    f: "dddd, d' / 'MMMM' / 'yyyy HH:mm",
+                    F: "dddd, d' / 'MMMM' / 'yyyy HH:mm:ss",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 / \u0027yyyy"
+                    Y: "MMMM' / 'yyyy"
                 }
             })
         }
@@ -5874,39 +6896,53 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],["週日","週一","週二","週三","週四","週五","週六"],["日","一","二","三","四","五","六"]],
-                months: [["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]],
+                days: {
+                    names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+                    namesAbbr: ["週日","週一","週二","週三","週四","週五","週六"],
+                    namesShort: ["日","一","二","三","四","五","六"]
+                },
+                months: {
+                    names: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],
+                    namesAbbr: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]
+                },
                 AM: ["上午","上午","上午"],
                 PM: ["下午","下午","下午"],
                 eras: [{"name":"西元","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "tt hh:mm",
                     T: "tt hh:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 tt hh:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 tt hh:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' tt hh:mm",
+                    F: "yyyy'年'M'月'd'日' tt hh:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             }),
             Taiwan: $.extend(true, {}, standard, {
                 name: "Taiwan",
-                days: [["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],["週日","週一","週二","週三","週四","週五","週六"],["日","一","二","三","四","五","六"]],
-                months: [["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]],
+                days: {
+                    names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+                    namesAbbr: ["週日","週一","週二","週三","週四","週五","週六"],
+                    namesShort: ["日","一","二","三","四","五","六"]
+                },
+                months: {
+                    names: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],
+                    namesAbbr: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]
+                },
                 AM: ["上午","上午","上午"],
                 PM: ["下午","下午","下午"],
                 eras: [{"name":"","start":null,"offset":1911}],
                 twoDigitYearMax: 99,
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "tt hh:mm",
                     T: "tt hh:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 tt hh:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 tt hh:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' tt hh:mm",
+                    F: "yyyy'年'M'月'd'日' tt hh:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             })
         }
@@ -5937,9 +6973,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["neděle","pondělí","úterý","středa","čtvrtek","pátek","sobota"],["ne","po","út","st","čt","pá","so"],["ne","po","út","st","čt","pá","so"]],
-                months: [["leden","únor","březen","duben","květen","červen","červenec","srpen","září","říjen","listopad","prosinec",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
-                monthsGenitive: [["ledna","února","března","dubna","května","června","července","srpna","září","října","listopadu","prosince",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["neděle","pondělí","úterý","středa","čtvrtek","pátek","sobota"],
+                    namesAbbr: ["ne","po","út","st","čt","pá","so"],
+                    namesShort: ["ne","po","út","st","čt","pá","so"]
+                },
+                months: {
+                    names: ["leden","únor","březen","duben","květen","červen","červenec","srpen","září","říjen","listopad","prosinec",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
+                monthsGenitive: {
+                    names: ["ledna","února","března","dubna","května","června","července","srpna","září","října","listopadu","prosince",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: ["dop.","dop.","DOP."],
                 PM: ["odp.","odp.","ODP."],
                 eras: [{"name":"n. l.","start":null,"offset":0}],
@@ -5981,8 +7027,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],["sø","ma","ti","on","to","fr","lø"],["sø","ma","ti","on","to","fr","lø"]],
-                months: [["januar","februar","marts","april","maj","juni","juli","august","september","oktober","november","december",""],["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],
+                    namesAbbr: ["sø","ma","ti","on","to","fr","lø"],
+                    namesShort: ["sø","ma","ti","on","to","fr","lø"]
+                },
+                months: {
+                    names: ["januar","februar","marts","april","maj","juni","juli","august","september","oktober","november","december",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -6022,8 +7075,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],["So","Mo","Di","Mi","Do","Fr","Sa"],["So","Mo","Di","Mi","Do","Fr","Sa"]],
-                months: [["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]],
+                days: {
+                    names: ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],
+                    namesAbbr: ["So","Mo","Di","Mi","Do","Fr","Sa"],
+                    namesShort: ["So","Mo","Di","Mi","Do","Fr","Sa"]
+                },
+                months: {
+                    names: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],
+                    namesAbbr: ["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. Chr.","start":null,"offset":0}],
@@ -6063,9 +7123,19 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"],["Κυρ","Δευ","Τρι","Τετ","Πεμ","Παρ","Σαβ"],["Κυ","Δε","Τρ","Τε","Πε","Πα","Σά"]],
-                months: [["Ιανουάριος","Φεβρουάριος","Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος",""],["Ιαν","Φεβ","Μαρ","Απρ","Μαϊ","Ιουν","Ιουλ","Αυγ","Σεπ","Οκτ","Νοε","Δεκ",""]],
-                monthsGenitive: [["Ιανουαρίου","Φεβρουαρίου","Μαρτίου","Απριλίου","Μαΐου","Ιουνίου","Ιουλίου","Αυγούστου","Σεπτεμβρίου","Οκτωβρίου","Νοεμβρίου","Δεκεμβρίου",""],["Ιαν","Φεβ","Μαρ","Απρ","Μαϊ","Ιουν","Ιουλ","Αυγ","Σεπ","Οκτ","Νοε","Δεκ",""]],
+                days: {
+                    names: ["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"],
+                    namesAbbr: ["Κυρ","Δευ","Τρι","Τετ","Πεμ","Παρ","Σαβ"],
+                    namesShort: ["Κυ","Δε","Τρ","Τε","Πε","Πα","Σά"]
+                },
+                months: {
+                    names: ["Ιανουάριος","Φεβρουάριος","Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος",""],
+                    namesAbbr: ["Ιαν","Φεβ","Μαρ","Απρ","Μαϊ","Ιουν","Ιουλ","Αυγ","Σεπ","Οκτ","Νοε","Δεκ",""]
+                },
+                monthsGenitive: {
+                    names: ["Ιανουαρίου","Φεβρουαρίου","Μαρτίου","Απριλίου","Μαΐου","Ιουνίου","Ιουλίου","Αυγούστου","Σεπτεμβρίου","Οκτωβρίου","Νοεμβρίου","Δεκεμβρίου",""],
+                    namesAbbr: ["Ιαν","Φεβ","Μαρ","Απρ","Μαϊ","Ιουν","Ιουλ","Αυγ","Σεπ","Οκτ","Νοε","Δεκ",""]
+                },
                 AM: ["πμ","πμ","ΠΜ"],
                 PM: ["μμ","μμ","ΜΜ"],
                 eras: [{"name":"μ.Χ.","start":null,"offset":0}],
@@ -6133,18 +7203,25 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sunnuntai","maanantai","tiistai","keskiviikko","torstai","perjantai","lauantai"],["su","ma","ti","ke","to","pe","la"],["su","ma","ti","ke","to","pe","la"]],
-                months: [["tammikuu","helmikuu","maaliskuu","huhtikuu","toukokuu","kesäkuu","heinäkuu","elokuu","syyskuu","lokakuu","marraskuu","joulukuu",""],["tammi","helmi","maalis","huhti","touko","kesä","heinä","elo","syys","loka","marras","joulu",""]],
+                days: {
+                    names: ["sunnuntai","maanantai","tiistai","keskiviikko","torstai","perjantai","lauantai"],
+                    namesAbbr: ["su","ma","ti","ke","to","pe","la"],
+                    namesShort: ["su","ma","ti","ke","to","pe","la"]
+                },
+                months: {
+                    names: ["tammikuu","helmikuu","maaliskuu","huhtikuu","toukokuu","kesäkuu","heinäkuu","elokuu","syyskuu","lokakuu","marraskuu","joulukuu",""],
+                    namesAbbr: ["tammi","helmi","maalis","huhti","touko","kesä","heinä","elo","syys","loka","marras","joulu",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "d.M.yyyy",
-                    D: "d. MMMM\u0027ta \u0027yyyy",
+                    D: "d. MMMM'ta 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d. MMMM\u0027ta \u0027yyyy H:mm",
-                    F: "d. MMMM\u0027ta \u0027yyyy H:mm:ss",
-                    M: "d. MMMM\u0027ta\u0027",
+                    f: "d. MMMM'ta 'yyyy H:mm",
+                    F: "d. MMMM'ta 'yyyy H:mm:ss",
+                    M: "d. MMMM'ta'",
                     Y: "MMMM yyyy"
                 }
             })
@@ -6174,8 +7251,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -6209,8 +7293,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","שבת"],["יום א","יום ב","יום ג","יום ד","יום ה","יום ו","שבת"],["א","ב","ג","ד","ה","ו","ש"]],
-                months: [["ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר",""],["ינו","פבר","מרץ","אפר","מאי","יונ","יול","אוג","ספט","אוק","נוב","דצמ",""]],
+                days: {
+                    names: ["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","שבת"],
+                    namesAbbr: ["יום א","יום ב","יום ג","יום ד","יום ה","יום ו","שבת"],
+                    namesShort: ["א","ב","ג","ד","ה","ו","ש"]
+                },
+                months: {
+                    names: ["ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר",""],
+                    namesAbbr: ["ינו","פבר","מרץ","אפר","מאי","יונ","יול","אוג","ספט","אוק","נוב","דצמ",""]
+                },
                 eras: [{"name":"לספירה","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
@@ -6224,8 +7315,15 @@
             Hebrew: $.extend(true, {}, standard, {
                 name: "Hebrew",
                 '/': " ",
-                days: [["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","שבת"],["א","ב","ג","ד","ה","ו","ש"],["א","ב","ג","ד","ה","ו","ש"]],
-                months: [["תשרי","חשון","כסלו","טבת","שבט","אדר","אדר ב","ניסן","אייר","סיון","תמוז","אב","אלול"],["תשרי","חשון","כסלו","טבת","שבט","אדר","אדר ב","ניסן","אייר","סיון","תמוז","אב","אלול"]],
+                days: {
+                    names: ["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","שבת"],
+                    namesAbbr: ["א","ב","ג","ד","ה","ו","ש"],
+                    namesShort: ["א","ב","ג","ד","ה","ו","ש"]
+                },
+                months: {
+                    names: ["תשרי","חשון","כסלו","טבת","שבט","אדר","אדר ב","ניסן","אייר","סיון","תמוז","אב","אלול"],
+                    namesAbbr: ["תשרי","חשון","כסלו","טבת","שבט","אדר","אדר ב","ניסן","אייר","סיון","תמוז","אב","אלול"]
+                },
                 eras: [{"name":"C.E.","start":null,"offset":0}],
                 twoDigitYearMax: 5790,
                 patterns: {
@@ -6264,8 +7362,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["vasárnap","hétfő","kedd","szerda","csütörtök","péntek","szombat"],["V","H","K","Sze","Cs","P","Szo"],["V","H","K","Sze","Cs","P","Szo"]],
-                months: [["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december",""],["jan.","febr.","márc.","ápr.","máj.","jún.","júl.","aug.","szept.","okt.","nov.","dec.",""]],
+                days: {
+                    names: ["vasárnap","hétfő","kedd","szerda","csütörtök","péntek","szombat"],
+                    namesAbbr: ["V","H","K","Sze","Cs","P","Szo"],
+                    namesShort: ["V","H","K","Sze","Cs","P","Szo"]
+                },
+                months: {
+                    names: ["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december",""],
+                    namesAbbr: ["jan.","febr.","márc.","ápr.","máj.","jún.","júl.","aug.","szept.","okt.","nov.","dec.",""]
+                },
                 AM: ["de.","de.","DE."],
                 PM: ["du.","du.","DU."],
                 eras: [{"name":"i.sz.","start":null,"offset":0}],
@@ -6309,8 +7414,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sunnudagur","mánudagur","þriðjudagur","miðvikudagur","fimmtudagur","föstudagur","laugardagur"],["sun.","mán.","þri.","mið.","fim.","fös.","lau."],["su","má","þr","mi","fi","fö","la"]],
-                months: [["janúar","febrúar","mars","apríl","maí","júní","júlí","ágúst","september","október","nóvember","desember",""],["jan.","feb.","mar.","apr.","maí","jún.","júl.","ágú.","sep.","okt.","nóv.","des.",""]],
+                days: {
+                    names: ["sunnudagur","mánudagur","þriðjudagur","miðvikudagur","fimmtudagur","föstudagur","laugardagur"],
+                    namesAbbr: ["sun.","mán.","þri.","mið.","fim.","fös.","lau."],
+                    namesShort: ["su","má","þr","mi","fi","fö","la"]
+                },
+                months: {
+                    names: ["janúar","febrúar","mars","apríl","maí","júní","júlí","ágúst","september","október","nóvember","desember",""],
+                    namesAbbr: ["jan.","feb.","mar.","apr.","maí","jún.","júl.","ágú.","sep.","okt.","nóv.","des.",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -6349,8 +7461,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"],["dom","lun","mar","mer","gio","ven","sab"],["do","lu","ma","me","gi","ve","sa"]],
-                months: [["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre",""],["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic",""]],
+                days: {
+                    names: ["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"],
+                    namesAbbr: ["dom","lun","mar","mer","gio","ven","sab"],
+                    namesShort: ["do","lu","ma","me","gi","ve","sa"]
+                },
+                months: {
+                    names: ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre",""],
+                    namesAbbr: ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
@@ -6384,39 +7503,53 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],["日","月","火","水","木","金","土"],["日","月","火","水","木","金","土"]],
-                months: [["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],
+                    namesAbbr: ["日","月","火","水","木","金","土"],
+                    namesShort: ["日","月","火","水","木","金","土"]
+                },
+                months: {
+                    names: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: ["午前","午前","午前"],
                 PM: ["午後","午後","午後"],
                 eras: [{"name":"西暦","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/MM/dd",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' H:mm",
+                    F: "yyyy'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             }),
             Japanese: $.extend(true, {}, standard, {
                 name: "Japanese",
-                days: [["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],["日","月","火","水","木","金","土"],["日","月","火","水","木","金","土"]],
-                months: [["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],
+                    namesAbbr: ["日","月","火","水","木","金","土"],
+                    namesShort: ["日","月","火","水","木","金","土"]
+                },
+                months: {
+                    names: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: ["午前","午前","午前"],
                 PM: ["午後","午後","午後"],
                 eras: [{"name":"平成","start":null,"offset":1867},{"name":"昭和","start":-1812153600000,"offset":1911},{"name":"大正","start":-1357603200000,"offset":1925},{"name":"明治","start":60022080000,"offset":1988}],
                 twoDigitYearMax: 99,
                 patterns: {
                     d: "gg y/M/d",
-                    D: "gg y\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "gg y'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "gg y\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "gg y\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "gg y\u0027年\u0027M\u0027月\u0027"
+                    f: "gg y'年'M'月'd'日' H:mm",
+                    F: "gg y'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "gg y'年'M'月'"
                 }
             })
         }
@@ -6438,40 +7571,54 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],["일","월","화","수","목","금","토"],["일","월","화","수","목","금","토"]],
-                months: [["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
+                    namesAbbr: ["일","월","화","수","목","금","토"],
+                    namesShort: ["일","월","화","수","목","금","토"]
+                },
+                months: {
+                    names: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: ["오전","오전","오전"],
                 PM: ["오후","오후","오후"],
                 eras: [{"name":"서기","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy-MM-dd",
-                    D: "yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd",
+                    D: "yyyy'년' M'월' d'일' dddd",
                     t: "tt h:mm",
                     T: "tt h:mm:ss",
-                    f: "yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd tt h:mm",
-                    F: "yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd tt h:mm:ss",
-                    M: "M\u0027월\u0027 d\u0027일\u0027",
-                    Y: "yyyy\u0027년\u0027 M\u0027월\u0027"
+                    f: "yyyy'년' M'월' d'일' dddd tt h:mm",
+                    F: "yyyy'년' M'월' d'일' dddd tt h:mm:ss",
+                    M: "M'월' d'일'",
+                    Y: "yyyy'년' M'월'"
                 }
             }),
             Korean: $.extend(true, {}, standard, {
                 name: "Korean",
                 '/': "-",
-                days: [["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],["일","월","화","수","목","금","토"],["일","월","화","수","목","금","토"]],
-                months: [["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
+                    namesAbbr: ["일","월","화","수","목","금","토"],
+                    namesShort: ["일","월","화","수","목","금","토"]
+                },
+                months: {
+                    names: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: ["오전","오전","오전"],
                 PM: ["오후","오후","오후"],
                 eras: [{"name":"단기","start":null,"offset":-2333}],
                 twoDigitYearMax: 4362,
                 patterns: {
                     d: "gg yyyy-MM-dd",
-                    D: "gg yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd",
+                    D: "gg yyyy'년' M'월' d'일' dddd",
                     t: "tt h:mm",
                     T: "tt h:mm:ss",
-                    f: "gg yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd tt h:mm",
-                    F: "gg yyyy\u0027년\u0027 M\u0027월\u0027 d\u0027일\u0027 dddd tt h:mm:ss",
-                    M: "M\u0027월\u0027 d\u0027일\u0027",
-                    Y: "gg yyyy\u0027년\u0027 M\u0027월\u0027"
+                    f: "gg yyyy'년' M'월' d'일' dddd tt h:mm",
+                    F: "gg yyyy'년' M'월' d'일' dddd tt h:mm:ss",
+                    M: "M'월' d'일'",
+                    Y: "gg yyyy'년' M'월'"
                 }
             })
         }
@@ -6501,8 +7648,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"],["zo","ma","di","wo","do","vr","za"],["zo","ma","di","wo","do","vr","za"]],
-                months: [["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december",""],["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"],
+                    namesAbbr: ["zo","ma","di","wo","do","vr","za"],
+                    namesShort: ["zo","ma","di","wo","do","vr","za"]
+                },
+                months: {
+                    names: ["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december",""],
+                    namesAbbr: ["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -6543,8 +7697,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],["sø","ma","ti","on","to","fr","lø"],["sø","ma","ti","on","to","fr","lø"]],
-                months: [["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember",""],["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]],
+                days: {
+                    names: ["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],
+                    namesAbbr: ["sø","ma","ti","on","to","fr","lø"],
+                    namesShort: ["sø","ma","ti","on","to","fr","lø"]
+                },
+                months: {
+                    names: ["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -6584,9 +7745,19 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["niedziela","poniedziałek","wtorek","środa","czwartek","piątek","sobota"],["N","Pn","Wt","Śr","Cz","Pt","So"],["N","Pn","Wt","Śr","Cz","Pt","So"]],
-                months: [["styczeń","luty","marzec","kwiecień","maj","czerwiec","lipiec","sierpień","wrzesień","październik","listopad","grudzień",""],["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru",""]],
-                monthsGenitive: [["stycznia","lutego","marca","kwietnia","maja","czerwca","lipca","sierpnia","września","października","listopada","grudnia",""],["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru",""]],
+                days: {
+                    names: ["niedziela","poniedziałek","wtorek","środa","czwartek","piątek","sobota"],
+                    namesAbbr: ["N","Pn","Wt","Śr","Cz","Pt","So"],
+                    namesShort: ["N","Pn","Wt","Śr","Cz","Pt","So"]
+                },
+                months: {
+                    names: ["styczeń","luty","marzec","kwiecień","maj","czerwiec","lipiec","sierpień","wrzesień","październik","listopad","grudzień",""],
+                    namesAbbr: ["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru",""]
+                },
+                monthsGenitive: {
+                    names: ["stycznia","lutego","marca","kwietnia","maja","czerwca","lipca","sierpnia","września","października","listopada","grudnia",""],
+                    namesAbbr: ["sty","lut","mar","kwi","maj","cze","lip","sie","wrz","paź","lis","gru",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -6624,18 +7795,25 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],["dom","seg","ter","qua","qui","sex","sáb"],["D","S","T","Q","Q","S","S"]],
-                months: [["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""],["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""]],
+                days: {
+                    names: ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],
+                    namesAbbr: ["dom","seg","ter","qua","qui","sex","sáb"],
+                    namesShort: ["D","S","T","Q","Q","S","S"]
+                },
+                months: {
+                    names: ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""],
+                    namesAbbr: ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
-                    f: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm",
-                    F: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm:ss",
-                    M: "dd\u0027 de \u0027MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    D: "dddd, d' de 'MMMM' de 'yyyy",
+                    f: "dddd, d' de 'MMMM' de 'yyyy HH:mm",
+                    F: "dddd, d' de 'MMMM' de 'yyyy HH:mm:ss",
+                    M: "dd' de 'MMMM",
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -6647,14 +7825,14 @@
         nativeName: "Rumantsch (Svizra)",
         language: "rm",
         numberFormat: {
-            ',': "\u0027",
+            ',': "'",
             percent: {
                 pattern: ["-n%","n%"],
-                ',': "\u0027"
+                ',': "'"
             },
             currency: {
                 pattern: ["$-n","$ n"],
-                ',': "\u0027",
+                ',': "'",
                 symbol: "fr."
             }
         },
@@ -6662,8 +7840,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dumengia","glindesdi","mardi","mesemna","gievgia","venderdi","sonda"],["du","gli","ma","me","gie","ve","so"],["du","gli","ma","me","gie","ve","so"]],
-                months: [["schaner","favrer","mars","avrigl","matg","zercladur","fanadur","avust","settember","october","november","december",""],["schan","favr","mars","avr","matg","zercl","fan","avust","sett","oct","nov","dec",""]],
+                days: {
+                    names: ["dumengia","glindesdi","mardi","mesemna","gievgia","venderdi","sonda"],
+                    namesAbbr: ["du","gli","ma","me","gie","ve","so"],
+                    namesShort: ["du","gli","ma","me","gie","ve","so"]
+                },
+                months: {
+                    names: ["schaner","favrer","mars","avrigl","matg","zercladur","fanadur","avust","settember","october","november","december",""],
+                    namesAbbr: ["schan","favr","mars","avr","matg","zercl","fan","avust","sett","oct","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"s. Cr.","start":null,"offset":0}],
@@ -6704,8 +7889,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["duminică","luni","marţi","miercuri","joi","vineri","sâmbătă"],["D","L","Ma","Mi","J","V","S"],["D","L","Ma","Mi","J","V","S"]],
-                months: [["ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie",""],["ian.","feb.","mar.","apr.","mai.","iun.","iul.","aug.","sep.","oct.","nov.","dec.",""]],
+                days: {
+                    names: ["duminică","luni","marţi","miercuri","joi","vineri","sâmbătă"],
+                    namesAbbr: ["D","L","Ma","Mi","J","V","S"],
+                    namesShort: ["D","L","Ma","Mi","J","V","S"]
+                },
+                months: {
+                    names: ["ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie",""],
+                    namesAbbr: ["ian.","feb.","mar.","apr.","mai.","iun.","iul.","aug.","sep.","oct.","nov.","dec.",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -6745,18 +7937,28 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["воскресенье","понедельник","вторник","среда","четверг","пятница","суббота"],["Вс","Пн","Вт","Ср","Чт","Пт","Сб"],["Вс","Пн","Вт","Ср","Чт","Пт","Сб"]],
-                months: [["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]],
-                monthsGenitive: [["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря",""],["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]],
+                days: {
+                    names: ["воскресенье","понедельник","вторник","среда","четверг","пятница","суббота"],
+                    namesAbbr: ["Вс","Пн","Вт","Ср","Чт","Пт","Сб"],
+                    namesShort: ["Вс","Пн","Вт","Ср","Чт","Пт","Сб"]
+                },
+                months: {
+                    names: ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],
+                    namesAbbr: ["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]
+                },
+                monthsGenitive: {
+                    names: ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря",""],
+                    namesAbbr: ["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "d MMMM yyyy \u0027г.\u0027",
+                    D: "d MMMM yyyy 'г.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d MMMM yyyy \u0027г.\u0027 H:mm",
-                    F: "d MMMM yyyy \u0027г.\u0027 H:mm:ss",
+                    f: "d MMMM yyyy 'г.' H:mm",
+                    F: "d MMMM yyyy 'г.' H:mm:ss",
                     Y: "MMMM yyyy"
                 }
             })
@@ -6789,9 +7991,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],["ned","pon","uto","sri","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["siječanj","veljača","ožujak","travanj","svibanj","lipanj","srpanj","kolovoz","rujan","listopad","studeni","prosinac",""],["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]],
-                monthsGenitive: [["siječnja","veljače","ožujka","travnja","svibnja","lipnja","srpnja","kolovoza","rujna","listopada","studenog","prosinca",""],["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]],
+                days: {
+                    names: ["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sri","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["siječanj","veljača","ožujak","travanj","svibanj","lipanj","srpanj","kolovoz","rujan","listopad","studeni","prosinac",""],
+                    namesAbbr: ["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]
+                },
+                monthsGenitive: {
+                    names: ["siječnja","veljače","ožujka","travnja","svibnja","lipnja","srpnja","kolovoza","rujna","listopada","studenog","prosinca",""],
+                    namesAbbr: ["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -6833,9 +8045,19 @@
                 name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
-                days: [["nedeľa","pondelok","utorok","streda","štvrtok","piatok","sobota"],["ne","po","ut","st","št","pi","so"],["ne","po","ut","st","št","pi","so"]],
-                months: [["január","február","marec","apríl","máj","jún","júl","august","september","október","november","december",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
-                monthsGenitive: [["januára","februára","marca","apríla","mája","júna","júla","augusta","septembra","októbra","novembra","decembra",""],["1","2","3","4","5","6","7","8","9","10","11","12",""]],
+                days: {
+                    names: ["nedeľa","pondelok","utorok","streda","štvrtok","piatok","sobota"],
+                    namesAbbr: ["ne","po","ut","st","št","pi","so"],
+                    namesShort: ["ne","po","ut","st","št","pi","so"]
+                },
+                months: {
+                    names: ["január","február","marec","apríl","máj","jún","júl","august","september","október","november","december",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
+                monthsGenitive: {
+                    names: ["januára","februára","marca","apríla","mája","júna","júla","augusta","septembra","októbra","novembra","decembra",""],
+                    namesAbbr: ["1","2","3","4","5","6","7","8","9","10","11","12",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. l.","start":null,"offset":0}],
@@ -6877,8 +8099,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["e diel","e hënë","e martë","e mërkurë","e enjte","e premte","e shtunë"],["Die","Hën","Mar","Mër","Enj","Pre","Sht"],["Di","Hë","Ma","Më","En","Pr","Sh"]],
-                months: [["janar","shkurt","mars","prill","maj","qershor","korrik","gusht","shtator","tetor","nëntor","dhjetor",""],["Jan","Shk","Mar","Pri","Maj","Qer","Kor","Gsh","Sht","Tet","Nën","Dhj",""]],
+                days: {
+                    names: ["e diel","e hënë","e martë","e mërkurë","e enjte","e premte","e shtunë"],
+                    namesAbbr: ["Die","Hën","Mar","Mër","Enj","Pre","Sht"],
+                    namesShort: ["Di","Hë","Ma","Më","En","Pr","Sh"]
+                },
+                months: {
+                    names: ["janar","shkurt","mars","prill","maj","qershor","korrik","gusht","shtator","tetor","nëntor","dhjetor",""],
+                    namesAbbr: ["Jan","Shk","Mar","Pri","Maj","Qer","Kor","Gsh","Sht","Tet","Nën","Dhj",""]
+                },
                 AM: ["PD","pd","PD"],
                 PM: ["MD","md","MD"],
                 patterns: {
@@ -6918,16 +8147,23 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["söndag","måndag","tisdag","onsdag","torsdag","fredag","lördag"],["sö","må","ti","on","to","fr","lö"],["sö","må","ti","on","to","fr","lö"]],
-                months: [["januari","februari","mars","april","maj","juni","juli","augusti","september","oktober","november","december",""],["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["söndag","måndag","tisdag","onsdag","torsdag","fredag","lördag"],
+                    namesAbbr: ["sö","må","ti","on","to","fr","lö"],
+                    namesShort: ["sö","må","ti","on","to","fr","lö"]
+                },
+                months: {
+                    names: ["januari","februari","mars","april","maj","juni","juli","augusti","september","oktober","november","december",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy-MM-dd",
-                    D: "\u0027den \u0027d MMMM yyyy",
-                    f: "\u0027den \u0027d MMMM yyyy HH:mm",
-                    F: "\u0027den \u0027d MMMM yyyy HH:mm:ss",
-                    M: "\u0027den \u0027d MMMM",
+                    D: "'den 'd MMMM yyyy",
+                    f: "'den 'd MMMM yyyy HH:mm",
+                    F: "'den 'd MMMM yyyy HH:mm:ss",
+                    M: "'den 'd MMMM",
                     Y: "MMMM yyyy"
                 }
             })
@@ -6949,8 +8185,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "ThaiBuddhist",
                 firstDay: 1,
-                days: [["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."],["อ","จ","อ","พ","พ","ศ","ส"]],
-                months: [["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",""],["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.",""]],
+                days: {
+                    names: ["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],
+                    namesAbbr: ["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."],
+                    namesShort: ["อ","จ","อ","พ","พ","ศ","ส"]
+                },
+                months: {
+                    names: ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",""],
+                    namesAbbr: ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.",""]
+                },
                 eras: [{"name":"พ.ศ.","start":null,"offset":-543}],
                 twoDigitYearMax: 2572,
                 patterns: {
@@ -6967,15 +8210,22 @@
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."],["อ","จ","อ","พ","พ","ศ","ส"]],
-                months: [["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",""],["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.",""]],
+                days: {
+                    names: ["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],
+                    namesAbbr: ["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."],
+                    namesShort: ["อ","จ","อ","พ","พ","ศ","ส"]
+                },
+                months: {
+                    names: ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม",""],
+                    namesAbbr: ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.",""]
+                },
                 patterns: {
                     d: "d/M/yyyy",
-                    D: "\u0027วัน\u0027dddd\u0027ที่\u0027 d MMMM yyyy",
+                    D: "'วัน'dddd'ที่' d MMMM yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "\u0027วัน\u0027dddd\u0027ที่\u0027 d MMMM yyyy H:mm",
-                    F: "\u0027วัน\u0027dddd\u0027ที่\u0027 d MMMM yyyy H:mm:ss",
+                    f: "'วัน'dddd'ที่' d MMMM yyyy H:mm",
+                    F: "'วัน'dddd'ที่' d MMMM yyyy H:mm:ss",
                     M: "dd MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -7008,8 +8258,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"],["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"],["Pz","Pt","Sa","Ça","Pe","Cu","Ct"]],
-                months: [["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık",""],["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara",""]],
+                days: {
+                    names: ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"],
+                    namesAbbr: ["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"],
+                    namesShort: ["Pz","Pt","Sa","Ça","Pe","Cu","Ct"]
+                },
+                months: {
+                    names: ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık",""],
+                    namesAbbr: ["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -7040,8 +8297,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["اتوار","پير","منگل","بدھ","جمعرات","جمعه","هفته"],["اتوار","پير","منگل","بدھ","جمعرات","جمعه","هفته"],["ا","پ","م","ب","ج","ج","ه"]],
-                months: [["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر",""],["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر",""]],
+                days: {
+                    names: ["اتوار","پير","منگل","بدھ","جمعرات","جمعه","هفته"],
+                    namesAbbr: ["اتوار","پير","منگل","بدھ","جمعرات","جمعه","هفته"],
+                    namesShort: ["ا","پ","م","ب","ج","ج","ه"]
+                },
+                months: {
+                    names: ["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر",""],
+                    namesAbbr: ["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر",""]
+                },
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM, yyyy",
@@ -7056,8 +8320,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
                 twoDigitYearMax: 1451,
                 patterns: {
@@ -7169,8 +8440,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"],["Minggu","Sen","Sel","Rabu","Kamis","Jumat","Sabtu"],["M","S","S","R","K","J","S"]],
-                months: [["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","Nopember","Desember",""],["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agust","Sep","Okt","Nop","Des",""]],
+                days: {
+                    names: ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"],
+                    namesAbbr: ["Minggu","Sen","Sel","Rabu","Kamis","Jumat","Sabtu"],
+                    namesShort: ["M","S","S","R","K","J","S"]
+                },
+                months: {
+                    names: ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","Nopember","Desember",""],
+                    namesAbbr: ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agust","Sep","Okt","Nop","Des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -7212,20 +8490,30 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["неділя","понеділок","вівторок","середа","четвер","п\u0027ятниця","субота"],["Нд","Пн","Вт","Ср","Чт","Пт","Сб"],["Нд","Пн","Вт","Ср","Чт","Пт","Сб"]],
-                months: [["Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень",""],["Січ","Лют","Бер","Кві","Тра","Чер","Лип","Сер","Вер","Жов","Лис","Гру",""]],
-                monthsGenitive: [["січня","лютого","березня","квітня","травня","червня","липня","серпня","вересня","жовтня","листопада","грудня",""],["січ","лют","бер","кві","тра","чер","лип","сер","вер","жов","лис","гру",""]],
+                days: {
+                    names: ["неділя","понеділок","вівторок","середа","четвер","п'ятниця","субота"],
+                    namesAbbr: ["Нд","Пн","Вт","Ср","Чт","Пт","Сб"],
+                    namesShort: ["Нд","Пн","Вт","Ср","Чт","Пт","Сб"]
+                },
+                months: {
+                    names: ["Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень",""],
+                    namesAbbr: ["Січ","Лют","Бер","Кві","Тра","Чер","Лип","Сер","Вер","Жов","Лис","Гру",""]
+                },
+                monthsGenitive: {
+                    names: ["січня","лютого","березня","квітня","травня","червня","липня","серпня","вересня","жовтня","листопада","грудня",""],
+                    namesAbbr: ["січ","лют","бер","кві","тра","чер","лип","сер","вер","жов","лис","гру",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "d MMMM yyyy\u0027 р.\u0027",
+                    D: "d MMMM yyyy' р.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d MMMM yyyy\u0027 р.\u0027 H:mm",
-                    F: "d MMMM yyyy\u0027 р.\u0027 H:mm:ss",
+                    f: "d MMMM yyyy' р.' H:mm",
+                    F: "d MMMM yyyy' р.' H:mm:ss",
                     M: "d MMMM",
-                    Y: "MMMM yyyy\u0027 р.\u0027"
+                    Y: "MMMM yyyy' р.'"
                 }
             })
         }
@@ -7255,9 +8543,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["нядзеля","панядзелак","аўторак","серада","чацвер","пятніца","субота"],["нд","пн","аў","ср","чц","пт","сб"],["нд","пн","аў","ср","чц","пт","сб"]],
-                months: [["Студзень","Люты","Сакавік","Красавік","Май","Чэрвень","Ліпень","Жнівень","Верасень","Кастрычнік","Лістапад","Снежань",""],["Сту","Лют","Сак","Кра","Май","Чэр","Ліп","Жні","Вер","Кас","Ліс","Сне",""]],
-                monthsGenitive: [["студзеня","лютага","сакавіка","красавіка","мая","чэрвеня","ліпеня","жніўня","верасня","кастрычніка","лістапада","снежня",""],["Сту","Лют","Сак","Кра","Май","Чэр","Ліп","Жні","Вер","Кас","Ліс","Сне",""]],
+                days: {
+                    names: ["нядзеля","панядзелак","аўторак","серада","чацвер","пятніца","субота"],
+                    namesAbbr: ["нд","пн","аў","ср","чц","пт","сб"],
+                    namesShort: ["нд","пн","аў","ср","чц","пт","сб"]
+                },
+                months: {
+                    names: ["Студзень","Люты","Сакавік","Красавік","Май","Чэрвень","Ліпень","Жнівень","Верасень","Кастрычнік","Лістапад","Снежань",""],
+                    namesAbbr: ["Сту","Лют","Сак","Кра","Май","Чэр","Ліп","Жні","Вер","Кас","Ліс","Сне",""]
+                },
+                monthsGenitive: {
+                    names: ["студзеня","лютага","сакавіка","красавіка","мая","чэрвеня","ліпеня","жніўня","верасня","кастрычніка","лістапада","снежня",""],
+                    namesAbbr: ["Сту","Лют","Сак","Кра","Май","Чэр","Ліп","Жні","Вер","Кас","Ліс","Сне",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -7299,8 +8597,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedelja","ponedeljek","torek","sreda","četrtek","petek","sobota"],["ned","pon","tor","sre","čet","pet","sob"],["ne","po","to","sr","če","pe","so"]],
-                months: [["januar","februar","marec","april","maj","junij","julij","avgust","september","oktober","november","december",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedelja","ponedeljek","torek","sreda","četrtek","petek","sobota"],
+                    namesAbbr: ["ned","pon","tor","sre","čet","pet","sob"],
+                    namesShort: ["ne","po","to","sr","če","pe","so"]
+                },
+                months: {
+                    names: ["januar","februar","marec","april","maj","junij","julij","avgust","september","oktober","november","december",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -7341,19 +8646,26 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["pühapäev","esmaspäev","teisipäev","kolmapäev","neljapäev","reede","laupäev"],["P","E","T","K","N","R","L"],["P","E","T","K","N","R","L"]],
-                months: [["jaanuar","veebruar","märts","aprill","mai","juuni","juuli","august","september","oktoober","november","detsember",""],["jaan","veebr","märts","apr","mai","juuni","juuli","aug","sept","okt","nov","dets",""]],
+                days: {
+                    names: ["pühapäev","esmaspäev","teisipäev","kolmapäev","neljapäev","reede","laupäev"],
+                    namesAbbr: ["P","E","T","K","N","R","L"],
+                    namesShort: ["P","E","T","K","N","R","L"]
+                },
+                months: {
+                    names: ["jaanuar","veebruar","märts","aprill","mai","juuni","juuli","august","september","oktoober","november","detsember",""],
+                    namesAbbr: ["jaan","veebr","märts","apr","mai","juuni","juuli","aug","sept","okt","nov","dets",""]
+                },
                 AM: ["EL","el","EL"],
                 PM: ["PL","pl","PL"],
                 patterns: {
                     d: "d.MM.yyyy",
-                    D: "d. MMMM yyyy\u0027. a.\u0027",
+                    D: "d. MMMM yyyy'. a.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d. MMMM yyyy\u0027. a.\u0027 H:mm",
-                    F: "d. MMMM yyyy\u0027. a.\u0027 H:mm:ss",
+                    f: "d. MMMM yyyy'. a.' H:mm",
+                    F: "d. MMMM yyyy'. a.' H:mm:ss",
                     M: "d. MMMM",
-                    Y: "MMMM yyyy\u0027. a.\u0027"
+                    Y: "MMMM yyyy'. a.'"
                 }
             })
         }
@@ -7384,18 +8696,28 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["svētdiena","pirmdiena","otrdiena","trešdiena","ceturtdiena","piektdiena","sestdiena"],["sv","pr","ot","tr","ce","pk","se"],["sv","pr","ot","tr","ce","pk","se"]],
-                months: [["janvāris","februāris","marts","aprīlis","maijs","jūnijs","jūlijs","augusts","septembris","oktobris","novembris","decembris",""],["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]],
-                monthsGenitive: [["janvārī","februārī","martā","aprīlī","maijā","jūnijā","jūlijā","augustā","septembrī","oktobrī","novembrī","decembrī",""],["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["svētdiena","pirmdiena","otrdiena","trešdiena","ceturtdiena","piektdiena","sestdiena"],
+                    namesAbbr: ["sv","pr","ot","tr","ce","pk","se"],
+                    namesShort: ["sv","pr","ot","tr","ce","pk","se"]
+                },
+                months: {
+                    names: ["janvāris","februāris","marts","aprīlis","maijs","jūnijs","jūlijs","augusts","septembris","oktobris","novembris","decembris",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]
+                },
+                monthsGenitive: {
+                    names: ["janvārī","februārī","martā","aprīlī","maijā","jūnijā","jūlijā","augustā","septembrī","oktobrī","novembrī","decembrī",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy.MM.dd.",
-                    D: "dddd, yyyy\u0027. gada \u0027d. MMMM",
+                    D: "dddd, yyyy'. gada 'd. MMMM",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, yyyy\u0027. gada \u0027d. MMMM H:mm",
-                    F: "dddd, yyyy\u0027. gada \u0027d. MMMM H:mm:ss",
+                    f: "dddd, yyyy'. gada 'd. MMMM H:mm",
+                    F: "dddd, yyyy'. gada 'd. MMMM H:mm:ss",
                     M: "d. MMMM",
                     Y: "yyyy. MMMM"
                 }
@@ -7428,18 +8750,28 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sekmadienis","pirmadienis","antradienis","trečiadienis","ketvirtadienis","penktadienis","šeštadienis"],["Sk","Pr","An","Tr","Kt","Pn","Št"],["S","P","A","T","K","Pn","Š"]],
-                months: [["sausis","vasaris","kovas","balandis","gegužė","birželis","liepa","rugpjūtis","rugsėjis","spalis","lapkritis","gruodis",""],["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]],
-                monthsGenitive: [["sausio","vasario","kovo","balandžio","gegužės","birželio","liepos","rugpjūčio","rugsėjo","spalio","lapkričio","gruodžio",""],["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]],
+                days: {
+                    names: ["sekmadienis","pirmadienis","antradienis","trečiadienis","ketvirtadienis","penktadienis","šeštadienis"],
+                    namesAbbr: ["Sk","Pr","An","Tr","Kt","Pn","Št"],
+                    namesShort: ["S","P","A","T","K","Pn","Š"]
+                },
+                months: {
+                    names: ["sausis","vasaris","kovas","balandis","gegužė","birželis","liepa","rugpjūtis","rugsėjis","spalis","lapkritis","gruodis",""],
+                    namesAbbr: ["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]
+                },
+                monthsGenitive: {
+                    names: ["sausio","vasario","kovo","balandžio","gegužės","birželio","liepos","rugpjūčio","rugsėjo","spalio","lapkričio","gruodžio",""],
+                    namesAbbr: ["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy.MM.dd",
-                    D: "yyyy \u0027m.\u0027 MMMM d \u0027d.\u0027",
-                    f: "yyyy \u0027m.\u0027 MMMM d \u0027d.\u0027 HH:mm",
-                    F: "yyyy \u0027m.\u0027 MMMM d \u0027d.\u0027 HH:mm:ss",
-                    M: "MMMM d \u0027d.\u0027",
-                    Y: "yyyy \u0027m.\u0027 MMMM"
+                    D: "yyyy 'm.' MMMM d 'd.'",
+                    f: "yyyy 'm.' MMMM d 'd.' HH:mm",
+                    F: "yyyy 'm.' MMMM d 'd.' HH:mm:ss",
+                    M: "MMMM d 'd.'",
+                    Y: "yyyy 'm.' MMMM"
                 }
             })
         }
@@ -7472,9 +8804,19 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': ".",
-                days: [["Яш","Душанбе","Сешанбе","Чоршанбе","Панҷшанбе","Ҷумъа","Шанбе"],["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"],["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"]],
-                months: [["Январ","Феврал","Март","Апрел","Май","Июн","Июл","Август","Сентябр","Октябр","Ноябр","Декабр",""],["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
-                monthsGenitive: [["январи","феврали","марти","апрели","маи","июни","июли","августи","сентябри","октябри","ноябри","декабри",""],["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
+                days: {
+                    names: ["Яш","Душанбе","Сешанбе","Чоршанбе","Панҷшанбе","Ҷумъа","Шанбе"],
+                    namesAbbr: ["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"],
+                    namesShort: ["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"]
+                },
+                months: {
+                    names: ["Январ","Феврал","Март","Апрел","Май","Июн","Июл","Август","Сентябр","Октябр","Ноябр","Декабр",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
+                monthsGenitive: {
+                    names: ["январи","феврали","марти","апрели","маи","июни","июли","августи","сентябри","октябри","ноябри","декабри",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -7508,8 +8850,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ق.ظ","ق.ظ","ق.ظ"],
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -7525,8 +8874,15 @@
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["يكشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],["يكشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],["ی","د","س","چ","پ","ج","ش"]],
-                months: [["ژانويه","فوريه","مارس","آوريل","مى","ژوئن","ژوئيه","اوت","سپتامبر","اُكتبر","نوامبر","دسامبر",""],["ژانويه","فوريه","مارس","آوريل","مى","ژوئن","ژوئيه","اوت","سپتامبر","اُكتبر","نوامبر","دسامبر",""]],
+                days: {
+                    names: ["يكشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesAbbr: ["يكشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesShort: ["ی","د","س","چ","پ","ج","ش"]
+                },
+                months: {
+                    names: ["ژانويه","فوريه","مارس","آوريل","مى","ژوئن","ژوئيه","اوت","سپتامبر","اُكتبر","نوامبر","دسامبر",""],
+                    namesAbbr: ["ژانويه","فوريه","مارس","آوريل","مى","ژوئن","ژوئيه","اوت","سپتامبر","اُكتبر","نوامبر","دسامبر",""]
+                },
                 AM: ["ق.ظ","ق.ظ","ق.ظ"],
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 patterns: {
@@ -7543,8 +8899,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ق.ظ","ق.ظ","ق.ظ"],
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -7635,8 +8998,15 @@
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ق.ظ","ق.ظ","ق.ظ"],
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -7675,8 +9045,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Chủ Nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"],["CN","Hai","Ba","Tư","Năm","Sáu","Bảy"],["C","H","B","T","N","S","B"]],
-                months: [["Tháng Giêng","Tháng Hai","Tháng Ba","Tháng Tư","Tháng Năm","Tháng Sáu","Tháng Bảy","Tháng Tám","Tháng Chín","Tháng Mười","Tháng Mười Một","Tháng Mười Hai",""],["Thg1","Thg2","Thg3","Thg4","Thg5","Thg6","Thg7","Thg8","Thg9","Thg10","Thg11","Thg12",""]],
+                days: {
+                    names: ["Chủ Nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"],
+                    namesAbbr: ["CN","Hai","Ba","Tư","Năm","Sáu","Bảy"],
+                    namesShort: ["C","H","B","T","N","S","B"]
+                },
+                months: {
+                    names: ["Tháng Giêng","Tháng Hai","Tháng Ba","Tháng Tư","Tháng Năm","Tháng Sáu","Tháng Bảy","Tháng Tám","Tháng Chín","Tháng Mười","Tháng Mười Một","Tháng Mười Hai",""],
+                    namesAbbr: ["Thg1","Thg2","Thg3","Thg4","Thg5","Thg6","Thg7","Thg8","Thg9","Thg10","Thg11","Thg12",""]
+                },
                 AM: ["SA","sa","SA"],
                 PM: ["CH","ch","CH"],
                 patterns: {
@@ -7709,8 +9086,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Կիրակի","Երկուշաբթի","Երեքշաբթի","Չորեքշաբթի","Հինգշաբթի","ՈՒրբաթ","Շաբաթ"],["Կիր","Երկ","Երք","Չրք","Հնգ","ՈՒր","Շբթ"],["Կ","Ե","Ե","Չ","Հ","Ո","Շ"]],
-                months: [["Հունվար","Փետրվար","Մարտ","Ապրիլ","Մայիս","Հունիս","Հուլիս","Օգոստոս","Սեպտեմբեր","Հոկտեմբեր","Նոյեմբեր","Դեկտեմբեր",""],["ՀՆՎ","ՓՏՎ","ՄՐՏ","ԱՊՐ","ՄՅՍ","ՀՆՍ","ՀԼՍ","ՕԳՍ","ՍԵՊ","ՀՈԿ","ՆՈՅ","ԴԵԿ",""]],
+                days: {
+                    names: ["Կիրակի","Երկուշաբթի","Երեքշաբթի","Չորեքշաբթի","Հինգշաբթի","ՈՒրբաթ","Շաբաթ"],
+                    namesAbbr: ["Կիր","Երկ","Երք","Չրք","Հնգ","ՈՒր","Շբթ"],
+                    namesShort: ["Կ","Ե","Ե","Չ","Հ","Ո","Շ"]
+                },
+                months: {
+                    names: ["Հունվար","Փետրվար","Մարտ","Ապրիլ","Մայիս","Հունիս","Հուլիս","Օգոստոս","Սեպտեմբեր","Հոկտեմբեր","Նոյեմբեր","Դեկտեմբեր",""],
+                    namesAbbr: ["ՀՆՎ","ՓՏՎ","ՄՐՏ","ԱՊՐ","ՄՅՍ","ՀՆՍ","ՀԼՍ","ՕԳՍ","ՍԵՊ","ՀՈԿ","ՆՈՅ","ԴԵԿ",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -7752,9 +9136,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Bazar","Bazar ertəsi","Çərşənbə axşamı","Çərşənbə","Cümə axşamı","Cümə","Şənbə"],["B","Be","Ça","Ç","Ca","C","Ş"],["B","Be","Ça","Ç","Ca","C","Ş"]],
-                months: [["Yanvar","Fevral","Mart","Aprel","May","İyun","İyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr",""],["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]],
-                monthsGenitive: [["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]],
+                days: {
+                    names: ["Bazar","Bazar ertəsi","Çərşənbə axşamı","Çərşənbə","Cümə axşamı","Cümə","Şənbə"],
+                    namesAbbr: ["B","Be","Ça","Ç","Ca","C","Ş"],
+                    namesShort: ["B","Be","Ça","Ç","Ca","C","Ş"]
+                },
+                months: {
+                    names: ["Yanvar","Fevral","Mart","Aprel","May","İyun","İyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr",""],
+                    namesAbbr: ["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]
+                },
+                monthsGenitive: {
+                    names: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],
+                    namesAbbr: ["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -7794,18 +9188,25 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["igandea","astelehena","asteartea","asteazkena","osteguna","ostirala","larunbata"],["ig.","al.","as.","az.","og.","or.","lr."],["ig","al","as","az","og","or","lr"]],
-                months: [["urtarrila","otsaila","martxoa","apirila","maiatza","ekaina","uztaila","abuztua","iraila","urria","azaroa","abendua",""],["urt.","ots.","mar.","api.","mai.","eka.","uzt.","abu.","ira.","urr.","aza.","abe.",""]],
+                days: {
+                    names: ["igandea","astelehena","asteartea","asteazkena","osteguna","ostirala","larunbata"],
+                    namesAbbr: ["ig.","al.","as.","az.","og.","or.","lr."],
+                    namesShort: ["ig","al","as","az","og","or","lr"]
+                },
+                months: {
+                    names: ["urtarrila","otsaila","martxoa","apirila","maiatza","ekaina","uztaila","abuztua","iraila","urria","azaroa","abendua",""],
+                    namesAbbr: ["urt.","ots.","mar.","api.","mai.","eka.","uzt.","abu.","ira.","urr.","aza.","abe.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/MM/dd",
-                    D: "dddd, yyyy.\u0027eko\u0027 MMMM\u0027k \u0027d",
+                    D: "dddd, yyyy.'eko' MMMM'k 'd",
                     T: "H:mm:ss",
-                    f: "dddd, yyyy.\u0027eko\u0027 MMMM\u0027k \u0027d HH:mm",
-                    F: "dddd, yyyy.\u0027eko\u0027 MMMM\u0027k \u0027d H:mm:ss",
-                    Y: "yyyy.\u0027eko\u0027 MMMM"
+                    f: "dddd, yyyy.'eko' MMMM'k 'd HH:mm",
+                    F: "dddd, yyyy.'eko' MMMM'k 'd H:mm:ss",
+                    Y: "yyyy.'eko' MMMM"
                 }
             })
         }
@@ -7835,19 +9236,29 @@
                 name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
-                days: [["njedźela","póndźela","wutora","srjeda","štwórtk","pjatk","sobota"],["nje","pón","wut","srj","štw","pja","sob"],["n","p","w","s","š","p","s"]],
-                months: [["januar","februar","měrc","apryl","meja","junij","julij","awgust","september","oktober","nowember","december",""],["jan","feb","měr","apr","mej","jun","jul","awg","sep","okt","now","dec",""]],
-                monthsGenitive: [["januara","februara","měrca","apryla","meje","junija","julija","awgusta","septembra","oktobra","nowembra","decembra",""],["jan","feb","měr","apr","mej","jun","jul","awg","sep","okt","now","dec",""]],
+                days: {
+                    names: ["njedźela","póndźela","wutora","srjeda","štwórtk","pjatk","sobota"],
+                    namesAbbr: ["nje","pón","wut","srj","štw","pja","sob"],
+                    namesShort: ["n","p","w","s","š","p","s"]
+                },
+                months: {
+                    names: ["januar","februar","měrc","apryl","meja","junij","julij","awgust","september","oktober","nowember","december",""],
+                    namesAbbr: ["jan","feb","měr","apr","mej","jun","jul","awg","sep","okt","now","dec",""]
+                },
+                monthsGenitive: {
+                    names: ["januara","februara","měrca","apryla","meje","junija","julija","awgusta","septembra","oktobra","nowembra","decembra",""],
+                    namesAbbr: ["jan","feb","měr","apr","mej","jun","jul","awg","sep","okt","now","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"po Chr.","start":null,"offset":0}],
                 patterns: {
                     d: "d. M. yyyy",
-                    D: "dddd, \u0027dnja\u0027 d. MMMM yyyy",
-                    t: "H.mm \u0027hodź.\u0027",
+                    D: "dddd, 'dnja' d. MMMM yyyy",
+                    t: "H.mm 'hodź.'",
                     T: "H:mm:ss",
-                    f: "dddd, \u0027dnja\u0027 d. MMMM yyyy H.mm \u0027hodź.\u0027",
-                    F: "dddd, \u0027dnja\u0027 d. MMMM yyyy H:mm:ss",
+                    f: "dddd, 'dnja' d. MMMM yyyy H.mm 'hodź.'",
+                    F: "dddd, 'dnja' d. MMMM yyyy H:mm:ss",
                     M: "d. MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -7879,8 +9290,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["недела","понеделник","вторник","среда","четврток","петок","сабота"],["нед","пон","втр","срд","чет","пет","саб"],["не","по","вт","ср","че","пе","са"]],
-                months: [["јануари","февруари","март","април","мај","јуни","јули","август","септември","октомври","ноември","декември",""],["јан","фев","мар","апр","мај","јун","јул","авг","сеп","окт","ное","дек",""]],
+                days: {
+                    names: ["недела","понеделник","вторник","среда","четврток","петок","сабота"],
+                    namesAbbr: ["нед","пон","втр","срд","чет","пет","саб"],
+                    namesShort: ["не","по","вт","ср","че","пе","са"]
+                },
+                months: {
+                    names: ["јануари","февруари","март","април","мај","јуни","јули","август","септември","октомври","ноември","декември",""],
+                    namesAbbr: ["јан","фев","мар","апр","мај","јун","јул","авг","сеп","окт","ное","дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -7909,8 +9327,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Latshipi","Mosupologo","Labobedi","Laboraro","Labone","Labotlhano","Lamatlhatso"],["Ltp.","Mos.","Lbd.","Lbr.","Lbn.","Lbt.","Lmt."],["Lp","Ms","Lb","Lr","Ln","Lt","Lm"]],
-                months: [["Ferikgong","Tlhakole","Mopitloe","Moranang","Motsheganong","Seetebosigo","Phukwi","Phatwe","Lwetse","Diphalane","Ngwanatsele","Sedimothole",""],["Fer.","Tlhak.","Mop.","Mor.","Motsh.","Seet.","Phukw.","Phatw.","Lwets.","Diph.","Ngwan.","Sed.",""]],
+                days: {
+                    names: ["Latshipi","Mosupologo","Labobedi","Laboraro","Labone","Labotlhano","Lamatlhatso"],
+                    namesAbbr: ["Ltp.","Mos.","Lbd.","Lbr.","Lbn.","Lbt.","Lmt."],
+                    namesShort: ["Lp","Ms","Lb","Lr","Ln","Lt","Lm"]
+                },
+                months: {
+                    names: ["Ferikgong","Tlhakole","Mopitloe","Moranang","Motsheganong","Seetebosigo","Phukwi","Phatwe","Lwetse","Diphalane","Ngwanatsele","Sedimothole",""],
+                    namesAbbr: ["Fer.","Tlhak.","Mop.","Mor.","Motsh.","Seet.","Phukw.","Phatw.","Lwets.","Diph.","Ngwan.","Sed.",""]
+                },
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",
@@ -7942,8 +9367,13 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["iCawa","uMvulo","uLwesibini","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],["Ca","Mv","Lb","Lt","Ln","Lh","Mg"]],
-                months: [["Mqungu","Mdumba","Kwindla","Tshazimpuzi","Canzibe","Silimela","Khala","Thupha","Msintsi","Dwarha","Nkanga","Mnga",""],["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]],
+                days: {
+                    names: ["iCawa","uMvulo","uLwesibini","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],
+                    namesShort: ["Ca","Mv","Lb","Lt","Ln","Lh","Mg"]
+                },
+                months: {
+                    names: ["Mqungu","Mdumba","Kwindla","Tshazimpuzi","Canzibe","Silimela","Khala","Thupha","Msintsi","Dwarha","Nkanga","Mnga",""]
+                },
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",
@@ -7975,8 +9405,14 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["iSonto","uMsombuluko","uLwesibili","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],["Son.","Mso.","Bi.","Tha.","Ne.","Hla.","Mgq."],["Su","Mo","Tu","We","Th","Fr","Sa"]],
-                months: [["uMasingana","uNhlolanja","uNdasa","uMbaso","uNhlaba","uNhlangulana","uNtulikazi","uNcwaba","uMandulo","uMfumfu","uLwezi","uZibandlela",""],["Mas.","Nhlo.","Nda.","Mba.","Nhla.","Nhlang.","Ntu.","Ncwa.","Man.","Mfu.","Lwe.","Zib.",""]],
+                days: {
+                    names: ["iSonto","uMsombuluko","uLwesibili","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],
+                    namesAbbr: ["Son.","Mso.","Bi.","Tha.","Ne.","Hla.","Mgq."]
+                },
+                months: {
+                    names: ["uMasingana","uNhlolanja","uNdasa","uMbaso","uNhlaba","uNhlangulana","uNtulikazi","uNcwaba","uMandulo","uMfumfu","uLwezi","uZibandlela",""],
+                    namesAbbr: ["Mas.","Nhlo.","Nda.","Mba.","Nhla.","Nhlang.","Ntu.","Ncwa.","Man.","Mfu.","Lwe.","Zib.",""]
+                },
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",
@@ -8008,8 +9444,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Sondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrydag","Saterdag"],["Son","Maan","Dins","Woen","Dond","Vry","Sat"],["So","Ma","Di","Wo","Do","Vr","Sa"]],
-                months: [["Januarie","Februarie","Maart","April","Mei","Junie","Julie","Augustus","September","Oktober","November","Desember",""],["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nov","Des",""]],
+                days: {
+                    names: ["Sondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrydag","Saterdag"],
+                    namesAbbr: ["Son","Maan","Dins","Woen","Dond","Vry","Sat"],
+                    namesShort: ["So","Ma","Di","Wo","Do","Vr","Sa"]
+                },
+                months: {
+                    names: ["Januarie","Februarie","Maart","April","Mei","Junie","Julie","Augustus","September","Oktober","November","Desember",""],
+                    namesAbbr: ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nov","Des",""]
+                },
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",
@@ -8048,17 +9491,24 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["კვირა","ორშაბათი","სამშაბათი","ოთხშაბათი","ხუთშაბათი","პარასკევი","შაბათი"],["კვირა","ორშაბათი","სამშაბათი","ოთხშაბათი","ხუთშაბათი","პარასკევი","შაბათი"],["კ","ო","ს","ო","ხ","პ","შ"]],
-                months: [["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი",""],["იან","თებ","მარ","აპრ","მაის","ივნ","ივლ","აგვ","სექ","ოქტ","ნოემ","დეკ",""]],
+                days: {
+                    names: ["კვირა","ორშაბათი","სამშაბათი","ოთხშაბათი","ხუთშაბათი","პარასკევი","შაბათი"],
+                    namesAbbr: ["კვირა","ორშაბათი","სამშაბათი","ოთხშაბათი","ხუთშაბათი","პარასკევი","შაბათი"],
+                    namesShort: ["კ","ო","ს","ო","ხ","პ","შ"]
+                },
+                months: {
+                    names: ["იანვარი","თებერვალი","მარტი","აპრილი","მაისი","ივნისი","ივლისი","აგვისტო","სექტემბერი","ოქტომბერი","ნოემბერი","დეკემბერი",""],
+                    namesAbbr: ["იან","თებ","მარ","აპრ","მაის","ივნ","ივლ","აგვ","სექ","ოქტ","ნოემ","დეკ",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "yyyy \u0027წლის\u0027 dd MM, dddd",
+                    D: "yyyy 'წლის' dd MM, dddd",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy \u0027წლის\u0027 dd MM, dddd H:mm",
-                    F: "yyyy \u0027წლის\u0027 dd MM, dddd H:mm:ss",
+                    f: "yyyy 'წლის' dd MM, dddd H:mm",
+                    F: "yyyy 'წლის' dd MM, dddd H:mm:ss",
                     M: "dd MM",
                     Y: "MMMM yyyy"
                 }
@@ -8091,8 +9541,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["sunnudagur","mánadagur","týsdagur","mikudagur","hósdagur","fríggjadagur","leygardagur"],["sun","mán","týs","mik","hós","frí","leyg"],["su","má","tý","mi","hó","fr","ley"]],
-                months: [["januar","februar","mars","apríl","mai","juni","juli","august","september","oktober","november","desember",""],["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]],
+                days: {
+                    names: ["sunnudagur","mánadagur","týsdagur","mikudagur","hósdagur","fríggjadagur","leygardagur"],
+                    namesAbbr: ["sun","mán","týs","mik","hós","frí","leyg"],
+                    namesShort: ["su","má","tý","mi","hó","fr","ley"]
+                },
+                months: {
+                    names: ["januar","februar","mars","apríl","mai","juni","juli","august","september","oktober","november","desember",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -8128,8 +9585,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],["रवि.","सोम.","मंगल.","बुध.","गुरु.","शुक्र.","शनि."],["र","स","म","ब","ग","श","श"]],
-                months: [["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""],["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""]],
+                days: {
+                    names: ["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],
+                    namesAbbr: ["रवि.","सोम.","मंगल.","बुध.","गुरु.","शुक्र.","शनि."],
+                    namesShort: ["र","स","म","ब","ग","श","श"]
+                },
+                months: {
+                    names: ["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""],
+                    namesAbbr: ["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""]
+                },
                 AM: ["पूर्वाह्न","पूर्वाह्न","पूर्वाह्न"],
                 PM: ["अपराह्न","अपराह्न","अपराह्न"],
                 patterns: {
@@ -8162,14 +9626,21 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Il-Ħadd","It-Tnejn","It-Tlieta","L-Erbgħa","Il-Ħamis","Il-Ġimgħa","Is-Sibt"],["Ħad","Tne","Tli","Erb","Ħam","Ġim","Sib"],["I","I","I","L","I","I","I"]],
-                months: [["Jannar","Frar","Marzu","April","Mejju","Ġunju","Lulju","Awissu","Settembru","Ottubru","Novembru","Diċembru",""],["Jan","Fra","Mar","Apr","Mej","Ġun","Lul","Awi","Set","Ott","Nov","Diċ",""]],
+                days: {
+                    names: ["Il-Ħadd","It-Tnejn","It-Tlieta","L-Erbgħa","Il-Ħamis","Il-Ġimgħa","Is-Sibt"],
+                    namesAbbr: ["Ħad","Tne","Tli","Erb","Ħam","Ġim","Sib"],
+                    namesShort: ["I","I","I","L","I","I","I"]
+                },
+                months: {
+                    names: ["Jannar","Frar","Marzu","April","Mejju","Ġunju","Lulju","Awissu","Settembru","Ottubru","Novembru","Diċembru",""],
+                    namesAbbr: ["Jan","Fra","Mar","Apr","Mej","Ġun","Lul","Awi","Set","Ott","Nov","Diċ",""]
+                },
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, d\u0027 ta\\\u0027 \u0027MMMM yyyy",
-                    f: "dddd, d\u0027 ta\\\u0027 \u0027MMMM yyyy HH:mm",
-                    F: "dddd, d\u0027 ta\\\u0027 \u0027MMMM yyyy HH:mm:ss",
-                    M: "d\u0027 ta\\\u0027 \u0027MMMM",
+                    D: "dddd, d' ta\\' 'MMMM yyyy",
+                    f: "dddd, d' ta\\' 'MMMM yyyy HH:mm",
+                    F: "dddd, d' ta\\' 'MMMM yyyy HH:mm:ss",
+                    M: "d' ta\\' 'MMMM",
                     Y: "MMMM yyyy"
                 }
             })
@@ -8201,17 +9672,27 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sotnabeaivi","vuossárga","maŋŋebárga","gaskavahkku","duorastat","bearjadat","lávvardat"],["sotn","vuos","maŋ","gask","duor","bear","láv"],["s","m","d","g","d","b","l"]],
-                months: [["ođđajagemánnu","guovvamánnu","njukčamánnu","cuoŋománnu","miessemánnu","geassemánnu","suoidnemánnu","borgemánnu","čakčamánnu","golggotmánnu","skábmamánnu","juovlamánnu",""],["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]],
-                monthsGenitive: [["ođđajagimánu","guovvamánu","njukčamánu","cuoŋománu","miessemánu","geassemánu","suoidnemánu","borgemánu","čakčamánu","golggotmánu","skábmamánu","juovlamánu",""],["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]],
+                days: {
+                    names: ["sotnabeaivi","vuossárga","maŋŋebárga","gaskavahkku","duorastat","bearjadat","lávvardat"],
+                    namesAbbr: ["sotn","vuos","maŋ","gask","duor","bear","láv"],
+                    namesShort: ["s","m","d","g","d","b","l"]
+                },
+                months: {
+                    names: ["ođđajagemánnu","guovvamánnu","njukčamánnu","cuoŋománnu","miessemánnu","geassemánnu","suoidnemánnu","borgemánnu","čakčamánnu","golggotmánnu","skábmamánnu","juovlamánnu",""],
+                    namesAbbr: ["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]
+                },
+                monthsGenitive: {
+                    names: ["ođđajagimánu","guovvamánu","njukčamánu","cuoŋománu","miessemánu","geassemánu","suoidnemánu","borgemánu","čakčamánu","golggotmánu","skábmamánu","juovlamánu",""],
+                    namesAbbr: ["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "MMMM d\u0027. b. \u0027yyyy",
-                    f: "MMMM d\u0027. b. \u0027yyyy HH:mm",
-                    F: "MMMM d\u0027. b. \u0027yyyy HH:mm:ss",
-                    M: "MMMM d\u0027. b. \u0027",
+                    D: "MMMM d'. b. 'yyyy",
+                    f: "MMMM d'. b. 'yyyy HH:mm",
+                    F: "MMMM d'. b. 'yyyy HH:mm:ss",
+                    M: "MMMM d'. b. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -8233,8 +9714,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"],["Ahad","Isnin","Sel","Rabu","Khamis","Jumaat","Sabtu"],["A","I","S","R","K","J","S"]],
-                months: [["Januari","Februari","Mac","April","Mei","Jun","Julai","Ogos","September","Oktober","November","Disember",""],["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ogos","Sept","Okt","Nov","Dis",""]],
+                days: {
+                    names: ["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"],
+                    namesAbbr: ["Ahad","Isnin","Sel","Rabu","Khamis","Jumaat","Sabtu"],
+                    namesShort: ["A","I","S","R","K","J","S"]
+                },
+                months: {
+                    names: ["Januari","Februari","Mac","April","Mei","Jun","Julai","Ogos","September","Oktober","November","Disember",""],
+                    namesAbbr: ["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ogos","Sept","Okt","Nov","Dis",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -8276,17 +9764,24 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Жексенбі","Дүйсенбі","Сейсенбі","Сәрсенбі","Бейсенбі","Жұма","Сенбі"],["Жк","Дс","Сс","Ср","Бс","Жм","Сн"],["Жк","Дс","Сс","Ср","Бс","Жм","Сн"]],
-                months: [["қаңтар","ақпан","наурыз","сәуір","мамыр","маусым","шілде","тамыз","қыркүйек","қазан","қараша","желтоқсан",""],["Қаң","Ақп","Нау","Сәу","Мам","Мау","Шіл","Там","Қыр","Қаз","Қар","Жел",""]],
+                days: {
+                    names: ["Жексенбі","Дүйсенбі","Сейсенбі","Сәрсенбі","Бейсенбі","Жұма","Сенбі"],
+                    namesAbbr: ["Жк","Дс","Сс","Ср","Бс","Жм","Сн"],
+                    namesShort: ["Жк","Дс","Сс","Ср","Бс","Жм","Сн"]
+                },
+                months: {
+                    names: ["қаңтар","ақпан","наурыз","сәуір","мамыр","маусым","шілде","тамыз","қыркүйек","қазан","қараша","желтоқсан",""],
+                    namesAbbr: ["Қаң","Ақп","Нау","Сәу","Мам","Мау","Шіл","Там","Қыр","Қаз","Қар","Жел",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "d MMMM yyyy \u0027ж.\u0027",
+                    D: "d MMMM yyyy 'ж.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d MMMM yyyy \u0027ж.\u0027 H:mm",
-                    F: "d MMMM yyyy \u0027ж.\u0027 H:mm:ss",
+                    f: "d MMMM yyyy 'ж.' H:mm",
+                    F: "d MMMM yyyy 'ж.' H:mm:ss",
                     M: "d MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -8319,19 +9814,26 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Жекшемби","Дүйшөмбү","Шейшемби","Шаршемби","Бейшемби","Жума","Ишемби"],["Жш","Дш","Шш","Шр","Бш","Жм","Иш"],["Жш","Дш","Шш","Шр","Бш","Жм","Иш"]],
-                months: [["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
+                days: {
+                    names: ["Жекшемби","Дүйшөмбү","Шейшемби","Шаршемби","Бейшемби","Жума","Ишемби"],
+                    namesAbbr: ["Жш","Дш","Шш","Шр","Бш","Жм","Иш"],
+                    namesShort: ["Жш","Дш","Шш","Шр","Бш","Жм","Иш"]
+                },
+                months: {
+                    names: ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yy",
-                    D: "d\u0027-\u0027MMMM yyyy\u0027-ж.\u0027",
+                    D: "d'-'MMMM yyyy'-ж.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d\u0027-\u0027MMMM yyyy\u0027-ж.\u0027 H:mm",
-                    F: "d\u0027-\u0027MMMM yyyy\u0027-ж.\u0027 H:mm:ss",
+                    f: "d'-'MMMM yyyy'-ж.' H:mm",
+                    F: "d'-'MMMM yyyy'-ж.' H:mm:ss",
                     M: "d MMMM",
-                    Y: "MMMM yyyy\u0027-ж.\u0027"
+                    Y: "MMMM yyyy'-ж.'"
                 }
             })
         }
@@ -8350,8 +9852,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Jumapili","Jumatatu","Jumanne","Jumatano","Alhamisi","Ijumaa","Jumamosi"],["Jumap.","Jumat.","Juman.","Jumat.","Alh.","Iju.","Jumam."],["P","T","N","T","A","I","M"]],
-                months: [["Januari","Februari","Machi","Aprili","Mei","Juni","Julai","Agosti","Septemba","Oktoba","Novemba","Decemba",""],["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ago","Sep","Okt","Nov","Dec",""]],
+                days: {
+                    names: ["Jumapili","Jumatatu","Jumanne","Jumatano","Alhamisi","Ijumaa","Jumamosi"],
+                    namesAbbr: ["Jumap.","Jumat.","Juman.","Jumat.","Alh.","Iju.","Jumam."],
+                    namesShort: ["P","T","N","T","A","I","M"]
+                },
+                months: {
+                    names: ["Januari","Februari","Machi","Aprili","Mei","Juni","Julai","Agosti","Septemba","Oktoba","Novemba","Decemba",""],
+                    namesAbbr: ["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ago","Sep","Okt","Nov","Dec",""]
+                },
                 patterns: {
                     d: "M/d/yyyy",
                     D: "dddd, MMMM dd, yyyy",
@@ -8390,18 +9899,25 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Duşenbe","Sişenbe","Çarşenbe","Penşenbe","Anna","Şenbe","Ýekşenbe"],["Db","Sb","Çb","Pb","An","Şb","Ýb"],["D","S","Ç","P","A","Ş","Ý"]],
-                months: [["Ýanwar","Fewral","Mart","Aprel","Maý","lýun","lýul","Awgust","Sentýabr","Oktýabr","Noýabr","Dekabr",""],["Ýan","Few","Mart","Apr","Maý","lýun","lýul","Awg","Sen","Okt","Not","Dek",""]],
+                days: {
+                    names: ["Duşenbe","Sişenbe","Çarşenbe","Penşenbe","Anna","Şenbe","Ýekşenbe"],
+                    namesAbbr: ["Db","Sb","Çb","Pb","An","Şb","Ýb"],
+                    namesShort: ["D","S","Ç","P","A","Ş","Ý"]
+                },
+                months: {
+                    names: ["Ýanwar","Fewral","Mart","Aprel","Maý","lýun","lýul","Awgust","Sentýabr","Oktýabr","Noýabr","Dekabr",""],
+                    namesAbbr: ["Ýan","Few","Mart","Apr","Maý","lýun","lýul","Awg","Sen","Okt","Not","Dek",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yy",
-                    D: "yyyy \u0027ý.\u0027 MMMM d",
+                    D: "yyyy 'ý.' MMMM d",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy \u0027ý.\u0027 MMMM d H:mm",
-                    F: "yyyy \u0027ý.\u0027 MMMM d H:mm:ss",
-                    Y: "yyyy \u0027ý.\u0027 MMMM"
+                    f: "yyyy 'ý.' MMMM d H:mm",
+                    F: "yyyy 'ý.' MMMM d H:mm:ss",
+                    Y: "yyyy 'ý.' MMMM"
                 }
             })
         }
@@ -8410,7 +9926,7 @@
     culture = cultures["uz-Latn-UZ"] = $.extend(true, {}, invariant, {
         name: "uz-Latn-UZ",
         englishName: "Uzbek (Latin, Uzbekistan)",
-        nativeName: "U\u0027zbek (U\u0027zbekiston Respublikasi)",
+        nativeName: "U'zbek (U'zbekiston Respublikasi)",
         language: "uz-Latn",
         numberFormat: {
             ',': " ",
@@ -8425,22 +9941,29 @@
                 decimals: 0,
                 ',': " ",
                 '.': ",",
-                symbol: "so\u0027m"
+                symbol: "so'm"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"],["yak.","dsh.","sesh.","chr.","psh.","jm.","sh."],["ya","d","s","ch","p","j","sh"]],
-                months: [["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""]],
+                days: {
+                    names: ["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"],
+                    namesAbbr: ["yak.","dsh.","sesh.","chr.","psh.","jm.","sh."],
+                    namesShort: ["ya","d","s","ch","p","j","sh"]
+                },
+                months: {
+                    names: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],
+                    namesAbbr: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd/MM yyyy",
-                    D: "yyyy \u0027yil\u0027 d-MMMM",
-                    f: "yyyy \u0027yil\u0027 d-MMMM HH:mm",
-                    F: "yyyy \u0027yil\u0027 d-MMMM HH:mm:ss",
+                    D: "yyyy 'yil' d-MMMM",
+                    f: "yyyy 'yil' d-MMMM HH:mm",
+                    F: "yyyy 'yil' d-MMMM HH:mm:ss",
                     M: "d-MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -8473,9 +9996,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Якшәмбе","Дүшәмбе","Сишәмбе","Чәршәмбе","Пәнҗешәмбе","Җомга","Шимбә"],["Якш","Дүш","Сиш","Чәрш","Пәнҗ","Җом","Шим"],["Я","Д","С","Ч","П","Җ","Ш"]],
-                months: [["Гыйнвар","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],["Гыйн.","Фев.","Мар.","Апр.","Май","Июнь","Июль","Авг.","Сен.","Окт.","Нояб.","Дек.",""]],
-                monthsGenitive: [["Гыйнварның","Февральнең","Мартның","Апрельнең","Майның","Июньнең","Июльнең","Августның","Сентябрьның","Октябрьның","Ноябрьның","Декабрьның",""],["Гыйн.-ның","Фев.-нең","Мар.-ның","Апр.-нең","Майның","Июньнең","Июльнең","Авг.-ның","Сен.-ның","Окт.-ның","Нояб.-ның","Дек.-ның",""]],
+                days: {
+                    names: ["Якшәмбе","Дүшәмбе","Сишәмбе","Чәршәмбе","Пәнҗешәмбе","Җомга","Шимбә"],
+                    namesAbbr: ["Якш","Дүш","Сиш","Чәрш","Пәнҗ","Җом","Шим"],
+                    namesShort: ["Я","Д","С","Ч","П","Җ","Ш"]
+                },
+                months: {
+                    names: ["Гыйнвар","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь",""],
+                    namesAbbr: ["Гыйн.","Фев.","Мар.","Апр.","Май","Июнь","Июль","Авг.","Сен.","Окт.","Нояб.","Дек.",""]
+                },
+                monthsGenitive: {
+                    names: ["Гыйнварның","Февральнең","Мартның","Апрельнең","Майның","Июньнең","Июльнең","Августның","Сентябрьның","Октябрьның","Ноябрьның","Декабрьның",""],
+                    namesAbbr: ["Гыйн.-ның","Фев.-нең","Мар.-ның","Апр.-нең","Майның","Июньнең","Июльнең","Авг.-ның","Сен.-ның","Окт.-ның","Нояб.-ның","Дек.-ның",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -8515,8 +10048,15 @@
                 '/': "-",
                 ':': ".",
                 firstDay: 1,
-                days: [["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"],["রবি.","সোম.","মঙ্গল.","বুধ.","বৃহস্পতি.","শুক্র.","শনি."],["র","স","ম","ব","ব","শ","শ"]],
-                months: [["জানুয়ারী","ফেব্রুয়ারী","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর",""],["জানু.","ফেব্রু.","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগ.","সেপ্টে.","অক্টো.","নভে.","ডিসে.",""]],
+                days: {
+                    names: ["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"],
+                    namesAbbr: ["রবি.","সোম.","মঙ্গল.","বুধ.","বৃহস্পতি.","শুক্র.","শনি."],
+                    namesShort: ["র","স","ম","ব","ব","শ","শ"]
+                },
+                months: {
+                    names: ["জানুয়ারী","ফেব্রুয়ারী","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর",""],
+                    namesAbbr: ["জানু.","ফেব্রু.","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগ.","সেপ্টে.","অক্টো.","নভে.","ডিসে.",""]
+                },
                 AM: ["পুর্বাহ্ন","পুর্বাহ্ন","পুর্বাহ্ন"],
                 PM: ["অপরাহ্ন","অপরাহ্ন","অপরাহ্ন"],
                 patterns: {
@@ -8554,8 +10094,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ਐਤਵਾਰ","ਸੋਮਵਾਰ","ਮੰਗਲਵਾਰ","ਬੁੱਧਵਾਰ","ਵੀਰਵਾਰ","ਸ਼ੁੱਕਰਵਾਰ","ਸ਼ਨਿੱਚਰਵਾਰ"],["ਐਤ.","ਸੋਮ.","ਮੰਗਲ.","ਬੁੱਧ.","ਵੀਰ.","ਸ਼ੁਕਰ.","ਸ਼ਨਿੱਚਰ."],["ਐ","ਸ","ਮ","ਬ","ਵ","ਸ਼","ਸ਼"]],
-                months: [["ਜਨਵਰੀ","ਫ਼ਰਵਰੀ","ਮਾਰਚ","ਅਪ੍ਰੈਲ","ਮਈ","ਜੂਨ","ਜੁਲਾਈ","ਅਗਸਤ","ਸਤੰਬਰ","ਅਕਤੂਬਰ","ਨਵੰਬਰ","ਦਸੰਬਰ",""],["ਜਨਵਰੀ","ਫ਼ਰਵਰੀ","ਮਾਰਚ","ਅਪ੍ਰੈਲ","ਮਈ","ਜੂਨ","ਜੁਲਾਈ","ਅਗਸਤ","ਸਤੰਬਰ","ਅਕਤੂਬਰ","ਨਵੰਬਰ","ਦਸੰਬਰ",""]],
+                days: {
+                    names: ["ਐਤਵਾਰ","ਸੋਮਵਾਰ","ਮੰਗਲਵਾਰ","ਬੁੱਧਵਾਰ","ਵੀਰਵਾਰ","ਸ਼ੁੱਕਰਵਾਰ","ਸ਼ਨਿੱਚਰਵਾਰ"],
+                    namesAbbr: ["ਐਤ.","ਸੋਮ.","ਮੰਗਲ.","ਬੁੱਧ.","ਵੀਰ.","ਸ਼ੁਕਰ.","ਸ਼ਨਿੱਚਰ."],
+                    namesShort: ["ਐ","ਸ","ਮ","ਬ","ਵ","ਸ਼","ਸ਼"]
+                },
+                months: {
+                    names: ["ਜਨਵਰੀ","ਫ਼ਰਵਰੀ","ਮਾਰਚ","ਅਪ੍ਰੈਲ","ਮਈ","ਜੂਨ","ਜੁਲਾਈ","ਅਗਸਤ","ਸਤੰਬਰ","ਅਕਤੂਬਰ","ਨਵੰਬਰ","ਦਸੰਬਰ",""],
+                    namesAbbr: ["ਜਨਵਰੀ","ਫ਼ਰਵਰੀ","ਮਾਰਚ","ਅਪ੍ਰੈਲ","ਮਈ","ਜੂਨ","ਜੁਲਾਈ","ਅਗਸਤ","ਸਤੰਬਰ","ਅਕਤੂਬਰ","ਨਵੰਬਰ","ਦਸੰਬਰ",""]
+                },
                 AM: ["ਸਵੇਰ","ਸਵੇਰ","ਸਵੇਰ"],
                 PM: ["ਸ਼ਾਮ","ਸ਼ਾਮ","ਸ਼ਾਮ"],
                 patterns: {
@@ -8593,8 +10140,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["રવિવાર","સોમવાર","મંગળવાર","બુધવાર","ગુરુવાર","શુક્રવાર","શનિવાર"],["રવિ","સોમ","મંગળ","બુધ","ગુરુ","શુક્ર","શનિ"],["ર","સ","મ","બ","ગ","શ","શ"]],
-                months: [["જાન્યુઆરી","ફેબ્રુઆરી","માર્ચ","એપ્રિલ","મે","જૂન","જુલાઈ","ઑગસ્ટ","સપ્ટેમ્બર","ઑક્ટ્બર","નવેમ્બર","ડિસેમ્બર",""],["જાન્યુ","ફેબ્રુ","માર્ચ","એપ્રિલ","મે","જૂન","જુલાઈ","ઑગસ્ટ","સપ્ટે","ઑક્ટો","નવે","ડિસે",""]],
+                days: {
+                    names: ["રવિવાર","સોમવાર","મંગળવાર","બુધવાર","ગુરુવાર","શુક્રવાર","શનિવાર"],
+                    namesAbbr: ["રવિ","સોમ","મંગળ","બુધ","ગુરુ","શુક્ર","શનિ"],
+                    namesShort: ["ર","સ","મ","બ","ગ","શ","શ"]
+                },
+                months: {
+                    names: ["જાન્યુઆરી","ફેબ્રુઆરી","માર્ચ","એપ્રિલ","મે","જૂન","જુલાઈ","ઑગસ્ટ","સપ્ટેમ્બર","ઑક્ટ્બર","નવેમ્બર","ડિસેમ્બર",""],
+                    namesAbbr: ["જાન્યુ","ફેબ્રુ","માર્ચ","એપ્રિલ","મે","જૂન","જુલાઈ","ઑગસ્ટ","સપ્ટે","ઑક્ટો","નવે","ડિસે",""]
+                },
                 AM: ["પૂર્વ મધ્યાહ્ન","પૂર્વ મધ્યાહ્ન","પૂર્વ મધ્યાહ્ન"],
                 PM: ["ઉત્તર મધ્યાહ્ન","ઉત્તર મધ્યાહ્ન","ઉત્તર મધ્યાહ્ન"],
                 patterns: {
@@ -8629,8 +10183,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["ରବିବାର","ସୋମବାର","ମଙ୍ଗଳବାର","ବୁଧବାର","ଗୁରୁବାର","ଶୁକ୍ରବାର","ଶନିବାର"],["ରବି.","ସୋମ.","ମଙ୍ଗଳ.","ବୁଧ.","ଗୁରୁ.","ଶୁକ୍ର.","ଶନି."],["ର","ସୋ","ମ","ବୁ","ଗୁ","ଶୁ","ଶ"]],
-                months: [["ଜାନୁୟାରୀ","ଫ୍ରେବୃୟାରୀ","ମାର୍ଚ୍ଚ","ଏପ୍ରିଲ୍‌","ମେ","ଜୁନ୍‌","ଜୁଲାଇ","ଅଗଷ୍ଟ","ସେପ୍ଟେମ୍ବର","ଅକ୍ଟୋବର","ନଭେମ୍ବର","(ଡିସେମ୍ବର",""],["ଜାନୁୟାରୀ","ଫ୍ରେବୃୟାରୀ","ମାର୍ଚ୍ଚ","ଏପ୍ରିଲ୍‌","ମେ","ଜୁନ୍‌","ଜୁଲାଇ","ଅଗଷ୍ଟ","ସେପ୍ଟେମ୍ବର","ଅକ୍ଟୋବର","ନଭେମ୍ବର","(ଡିସେମ୍ବର",""]],
+                days: {
+                    names: ["ରବିବାର","ସୋମବାର","ମଙ୍ଗଳବାର","ବୁଧବାର","ଗୁରୁବାର","ଶୁକ୍ରବାର","ଶନିବାର"],
+                    namesAbbr: ["ରବି.","ସୋମ.","ମଙ୍ଗଳ.","ବୁଧ.","ଗୁରୁ.","ଶୁକ୍ର.","ଶନି."],
+                    namesShort: ["ର","ସୋ","ମ","ବୁ","ଗୁ","ଶୁ","ଶ"]
+                },
+                months: {
+                    names: ["ଜାନୁୟାରୀ","ଫ୍ରେବୃୟାରୀ","ମାର୍ଚ୍ଚ","ଏପ୍ରିଲ୍‌","ମେ","ଜୁନ୍‌","ଜୁଲାଇ","ଅଗଷ୍ଟ","ସେପ୍ଟେମ୍ବର","ଅକ୍ଟୋବର","ନଭେମ୍ବର","(ଡିସେମ୍ବର",""],
+                    namesAbbr: ["ଜାନୁୟାରୀ","ଫ୍ରେବୃୟାରୀ","ମାର୍ଚ୍ଚ","ଏପ୍ରିଲ୍‌","ମେ","ଜୁନ୍‌","ଜୁଲାଇ","ଅଗଷ୍ଟ","ସେପ୍ଟେମ୍ବର","ଅକ୍ଟୋବର","ନଭେମ୍ବର","(ଡିସେମ୍ବର",""]
+                },
                 eras: [{"name":"ଖ୍ରୀଷ୍ଟାବ୍ଦ","start":null,"offset":0}],
                 patterns: {
                     d: "dd-MM-yy",
@@ -8665,8 +10226,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ஞாயிற்றுக்கிழமை","திங்கள்கிழமை","செவ்வாய்கிழமை","புதன்கிழமை","வியாழக்கிழமை","வெள்ளிக்கிழமை","சனிக்கிழமை"],["ஞாயிறு","திங்கள்","செவ்வாய்","புதன்","வியாழன்","வெள்ளி","சனி"],["ஞா","தி","செ","பு","வி","வெ","ச"]],
-                months: [["ஜனவரி","பிப்ரவரி","மார்ச்","ஏப்ரல்","மே","ஜூன்","ஜூலை","ஆகஸ்ட்","செப்டம்பர்","அக்டோபர்","நவம்பர்","டிசம்பர்",""],["ஜனவரி","பிப்ரவரி","மார்ச்","ஏப்ரல்","மே","ஜூன்","ஜூலை","ஆகஸ்ட்","செப்டம்பர்","அக்டோபர்","நவம்பர்","டிசம்பர்",""]],
+                days: {
+                    names: ["ஞாயிற்றுக்கிழமை","திங்கள்கிழமை","செவ்வாய்கிழமை","புதன்கிழமை","வியாழக்கிழமை","வெள்ளிக்கிழமை","சனிக்கிழமை"],
+                    namesAbbr: ["ஞாயிறு","திங்கள்","செவ்வாய்","புதன்","வியாழன்","வெள்ளி","சனி"],
+                    namesShort: ["ஞா","தி","செ","பு","வி","வெ","ச"]
+                },
+                months: {
+                    names: ["ஜனவரி","பிப்ரவரி","மார்ச்","ஏப்ரல்","மே","ஜூன்","ஜூலை","ஆகஸ்ட்","செப்டம்பர்","அக்டோபர்","நவம்பர்","டிசம்பர்",""],
+                    namesAbbr: ["ஜனவரி","பிப்ரவரி","மார்ச்","ஏப்ரல்","மே","ஜூன்","ஜூலை","ஆகஸ்ட்","செப்டம்பர்","அக்டோபர்","நவம்பர்","டிசம்பர்",""]
+                },
                 AM: ["காலை","காலை","காலை"],
                 PM: ["மாலை","மாலை","மாலை"],
                 patterns: {
@@ -8702,8 +10270,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ఆదివారం","సోమవారం","మంగళవారం","బుధవారం","గురువారం","శుక్రవారం","శనివారం"],["ఆది.","సోమ.","మంగళ.","బుధ.","గురు.","శుక్ర.","శని."],["ఆ","సో","మం","బు","గు","శు","శ"]],
-                months: [["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్",""],["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్",""]],
+                days: {
+                    names: ["ఆదివారం","సోమవారం","మంగళవారం","బుధవారం","గురువారం","శుక్రవారం","శనివారం"],
+                    namesAbbr: ["ఆది.","సోమ.","మంగళ.","బుధ.","గురు.","శుక్ర.","శని."],
+                    namesShort: ["ఆ","సో","మం","బు","గు","శు","శ"]
+                },
+                months: {
+                    names: ["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్",""],
+                    namesAbbr: ["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్",""]
+                },
                 AM: ["పూర్వాహ్న","పూర్వాహ్న","పూర్వాహ్న"],
                 PM: ["అపరాహ్న","అపరాహ్న","అపరాహ్న"],
                 patterns: {
@@ -8739,8 +10314,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ಭಾನುವಾರ","ಸೋಮವಾರ","ಮಂಗಳವಾರ","ಬುಧವಾರ","ಗುರುವಾರ","ಶುಕ್ರವಾರ","ಶನಿವಾರ"],["ಭಾನು.","ಸೋಮ.","ಮಂಗಳ.","ಬುಧ.","ಗುರು.","ಶುಕ್ರ.","ಶನಿ."],["ರ","ಸ","ಮ","ಬ","ಗ","ಶ","ಶ"]],
-                months: [["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಎಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್",""],["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಎಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್",""]],
+                days: {
+                    names: ["ಭಾನುವಾರ","ಸೋಮವಾರ","ಮಂಗಳವಾರ","ಬುಧವಾರ","ಗುರುವಾರ","ಶುಕ್ರವಾರ","ಶನಿವಾರ"],
+                    namesAbbr: ["ಭಾನು.","ಸೋಮ.","ಮಂಗಳ.","ಬುಧ.","ಗುರು.","ಶುಕ್ರ.","ಶನಿ."],
+                    namesShort: ["ರ","ಸ","ಮ","ಬ","ಗ","ಶ","ಶ"]
+                },
+                months: {
+                    names: ["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಎಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್",""],
+                    namesAbbr: ["ಜನವರಿ","ಫೆಬ್ರವರಿ","ಮಾರ್ಚ್","ಎಪ್ರಿಲ್","ಮೇ","ಜೂನ್","ಜುಲೈ","ಆಗಸ್ಟ್","ಸೆಪ್ಟಂಬರ್","ಅಕ್ಟೋಬರ್","ನವೆಂಬರ್","ಡಿಸೆಂಬರ್",""]
+                },
                 AM: ["ಪೂರ್ವಾಹ್ನ","ಪೂರ್ವಾಹ್ನ","ಪೂರ್ವಾಹ್ನ"],
                 PM: ["ಅಪರಾಹ್ನ","ಅಪರಾಹ್ನ","ಅಪರಾಹ್ನ"],
                 patterns: {
@@ -8778,8 +10360,15 @@
                 '/': "-",
                 ':': ".",
                 firstDay: 1,
-                days: [["ഞായറാഴ്ച","തിങ്കളാഴ്ച","ചൊവ്വാഴ്ച","ബുധനാഴ്ച","വ്യാഴാഴ്ച","വെള്ളിയാഴ്ച","ശനിയാഴ്ച"],["ഞായർ.","തിങ്കൾ.","ചൊവ്വ.","ബുധൻ.","വ്യാഴം.","വെള്ളി.","ശനി."],["ഞ","ത","ച","ബ","വ","വെ","ശ"]],
-                months: [["ജനുവരി","ഫെബ്റുവരി","മാറ്ച്ച്","ഏപ്റില്","മെയ്","ജൂണ്","ജൂലൈ","ഓഗസ്ററ്","സെപ്ററംബറ്","ഒക്ടോബറ്","നവംബറ്","ഡിസംബറ്",""],["ജനുവരി","ഫെബ്റുവരി","മാറ്ച്ച്","ഏപ്റില്","മെയ്","ജൂണ്","ജൂലൈ","ഓഗസ്ററ്","സെപ്ററംബറ്","ഒക്ടോബറ്","നവംബറ്","ഡിസംബറ്",""]],
+                days: {
+                    names: ["ഞായറാഴ്ച","തിങ്കളാഴ്ച","ചൊവ്വാഴ്ച","ബുധനാഴ്ച","വ്യാഴാഴ്ച","വെള്ളിയാഴ്ച","ശനിയാഴ്ച"],
+                    namesAbbr: ["ഞായർ.","തിങ്കൾ.","ചൊവ്വ.","ബുധൻ.","വ്യാഴം.","വെള്ളി.","ശനി."],
+                    namesShort: ["ഞ","ത","ച","ബ","വ","വെ","ശ"]
+                },
+                months: {
+                    names: ["ജനുവരി","ഫെബ്റുവരി","മാറ്ച്ച്","ഏപ്റില്","മെയ്","ജൂണ്","ജൂലൈ","ഓഗസ്ററ്","സെപ്ററംബറ്","ഒക്ടോബറ്","നവംബറ്","ഡിസംബറ്",""],
+                    namesAbbr: ["ജനുവരി","ഫെബ്റുവരി","മാറ്ച്ച്","ഏപ്റില്","മെയ്","ജൂണ്","ജൂലൈ","ഓഗസ്ററ്","സെപ്ററംബറ്","ഒക്ടോബറ്","നവംബറ്","ഡിസംബറ്",""]
+                },
                 patterns: {
                     d: "dd-MM-yy",
                     D: "dd MMMM yyyy",
@@ -8816,8 +10405,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["সোমবাৰ","মঙ্গলবাৰ","বুধবাৰ","বৃহস্পতিবাৰ","শুক্রবাৰ","শনিবাৰ","ৰবিবাৰ"],["সোম.","মঙ্গল.","বুধ.","বৃহ.","শুক্র.","শনি.","ৰবি."],["সো","ম","বু","বৃ","শু","শ","র"]],
-                months: [["জানুৱাৰী","ফেব্রুৱাৰী","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগষ্ট","চেপ্টেম্বর","অক্টোবর","নবেম্বর","ডিচেম্বর",""],["জানু","ফেব্রু","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগষ্ট","চেপ্টে","অক্টো","নবে","ডিচে",""]],
+                days: {
+                    names: ["সোমবাৰ","মঙ্গলবাৰ","বুধবাৰ","বৃহস্পতিবাৰ","শুক্রবাৰ","শনিবাৰ","ৰবিবাৰ"],
+                    namesAbbr: ["সোম.","মঙ্গল.","বুধ.","বৃহ.","শুক্র.","শনি.","ৰবি."],
+                    namesShort: ["সো","ম","বু","বৃ","শু","শ","র"]
+                },
+                months: {
+                    names: ["জানুৱাৰী","ফেব্রুৱাৰী","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগষ্ট","চেপ্টেম্বর","অক্টোবর","নবেম্বর","ডিচেম্বর",""],
+                    namesAbbr: ["জানু","ফেব্রু","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগষ্ট","চেপ্টে","অক্টো","নবে","ডিচে",""]
+                },
                 AM: ["ৰাতিপু","ৰাতিপু","ৰাতিপু"],
                 PM: ["আবেলি","আবেলি","আবেলি"],
                 eras: [{"name":"খ্রীষ্টাব্দ","start":null,"offset":0}],
@@ -8856,8 +10452,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["रविवार","सोमवार","मंगळवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],["रवि.","सोम.","मंगळ.","बुध.","गुरु.","शुक्र.","शनि."],["र","स","म","ब","ग","श","श"]],
-                months: [["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोव्हेंबर","डिसेंबर",""],["जाने.","फेब्रु.","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टें.","ऑक्टो.","नोव्हें.","डिसें.",""]],
+                days: {
+                    names: ["रविवार","सोमवार","मंगळवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"],
+                    namesAbbr: ["रवि.","सोम.","मंगळ.","बुध.","गुरु.","शुक्र.","शनि."],
+                    namesShort: ["र","स","म","ब","ग","श","श"]
+                },
+                months: {
+                    names: ["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोव्हेंबर","डिसेंबर",""],
+                    namesAbbr: ["जाने.","फेब्रु.","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टें.","ऑक्टो.","नोव्हें.","डिसें.",""]
+                },
                 AM: ["म.पू.","म.पू.","म.पू."],
                 PM: ["म.नं.","म.नं.","म.नं."],
                 patterns: {
@@ -8892,8 +10495,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["रविवासरः","सोमवासरः","मङ्गलवासरः","बुधवासरः","गुरुवासरः","शुक्रवासरः","शनिवासरः"],["रविवासरः","सोमवासरः","मङ्गलवासरः","बुधवासरः","गुरुवासरः","शुक्रवासरः","शनिवासरः"],["र","स","म","ब","ग","श","श"]],
-                months: [["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""],["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""]],
+                days: {
+                    names: ["रविवासरः","सोमवासरः","मङ्गलवासरः","बुधवासरः","गुरुवासरः","शुक्रवासरः","शनिवासरः"],
+                    namesAbbr: ["रविवासरः","सोमवासरः","मङ्गलवासरः","बुधवासरः","गुरुवासरः","शुक्रवासरः","शनिवासरः"],
+                    namesShort: ["र","स","म","ब","ग","श","श"]
+                },
+                months: {
+                    names: ["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""],
+                    namesAbbr: ["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितम्बर","अक्तूबर","नवम्बर","दिसम्बर",""]
+                },
                 AM: ["पूर्वाह्न","पूर्वाह्न","पूर्वाह्न"],
                 PM: ["अपराह्न","अपराह्न","अपराह्न"],
                 patterns: {
@@ -8932,20 +10542,30 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Ням","Даваа","Мягмар","Лхагва","Пүрэв","Баасан","Бямба"],["Ня","Да","Мя","Лх","Пү","Ба","Бя"],["Ня","Да","Мя","Лх","Пү","Ба","Бя"]],
-                months: [["1 дүгээр сар","2 дугаар сар","3 дугаар сар","4 дүгээр сар","5 дугаар сар","6 дугаар сар","7 дугаар сар","8 дугаар сар","9 дүгээр сар","10 дугаар сар","11 дүгээр сар","12 дугаар сар",""],["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]],
-                monthsGenitive: [["1 дүгээр сарын","2 дугаар сарын","3 дугаар сарын","4 дүгээр сарын","5 дугаар сарын","6 дугаар сарын","7 дугаар сарын","8 дугаар сарын","9 дүгээр сарын","10 дугаар сарын","11 дүгээр сарын","12 дугаар сарын",""],["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]],
+                days: {
+                    names: ["Ням","Даваа","Мягмар","Лхагва","Пүрэв","Баасан","Бямба"],
+                    namesAbbr: ["Ня","Да","Мя","Лх","Пү","Ба","Бя"],
+                    namesShort: ["Ня","Да","Мя","Лх","Пү","Ба","Бя"]
+                },
+                months: {
+                    names: ["1 дүгээр сар","2 дугаар сар","3 дугаар сар","4 дүгээр сар","5 дугаар сар","6 дугаар сар","7 дугаар сар","8 дугаар сар","9 дүгээр сар","10 дугаар сар","11 дүгээр сар","12 дугаар сар",""],
+                    namesAbbr: ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]
+                },
+                monthsGenitive: {
+                    names: ["1 дүгээр сарын","2 дугаар сарын","3 дугаар сарын","4 дүгээр сарын","5 дугаар сарын","6 дугаар сарын","7 дугаар сарын","8 дугаар сарын","9 дүгээр сарын","10 дугаар сарын","11 дүгээр сарын","12 дугаар сарын",""],
+                    namesAbbr: ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yy.MM.dd",
-                    D: "yyyy \u0027оны\u0027 MMMM d",
+                    D: "yyyy 'оны' MMMM d",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy \u0027оны\u0027 MMMM d H:mm",
-                    F: "yyyy \u0027оны\u0027 MMMM d H:mm:ss",
+                    f: "yyyy 'оны' MMMM d H:mm",
+                    F: "yyyy 'оны' MMMM d H:mm:ss",
                     M: "d MMMM",
-                    Y: "yyyy \u0027он\u0027 MMMM"
+                    Y: "yyyy 'он' MMMM"
                 }
             })
         }
@@ -8972,17 +10592,24 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["གཟའ་ཉི་མ།","གཟའ་ཟླ་བ།","གཟའ་མིག་དམར།","གཟའ་ལྷག་པ།","གཟའ་ཕུར་བུ།","གཟའ་པ་སངས།","གཟའ་སྤེན་པ།"],["ཉི་མ།","ཟླ་བ།","མིག་དམར།","ལྷག་པ།","ཕུར་བུ།","པ་སངས།","སྤེན་པ།"],["༧","༡","༢","༣","༤","༥","༦"]],
-                months: [["སྤྱི་ཟླ་དང་པོ།","སྤྱི་ཟླ་གཉིས་པ།","སྤྱི་ཟླ་གསུམ་པ།","སྤྱི་ཟླ་བཞི་པ།","སྤྱི་ཟླ་ལྔ་པ།","སྤྱི་ཟླ་དྲུག་པ།","སྤྱི་ཟླ་བདུན་པ།","སྤྱི་ཟླ་བརྒྱད་པ།","སྤྱི་ཟླ་དགུ་པ།","སྤྱི་ཟླ་བཅུ་པོ།","སྤྱི་ཟླ་བཅུ་གཅིག་པ།","སྤྱི་ཟླ་བཅུ་གཉིས་པ།",""],["ཟླ་ ༡","ཟླ་ ༢","ཟླ་ ༣","ཟླ་ ༤","ཟླ་ ༥","ཟླ་ ༦","ཟླ་ ༧","ཟླ་ ༨","ཟླ་ ༩","ཟླ་ ༡༠","ཟླ་ ༡༡","ཟླ་ ༡༢",""]],
+                days: {
+                    names: ["གཟའ་ཉི་མ།","གཟའ་ཟླ་བ།","གཟའ་མིག་དམར།","གཟའ་ལྷག་པ།","གཟའ་ཕུར་བུ།","གཟའ་པ་སངས།","གཟའ་སྤེན་པ།"],
+                    namesAbbr: ["ཉི་མ།","ཟླ་བ།","མིག་དམར།","ལྷག་པ།","ཕུར་བུ།","པ་སངས།","སྤེན་པ།"],
+                    namesShort: ["༧","༡","༢","༣","༤","༥","༦"]
+                },
+                months: {
+                    names: ["སྤྱི་ཟླ་དང་པོ།","སྤྱི་ཟླ་གཉིས་པ།","སྤྱི་ཟླ་གསུམ་པ།","སྤྱི་ཟླ་བཞི་པ།","སྤྱི་ཟླ་ལྔ་པ།","སྤྱི་ཟླ་དྲུག་པ།","སྤྱི་ཟླ་བདུན་པ།","སྤྱི་ཟླ་བརྒྱད་པ།","སྤྱི་ཟླ་དགུ་པ།","སྤྱི་ཟླ་བཅུ་པོ།","སྤྱི་ཟླ་བཅུ་གཅིག་པ།","སྤྱི་ཟླ་བཅུ་གཉིས་པ།",""],
+                    namesAbbr: ["ཟླ་ ༡","ཟླ་ ༢","ཟླ་ ༣","ཟླ་ ༤","ཟླ་ ༥","ཟླ་ ༦","ཟླ་ ༧","ཟླ་ ༨","ཟླ་ ༩","ཟླ་ ༡༠","ཟླ་ ༡༡","ཟླ་ ༡༢",""]
+                },
                 AM: ["སྔ་དྲོ","སྔ་དྲོ","སྔ་དྲོ"],
                 PM: ["ཕྱི་དྲོ","ཕྱི་དྲོ","ཕྱི་དྲོ"],
                 eras: [{"name":"སྤྱི་ལོ","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027ལོའི་ཟླ\u0027 M\u0027ཚེས\u0027 d",
-                    f: "yyyy\u0027ལོའི་ཟླ\u0027 M\u0027ཚེས\u0027 d HH:mm",
-                    F: "yyyy\u0027ལོའི་ཟླ\u0027 M\u0027ཚེས\u0027 d HH:mm:ss",
-                    M: "\u0027ཟླ་\u0027 M\u0027ཚེས\u0027d",
+                    D: "yyyy'ལོའི་ཟླ' M'ཚེས' d",
+                    f: "yyyy'ལོའི་ཟླ' M'ཚེས' d HH:mm",
+                    F: "yyyy'ལོའི་ཟླ' M'ཚེས' d HH:mm:ss",
+                    M: "'ཟླ་' M'ཚེས'd",
                     Y: "yyyy.M"
                 }
             })
@@ -9007,8 +10634,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Dydd Sul","Dydd Llun","Dydd Mawrth","Dydd Mercher","Dydd Iau","Dydd Gwener","Dydd Sadwrn"],["Sul","Llun","Maw","Mer","Iau","Gwe","Sad"],["Su","Ll","Ma","Me","Ia","Gw","Sa"]],
-                months: [["Ionawr","Chwefror","Mawrth","Ebrill","Mai","Mehefin","Gorffennaf","Awst","Medi","Hydref","Tachwedd","Rhagfyr",""],["Ion","Chwe","Maw","Ebr","Mai","Meh","Gor","Aws","Med","Hyd","Tach","Rhag",""]],
+                days: {
+                    names: ["Dydd Sul","Dydd Llun","Dydd Mawrth","Dydd Mercher","Dydd Iau","Dydd Gwener","Dydd Sadwrn"],
+                    namesAbbr: ["Sul","Llun","Maw","Mer","Iau","Gwe","Sad"],
+                    namesShort: ["Su","Ll","Ma","Me","Ia","Gw","Sa"]
+                },
+                months: {
+                    names: ["Ionawr","Chwefror","Mawrth","Ebrill","Mai","Mehefin","Gorffennaf","Awst","Medi","Hydref","Tachwedd","Rhagfyr",""],
+                    namesAbbr: ["Ion","Chwe","Maw","Ebr","Mai","Meh","Gor","Aws","Med","Hyd","Tach","Rhag",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 patterns: {
@@ -9044,8 +10678,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["ថ្ងៃអាទិត្យ","ថ្ងៃច័ន្ទ","ថ្ងៃអង្គារ","ថ្ងៃពុធ","ថ្ងៃព្រហស្បតិ៍","ថ្ងៃសុក្រ","ថ្ងៃសៅរ៍"],["អាទិ.","ច.","អ.","ពុ","ព្រហ.","សុ.","ស."],["អា","ច","អ","ពុ","ព្","សុ","ស"]],
-                months: [["មករា","កុម្ភៈ","មិនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ",""],["១","២","៣","៤","៥","៦","៧","៨","៩","១០","១១","១២",""]],
+                days: {
+                    names: ["ថ្ងៃអាទិត្យ","ថ្ងៃច័ន្ទ","ថ្ងៃអង្គារ","ថ្ងៃពុធ","ថ្ងៃព្រហស្បតិ៍","ថ្ងៃសុក្រ","ថ្ងៃសៅរ៍"],
+                    namesAbbr: ["អាទិ.","ច.","អ.","ពុ","ព្រហ.","សុ.","ស."],
+                    namesShort: ["អា","ច","អ","ពុ","ព្","សុ","ស"]
+                },
+                months: {
+                    names: ["មករា","កុម្ភៈ","មិនា","មេសា","ឧសភា","មិថុនា","កក្កដា","សីហា","កញ្ញា","តុលា","វិច្ឆិកា","ធ្នូ",""],
+                    namesAbbr: ["១","២","៣","៤","៥","៦","៧","៨","៩","១០","១១","១២",""]
+                },
                 AM: ["ព្រឹក","ព្រឹក","ព្រឹក"],
                 PM: ["ល្ងាច","ល្ងាច","ល្ងាច"],
                 eras: [{"name":"មុនគ.ស.","start":null,"offset":0}],
@@ -9055,14 +10696,21 @@
                     t: "H:mm tt",
                     f: "d MMMM yyyy H:mm tt",
                     F: "d MMMM yyyy HH:mm:ss",
-                    M: "\u0027ថ្ងៃទី\u0027 dd \u0027ខែ\u0027 MM",
-                    Y: "\u0027ខែ\u0027 MM \u0027ឆ្នាំ\u0027 yyyy"
+                    M: "'ថ្ងៃទី' dd 'ខែ' MM",
+                    Y: "'ខែ' MM 'ឆ្នាំ' yyyy"
                 }
             }),
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ព្រឹក","ព្រឹក","ព្រឹក"],
                 PM: ["ល្ងាច","ល្ងាច","ល្ងាច"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -9097,8 +10745,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["ວັນອາທິດ","ວັນຈັນ","ວັນອັງຄານ","ວັນພຸດ","ວັນພະຫັດ","ວັນສຸກ","ວັນເສົາ"],["ອາທິດ","ຈັນ","ອັງຄານ","ພຸດ","ພະຫັດ","ສຸກ","ເສົາ"],["ອ","ຈ","ອ","ພ","ພ","ສ","ເ"]],
-                months: [["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ",""],["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ",""]],
+                days: {
+                    names: ["ວັນອາທິດ","ວັນຈັນ","ວັນອັງຄານ","ວັນພຸດ","ວັນພະຫັດ","ວັນສຸກ","ວັນເສົາ"],
+                    namesAbbr: ["ອາທິດ","ຈັນ","ອັງຄານ","ພຸດ","ພະຫັດ","ສຸກ","ເສົາ"],
+                    namesShort: ["ອ","ຈ","ອ","ພ","ພ","ສ","ເ"]
+                },
+                months: {
+                    names: ["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ",""],
+                    namesAbbr: ["ມັງກອນ","ກຸມພາ","ມີນາ","ເມສາ","ພຶດສະພາ","ມິຖຸນາ","ກໍລະກົດ","ສິງຫາ","ກັນຍາ","ຕຸລາ","ພະຈິກ","ທັນວາ",""]
+                },
                 AM: ["ເຊົ້າ","ເຊົ້າ","ເຊົ້າ"],
                 PM: ["ແລງ","ແລງ","ແລງ"],
                 patterns: {
@@ -9137,20 +10792,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["domingo","luns","martes","mércores","xoves","venres","sábado"],["dom","luns","mar","mér","xov","ven","sáb"],["do","lu","ma","mé","xo","ve","sá"]],
-                months: [["xaneiro","febreiro","marzo","abril","maio","xuño","xullo","agosto","setembro","outubro","novembro","decembro",""],["xan","feb","mar","abr","maio","xuñ","xull","ago","set","out","nov","dec",""]],
+                days: {
+                    names: ["domingo","luns","martes","mércores","xoves","venres","sábado"],
+                    namesAbbr: ["dom","luns","mar","mér","xov","ven","sáb"],
+                    namesShort: ["do","lu","ma","mé","xo","ve","sá"]
+                },
+                months: {
+                    names: ["xaneiro","febreiro","marzo","abril","maio","xuño","xullo","agosto","setembro","outubro","novembro","decembro",""],
+                    namesAbbr: ["xan","feb","mar","abr","maio","xuñ","xull","ago","set","out","nov","dec",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm:ss",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy H:mm",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy H:mm:ss",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -9177,8 +10839,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["आयतार","सोमार","मंगळार","बुधवार","बिरेस्तार","सुक्रार","शेनवार"],["आय.","सोम.","मंगळ.","बुध.","बिरे.","सुक्र.","शेन."],["आ","स","म","ब","ब","स","श"]],
-                months: [["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोवेम्बर","डिसेंबर",""],["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोवेम्बर","डिसेंबर",""]],
+                days: {
+                    names: ["आयतार","सोमार","मंगळार","बुधवार","बिरेस्तार","सुक्रार","शेनवार"],
+                    namesAbbr: ["आय.","सोम.","मंगळ.","बुध.","बिरे.","सुक्र.","शेन."],
+                    namesShort: ["आ","स","म","ब","ब","स","श"]
+                },
+                months: {
+                    names: ["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोवेम्बर","डिसेंबर",""],
+                    namesAbbr: ["जानेवारी","फेब्रुवारी","मार्च","एप्रिल","मे","जून","जुलै","ऑगस्ट","सप्टेंबर","ऑक्टोबर","नोवेम्बर","डिसेंबर",""]
+                },
                 AM: ["म.पू.","म.पू.","म.पू."],
                 PM: ["म.नं.","म.नं.","म.नं."],
                 patterns: {
@@ -9209,8 +10878,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["ܚܕ ܒܫܒܐ","ܬܪܝܢ ܒܫܒܐ","ܬܠܬܐ ܒܫܒܐ","ܐܪܒܥܐ ܒܫܒܐ","ܚܡܫܐ ܒܫܒܐ","ܥܪܘܒܬܐ","ܫܒܬܐ"],["܏ܐ ܏ܒܫ","܏ܒ ܏ܒܫ","܏ܓ ܏ܒܫ","܏ܕ ܏ܒܫ","܏ܗ ܏ܒܫ","܏ܥܪܘܒ","܏ܫܒ"],["ܐ","ܒ","ܓ","ܕ","ܗ","ܥ","ܫ"]],
-                months: [["ܟܢܘܢ ܐܚܪܝ","ܫܒܛ","ܐܕܪ","ܢܝܣܢ","ܐܝܪ","ܚܙܝܪܢ","ܬܡܘܙ","ܐܒ","ܐܝܠܘܠ","ܬܫܪܝ ܩܕܝܡ","ܬܫܪܝ ܐܚܪܝ","ܟܢܘܢ ܩܕܝܡ",""],["܏ܟܢ ܏ܒ","ܫܒܛ","ܐܕܪ","ܢܝܣܢ","ܐܝܪ","ܚܙܝܪܢ","ܬܡܘܙ","ܐܒ","ܐܝܠܘܠ","܏ܬܫ ܏ܐ","܏ܬܫ ܏ܒ","܏ܟܢ ܏ܐ",""]],
+                days: {
+                    names: ["ܚܕ ܒܫܒܐ","ܬܪܝܢ ܒܫܒܐ","ܬܠܬܐ ܒܫܒܐ","ܐܪܒܥܐ ܒܫܒܐ","ܚܡܫܐ ܒܫܒܐ","ܥܪܘܒܬܐ","ܫܒܬܐ"],
+                    namesAbbr: ["܏ܐ ܏ܒܫ","܏ܒ ܏ܒܫ","܏ܓ ܏ܒܫ","܏ܕ ܏ܒܫ","܏ܗ ܏ܒܫ","܏ܥܪܘܒ","܏ܫܒ"],
+                    namesShort: ["ܐ","ܒ","ܓ","ܕ","ܗ","ܥ","ܫ"]
+                },
+                months: {
+                    names: ["ܟܢܘܢ ܐܚܪܝ","ܫܒܛ","ܐܕܪ","ܢܝܣܢ","ܐܝܪ","ܚܙܝܪܢ","ܬܡܘܙ","ܐܒ","ܐܝܠܘܠ","ܬܫܪܝ ܩܕܝܡ","ܬܫܪܝ ܐܚܪܝ","ܟܢܘܢ ܩܕܝܡ",""],
+                    namesAbbr: ["܏ܟܢ ܏ܒ","ܫܒܛ","ܐܕܪ","ܢܝܣܢ","ܐܝܪ","ܚܙܝܪܢ","ܬܡܘܙ","ܐܒ","ܐܝܠܘܠ","܏ܬܫ ܏ܐ","܏ܬܫ ܏ܒ","܏ܟܢ ܏ܐ",""]
+                },
                 AM: ["ܩ.ܛ","ܩ.ܛ","ܩ.ܛ"],
                 PM: ["ܒ.ܛ","ܒ.ܛ","ܒ.ܛ"],
                 patterns: {
@@ -9247,18 +10923,25 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ඉරිදා","සඳුදා","අඟහරුවාදා","බදාදා","බ්‍රහස්පතින්දා","සිකුරාදා","සෙනසුරාදා"],["ඉරිදා","සඳුදා","කුජදා","බුදදා","ගුරුදා","කිවිදා","ශනිදා"],["ඉ","ස","අ","බ","බ්‍ර","සි","සෙ"]],
-                months: [["ජනවාරි","පෙබරවාරි","මාර්තු","අ‌ප්‍රේල්","මැයි","ජූනි","ජූලි","අ‌ගෝස්තු","සැප්තැම්බර්","ඔක්තෝබර්","නොවැම්බර්","දෙසැම්බර්",""],["ජන.","පෙබ.","මාර්තු.","අප්‍රේල්.","මැයි.","ජූනි.","ජූලි.","අගෝ.","සැප්.","ඔක්.","නොවැ.","දෙසැ.",""]],
+                days: {
+                    names: ["ඉරිදා","සඳුදා","අඟහරුවාදා","බදාදා","බ්‍රහස්පතින්දා","සිකුරාදා","සෙනසුරාදා"],
+                    namesAbbr: ["ඉරිදා","සඳුදා","කුජදා","බුදදා","ගුරුදා","කිවිදා","ශනිදා"],
+                    namesShort: ["ඉ","ස","අ","බ","බ්‍ර","සි","සෙ"]
+                },
+                months: {
+                    names: ["ජනවාරි","පෙබරවාරි","මාර්තු","අ‌ප්‍රේල්","මැයි","ජූනි","ජූලි","අ‌ගෝස්තු","සැප්තැම්බර්","ඔක්තෝබර්","නොවැම්බර්","දෙසැම්බර්",""],
+                    namesAbbr: ["ජන.","පෙබ.","මාර්තු.","අප්‍රේල්.","මැයි.","ජූනි.","ජූලි.","අගෝ.","සැප්.","ඔක්.","නොවැ.","දෙසැ.",""]
+                },
                 AM: ["පෙ.ව.","පෙ.ව.","පෙ.ව."],
                 PM: ["ප.ව.","ප.ව.","ප.ව."],
                 eras: [{"name":"ක්‍රි.ව.","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy-MM-dd",
-                    D: "yyyy MMMM\u0027 මස \u0027dd\u0027 වැනිදා \u0027dddd",
+                    D: "yyyy MMMM' මස 'dd' වැනිදා 'dddd",
                     t: "h:mm tt",
                     T: "h:mm:ss tt",
-                    f: "yyyy MMMM\u0027 මස \u0027dd\u0027 වැනිදා \u0027dddd h:mm tt",
-                    F: "yyyy MMMM\u0027 මස \u0027dd\u0027 වැනිදා \u0027dddd h:mm:ss tt"
+                    f: "yyyy MMMM' මස 'dd' වැනිදා 'dddd h:mm tt",
+                    F: "yyyy MMMM' මස 'dd' වැනිදා 'dddd h:mm:ss tt"
                 }
             })
         }
@@ -9283,8 +10966,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["ᓈᑦᑏᖑᔭ","ᓇᒡᒐᔾᔭᐅ","ᐊᐃᑉᐱᖅ","ᐱᖓᑦᓯᖅ","ᓯᑕᒻᒥᖅ","ᑕᓪᓕᕐᒥᖅ","ᓯᕙᑖᕐᕕᒃ"],["ᓈᑦᑏ","ᓇᒡᒐ","ᐊᐃᑉᐱ","ᐱᖓᑦᓯ","ᓯᑕ","ᑕᓪᓕ","ᓯᕙᑖᕐᕕᒃ"],["ᓈ","ᓇ","ᐊ","ᐱ","ᓯ","ᑕ","ᓯ"]],
-                months: [["ᔮᓐᓄᐊᕆ","ᕖᕝᕗᐊᕆ","ᒫᑦᓯ","ᐄᐳᕆ","ᒪᐃ","ᔫᓂ","ᔪᓚᐃ","ᐋᒡᒌᓯ","ᓯᑎᐱᕆ","ᐅᑐᐱᕆ","ᓄᕕᐱᕆ","ᑎᓯᐱᕆ",""],["ᔮᓐᓄ","ᕖᕝᕗ","ᒫᑦᓯ","ᐄᐳᕆ","ᒪᐃ","ᔫᓂ","ᔪᓚᐃ","ᐋᒡᒌ","ᓯᑎᐱ","ᐅᑐᐱ","ᓄᕕᐱ","ᑎᓯᐱ",""]],
+                days: {
+                    names: ["ᓈᑦᑏᖑᔭ","ᓇᒡᒐᔾᔭᐅ","ᐊᐃᑉᐱᖅ","ᐱᖓᑦᓯᖅ","ᓯᑕᒻᒥᖅ","ᑕᓪᓕᕐᒥᖅ","ᓯᕙᑖᕐᕕᒃ"],
+                    namesAbbr: ["ᓈᑦᑏ","ᓇᒡᒐ","ᐊᐃᑉᐱ","ᐱᖓᑦᓯ","ᓯᑕ","ᑕᓪᓕ","ᓯᕙᑖᕐᕕᒃ"],
+                    namesShort: ["ᓈ","ᓇ","ᐊ","ᐱ","ᓯ","ᑕ","ᓯ"]
+                },
+                months: {
+                    names: ["ᔮᓐᓄᐊᕆ","ᕖᕝᕗᐊᕆ","ᒫᑦᓯ","ᐄᐳᕆ","ᒪᐃ","ᔫᓂ","ᔪᓚᐃ","ᐋᒡᒌᓯ","ᓯᑎᐱᕆ","ᐅᑐᐱᕆ","ᓄᕕᐱᕆ","ᑎᓯᐱᕆ",""],
+                    namesAbbr: ["ᔮᓐᓄ","ᕖᕝᕗ","ᒫᑦᓯ","ᐄᐳᕆ","ᒪᐃ","ᔫᓂ","ᔪᓚᐃ","ᐋᒡᒌ","ᓯᑎᐱ","ᐅᑐᐱ","ᓄᕕᐱ","ᑎᓯᐱ",""]
+                },
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd,MMMM dd,yyyy",
@@ -9320,18 +11010,25 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["እሑድ","ሰኞ","ማክሰኞ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],["እሑድ","ሰኞ","ማክሰ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],["እ","ሰ","ማ","ረ","ሐ","ዓ","ቅ"]],
-                months: [["ጃንዩወሪ","ፌብሩወሪ","ማርች","ኤፕረል","ሜይ","ጁን","ጁላይ","ኦገስት","ሴፕቴምበር","ኦክተውበር","ኖቬምበር","ዲሴምበር",""],["ጃንዩ","ፌብሩ","ማርች","ኤፕረ","ሜይ","ጁን","ጁላይ","ኦገስ","ሴፕቴ","ኦክተ","ኖቬም","ዲሴም",""]],
+                days: {
+                    names: ["እሑድ","ሰኞ","ማክሰኞ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],
+                    namesAbbr: ["እሑድ","ሰኞ","ማክሰ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],
+                    namesShort: ["እ","ሰ","ማ","ረ","ሐ","ዓ","ቅ"]
+                },
+                months: {
+                    names: ["ጃንዩወሪ","ፌብሩወሪ","ማርች","ኤፕረል","ሜይ","ጁን","ጁላይ","ኦገስት","ሴፕቴምበር","ኦክተውበር","ኖቬምበር","ዲሴምበር",""],
+                    namesAbbr: ["ጃንዩ","ፌብሩ","ማርች","ኤፕረ","ሜይ","ጁን","ጁላይ","ኦገስ","ሴፕቴ","ኦክተ","ኖቬም","ዲሴም",""]
+                },
                 AM: ["ጡዋት","ጡዋት","ጡዋት"],
                 PM: ["ከሰዓት","ከሰዓት","ከሰዓት"],
                 eras: [{"name":"ዓመተ  ምሕረት","start":null,"offset":0}],
                 patterns: {
                     d: "d/M/yyyy",
-                    D: "dddd \u0027፣\u0027 MMMM d \u0027ቀን\u0027 yyyy",
+                    D: "dddd '፣' MMMM d 'ቀን' yyyy",
                     t: "h:mm tt",
                     T: "h:mm:ss tt",
-                    f: "dddd \u0027፣\u0027 MMMM d \u0027ቀን\u0027 yyyy h:mm tt",
-                    F: "dddd \u0027፣\u0027 MMMM d \u0027ቀን\u0027 yyyy h:mm:ss tt",
+                    f: "dddd '፣' MMMM d 'ቀን' yyyy h:mm tt",
+                    F: "dddd '፣' MMMM d 'ቀን' yyyy h:mm:ss tt",
                     M: "MMMM d ቀን",
                     Y: "MMMM yyyy"
                 }
@@ -9358,8 +11055,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["आइतवार","सोमवार","मङ्गलवार","बुधवार","बिहीवार","शुक्रवार","शनिवार"],["आइत","सोम","मङ्गल","बुध","बिही","शुक्र","शनि"],["आ","सो","म","बु","बि","शु","श"]],
-                months: [["जनवरी","फेब्रुअरी","मार्च","अप्रिल","मे","जून","जुलाई","अगस्त","सेप्टेम्बर","अक्टोबर","नोभेम्बर","डिसेम्बर",""],["जन","फेब","मार्च","अप्रिल","मे","जून","जुलाई","अग","सेप्ट","अक्ट","नोभ","डिस",""]],
+                days: {
+                    names: ["आइतवार","सोमवार","मङ्गलवार","बुधवार","बिहीवार","शुक्रवार","शनिवार"],
+                    namesAbbr: ["आइत","सोम","मङ्गल","बुध","बिही","शुक्र","शनि"],
+                    namesShort: ["आ","सो","म","बु","बि","शु","श"]
+                },
+                months: {
+                    names: ["जनवरी","फेब्रुअरी","मार्च","अप्रिल","मे","जून","जुलाई","अगस्त","सेप्टेम्बर","अक्टोबर","नोभेम्बर","डिसेम्बर",""],
+                    namesAbbr: ["जन","फेब","मार्च","अप्रिल","मे","जून","जुलाई","अग","सेप्ट","अक्ट","नोभ","डिस",""]
+                },
                 AM: ["विहानी","विहानी","विहानी"],
                 PM: ["बेलुकी","बेलुकी","बेलुकी"],
                 eras: [{"name":"a.d.","start":null,"offset":0}],
@@ -9400,8 +11104,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["Snein","Moandei","Tiisdei","Woansdei","Tongersdei","Freed","Sneon"],["Sn","Mo","Ti","Wo","To","Fr","Sn"],["S","M","T","W","T","F","S"]],
-                months: [["jannewaris","febrewaris","maart","april","maaie","juny","july","augustus","septimber","oktober","novimber","desimber",""],["jann","febr","mrt","apr","maaie","jun","jul","aug","sept","okt","nov","des",""]],
+                days: {
+                    names: ["Snein","Moandei","Tiisdei","Woansdei","Tongersdei","Freed","Sneon"],
+                    namesAbbr: ["Sn","Mo","Ti","Wo","To","Fr","Sn"],
+                    namesShort: ["S","M","T","W","T","F","S"]
+                },
+                months: {
+                    names: ["jannewaris","febrewaris","maart","april","maaie","juny","july","augustus","septimber","oktober","novimber","desimber",""],
+                    namesAbbr: ["jann","febr","mrt","apr","maaie","jun","jul","aug","sept","okt","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -9444,8 +11155,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["غ.م","غ.م","غ.م"],
                 PM: ["غ.و","غ.و","غ.و"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -9536,8 +11254,15 @@
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["یکشنبه","دوشنبه","سه‌شنبه","چارشنبه","پنجشنبه","جمعه","شنبه"],["یکشنبه","دوشنبه","سه‌شنبه","چارشنبه","پنجشنبه","جمعه","شنبه"],["ی","د","س","چ","پ","ج","ش"]],
-                months: [["سلواغه","كب","ورى","غويى","غبرګولى","چنګا ښزمرى","زمرى","وږى","تله","لړم","لنڈ ۍ","مرغومى",""],["سلواغه","كب","ورى","غويى","غبرګولى","چنګا ښ","زمرى","وږى","تله","لړم","لنڈ ۍ","مرغومى",""]],
+                days: {
+                    names: ["یکشنبه","دوشنبه","سه‌شنبه","چارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesAbbr: ["یکشنبه","دوشنبه","سه‌شنبه","چارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesShort: ["ی","د","س","چ","پ","ج","ش"]
+                },
+                months: {
+                    names: ["سلواغه","كب","ورى","غويى","غبرګولى","چنګا ښزمرى","زمرى","وږى","تله","لړم","لنڈ ۍ","مرغومى",""],
+                    namesAbbr: ["سلواغه","كب","ورى","غويى","غبرګولى","چنګا ښ","زمرى","وږى","تله","لړم","لنڈ ۍ","مرغومى",""]
+                },
                 AM: ["غ.م","غ.م","غ.م"],
                 PM: ["غ.و","غ.و","غ.و"],
                 eras: [{"name":"ل.ه","start":null,"offset":0}],
@@ -9568,8 +11293,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Linggo","Lunes","Martes","Mierkoles","Huebes","Biernes","Sabado"],["Lin","Lun","Mar","Mier","Hueb","Bier","Saba"],["L","L","M","M","H","B","S"]],
-                months: [["Enero","Pebrero","Marso","Abril","Mayo","Hunyo","Hulyo","Agosto","Septyembre","Oktubre","Nobyembre","Disyembre",""],["En","Peb","Mar","Abr","Mayo","Hun","Hul","Agos","Sept","Okt","Nob","Dis",""]],
+                days: {
+                    names: ["Linggo","Lunes","Martes","Mierkoles","Huebes","Biernes","Sabado"],
+                    namesAbbr: ["Lin","Lun","Mar","Mier","Hueb","Bier","Saba"],
+                    namesShort: ["L","L","M","M","H","B","S"]
+                },
+                months: {
+                    names: ["Enero","Pebrero","Marso","Abril","Mayo","Hunyo","Hulyo","Agosto","Septyembre","Oktubre","Nobyembre","Disyembre",""],
+                    namesAbbr: ["En","Peb","Mar","Abr","Mayo","Hun","Hul","Agos","Sept","Okt","Nob","Dis",""]
+                },
                 eras: [{"name":"Anno Domini","start":null,"offset":0}],
                 patterns: {
                     d: "M/d/yyyy",
@@ -9599,8 +11331,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Hijri",
-                days: [["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],["އާ","ހޯ","އަ","ބު","ބު","ހު","ހޮ"]],
-                months: [["މުޙައްރަމް","ޞަފަރު","ރަބީޢުލްއައްވަލް","ރަބީޢުލްއާޚިރު","ޖުމާދަލްއޫލާ","ޖުމާދަލްއާޚިރާ","ރަޖަބް","ޝަޢްބާން","ރަމަޟާން","ޝައްވާލް","ޛުލްޤަޢިދާ","ޛުލްޙިއްޖާ",""],["މުޙައްރަމް","ޞަފަރު","ރަބީޢުލްއައްވަލް","ރަބީޢުލްއާޚިރު","ޖުމާދަލްއޫލާ","ޖުމާދަލްއާޚިރާ","ރަޖަބް","ޝަޢްބާން","ރަމަޟާން","ޝައްވާލް","ޛުލްޤަޢިދާ","ޛުލްޙިއްޖާ",""]],
+                days: {
+                    names: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
+                    namesAbbr: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
+                    namesShort: ["އާ","ހޯ","އަ","ބު","ބު","ހު","ހޮ"]
+                },
+                months: {
+                    names: ["މުޙައްރަމް","ޞަފަރު","ރަބީޢުލްއައްވަލް","ރަބީޢުލްއާޚިރު","ޖުމާދަލްއޫލާ","ޖުމާދަލްއާޚިރާ","ރަޖަބް","ޝަޢްބާން","ރަމަޟާން","ޝައްވާލް","ޛުލްޤަޢިދާ","ޛުލްޙިއްޖާ",""],
+                    namesAbbr: ["މުޙައްރަމް","ޞަފަރު","ރަބީޢުލްއައްވަލް","ރަބީޢުލްއާޚިރު","ޖުމާދަލްއޫލާ","ޖުމާދަލްއާޚިރާ","ރަޖަބް","ޝަޢްބާން","ރަމަޟާން","ޝައްވާލް","ޛުލްޤަޢިދާ","ޛުލްޙިއްޖާ",""]
+                },
                 AM: ["މކ","މކ","މކ"],
                 PM: ["މފ","މފ","މފ"],
                 eras: [{"name":"ހިޖްރީ","start":null,"offset":0}],
@@ -9688,8 +11427,15 @@
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],["އާ","ހޯ","އަ","ބު","ބު","ހު","ހޮ"]],
-                months: [["ޖަނަވަރީ","ފެބްރުއަރީ","މާޗް","އޭޕްރިލް","މެއި","ޖޫން","ޖުލައި","އޯގަސްޓް","ސެޕްޓެމްބަރ","އޮކްޓޯބަރ","ނޮވެމްބަރ","ޑިސެމްބަރ",""],["ޖަނަވަރީ","ފެބްރުއަރީ","މާޗް","އޭޕްރިލް","މެއި","ޖޫން","ޖުލައި","އޯގަސްޓް","ސެޕްޓެމްބަރ","އޮކްޓޯބަރ","ނޮވެމްބަރ","ޑިސެމްބަރ",""]],
+                days: {
+                    names: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
+                    namesAbbr: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
+                    namesShort: ["އާ","ހޯ","އަ","ބު","ބު","ހު","ހޮ"]
+                },
+                months: {
+                    names: ["ޖަނަވަރީ","ފެބްރުއަރީ","މާޗް","އޭޕްރިލް","މެއި","ޖޫން","ޖުލައި","އޯގަސްޓް","ސެޕްޓެމްބަރ","އޮކްޓޯބަރ","ނޮވެމްބަރ","ޑިސެމްބަރ",""],
+                    namesAbbr: ["ޖަނަވަރީ","ފެބްރުއަރީ","މާޗް","އޭޕްރިލް","މެއި","ޖޫން","ޖުލައި","އޯގަސްޓް","ސެޕްޓެމްބަރ","އޮކްޓޯބަރ","ނޮވެމްބަރ","ޑިސެމްބަރ",""]
+                },
                 AM: ["މކ","މކ","މކ"],
                 PM: ["މފ","މފ","މފ"],
                 eras: [{"name":"މީލާދީ","start":null,"offset":0}],
@@ -9718,8 +11464,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Lahadi","Litinin","Talata","Laraba","Alhamis","Juma\u0027a","Asabar"],["Lah","Lit","Tal","Lar","Alh","Jum","Asa"],["L","L","T","L","A","J","A"]],
-                months: [["Januwaru","Febreru","Maris","Afrilu","Mayu","Yuni","Yuli","Agusta","Satumba","Oktocba","Nuwamba","Disamba",""],["Jan","Feb","Mar","Afr","May","Yun","Yul","Agu","Sat","Okt","Nuw","Dis",""]],
+                days: {
+                    names: ["Lahadi","Litinin","Talata","Laraba","Alhamis","Juma'a","Asabar"],
+                    namesAbbr: ["Lah","Lit","Tal","Lar","Alh","Jum","Asa"],
+                    namesShort: ["L","L","T","L","A","J","A"]
+                },
+                months: {
+                    names: ["Januwaru","Febreru","Maris","Afrilu","Mayu","Yuni","Yuli","Agusta","Satumba","Oktocba","Nuwamba","Disamba",""],
+                    namesAbbr: ["Jan","Feb","Mar","Afr","May","Yun","Yul","Agu","Sat","Okt","Nuw","Dis",""]
+                },
                 AM: ["Safe","safe","SAFE"],
                 PM: ["Yamma","yamma","YAMMA"],
                 eras: [{"name":"AD","start":null,"offset":0}],
@@ -9750,8 +11503,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Aiku","Aje","Isegun","Ojo\u0027ru","Ojo\u0027bo","Eti","Abameta"],["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],["A","A","I","O","O","E","A"]],
-                months: [["Osu kinni","Osu keji","Osu keta","Osu kerin","Osu karun","Osu kefa","Osu keje","Osu kejo","Osu kesan","Osu kewa","Osu kokanla","Osu keresi",""],["kin.","kej.","ket.","ker.","kar.","kef.","kej.","kej.","kes.","kew.","kok.","ker.",""]],
+                days: {
+                    names: ["Aiku","Aje","Isegun","Ojo'ru","Ojo'bo","Eti","Abameta"],
+                    namesAbbr: ["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],
+                    namesShort: ["A","A","I","O","O","E","A"]
+                },
+                months: {
+                    names: ["Osu kinni","Osu keji","Osu keta","Osu kerin","Osu karun","Osu kefa","Osu keje","Osu kejo","Osu kesan","Osu kewa","Osu kokanla","Osu keresi",""],
+                    namesAbbr: ["kin.","kej.","ket.","ker.","kar.","kef.","kej.","kej.","kes.","kew.","kok.","ker.",""]
+                },
                 AM: ["Owuro","owuro","OWURO"],
                 PM: ["Ale","ale","ALE"],
                 eras: [{"name":"AD","start":null,"offset":0}],
@@ -9791,18 +11551,25 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["intichaw","killachaw","atipachaw","quyllurchaw","Ch\u0027 askachaw","Illapachaw","k\u0027uychichaw"],["int","kil","ati","quy","Ch\u0027","Ill","k\u0027u"],["d","k","a","m","h","b","k"]],
-                months: [["Qulla puquy","Hatun puquy","Pauqar waray","ayriwa","Aymuray","Inti raymi","Anta Sitwa","Qhapaq Sitwa","Uma raymi","Kantaray","Ayamarq\u0027a","Kapaq Raymi",""],["Qul","Hat","Pau","ayr","Aym","Int","Ant","Qha","Uma","Kan","Aya","Kap",""]],
+                days: {
+                    names: ["intichaw","killachaw","atipachaw","quyllurchaw","Ch' askachaw","Illapachaw","k'uychichaw"],
+                    namesAbbr: ["int","kil","ati","quy","Ch'","Ill","k'u"],
+                    namesShort: ["d","k","a","m","h","b","k"]
+                },
+                months: {
+                    names: ["Qulla puquy","Hatun puquy","Pauqar waray","ayriwa","Aymuray","Inti raymi","Anta Sitwa","Qhapaq Sitwa","Uma raymi","Kantaray","Ayamarq'a","Kapaq Raymi",""],
+                    namesAbbr: ["Qul","Hat","Pau","ayr","Aym","Int","Ant","Qha","Uma","Kan","Aya","Kap",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -9825,8 +11592,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Lamorena","Mošupologo","Labobedi","Laboraro","Labone","Labohlano","Mokibelo"],["Lam","Moš","Lbb","Lbr","Lbn","Lbh","Mok"],["L","M","L","L","L","L","M"]],
-                months: [["Pherekgong","Hlakola","Mopitlo","Moranang","Mosegamanye","Ngoatobošego","Phuphu","Phato","Lewedi","Diphalana","Dibatsela","Manthole",""],["Pher","Hlak","Mop","Mor","Mos","Ngwat","Phup","Phat","Lew","Dip","Dib","Man",""]],
+                days: {
+                    names: ["Lamorena","Mošupologo","Labobedi","Laboraro","Labone","Labohlano","Mokibelo"],
+                    namesAbbr: ["Lam","Moš","Lbb","Lbr","Lbn","Lbh","Mok"],
+                    namesShort: ["L","M","L","L","L","L","M"]
+                },
+                months: {
+                    names: ["Pherekgong","Hlakola","Mopitlo","Moranang","Mosegamanye","Ngoatobošego","Phuphu","Phato","Lewedi","Diphalana","Dibatsela","Manthole",""],
+                    namesAbbr: ["Pher","Hlak","Mop","Mor","Mos","Ngwat","Phup","Phat","Lew","Dip","Dib","Man",""]
+                },
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",
@@ -9869,17 +11643,24 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Йәкшәмбе","Дүшәмбе","Шишәмбе","Шаршамбы","Кесаҙна","Йома","Шәмбе"],["Йш","Дш","Шш","Шр","Кс","Йм","Шб"],["Йш","Дш","Шш","Шр","Кс","Йм","Шб"]],
-                months: [["ғинуар","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь",""],["ғин","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]],
+                days: {
+                    names: ["Йәкшәмбе","Дүшәмбе","Шишәмбе","Шаршамбы","Кесаҙна","Йома","Шәмбе"],
+                    namesAbbr: ["Йш","Дш","Шш","Шр","Кс","Йм","Шб"],
+                    namesShort: ["Йш","Дш","Шш","Шр","Кс","Йм","Шб"]
+                },
+                months: {
+                    names: ["ғинуар","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь",""],
+                    namesAbbr: ["ғин","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yy",
-                    D: "d MMMM yyyy \u0027й\u0027",
+                    D: "d MMMM yyyy 'й'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "d MMMM yyyy \u0027й\u0027 H:mm",
-                    F: "d MMMM yyyy \u0027й\u0027 H:mm:ss",
+                    f: "d MMMM yyyy 'й' H:mm",
+                    F: "d MMMM yyyy 'й' H:mm:ss",
                     Y: "MMMM yyyy"
                 }
             })
@@ -9909,8 +11690,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Sonndeg","Méindeg","Dënschdeg","Mëttwoch","Donneschdeg","Freideg","Samschdeg"],["Son","Méi","Dën","Mët","Don","Fre","Sam"],["So","Mé","Dë","Më","Do","Fr","Sa"]],
-                months: [["Januar","Februar","Mäerz","Abrëll","Mee","Juni","Juli","August","September","Oktober","November","Dezember",""],["Jan","Feb","Mäe","Abr","Mee","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]],
+                days: {
+                    names: ["Sonndeg","Méindeg","Dënschdeg","Mëttwoch","Donneschdeg","Freideg","Samschdeg"],
+                    namesAbbr: ["Son","Méi","Dën","Mët","Don","Fre","Sam"],
+                    namesShort: ["So","Mé","Dë","Më","Do","Fr","Sa"]
+                },
+                months: {
+                    names: ["Januar","Februar","Mäerz","Abrëll","Mee","Juni","Juli","August","September","Oktober","November","Dezember",""],
+                    namesAbbr: ["Jan","Feb","Mäe","Abr","Mee","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. Chr","start":null,"offset":0}],
@@ -9953,8 +11741,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["sapaat","ataasinngorneq","marlunngorneq","pingasunngorneq","sisamanngorneq","tallimanngorneq","arfininngorneq"],["sap","ata","mar","ping","sis","tal","arf"],["sa","at","ma","pi","si","ta","ar"]],
-                months: [["januari","februari","martsi","apriili","maaji","juni","juli","aggusti","septembari","oktobari","novembari","decembari",""],["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["sapaat","ataasinngorneq","marlunngorneq","pingasunngorneq","sisamanngorneq","tallimanngorneq","arfininngorneq"],
+                    namesAbbr: ["sap","ata","mar","ping","sis","tal","arf"],
+                    namesShort: ["sa","at","ma","pi","si","ta","ar"]
+                },
+                months: {
+                    names: ["januari","februari","martsi","apriili","maaji","juni","juli","aggusti","septembari","oktobari","novembari","decembari",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -9983,8 +11778,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Aiku","Aje","Isegun","Ojo\u0027ru","Ojo\u0027bo","Eti","Abameta"],["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],["A","A","I","O","O","E","A"]],
-                months: [["Onwa mbu","Onwa ibua","Onwa ato","Onwa ano","Onwa ise","Onwa isi","Onwa asa","Onwa asato","Onwa itolu","Onwa iri","Onwa iri n\u0027ofu","Onwa iri n\u0027ibua",""],["mbu.","ibu.","ato.","ano.","ise","isi","asa","asa.","ito.","iri.","n\u0027of.","n\u0027ib.",""]],
+                days: {
+                    names: ["Aiku","Aje","Isegun","Ojo'ru","Ojo'bo","Eti","Abameta"],
+                    namesAbbr: ["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],
+                    namesShort: ["A","A","I","O","O","E","A"]
+                },
+                months: {
+                    names: ["Onwa mbu","Onwa ibua","Onwa ato","Onwa ano","Onwa ise","Onwa isi","Onwa asa","Onwa asato","Onwa itolu","Onwa iri","Onwa iri n'ofu","Onwa iri n'ibua",""],
+                    namesAbbr: ["mbu.","ibu.","ato.","ano.","ise","isi","asa","asa.","ito.","iri.","n'of.","n'ib.",""]
+                },
                 AM: ["Ututu","ututu","UTUTU"],
                 PM: ["Efifie","efifie","EFIFIE"],
                 eras: [{"name":"AD","start":null,"offset":0}],
@@ -10021,20 +11823,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["ꑭꆏꑍ","ꆏꊂ꒔","ꆏꊂꑍ","ꆏꊂꌕ","ꆏꊂꇖ","ꆏꊂꉬ","ꆏꊂꃘ"],["ꑭꆏ","ꆏ꒔","ꆏꑍ","ꆏꌕ","ꆏꇖ","ꆏꉬ","ꆏꃘ"],["ꆏ","꒔","ꑍ","ꌕ","ꇖ","ꉬ","ꃘ"]],
-                months: [["ꋍꆪ","ꑍꆪ","ꌕꆪ","ꇖꆪ","ꉬꆪ","ꃘꆪ","ꏃꆪ","ꉆꆪ","ꈬꆪ","ꊰꆪ","ꊯꊪꆪ","ꊰꑋꆪ",""],["ꋍꆪ","ꑍꆪ","ꌕꆪ","ꇖꆪ","ꉬꆪ","ꃘꆪ","ꏃꆪ","ꉆꆪ","ꈬꆪ","ꊰꆪ","ꊯꊪꆪ","ꊰꑋꆪ",""]],
+                days: {
+                    names: ["ꑭꆏꑍ","ꆏꊂ꒔","ꆏꊂꑍ","ꆏꊂꌕ","ꆏꊂꇖ","ꆏꊂꉬ","ꆏꊂꃘ"],
+                    namesAbbr: ["ꑭꆏ","ꆏ꒔","ꆏꑍ","ꆏꌕ","ꆏꇖ","ꆏꉬ","ꆏꃘ"],
+                    namesShort: ["ꆏ","꒔","ꑍ","ꌕ","ꇖ","ꉬ","ꃘ"]
+                },
+                months: {
+                    names: ["ꋍꆪ","ꑍꆪ","ꌕꆪ","ꇖꆪ","ꉬꆪ","ꃘꆪ","ꏃꆪ","ꉆꆪ","ꈬꆪ","ꊰꆪ","ꊯꊪꆪ","ꊰꑋꆪ",""],
+                    namesAbbr: ["ꋍꆪ","ꑍꆪ","ꌕꆪ","ꇖꆪ","ꉬꆪ","ꃘꆪ","ꏃꆪ","ꉆꆪ","ꈬꆪ","ꊰꆪ","ꊯꊪꆪ","ꊰꑋꆪ",""]
+                },
                 AM: ["ꂵꆪꈌꈐ","ꂵꆪꈌꈐ","ꂵꆪꈌꈐ"],
                 PM: ["ꂵꆪꈌꉈ","ꂵꆪꈌꉈ","ꂵꆪꈌꉈ"],
                 eras: [{"name":"ꇬꑼ","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027ꈎ\u0027 M\u0027ꆪ\u0027 d\u0027ꑍ\u0027",
+                    D: "yyyy'ꈎ' M'ꆪ' d'ꑍ'",
                     t: "tt h:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027ꈎ\u0027 M\u0027ꆪ\u0027 d\u0027ꑍ\u0027 tt h:mm",
-                    F: "yyyy\u0027ꈎ\u0027 M\u0027ꆪ\u0027 d\u0027ꑍ\u0027 H:mm:ss",
-                    M: "M\u0027ꆪ\u0027 d\u0027ꑍ\u0027",
-                    Y: "yyyy\u0027ꈎ\u0027 M\u0027ꆪ\u0027"
+                    f: "yyyy'ꈎ' M'ꆪ' d'ꑍ' tt h:mm",
+                    F: "yyyy'ꈎ' M'ꆪ' d'ꑍ' H:mm:ss",
+                    M: "M'ꆪ' d'ꑍ'",
+                    Y: "yyyy'ꈎ' M'ꆪ'"
                 }
             })
         }
@@ -10063,20 +11872,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd-MM-yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm:ss",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy H:mm",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy H:mm:ss",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -10085,7 +11901,7 @@
     culture = cultures["moh-CA"] = $.extend(true, {}, invariant, {
         name: "moh-CA",
         englishName: "Mohawk (Mohawk)",
-        nativeName: "Kanien\u0027kéha",
+        nativeName: "Kanien'kéha",
         language: "moh",
         numberFormat: {
             groupSizes: [3,0],
@@ -10099,8 +11915,13 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Awentatokentì:ke","Awentataón\u0027ke","Ratironhia\u0027kehronòn:ke","Soséhne","Okaristiiáhne","Ronwaia\u0027tanentaktonhne","Entákta"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],["S","M","T","W","T","F","S"]],
-                months: [["Tsothohrkó:Wa","Enniska","Enniskó:Wa","Onerahtókha","Onerahtohkó:Wa","Ohiari:Ha","Ohiarihkó:Wa","Seskéha","Seskehkó:Wa","Kenténha","Kentenhkó:Wa","Tsothóhrha",""],["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]],
+                days: {
+                    names: ["Awentatokentì:ke","Awentataón'ke","Ratironhia'kehronòn:ke","Soséhne","Okaristiiáhne","Ronwaia'tanentaktonhne","Entákta"],
+                    namesShort: ["S","M","T","W","T","F","S"]
+                },
+                months: {
+                    names: ["Tsothohrkó:Wa","Enniska","Enniskó:Wa","Onerahtókha","Onerahtohkó:Wa","Ohiari:Ha","Ohiarihkó:Wa","Seskéha","Seskehkó:Wa","Kenténha","Kentenhkó:Wa","Tsothóhrha",""]
+                },
                 patterns: {
                     d: "M/d/yyyy",
                     D: "dddd, MMMM dd, yyyy",
@@ -10137,8 +11958,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Sul","Lun","Meurzh","Merc\u0027her","Yaou","Gwener","Sadorn"],["Sul","Lun","Meu.","Mer.","Yaou","Gwe.","Sad."],["Su","Lu","Mz","Mc","Ya","Gw","Sa"]],
-                months: [["Genver","C\u0027hwevrer","Meurzh","Ebrel","Mae","Mezheven","Gouere","Eost","Gwengolo","Here","Du","Kerzu",""],["Gen.","C\u0027hwe.","Meur.","Ebr.","Mae","Mezh.","Goue.","Eost","Gwen.","Here","Du","Kzu",""]],
+                days: {
+                    names: ["Sul","Lun","Meurzh","Merc'her","Yaou","Gwener","Sadorn"],
+                    namesAbbr: ["Sul","Lun","Meu.","Mer.","Yaou","Gwe.","Sad."],
+                    namesShort: ["Su","Lu","Mz","Mc","Ya","Gw","Sa"]
+                },
+                months: {
+                    names: ["Genver","C'hwevrer","Meurzh","Ebrel","Mae","Mezheven","Gouere","Eost","Gwengolo","Here","Du","Kerzu",""],
+                    namesAbbr: ["Gen.","C'hwe.","Meur.","Ebr.","Mae","Mezh.","Goue.","Eost","Gwen.","Here","Du","Kzu",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"g. J.-K.","start":null,"offset":0}],
@@ -10173,20 +12001,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["يەكشەنبە","دۈشەنبە","سەيشەنبە","چارشەنبە","پەيشەنبە","جۈمە","شەنبە"],["يە","دۈ","سە","چا","پە","جۈ","شە"],["ي","د","س","چ","پ","ج","ش"]],
-                months: [["1-ئاي","2-ئاي","3-ئاي","4-ئاي","5-ئاي","6-ئاي","7-ئاي","8-ئاي","9-ئاي","10-ئاي","11-ئاي","12-ئاي",""],["1-ئاي","2-ئاي","3-ئاي","4-ئاي","5-ئاي","6-ئاي","7-ئاي","8-ئاي","9-ئاي","10-ئاي","11-ئاي","12-ئاي",""]],
+                days: {
+                    names: ["يەكشەنبە","دۈشەنبە","سەيشەنبە","چارشەنبە","پەيشەنبە","جۈمە","شەنبە"],
+                    namesAbbr: ["يە","دۈ","سە","چا","پە","جۈ","شە"],
+                    namesShort: ["ي","د","س","چ","پ","ج","ش"]
+                },
+                months: {
+                    names: ["1-ئاي","2-ئاي","3-ئاي","4-ئاي","5-ئاي","6-ئاي","7-ئاي","8-ئاي","9-ئاي","10-ئاي","11-ئاي","12-ئاي",""],
+                    namesAbbr: ["1-ئاي","2-ئاي","3-ئاي","4-ئاي","5-ئاي","6-ئاي","7-ئاي","8-ئاي","9-ئاي","10-ئاي","11-ئاي","12-ئاي",""]
+                },
                 AM: ["چۈشتىن بۇرۇن","چۈشتىن بۇرۇن","چۈشتىن بۇرۇن"],
                 PM: ["چۈشتىن كېيىن","چۈشتىن كېيىن","چۈشتىن كېيىن"],
                 eras: [{"name":"مىلادى","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy-M-d",
-                    D: "yyyy-\u0027يىلى\u0027 MMMM d-\u0027كۈنى،\u0027",
+                    D: "yyyy-'يىلى' MMMM d-'كۈنى،'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy-\u0027يىلى\u0027 MMMM d-\u0027كۈنى،\u0027 H:mm",
-                    F: "yyyy-\u0027يىلى\u0027 MMMM d-\u0027كۈنى،\u0027 H:mm:ss",
-                    M: "MMMM d\u0027-كۈنى\u0027",
-                    Y: "yyyy-\u0027يىلى\u0027 MMMM"
+                    f: "yyyy-'يىلى' MMMM d-'كۈنى،' H:mm",
+                    F: "yyyy-'يىلى' MMMM d-'كۈنى،' H:mm:ss",
+                    M: "MMMM d'-كۈنى'",
+                    Y: "yyyy-'يىلى' MMMM"
                 }
             })
         }
@@ -10210,8 +12045,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Rātapu","Rāhina","Rātū","Rāapa","Rāpare","Rāmere","Rāhoroi"],["Ta","Hi","Tū","Apa","Pa","Me","Ho"],["Ta","Hi","Tū","Aa","Pa","Me","Ho"]],
-                months: [["Kohi-tātea","Hui-tanguru","Poutū-te-rangi","Paenga-whāwhā","Haratua","Pipiri","Hōngongoi","Here-turi-kōkā","Mahuru","Whiringa-ā-nuku","Whiringa-ā-rangi","Hakihea",""],["Kohi","Hui","Pou","Pae","Hara","Pipi","Hōngo","Here","Mahu","Nuku","Rangi","Haki",""]],
+                days: {
+                    names: ["Rātapu","Rāhina","Rātū","Rāapa","Rāpare","Rāmere","Rāhoroi"],
+                    namesAbbr: ["Ta","Hi","Tū","Apa","Pa","Me","Ho"],
+                    namesShort: ["Ta","Hi","Tū","Aa","Pa","Me","Ho"]
+                },
+                months: {
+                    names: ["Kohi-tātea","Hui-tanguru","Poutū-te-rangi","Paenga-whāwhā","Haratua","Pipiri","Hōngongoi","Here-turi-kōkā","Mahuru","Whiringa-ā-nuku","Whiringa-ā-rangi","Hakihea",""],
+                    namesAbbr: ["Kohi","Hui","Pou","Pae","Hara","Pipi","Hōngo","Here","Mahu","Nuku","Rangi","Haki",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 patterns: {
@@ -10251,17 +12093,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dimenge","diluns","dimars","dimècres","dijòus","divendres","dissabte"],["dim.","lun.","mar.","mèc.","jòu.","ven.","sab."],["di","lu","ma","mè","jò","ve","sa"]],
-                months: [["genier","febrier","març","abril","mai","junh","julh","agost","setembre","octobre","novembre","desembre",""],["gen.","feb.","mar.","abr.","mai.","jun.","jul.","ag.","set.","oct.","nov.","des.",""]],
-                monthsGenitive: [["de genier","de febrier","de març","d\u0027abril","de mai","de junh","de julh","d\u0027agost","de setembre","d\u0027octobre","de novembre","de desembre",""],["gen.","feb.","mar.","abr.","mai.","jun.","jul.","ag.","set.","oct.","nov.","des.",""]],
+                days: {
+                    names: ["dimenge","diluns","dimars","dimècres","dijòus","divendres","dissabte"],
+                    namesAbbr: ["dim.","lun.","mar.","mèc.","jòu.","ven.","sab."],
+                    namesShort: ["di","lu","ma","mè","jò","ve","sa"]
+                },
+                months: {
+                    names: ["genier","febrier","març","abril","mai","junh","julh","agost","setembre","octobre","novembre","desembre",""],
+                    namesAbbr: ["gen.","feb.","mar.","abr.","mai.","jun.","jul.","ag.","set.","oct.","nov.","des.",""]
+                },
+                monthsGenitive: {
+                    names: ["de genier","de febrier","de març","d'abril","de mai","de junh","de julh","d'agost","de setembre","d'octobre","de novembre","de desembre",""],
+                    namesAbbr: ["gen.","feb.","mar.","abr.","mai.","jun.","jul.","ag.","set.","oct.","nov.","des.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"après Jèsus-Crist","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd,\u0027 lo \u0027d MMMM\u0027 de \u0027yyyy",
-                    f: "dddd,\u0027 lo \u0027d MMMM\u0027 de \u0027yyyy HH:mm",
-                    F: "dddd,\u0027 lo \u0027d MMMM\u0027 de \u0027yyyy HH:mm:ss",
+                    D: "dddd,' lo 'd MMMM' de 'yyyy",
+                    f: "dddd,' lo 'd MMMM' de 'yyyy HH:mm",
+                    F: "dddd,' lo 'd MMMM' de 'yyyy HH:mm:ss",
                     M: "d MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -10292,8 +12144,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dumenica","luni","marti","mercuri","ghjovi","venderi","sabbatu"],["dum.","lun.","mar.","mer.","ghj.","ven.","sab."],["du","lu","ma","me","gh","ve","sa"]],
-                months: [["ghjennaghju","ferraghju","marzu","aprile","maghju","ghjunghju","lugliu","aostu","settembre","ottobre","nuvembre","dicembre",""],["ghje","ferr","marz","apri","magh","ghju","lugl","aost","sett","otto","nuve","dice",""]],
+                days: {
+                    names: ["dumenica","luni","marti","mercuri","ghjovi","venderi","sabbatu"],
+                    namesAbbr: ["dum.","lun.","mar.","mer.","ghj.","ven.","sab."],
+                    namesShort: ["du","lu","ma","me","gh","ve","sa"]
+                },
+                months: {
+                    names: ["ghjennaghju","ferraghju","marzu","aprile","maghju","ghjunghju","lugliu","aostu","settembre","ottobre","nuvembre","dicembre",""],
+                    namesAbbr: ["ghje","ferr","marz","apri","magh","ghju","lugl","aost","sett","otto","nuve","dice",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"dopu J-C","start":null,"offset":0}],
@@ -10332,8 +12191,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Sundàà","Mondàà","Dienschdàà","Mittwuch","Dunnerschdàà","Fridàà","Sàmschdàà"],["Su.","Mo.","Di.","Mi.","Du.","Fr.","Sà."],["Su","Mo","Di","Mi","Du","Fr","Sà"]],
-                months: [["Jänner","Feverje","März","Àpril","Mai","Jüni","Jüli","Augscht","September","Oktower","Nowember","Dezember",""],["Jän.","Fev.","März","Apr.","Mai","Jüni","Jüli","Aug.","Sept.","Okt.","Now.","Dez.",""]],
+                days: {
+                    names: ["Sundàà","Mondàà","Dienschdàà","Mittwuch","Dunnerschdàà","Fridàà","Sàmschdàà"],
+                    namesAbbr: ["Su.","Mo.","Di.","Mi.","Du.","Fr.","Sà."],
+                    namesShort: ["Su","Mo","Di","Mi","Du","Fr","Sà"]
+                },
+                months: {
+                    names: ["Jänner","Feverje","März","Àpril","Mai","Jüni","Jüli","Augscht","September","Oktower","Nowember","Dezember",""],
+                    namesAbbr: ["Jän.","Fev.","März","Apr.","Mai","Jüni","Jüli","Aug.","Sept.","Okt.","Now.","Dez.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"Vor J.-C.","start":null,"offset":0}],
@@ -10374,19 +12240,29 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["баскыһыанньа","бэнидиэнньик","оптуорунньук","сэрэдэ","чэппиэр","бээтинсэ","субуота"],["Бс","Бн","Оп","Ср","Чп","Бт","Сб"],["Бс","Бн","Оп","Ср","Чп","Бт","Сб"]],
-                months: [["Тохсунньу","Олунньу","Кулун тутар","Муус устар","Ыам ыйа","Бэс ыйа","От ыйа","Атырдьах ыйа","Балаҕан ыйа","Алтынньы","Сэтинньи","Ахсынньы",""],["тхс","олн","кул","мст","ыам","бэс","отй","атр","блҕ","алт","стн","ахс",""]],
-                monthsGenitive: [["тохсунньу","олунньу","кулун тутар","муус устар","ыам ыйын","бэс ыйын","от ыйын","атырдьах ыйын","балаҕан ыйын","алтынньы","сэтинньи","ахсынньы",""],["тхс","олн","кул","мст","ыам","бэс","отй","атр","блҕ","алт","стн","ахс",""]],
+                days: {
+                    names: ["баскыһыанньа","бэнидиэнньик","оптуорунньук","сэрэдэ","чэппиэр","бээтинсэ","субуота"],
+                    namesAbbr: ["Бс","Бн","Оп","Ср","Чп","Бт","Сб"],
+                    namesShort: ["Бс","Бн","Оп","Ср","Чп","Бт","Сб"]
+                },
+                months: {
+                    names: ["Тохсунньу","Олунньу","Кулун тутар","Муус устар","Ыам ыйа","Бэс ыйа","От ыйа","Атырдьах ыйа","Балаҕан ыйа","Алтынньы","Сэтинньи","Ахсынньы",""],
+                    namesAbbr: ["тхс","олн","кул","мст","ыам","бэс","отй","атр","блҕ","алт","стн","ахс",""]
+                },
+                monthsGenitive: {
+                    names: ["тохсунньу","олунньу","кулун тутар","муус устар","ыам ыйын","бэс ыйын","от ыйын","атырдьах ыйын","балаҕан ыйын","алтынньы","сэтинньи","ахсынньы",""],
+                    namesAbbr: ["тхс","олн","кул","мст","ыам","бэс","отй","атр","блҕ","алт","стн","ахс",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "MM.dd.yyyy",
-                    D: "MMMM d yyyy \u0027с.\u0027",
+                    D: "MMMM d yyyy 'с.'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "MMMM d yyyy \u0027с.\u0027 H:mm",
-                    F: "MMMM d yyyy \u0027с.\u0027 H:mm:ss",
-                    Y: "MMMM yyyy \u0027с.\u0027"
+                    f: "MMMM d yyyy 'с.' H:mm",
+                    F: "MMMM d yyyy 'с.' H:mm:ss",
+                    Y: "MMMM yyyy 'с.'"
                 }
             })
         }
@@ -10394,8 +12270,8 @@
     culture.calendar = culture.calendars.standard;
     culture = cultures["qut-GT"] = $.extend(true, {}, invariant, {
         name: "qut-GT",
-        englishName: "K\u0027iche (Guatemala)",
-        nativeName: "K\u0027iche (Guatemala)",
+        englishName: "K'iche (Guatemala)",
+        nativeName: "K'iche (Guatemala)",
         language: "qut",
         numberFormat: {
             currency: {
@@ -10405,20 +12281,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["juq\u0027ij","kaq\u0027ij","oxq\u0027ij","kajq\u0027ij","joq\u0027ij","waqq\u0027ij","wuqq\u0027ij"],["juq","kaq","oxq","kajq","joq","waqq","wuqq"],["ju","ka","ox","ka","jo","wa","wu"]],
-                months: [["nab\u0027e ik\u0027","ukab\u0027 ik\u0027","rox ik\u0027","ukaj ik\u0027","uro\u0027 ik\u0027","uwaq ik\u0027","uwuq ik\u0027","uwajxaq ik\u0027","ub\u0027elej ik\u0027","ulaj ik\u0027","ujulaj ik\u0027","ukab\u0027laj ik\u0027",""],["nab\u0027e","ukab","rox","ukaj","uro","uwaq","uwuq","uwajxaq","ub\u0027elej","ulaj","ujulaj","ukab\u0027laj",""]],
+                days: {
+                    names: ["juq'ij","kaq'ij","oxq'ij","kajq'ij","joq'ij","waqq'ij","wuqq'ij"],
+                    namesAbbr: ["juq","kaq","oxq","kajq","joq","waqq","wuqq"],
+                    namesShort: ["ju","ka","ox","ka","jo","wa","wu"]
+                },
+                months: {
+                    names: ["nab'e ik'","ukab' ik'","rox ik'","ukaj ik'","uro' ik'","uwaq ik'","uwuq ik'","uwajxaq ik'","ub'elej ik'","ulaj ik'","ujulaj ik'","ukab'laj ik'",""],
+                    namesAbbr: ["nab'e","ukab","rox","ukaj","uro","uwaq","uwuq","uwajxaq","ub'elej","ulaj","ujulaj","ukab'laj",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -10446,8 +12329,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Ku wa mbere","Ku wa kabiri","Ku wa gatatu","Ku wa kane","Ku wa gatanu","Ku wa gatandatu","Ku cyumweru"],["mbe.","kab.","gat.","kan.","gat.","gat.","cyu."],["mb","ka","ga","ka","ga","ga","cy"]],
-                months: [["Mutarama","Gashyantare","Werurwe","Mata","Gicurasi","Kamena","Nyakanga","Kanama","Nzeli","Ukwakira","Ugushyingo","Ukuboza",""],["Mut","Gas","Wer","Mat","Gic","Kam","Nya","Kan","Nze","Ukwa","Ugu","Uku",""]],
+                days: {
+                    names: ["Ku wa mbere","Ku wa kabiri","Ku wa gatatu","Ku wa kane","Ku wa gatanu","Ku wa gatandatu","Ku cyumweru"],
+                    namesAbbr: ["mbe.","kab.","gat.","kan.","gat.","gat.","cyu."],
+                    namesShort: ["mb","ka","ga","ka","ga","ga","cy"]
+                },
+                months: {
+                    names: ["Mutarama","Gashyantare","Werurwe","Mata","Gicurasi","Kamena","Nyakanga","Kanama","Nzeli","Ukwakira","Ugushyingo","Ukuboza",""],
+                    namesAbbr: ["Mut","Gas","Wer","Mat","Gic","Kam","Nya","Kan","Nze","Ukwa","Ugu","Uku",""]
+                },
                 AM: ["saa moya z.m.","saa moya z.m.","SAA MOYA Z.M."],
                 PM: ["saa moya z.n.","saa moya z.n.","SAA MOYA Z.N."],
                 eras: [{"name":"AD","start":null,"offset":0}],
@@ -10487,8 +12377,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -10528,8 +12425,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 5,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["غ.م","غ.م","غ.م"],
                 PM: ["غ.و","غ.و","غ.و"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -10620,8 +12524,15 @@
             Gregorian_Localized: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 5,
-                days: [["یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],["یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],["ی","د","س","چ","پ","ج","ش"]],
-                months: [["سلواغه","كب","ورى","غويى","غبرګولى","چنګاښ","زمرى","وږى","تله","لړم","ليندۍ","مرغومى",""],["سلواغه","كب","ورى","غويى","غبرګولى","چنګاښ","زمرى","وږى","تله","لړم","ليندۍ","مرغومى",""]],
+                days: {
+                    names: ["یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesAbbr: ["یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
+                    namesShort: ["ی","د","س","چ","پ","ج","ش"]
+                },
+                months: {
+                    names: ["سلواغه","كب","ورى","غويى","غبرګولى","چنګاښ","زمرى","وږى","تله","لړم","ليندۍ","مرغومى",""],
+                    namesAbbr: ["سلواغه","كب","ورى","غويى","غبرګولى","چنګاښ","زمرى","وږى","تله","لړم","ليندۍ","مرغومى",""]
+                },
                 AM: ["غ.م","غ.م","غ.م"],
                 PM: ["غ.و","غ.و","غ.و"],
                 eras: [{"name":"ل.ه","start":null,"offset":0}],
@@ -10654,8 +12565,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Didòmhnaich","Diluain","Dimàirt","Diciadain","Diardaoin","Dihaoine","Disathairne"],["Dòm","Lua","Mài","Cia","Ard","Hao","Sat"],["D","L","M","C","A","H","S"]],
-                months: [["Am Faoilleach","An Gearran","Am Màrt","An Giblean","An Cèitean","An t-Ògmhios","An t-Iuchar","An Lùnastal","An t-Sultain","An Dàmhair","An t-Samhain","An Dùbhlachd",""],["Fao","Gea","Màr","Gib","Cèi","Ògm","Iuc","Lùn","Sul","Dàm","Sam","Dùb",""]],
+                days: {
+                    names: ["Didòmhnaich","Diluain","Dimàirt","Diciadain","Diardaoin","Dihaoine","Disathairne"],
+                    namesAbbr: ["Dòm","Lua","Mài","Cia","Ard","Hao","Sat"],
+                    namesShort: ["D","L","M","C","A","H","S"]
+                },
+                months: {
+                    names: ["Am Faoilleach","An Gearran","Am Màrt","An Giblean","An Cèitean","An t-Ògmhios","An t-Iuchar","An Lùnastal","An t-Sultain","An Dàmhair","An t-Samhain","An Dùbhlachd",""],
+                    namesAbbr: ["Fao","Gea","Màr","Gib","Cèi","Ògm","Iuc","Lùn","Sul","Dàm","Sam","Dùb",""]
+                },
                 AM: ["m","m","M"],
                 PM: ["f","f","F"],
                 patterns: {
@@ -10687,8 +12605,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -10705,8 +12630,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -10917,8 +12849,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -11009,8 +12948,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -11027,8 +12973,15 @@
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -11044,8 +12997,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -11078,20 +13038,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],["周日","周一","周二","周三","周四","周五","周六"],["日","一","二","三","四","五","六"]],
-                months: [["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]],
+                days: {
+                    names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+                    namesAbbr: ["周日","周一","周二","周三","周四","周五","周六"],
+                    namesShort: ["日","一","二","三","四","五","六"]
+                },
+                months: {
+                    names: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],
+                    namesAbbr: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]
+                },
                 AM: ["上午","上午","上午"],
                 PM: ["下午","下午","下午"],
                 eras: [{"name":"公元","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' H:mm",
+                    F: "yyyy'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             })
         }
@@ -11103,14 +13070,14 @@
         nativeName: "Deutsch (Schweiz)",
         language: "de",
         numberFormat: {
-            ',': "\u0027",
+            ',': "'",
             percent: {
                 pattern: ["-n%","n%"],
-                ',': "\u0027"
+                ',': "'"
             },
             currency: {
                 pattern: ["$-n","$ n"],
-                ',': "\u0027",
+                ',': "'",
                 symbol: "Fr."
             }
         },
@@ -11119,8 +13086,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],["So","Mo","Di","Mi","Do","Fr","Sa"],["So","Mo","Di","Mi","Do","Fr","Sa"]],
-                months: [["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]],
+                days: {
+                    names: ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],
+                    namesAbbr: ["So","Mo","Di","Mi","Do","Fr","Sa"],
+                    namesShort: ["So","Mo","Di","Mi","Do","Fr","Sa"]
+                },
+                months: {
+                    names: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],
+                    namesAbbr: ["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. Chr.","start":null,"offset":0}],
@@ -11177,20 +13151,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -11219,8 +13200,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -11242,14 +13230,14 @@
         nativeName: "italiano (Svizzera)",
         language: "it",
         numberFormat: {
-            ',': "\u0027",
+            ',': "'",
             percent: {
                 pattern: ["-n%","n%"],
-                ',': "\u0027"
+                ',': "'"
             },
             currency: {
                 pattern: ["$-n","$ n"],
-                ',': "\u0027",
+                ',': "'",
                 symbol: "fr."
             }
         },
@@ -11258,8 +13246,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"],["dom","lun","mar","mer","gio","ven","sab"],["do","lu","ma","me","gi","ve","sa"]],
-                months: [["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre",""],["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic",""]],
+                days: {
+                    names: ["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"],
+                    namesAbbr: ["dom","lun","mar","mer","gio","ven","sab"],
+                    namesShort: ["do","lu","ma","me","gi","ve","sa"]
+                },
+                months: {
+                    names: ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre",""],
+                    namesAbbr: ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
@@ -11299,8 +13294,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"],["zo","ma","di","wo","do","vr","za"],["zo","ma","di","wo","do","vr","za"]],
-                months: [["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december",""],["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"],
+                    namesAbbr: ["zo","ma","di","wo","do","vr","za"],
+                    namesShort: ["zo","ma","di","wo","do","vr","za"]
+                },
+                months: {
+                    names: ["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december",""],
+                    namesAbbr: ["jan","feb","mrt","apr","mei","jun","jul","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -11341,8 +13343,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["søndag","måndag","tysdag","onsdag","torsdag","fredag","laurdag"],["sø","må","ty","on","to","fr","la"],["sø","må","ty","on","to","fr","la"]],
-                months: [["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember",""],["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]],
+                days: {
+                    names: ["søndag","måndag","tysdag","onsdag","torsdag","fredag","laurdag"],
+                    namesAbbr: ["sø","må","ty","on","to","fr","la"],
+                    namesShort: ["sø","må","ty","on","to","fr","la"]
+                },
+                months: {
+                    names: ["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -11382,18 +13391,25 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],["dom","seg","ter","qua","qui","sex","sáb"],["D","S","T","Q","Q","S","S"]],
-                months: [["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro",""],["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez",""]],
+                days: {
+                    names: ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],
+                    namesAbbr: ["dom","seg","ter","qua","qui","sex","sáb"],
+                    namesShort: ["D","S","T","Q","Q","S","S"]
+                },
+                months: {
+                    names: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro",""],
+                    namesAbbr: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd-MM-yyyy",
-                    D: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
-                    f: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm",
-                    F: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm:ss",
+                    D: "dddd, d' de 'MMMM' de 'yyyy",
+                    f: "dddd, d' de 'MMMM' de 'yyyy HH:mm",
+                    F: "dddd, d' de 'MMMM' de 'yyyy HH:mm:ss",
                     M: "d/M",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -11424,8 +13440,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],["ned","pon","uto","sre","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sre","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n.e.","start":null,"offset":0}],
@@ -11467,16 +13490,23 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["söndag","måndag","tisdag","onsdag","torsdag","fredag","lördag"],["sö","må","ti","on","to","fr","lö"],["sö","må","ti","on","to","fr","lö"]],
-                months: [["januari","februari","mars","april","maj","juni","juli","augusti","september","oktober","november","december",""],["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["söndag","måndag","tisdag","onsdag","torsdag","fredag","lördag"],
+                    namesAbbr: ["sö","må","ti","on","to","fr","lö"],
+                    namesShort: ["sö","må","ti","on","to","fr","lö"]
+                },
+                months: {
+                    names: ["januari","februari","mars","april","maj","juni","juli","augusti","september","oktober","november","december",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "d.M.yyyy",
-                    D: "\u0027den \u0027d MMMM yyyy",
-                    f: "\u0027den \u0027d MMMM yyyy HH:mm",
-                    F: "\u0027den \u0027d MMMM yyyy HH:mm:ss",
-                    M: "\u0027den \u0027d MMMM",
+                    D: "'den 'd MMMM yyyy",
+                    f: "'den 'd MMMM yyyy HH:mm",
+                    F: "'den 'd MMMM yyyy HH:mm:ss",
+                    M: "'den 'd MMMM",
                     Y: "MMMM yyyy"
                 }
             })
@@ -11508,9 +13538,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Базар","Базар ертәси","Чәршәнбә ахшамы","Чәршәнбә","Ҹүмә ахшамы","Ҹүмә","Шәнбә"],["Б","Бе","Ча","Ч","Ҹа","Ҹ","Ш"],["Б","Бе","Ча","Ч","Ҹа","Ҹ","Ш"]],
-                months: [["Јанвар","Феврал","Март","Апрел","Мај","Ијун","Ијул","Август","Сентјабр","Октјабр","Нојабр","Декабр",""],["Јан","Фев","Мар","Апр","Мај","Ијун","Ијул","Авг","Сен","Окт","Ноя","Дек",""]],
-                monthsGenitive: [["јанвар","феврал","март","апрел","мај","ијун","ијул","август","сентјабр","октјабр","нојабр","декабр",""],["Јан","Фев","Мар","Апр","мая","ијун","ијул","Авг","Сен","Окт","Ноя","Дек",""]],
+                days: {
+                    names: ["Базар","Базар ертәси","Чәршәнбә ахшамы","Чәршәнбә","Ҹүмә ахшамы","Ҹүмә","Шәнбә"],
+                    namesAbbr: ["Б","Бе","Ча","Ч","Ҹа","Ҹ","Ш"],
+                    namesShort: ["Б","Бе","Ча","Ч","Ҹа","Ҹ","Ш"]
+                },
+                months: {
+                    names: ["Јанвар","Феврал","Март","Апрел","Мај","Ијун","Ијул","Август","Сентјабр","Октјабр","Нојабр","Декабр",""],
+                    namesAbbr: ["Јан","Фев","Мар","Апр","Мај","Ијун","Ијул","Авг","Сен","Окт","Ноя","Дек",""]
+                },
+                monthsGenitive: {
+                    names: ["јанвар","феврал","март","апрел","мај","ијун","ијул","август","сентјабр","октјабр","нојабр","декабр",""],
+                    namesAbbr: ["Јан","Фев","Мар","Апр","мая","ијун","ијул","Авг","Сен","Окт","Ноя","Дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -11551,19 +13591,29 @@
                 name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
-                days: [["njeźela","ponjeźele","wałtora","srjoda","stwortk","pětk","sobota"],["nje","pon","wał","srj","stw","pět","sob"],["n","p","w","s","s","p","s"]],
-                months: [["januar","februar","měrc","apryl","maj","junij","julij","awgust","september","oktober","nowember","december",""],["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]],
-                monthsGenitive: [["januara","februara","měrca","apryla","maja","junija","julija","awgusta","septembra","oktobra","nowembra","decembra",""],["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]],
+                days: {
+                    names: ["njeźela","ponjeźele","wałtora","srjoda","stwortk","pětk","sobota"],
+                    namesAbbr: ["nje","pon","wał","srj","stw","pět","sob"],
+                    namesShort: ["n","p","w","s","s","p","s"]
+                },
+                months: {
+                    names: ["januar","februar","měrc","apryl","maj","junij","julij","awgust","september","oktober","nowember","december",""],
+                    namesAbbr: ["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]
+                },
+                monthsGenitive: {
+                    names: ["januara","februara","měrca","apryla","maja","junija","julija","awgusta","septembra","oktobra","nowembra","decembra",""],
+                    namesAbbr: ["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"po Chr.","start":null,"offset":0}],
                 patterns: {
                     d: "d. M. yyyy",
-                    D: "dddd, \u0027dnja\u0027 d. MMMM yyyy",
-                    t: "H.mm \u0027goź.\u0027",
+                    D: "dddd, 'dnja' d. MMMM yyyy",
+                    t: "H.mm 'goź.'",
                     T: "H:mm:ss",
-                    f: "dddd, \u0027dnja\u0027 d. MMMM yyyy H.mm \u0027goź.\u0027",
-                    F: "dddd, \u0027dnja\u0027 d. MMMM yyyy H:mm:ss",
+                    f: "dddd, 'dnja' d. MMMM yyyy H.mm 'goź.'",
+                    F: "dddd, 'dnja' d. MMMM yyyy H:mm:ss",
                     M: "d. MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -11595,17 +13645,27 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["sotnabeaivi","mánnodat","disdat","gaskavahkku","duorastat","bearjadat","lávvardat"],["sotn","mán","dis","gask","duor","bear","láv"],["s","m","d","g","d","b","l"]],
-                months: [["ođđajagemánnu","guovvamánnu","njukčamánnu","cuoŋománnu","miessemánnu","geassemánnu","suoidnemánnu","borgemánnu","čakčamánnu","golggotmánnu","skábmamánnu","juovlamánnu",""],["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]],
-                monthsGenitive: [["ođđajagimánu","guovvamánu","njukčamánu","cuoŋománu","miessemánu","geassemánu","suoidnemánu","borgemánu","čakčamánu","golggotmánu","skábmamánu","juovlamánu",""],["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]],
+                days: {
+                    names: ["sotnabeaivi","mánnodat","disdat","gaskavahkku","duorastat","bearjadat","lávvardat"],
+                    namesAbbr: ["sotn","mán","dis","gask","duor","bear","láv"],
+                    namesShort: ["s","m","d","g","d","b","l"]
+                },
+                months: {
+                    names: ["ođđajagemánnu","guovvamánnu","njukčamánnu","cuoŋománnu","miessemánnu","geassemánnu","suoidnemánnu","borgemánnu","čakčamánnu","golggotmánnu","skábmamánnu","juovlamánnu",""],
+                    namesAbbr: ["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]
+                },
+                monthsGenitive: {
+                    names: ["ođđajagimánu","guovvamánu","njukčamánu","cuoŋománu","miessemánu","geassemánu","suoidnemánu","borgemánu","čakčamánu","golggotmánu","skábmamánu","juovlamánu",""],
+                    namesAbbr: ["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy-MM-dd",
-                    D: "MMMM d\u0027. b. \u0027yyyy",
-                    f: "MMMM d\u0027. b. \u0027yyyy HH:mm",
-                    F: "MMMM d\u0027. b. \u0027yyyy HH:mm:ss",
-                    M: "MMMM d\u0027. b. \u0027",
+                    D: "MMMM d'. b. 'yyyy",
+                    f: "MMMM d'. b. 'yyyy HH:mm",
+                    F: "MMMM d'. b. 'yyyy HH:mm:ss",
+                    M: "MMMM d'. b. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -11627,8 +13687,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Dé Domhnaigh","Dé Luain","Dé Máirt","Dé Céadaoin","Déardaoin","Dé hAoine","Dé Sathairn"],["Domh","Luan","Máir","Céad","Déar","Aoi","Sath"],["Do","Lu","Má","Cé","De","Ao","Sa"]],
-                months: [["Eanáir","Feabhra","Márta","Aibreán","Bealtaine","Meitheamh","Iúil","Lúnasa","Meán Fómhair","Deireadh Fómhair","Samhain","Nollaig",""],["Ean","Feabh","Már","Aib","Bealt","Meith","Iúil","Lún","M.Fómh","D.Fómh","Samh","Noll",""]],
+                days: {
+                    names: ["Dé Domhnaigh","Dé Luain","Dé Máirt","Dé Céadaoin","Déardaoin","Dé hAoine","Dé Sathairn"],
+                    namesAbbr: ["Domh","Luan","Máir","Céad","Déar","Aoi","Sath"],
+                    namesShort: ["Do","Lu","Má","Cé","De","Ao","Sa"]
+                },
+                months: {
+                    names: ["Eanáir","Feabhra","Márta","Aibreán","Bealtaine","Meitheamh","Iúil","Lúnasa","Meán Fómhair","Deireadh Fómhair","Samhain","Nollaig",""],
+                    namesAbbr: ["Ean","Feabh","Már","Aib","Bealt","Meith","Iúil","Lún","M.Fómh","D.Fómh","Samh","Noll",""]
+                },
                 AM: ["r.n.","r.n.","R.N."],
                 PM: ["i.n.","i.n.","I.N."],
                 patterns: {
@@ -11666,8 +13733,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"],["Ahad","Isnin","Sel","Rabu","Khamis","Jumaat","Sabtu"],["A","I","S","R","K","J","S"]],
-                months: [["Januari","Februari","Mac","April","Mei","Jun","Julai","Ogos","September","Oktober","November","Disember",""],["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ogos","Sept","Okt","Nov","Dis",""]],
+                days: {
+                    names: ["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"],
+                    namesAbbr: ["Ahad","Isnin","Sel","Rabu","Khamis","Jumaat","Sabtu"],
+                    namesShort: ["A","I","S","R","K","J","S"]
+                },
+                months: {
+                    names: ["Januari","Februari","Mac","April","Mei","Jun","Julai","Ogos","September","Oktober","November","Disember",""],
+                    namesAbbr: ["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ogos","Sept","Okt","Nov","Dis",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -11709,16 +13783,26 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["якшанба","душанба","сешанба","чоршанба","пайшанба","жума","шанба"],["якш","дш","сш","чш","пш","ж","ш"],["я","д","с","ч","п","ж","ш"]],
-                months: [["Январ","Феврал","Март","Апрел","Май","Июн","Июл","Август","Сентябр","Октябр","Ноябр","Декабр",""],["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
-                monthsGenitive: [["январ","феврал","март","апрел","май","июн","июл","август","сентябр","октябр","ноябр","декабр",""],["Янв","Фев","Мар","Апр","мая","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
+                days: {
+                    names: ["якшанба","душанба","сешанба","чоршанба","пайшанба","жума","шанба"],
+                    namesAbbr: ["якш","дш","сш","чш","пш","ж","ш"],
+                    namesShort: ["я","д","с","ч","п","ж","ш"]
+                },
+                months: {
+                    names: ["Январ","Феврал","Март","Апрел","Май","Июн","Июл","Август","Сентябр","Октябр","Ноябр","Декабр",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
+                monthsGenitive: {
+                    names: ["январ","феврал","март","апрел","май","июн","июл","август","сентябр","октябр","ноябр","декабр",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","мая","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "yyyy \u0027йил\u0027 d-MMMM",
-                    f: "yyyy \u0027йил\u0027 d-MMMM HH:mm",
-                    F: "yyyy \u0027йил\u0027 d-MMMM HH:mm:ss",
+                    D: "yyyy 'йил' d-MMMM",
+                    f: "yyyy 'йил' d-MMMM HH:mm",
+                    F: "yyyy 'йил' d-MMMM HH:mm:ss",
                     M: "d-MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -11749,8 +13833,15 @@
                 '/': "-",
                 ':': ".",
                 firstDay: 1,
-                days: [["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"],["রবি.","সোম.","মঙ্গল.","বুধ.","বৃহস্পতি.","শুক্র.","শনি."],["র","স","ম","ব","ব","শ","শ"]],
-                months: [["জানুয়ারী","ফেব্রুয়ারী","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর",""],["জানু.","ফেব্রু.","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগ.","সেপ্টে.","অক্টো.","নভে.","ডিসে.",""]],
+                days: {
+                    names: ["রবিবার","সোমবার","মঙ্গলবার","বুধবার","বৃহস্পতিবার","শুক্রবার","শনিবার"],
+                    namesAbbr: ["রবি.","সোম.","মঙ্গল.","বুধ.","বৃহস্পতি.","শুক্র.","শনি."],
+                    namesShort: ["র","স","ম","ব","ব","শ","শ"]
+                },
+                months: {
+                    names: ["জানুয়ারী","ফেব্রুয়ারী","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টেম্বর","অক্টোবর","নভেম্বর","ডিসেম্বর",""],
+                    namesAbbr: ["জানু.","ফেব্রু.","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগ.","সেপ্টে.","অক্টো.","নভে.","ডিসে.",""]
+                },
                 AM: ["পুর্বাহ্ন","পুর্বাহ্ন","পুর্বাহ্ন"],
                 PM: ["অপরাহ্ন","অপরাহ্ন","অপরাহ্ন"],
                 patterns: {
@@ -11788,20 +13879,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ"],["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ"],["ᠡ‍","ᠨᠢ‍","ᠬᠣ‍","ᠭᠤ‍","ᠳᠥ‍","ᠲᠠ‍","ᠵᠢ‍"]],
-                months: [["ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠦᠷᠪᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠠᠪᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠵᠢᠷᠭᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠤᠯᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠨᠠᠢᠮᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠶᠢᠰᠦᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ",""],["ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠦᠷᠪᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠠᠪᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠵᠢᠷᠭᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠤᠯᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠨᠠᠢᠮᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠶᠢᠰᠦᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ",""]],
+                days: {
+                    names: ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ"],
+                    namesAbbr: ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ"],
+                    namesShort: ["ᠡ‍","ᠨᠢ‍","ᠬᠣ‍","ᠭᠤ‍","ᠳᠥ‍","ᠲᠠ‍","ᠵᠢ‍"]
+                },
+                months: {
+                    names: ["ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠦᠷᠪᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠠᠪᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠵᠢᠷᠭᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠤᠯᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠨᠠᠢᠮᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠶᠢᠰᠦᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ",""],
+                    namesAbbr: ["ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠦᠷᠪᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠠᠪᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠵᠢᠷᠭᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠤᠯᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠨᠠᠢᠮᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠶᠢᠰᠦᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"ᠣᠨ ᠲᠣᠭᠠᠯᠠᠯ ᠤᠨ","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027ᠣᠨ ᠤ᠋\u0027 M\u0027ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ \u0027d\u0027 ᠤ᠋ ᠡᠳᠦᠷ\u0027",
+                    D: "yyyy'ᠣᠨ ᠤ᠋' M'ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ 'd' ᠤ᠋ ᠡᠳᠦᠷ'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027ᠣᠨ ᠤ᠋\u0027 M\u0027ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ \u0027d\u0027 ᠤ᠋ ᠡᠳᠦᠷ\u0027 H:mm",
-                    F: "yyyy\u0027ᠣᠨ ᠤ᠋\u0027 M\u0027ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ \u0027d\u0027 ᠤ᠋ ᠡᠳᠦᠷ\u0027 H:mm:ss",
-                    M: "M\u0027ᠰᠠᠷ᠎ᠠ\u0027 d\u0027ᠡᠳᠦᠷ\u0027",
-                    Y: "yyyy\u0027ᠣᠨ\u0027 M\u0027ᠰᠠᠷ᠎ᠠ\u0027"
+                    f: "yyyy'ᠣᠨ ᠤ᠋' M'ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ 'd' ᠤ᠋ ᠡᠳᠦᠷ' H:mm",
+                    F: "yyyy'ᠣᠨ ᠤ᠋' M'ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ 'd' ᠤ᠋ ᠡᠳᠦᠷ' H:mm:ss",
+                    M: "M'ᠰᠠᠷ᠎ᠠ' d'ᠡᠳᠦᠷ'",
+                    Y: "yyyy'ᠣᠨ' M'ᠰᠠᠷ᠎ᠠ'"
                 }
             })
         }
@@ -11824,8 +13922,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Naattiinguja","Naggajjau","Aippiq","Pingatsiq","Sitammiq","Tallirmiq","Sivataarvik"],["Nat","Nag","Aip","Pi","Sit","Tal","Siv"],["N","N","A","P","S","T","S"]],
-                months: [["Jaannuari","Viivvuari","Maatsi","Iipuri","Mai","Juuni","Julai","Aaggiisi","Sitipiri","Utupiri","Nuvipiri","Tisipiri",""],["Jan","Viv","Mas","Ipu","Mai","Jun","Jul","Agi","Sii","Uut","Nuv","Tis",""]],
+                days: {
+                    names: ["Naattiinguja","Naggajjau","Aippiq","Pingatsiq","Sitammiq","Tallirmiq","Sivataarvik"],
+                    namesAbbr: ["Nat","Nag","Aip","Pi","Sit","Tal","Siv"],
+                    namesShort: ["N","N","A","P","S","T","S"]
+                },
+                months: {
+                    names: ["Jaannuari","Viivvuari","Maatsi","Iipuri","Mai","Juuni","Julai","Aaggiisi","Sitipiri","Utupiri","Nuvipiri","Tisipiri",""],
+                    namesAbbr: ["Jan","Viv","Mas","Ipu","Mai","Jun","Jul","Agi","Sii","Uut","Nuv","Tis",""]
+                },
                 patterns: {
                     d: "d/MM/yyyy",
                     D: "ddd, MMMM dd,yyyy",
@@ -11862,8 +13967,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 6,
-                days: [["Acer","Arime","Aram","Ahad","Amhadh","Sem","Sedh"],["Ace","Ari","Ara","Aha","Amh","Sem","Sed"],["Ac","Ar","Ar","Ah","Am","Se","Se"]],
-                months: [["Yenayer","Furar","Maghres","Yebrir","Mayu","Yunyu","Yulyu","Ghuct","Cutenber","Ktuber","Wambir","Dujanbir",""],["Yen","Fur","Mag","Yeb","May","Yun","Yul","Ghu","Cut","Ktu","Wam","Duj",""]],
+                days: {
+                    names: ["Acer","Arime","Aram","Ahad","Amhadh","Sem","Sedh"],
+                    namesAbbr: ["Ace","Ari","Ara","Aha","Amh","Sem","Sed"],
+                    namesShort: ["Ac","Ar","Ar","Ah","Am","Se","Se"]
+                },
+                months: {
+                    names: ["Yenayer","Furar","Maghres","Yebrir","Mayu","Yunyu","Yulyu","Ghuct","Cutenber","Ktuber","Wambir","Dujanbir",""],
+                    namesAbbr: ["Yen","Fur","Mag","Yeb","May","Yun","Yul","Ghu","Cut","Ktu","Wam","Duj",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -11903,18 +14015,25 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["intichaw","killachaw","atipachaw","quyllurchaw","Ch\u0027 askachaw","Illapachaw","k\u0027uychichaw"],["int","kil","ati","quy","Ch\u0027","Ill","k\u0027u"],["d","k","a","m","h","b","k"]],
-                months: [["Qulla puquy","Hatun puquy","Pauqar waray","ayriwa","Aymuray","Inti raymi","Anta Sitwa","Qhapaq Sitwa","Uma raymi","Kantaray","Ayamarq\u0027a","Kapaq Raymi",""],["Qul","Hat","Pau","ayr","Aym","Int","Ant","Qha","Uma","Kan","Aya","Kap",""]],
+                days: {
+                    names: ["intichaw","killachaw","atipachaw","quyllurchaw","Ch' askachaw","Illapachaw","k'uychichaw"],
+                    namesAbbr: ["int","kil","ati","quy","Ch'","Ill","k'u"],
+                    namesShort: ["d","k","a","m","h","b","k"]
+                },
+                months: {
+                    names: ["Qulla puquy","Hatun puquy","Pauqar waray","ayriwa","Aymuray","Inti raymi","Anta Sitwa","Qhapaq Sitwa","Uma raymi","Kantaray","Ayamarq'a","Kapaq Raymi",""],
+                    namesAbbr: ["Qul","Hat","Pau","ayr","Aym","Int","Ant","Qha","Uma","Kan","Aya","Kap",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm:ss",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    f: "dddd, dd' de 'MMMM' de 'yyyy H:mm",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy H:mm:ss",
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -11941,8 +14060,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -11959,8 +14085,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -12171,8 +14304,15 @@
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -12188,8 +14328,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -12280,8 +14427,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -12298,8 +14452,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -12315,8 +14476,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -12348,20 +14516,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],["週日","週一","週二","週三","週四","週五","週六"],["日","一","二","三","四","五","六"]],
-                months: [["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]],
+                days: {
+                    names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+                    namesAbbr: ["週日","週一","週二","週三","週四","週五","週六"],
+                    namesShort: ["日","一","二","三","四","五","六"]
+                },
+                months: {
+                    names: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],
+                    namesAbbr: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]
+                },
                 AM: ["上午","上午","上午"],
                 PM: ["下午","下午","下午"],
                 eras: [{"name":"公元","start":null,"offset":0}],
                 patterns: {
                     d: "d/M/yyyy",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' H:mm",
+                    F: "yyyy'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             })
         }
@@ -12392,8 +14567,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],["So","Mo","Di","Mi","Do","Fr","Sa"],["So","Mo","Di","Mi","Do","Fr","Sa"]],
-                months: [["Jänner","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],["Jän","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]],
+                days: {
+                    names: ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],
+                    namesAbbr: ["So","Mo","Di","Mi","Do","Fr","Sa"],
+                    namesShort: ["So","Mo","Di","Mi","Do","Fr","Sa"]
+                },
+                months: {
+                    names: ["Jänner","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],
+                    namesAbbr: ["Jän","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. Chr.","start":null,"offset":0}],
@@ -12461,20 +14643,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm:ss",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy H:mm",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy H:mm:ss",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -12503,8 +14692,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -12545,8 +14741,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["недеља","понедељак","уторак","среда","четвртак","петак","субота"],["нед","пон","уто","сре","чет","пет","суб"],["не","по","ут","ср","че","пе","су"]],
-                months: [["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]],
+                days: {
+                    names: ["недеља","понедељак","уторак","среда","четвртак","петак","субота"],
+                    namesAbbr: ["нед","пон","уто","сре","чет","пет","суб"],
+                    namesShort: ["не","по","ут","ср","че","пе","су"]
+                },
+                months: {
+                    names: ["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],
+                    namesAbbr: ["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"н.е.","start":null,"offset":0}],
@@ -12588,19 +14791,29 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sotnabeaivi","vuossárga","maŋŋebárga","gaskavahkku","duorastat","bearjadat","lávvardat"],["sotn","vuos","maŋ","gask","duor","bear","láv"],["s","m","d","g","d","b","l"]],
-                months: [["ođđajagemánnu","guovvamánnu","njukčamánnu","cuoŋománnu","miessemánnu","geassemánnu","suoidnemánnu","borgemánnu","čakčamánnu","golggotmánnu","skábmamánnu","juovlamánnu",""],["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]],
-                monthsGenitive: [["ođđajagimánu","guovvamánu","njukčamánu","cuoŋománu","miessemánu","geassemánu","suoidnemánu","borgemánu","čakčamánu","golggotmánu","skábmamánu","juovlamánu",""],["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]],
+                days: {
+                    names: ["sotnabeaivi","vuossárga","maŋŋebárga","gaskavahkku","duorastat","bearjadat","lávvardat"],
+                    namesAbbr: ["sotn","vuos","maŋ","gask","duor","bear","láv"],
+                    namesShort: ["s","m","d","g","d","b","l"]
+                },
+                months: {
+                    names: ["ođđajagemánnu","guovvamánnu","njukčamánnu","cuoŋománnu","miessemánnu","geassemánnu","suoidnemánnu","borgemánnu","čakčamánnu","golggotmánnu","skábmamánnu","juovlamánnu",""],
+                    namesAbbr: ["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]
+                },
+                monthsGenitive: {
+                    names: ["ođđajagimánu","guovvamánu","njukčamánu","cuoŋománu","miessemánu","geassemánu","suoidnemánu","borgemánu","čakčamánu","golggotmánu","skábmamánu","juovlamánu",""],
+                    namesAbbr: ["ođđj","guov","njuk","cuo","mies","geas","suoi","borg","čakč","golg","skáb","juov",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "d.M.yyyy",
-                    D: "MMMM d\u0027. b. \u0027yyyy",
+                    D: "MMMM d'. b. 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "MMMM d\u0027. b. \u0027yyyy H:mm",
-                    F: "MMMM d\u0027. b. \u0027yyyy H:mm:ss",
-                    M: "MMMM d\u0027. b. \u0027",
+                    f: "MMMM d'. b. 'yyyy H:mm",
+                    F: "MMMM d'. b. 'yyyy H:mm:ss",
+                    M: "MMMM d'. b. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -12624,18 +14837,25 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["intichaw","killachaw","atipachaw","quyllurchaw","Ch\u0027 askachaw","Illapachaw","k\u0027uychichaw"],["int","kil","ati","quy","Ch\u0027","Ill","k\u0027u"],["d","k","a","m","h","b","k"]],
-                months: [["Qulla puquy","Hatun puquy","Pauqar waray","ayriwa","Aymuray","Inti raymi","Anta Sitwa","Qhapaq Sitwa","Uma raymi","Kantaray","Ayamarq\u0027a","Kapaq Raymi",""],["Qul","Hat","Pau","ayr","Aym","Int","Ant","Qha","Uma","Kan","Aya","Kap",""]],
+                days: {
+                    names: ["intichaw","killachaw","atipachaw","quyllurchaw","Ch' askachaw","Illapachaw","k'uychichaw"],
+                    namesAbbr: ["int","kil","ati","quy","Ch'","Ill","k'u"],
+                    namesShort: ["d","k","a","m","h","b","k"]
+                },
+                months: {
+                    names: ["Qulla puquy","Hatun puquy","Pauqar waray","ayriwa","Aymuray","Inti raymi","Anta Sitwa","Qhapaq Sitwa","Uma raymi","Kantaray","Ayamarq'a","Kapaq Raymi",""],
+                    namesAbbr: ["Qul","Hat","Pau","ayr","Aym","Int","Ant","Qha","Uma","Kan","Aya","Kap",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -12663,8 +14883,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -12681,8 +14908,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -12773,8 +15007,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -12985,8 +15226,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -13003,8 +15251,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -13020,8 +15275,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -13053,17 +15315,24 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],["周日","周一","周二","周三","周四","周五","周六"],["日","一","二","三","四","五","六"]],
-                months: [["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]],
+                days: {
+                    names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+                    namesAbbr: ["周日","周一","周二","周三","周四","周五","周六"],
+                    namesShort: ["日","一","二","三","四","五","六"]
+                },
+                months: {
+                    names: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],
+                    namesAbbr: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]
+                },
                 patterns: {
                     d: "d/M/yyyy",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "tt h:mm",
                     T: "tt h:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 tt h:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 tt h:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' tt h:mm",
+                    F: "yyyy'年'M'月'd'日' tt h:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             })
         }
@@ -13094,8 +15363,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],["So","Mo","Di","Mi","Do","Fr","Sa"],["So","Mo","Di","Mi","Do","Fr","Sa"]],
-                months: [["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]],
+                days: {
+                    names: ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],
+                    namesAbbr: ["So","Mo","Di","Mi","Do","Fr","Sa"],
+                    namesShort: ["So","Mo","Di","Mi","Do","Fr","Sa"]
+                },
+                months: {
+                    names: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],
+                    namesAbbr: ["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. Chr.","start":null,"offset":0}],
@@ -13151,20 +15427,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -13176,13 +15459,13 @@
         nativeName: "français (Suisse)",
         language: "fr",
         numberFormat: {
-            ',': "\u0027",
+            ',': "'",
             percent: {
-                ',': "\u0027"
+                ',': "'"
             },
             currency: {
                 pattern: ["$-n","$ n"],
-                ',': "\u0027",
+                ',': "'",
                 symbol: "fr."
             }
         },
@@ -13191,8 +15474,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -13233,9 +15523,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],["ned","pon","uto","sri","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["siječanj","veljača","ožujak","travanj","svibanj","lipanj","srpanj","kolovoz","rujan","listopad","studeni","prosinac",""],["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]],
-                monthsGenitive: [["siječnja","veljače","ožujka","travnja","svibnja","lipnja","srpnja","kolovoza","rujna","listopada","studenog","prosinca",""],["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]],
+                days: {
+                    names: ["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sri","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["siječanj","veljača","ožujak","travanj","svibanj","lipanj","srpanj","kolovoz","rujan","listopad","studeni","prosinac",""],
+                    namesAbbr: ["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]
+                },
+                monthsGenitive: {
+                    names: ["siječnja","veljače","ožujka","travnja","svibnja","lipnja","srpnja","kolovoza","rujna","listopada","studenog","prosinca",""],
+                    namesAbbr: ["sij","vlj","ožu","tra","svi","lip","srp","kol","ruj","lis","stu","pro",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -13277,17 +15577,27 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sådnåbiejvve","mánnodahka","dijstahka","gasskavahkko","duorastahka","bierjjedahka","lávvodahka"],["såd","mán","dis","gas","duor","bier","láv"],["s","m","d","g","d","b","l"]],
-                months: [["ådåjakmánno","guovvamánno","sjnjuktjamánno","vuoratjismánno","moarmesmánno","biehtsemánno","sjnjilltjamánno","bårggemánno","ragátmánno","gålgådismánno","basádismánno","javllamánno",""],["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]],
-                monthsGenitive: [["ådåjakmáno","guovvamáno","sjnjuktjamáno","vuoratjismáno","moarmesmáno","biehtsemáno","sjnjilltjamáno","bårggemáno","ragátmáno","gålgådismáno","basádismáno","javllamáno",""],["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]],
+                days: {
+                    names: ["sådnåbiejvve","mánnodahka","dijstahka","gasskavahkko","duorastahka","bierjjedahka","lávvodahka"],
+                    namesAbbr: ["såd","mán","dis","gas","duor","bier","láv"],
+                    namesShort: ["s","m","d","g","d","b","l"]
+                },
+                months: {
+                    names: ["ådåjakmánno","guovvamánno","sjnjuktjamánno","vuoratjismánno","moarmesmánno","biehtsemánno","sjnjilltjamánno","bårggemánno","ragátmánno","gålgådismánno","basádismánno","javllamánno",""],
+                    namesAbbr: ["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]
+                },
+                monthsGenitive: {
+                    names: ["ådåjakmáno","guovvamáno","sjnjuktjamáno","vuoratjismáno","moarmesmáno","biehtsemáno","sjnjilltjamáno","bårggemáno","ragátmáno","gålgådismáno","basádismáno","javllamáno",""],
+                    namesAbbr: ["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "MMMM d\u0027. b. \u0027yyyy",
-                    f: "MMMM d\u0027. b. \u0027yyyy HH:mm",
-                    F: "MMMM d\u0027. b. \u0027yyyy HH:mm:ss",
-                    M: "MMMM d\u0027. b. \u0027",
+                    D: "MMMM d'. b. 'yyyy",
+                    f: "MMMM d'. b. 'yyyy HH:mm",
+                    F: "MMMM d'. b. 'yyyy HH:mm:ss",
+                    M: "MMMM d'. b. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -13312,8 +15622,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -13330,8 +15647,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -13422,8 +15746,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -13634,8 +15965,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -13652,8 +15990,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -13669,8 +16014,15 @@
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -13702,20 +16054,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],["週日","週一","週二","週三","週四","週五","週六"],["日","一","二","三","四","五","六"]],
-                months: [["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]],
+                days: {
+                    names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+                    namesAbbr: ["週日","週一","週二","週三","週四","週五","週六"],
+                    namesShort: ["日","一","二","三","四","五","六"]
+                },
+                months: {
+                    names: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],
+                    namesAbbr: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]
+                },
                 AM: ["上午","上午","上午"],
                 PM: ["下午","下午","下午"],
                 eras: [{"name":"公元","start":null,"offset":0}],
                 patterns: {
                     d: "d/M/yyyy",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' H:mm",
+                    F: "yyyy'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             })
         }
@@ -13727,14 +16086,14 @@
         nativeName: "Deutsch (Liechtenstein)",
         language: "de",
         numberFormat: {
-            ',': "\u0027",
+            ',': "'",
             percent: {
                 pattern: ["-n%","n%"],
-                ',': "\u0027"
+                ',': "'"
             },
             currency: {
                 pattern: ["$-n","$ n"],
-                ',': "\u0027",
+                ',': "'",
                 symbol: "CHF"
             }
         },
@@ -13743,8 +16102,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],["So","Mo","Di","Mi","Do","Fr","Sa"],["So","Mo","Di","Mi","Do","Fr","Sa"]],
-                months: [["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]],
+                days: {
+                    names: ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],
+                    namesAbbr: ["So","Mo","Di","Mi","Do","Fr","Sa"],
+                    namesShort: ["So","Mo","Di","Mi","Do","Fr","Sa"]
+                },
+                months: {
+                    names: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],
+                    namesAbbr: ["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. Chr.","start":null,"offset":0}],
@@ -13812,20 +16178,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -13854,8 +16227,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -13895,8 +16275,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],["ned","pon","uto","sri","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["januar","februar","mart","april","maj","juni","juli","avgust","septembar","oktobar","novembar","decembar",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sri","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["januar","februar","mart","april","maj","juni","juli","avgust","septembar","oktobar","novembar","decembar",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -13937,17 +16324,27 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ájllek","mánnodahka","dijstahka","gasskavahkko","duorastahka","bierjjedahka","lávvodahka"],["ájl","mán","dis","gas","duor","bier","láv"],["á","m","d","g","d","b","l"]],
-                months: [["ådåjakmánno","guovvamánno","sjnjuktjamánno","vuoratjismánno","moarmesmánno","biehtsemánno","sjnjilltjamánno","bårggemánno","ragátmánno","gålgådismánno","basádismánno","javllamánno",""],["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]],
-                monthsGenitive: [["ådåjakmáno","guovvamáno","sjnjuktjamáno","vuoratjismáno","moarmesmáno","biehtsemáno","sjnjilltjamáno","bårggemáno","ragátmáno","gålgådismáno","basádismáno","javllamáno",""],["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]],
+                days: {
+                    names: ["ájllek","mánnodahka","dijstahka","gasskavahkko","duorastahka","bierjjedahka","lávvodahka"],
+                    namesAbbr: ["ájl","mán","dis","gas","duor","bier","láv"],
+                    namesShort: ["á","m","d","g","d","b","l"]
+                },
+                months: {
+                    names: ["ådåjakmánno","guovvamánno","sjnjuktjamánno","vuoratjismánno","moarmesmánno","biehtsemánno","sjnjilltjamánno","bårggemánno","ragátmánno","gålgådismánno","basádismánno","javllamánno",""],
+                    namesAbbr: ["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]
+                },
+                monthsGenitive: {
+                    names: ["ådåjakmáno","guovvamáno","sjnjuktjamáno","vuoratjismáno","moarmesmáno","biehtsemáno","sjnjilltjamáno","bårggemáno","ragátmáno","gålgådismáno","basádismáno","javllamáno",""],
+                    namesAbbr: ["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy-MM-dd",
-                    D: "MMMM d\u0027. b. \u0027yyyy",
-                    f: "MMMM d\u0027. b. \u0027yyyy HH:mm",
-                    F: "MMMM d\u0027. b. \u0027yyyy HH:mm:ss",
-                    M: "MMMM d\u0027. b. \u0027",
+                    D: "MMMM d'. b. 'yyyy",
+                    f: "MMMM d'. b. 'yyyy HH:mm",
+                    F: "MMMM d'. b. 'yyyy HH:mm:ss",
+                    M: "MMMM d'. b. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -13972,8 +16369,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر",""],["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","أبريل","ماي","يونيو","يوليوز","غشت","شتنبر","أكتوبر","نونبر","دجنبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -13990,8 +16394,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -14082,8 +16493,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -14294,8 +16712,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 1,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -14312,8 +16737,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -14329,8 +16761,15 @@
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -14389,19 +16828,26 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -14430,8 +16876,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -14471,8 +16924,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],["ned","pon","uto","sre","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sre","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n.e.","start":null,"offset":0}],
@@ -14515,17 +16975,27 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["aejlege","måanta","dæjsta","gaskevåhkoe","duarsta","bearjadahke","laavvardahke"],["aej","måa","dæj","gask","duar","bearj","laav"],["a","m","d","g","d","b","l"]],
-                months: [["tsïengele","goevte","njoktje","voerhtje","suehpede","ruffie","snjaltje","mïetske","skïerede","golke","rahka","goeve",""],["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]],
-                monthsGenitive: [["tsïengelen","goevten","njoktjen","voerhtjen","suehpeden","ruffien","snjaltjen","mïetsken","skïereden","golken","rahkan","goeven",""],["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]],
+                days: {
+                    names: ["aejlege","måanta","dæjsta","gaskevåhkoe","duarsta","bearjadahke","laavvardahke"],
+                    namesAbbr: ["aej","måa","dæj","gask","duar","bearj","laav"],
+                    namesShort: ["a","m","d","g","d","b","l"]
+                },
+                months: {
+                    names: ["tsïengele","goevte","njoktje","voerhtje","suehpede","ruffie","snjaltje","mïetske","skïerede","golke","rahka","goeve",""],
+                    namesAbbr: ["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]
+                },
+                monthsGenitive: {
+                    names: ["tsïengelen","goevten","njoktjen","voerhtjen","suehpeden","ruffien","snjaltjen","mïetsken","skïereden","golken","rahkan","goeven",""],
+                    namesAbbr: ["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "MMMM d\u0027. b. \u0027yyyy",
-                    f: "MMMM d\u0027. b. \u0027yyyy HH:mm",
-                    F: "MMMM d\u0027. b. \u0027yyyy HH:mm:ss",
-                    M: "MMMM d\u0027. b. \u0027",
+                    D: "MMMM d'. b. 'yyyy",
+                    f: "MMMM d'. b. 'yyyy HH:mm",
+                    F: "MMMM d'. b. 'yyyy HH:mm:ss",
+                    M: "MMMM d'. b. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -14555,8 +17025,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -14573,8 +17050,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -14665,8 +17149,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -14877,8 +17368,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 1,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -14895,8 +17393,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -14912,8 +17417,15 @@
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -14977,20 +17489,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -15020,8 +17539,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["недеља","понедељак","уторак","среда","четвртак","петак","субота"],["нед","пон","уто","сре","чет","пет","суб"],["н","п","у","с","ч","п","с"]],
-                months: [["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]],
+                days: {
+                    names: ["недеља","понедељак","уторак","среда","четвртак","петак","субота"],
+                    namesAbbr: ["нед","пон","уто","сре","чет","пет","суб"],
+                    namesShort: ["н","п","у","с","ч","п","с"]
+                },
+                months: {
+                    names: ["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],
+                    namesAbbr: ["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"н.е.","start":null,"offset":0}],
@@ -15063,17 +17589,27 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["aejlege","måanta","dæjsta","gaskevåhkoe","duarsta","bearjadahke","laavvardahke"],["aej","måa","dæj","gask","duar","bearj","laav"],["a","m","d","g","d","b","l"]],
-                months: [["tsïengele","goevte","njoktje","voerhtje","suehpede","ruffie","snjaltje","mïetske","skïerede","golke","rahka","goeve",""],["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]],
-                monthsGenitive: [["tsïengelen","goevten","njoktjen","voerhtjen","suehpeden","ruffien","snjaltjen","mïetsken","skïereden","golken","rahkan","goeven",""],["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]],
+                days: {
+                    names: ["aejlege","måanta","dæjsta","gaskevåhkoe","duarsta","bearjadahke","laavvardahke"],
+                    namesAbbr: ["aej","måa","dæj","gask","duar","bearj","laav"],
+                    namesShort: ["a","m","d","g","d","b","l"]
+                },
+                months: {
+                    names: ["tsïengele","goevte","njoktje","voerhtje","suehpede","ruffie","snjaltje","mïetske","skïerede","golke","rahka","goeve",""],
+                    namesAbbr: ["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]
+                },
+                monthsGenitive: {
+                    names: ["tsïengelen","goevten","njoktjen","voerhtjen","suehpeden","ruffien","snjaltjen","mïetsken","skïereden","golken","rahkan","goeven",""],
+                    namesAbbr: ["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy-MM-dd",
-                    D: "MMMM d\u0027. b. \u0027yyyy",
-                    f: "MMMM d\u0027. b. \u0027yyyy HH:mm",
-                    F: "MMMM d\u0027. b. \u0027yyyy HH:mm:ss",
-                    M: "MMMM d\u0027. b. \u0027",
+                    D: "MMMM d'. b. 'yyyy",
+                    f: "MMMM d'. b. 'yyyy HH:mm",
+                    F: "MMMM d'. b. 'yyyy HH:mm:ss",
+                    M: "MMMM d'. b. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -15098,8 +17634,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -15116,8 +17659,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -15208,8 +17758,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -15420,8 +17977,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -15438,8 +18002,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -15455,8 +18026,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -15521,20 +18099,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -15564,8 +18149,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["недјеља","понедјељак","уторак","сриједа","четвртак","петак","субота"],["нед","пон","уто","сре","чет","пет","суб"],["н","п","у","с","ч","п","с"]],
-                months: [["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]],
+                days: {
+                    names: ["недјеља","понедјељак","уторак","сриједа","четвртак","петак","субота"],
+                    namesAbbr: ["нед","пон","уто","сре","чет","пет","суб"],
+                    namesShort: ["н","п","у","с","ч","п","с"]
+                },
+                months: {
+                    names: ["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],
+                    namesAbbr: ["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"н.е.","start":null,"offset":0}],
@@ -15607,19 +18199,29 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["pâ´sspei´vv","vuõssargg","mââibargg","seärad","nelljdpei´vv","piâtnâc","sue´vet"],["pâ","vu","mâ","se","ne","pi","su"],["p","v","m","s","n","p","s"]],
-                months: [["ođđee´jjmään","tä´lvvmään","pâ´zzlâšttammään","njuhččmään","vue´ssmään","ǩie´ssmään","suei´nnmään","på´rǧǧmään","čõhččmään","kålggmään","skamm´mään","rosttovmään",""],["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]],
-                monthsGenitive: [["ođđee´jjmannu","tä´lvvmannu","pâ´zzlâšttammannu","njuhččmannu","vue´ssmannu","ǩie´ssmannu","suei´nnmannu","på´rǧǧmannu","čõhččmannu","kålggmannu","skamm´mannu","rosttovmannu",""],["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]],
+                days: {
+                    names: ["pâ´sspei´vv","vuõssargg","mââibargg","seärad","nelljdpei´vv","piâtnâc","sue´vet"],
+                    namesAbbr: ["pâ","vu","mâ","se","ne","pi","su"],
+                    namesShort: ["p","v","m","s","n","p","s"]
+                },
+                months: {
+                    names: ["ođđee´jjmään","tä´lvvmään","pâ´zzlâšttammään","njuhččmään","vue´ssmään","ǩie´ssmään","suei´nnmään","på´rǧǧmään","čõhččmään","kålggmään","skamm´mään","rosttovmään",""],
+                    namesAbbr: ["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]
+                },
+                monthsGenitive: {
+                    names: ["ođđee´jjmannu","tä´lvvmannu","pâ´zzlâšttammannu","njuhččmannu","vue´ssmannu","ǩie´ssmannu","suei´nnmannu","på´rǧǧmannu","čõhččmannu","kålggmannu","skamm´mannu","rosttovmannu",""],
+                    namesAbbr: ["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "d.M.yyyy",
-                    D: "MMMM d\u0027. p. \u0027yyyy",
+                    D: "MMMM d'. p. 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "MMMM d\u0027. p. \u0027yyyy H:mm",
-                    F: "MMMM d\u0027. p. \u0027yyyy H:mm:ss",
-                    M: "MMMM d\u0027. p. \u0027",
+                    f: "MMMM d'. p. 'yyyy H:mm",
+                    F: "MMMM d'. p. 'yyyy H:mm:ss",
+                    M: "MMMM d'. p. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -15643,8 +18245,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -15661,8 +18270,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -15873,8 +18489,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -15965,8 +18588,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -15983,8 +18613,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -16000,8 +18637,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -16066,20 +18710,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -16110,8 +18761,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],["ned","pon","uto","sre","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sre","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n.e.","start":null,"offset":0}],
@@ -16153,18 +18811,25 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["pasepeivi","vuossargâ","majebargâ","koskokko","tuorâstâh","vástuppeivi","lávárdâh"],["pa","vu","ma","ko","tu","vá","lá"],["p","v","m","k","t","v","l"]],
-                months: [["uđđâivemáánu","kuovâmáánu","njuhčâmáánu","cuáŋuimáánu","vyesimáánu","kesimáánu","syeinimáánu","porgemáánu","čohčâmáánu","roovvâdmáánu","skammâmáánu","juovlâmáánu",""],["uđiv","kuov","njuh","cuoŋ","vyes","kesi","syei","porg","čoh","roov","ska","juov",""]],
+                days: {
+                    names: ["pasepeivi","vuossargâ","majebargâ","koskokko","tuorâstâh","vástuppeivi","lávárdâh"],
+                    namesAbbr: ["pa","vu","ma","ko","tu","vá","lá"],
+                    namesShort: ["p","v","m","k","t","v","l"]
+                },
+                months: {
+                    names: ["uđđâivemáánu","kuovâmáánu","njuhčâmáánu","cuáŋuimáánu","vyesimáánu","kesimáánu","syeinimáánu","porgemáánu","čohčâmáánu","roovvâdmáánu","skammâmáánu","juovlâmáánu",""],
+                    namesAbbr: ["uđiv","kuov","njuh","cuoŋ","vyes","kesi","syei","porg","čoh","roov","ska","juov",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "d.M.yyyy",
-                    D: "MMMM d\u0027. p. \u0027yyyy",
+                    D: "MMMM d'. p. 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "MMMM d\u0027. p. \u0027yyyy H:mm",
-                    F: "MMMM d\u0027. p. \u0027yyyy H:mm:ss",
-                    M: "MMMM d\u0027. p. \u0027",
+                    f: "MMMM d'. p. 'yyyy H:mm",
+                    F: "MMMM d'. p. 'yyyy H:mm:ss",
+                    M: "MMMM d'. p. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -16188,8 +18853,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -16206,8 +18878,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -16418,8 +19097,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -16510,8 +19196,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -16528,8 +19221,15 @@
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -16545,8 +19245,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -16603,20 +19310,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -16647,8 +19361,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["недеља","понедељак","уторак","среда","четвртак","петак","субота"],["нед","пон","уто","сре","чет","пет","суб"],["не","по","ут","ср","че","пе","су"]],
-                months: [["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]],
+                days: {
+                    names: ["недеља","понедељак","уторак","среда","четвртак","петак","субота"],
+                    namesAbbr: ["нед","пон","уто","сре","чет","пет","суб"],
+                    namesShort: ["не","по","ут","ср","че","пе","су"]
+                },
+                months: {
+                    names: ["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],
+                    namesAbbr: ["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"н.е.","start":null,"offset":0}],
@@ -16688,8 +19409,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -16706,8 +19434,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -16918,8 +19653,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -17010,8 +19752,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -17028,8 +19777,15 @@
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -17045,8 +19801,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -17111,20 +19874,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -17155,8 +19925,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],["ned","pon","uto","sre","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sre","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n.e.","start":null,"offset":0}],
@@ -17191,8 +19968,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -17209,8 +19993,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -17421,8 +20212,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -17513,8 +20311,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 1,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -17531,8 +20336,15 @@
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedEnglish",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["أ","ا","ث","أ","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["أ","ا","ث","أ","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -17548,8 +20360,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 1,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -17613,20 +20432,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm:ss",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy H:mm",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy H:mm:ss",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -17657,8 +20483,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["недеља","понедељак","уторак","среда","четвртак","петак","субота"],["нед","пон","уто","сре","чет","пет","суб"],["не","по","ут","ср","че","пе","су"]],
-                months: [["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]],
+                days: {
+                    names: ["недеља","понедељак","уторак","среда","четвртак","петак","субота"],
+                    namesAbbr: ["нед","пон","уто","сре","чет","пет","суб"],
+                    namesShort: ["не","по","ут","ср","че","пе","су"]
+                },
+                months: {
+                    names: ["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],
+                    namesAbbr: ["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"н.е.","start":null,"offset":0}],
@@ -17698,8 +20531,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -17716,8 +20556,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -17808,8 +20655,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -18020,8 +20874,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -18038,8 +20899,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -18055,8 +20923,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -18121,20 +20996,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': "-",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd-MM-yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm:ss",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy H:mm",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy H:mm:ss",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -18157,8 +21039,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -18175,8 +21064,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -18387,8 +21283,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -18479,8 +21382,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -18497,8 +21407,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -18514,8 +21431,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -18554,20 +21478,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -18595,8 +21526,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","ابريل","مايو","يونيو","يوليو","اغسطس","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -18613,8 +21551,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -18825,8 +21770,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -18917,8 +21869,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -18935,8 +21894,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -18952,8 +21918,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -18992,20 +21965,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -19028,8 +22008,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليه","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 patterns: {
@@ -19046,8 +22033,15 @@
             UmAlQura: $.extend(true, {}, standard, {
                 name: "UmAlQura",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -19258,8 +22252,15 @@
             Hijri: $.extend(true, {}, standard, {
                 name: "Hijri",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""],
+                    namesAbbr: ["محرم","صفر","ربيع الأول","ربيع الثاني","جمادى الأولى","جمادى الثانية","رجب","شعبان","رمضان","شوال","ذو القعدة","ذو الحجة",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"بعد الهجرة","start":null,"offset":0}],
@@ -19350,8 +22351,15 @@
             Gregorian_MiddleEastFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_MiddleEastFrench",
                 firstDay: 6,
-                days: [["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],["di","lu","ma","me","je","ve","sa"]],
-                months: [["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]],
+                days: {
+                    names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
+                    namesAbbr: ["dim.","lun.","mar.","mer.","jeu.","ven.","sam."],
+                    namesShort: ["di","lu","ma","me","je","ve","sa"]
+                },
+                months: {
+                    names: ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",""],
+                    namesAbbr: ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc.",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
@@ -19368,8 +22376,15 @@
             Gregorian_Arabic: $.extend(true, {}, standard, {
                 name: "Gregorian_Arabic",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""],
+                    namesAbbr: ["كانون الثاني","شباط","آذار","نيسان","أيار","حزيران","تموز","آب","أيلول","تشرين الأول","تشرين الثاني","كانون الأول",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -19385,8 +22400,15 @@
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
                 name: "Gregorian_TransliteratedFrench",
                 firstDay: 6,
-                days: [["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],["ح","ن","ث","ر","خ","ج","س"]],
-                months: [["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]],
+                days: {
+                    names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesAbbr: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
+                    namesShort: ["ح","ن","ث","ر","خ","ج","س"]
+                },
+                months: {
+                    names: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""],
+                    namesAbbr: ["جانفييه","فيفرييه","مارس","أفريل","مي","جوان","جوييه","أوت","سبتمبر","اكتوبر","نوفمبر","ديسمبر",""]
+                },
                 AM: ["ص","ص","ص"],
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
@@ -19457,20 +22479,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -19492,7 +22521,9 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],["S","M","T","W","T","F","S"]],
+                days: {
+                    namesShort: ["S","M","T","W","T","F","S"]
+                },
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd, d MMMM, yyyy",
@@ -19521,20 +22552,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -19556,7 +22594,9 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],["S","M","T","W","T","F","S"]],
+                days: {
+                    namesShort: ["S","M","T","W","T","F","S"]
+                },
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd, d MMMM, yyyy",
@@ -19586,20 +22626,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -19620,20 +22667,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -19654,20 +22708,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sá"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sá"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm tt",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy hh:mm:ss tt",
+                    f: "dddd, dd' de 'MMMM' de 'yyyy hh:mm tt",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy hh:mm:ss tt",
                     M: "dd MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -19690,8 +22751,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],["dom","lun","mar","mié","jue","vie","sáb"],["do","lu","ma","mi","ju","vi","sa"]],
-                months: [["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]],
+                days: {
+                    names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
+                    namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
+                    namesShort: ["do","lu","ma","mi","ju","vi","sa"]
+                },
+                months: {
+                    names: ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre",""],
+                    namesAbbr: ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic",""]
+                },
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "M/d/yyyy",
@@ -19700,8 +22768,8 @@
                     T: "h:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy h:mm tt",
                     F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    M: "dd\u0027 de \u0027MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    M: "dd' de 'MMMM",
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
@@ -19731,8 +22799,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["недјеља","понедјељак","уторак","сриједа","четвртак","петак","субота"],["нед","пон","уто","сре","чет","пет","суб"],["н","п","у","с","ч","п","с"]],
-                months: [["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]],
+                days: {
+                    names: ["недјеља","понедјељак","уторак","сриједа","четвртак","петак","субота"],
+                    namesAbbr: ["нед","пон","уто","сре","чет","пет","суб"],
+                    namesShort: ["н","п","у","с","ч","п","с"]
+                },
+                months: {
+                    names: ["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],
+                    namesAbbr: ["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"н.е.","start":null,"offset":0}],
@@ -19774,8 +22849,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],["ned","pon","uto","sri","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["januar","februar","mart","april","maj","juni","juli","avgust","septembar","oktobar","novembar","decembar",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sri","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["januar","februar","mart","april","maj","juni","juli","avgust","septembar","oktobar","novembar","decembar",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -19817,8 +22899,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["недеља","понедељак","уторак","среда","четвртак","петак","субота"],["нед","пон","уто","сре","чет","пет","суб"],["не","по","ут","ср","че","пе","су"]],
-                months: [["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]],
+                days: {
+                    names: ["недеља","понедељак","уторак","среда","четвртак","петак","субота"],
+                    namesAbbr: ["нед","пон","уто","сре","чет","пет","суб"],
+                    namesShort: ["не","по","ут","ср","че","пе","су"]
+                },
+                months: {
+                    names: ["јануар","фебруар","март","април","мај","јун","јул","август","септембар","октобар","новембар","децембар",""],
+                    namesAbbr: ["јан","феб","мар","апр","мај","јун","јул","авг","сеп","окт","нов","дец",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"н.е.","start":null,"offset":0}],
@@ -19861,8 +22950,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],["ned","pon","uto","sre","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sre","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n.e.","start":null,"offset":0}],
@@ -19904,18 +23000,25 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["pasepeivi","vuossargâ","majebargâ","koskokko","tuorâstâh","vástuppeivi","lávárdâh"],["pa","vu","ma","ko","tu","vá","lá"],["p","v","m","k","t","v","l"]],
-                months: [["uđđâivemáánu","kuovâmáánu","njuhčâmáánu","cuáŋuimáánu","vyesimáánu","kesimáánu","syeinimáánu","porgemáánu","čohčâmáánu","roovvâdmáánu","skammâmáánu","juovlâmáánu",""],["uđiv","kuov","njuh","cuoŋ","vyes","kesi","syei","porg","čoh","roov","ska","juov",""]],
+                days: {
+                    names: ["pasepeivi","vuossargâ","majebargâ","koskokko","tuorâstâh","vástuppeivi","lávárdâh"],
+                    namesAbbr: ["pa","vu","ma","ko","tu","vá","lá"],
+                    namesShort: ["p","v","m","k","t","v","l"]
+                },
+                months: {
+                    names: ["uđđâivemáánu","kuovâmáánu","njuhčâmáánu","cuáŋuimáánu","vyesimáánu","kesimáánu","syeinimáánu","porgemáánu","čohčâmáánu","roovvâdmáánu","skammâmáánu","juovlâmáánu",""],
+                    namesAbbr: ["uđiv","kuov","njuh","cuoŋ","vyes","kesi","syei","porg","čoh","roov","ska","juov",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "d.M.yyyy",
-                    D: "MMMM d\u0027. p. \u0027yyyy",
+                    D: "MMMM d'. p. 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "MMMM d\u0027. p. \u0027yyyy H:mm",
-                    F: "MMMM d\u0027. p. \u0027yyyy H:mm:ss",
-                    M: "MMMM d\u0027. p. \u0027",
+                    f: "MMMM d'. p. 'yyyy H:mm",
+                    F: "MMMM d'. p. 'yyyy H:mm:ss",
+                    M: "MMMM d'. p. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -19947,9 +23050,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Базар","Базар ертәси","Чәршәнбә ахшамы","Чәршәнбә","Ҹүмә ахшамы","Ҹүмә","Шәнбә"],["Б","Бе","Ча","Ч","Ҹа","Ҹ","Ш"],["Б","Бе","Ча","Ч","Ҹа","Ҹ","Ш"]],
-                months: [["Јанвар","Феврал","Март","Апрел","Мај","Ијун","Ијул","Август","Сентјабр","Октјабр","Нојабр","Декабр",""],["Јан","Фев","Мар","Апр","Мај","Ијун","Ијул","Авг","Сен","Окт","Ноя","Дек",""]],
-                monthsGenitive: [["јанвар","феврал","март","апрел","мај","ијун","ијул","август","сентјабр","октјабр","нојабр","декабр",""],["Јан","Фев","Мар","Апр","мая","ијун","ијул","Авг","Сен","Окт","Ноя","Дек",""]],
+                days: {
+                    names: ["Базар","Базар ертәси","Чәршәнбә ахшамы","Чәршәнбә","Ҹүмә ахшамы","Ҹүмә","Шәнбә"],
+                    namesAbbr: ["Б","Бе","Ча","Ч","Ҹа","Ҹ","Ш"],
+                    namesShort: ["Б","Бе","Ча","Ч","Ҹа","Ҹ","Ш"]
+                },
+                months: {
+                    names: ["Јанвар","Феврал","Март","Апрел","Мај","Ијун","Ијул","Август","Сентјабр","Октјабр","Нојабр","Декабр",""],
+                    namesAbbr: ["Јан","Фев","Мар","Апр","Мај","Ијун","Ијул","Авг","Сен","Окт","Ноя","Дек",""]
+                },
+                monthsGenitive: {
+                    names: ["јанвар","феврал","март","апрел","мај","ијун","ијул","август","сентјабр","октјабр","нојабр","декабр",""],
+                    namesAbbr: ["Јан","Фев","Мар","Апр","мая","ијун","ијул","Авг","Сен","Окт","Ноя","Дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -19990,19 +23103,29 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["pâ´sspei´vv","vuõssargg","mââibargg","seärad","nelljdpei´vv","piâtnâc","sue´vet"],["pâ","vu","mâ","se","ne","pi","su"],["p","v","m","s","n","p","s"]],
-                months: [["ođđee´jjmään","tä´lvvmään","pâ´zzlâšttammään","njuhččmään","vue´ssmään","ǩie´ssmään","suei´nnmään","på´rǧǧmään","čõhččmään","kålggmään","skamm´mään","rosttovmään",""],["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]],
-                monthsGenitive: [["ođđee´jjmannu","tä´lvvmannu","pâ´zzlâšttammannu","njuhččmannu","vue´ssmannu","ǩie´ssmannu","suei´nnmannu","på´rǧǧmannu","čõhččmannu","kålggmannu","skamm´mannu","rosttovmannu",""],["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]],
+                days: {
+                    names: ["pâ´sspei´vv","vuõssargg","mââibargg","seärad","nelljdpei´vv","piâtnâc","sue´vet"],
+                    namesAbbr: ["pâ","vu","mâ","se","ne","pi","su"],
+                    namesShort: ["p","v","m","s","n","p","s"]
+                },
+                months: {
+                    names: ["ođđee´jjmään","tä´lvvmään","pâ´zzlâšttammään","njuhččmään","vue´ssmään","ǩie´ssmään","suei´nnmään","på´rǧǧmään","čõhččmään","kålggmään","skamm´mään","rosttovmään",""],
+                    namesAbbr: ["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]
+                },
+                monthsGenitive: {
+                    names: ["ođđee´jjmannu","tä´lvvmannu","pâ´zzlâšttammannu","njuhččmannu","vue´ssmannu","ǩie´ssmannu","suei´nnmannu","på´rǧǧmannu","čõhččmannu","kålggmannu","skamm´mannu","rosttovmannu",""],
+                    namesAbbr: ["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "d.M.yyyy",
-                    D: "MMMM d\u0027. p. \u0027yyyy",
+                    D: "MMMM d'. p. 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "MMMM d\u0027. p. \u0027yyyy H:mm",
-                    F: "MMMM d\u0027. p. \u0027yyyy H:mm:ss",
-                    M: "MMMM d\u0027. p. \u0027",
+                    f: "MMMM d'. p. 'yyyy H:mm",
+                    F: "MMMM d'. p. 'yyyy H:mm:ss",
+                    M: "MMMM d'. p. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -20026,20 +23149,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],["周日","周一","周二","周三","周四","周五","周六"],["日","一","二","三","四","五","六"]],
-                months: [["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]],
+                days: {
+                    names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+                    namesAbbr: ["周日","周一","周二","周三","周四","周五","周六"],
+                    namesShort: ["日","一","二","三","四","五","六"]
+                },
+                months: {
+                    names: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],
+                    namesAbbr: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]
+                },
                 AM: ["上午","上午","上午"],
                 PM: ["下午","下午","下午"],
                 eras: [{"name":"公元","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' H:mm",
+                    F: "yyyy'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             })
         }
@@ -20069,8 +23199,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["søndag","måndag","tysdag","onsdag","torsdag","fredag","laurdag"],["sø","må","ty","on","to","fr","la"],["sø","må","ty","on","to","fr","la"]],
-                months: [["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember",""],["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]],
+                days: {
+                    names: ["søndag","måndag","tysdag","onsdag","torsdag","fredag","laurdag"],
+                    namesAbbr: ["sø","må","ty","on","to","fr","la"],
+                    namesShort: ["sø","må","ty","on","to","fr","la"]
+                },
+                months: {
+                    names: ["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -20109,8 +23246,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],["ned","pon","uto","sri","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["januar","februar","mart","april","maj","juni","juli","avgust","septembar","oktobar","novembar","decembar",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedjelja","ponedjeljak","utorak","srijeda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sri","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["januar","februar","mart","april","maj","juni","juli","avgust","septembar","oktobar","novembar","decembar",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -20152,9 +23296,19 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Bazar","Bazar ertəsi","Çərşənbə axşamı","Çərşənbə","Cümə axşamı","Cümə","Şənbə"],["B","Be","Ça","Ç","Ca","C","Ş"],["B","Be","Ça","Ç","Ca","C","Ş"]],
-                months: [["Yanvar","Fevral","Mart","Aprel","May","İyun","İyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr",""],["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]],
-                monthsGenitive: [["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]],
+                days: {
+                    names: ["Bazar","Bazar ertəsi","Çərşənbə axşamı","Çərşənbə","Cümə axşamı","Cümə","Şənbə"],
+                    namesAbbr: ["B","Be","Ça","Ç","Ca","C","Ş"],
+                    namesShort: ["B","Be","Ça","Ç","Ca","C","Ş"]
+                },
+                months: {
+                    names: ["Yanvar","Fevral","Mart","Aprel","May","İyun","İyul","Avgust","Sentyabr","Oktyabr","Noyabr","Dekabr",""],
+                    namesAbbr: ["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]
+                },
+                monthsGenitive: {
+                    names: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],
+                    namesAbbr: ["Yan","Fev","Mar","Apr","May","İyun","İyul","Avg","Sen","Okt","Noy","Dek",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -20195,17 +23349,27 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["aejlege","måanta","dæjsta","gaskevåhkoe","duarsta","bearjadahke","laavvardahke"],["aej","måa","dæj","gask","duar","bearj","laav"],["a","m","d","g","d","b","l"]],
-                months: [["tsïengele","goevte","njoktje","voerhtje","suehpede","ruffie","snjaltje","mïetske","skïerede","golke","rahka","goeve",""],["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]],
-                monthsGenitive: [["tsïengelen","goevten","njoktjen","voerhtjen","suehpeden","ruffien","snjaltjen","mïetsken","skïereden","golken","rahkan","goeven",""],["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]],
+                days: {
+                    names: ["aejlege","måanta","dæjsta","gaskevåhkoe","duarsta","bearjadahke","laavvardahke"],
+                    namesAbbr: ["aej","måa","dæj","gask","duar","bearj","laav"],
+                    namesShort: ["a","m","d","g","d","b","l"]
+                },
+                months: {
+                    names: ["tsïengele","goevte","njoktje","voerhtje","suehpede","ruffie","snjaltje","mïetske","skïerede","golke","rahka","goeve",""],
+                    namesAbbr: ["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]
+                },
+                monthsGenitive: {
+                    names: ["tsïengelen","goevten","njoktjen","voerhtjen","suehpeden","ruffien","snjaltjen","mïetsken","skïereden","golken","rahkan","goeven",""],
+                    namesAbbr: ["tsïen","goevt","njok","voer","sueh","ruff","snja","mïet","skïer","golk","rahk","goev",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy-MM-dd",
-                    D: "MMMM d\u0027. b. \u0027yyyy",
-                    f: "MMMM d\u0027. b. \u0027yyyy HH:mm",
-                    F: "MMMM d\u0027. b. \u0027yyyy HH:mm:ss",
-                    M: "MMMM d\u0027. b. \u0027",
+                    D: "MMMM d'. b. 'yyyy",
+                    f: "MMMM d'. b. 'yyyy HH:mm",
+                    F: "MMMM d'. b. 'yyyy HH:mm:ss",
+                    M: "MMMM d'. b. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -20237,16 +23401,26 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["якшанба","душанба","сешанба","чоршанба","пайшанба","жума","шанба"],["якш","дш","сш","чш","пш","ж","ш"],["я","д","с","ч","п","ж","ш"]],
-                months: [["Январ","Феврал","Март","Апрел","Май","Июн","Июл","Август","Сентябр","Октябр","Ноябр","Декабр",""],["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
-                monthsGenitive: [["январ","феврал","март","апрел","май","июн","июл","август","сентябр","октябр","ноябр","декабр",""],["Янв","Фев","Мар","Апр","мая","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
+                days: {
+                    names: ["якшанба","душанба","сешанба","чоршанба","пайшанба","жума","шанба"],
+                    namesAbbr: ["якш","дш","сш","чш","пш","ж","ш"],
+                    namesShort: ["я","д","с","ч","п","ж","ш"]
+                },
+                months: {
+                    names: ["Январ","Феврал","Март","Апрел","Май","Июн","Июл","Август","Сентябр","Октябр","Ноябр","Декабр",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
+                monthsGenitive: {
+                    names: ["январ","феврал","март","апрел","май","июн","июл","август","сентябр","октябр","ноябр","декабр",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","мая","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "yyyy \u0027йил\u0027 d-MMMM",
-                    f: "yyyy \u0027йил\u0027 d-MMMM HH:mm",
-                    F: "yyyy \u0027йил\u0027 d-MMMM HH:mm:ss",
+                    D: "yyyy 'йил' d-MMMM",
+                    f: "yyyy 'йил' d-MMMM HH:mm",
+                    F: "yyyy 'йил' d-MMMM HH:mm:ss",
                     M: "d-MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -20278,20 +23452,30 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Ням","Даваа","Мягмар","Лхагва","Пүрэв","Баасан","Бямба"],["Ня","Да","Мя","Лх","Пү","Ба","Бя"],["Ня","Да","Мя","Лх","Пү","Ба","Бя"]],
-                months: [["1 дүгээр сар","2 дугаар сар","3 дугаар сар","4 дүгээр сар","5 дугаар сар","6 дугаар сар","7 дугаар сар","8 дугаар сар","9 дүгээр сар","10 дугаар сар","11 дүгээр сар","12 дугаар сар",""],["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]],
-                monthsGenitive: [["1 дүгээр сарын","2 дугаар сарын","3 дугаар сарын","4 дүгээр сарын","5 дугаар сарын","6 дугаар сарын","7 дугаар сарын","8 дугаар сарын","9 дүгээр сарын","10 дугаар сарын","11 дүгээр сарын","12 дугаар сарын",""],["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]],
+                days: {
+                    names: ["Ням","Даваа","Мягмар","Лхагва","Пүрэв","Баасан","Бямба"],
+                    namesAbbr: ["Ня","Да","Мя","Лх","Пү","Ба","Бя"],
+                    namesShort: ["Ня","Да","Мя","Лх","Пү","Ба","Бя"]
+                },
+                months: {
+                    names: ["1 дүгээр сар","2 дугаар сар","3 дугаар сар","4 дүгээр сар","5 дугаар сар","6 дугаар сар","7 дугаар сар","8 дугаар сар","9 дүгээр сар","10 дугаар сар","11 дүгээр сар","12 дугаар сар",""],
+                    namesAbbr: ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]
+                },
+                monthsGenitive: {
+                    names: ["1 дүгээр сарын","2 дугаар сарын","3 дугаар сарын","4 дүгээр сарын","5 дугаар сарын","6 дугаар сарын","7 дугаар сарын","8 дугаар сарын","9 дүгээр сарын","10 дугаар сарын","11 дүгээр сарын","12 дугаар сарын",""],
+                    namesAbbr: ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yy.MM.dd",
-                    D: "yyyy \u0027оны\u0027 MMMM d",
+                    D: "yyyy 'оны' MMMM d",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy \u0027оны\u0027 MMMM d H:mm",
-                    F: "yyyy \u0027оны\u0027 MMMM d H:mm:ss",
+                    f: "yyyy 'оны' MMMM d H:mm",
+                    F: "yyyy 'оны' MMMM d H:mm:ss",
                     M: "d MMMM",
-                    Y: "yyyy \u0027он\u0027 MMMM"
+                    Y: "yyyy 'он' MMMM"
                 }
             })
         }
@@ -20316,8 +23500,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["ᓈᑦᑏᖑᔭ","ᓇᒡᒐᔾᔭᐅ","ᐊᐃᑉᐱᖅ","ᐱᖓᑦᓯᖅ","ᓯᑕᒻᒥᖅ","ᑕᓪᓕᕐᒥᖅ","ᓯᕙᑖᕐᕕᒃ"],["ᓈᑦᑏ","ᓇᒡᒐ","ᐊᐃᑉᐱ","ᐱᖓᑦᓯ","ᓯᑕ","ᑕᓪᓕ","ᓯᕙᑖᕐᕕᒃ"],["ᓈ","ᓇ","ᐊ","ᐱ","ᓯ","ᑕ","ᓯ"]],
-                months: [["ᔮᓐᓄᐊᕆ","ᕖᕝᕗᐊᕆ","ᒫᑦᓯ","ᐄᐳᕆ","ᒪᐃ","ᔫᓂ","ᔪᓚᐃ","ᐋᒡᒌᓯ","ᓯᑎᐱᕆ","ᐅᑐᐱᕆ","ᓄᕕᐱᕆ","ᑎᓯᐱᕆ",""],["ᔮᓐᓄ","ᕖᕝᕗ","ᒫᑦᓯ","ᐄᐳᕆ","ᒪᐃ","ᔫᓂ","ᔪᓚᐃ","ᐋᒡᒌ","ᓯᑎᐱ","ᐅᑐᐱ","ᓄᕕᐱ","ᑎᓯᐱ",""]],
+                days: {
+                    names: ["ᓈᑦᑏᖑᔭ","ᓇᒡᒐᔾᔭᐅ","ᐊᐃᑉᐱᖅ","ᐱᖓᑦᓯᖅ","ᓯᑕᒻᒥᖅ","ᑕᓪᓕᕐᒥᖅ","ᓯᕙᑖᕐᕕᒃ"],
+                    namesAbbr: ["ᓈᑦᑏ","ᓇᒡᒐ","ᐊᐃᑉᐱ","ᐱᖓᑦᓯ","ᓯᑕ","ᑕᓪᓕ","ᓯᕙᑖᕐᕕᒃ"],
+                    namesShort: ["ᓈ","ᓇ","ᐊ","ᐱ","ᓯ","ᑕ","ᓯ"]
+                },
+                months: {
+                    names: ["ᔮᓐᓄᐊᕆ","ᕖᕝᕗᐊᕆ","ᒫᑦᓯ","ᐄᐳᕆ","ᒪᐃ","ᔫᓂ","ᔪᓚᐃ","ᐋᒡᒌᓯ","ᓯᑎᐱᕆ","ᐅᑐᐱᕆ","ᓄᕕᐱᕆ","ᑎᓯᐱᕆ",""],
+                    namesAbbr: ["ᔮᓐᓄ","ᕖᕝᕗ","ᒫᑦᓯ","ᐄᐳᕆ","ᒪᐃ","ᔫᓂ","ᔪᓚᐃ","ᐋᒡᒌ","ᓯᑎᐱ","ᐅᑐᐱ","ᓄᕕᐱ","ᑎᓯᐱ",""]
+                },
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd,MMMM dd,yyyy",
@@ -20347,20 +23538,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],["週日","週一","週二","週三","週四","週五","週六"],["日","一","二","三","四","五","六"]],
-                months: [["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]],
+                days: {
+                    names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+                    namesAbbr: ["週日","週一","週二","週三","週四","週五","週六"],
+                    namesShort: ["日","一","二","三","四","五","六"]
+                },
+                months: {
+                    names: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],
+                    namesAbbr: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]
+                },
                 AM: ["上午","上午","上午"],
                 PM: ["下午","下午","下午"],
                 eras: [{"name":"公元","start":null,"offset":0}],
                 patterns: {
                     d: "d/M/yyyy",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' H:mm",
+                    F: "yyyy'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             })
         }
@@ -20390,8 +23588,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],["sø","ma","ti","on","to","fr","lø"],["sø","ma","ti","on","to","fr","lø"]],
-                months: [["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember",""],["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]],
+                days: {
+                    names: ["søndag","mandag","tirsdag","onsdag","torsdag","fredag","lørdag"],
+                    namesAbbr: ["sø","ma","ti","on","to","fr","lø"],
+                    namesShort: ["sø","ma","ti","on","to","fr","lø"]
+                },
+                months: {
+                    names: ["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jun","jul","aug","sep","okt","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -20431,8 +23636,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],["ned","pon","uto","sre","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sre","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n.e.","start":null,"offset":0}],
@@ -20477,9 +23689,19 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 '/': ".",
-                days: [["Яш","Душанбе","Сешанбе","Чоршанбе","Панҷшанбе","Ҷумъа","Шанбе"],["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"],["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"]],
-                months: [["Январ","Феврал","Март","Апрел","Май","Июн","Июл","Август","Сентябр","Октябр","Ноябр","Декабр",""],["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
-                monthsGenitive: [["январи","феврали","марти","апрели","маи","июни","июли","августи","сентябри","октябри","ноябри","декабри",""],["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]],
+                days: {
+                    names: ["Яш","Душанбе","Сешанбе","Чоршанбе","Панҷшанбе","Ҷумъа","Шанбе"],
+                    namesAbbr: ["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"],
+                    namesShort: ["Яш","Дш","Сш","Чш","Пш","Ҷм","Шн"]
+                },
+                months: {
+                    names: ["Январ","Феврал","Март","Апрел","Май","Июн","Июл","Август","Сентябр","Октябр","Ноябр","Декабр",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
+                monthsGenitive: {
+                    names: ["январи","феврали","марти","апрели","маи","июни","июли","августи","сентябри","октябри","ноябри","декабри",""],
+                    namesAbbr: ["Янв","Фев","Мар","Апр","Май","Июн","Июл","Авг","Сен","Окт","Ноя","Дек",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -20519,19 +23741,29 @@
                 name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
-                days: [["njeźela","ponjeźele","wałtora","srjoda","stwortk","pětk","sobota"],["nje","pon","wał","srj","stw","pět","sob"],["n","p","w","s","s","p","s"]],
-                months: [["januar","februar","měrc","apryl","maj","junij","julij","awgust","september","oktober","nowember","december",""],["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]],
-                monthsGenitive: [["januara","februara","měrca","apryla","maja","junija","julija","awgusta","septembra","oktobra","nowembra","decembra",""],["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]],
+                days: {
+                    names: ["njeźela","ponjeźele","wałtora","srjoda","stwortk","pětk","sobota"],
+                    namesAbbr: ["nje","pon","wał","srj","stw","pět","sob"],
+                    namesShort: ["n","p","w","s","s","p","s"]
+                },
+                months: {
+                    names: ["januar","februar","měrc","apryl","maj","junij","julij","awgust","september","oktober","nowember","december",""],
+                    namesAbbr: ["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]
+                },
+                monthsGenitive: {
+                    names: ["januara","februara","měrca","apryla","maja","junija","julija","awgusta","septembra","oktobra","nowembra","decembra",""],
+                    namesAbbr: ["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"po Chr.","start":null,"offset":0}],
                 patterns: {
                     d: "d. M. yyyy",
-                    D: "dddd, \u0027dnja\u0027 d. MMMM yyyy",
-                    t: "H.mm \u0027goź.\u0027",
+                    D: "dddd, 'dnja' d. MMMM yyyy",
+                    t: "H.mm 'goź.'",
                     T: "H:mm:ss",
-                    f: "dddd, \u0027dnja\u0027 d. MMMM yyyy H.mm \u0027goź.\u0027",
-                    F: "dddd, \u0027dnja\u0027 d. MMMM yyyy H:mm:ss",
+                    f: "dddd, 'dnja' d. MMMM yyyy H.mm 'goź.'",
+                    F: "dddd, 'dnja' d. MMMM yyyy H:mm:ss",
                     M: "d. MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -20563,17 +23795,27 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["ájllek","mánnodahka","dijstahka","gasskavahkko","duorastahka","bierjjedahka","lávvodahka"],["ájl","mán","dis","gas","duor","bier","láv"],["á","m","d","g","d","b","l"]],
-                months: [["ådåjakmánno","guovvamánno","sjnjuktjamánno","vuoratjismánno","moarmesmánno","biehtsemánno","sjnjilltjamánno","bårggemánno","ragátmánno","gålgådismánno","basádismánno","javllamánno",""],["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]],
-                monthsGenitive: [["ådåjakmáno","guovvamáno","sjnjuktjamáno","vuoratjismáno","moarmesmáno","biehtsemáno","sjnjilltjamáno","bårggemáno","ragátmáno","gålgådismáno","basádismáno","javllamáno",""],["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]],
+                days: {
+                    names: ["ájllek","mánnodahka","dijstahka","gasskavahkko","duorastahka","bierjjedahka","lávvodahka"],
+                    namesAbbr: ["ájl","mán","dis","gas","duor","bier","láv"],
+                    namesShort: ["á","m","d","g","d","b","l"]
+                },
+                months: {
+                    names: ["ådåjakmánno","guovvamánno","sjnjuktjamánno","vuoratjismánno","moarmesmánno","biehtsemánno","sjnjilltjamánno","bårggemánno","ragátmánno","gålgådismánno","basádismánno","javllamánno",""],
+                    namesAbbr: ["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]
+                },
+                monthsGenitive: {
+                    names: ["ådåjakmáno","guovvamáno","sjnjuktjamáno","vuoratjismáno","moarmesmáno","biehtsemáno","sjnjilltjamáno","bårggemáno","ragátmáno","gålgådismáno","basádismáno","javllamáno",""],
+                    namesAbbr: ["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy-MM-dd",
-                    D: "MMMM d\u0027. b. \u0027yyyy",
-                    f: "MMMM d\u0027. b. \u0027yyyy HH:mm",
-                    F: "MMMM d\u0027. b. \u0027yyyy HH:mm:ss",
-                    M: "MMMM d\u0027. b. \u0027",
+                    D: "MMMM d'. b. 'yyyy",
+                    f: "MMMM d'. b. 'yyyy HH:mm",
+                    F: "MMMM d'. b. 'yyyy HH:mm:ss",
+                    M: "MMMM d'. b. '",
                     Y: "MMMM yyyy"
                 }
             })
@@ -20583,7 +23825,7 @@
     culture = cultures["uz-Latn"] = $.extend(true, {}, invariant, {
         name: "uz-Latn",
         englishName: "Uzbek (Latin)",
-        nativeName: "U\u0027zbek",
+        nativeName: "U'zbek",
         language: "uz-Latn",
         numberFormat: {
             ',': " ",
@@ -20598,22 +23840,29 @@
                 decimals: 0,
                 ',': " ",
                 '.': ",",
-                symbol: "so\u0027m"
+                symbol: "so'm"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"],["yak.","dsh.","sesh.","chr.","psh.","jm.","sh."],["ya","d","s","ch","p","j","sh"]],
-                months: [["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""]],
+                days: {
+                    names: ["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"],
+                    namesAbbr: ["yak.","dsh.","sesh.","chr.","psh.","jm.","sh."],
+                    namesShort: ["ya","d","s","ch","p","j","sh"]
+                },
+                months: {
+                    names: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""],
+                    namesAbbr: ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentyabr","oktyabr","noyabr","dekabr",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd/MM yyyy",
-                    D: "yyyy \u0027yil\u0027 d-MMMM",
-                    f: "yyyy \u0027yil\u0027 d-MMMM HH:mm",
-                    F: "yyyy \u0027yil\u0027 d-MMMM HH:mm:ss",
+                    D: "yyyy 'yil' d-MMMM",
+                    f: "yyyy 'yil' d-MMMM HH:mm",
+                    F: "yyyy 'yil' d-MMMM HH:mm:ss",
                     M: "d-MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -20642,20 +23891,27 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ"],["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ"],["ᠡ‍","ᠨᠢ‍","ᠬᠣ‍","ᠭᠤ‍","ᠳᠥ‍","ᠲᠠ‍","ᠵᠢ‍"]],
-                months: [["ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠦᠷᠪᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠠᠪᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠵᠢᠷᠭᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠤᠯᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠨᠠᠢᠮᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠶᠢᠰᠦᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ",""],["ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠦᠷᠪᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠠᠪᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠵᠢᠷᠭᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠤᠯᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠨᠠᠢᠮᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠶᠢᠰᠦᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ",""]],
+                days: {
+                    names: ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ"],
+                    namesAbbr: ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ"],
+                    namesShort: ["ᠡ‍","ᠨᠢ‍","ᠬᠣ‍","ᠭᠤ‍","ᠳᠥ‍","ᠲᠠ‍","ᠵᠢ‍"]
+                },
+                months: {
+                    names: ["ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠦᠷᠪᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠠᠪᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠵᠢᠷᠭᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠤᠯᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠨᠠᠢᠮᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠶᠢᠰᠦᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ",""],
+                    namesAbbr: ["ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠦᠷᠪᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠠᠪᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠵᠢᠷᠭᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠲᠤᠯᠤᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠨᠠᠢᠮᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠶᠢᠰᠦᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠨᠢᠭᠡᠳᠦᠭᠡᠷ ᠰᠠᠷ᠎ᠠ","ᠠᠷᠪᠠᠨ ᠬᠤᠶ᠋ᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"ᠣᠨ ᠲᠣᠭᠠᠯᠠᠯ ᠤᠨ","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027ᠣᠨ ᠤ᠋\u0027 M\u0027ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ \u0027d\u0027 ᠤ᠋ ᠡᠳᠦᠷ\u0027",
+                    D: "yyyy'ᠣᠨ ᠤ᠋' M'ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ 'd' ᠤ᠋ ᠡᠳᠦᠷ'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027ᠣᠨ ᠤ᠋\u0027 M\u0027ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ \u0027d\u0027 ᠤ᠋ ᠡᠳᠦᠷ\u0027 H:mm",
-                    F: "yyyy\u0027ᠣᠨ ᠤ᠋\u0027 M\u0027ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ \u0027d\u0027 ᠤ᠋ ᠡᠳᠦᠷ\u0027 H:mm:ss",
-                    M: "M\u0027ᠰᠠᠷ᠎ᠠ\u0027 d\u0027ᠡᠳᠦᠷ\u0027",
-                    Y: "yyyy\u0027ᠣᠨ\u0027 M\u0027ᠰᠠᠷ᠎ᠠ\u0027"
+                    f: "yyyy'ᠣᠨ ᠤ᠋' M'ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ 'd' ᠤ᠋ ᠡᠳᠦᠷ' H:mm",
+                    F: "yyyy'ᠣᠨ ᠤ᠋' M'ᠰᠠᠷ᠎ᠠ  ᠢᠢᠨ 'd' ᠤ᠋ ᠡᠳᠦᠷ' H:mm:ss",
+                    M: "M'ᠰᠠᠷ᠎ᠠ' d'ᠡᠳᠦᠷ'",
+                    Y: "yyyy'ᠣᠨ' M'ᠰᠠᠷ᠎ᠠ'"
                 }
             })
         }
@@ -20678,8 +23934,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Naattiinguja","Naggajjau","Aippiq","Pingatsiq","Sitammiq","Tallirmiq","Sivataarvik"],["Nat","Nag","Aip","Pi","Sit","Tal","Siv"],["N","N","A","P","S","T","S"]],
-                months: [["Jaannuari","Viivvuari","Maatsi","Iipuri","Mai","Juuni","Julai","Aaggiisi","Sitipiri","Utupiri","Nuvipiri","Tisipiri",""],["Jan","Viv","Mas","Ipu","Mai","Jun","Jul","Agi","Sii","Uut","Nuv","Tis",""]],
+                days: {
+                    names: ["Naattiinguja","Naggajjau","Aippiq","Pingatsiq","Sitammiq","Tallirmiq","Sivataarvik"],
+                    namesAbbr: ["Nat","Nag","Aip","Pi","Sit","Tal","Siv"],
+                    namesShort: ["N","N","A","P","S","T","S"]
+                },
+                months: {
+                    names: ["Jaannuari","Viivvuari","Maatsi","Iipuri","Mai","Juuni","Julai","Aaggiisi","Sitipiri","Utupiri","Nuvipiri","Tisipiri",""],
+                    namesAbbr: ["Jan","Viv","Mas","Ipu","Mai","Jun","Jul","Agi","Sii","Uut","Nuv","Tis",""]
+                },
                 patterns: {
                     d: "d/MM/yyyy",
                     D: "ddd, MMMM dd,yyyy",
@@ -20716,8 +23979,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 6,
-                days: [["Acer","Arime","Aram","Ahad","Amhadh","Sem","Sedh"],["Ace","Ari","Ara","Aha","Amh","Sem","Sed"],["Ac","Ar","Ar","Ah","Am","Se","Se"]],
-                months: [["Yenayer","Furar","Maghres","Yebrir","Mayu","Yunyu","Yulyu","Ghuct","Cutenber","Ktuber","Wambir","Dujanbir",""],["Yen","Fur","Mag","Yeb","May","Yun","Yul","Ghu","Cut","Ktu","Wam","Duj",""]],
+                days: {
+                    names: ["Acer","Arime","Aram","Ahad","Amhadh","Sem","Sedh"],
+                    namesAbbr: ["Ace","Ari","Ara","Aha","Amh","Sem","Sed"],
+                    namesShort: ["Ac","Ar","Ar","Ah","Am","Se","Se"]
+                },
+                months: {
+                    names: ["Yenayer","Furar","Maghres","Yebrir","Mayu","Yunyu","Yulyu","Ghuct","Cutenber","Ktuber","Wambir","Dujanbir",""],
+                    namesAbbr: ["Yen","Fur","Mag","Yeb","May","Yun","Yul","Ghu","Cut","Ktu","Wam","Duj",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
@@ -20748,8 +24018,15 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Lahadi","Litinin","Talata","Laraba","Alhamis","Juma\u0027a","Asabar"],["Lah","Lit","Tal","Lar","Alh","Jum","Asa"],["L","L","T","L","A","J","A"]],
-                months: [["Januwaru","Febreru","Maris","Afrilu","Mayu","Yuni","Yuli","Agusta","Satumba","Oktocba","Nuwamba","Disamba",""],["Jan","Feb","Mar","Afr","May","Yun","Yul","Agu","Sat","Okt","Nuw","Dis",""]],
+                days: {
+                    names: ["Lahadi","Litinin","Talata","Laraba","Alhamis","Juma'a","Asabar"],
+                    namesAbbr: ["Lah","Lit","Tal","Lar","Alh","Jum","Asa"],
+                    namesShort: ["L","L","T","L","A","J","A"]
+                },
+                months: {
+                    names: ["Januwaru","Febreru","Maris","Afrilu","Mayu","Yuni","Yuli","Agusta","Satumba","Oktocba","Nuwamba","Disamba",""],
+                    namesAbbr: ["Jan","Feb","Mar","Afr","May","Yun","Yul","Agu","Sat","Okt","Nuw","Dis",""]
+                },
                 AM: ["Safe","safe","SAFE"],
                 PM: ["Yamma","yamma","YAMMA"],
                 eras: [{"name":"AD","start":null,"offset":0}],
@@ -20783,20 +24060,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],["周日","周一","周二","周三","周四","周五","周六"],["日","一","二","三","四","五","六"]],
-                months: [["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]],
+                days: {
+                    names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+                    namesAbbr: ["周日","周一","周二","周三","周四","周五","周六"],
+                    namesShort: ["日","一","二","三","四","五","六"]
+                },
+                months: {
+                    names: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],
+                    namesAbbr: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]
+                },
                 AM: ["上午","上午","上午"],
                 PM: ["下午","下午","下午"],
                 eras: [{"name":"公元","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/M/d",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' H:mm",
+                    F: "yyyy'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             })
         }
@@ -20818,20 +24102,27 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],["週日","週一","週二","週三","週四","週五","週六"],["日","一","二","三","四","五","六"]],
-                months: [["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]],
+                days: {
+                    names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+                    namesAbbr: ["週日","週一","週二","週三","週四","週五","週六"],
+                    namesShort: ["日","一","二","三","四","五","六"]
+                },
+                months: {
+                    names: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""],
+                    namesAbbr: ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月",""]
+                },
                 AM: ["上午","上午","上午"],
                 PM: ["下午","下午","下午"],
                 eras: [{"name":"公元","start":null,"offset":0}],
                 patterns: {
                     d: "d/M/yyyy",
-                    D: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027",
+                    D: "yyyy'年'M'月'd'日'",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm",
-                    F: "yyyy\u0027年\u0027M\u0027月\u0027d\u0027日\u0027 H:mm:ss",
-                    M: "M\u0027月\u0027d\u0027日\u0027",
-                    Y: "yyyy\u0027年\u0027M\u0027月\u0027"
+                    f: "yyyy'年'M'月'd'日' H:mm",
+                    F: "yyyy'年'M'月'd'日' H:mm:ss",
+                    M: "M'月'd'日'",
+                    Y: "yyyy'年'M'月'"
                 }
             })
         }

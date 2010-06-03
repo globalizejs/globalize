@@ -25,8 +25,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["dumenica","luni","marti","mercuri","ghjovi","venderi","sabbatu"],["dum.","lun.","mar.","mer.","ghj.","ven.","sab."],["du","lu","ma","me","gh","ve","sa"]],
-                months: [["ghjennaghju","ferraghju","marzu","aprile","maghju","ghjunghju","lugliu","aostu","settembre","ottobre","nuvembre","dicembre",""],["ghje","ferr","marz","apri","magh","ghju","lugl","aost","sett","otto","nuve","dice",""]],
+                days: {
+                    names: ["dumenica","luni","marti","mercuri","ghjovi","venderi","sabbatu"],
+                    namesAbbr: ["dum.","lun.","mar.","mer.","ghj.","ven.","sab."],
+                    namesShort: ["du","lu","ma","me","gh","ve","sa"]
+                },
+                months: {
+                    names: ["ghjennaghju","ferraghju","marzu","aprile","maghju","ghjunghju","lugliu","aostu","settembre","ottobre","nuvembre","dicembre",""],
+                    namesAbbr: ["ghje","ferr","marz","apri","magh","ghju","lugl","aost","sett","otto","nuve","dice",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"dopu J-C","start":null,"offset":0}],

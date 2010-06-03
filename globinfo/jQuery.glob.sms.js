@@ -26,19 +26,29 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["pâ´sspei´vv","vuõssargg","mââibargg","seärad","nelljdpei´vv","piâtnâc","sue´vet"],["pâ","vu","mâ","se","ne","pi","su"],["p","v","m","s","n","p","s"]],
-                months: [["ođđee´jjmään","tä´lvvmään","pâ´zzlâšttammään","njuhččmään","vue´ssmään","ǩie´ssmään","suei´nnmään","på´rǧǧmään","čõhččmään","kålggmään","skamm´mään","rosttovmään",""],["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]],
-                monthsGenitive: [["ođđee´jjmannu","tä´lvvmannu","pâ´zzlâšttammannu","njuhččmannu","vue´ssmannu","ǩie´ssmannu","suei´nnmannu","på´rǧǧmannu","čõhččmannu","kålggmannu","skamm´mannu","rosttovmannu",""],["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]],
+                days: {
+                    names: ["pâ´sspei´vv","vuõssargg","mââibargg","seärad","nelljdpei´vv","piâtnâc","sue´vet"],
+                    namesAbbr: ["pâ","vu","mâ","se","ne","pi","su"],
+                    namesShort: ["p","v","m","s","n","p","s"]
+                },
+                months: {
+                    names: ["ođđee´jjmään","tä´lvvmään","pâ´zzlâšttammään","njuhččmään","vue´ssmään","ǩie´ssmään","suei´nnmään","på´rǧǧmään","čõhččmään","kålggmään","skamm´mään","rosttovmään",""],
+                    namesAbbr: ["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]
+                },
+                monthsGenitive: {
+                    names: ["ođđee´jjmannu","tä´lvvmannu","pâ´zzlâšttammannu","njuhččmannu","vue´ssmannu","ǩie´ssmannu","suei´nnmannu","på´rǧǧmannu","čõhččmannu","kålggmannu","skamm´mannu","rosttovmannu",""],
+                    namesAbbr: ["ođjm","tä´lvv","pâzl","njuh","vue","ǩie","suei","på´r","čõh","kålg","ska","rost",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "d.M.yyyy",
-                    D: "MMMM d\u0027. p. \u0027yyyy",
+                    D: "MMMM d'. p. 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "MMMM d\u0027. p. \u0027yyyy H:mm",
-                    F: "MMMM d\u0027. p. \u0027yyyy H:mm:ss",
-                    M: "MMMM d\u0027. p. \u0027",
+                    f: "MMMM d'. p. 'yyyy H:mm",
+                    F: "MMMM d'. p. 'yyyy H:mm:ss",
+                    M: "MMMM d'. p. '",
                     Y: "MMMM yyyy"
                 }
             })

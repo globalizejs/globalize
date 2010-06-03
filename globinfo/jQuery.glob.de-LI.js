@@ -8,14 +8,14 @@
         nativeName: "Deutsch (Liechtenstein)",
         language: "de",
         numberFormat: {
-            ',': "\u0027",
+            ',': "'",
             percent: {
                 pattern: ["-n%","n%"],
-                ',': "\u0027"
+                ',': "'"
             },
             currency: {
                 pattern: ["$-n","$ n"],
-                ',': "\u0027",
+                ',': "'",
                 symbol: "CHF"
             }
         },
@@ -24,8 +24,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],["So","Mo","Di","Mi","Do","Fr","Sa"],["So","Mo","Di","Mi","Do","Fr","Sa"]],
-                months: [["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]],
+                days: {
+                    names: ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"],
+                    namesAbbr: ["So","Mo","Di","Mi","Do","Fr","Sa"],
+                    namesShort: ["So","Mo","Di","Mi","Do","Fr","Sa"]
+                },
+                months: {
+                    names: ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember",""],
+                    namesAbbr: ["Jan","Feb","Mrz","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n. Chr.","start":null,"offset":0}],

@@ -25,8 +25,15 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["Sundàà","Mondàà","Dienschdàà","Mittwuch","Dunnerschdàà","Fridàà","Sàmschdàà"],["Su.","Mo.","Di.","Mi.","Du.","Fr.","Sà."],["Su","Mo","Di","Mi","Du","Fr","Sà"]],
-                months: [["Jänner","Feverje","März","Àpril","Mai","Jüni","Jüli","Augscht","September","Oktower","Nowember","Dezember",""],["Jän.","Fev.","März","Apr.","Mai","Jüni","Jüli","Aug.","Sept.","Okt.","Now.","Dez.",""]],
+                days: {
+                    names: ["Sundàà","Mondàà","Dienschdàà","Mittwuch","Dunnerschdàà","Fridàà","Sàmschdàà"],
+                    namesAbbr: ["Su.","Mo.","Di.","Mi.","Du.","Fr.","Sà."],
+                    namesShort: ["Su","Mo","Di","Mi","Du","Fr","Sà"]
+                },
+                months: {
+                    names: ["Jänner","Feverje","März","Àpril","Mai","Jüni","Jüli","Augscht","September","Oktower","Nowember","Dezember",""],
+                    namesAbbr: ["Jän.","Fev.","März","Apr.","Mai","Jüni","Jüli","Aug.","Sept.","Okt.","Now.","Dez.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"Vor J.-C.","start":null,"offset":0}],

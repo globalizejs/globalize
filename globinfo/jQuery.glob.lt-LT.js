@@ -27,18 +27,28 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sekmadienis","pirmadienis","antradienis","trečiadienis","ketvirtadienis","penktadienis","šeštadienis"],["Sk","Pr","An","Tr","Kt","Pn","Št"],["S","P","A","T","K","Pn","Š"]],
-                months: [["sausis","vasaris","kovas","balandis","gegužė","birželis","liepa","rugpjūtis","rugsėjis","spalis","lapkritis","gruodis",""],["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]],
-                monthsGenitive: [["sausio","vasario","kovo","balandžio","gegužės","birželio","liepos","rugpjūčio","rugsėjo","spalio","lapkričio","gruodžio",""],["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]],
+                days: {
+                    names: ["sekmadienis","pirmadienis","antradienis","trečiadienis","ketvirtadienis","penktadienis","šeštadienis"],
+                    namesAbbr: ["Sk","Pr","An","Tr","Kt","Pn","Št"],
+                    namesShort: ["S","P","A","T","K","Pn","Š"]
+                },
+                months: {
+                    names: ["sausis","vasaris","kovas","balandis","gegužė","birželis","liepa","rugpjūtis","rugsėjis","spalis","lapkritis","gruodis",""],
+                    namesAbbr: ["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]
+                },
+                monthsGenitive: {
+                    names: ["sausio","vasario","kovo","balandžio","gegužės","birželio","liepos","rugpjūčio","rugsėjo","spalio","lapkričio","gruodžio",""],
+                    namesAbbr: ["Sau","Vas","Kov","Bal","Geg","Bir","Lie","Rgp","Rgs","Spl","Lap","Grd",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy.MM.dd",
-                    D: "yyyy \u0027m.\u0027 MMMM d \u0027d.\u0027",
-                    f: "yyyy \u0027m.\u0027 MMMM d \u0027d.\u0027 HH:mm",
-                    F: "yyyy \u0027m.\u0027 MMMM d \u0027d.\u0027 HH:mm:ss",
-                    M: "MMMM d \u0027d.\u0027",
-                    Y: "yyyy \u0027m.\u0027 MMMM"
+                    D: "yyyy 'm.' MMMM d 'd.'",
+                    f: "yyyy 'm.' MMMM d 'd.' HH:mm",
+                    F: "yyyy 'm.' MMMM d 'd.' HH:mm:ss",
+                    M: "MMMM d 'd.'",
+                    Y: "yyyy 'm.' MMMM"
                 }
             })
         }

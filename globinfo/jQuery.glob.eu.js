@@ -25,18 +25,25 @@
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
                 firstDay: 1,
-                days: [["igandea","astelehena","asteartea","asteazkena","osteguna","ostirala","larunbata"],["ig.","al.","as.","az.","og.","or.","lr."],["ig","al","as","az","og","or","lr"]],
-                months: [["urtarrila","otsaila","martxoa","apirila","maiatza","ekaina","uztaila","abuztua","iraila","urria","azaroa","abendua",""],["urt.","ots.","mar.","api.","mai.","eka.","uzt.","abu.","ira.","urr.","aza.","abe.",""]],
+                days: {
+                    names: ["igandea","astelehena","asteartea","asteazkena","osteguna","ostirala","larunbata"],
+                    namesAbbr: ["ig.","al.","as.","az.","og.","or.","lr."],
+                    namesShort: ["ig","al","as","az","og","or","lr"]
+                },
+                months: {
+                    names: ["urtarrila","otsaila","martxoa","apirila","maiatza","ekaina","uztaila","abuztua","iraila","urria","azaroa","abendua",""],
+                    namesAbbr: ["urt.","ots.","mar.","api.","mai.","eka.","uzt.","abu.","ira.","urr.","aza.","abe.",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "yyyy/MM/dd",
-                    D: "dddd, yyyy.\u0027eko\u0027 MMMM\u0027k \u0027d",
+                    D: "dddd, yyyy.'eko' MMMM'k 'd",
                     T: "H:mm:ss",
-                    f: "dddd, yyyy.\u0027eko\u0027 MMMM\u0027k \u0027d HH:mm",
-                    F: "dddd, yyyy.\u0027eko\u0027 MMMM\u0027k \u0027d H:mm:ss",
-                    Y: "yyyy.\u0027eko\u0027 MMMM"
+                    f: "dddd, yyyy.'eko' MMMM'k 'd HH:mm",
+                    F: "dddd, yyyy.'eko' MMMM'k 'd H:mm:ss",
+                    Y: "yyyy.'eko' MMMM"
                 }
             })
         }

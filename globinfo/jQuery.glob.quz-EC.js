@@ -25,18 +25,25 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["intichaw","killachaw","atipachaw","quyllurchaw","Ch\u0027 askachaw","Illapachaw","k\u0027uychichaw"],["int","kil","ati","quy","Ch\u0027","Ill","k\u0027u"],["d","k","a","m","h","b","k"]],
-                months: [["Qulla puquy","Hatun puquy","Pauqar waray","ayriwa","Aymuray","Inti raymi","Anta Sitwa","Qhapaq Sitwa","Uma raymi","Kantaray","Ayamarq\u0027a","Kapaq Raymi",""],["Qul","Hat","Pau","ayr","Aym","Int","Ant","Qha","Uma","Kan","Aya","Kap",""]],
+                days: {
+                    names: ["intichaw","killachaw","atipachaw","quyllurchaw","Ch' askachaw","Illapachaw","k'uychichaw"],
+                    namesAbbr: ["int","kil","ati","quy","Ch'","Ill","k'u"],
+                    namesShort: ["d","k","a","m","h","b","k"]
+                },
+                months: {
+                    names: ["Qulla puquy","Hatun puquy","Pauqar waray","ayriwa","Aymuray","Inti raymi","Anta Sitwa","Qhapaq Sitwa","Uma raymi","Kantaray","Ayamarq'a","Kapaq Raymi",""],
+                    namesAbbr: ["Qul","Hat","Pau","ayr","Aym","Int","Ant","Qha","Uma","Kan","Aya","Kap",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
+                    D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm",
-                    F: "dddd, dd\u0027 de \u0027MMMM\u0027 de \u0027yyyy H:mm:ss",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    f: "dddd, dd' de 'MMMM' de 'yyyy H:mm",
+                    F: "dddd, dd' de 'MMMM' de 'yyyy H:mm:ss",
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }

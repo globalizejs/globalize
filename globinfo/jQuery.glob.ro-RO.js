@@ -27,8 +27,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["duminică","luni","marţi","miercuri","joi","vineri","sâmbătă"],["D","L","Ma","Mi","J","V","S"],["D","L","Ma","Mi","J","V","S"]],
-                months: [["ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie",""],["ian.","feb.","mar.","apr.","mai.","iun.","iul.","aug.","sep.","oct.","nov.","dec.",""]],
+                days: {
+                    names: ["duminică","luni","marţi","miercuri","joi","vineri","sâmbătă"],
+                    namesAbbr: ["D","L","Ma","Mi","J","V","S"],
+                    namesShort: ["D","L","Ma","Mi","J","V","S"]
+                },
+                months: {
+                    names: ["ianuarie","februarie","martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie",""],
+                    namesAbbr: ["ian.","feb.","mar.","apr.","mai.","iun.","iul.","aug.","sep.","oct.","nov.","dec.",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {

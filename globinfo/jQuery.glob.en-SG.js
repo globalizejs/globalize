@@ -18,7 +18,9 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],["S","M","T","W","T","F","S"]],
+                days: {
+                    namesShort: ["S","M","T","W","T","F","S"]
+                },
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd, d MMMM, yyyy",

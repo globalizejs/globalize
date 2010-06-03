@@ -148,18 +148,12 @@ namespace Globalization {
             var df = culture.DateTimeFormat;
             var info = new GlobalizationInfo.DateFormatInfo {
                 name = calendarName,
-                months = new string[][] {
-                    df.MonthNames,
-                    df.AbbreviatedMonthNames
-                },
-                monthsGenitive = new string[][] {
-                    df.MonthGenitiveNames,
-                    df.AbbreviatedMonthGenitiveNames
-                },
+                months = new DateFormatInfo.MonthInfo { names = df.MonthNames, namesAbbr = df.AbbreviatedMonthNames },
+                monthsGenitive = new DateFormatInfo.MonthInfo { names = df.MonthGenitiveNames, namesAbbr = df.AbbreviatedMonthGenitiveNames },
                 firstDay = (int) df.FirstDayOfWeek,
                 dateSeparator = df.DateSeparator,
                 timeSeparator = df.TimeSeparator,
-                days = new string[][] { df.DayNames, df.AbbreviatedDayNames, df.ShortestDayNames },
+                days = new DateFormatInfo.DayInfo { names = df.DayNames, namesAbbr = df.AbbreviatedDayNames, namesShort = df.ShortestDayNames },
                 eras = GetEraInfo(culture),
                 twoDigitYearMax = df.Calendar.TwoDigitYearMax,
                 patterns = GetPatterns(df)
@@ -318,9 +312,10 @@ namespace Globalization {
                         cal["convert"] = pair.Value.convertScriptBlock;
                     }
                     // remove redundant monthsGenitive array if it is equivilent to months
-                    ArrayList months = cal.ContainsKey("months") ? (ArrayList)cal["months"] : null;
-                    ArrayList monthsGenitive = cal.ContainsKey("monthsGenitive") ? (ArrayList)cal["monthsGenitive"] : null;
-                    if (months != null && monthsGenitive != null && ListEquality((ArrayList)monthsGenitive[0], (ArrayList)months[0]) && ListEquality((ArrayList)monthsGenitive[1], (ArrayList)months[1])) {
+                    Dictionary<String, Object> months = cal.ContainsKey("months") ? (Dictionary<String, Object>)cal["months"] : null;
+                    Dictionary<String, Object> monthsGenitive = cal.ContainsKey("monthsGenitive") ? (Dictionary<String, Object>)cal["monthsGenitive"] : null;
+                    Dictionary<String, Object> diff = (months != null && monthsGenitive != null) ? DiffGlobInfos(months, monthsGenitive) : null;
+                    if (diff != null && diff.Count == 0) {
                         // the genitive months are the same as months, so remove it since it's optional
                         cal.Remove("monthsGenitive");
                     }
@@ -351,6 +346,11 @@ namespace Globalization {
 }})(jQuery);", name, cultureFragment);
         }
 
+        private static string Serialize(object value) {
+            // no need to escape single quotes
+            return _jss.Serialize(value).Replace("\\u0027", "'");
+        }
+
         private static string ToJavaScript(CultureInfo culture, Dictionary<String, Object> dictionary, int level, bool isCalendars) {
             StringBuilder sb = new StringBuilder();
             string padding = _padding.Substring(0, level * 4);
@@ -372,25 +372,25 @@ namespace Globalization {
                     sb.AppendFormat("{0}convert: {{\n{1}\n{0}}}", padding, pair.Value);
                 }
                 else if (pair.Key.Equals("groupSeparator")) {
-                    sb.AppendFormat("{0}',': {1}", padding, _jss.Serialize(pair.Value));
+                    sb.AppendFormat("{0}',': {1}", padding, Serialize(pair.Value));
                 }
                 else if (pair.Key.Equals("decimalSeparator")) {
-                    sb.AppendFormat("{0}'.': {1}", padding, _jss.Serialize(pair.Value));
+                    sb.AppendFormat("{0}'.': {1}", padding, Serialize(pair.Value));
                 }
                 else if (pair.Key.Equals("positive")) {
-                    sb.AppendFormat("{0}'+': {1}", padding, _jss.Serialize(pair.Value));
+                    sb.AppendFormat("{0}'+': {1}", padding, Serialize(pair.Value));
                 }
                 else if (pair.Key.Equals("negative")) {
-                    sb.AppendFormat("{0}'-': {1}", padding, _jss.Serialize(pair.Value));
+                    sb.AppendFormat("{0}'-': {1}", padding, Serialize(pair.Value));
                 }
                 else if (pair.Key.Equals("dateSeparator")) {
-                    sb.AppendFormat("{0}'/': {1}", padding, _jss.Serialize(pair.Value));
+                    sb.AppendFormat("{0}'/': {1}", padding, Serialize(pair.Value));
                 }
                 else if (pair.Key.Equals("timeSeparator")) {
-                    sb.AppendFormat("{0}':': {1}", padding, _jss.Serialize(pair.Value));
+                    sb.AppendFormat("{0}':': {1}", padding, Serialize(pair.Value));
                 }
                 else {
-                    sb.AppendFormat("{0}{1}: {2}", padding, pair.Key, _jss.Serialize(pair.Value));
+                    sb.AppendFormat("{0}{1}: {2}", padding, pair.Key, Serialize(pair.Value));
                 }
             }
             return sb.ToString();
@@ -493,9 +493,12 @@ namespace Globalization {
             public string dateSeparator;
             public string timeSeparator;
             public int firstDay;
-            public string[][] days;
-            public string[][] months;
-            public string[][] monthsGenitive;
+            public DayInfo days;
+            //public string[][] days;
+            public MonthInfo months;
+            public MonthInfo monthsGenitive;
+            //public string[][] months;
+            //public string[][] monthsGenitive;
             public string[] AM;
             public string[] PM;
             public EraInfo[] eras;
@@ -508,7 +511,19 @@ namespace Globalization {
                 public long? start;
                 public long offset;
             }
+
+            public class MonthInfo {
+                public string[] names;
+                public string[] namesAbbr;
+            }
+
+            public class DayInfo {
+                public string[] names;
+                public string[] namesAbbr;
+                public string[] namesShort;
+            }
         }
+
     }
 
     public class Program {

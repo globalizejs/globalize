@@ -26,19 +26,29 @@
                 name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
-                days: [["njeźela","ponjeźele","wałtora","srjoda","stwortk","pětk","sobota"],["nje","pon","wał","srj","stw","pět","sob"],["n","p","w","s","s","p","s"]],
-                months: [["januar","februar","měrc","apryl","maj","junij","julij","awgust","september","oktober","nowember","december",""],["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]],
-                monthsGenitive: [["januara","februara","měrca","apryla","maja","junija","julija","awgusta","septembra","oktobra","nowembra","decembra",""],["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]],
+                days: {
+                    names: ["njeźela","ponjeźele","wałtora","srjoda","stwortk","pětk","sobota"],
+                    namesAbbr: ["nje","pon","wał","srj","stw","pět","sob"],
+                    namesShort: ["n","p","w","s","s","p","s"]
+                },
+                months: {
+                    names: ["januar","februar","měrc","apryl","maj","junij","julij","awgust","september","oktober","nowember","december",""],
+                    namesAbbr: ["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]
+                },
+                monthsGenitive: {
+                    names: ["januara","februara","měrca","apryla","maja","junija","julija","awgusta","septembra","oktobra","nowembra","decembra",""],
+                    namesAbbr: ["jan","feb","měr","apr","maj","jun","jul","awg","sep","okt","now","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"po Chr.","start":null,"offset":0}],
                 patterns: {
                     d: "d. M. yyyy",
-                    D: "dddd, \u0027dnja\u0027 d. MMMM yyyy",
-                    t: "H.mm \u0027goź.\u0027",
+                    D: "dddd, 'dnja' d. MMMM yyyy",
+                    t: "H.mm 'goź.'",
                     T: "H:mm:ss",
-                    f: "dddd, \u0027dnja\u0027 d. MMMM yyyy H.mm \u0027goź.\u0027",
-                    F: "dddd, \u0027dnja\u0027 d. MMMM yyyy H:mm:ss",
+                    f: "dddd, 'dnja' d. MMMM yyyy H.mm 'goź.'",
+                    F: "dddd, 'dnja' d. MMMM yyyy H:mm:ss",
                     M: "d. MMMM",
                     Y: "MMMM yyyy"
                 }

@@ -25,18 +25,25 @@
         calendars: {
             standard: $.extend(true, {}, standard, {
                 name: "Gregorian_Localized",
-                days: [["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],["dom","seg","ter","qua","qui","sex","sáb"],["D","S","T","Q","Q","S","S"]],
-                months: [["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""],["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""]],
+                days: {
+                    names: ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],
+                    namesAbbr: ["dom","seg","ter","qua","qui","sex","sáb"],
+                    namesShort: ["D","S","T","Q","Q","S","S"]
+                },
+                months: {
+                    names: ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro",""],
+                    namesAbbr: ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
-                    f: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm",
-                    F: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm:ss",
-                    M: "dd\u0027 de \u0027MMMM",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    D: "dddd, d' de 'MMMM' de 'yyyy",
+                    f: "dddd, d' de 'MMMM' de 'yyyy HH:mm",
+                    F: "dddd, d' de 'MMMM' de 'yyyy HH:mm:ss",
+                    M: "dd' de 'MMMM",
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }

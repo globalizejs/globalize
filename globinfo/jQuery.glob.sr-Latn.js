@@ -27,8 +27,15 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],["ned","pon","uto","sre","čet","pet","sub"],["ne","po","ut","sr","če","pe","su"]],
-                months: [["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["nedelja","ponedeljak","utorak","sreda","četvrtak","petak","subota"],
+                    namesAbbr: ["ned","pon","uto","sre","čet","pet","sub"],
+                    namesShort: ["ne","po","ut","sr","če","pe","su"]
+                },
+                months: {
+                    names: ["januar","februar","mart","april","maj","jun","jul","avgust","septembar","oktobar","novembar","decembar",""],
+                    namesAbbr: ["jan","feb","mar","apr","maj","jun","jul","avg","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"n.e.","start":null,"offset":0}],

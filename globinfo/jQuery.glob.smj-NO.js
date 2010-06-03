@@ -27,17 +27,27 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["sådnåbiejvve","mánnodahka","dijstahka","gasskavahkko","duorastahka","bierjjedahka","lávvodahka"],["såd","mán","dis","gas","duor","bier","láv"],["s","m","d","g","d","b","l"]],
-                months: [["ådåjakmánno","guovvamánno","sjnjuktjamánno","vuoratjismánno","moarmesmánno","biehtsemánno","sjnjilltjamánno","bårggemánno","ragátmánno","gålgådismánno","basádismánno","javllamánno",""],["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]],
-                monthsGenitive: [["ådåjakmáno","guovvamáno","sjnjuktjamáno","vuoratjismáno","moarmesmáno","biehtsemáno","sjnjilltjamáno","bårggemáno","ragátmáno","gålgådismáno","basádismáno","javllamáno",""],["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]],
+                days: {
+                    names: ["sådnåbiejvve","mánnodahka","dijstahka","gasskavahkko","duorastahka","bierjjedahka","lávvodahka"],
+                    namesAbbr: ["såd","mán","dis","gas","duor","bier","láv"],
+                    namesShort: ["s","m","d","g","d","b","l"]
+                },
+                months: {
+                    names: ["ådåjakmánno","guovvamánno","sjnjuktjamánno","vuoratjismánno","moarmesmánno","biehtsemánno","sjnjilltjamánno","bårggemánno","ragátmánno","gålgådismánno","basádismánno","javllamánno",""],
+                    namesAbbr: ["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]
+                },
+                monthsGenitive: {
+                    names: ["ådåjakmáno","guovvamáno","sjnjuktjamáno","vuoratjismáno","moarmesmáno","biehtsemáno","sjnjilltjamáno","bårggemáno","ragátmáno","gålgådismáno","basádismáno","javllamáno",""],
+                    namesAbbr: ["ådåj","guov","snju","vuor","moar","bieh","snji","bårg","ragá","gålg","basá","javl",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
-                    D: "MMMM d\u0027. b. \u0027yyyy",
-                    f: "MMMM d\u0027. b. \u0027yyyy HH:mm",
-                    F: "MMMM d\u0027. b. \u0027yyyy HH:mm:ss",
-                    M: "MMMM d\u0027. b. \u0027",
+                    D: "MMMM d'. b. 'yyyy",
+                    f: "MMMM d'. b. 'yyyy HH:mm",
+                    F: "MMMM d'. b. 'yyyy HH:mm:ss",
+                    M: "MMMM d'. b. '",
                     Y: "MMMM yyyy"
                 }
             })

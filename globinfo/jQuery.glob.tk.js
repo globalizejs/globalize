@@ -27,18 +27,25 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["Duşenbe","Sişenbe","Çarşenbe","Penşenbe","Anna","Şenbe","Ýekşenbe"],["Db","Sb","Çb","Pb","An","Şb","Ýb"],["D","S","Ç","P","A","Ş","Ý"]],
-                months: [["Ýanwar","Fewral","Mart","Aprel","Maý","lýun","lýul","Awgust","Sentýabr","Oktýabr","Noýabr","Dekabr",""],["Ýan","Few","Mart","Apr","Maý","lýun","lýul","Awg","Sen","Okt","Not","Dek",""]],
+                days: {
+                    names: ["Duşenbe","Sişenbe","Çarşenbe","Penşenbe","Anna","Şenbe","Ýekşenbe"],
+                    namesAbbr: ["Db","Sb","Çb","Pb","An","Şb","Ýb"],
+                    namesShort: ["D","S","Ç","P","A","Ş","Ý"]
+                },
+                months: {
+                    names: ["Ýanwar","Fewral","Mart","Aprel","Maý","lýun","lýul","Awgust","Sentýabr","Oktýabr","Noýabr","Dekabr",""],
+                    namesAbbr: ["Ýan","Few","Mart","Apr","Maý","lýun","lýul","Awg","Sen","Okt","Not","Dek",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd.MM.yy",
-                    D: "yyyy \u0027ý.\u0027 MMMM d",
+                    D: "yyyy 'ý.' MMMM d",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "yyyy \u0027ý.\u0027 MMMM d H:mm",
-                    F: "yyyy \u0027ý.\u0027 MMMM d H:mm:ss",
-                    Y: "yyyy \u0027ý.\u0027 MMMM"
+                    f: "yyyy 'ý.' MMMM d H:mm",
+                    F: "yyyy 'ý.' MMMM d H:mm:ss",
+                    Y: "yyyy 'ý.' MMMM"
                 }
             })
         }

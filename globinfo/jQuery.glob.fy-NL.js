@@ -26,8 +26,15 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["Snein","Moandei","Tiisdei","Woansdei","Tongersdei","Freed","Sneon"],["Sn","Mo","Ti","Wo","To","Fr","Sn"],["S","M","T","W","T","F","S"]],
-                months: [["jannewaris","febrewaris","maart","april","maaie","juny","july","augustus","septimber","oktober","novimber","desimber",""],["jann","febr","mrt","apr","maaie","jun","jul","aug","sept","okt","nov","des",""]],
+                days: {
+                    names: ["Snein","Moandei","Tiisdei","Woansdei","Tongersdei","Freed","Sneon"],
+                    namesAbbr: ["Sn","Mo","Ti","Wo","To","Fr","Sn"],
+                    namesShort: ["S","M","T","W","T","F","S"]
+                },
+                months: {
+                    names: ["jannewaris","febrewaris","maart","april","maaie","juny","july","augustus","septimber","oktober","novimber","desimber",""],
+                    namesAbbr: ["jann","febr","mrt","apr","maaie","jun","jul","aug","sept","okt","nov","des",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {

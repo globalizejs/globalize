@@ -27,18 +27,28 @@
                 name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
-                days: [["svētdiena","pirmdiena","otrdiena","trešdiena","ceturtdiena","piektdiena","sestdiena"],["sv","pr","ot","tr","ce","pk","se"],["sv","pr","ot","tr","ce","pk","se"]],
-                months: [["janvāris","februāris","marts","aprīlis","maijs","jūnijs","jūlijs","augusts","septembris","oktobris","novembris","decembris",""],["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]],
-                monthsGenitive: [["janvārī","februārī","martā","aprīlī","maijā","jūnijā","jūlijā","augustā","septembrī","oktobrī","novembrī","decembrī",""],["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]],
+                days: {
+                    names: ["svētdiena","pirmdiena","otrdiena","trešdiena","ceturtdiena","piektdiena","sestdiena"],
+                    namesAbbr: ["sv","pr","ot","tr","ce","pk","se"],
+                    namesShort: ["sv","pr","ot","tr","ce","pk","se"]
+                },
+                months: {
+                    names: ["janvāris","februāris","marts","aprīlis","maijs","jūnijs","jūlijs","augusts","septembris","oktobris","novembris","decembris",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]
+                },
+                monthsGenitive: {
+                    names: ["janvārī","februārī","martā","aprīlī","maijā","jūnijā","jūlijā","augustā","septembrī","oktobrī","novembrī","decembrī",""],
+                    namesAbbr: ["jan","feb","mar","apr","mai","jūn","jūl","aug","sep","okt","nov","dec",""]
+                },
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "yyyy.MM.dd.",
-                    D: "dddd, yyyy\u0027. gada \u0027d. MMMM",
+                    D: "dddd, yyyy'. gada 'd. MMMM",
                     t: "H:mm",
                     T: "H:mm:ss",
-                    f: "dddd, yyyy\u0027. gada \u0027d. MMMM H:mm",
-                    F: "dddd, yyyy\u0027. gada \u0027d. MMMM H:mm:ss",
+                    f: "dddd, yyyy'. gada 'd. MMMM H:mm",
+                    F: "dddd, yyyy'. gada 'd. MMMM H:mm:ss",
                     M: "d. MMMM",
                     Y: "yyyy. MMMM"
                 }

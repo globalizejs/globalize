@@ -1,6 +1,6 @@
 /*
  * jQuery Globalization plugin
- * http://github.com/nje
+ * http://github.com/nje/jquery-glob
  */
 (function($) {
 
@@ -311,20 +311,20 @@ var invariant = cultures.invariant = $.extend(true, {
             ':': ":",
             // the first day of the week (0 = Sunday, 1 = Monday, etc)
             firstDay: 0,
-            days: [
+            days: {
                 // full day names
-                ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+                names: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
                 // abbreviated day names
-                ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+                namesAbbr: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
                 // shortest day names
-                ["Su","Mo","Tu","We","Th","Fr","Sa"]
-            ],
-            months: [
+                namesShort: ["Su","Mo","Tu","We","Th","Fr","Sa"]
+            },
+            months: {
                 // full month names (13 months for lunar calendards -- 13th month should be "" if not lunar)
-                ["January","February","March","April","May","June","July","August","September","October","November","December",""],
+                names: ["January","February","March","April","May","June","July","August","September","October","November","December",""],
                 // abbreviated month names
-                ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]
-            ],
+                namesAbbr: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]
+            },
             // AM and PM designators in one of these forms:
             // The usual view, and the upper and lower case versions
             //      [standard,lowercase,uppercase] 
@@ -335,12 +335,12 @@ var invariant = cultures.invariant = $.extend(true, {
             eras: [
                 // eras in reverse chronological order.
                 // name: the name of the era in this culture (e.g. A.D., C.E.)
-                // start: when the era starts in ticks, null if it is the earliest supported era.
+                // start: when the era starts in ticks (gregorian, gmt), null if it is the earliest supported era.
                 // offset: offset in years from gregorian calendar
-                {"name":"A.D.","start":null,"offset":0}
+                { "name": "A.D.", "start": null, "offset": 0 }
             ],
             // when a two digit year is given, it will never be parsed as a four digit
-            // year great than this year (in the appropriate era for the culture)
+            // year greater than this year (in the appropriate era for the culture)
             twoDigitYearMax: 2029,
             // set of predefined date and time patterns used by the culture
             // these represent the format someone in this culture would expect
@@ -647,20 +647,20 @@ function getDayIndex(cal, value, abbr) {
         upperDays = cal._upperDays;
     if ( !upperDays ) {
         cal._upperDays = upperDays = [
-            toUpperArray( days[0] ),
-            toUpperArray( days[1] ),
-            toUpperArray( days[2] )
+            toUpperArray( days.names ),
+            toUpperArray( days.namesAbbr ),
+            toUpperArray( days.namesShort )
         ];
     }
     value = toUpper( value );
     if ( abbr ) {
-        ret = $.inArray( value, upperDays[1] );
+        ret = $.inArray( value, upperDays[ 1 ] );
         if ( ret === -1 ) {
-            ret = $.inArray( value, upperDays[2] );
+            ret = $.inArray( value, upperDays[ 2 ] );
         }
     }
     else {
-        ret = $.inArray( value, upperDays[0] );
+        ret = $.inArray( value, upperDays[ 0 ] );
     }
     return ret;
 }
@@ -672,18 +672,18 @@ function getMonthIndex(cal, value, abbr) {
         upperMonthsGen = cal._upperMonthsGen;
     if ( !upperMonths ) {
         cal._upperMonths = upperMonths = [
-            toUpperArray( months[0] ), // months
-            toUpperArray( months[1] ), // abbreviated months
+            toUpperArray( months.names ),
+            toUpperArray( months.namesAbbr ),
         ];
         cal._upperMonthsGen = upperMonthsGen = [
-            toUpperArray( months[2] || months[0] ), // genitive months
-            toUpperArray( months[3] || months[1] )  // abbreviated genitive months
+            toUpperArray( monthsGen.names ),
+            toUpperArray( monthsGen.namesAbbr )
         ];
     }
     value = toUpper( value );
-    var i = $.inArray( value, abbr ? upperMonths[1] : upperMonths[0] );
-    if (i < 0) {
-        i = $.inArray( value, abbr ? upperMonthsGen[1] : upperMonthsGen[0] );
+    var i = $.inArray( value, abbr ? upperMonths[ 1 ] : upperMonths[ 0 ] );
+    if ( i < 0 ) {
+        i = $.inArray( value, abbr ? upperMonthsGen[ 1 ] : upperMonthsGen[ 0 ] );
     }
     return i;
 }
@@ -1115,7 +1115,7 @@ function formatDate(value, format, culture) {
                 //Day of the week, as a three-letter abbreviation
             case "dddd":
                 // Day of the week, using the full name
-                names = (clength === 3) ? cal.days[1] : cal.days[0];
+                names = (clength === 3) ? cal.days.namesAbbr : cal.days.names;
                 ret.push( names[ value.getDay() ] );
                 break;
             case "d":
@@ -1131,8 +1131,8 @@ function formatDate(value, format, culture) {
                 // Month, using the full name
                 var part = getPart( value, 1 );
                 ret.push( (cal.monthsGenitive && hasDay())
-                    ? (cal.monthsGenitive || cal.months)[ clength === 3 ? 1 : 0 ][ part ]
-                    : cal.months[ clength === 3 ? 1 : 0 ][ part ] );
+                    ? cal.monthsGenitive[ clength === 3 ? "namesAbbr" : "names" ][ part ]
+                    : cal.months[ clength === 3 ? "namesAbbr" : "names" ][ part ] );
                 break;
             case "M":
                 // Month, as digits, with no leading zero for single-digit months

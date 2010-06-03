@@ -27,18 +27,25 @@
                 name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
-                days: [["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],["dom","seg","ter","qua","qui","sex","sáb"],["D","S","T","Q","Q","S","S"]],
-                months: [["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro",""],["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez",""]],
+                days: {
+                    names: ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],
+                    namesAbbr: ["dom","seg","ter","qua","qui","sex","sáb"],
+                    namesShort: ["D","S","T","Q","Q","S","S"]
+                },
+                months: {
+                    names: ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro",""],
+                    namesAbbr: ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez",""]
+                },
                 AM: null,
                 PM: null,
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
                     d: "dd-MM-yyyy",
-                    D: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy",
-                    f: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm",
-                    F: "dddd, d\u0027 de \u0027MMMM\u0027 de \u0027yyyy HH:mm:ss",
+                    D: "dddd, d' de 'MMMM' de 'yyyy",
+                    f: "dddd, d' de 'MMMM' de 'yyyy HH:mm",
+                    F: "dddd, d' de 'MMMM' de 'yyyy HH:mm:ss",
                     M: "d/M",
-                    Y: "MMMM\u0027 de \u0027yyyy"
+                    Y: "MMMM' de 'yyyy"
                 }
             })
         }
