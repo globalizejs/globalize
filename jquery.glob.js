@@ -12,24 +12,36 @@ $.extend({
         if ( !name ) {
             match = $.culture || $.cultures.invariant;
         }
-        else if ( typeof name !== "string" ) {
+        else if ( $.isPlainObject( name ) ) {
             match = name;
         }
         else {
-            do {
-                match = $.cultures[ name ];
-                if ( !match ) {
-                    var index = name.lastIndexOf("-");
+            var cultures = $.cultures,
+                list = $.isArray( name ) ? name : [ name ],
+                i, l = list.length;
+            for ( i = 0; i < l; i++ ) {
+                name = list[ i ];
+                match = cultures[ name ];
+                if ( match ) {
+                    return match;
+                }
+            }
+            for ( i = 0; i < l; i++ ) {
+                name = list[ i ];
+                do {
+                    var index = name.lastIndexOf( "-" );
                     if ( index === -1 ) {
                         break;
                     }
-                    else {
-                        // strip off the last part. e.g. en-US => en
-                        name = name.substr( 0, index );
+                    // strip off the last part. e.g. en-US => en
+                    name = name.substr( 0, index );
+                    match = cultures[ name ];
+                    if ( match ) {
+                        return match;
                     }
                 }
+                while ( 1 );
             }
-            while ( !match );
         }
         return match || null;
     },
