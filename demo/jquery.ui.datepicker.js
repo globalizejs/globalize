@@ -230,8 +230,8 @@ $.extend(Datepicker.prototype, {
 				};
                 var months = this._get(inst, 'months'),
                     days = this._get(inst, 'days');
-                date.setMonth(findMax(months[dateFormat.match(/MMMM/) ? 0 : 1]));
-                date.setDate(findMax(days[dateFormat.match(/dddd/) ? 0 : 1]) + 20 - date.getDay());
+                date.setMonth(findMax(months[dateFormat.match(/MMMM/) ? "names" : "namesAbbr"]));
+                date.setDate(findMax(days[dateFormat.match(/dddd/) ? "names" : "namesAbbr"]) + 20 - date.getDay());
 			}
 			inst.input.attr('size', this._formatDate(inst, date).length);
 		}
@@ -1287,7 +1287,7 @@ $.extend(Datepicker.prototype, {
 				for (var dow = 0; dow < 7; dow++) { // days of the week
 					var day = (dow + firstDay) % 7;
 					thead += '<th' + ((dow + firstDay + 6) % 7 >= 5 ? ' class="ui-datepicker-week-end"' : '') + '>' +
-						'<span title="' + dayNames[0][day] + '">' + dayNames[2][day] + '</span></th>';
+						'<span title="' + dayNames.names[day] + '">' + dayNames.namesShort[day] + '</span></th>';
 				}
 				calender += thead + '</tr></thead><tbody>';
 				var daysInMonth = this._getDaysInMonth(drawYear, drawMonth);
@@ -1380,7 +1380,7 @@ $.extend(Datepicker.prototype, {
 		var monthHtml = '';
 		// month selection
 		if (secondary || !changeMonth)
-			monthHtml += '<span class="ui-datepicker-month">' + monthNames[0][drawMonth] + '</span>';
+			monthHtml += '<span class="ui-datepicker-month">' + monthNames.names[drawMonth] + '</span>';
 		else {
 			var inMinYear = (minDate && minDate.getFullYear() == drawYear);
 			var inMaxYear = (maxDate && maxDate.getFullYear() == drawYear);
@@ -1393,7 +1393,7 @@ $.extend(Datepicker.prototype, {
 						(!inMaxYear || month <= maxDate.getMonth()))
 					monthHtml += '<option value="' + month + '"' +
 						(month == drawMonth ? ' selected="selected"' : '') +
-						'>' + monthNames[1][month] + '</option>';
+						'>' + monthNames.namesAbbr[month] + '</option>';
 			}
 			monthHtml += '</select>';
 		}
