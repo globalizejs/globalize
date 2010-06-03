@@ -20,7 +20,6 @@ This jQuery plugin enables complex culture-aware number and date parsing and for
 <li><a href="#dates">Date Formatting</a></li>
 </ul>
 
-<!-- using named anchors to workaround github stripping IDs from readme -->
 <a name="why"></a>
 <h2 id="why">Why Globalization?</h2>
 <p>
