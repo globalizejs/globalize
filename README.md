@@ -20,6 +20,7 @@ This jQuery plugin enables complex culture-aware number and date parsing and for
 <li><a href="#dates">Date Formatting</a></li>
 </ul>
 
+<!-- using named anchors to workaround github stripping IDs from readme -->
 <a name="why"></a>
 <h2 id="why">Why Globalization?</h2>
 <p>
@@ -29,6 +30,7 @@ Each language, and the countries that speak that language, have different expect
 A user using an application should be able to read and write dates and numbers in the format they are occustomed to. This plugin makes this possible, providing an API to convert user-entered numbers and dates -- in their own format -- into real numbers and dates, and conversely, to format numbers and dates into that format.
 </p>
 
+<a name="what"></a>
 <h2 id="what">What is a Culture?</h2>
 <p>
 jQuery.glob.js defines roughly 350 cultures. Part of the reason for this large number, besides there being a lot of cultures of the world, is because for some languages, expectations differ amoung the countries that speak it. English, for example, is an official language in dozens of countries. Despite the language being English, the expected date formatting still greatly differs between them.
@@ -40,11 +42,13 @@ So, it seems it is not useful to define cultures by their language alone. Nor is
 Yet, it is perhaps unreasonable to expect application developers to cater to every possible language/country combination perfectly. It is important then to define so-called "neutral" cultures based on each language. This culture defines the most likely accepted set of rules by anyone speaking that language, whatever the country. Neutral cultures are defined only by their language code. For example, "es" is the neutral culture for Spanish.
 </p>
 
+<a name="cultures"></a>
 <h2 id="cultures">jQuery.cultures</h2>
 <p>
 A mapping of culture code to that culture. For example, jQuery.cultures.fr is an object representing the complete culture definition for the neutral French culture. Note that jQuery.glob.js alone only includes an English culture. To get additional cultures, you must seperately reference one or more of the culture scripts that come with it. See below on what fields are defined in each culture.
 </p>
 
+<a name="culture"></a>
 <h2 id="culture">jQuery.culture</h2>
 <p>
 This is set to the culture currently being used. This serves as the default culture if no culture is specified on the various parsing and formatting functions. For example, to change the current culture, set it to one of the available cultures:
@@ -53,6 +57,7 @@ jQuery.culture = jQuery.cultures["FR-fr"];
 </pre>
 </p>
 
+<a name="prefer"></a>
 <h2 id="prefer">jQuery.preferCulture</h2>
 <p>
 An application that supports globalization and/or localization will need to have a way to determine the user's preference. Attempting to automatically determine the appropriate culture is useful, but it is good practice to always offer the user a choice, by whatever means. 
@@ -77,11 +82,13 @@ alert(jQuery.culture.name) // 'fr'
 In any case, if no match is found, the invariant culture is selected.
 </p>
 
+<a name="find"></a>
 <h2 id="find">jQuery.findClosestCulture</h2>
 <p>
 Just like preferCulture, but it returns the matching culture, if any, rather than setting jQuery.culture to it.
 </p>
 
+<a name="format"></a>
 <h2 id="format">jQuery.format(value, format, culture)</h2>
 <p>
 Formats a date or number according to the given format string and the given culture (or the current culture if not specified). See the section below on number and date formatting tokens for details on the available formats.
@@ -97,6 +104,7 @@ jQuery.format(new Date(1955,10,5), "dddd MMMM d, yyyy"); // Saturday November 5,
 </pre>
 </p>
 
+<a name="parseInt"></a>
 <h2 id="parseInt">jQuery.parseInt(value, radix, culture)</h2>
 <p>
 Parses a string representing a whole number in the given the radix (10 by default), taking into account any formatting rules followed by the given culture (or the current culture, if not specified). 
@@ -108,6 +116,7 @@ jQuery.parseInt("1.234,56"); // 1234
 </pre>
 </p>
 
+<a name="parseFloat"></a>
 <h2 id="parseFloat">jQuery.parseFloat(value, radix, culture)</h2>
 <p>
 Parses a string representing a floating point number in the given the radix (10 by default), taking into account any formatting rules followed by the given culture (or the current culture, if not specified).
@@ -124,6 +133,7 @@ jQuery.parseDate("1/2/2003"); // Sat Feb 01 2003
 </pre>
 </p>
 
+<a name="localize"></a>
 <h2 id="localize">jQuery.localize(key, culture, value)</h2>
 <p>
 Gets or sets a localized value. This function allows you to extend the information available to a particular culture, and to easily retrieve it without worrying about finding the most appropriate culture. For example, to define the word "translate" in French:
@@ -164,6 +174,7 @@ alert(jQuery.localize("myplugin").foo); // foo (invariant)
 Also note that localize() does not require loading the culture information script. You may use localize() for localization purposes without utilizing the parsing and formatting functions which depend on the cultures. If you do use both, it does not matter what order you include them in, either may be first -- the jQuery.glob.&lt;code&gt;.js script, or your own script which uses localize().
 </p>
 
+<a name="extend"></a>
 <h2 id="extend">Utilizing and Extending Cultures</h2>
 <p>
 The culture information included with each culture is mostly necessary for the parsing and formatting methods, but not all of it. For example, the the Native and English names for each culture is given, as well as a boolean indicating whether the language is right-to-left. This may be useful information for your own purposes. You may also add to the culture information directly if so desired. It is important to do so in a way that handles the fact that the culture info may not be provided, may not be provided yet, or may already be provided. Using jQuery's extend() method, it is possible to define a culture in a way that both defines if it does not exist and adds to it if it does exist.
@@ -181,6 +192,7 @@ jQuery.cultures.fr = jQuery.extend(true, {
 Using this mechanism, the 'fr' culture will be created if it does not exist. And if it does, the given values will be added to it, taking care not to overwrite anything that is already defined (if you'd prefer to overwrite, you'd switch the last two arguments). When the jQuery.glob.fr.js script is eventually included, it too uses this technique, ensuring addition to the already-defined culture information.
 </p>
 
+<a name="defining"></a>
 <h2 id="defining">Defining Culture Information</h2>
 <p>
 Each culture is defined in its own script with the naming scheme jQuery.glob.&lt;code&gt;.js (along with its minified version, jQuery.glob.&lt;code&gt;.min.js). You may include any number of these scripts, making them available in the jQuery.cultures mapping. Including one of these scripts does NOT automatically make it the default culture selected with jQuery.culture.
@@ -372,6 +384,7 @@ $.culture.calendar = $.culture.calendars.standard;
 
 </p>
 
+<a name="numbers"></a>
 <h2 id="numbers">Number Formatting</h2>
 <p>
 When formatting a number with format(), the main purpose is to convert the number into a human readable string using the culture's standard grouping and decimal rules. The rules between cultures can vary a lot. For example, in some cultures, the grouping of numbers is done unevenly. In the "te-IN" culture (Telugu in India), groups have 3 digits and then 2 digits. The number 1000000 (one million) is written as "10,00,000". Some cultures do not group numbers at all.
@@ -406,6 +419,7 @@ jQuery.format(0.12345, "p4"); // 12.3450 %
 Parsing with parseInt and parseFloat also accepts any of these formats.
 </p>
 
+<a name="dates"></a>
 <h2 id="dates">Date Formatting</h2>
 <p>
 Date formatting varies wildly by culture, not just in the spelling of month and day names, and the date separator, but by the expected order of the various date components, whether to use a 12 or 24 hour clock, and how months and days are abbreivated. Many cultures even include "genative" month names, which are different from the typical names and are used only in certain cases.
