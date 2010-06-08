@@ -5,12 +5,13 @@
 (function($) {
 
 var localized = { en: {} };
+localized["default"] = localized.en;
 
 $.extend({
     findClosestCulture: function(name) {
         var match;
         if ( !name ) {
-            match = $.culture || $.cultures.en;
+            match = $.culture || $.cultures["default"];
         }
         else if ( $.isPlainObject( name ) ) {
             match = name;
@@ -46,11 +47,11 @@ $.extend({
         return match || null;
     },
     preferCulture: function(name) {
-        $.culture = $.findClosestCulture( name ) || $.cultures.en;
+        $.culture = $.findClosestCulture( name ) || $.cultures["default"];
     },
     localize: function(key, culture, value) {
         if (typeof culture === 'string') {
-            culture = culture || "en";
+            culture = culture || "default";
             culture = $.cultures[ culture ] || { name: culture };
         }
         var local = localized[ culture.name ];
@@ -70,7 +71,7 @@ $.extend({
                     value = language[ key ];
                 }
                 if ( typeof value === 'undefined' ) {
-                    value = localized.en[ key ];
+                    value = localized["default"][ key ];
                 }
             }
         }
@@ -193,8 +194,8 @@ $.extend({
 
 // 1.    When defining a culture, all fields are required except the ones stated as optional.
 // 2.    You can use $.extend to copy an existing culture and provide only the differing values,
-//       a good practice since most cultures do not differ too much from the 'en' culture.
-//       DO use the 'en' culture if you do this, as it is the only one that definitely
+//       a good practice since most cultures do not differ too much from the 'default' culture.
+//       DO use the 'default' culture if you do this, as it is the only one that definitely
 //       exists.
 // 3.    Other plugins may add to the culture information provided by extending it. However,
 //       that plugin may extend it prior to the culture being defined, or after. Therefore,
@@ -206,12 +207,12 @@ $.extend({
 //       it may be dynamically changed at any time to one of the calendars in ".calendars".
 
 // To define a culture, use the following pattern, which handles defining the culture based
-// on the 'en culture, extending it with the existing culture if it exists, and defining
+// on the 'default culture, extending it with the existing culture if it exists, and defining
 // it if it does not exist.
-// $.cultures.foo = $.extend(true, $.extend(true, {}, $.cultures.en, fooCulture), $.cultures.foo)
+// $.cultures.foo = $.extend(true, $.extend(true, {}, $.cultures['default'], fooCulture), $.cultures.foo)
 
 var cultures = $.cultures = $.cultures || {};
-var en = cultures.en = $.extend(true, {
+var en = cultures["default"] = cultures.en = $.extend(true, {
     // A unique name for the culture in the form <language code>-<country/region code>
     name: "en",
     // the name of the culture in the english language
