@@ -1,12 +1,11 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["en-ZA"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["en-ZA"] = $.extend(true, {}, en, {
         name: "en-ZA",
         englishName: "English (South Africa)",
         nativeName: "English (South Africa)",
-        language: "en",
         numberFormat: {
             ',': " ",
             percent: {
@@ -22,7 +21,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",

@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["as-IN"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["as-IN"] = $.extend(true, {}, en, {
         name: "as-IN",
         englishName: "Assamese (India)",
         nativeName: "অসমীয়া (ভাৰত)",
@@ -21,7 +21,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {

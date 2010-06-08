@@ -78,7 +78,7 @@ jQuery.preferCulture(["es-MX", "fr-FR"]);
 alert(jQuery.culture.name) // 'fr'
 </pre>
 
-In any case, if no match is found, the invariant culture is selected.
+In any case, if no match is found, the 'en' culture is selected.
 </p>
 
 <a name="find"></a>
@@ -152,8 +152,8 @@ alert(obj.foo); // "foo"
 Note that localize() will find the closest match available per the same semantics as the jQuery.findClosestCulture function. If there is no match, the translation given is for the neutral culture, if any.
 <pre>
 jQuery.localize("myplugin", "", {
-    foo: "foo (invariant)",
-    bar: "bar (invariant)"
+    foo: "foo (en)",
+    bar: "bar (en)"
 });
 jQuery.localize("myplugin", "fr", {
     foo: "foo",
@@ -168,7 +168,7 @@ alert(jQuery.localize("myplugin").foo); // foo
 
 jQuery.culture = jQuery.cultures["es-MX"];
 jQuery.culture = jQuery.cultures["fr-FR"];
-alert(jQuery.localize("myplugin").foo); // foo (invariant)
+alert(jQuery.localize("myplugin").foo); // foo (en)
 </pre>
 Also note that localize() does not require loading the culture information script. You may use localize() for localization purposes without utilizing the parsing and formatting functions which depend on the cultures. If you do use both, it does not matter what order you include them in, either may be first -- the jQuery.glob.&lt;code&gt;.js script, or your own script which uses localize().
 </p>
@@ -199,13 +199,13 @@ Each culture is defined in its own script with the naming scheme jQuery.glob.&lt
 <p>
 The neutral culture that comes with jQuery.glob.js is heavily commented, describing the purpose of each of the fields defined by a culture. Note that every culture includes all of these fields, even if they are the same as the netural culture. However, the script uses jQuery's $.extend to copy from the neutral culture, so looking at the raw scripts will only show you what is different in that culture from the neutral culture. The neutral culture is listed here along with the comments:
 <pre>
-jQuery.cultures.invariant = {
+jQuery.cultures.en = {
     // A unique name for the culture in the form &lt;language code&gt;-&lt;country/region code&lt;
-    name: "invariant",
+    name: "English",
     // the name of the culture in the english language
-    englishName: "Invariant",
+    englishName: "English",
     // the name of the culture in its own language
-    nativeName: "Invariant",
+    nativeName: "English",
     // whether the culture uses right-to-left text
     isRTL: false,
     // 'language' is used for so-called "specific" cultures.
@@ -225,7 +225,7 @@ jQuery.cultures.invariant = {
     // This field should be used to navigate from a specific culture to it's
     // more general, neutral culture. If a culture is already as general as it 
     // can get, the language may refer to itself.
-    language: "",
+    language: "en",
     // numberFormat defines general number formatting rules, like the digits in
     // each grouping, the group separator, and how negative numbers are displayed.
     numberFormat: {
@@ -276,7 +276,7 @@ jQuery.cultures.invariant = {
             // string that separates a number from the fractional portion, as in 1.99
             '.': ".",
             // symbol used to represent currency
-            symbol: "¤"
+            symbol: "$"
         }
     },
     // calendars defines all the possible calendars used by this culture.
@@ -332,17 +332,17 @@ jQuery.cultures.invariant = {
             // to see given the portions of the date that are shown.
             patterns: {
                 // short date pattern
-                d: "MM/dd/yyyy",
+                d: "M/d/yyyy",
                 // long date pattern
-                D: "dddd, dd MMMM yyyy",
+                D: "dddd, MMMM dd, yyyy",
                 // short time pattern
-                t: "HH:mm",
+                t: "h:mm tt",
                 // long time pattern
-                T: "HH:mm:ss",
+                T: "h:mm:ss tt",
                 // long date, short time pattern
-                f: "dddd, dd MMMM yyyy HH:mm",
+                f: "dddd, MMMM dd, yyyy h:mm tt",
                 // long date, long time pattern
-                F: "dddd, dd MMMM yyyy HH:mm:ss",
+                F: "dddd, MMMM dd, yyyy h:mm:ss tt",
                 // month/day pattern
                 M: "MMMM dd",
                 // month/year pattern

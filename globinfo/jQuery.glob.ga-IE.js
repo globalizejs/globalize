@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["ga-IE"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["ga-IE"] = $.extend(true, {}, en, {
         name: "ga-IE",
         englishName: "Irish (Ireland)",
         nativeName: "Gaeilge (Éire)",
@@ -15,7 +15,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Dé Domhnaigh","Dé Luain","Dé Máirt","Dé Céadaoin","Déardaoin","Dé hAoine","Dé Sathairn"],
@@ -31,6 +30,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d MMMM yyyy HH:mm",
                     F: "d MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",

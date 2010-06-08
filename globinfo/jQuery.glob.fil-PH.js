@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["fil-PH"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["fil-PH"] = $.extend(true, {}, en, {
         name: "fil-PH",
         englishName: "Filipino (Philippines)",
         nativeName: "Filipino (Pilipinas)",
@@ -14,7 +14,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Linggo","Lunes","Martes","Mierkoles","Huebes","Biernes","Sabado"],
                     namesAbbr: ["Lin","Lun","Mar","Mier","Hueb","Bier","Saba"],
@@ -24,16 +23,7 @@
                     names: ["Enero","Pebrero","Marso","Abril","Mayo","Hunyo","Hulyo","Agosto","Septyembre","Oktubre","Nobyembre","Disyembre",""],
                     namesAbbr: ["En","Peb","Mar","Abr","Mayo","Hun","Hul","Agos","Sept","Okt","Nob","Dis",""]
                 },
-                eras: [{"name":"Anno Domini","start":null,"offset":0}],
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
-                }
+                eras: [{"name":"Anno Domini","start":null,"offset":0}]
             })
         }
     }, cultures["fil-PH"]);

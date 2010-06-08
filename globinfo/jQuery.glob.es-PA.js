@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["es-PA"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["es-PA"] = $.extend(true, {}, en, {
         name: "es-PA",
         englishName: "Spanish (Panama)",
         nativeName: "Español (Panamá)",
@@ -15,7 +15,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -29,6 +28,7 @@
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
+                    d: "MM/dd/yyyy",
                     D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",

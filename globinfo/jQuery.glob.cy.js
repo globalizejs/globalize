@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["cy"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["cy"] = $.extend(true, {}, en, {
         name: "cy",
         englishName: "Welsh",
         nativeName: "Cymraeg",
@@ -18,7 +18,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Dydd Sul","Dydd Llun","Dydd Mawrth","Dydd Mercher","Dydd Iau","Dydd Gwener","Dydd Sadwrn"],
@@ -34,6 +33,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",

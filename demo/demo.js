@@ -38,7 +38,7 @@ jQuery(function($) {
     $.each(sortByName($.cultures), function(i, culture) {
         $("<option/>", {
             value: culture.name,
-            text: culture.name + ": " + (culture.englishName || "Invariant") + " (" + (culture.nativeName || "Invariant") + ")"
+            text: culture.name + ": " + culture.englishName + " (" + culture.nativeName + ")"
         }).appendTo("#cultures");
     });
 

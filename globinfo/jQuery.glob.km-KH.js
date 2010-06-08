@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["km-KH"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["km-KH"] = $.extend(true, {}, en, {
         name: "km-KH",
         englishName: "Khmer (Cambodia)",
         nativeName: "ខ្មែរ (កម្ពុជា)",
@@ -21,7 +21,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["ថ្ងៃអាទិត្យ","ថ្ងៃច័ន្ទ","ថ្ងៃអង្គារ","ថ្ងៃពុធ","ថ្ងៃព្រហស្បតិ៍","ថ្ងៃសុក្រ","ថ្ងៃសៅរ៍"],
@@ -39,6 +38,7 @@
                     d: "yyyy-MM-dd",
                     D: "d MMMM yyyy",
                     t: "H:mm tt",
+                    T: "HH:mm:ss",
                     f: "d MMMM yyyy H:mm tt",
                     F: "d MMMM yyyy HH:mm:ss",
                     M: "'ថ្ងៃទី' dd 'ខែ' MM",
@@ -60,11 +60,11 @@
                 PM: ["ល្ងាច","ល្ងាច","ល្ងាច"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm tt",
+                    T: "HH:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm tt",
-                    F: "dddd, MMMM dd, yyyy HH:mm:ss",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy HH:mm:ss"
                 }
             })
         }

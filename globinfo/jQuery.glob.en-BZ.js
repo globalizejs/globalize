@@ -1,12 +1,11 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["en-BZ"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["en-BZ"] = $.extend(true, {}, en, {
         name: "en-BZ",
         englishName: "English (Belize)",
         nativeName: "English (Belize)",
-        language: "en",
         numberFormat: {
             currency: {
                 groupSizes: [3,0],
@@ -15,9 +14,9 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 patterns: {
                     d: "dd/MM/yyyy",
+                    D: "dddd, dd MMMM yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, dd MMMM yyyy hh:mm tt",

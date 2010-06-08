@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["dv-MV"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["dv-MV"] = $.extend(true, {}, en, {
         name: "dv-MV",
         englishName: "Divehi (Maldives)",
         nativeName: "ދިވެހިބަސް (ދިވެހި ރާއްޖެ)",
@@ -33,10 +33,11 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "dd/MM/yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd/MM/yyyy HH:mm",
                     F: "dd/MM/yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -112,7 +113,6 @@
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
                     namesAbbr: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
@@ -128,6 +128,8 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "ddd, yyyy MMMM dd",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "ddd, yyyy MMMM dd HH:mm",
                     F: "ddd, yyyy MMMM dd HH:mm:ss",
                     Y: "yyyy, MMMM"

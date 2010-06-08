@@ -4,13 +4,13 @@
  */
 (function($) {
 
-var localized = { invariant: {} };
+var localized = { en: {} };
 
 $.extend({
     findClosestCulture: function(name) {
         var match;
         if ( !name ) {
-            match = $.culture || $.cultures.invariant;
+            match = $.culture || $.cultures.en;
         }
         else if ( $.isPlainObject( name ) ) {
             match = name;
@@ -46,11 +46,11 @@ $.extend({
         return match || null;
     },
     preferCulture: function(name) {
-        $.culture = $.findClosestCulture( name ) || $.cultures.invariant;
+        $.culture = $.findClosestCulture( name ) || $.cultures.en;
     },
     localize: function(key, culture, value) {
         if (typeof culture === 'string') {
-            culture = culture || "invariant";
+            culture = culture || "en";
             culture = $.cultures[ culture ] || { name: culture };
         }
         var local = localized[ culture.name ];
@@ -70,7 +70,7 @@ $.extend({
                     value = language[ key ];
                 }
                 if ( typeof value === 'undefined' ) {
-                    value = localized[ 'invariant' ][ key ];
+                    value = localized.en[ key ];
                 }
             }
         }
@@ -193,8 +193,8 @@ $.extend({
 
 // 1.    When defining a culture, all fields are required except the ones stated as optional.
 // 2.    You can use $.extend to copy an existing culture and provide only the differing values,
-//       a good practice since most cultures do not differ too much from the invariant culture.
-//       DO use the invariant culture if you do this, as it is the only one that definitely
+//       a good practice since most cultures do not differ too much from the 'en' culture.
+//       DO use the 'en' culture if you do this, as it is the only one that definitely
 //       exists.
 // 3.    Other plugins may add to the culture information provided by extending it. However,
 //       that plugin may extend it prior to the culture being defined, or after. Therefore,
@@ -206,18 +206,18 @@ $.extend({
 //       it may be dynamically changed at any time to one of the calendars in ".calendars".
 
 // To define a culture, use the following pattern, which handles defining the culture based
-// on the invariant culture, extending it with the existing culture if it exists, and defining
+// on the 'en culture, extending it with the existing culture if it exists, and defining
 // it if it does not exist.
-// $.cultures.foo = $.extend(true, $.extend(true, {}, $.cultures.invariant, fooCulture), $.cultures.foo)
+// $.cultures.foo = $.extend(true, $.extend(true, {}, $.cultures.en, fooCulture), $.cultures.foo)
 
 var cultures = $.cultures = $.cultures || {};
-var invariant = cultures.invariant = $.extend(true, {
+var en = cultures.en = $.extend(true, {
     // A unique name for the culture in the form <language code>-<country/region code>
-    name: "invariant",
+    name: "en",
     // the name of the culture in the english language
-    englishName: "Invariant",
+    englishName: "English",
     // the name of the culture in its own language
-    nativeName: "Invariant",
+    nativeName: "English",
     // whether the culture uses right-to-left text
     isRTL: false,
     // 'language' is used for so-called "specific" cultures.
@@ -237,7 +237,7 @@ var invariant = cultures.invariant = $.extend(true, {
     // This field should be used to navigate from a specific culture to it's
     // more general, neutral culture. If a culture is already as general as it 
     // can get, the language may refer to itself.
-    language: "",
+    language: "en",
     // numberFormat defines general number formatting rules, like the digits in
     // each grouping, the group separator, and how negative numbers are displayed.
     numberFormat: {
@@ -290,8 +290,8 @@ var invariant = cultures.invariant = $.extend(true, {
             ',': ",",
             // string that separates a number from the fractional portion, as in 1.99
             '.': ".",
-            // symbol used to represent a percentage
-            symbol: "¤"
+            // symbol used to represent currency
+            symbol: "$"
         }
     },
     // calendars defines all the possible calendars used by this culture.
@@ -347,17 +347,17 @@ var invariant = cultures.invariant = $.extend(true, {
             // to see given the portions of the date that are shown.
             patterns: {
                 // short date pattern
-                d: "MM/dd/yyyy",
+                d: "M/d/yyyy",
                 // long date pattern
-                D: "dddd, dd MMMM yyyy",
+                D: "dddd, MMMM dd, yyyy",
                 // short time pattern
-                t: "HH:mm",
+                t: "h:mm tt",
                 // long time pattern
-                T: "HH:mm:ss",
+                T: "h:mm:ss tt",
                 // long date, short time pattern
-                f: "dddd, dd MMMM yyyy HH:mm",
+                f: "dddd, MMMM dd, yyyy h:mm tt",
                 // long date, long time pattern
-                F: "dddd, dd MMMM yyyy HH:mm:ss",
+                F: "dddd, MMMM dd, yyyy h:mm:ss tt",
                 // month/day pattern
                 M: "MMMM dd",
                 // month/year pattern
@@ -384,8 +384,8 @@ var invariant = cultures.invariant = $.extend(true, {
             */
         }
     }
-}, cultures.invariant);
-invariant.calendar = invariant.calendar || invariant.calendars.standard;
+}, cultures.en);
+en.calendar = en.calendar || en.calendars.standard;
 
 var regexTrim = /^\s+|\s+$/g,
     regexInfinity = /^[+-]?infinity$/i,

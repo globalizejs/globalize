@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["ur"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["ur"] = $.extend(true, {}, en, {
         name: "ur",
         englishName: "Urdu",
         nativeName: "اُردو",
@@ -16,7 +16,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["اتوار","پير","منگل","بدھ","جمعرات","جمعه","هفته"],
@@ -30,12 +29,9 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd MMMM, yyyy h:mm tt",
                     F: "dd MMMM, yyyy h:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -55,12 +51,9 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "dd/MM/yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd/MM/yyyy h:mm tt",
                     F: "dd/MM/yyyy h:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar

@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["iu-Cans-CA"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["iu-Cans-CA"] = $.extend(true, {}, en, {
         name: "iu-Cans-CA",
         englishName: "Inuktitut (Syllabics, Canada)",
         nativeName: "ᐃᓄᒃᑎᑐᑦ (ᑲᓇᑕᒥ)",
@@ -14,13 +14,11 @@
                 groupSizes: [3,0]
             },
             currency: {
-                groupSizes: [3,0],
-                symbol: "$"
+                groupSizes: [3,0]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["ᓈᑦᑏᖑᔭ","ᓇᒡᒐᔾᔭᐅ","ᐊᐃᑉᐱᖅ","ᐱᖓᑦᓯᖅ","ᓯᑕᒻᒥᖅ","ᑕᓪᓕᕐᒥᖅ","ᓯᕙᑖᕐᕕᒃ"],
                     namesAbbr: ["ᓈᑦᑏ","ᓇᒡᒐ","ᐊᐃᑉᐱ","ᐱᖓᑦᓯ","ᓯᑕ","ᑕᓪᓕ","ᓯᕙᑖᕐᕕᒃ"],
@@ -33,8 +31,6 @@
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd,MMMM dd,yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd,MMMM dd,yyyy h:mm tt",
                     F: "dddd,MMMM dd,yyyy h:mm:ss tt",
                     Y: "MMMM,yyyy"

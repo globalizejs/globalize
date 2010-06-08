@@ -1573,7 +1573,7 @@ window['DP_jQuery_' + dpuuid] = $;
 
 // regional data
 var regions = {
-    "invariant": {
+    "en": {
         "closeText": "Done",
         "prevText": "Prev",
         "nextText": "Next",

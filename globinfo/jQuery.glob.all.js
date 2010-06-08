@@ -1,9 +1,9 @@
 (function($) {
     var culture, cultures = $.cultures,
-    invariant = cultures.invariant,
-    standard = invariant.calendars.standard;
+    en = cultures.en,
+    standard = en.calendars.standard;
 
-    culture = cultures["ar"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar"] = $.extend(true, {}, en, {
         name: "ar",
         englishName: "Arabic",
         nativeName: "العربية",
@@ -40,8 +40,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -259,8 +258,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -351,13 +349,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -376,16 +373,14 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -405,8 +400,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -425,18 +419,17 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bg"] = $.extend(true, {}, invariant, {
+    culture = cultures["bg"] = $.extend(true, {}, en, {
         name: "bg",
         englishName: "Bulgarian",
         nativeName: "български",
@@ -457,7 +450,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -486,7 +478,7 @@
         }
     }, cultures["bg"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ca"] = $.extend(true, {}, invariant, {
+    culture = cultures["ca"] = $.extend(true, {}, en, {
         name: "ca",
         englishName: "Catalan",
         nativeName: "català",
@@ -507,7 +499,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte"],
@@ -524,6 +515,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, d' / 'MMMM' / 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d' / 'MMMM' / 'yyyy HH:mm",
                     F: "dddd, d' / 'MMMM' / 'yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -533,7 +526,7 @@
         }
     }, cultures["ca"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zh-Hans"] = $.extend(true, {}, invariant, {
+    culture = cultures["zh-Hans"] = $.extend(true, {}, en, {
         name: "zh-Hans",
         englishName: "Chinese (Simplified)",
         nativeName: "中文(简体)",
@@ -549,7 +542,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                     namesAbbr: ["周日","周一","周二","周三","周四","周五","周六"],
@@ -576,7 +568,7 @@
         }
     }, cultures["zh-Hans"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["cs"] = $.extend(true, {}, invariant, {
+    culture = cultures["cs"] = $.extend(true, {}, en, {
         name: "cs",
         englishName: "Czech",
         nativeName: "čeština",
@@ -598,7 +590,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -631,7 +622,7 @@
         }
     }, cultures["cs"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["da"] = $.extend(true, {}, invariant, {
+    culture = cultures["da"] = $.extend(true, {}, en, {
         name: "da",
         englishName: "Danish",
         nativeName: "dansk",
@@ -652,7 +643,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -669,6 +659,8 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -678,7 +670,7 @@
         }
     }, cultures["da"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["de"] = $.extend(true, {}, invariant, {
+    culture = cultures["de"] = $.extend(true, {}, en, {
         name: "de",
         englishName: "German",
         nativeName: "Deutsch",
@@ -700,7 +692,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -718,6 +709,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "dddd, d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d. MMMM yyyy HH:mm",
                     F: "dddd, d. MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -727,7 +720,7 @@
         }
     }, cultures["de"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["el"] = $.extend(true, {}, invariant, {
+    culture = cultures["el"] = $.extend(true, {}, en, {
         name: "el",
         englishName: "Greek",
         nativeName: "Ελληνικά",
@@ -749,7 +742,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"],
@@ -770,8 +762,6 @@
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd, d MMMM yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd, d MMMM yyyy h:mm tt",
                     F: "dddd, d MMMM yyyy h:mm:ss tt",
                     M: "dd MMMM",
@@ -781,33 +771,7 @@
         }
     }, cultures["el"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en"] = $.extend(true, {}, invariant, {
-        name: "en",
-        englishName: "English",
-        nativeName: "English",
-        language: "en",
-        numberFormat: {
-            currency: {
-                symbol: "$"
-            }
-        },
-        calendars: {
-            standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
-                }
-            })
-        }
-    }, cultures["en"]);
-    culture.calendar = culture.calendars.standard;
-    culture = cultures["es"] = $.extend(true, {}, invariant, {
+    culture = cultures["es"] = $.extend(true, {}, en, {
         name: "es",
         englishName: "Spanish",
         nativeName: "español",
@@ -828,7 +792,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
@@ -856,7 +819,7 @@
         }
     }, cultures["es"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fi"] = $.extend(true, {}, invariant, {
+    culture = cultures["fi"] = $.extend(true, {}, en, {
         name: "fi",
         englishName: "Finnish",
         nativeName: "suomi",
@@ -877,7 +840,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -905,7 +867,7 @@
         }
     }, cultures["fi"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fr"] = $.extend(true, {}, invariant, {
+    culture = cultures["fr"] = $.extend(true, {}, en, {
         name: "fr",
         englishName: "French",
         nativeName: "français",
@@ -926,7 +888,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
@@ -943,6 +904,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -952,7 +915,7 @@
         }
     }, cultures["fr"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["he"] = $.extend(true, {}, invariant, {
+    culture = cultures["he"] = $.extend(true, {}, en, {
         name: "he",
         englishName: "Hebrew",
         nativeName: "עברית",
@@ -969,7 +932,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","שבת"],
                     namesAbbr: ["יום א","יום ב","יום ג","יום ד","יום ה","יום ו","שבת"],
@@ -983,6 +945,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd dd MMMM yyyy HH:mm",
                     F: "dddd dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -1006,6 +970,8 @@
                 patterns: {
                     d: "dd MMMM yyyy",
                     D: "dddd dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd dd MMMM yyyy HH:mm",
                     F: "dddd dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -1015,7 +981,7 @@
         }
     }, cultures["he"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["hu"] = $.extend(true, {}, invariant, {
+    culture = cultures["hu"] = $.extend(true, {}, en, {
         name: "hu",
         englishName: "Hungarian",
         nativeName: "magyar",
@@ -1036,7 +1002,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -1065,7 +1030,7 @@
         }
     }, cultures["hu"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["is"] = $.extend(true, {}, invariant, {
+    culture = cultures["is"] = $.extend(true, {}, en, {
         name: "is",
         englishName: "Icelandic",
         nativeName: "íslenska",
@@ -1088,7 +1053,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -1105,6 +1069,8 @@
                 patterns: {
                     d: "d.M.yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -1114,7 +1080,7 @@
         }
     }, cultures["is"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["it"] = $.extend(true, {}, invariant, {
+    culture = cultures["it"] = $.extend(true, {}, en, {
         name: "it",
         englishName: "Italian",
         nativeName: "italiano",
@@ -1136,7 +1102,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"],
@@ -1153,6 +1118,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -1162,7 +1129,7 @@
         }
     }, cultures["it"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ja"] = $.extend(true, {}, invariant, {
+    culture = cultures["ja"] = $.extend(true, {}, en, {
         name: "ja",
         englishName: "Japanese",
         nativeName: "日本語",
@@ -1179,7 +1146,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],
                     namesAbbr: ["日","月","火","水","木","金","土"],
@@ -1232,7 +1198,7 @@
         }
     }, cultures["ja"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ko"] = $.extend(true, {}, invariant, {
+    culture = cultures["ko"] = $.extend(true, {}, en, {
         name: "ko",
         englishName: "Korean",
         nativeName: "한국어",
@@ -1246,7 +1212,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
@@ -1301,7 +1266,7 @@
         }
     }, cultures["ko"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["nl"] = $.extend(true, {}, invariant, {
+    culture = cultures["nl"] = $.extend(true, {}, en, {
         name: "nl",
         englishName: "Dutch",
         nativeName: "Nederlands",
@@ -1322,7 +1287,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -1350,7 +1314,7 @@
         }
     }, cultures["nl"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["no"] = $.extend(true, {}, invariant, {
+    culture = cultures["no"] = $.extend(true, {}, en, {
         name: "no",
         englishName: "Norwegian",
         nativeName: "norsk",
@@ -1371,7 +1335,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -1388,6 +1351,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -1397,7 +1362,7 @@
         }
     }, cultures["no"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["pl"] = $.extend(true, {}, invariant, {
+    culture = cultures["pl"] = $.extend(true, {}, en, {
         name: "pl",
         englishName: "Polish",
         nativeName: "polski",
@@ -1419,7 +1384,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -1440,6 +1404,8 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d MMMM yyyy HH:mm",
                     F: "d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -1449,7 +1415,7 @@
         }
     }, cultures["pl"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["pt"] = $.extend(true, {}, invariant, {
+    culture = cultures["pt"] = $.extend(true, {}, en, {
         name: "pt",
         englishName: "Portuguese",
         nativeName: "Português",
@@ -1471,7 +1437,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],
                     namesAbbr: ["dom","seg","ter","qua","qui","sex","sáb"],
@@ -1487,6 +1452,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, d' de 'MMMM' de 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d' de 'MMMM' de 'yyyy HH:mm",
                     F: "dddd, d' de 'MMMM' de 'yyyy HH:mm:ss",
                     M: "dd' de 'MMMM",
@@ -1496,7 +1463,7 @@
         }
     }, cultures["pt"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["rm"] = $.extend(true, {}, invariant, {
+    culture = cultures["rm"] = $.extend(true, {}, en, {
         name: "rm",
         englishName: "Romansh",
         nativeName: "Rumantsch",
@@ -1515,7 +1482,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dumengia","glindesdi","mardi","mesemna","gievgia","venderdi","sonda"],
@@ -1532,6 +1498,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d MMMM yyyy HH:mm",
                     F: "dddd, d MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -1541,7 +1509,7 @@
         }
     }, cultures["rm"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ro"] = $.extend(true, {}, invariant, {
+    culture = cultures["ro"] = $.extend(true, {}, en, {
         name: "ro",
         englishName: "Romanian",
         nativeName: "română",
@@ -1563,7 +1531,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -1580,6 +1547,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d MMMM yyyy HH:mm",
                     F: "d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -1589,7 +1558,7 @@
         }
     }, cultures["ro"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ru"] = $.extend(true, {}, invariant, {
+    culture = cultures["ru"] = $.extend(true, {}, en, {
         name: "ru",
         englishName: "Russian",
         nativeName: "русский",
@@ -1611,7 +1580,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -1642,7 +1610,7 @@
         }
     }, cultures["ru"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["hr"] = $.extend(true, {}, invariant, {
+    culture = cultures["hr"] = $.extend(true, {}, en, {
         name: "hr",
         englishName: "Croatian",
         nativeName: "hrvatski",
@@ -1665,7 +1633,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -1690,14 +1657,13 @@
                     T: "H:mm:ss",
                     f: "d. MMMM yyyy. H:mm",
                     F: "d. MMMM yyyy. H:mm:ss",
-                    M: "d. MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "d. MMMM"
                 }
             })
         }
     }, cultures["hr"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sk"] = $.extend(true, {}, invariant, {
+    culture = cultures["sk"] = $.extend(true, {}, en, {
         name: "sk",
         englishName: "Slovak",
         nativeName: "slovenčina",
@@ -1719,7 +1685,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
                 days: {
@@ -1752,7 +1717,7 @@
         }
     }, cultures["sk"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sq"] = $.extend(true, {}, invariant, {
+    culture = cultures["sq"] = $.extend(true, {}, en, {
         name: "sq",
         englishName: "Albanian",
         nativeName: "shqipe",
@@ -1773,7 +1738,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -1800,7 +1764,7 @@
         }
     }, cultures["sq"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sv"] = $.extend(true, {}, invariant, {
+    culture = cultures["sv"] = $.extend(true, {}, en, {
         name: "sv",
         englishName: "Swedish",
         nativeName: "svenska",
@@ -1821,7 +1785,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -1838,6 +1801,8 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "'den 'd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "'den 'd MMMM yyyy HH:mm",
                     F: "'den 'd MMMM yyyy HH:mm:ss",
                     M: "'den 'd MMMM",
@@ -1847,7 +1812,7 @@
         }
     }, cultures["sv"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["th"] = $.extend(true, {}, invariant, {
+    culture = cultures["th"] = $.extend(true, {}, en, {
         name: "th",
         englishName: "Thai",
         nativeName: "ไทย",
@@ -1885,7 +1850,6 @@
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],
@@ -1910,7 +1874,7 @@
         }
     }, cultures["th"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tr"] = $.extend(true, {}, invariant, {
+    culture = cultures["tr"] = $.extend(true, {}, en, {
         name: "tr",
         englishName: "Turkish",
         nativeName: "Türkçe",
@@ -1932,7 +1896,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -1949,6 +1912,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "dd MMMM yyyy dddd",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy dddd HH:mm",
                     F: "dd MMMM yyyy dddd HH:mm:ss",
                     M: "dd MMMM",
@@ -1958,7 +1923,7 @@
         }
     }, cultures["tr"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ur"] = $.extend(true, {}, invariant, {
+    culture = cultures["ur"] = $.extend(true, {}, en, {
         name: "ur",
         englishName: "Urdu",
         nativeName: "اُردو",
@@ -1972,7 +1937,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["اتوار","پير","منگل","بدھ","جمعرات","جمعه","هفته"],
@@ -1986,12 +1950,9 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd MMMM, yyyy h:mm tt",
                     F: "dd MMMM, yyyy h:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -2011,12 +1972,9 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "dd/MM/yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd/MM/yyyy h:mm tt",
                     F: "dd/MM/yyyy h:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -2094,7 +2052,7 @@
         }
     }, cultures["ur"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["id"] = $.extend(true, {}, invariant, {
+    culture = cultures["id"] = $.extend(true, {}, en, {
         name: "id",
         englishName: "Indonesian",
         nativeName: "Bahasa Indonesia",
@@ -2115,7 +2073,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"],
@@ -2142,7 +2099,7 @@
         }
     }, cultures["id"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["uk"] = $.extend(true, {}, invariant, {
+    culture = cultures["uk"] = $.extend(true, {}, en, {
         name: "uk",
         englishName: "Ukrainian",
         nativeName: "українська",
@@ -2164,7 +2121,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -2196,7 +2152,7 @@
         }
     }, cultures["uk"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["be"] = $.extend(true, {}, invariant, {
+    culture = cultures["be"] = $.extend(true, {}, en, {
         name: "be",
         englishName: "Belarusian",
         nativeName: "Беларускі",
@@ -2217,7 +2173,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -2249,7 +2204,7 @@
         }
     }, cultures["be"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sl"] = $.extend(true, {}, invariant, {
+    culture = cultures["sl"] = $.extend(true, {}, en, {
         name: "sl",
         englishName: "Slovenian",
         nativeName: "slovenski",
@@ -2271,7 +2226,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -2299,7 +2253,7 @@
         }
     }, cultures["sl"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["et"] = $.extend(true, {}, invariant, {
+    culture = cultures["et"] = $.extend(true, {}, en, {
         name: "et",
         englishName: "Estonian",
         nativeName: "eesti",
@@ -2320,7 +2274,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -2348,7 +2301,7 @@
         }
     }, cultures["et"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["lv"] = $.extend(true, {}, invariant, {
+    culture = cultures["lv"] = $.extend(true, {}, en, {
         name: "lv",
         englishName: "Latvian",
         nativeName: "latviešu",
@@ -2370,7 +2323,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -2402,7 +2354,7 @@
         }
     }, cultures["lv"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["lt"] = $.extend(true, {}, invariant, {
+    culture = cultures["lt"] = $.extend(true, {}, en, {
         name: "lt",
         englishName: "Lithuanian",
         nativeName: "lietuvių",
@@ -2424,7 +2376,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -2445,6 +2396,8 @@
                 patterns: {
                     d: "yyyy.MM.dd",
                     D: "yyyy 'm.' MMMM d 'd.'",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "yyyy 'm.' MMMM d 'd.' HH:mm",
                     F: "yyyy 'm.' MMMM d 'd.' HH:mm:ss",
                     M: "MMMM d 'd.'",
@@ -2454,7 +2407,7 @@
         }
     }, cultures["lt"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tg"] = $.extend(true, {}, invariant, {
+    culture = cultures["tg"] = $.extend(true, {}, en, {
         name: "tg",
         englishName: "Tajik",
         nativeName: "Тоҷикӣ",
@@ -2479,7 +2432,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 days: {
                     names: ["Яш","Душанбе","Сешанбе","Чоршанбе","Панҷшанбе","Ҷумъа","Шанбе"],
@@ -2509,7 +2461,7 @@
         }
     }, cultures["tg"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fa"] = $.extend(true, {}, invariant, {
+    culture = cultures["fa"] = $.extend(true, {}, en, {
         name: "fa",
         englishName: "Persian",
         nativeName: "فارسى",
@@ -2540,16 +2492,14 @@
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["يكشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
@@ -2569,8 +2519,7 @@
                     T: "hh:mm:ss tt",
                     f: "yyyy/MM/dd hh:mm tt",
                     F: "yyyy/MM/dd hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -2596,8 +2545,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -2688,18 +2636,17 @@
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["fa"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["vi"] = $.extend(true, {}, invariant, {
+    culture = cultures["vi"] = $.extend(true, {}, en, {
         name: "vi",
         englishName: "Vietnamese",
         nativeName: "Tiếng Việt",
@@ -2720,7 +2667,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Chủ Nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"],
@@ -2736,8 +2682,6 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd MMMM yyyy h:mm tt",
                     F: "dd MMMM yyyy h:mm:ss tt",
                     M: "dd MMMM",
@@ -2747,7 +2691,7 @@
         }
     }, cultures["vi"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["hy"] = $.extend(true, {}, invariant, {
+    culture = cultures["hy"] = $.extend(true, {}, en, {
         name: "hy",
         englishName: "Armenian",
         nativeName: "Հայերեն",
@@ -2760,7 +2704,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -2781,14 +2724,13 @@
                     T: "H:mm:ss",
                     f: "d MMMM, yyyy H:mm",
                     F: "d MMMM, yyyy H:mm:ss",
-                    M: "d MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "d MMMM"
                 }
             })
         }
     }, cultures["hy"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["az"] = $.extend(true, {}, invariant, {
+    culture = cultures["az"] = $.extend(true, {}, en, {
         name: "az",
         englishName: "Azeri",
         nativeName: "Azərbaycan­ılı",
@@ -2810,7 +2752,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -2842,7 +2783,7 @@
         }
     }, cultures["az"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["eu"] = $.extend(true, {}, invariant, {
+    culture = cultures["eu"] = $.extend(true, {}, en, {
         name: "eu",
         englishName: "Basque",
         nativeName: "euskara",
@@ -2863,7 +2804,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["igandea","astelehena","asteartea","asteazkena","osteguna","ostirala","larunbata"],
@@ -2880,6 +2820,7 @@
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dddd, yyyy.'eko' MMMM'k 'd",
+                    t: "HH:mm",
                     T: "H:mm:ss",
                     f: "dddd, yyyy.'eko' MMMM'k 'd HH:mm",
                     F: "dddd, yyyy.'eko' MMMM'k 'd H:mm:ss",
@@ -2889,7 +2830,7 @@
         }
     }, cultures["eu"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["hsb"] = $.extend(true, {}, invariant, {
+    culture = cultures["hsb"] = $.extend(true, {}, en, {
         name: "hsb",
         englishName: "Upper Sorbian",
         nativeName: "hornjoserbšćina",
@@ -2910,7 +2851,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
                 days: {
@@ -2943,7 +2883,7 @@
         }
     }, cultures["hsb"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mk"] = $.extend(true, {}, invariant, {
+    culture = cultures["mk"] = $.extend(true, {}, en, {
         name: "mk",
         englishName: "Macedonian (FYROM)",
         nativeName: "македонски јазик",
@@ -2964,7 +2904,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -2980,6 +2919,11 @@
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
+                    D: "dddd, dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
+                    f: "dddd, dd MMMM yyyy HH:mm",
+                    F: "dddd, dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -2987,7 +2931,7 @@
         }
     }, cultures["mk"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tn"] = $.extend(true, {}, invariant, {
+    culture = cultures["tn"] = $.extend(true, {}, en, {
         name: "tn",
         englishName: "Setswana",
         nativeName: "Setswana",
@@ -3003,7 +2947,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Latshipi","Mosupologo","Labobedi","Laboraro","Labone","Labotlhano","Lamatlhatso"],
                     namesAbbr: ["Ltp.","Mos.","Lbd.","Lbr.","Lbn.","Lbt.","Lmt."],
@@ -3027,7 +2970,7 @@
         }
     }, cultures["tn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["xh"] = $.extend(true, {}, invariant, {
+    culture = cultures["xh"] = $.extend(true, {}, en, {
         name: "xh",
         englishName: "isiXhosa",
         nativeName: "isiXhosa",
@@ -3043,7 +2986,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["iCawa","uMvulo","uLwesibini","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],
                     namesShort: ["Ca","Mv","Lb","Lt","Ln","Lh","Mg"]
@@ -3065,7 +3007,7 @@
         }
     }, cultures["xh"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zu"] = $.extend(true, {}, invariant, {
+    culture = cultures["zu"] = $.extend(true, {}, en, {
         name: "zu",
         englishName: "isiZulu",
         nativeName: "isiZulu",
@@ -3081,7 +3023,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["iSonto","uMsombuluko","uLwesibili","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],
                     namesAbbr: ["Son.","Mso.","Bi.","Tha.","Ne.","Hla.","Mgq."]
@@ -3104,7 +3045,7 @@
         }
     }, cultures["zu"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["af"] = $.extend(true, {}, invariant, {
+    culture = cultures["af"] = $.extend(true, {}, en, {
         name: "af",
         englishName: "Afrikaans",
         nativeName: "Afrikaans",
@@ -3120,7 +3061,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Sondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrydag","Saterdag"],
                     namesAbbr: ["Son","Maan","Dins","Woen","Dond","Vry","Sat"],
@@ -3144,7 +3084,7 @@
         }
     }, cultures["af"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ka"] = $.extend(true, {}, invariant, {
+    culture = cultures["ka"] = $.extend(true, {}, en, {
         name: "ka",
         englishName: "Georgian",
         nativeName: "ქართული",
@@ -3165,7 +3105,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -3193,7 +3132,7 @@
         }
     }, cultures["ka"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fo"] = $.extend(true, {}, invariant, {
+    culture = cultures["fo"] = $.extend(true, {}, en, {
         name: "fo",
         englishName: "Faroese",
         nativeName: "føroyskt",
@@ -3215,7 +3154,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -3232,6 +3170,8 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -3241,7 +3181,7 @@
         }
     }, cultures["fo"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["hi"] = $.extend(true, {}, invariant, {
+    culture = cultures["hi"] = $.extend(true, {}, en, {
         name: "hi",
         englishName: "Hindi",
         nativeName: "हिंदी",
@@ -3259,7 +3199,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -3276,16 +3215,17 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["hi"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mt"] = $.extend(true, {}, invariant, {
+    culture = cultures["mt"] = $.extend(true, {}, en, {
         name: "mt",
         englishName: "Maltese",
         nativeName: "Malti",
@@ -3301,7 +3241,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Il-Ħadd","It-Tnejn","It-Tlieta","L-Erbgħa","Il-Ħamis","Il-Ġimgħa","Is-Sibt"],
@@ -3315,6 +3254,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, d' ta\\' 'MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d' ta\\' 'MMMM yyyy HH:mm",
                     F: "dddd, d' ta\\' 'MMMM yyyy HH:mm:ss",
                     M: "d' ta\\' 'MMMM",
@@ -3324,7 +3265,7 @@
         }
     }, cultures["mt"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["se"] = $.extend(true, {}, invariant, {
+    culture = cultures["se"] = $.extend(true, {}, en, {
         name: "se",
         englishName: "Sami (Northern)",
         nativeName: "davvisámegiella",
@@ -3346,7 +3287,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -3367,6 +3307,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "MMMM d'. b. 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "MMMM d'. b. 'yyyy HH:mm",
                     F: "MMMM d'. b. 'yyyy HH:mm:ss",
                     M: "MMMM d'. b. '",
@@ -3376,7 +3318,7 @@
         }
     }, cultures["se"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ga"] = $.extend(true, {}, invariant, {
+    culture = cultures["ga"] = $.extend(true, {}, en, {
         name: "ga",
         englishName: "Irish",
         nativeName: "Gaeilge",
@@ -3389,7 +3331,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Dé Domhnaigh","Dé Luain","Dé Máirt","Dé Céadaoin","Déardaoin","Dé hAoine","Dé Sathairn"],
@@ -3405,6 +3346,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d MMMM yyyy HH:mm",
                     F: "d MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -3414,7 +3357,7 @@
         }
     }, cultures["ga"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ms"] = $.extend(true, {}, invariant, {
+    culture = cultures["ms"] = $.extend(true, {}, en, {
         name: "ms",
         englishName: "Malay",
         nativeName: "Bahasa Melayu",
@@ -3427,7 +3370,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"],
@@ -3454,7 +3396,7 @@
         }
     }, cultures["ms"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["kk"] = $.extend(true, {}, invariant, {
+    culture = cultures["kk"] = $.extend(true, {}, en, {
         name: "kk",
         englishName: "Kazakh",
         nativeName: "Қазақ",
@@ -3476,7 +3418,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -3504,7 +3445,7 @@
         }
     }, cultures["kk"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ky"] = $.extend(true, {}, invariant, {
+    culture = cultures["ky"] = $.extend(true, {}, en, {
         name: "ky",
         englishName: "Kyrgyz",
         nativeName: "Кыргыз",
@@ -3526,7 +3467,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -3554,7 +3494,7 @@
         }
     }, cultures["ky"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sw"] = $.extend(true, {}, invariant, {
+    culture = cultures["sw"] = $.extend(true, {}, en, {
         name: "sw",
         englishName: "Kiswahili",
         nativeName: "Kiswahili",
@@ -3566,7 +3506,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Jumapili","Jumatatu","Jumanne","Jumatano","Alhamisi","Ijumaa","Jumamosi"],
                     namesAbbr: ["Jumap.","Jumat.","Juman.","Jumat.","Alh.","Iju.","Jumam."],
@@ -3575,21 +3514,12 @@
                 months: {
                     names: ["Januari","Februari","Machi","Aprili","Mei","Juni","Julai","Agosti","Septemba","Oktoba","Novemba","Decemba",""],
                     namesAbbr: ["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ago","Sep","Okt","Nov","Dec",""]
-                },
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
                 }
             })
         }
     }, cultures["sw"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tk"] = $.extend(true, {}, invariant, {
+    culture = cultures["tk"] = $.extend(true, {}, en, {
         name: "tk",
         englishName: "Turkmen",
         nativeName: "türkmençe",
@@ -3611,7 +3541,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -3638,7 +3567,7 @@
         }
     }, cultures["tk"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["uz"] = $.extend(true, {}, invariant, {
+    culture = cultures["uz"] = $.extend(true, {}, en, {
         name: "uz",
         englishName: "Uzbek",
         nativeName: "U'zbek",
@@ -3661,7 +3590,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"],
@@ -3677,6 +3605,8 @@
                 patterns: {
                     d: "dd/MM yyyy",
                     D: "yyyy 'yil' d-MMMM",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "yyyy 'yil' d-MMMM HH:mm",
                     F: "yyyy 'yil' d-MMMM HH:mm:ss",
                     M: "d-MMMM",
@@ -3686,7 +3616,7 @@
         }
     }, cultures["uz"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tt"] = $.extend(true, {}, invariant, {
+    culture = cultures["tt"] = $.extend(true, {}, en, {
         name: "tt",
         englishName: "Tatar",
         nativeName: "Татар",
@@ -3708,7 +3638,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -3740,7 +3669,7 @@
         }
     }, cultures["tt"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bn"] = $.extend(true, {}, invariant, {
+    culture = cultures["bn"] = $.extend(true, {}, en, {
         name: "bn",
         englishName: "Bengali",
         nativeName: "বাংলা",
@@ -3759,7 +3688,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 ':': ".",
                 firstDay: 1,
@@ -3781,14 +3709,13 @@
                     T: "HH.mm.ss",
                     f: "dd MMMM yyyy HH.mm",
                     F: "dd MMMM yyyy HH.mm.ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["bn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["pa"] = $.extend(true, {}, invariant, {
+    culture = cultures["pa"] = $.extend(true, {}, en, {
         name: "pa",
         englishName: "Punjabi",
         nativeName: "ਪੰਜਾਬੀ",
@@ -3806,7 +3733,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -3827,14 +3753,13 @@
                     T: "tt hh:mm:ss",
                     f: "dd MMMM yyyy dddd tt hh:mm",
                     F: "dd MMMM yyyy dddd tt hh:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["pa"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["gu"] = $.extend(true, {}, invariant, {
+    culture = cultures["gu"] = $.extend(true, {}, en, {
         name: "gu",
         englishName: "Gujarati",
         nativeName: "ગુજરાતી",
@@ -3852,7 +3777,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -3869,16 +3793,17 @@
                 patterns: {
                     d: "dd-MM-yy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["gu"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["or"] = $.extend(true, {}, invariant, {
+    culture = cultures["or"] = $.extend(true, {}, en, {
         name: "or",
         englishName: "Oriya",
         nativeName: "ଓଡ଼ିଆ",
@@ -3896,7 +3821,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["ରବିବାର","ସୋମବାର","ମଙ୍ଗଳବାର","ବୁଧବାର","ଗୁରୁବାର","ଶୁକ୍ରବାର","ଶନିବାର"],
@@ -3911,16 +3835,17 @@
                 patterns: {
                     d: "dd-MM-yy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["or"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ta"] = $.extend(true, {}, invariant, {
+    culture = cultures["ta"] = $.extend(true, {}, en, {
         name: "ta",
         englishName: "Tamil",
         nativeName: "தமிழ்",
@@ -3938,7 +3863,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -3955,6 +3879,8 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -3964,7 +3890,7 @@
         }
     }, cultures["ta"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["te"] = $.extend(true, {}, invariant, {
+    culture = cultures["te"] = $.extend(true, {}, en, {
         name: "te",
         englishName: "Telugu",
         nativeName: "తెలుగు",
@@ -3982,7 +3908,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -3999,16 +3924,17 @@
                 patterns: {
                     d: "dd-MM-yy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["te"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["kn"] = $.extend(true, {}, invariant, {
+    culture = cultures["kn"] = $.extend(true, {}, en, {
         name: "kn",
         englishName: "Kannada",
         nativeName: "ಕನ್ನಡ",
@@ -4026,7 +3952,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -4043,16 +3968,17 @@
                 patterns: {
                     d: "dd-MM-yy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["kn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ml"] = $.extend(true, {}, invariant, {
+    culture = cultures["ml"] = $.extend(true, {}, en, {
         name: "ml",
         englishName: "Malayalam",
         nativeName: "മലയാളം",
@@ -4071,7 +3997,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 ':': ".",
                 firstDay: 1,
@@ -4091,14 +4016,13 @@
                     T: "HH.mm.ss",
                     f: "dd MMMM yyyy HH.mm",
                     F: "dd MMMM yyyy HH.mm.ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["ml"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["as"] = $.extend(true, {}, invariant, {
+    culture = cultures["as"] = $.extend(true, {}, en, {
         name: "as",
         englishName: "Assamese",
         nativeName: "অসমীয়া",
@@ -4117,7 +4041,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -4146,7 +4069,7 @@
         }
     }, cultures["as"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mr"] = $.extend(true, {}, invariant, {
+    culture = cultures["mr"] = $.extend(true, {}, en, {
         name: "mr",
         englishName: "Marathi",
         nativeName: "मराठी",
@@ -4164,7 +4087,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -4181,16 +4103,17 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["mr"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sa"] = $.extend(true, {}, invariant, {
+    culture = cultures["sa"] = $.extend(true, {}, en, {
         name: "sa",
         englishName: "Sanskrit",
         nativeName: "संस्कृत",
@@ -4208,7 +4131,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["रविवासरः","सोमवासरः","मङ्गलवासरः","बुधवासरः","गुरुवासरः","शुक्रवासरः","शनिवासरः"],
@@ -4224,16 +4146,17 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy dddd",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy dddd HH:mm",
                     F: "dd MMMM yyyy dddd HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["sa"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mn"] = $.extend(true, {}, invariant, {
+    culture = cultures["mn"] = $.extend(true, {}, en, {
         name: "mn",
         englishName: "Mongolian",
         nativeName: "Монгол хэл",
@@ -4254,7 +4177,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -4286,7 +4208,7 @@
         }
     }, cultures["mn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bo"] = $.extend(true, {}, invariant, {
+    culture = cultures["bo"] = $.extend(true, {}, en, {
         name: "bo",
         englishName: "Tibetan",
         nativeName: "བོད་ཡིག",
@@ -4305,7 +4227,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["གཟའ་ཉི་མ།","གཟའ་ཟླ་བ།","གཟའ་མིག་དམར།","གཟའ་ལྷག་པ།","གཟའ་ཕུར་བུ།","གཟའ་པ་སངས།","གཟའ་སྤེན་པ།"],
@@ -4322,6 +4243,8 @@
                 patterns: {
                     d: "yyyy/M/d",
                     D: "yyyy'ལོའི་ཟླ' M'ཚེས' d",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "yyyy'ལོའི་ཟླ' M'ཚེས' d HH:mm",
                     F: "yyyy'ལོའི་ཟླ' M'ཚེས' d HH:mm:ss",
                     M: "'ཟླ་' M'ཚེས'd",
@@ -4331,7 +4254,7 @@
         }
     }, cultures["bo"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["cy"] = $.extend(true, {}, invariant, {
+    culture = cultures["cy"] = $.extend(true, {}, en, {
         name: "cy",
         englishName: "Welsh",
         nativeName: "Cymraeg",
@@ -4347,7 +4270,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Dydd Sul","Dydd Llun","Dydd Mawrth","Dydd Mercher","Dydd Iau","Dydd Gwener","Dydd Sadwrn"],
@@ -4363,6 +4285,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -4372,7 +4296,7 @@
         }
     }, cultures["cy"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["km"] = $.extend(true, {}, invariant, {
+    culture = cultures["km"] = $.extend(true, {}, en, {
         name: "km",
         englishName: "Khmer",
         nativeName: "ខ្មែរ",
@@ -4391,7 +4315,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["ថ្ងៃអាទិត្យ","ថ្ងៃច័ន្ទ","ថ្ងៃអង្គារ","ថ្ងៃពុធ","ថ្ងៃព្រហស្បតិ៍","ថ្ងៃសុក្រ","ថ្ងៃសៅរ៍"],
@@ -4409,6 +4332,7 @@
                     d: "yyyy-MM-dd",
                     D: "d MMMM yyyy",
                     t: "H:mm tt",
+                    T: "HH:mm:ss",
                     f: "d MMMM yyyy H:mm tt",
                     F: "d MMMM yyyy HH:mm:ss",
                     M: "'ថ្ងៃទី' dd 'ខែ' MM",
@@ -4430,17 +4354,17 @@
                 PM: ["ល្ងាច","ល្ងាច","ល្ងាច"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm tt",
+                    T: "HH:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm tt",
-                    F: "dddd, MMMM dd, yyyy HH:mm:ss",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy HH:mm:ss"
                 }
             })
         }
     }, cultures["km"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["lo"] = $.extend(true, {}, invariant, {
+    culture = cultures["lo"] = $.extend(true, {}, en, {
         name: "lo",
         englishName: "Lao",
         nativeName: "ລາວ",
@@ -4459,7 +4383,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["ວັນອາທິດ","ວັນຈັນ","ວັນອັງຄານ","ວັນພຸດ","ວັນພະຫັດ","ວັນສຸກ","ວັນເສົາ"],
                     namesAbbr: ["ອາທິດ","ຈັນ","ອັງຄານ","ພຸດ","ພະຫັດ","ສຸກ","ເສົາ"],
@@ -4475,6 +4398,7 @@
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
                     t: "H:mm tt",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy H:mm tt",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -4484,7 +4408,7 @@
         }
     }, cultures["lo"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["gl"] = $.extend(true, {}, invariant, {
+    culture = cultures["gl"] = $.extend(true, {}, en, {
         name: "gl",
         englishName: "Galician",
         nativeName: "galego",
@@ -4505,7 +4429,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["domingo","luns","martes","mércores","xoves","venres","sábado"],
@@ -4533,7 +4456,7 @@
         }
     }, cultures["gl"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["kok"] = $.extend(true, {}, invariant, {
+    culture = cultures["kok"] = $.extend(true, {}, en, {
         name: "kok",
         englishName: "Konkani",
         nativeName: "कोंकणी",
@@ -4551,7 +4474,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -4568,16 +4490,17 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["kok"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["syr"] = $.extend(true, {}, invariant, {
+    culture = cultures["syr"] = $.extend(true, {}, en, {
         name: "syr",
         englishName: "Syriac",
         nativeName: "ܣܘܪܝܝܐ",
@@ -4591,7 +4514,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["ܚܕ ܒܫܒܐ","ܬܪܝܢ ܒܫܒܐ","ܬܠܬܐ ܒܫܒܐ","ܐܪܒܥܐ ܒܫܒܐ","ܚܡܫܐ ܒܫܒܐ","ܥܪܘܒܬܐ","ܫܒܬܐ"],
@@ -4611,14 +4533,13 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["syr"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["si"] = $.extend(true, {}, invariant, {
+    culture = cultures["si"] = $.extend(true, {}, en, {
         name: "si",
         englishName: "Sinhala",
         nativeName: "සිංහල",
@@ -4635,7 +4556,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -4653,16 +4573,15 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "yyyy MMMM' මස 'dd' වැනිදා 'dddd",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "yyyy MMMM' මස 'dd' වැනිදා 'dddd h:mm tt",
-                    F: "yyyy MMMM' මස 'dd' වැනිදා 'dddd h:mm:ss tt"
+                    F: "yyyy MMMM' මස 'dd' වැනිදා 'dddd h:mm:ss tt",
+                    Y: "yyyy MMMM"
                 }
             })
         }
     }, cultures["si"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["iu"] = $.extend(true, {}, invariant, {
+    culture = cultures["iu"] = $.extend(true, {}, en, {
         name: "iu",
         englishName: "Inuktitut",
         nativeName: "Inuktitut",
@@ -4671,14 +4590,10 @@
             groupSizes: [3,0],
             percent: {
                 groupSizes: [3,0]
-            },
-            currency: {
-                symbol: "$"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Naattiinguja","Naggajjau","Aippiq","Pingatsiq","Sitammiq","Tallirmiq","Sivataarvik"],
                     namesAbbr: ["Nat","Nag","Aip","Pi","Sit","Tal","Siv"],
@@ -4691,17 +4606,14 @@
                 patterns: {
                     d: "d/MM/yyyy",
                     D: "ddd, MMMM dd,yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "ddd, MMMM dd,yyyy h:mm tt",
-                    F: "ddd, MMMM dd,yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "ddd, MMMM dd,yyyy h:mm:ss tt"
                 }
             })
         }
     }, cultures["iu"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["am"] = $.extend(true, {}, invariant, {
+    culture = cultures["am"] = $.extend(true, {}, en, {
         name: "am",
         englishName: "Amharic",
         nativeName: "አማርኛ",
@@ -4722,7 +4634,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["እሑድ","ሰኞ","ማክሰኞ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],
                     namesAbbr: ["እሑድ","ሰኞ","ማክሰ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],
@@ -4738,8 +4649,6 @@
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd '፣' MMMM d 'ቀን' yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd '፣' MMMM d 'ቀን' yyyy h:mm tt",
                     F: "dddd '፣' MMMM d 'ቀን' yyyy h:mm:ss tt",
                     M: "MMMM d ቀን",
@@ -4749,7 +4658,7 @@
         }
     }, cultures["am"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tzm"] = $.extend(true, {}, invariant, {
+    culture = cultures["tzm"] = $.extend(true, {}, en, {
         name: "tzm",
         englishName: "Tamazight",
         nativeName: "Tamazight",
@@ -4769,7 +4678,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 6,
                 days: {
@@ -4790,14 +4698,13 @@
                     T: "H:mm:ss",
                     f: "dd MMMM, yyyy H:mm",
                     F: "dd MMMM, yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["tzm"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ne"] = $.extend(true, {}, invariant, {
+    culture = cultures["ne"] = $.extend(true, {}, en, {
         name: "ne",
         englishName: "Nepali",
         nativeName: "नेपाली",
@@ -4815,7 +4722,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["आइतवार","सोमवार","मङ्गलवार","बुधवार","बिहीवार","शुक्रवार","शनिवार"],
                     namesAbbr: ["आइत","सोम","मङ्गल","बुध","बिही","शुक्र","शनि"],
@@ -4829,19 +4735,13 @@
                 PM: ["बेलुकी","बेलुकी","बेलुकी"],
                 eras: [{"name":"a.d.","start":null,"offset":0}],
                 patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
                     Y: "MMMM,yyyy"
                 }
             })
         }
     }, cultures["ne"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fy"] = $.extend(true, {}, invariant, {
+    culture = cultures["fy"] = $.extend(true, {}, en, {
         name: "fy",
         englishName: "Frisian",
         nativeName: "Frysk",
@@ -4862,7 +4762,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -4890,7 +4789,7 @@
         }
     }, cultures["fy"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ps"] = $.extend(true, {}, invariant, {
+    culture = cultures["ps"] = $.extend(true, {}, en, {
         name: "ps",
         englishName: "Pashto",
         nativeName: "پښتو",
@@ -4932,12 +4831,9 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "dd/MM/yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd/MM/yyyy h:mm tt",
                     F: "dd/MM/yyyy h:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -5013,7 +4909,6 @@
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["یکشنبه","دوشنبه","سه‌شنبه","چارشنبه","پنجشنبه","جمعه","شنبه"],
@@ -5030,8 +4925,6 @@
                 patterns: {
                     d: "yyyy/M/d",
                     D: "yyyy, dd, MMMM, dddd",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "yyyy, dd, MMMM, dddd h:mm tt",
                     F: "yyyy, dd, MMMM, dddd h:mm:ss tt",
                     M: "d MMMM",
@@ -5041,7 +4934,7 @@
         }
     }, cultures["ps"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fil"] = $.extend(true, {}, invariant, {
+    culture = cultures["fil"] = $.extend(true, {}, en, {
         name: "fil",
         englishName: "Filipino",
         nativeName: "Filipino",
@@ -5053,7 +4946,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Linggo","Lunes","Martes","Mierkoles","Huebes","Biernes","Sabado"],
                     namesAbbr: ["Lin","Lun","Mar","Mier","Hueb","Bier","Saba"],
@@ -5063,21 +4955,12 @@
                     names: ["Enero","Pebrero","Marso","Abril","Mayo","Hunyo","Hulyo","Agosto","Septyembre","Oktubre","Nobyembre","Disyembre",""],
                     namesAbbr: ["En","Peb","Mar","Abr","Mayo","Hun","Hul","Agos","Sept","Okt","Nob","Dis",""]
                 },
-                eras: [{"name":"Anno Domini","start":null,"offset":0}],
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
-                }
+                eras: [{"name":"Anno Domini","start":null,"offset":0}]
             })
         }
     }, cultures["fil"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["dv"] = $.extend(true, {}, invariant, {
+    culture = cultures["dv"] = $.extend(true, {}, en, {
         name: "dv",
         englishName: "Divehi",
         nativeName: "ދިވެހިބަސް",
@@ -5108,10 +4991,11 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "dd/MM/yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd/MM/yyyy HH:mm",
                     F: "dd/MM/yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -5187,7 +5071,6 @@
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
                     namesAbbr: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
@@ -5203,6 +5086,8 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "ddd, yyyy MMMM dd",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "ddd, yyyy MMMM dd HH:mm",
                     F: "ddd, yyyy MMMM dd HH:mm:ss",
                     Y: "yyyy, MMMM"
@@ -5211,7 +5096,7 @@
         }
     }, cultures["dv"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ha"] = $.extend(true, {}, invariant, {
+    culture = cultures["ha"] = $.extend(true, {}, en, {
         name: "ha",
         englishName: "Hausa",
         nativeName: "Hausa",
@@ -5224,7 +5109,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Lahadi","Litinin","Talata","Laraba","Alhamis","Juma'a","Asabar"],
                     namesAbbr: ["Lah","Lit","Tal","Lar","Alh","Jum","Asa"],
@@ -5238,19 +5122,13 @@
                 PM: ["Yamma","yamma","YAMMA"],
                 eras: [{"name":"AD","start":null,"offset":0}],
                 patterns: {
-                    d: "d/M/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    d: "d/M/yyyy"
                 }
             })
         }
     }, cultures["ha"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["yo"] = $.extend(true, {}, invariant, {
+    culture = cultures["yo"] = $.extend(true, {}, en, {
         name: "yo",
         englishName: "Yoruba",
         nativeName: "Yoruba",
@@ -5263,7 +5141,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Aiku","Aje","Isegun","Ojo'ru","Ojo'bo","Eti","Abameta"],
                     namesAbbr: ["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],
@@ -5277,19 +5154,13 @@
                 PM: ["Ale","ale","ALE"],
                 eras: [{"name":"AD","start":null,"offset":0}],
                 patterns: {
-                    d: "d/M/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    d: "d/M/yyyy"
                 }
             })
         }
     }, cultures["yo"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["quz"] = $.extend(true, {}, invariant, {
+    culture = cultures["quz"] = $.extend(true, {}, en, {
         name: "quz",
         englishName: "Quechua",
         nativeName: "runasimi",
@@ -5311,7 +5182,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["intichaw","killachaw","atipachaw","quyllurchaw","Ch' askachaw","Illapachaw","k'uychichaw"],
                     namesAbbr: ["int","kil","ati","quy","Ch'","Ill","k'u"],
@@ -5336,7 +5206,7 @@
         }
     }, cultures["quz"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["nso"] = $.extend(true, {}, invariant, {
+    culture = cultures["nso"] = $.extend(true, {}, en, {
         name: "nso",
         englishName: "Sesotho sa Leboa",
         nativeName: "Sesotho sa Leboa",
@@ -5352,7 +5222,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Lamorena","Mošupologo","Labobedi","Laboraro","Labone","Labohlano","Mokibelo"],
                     namesAbbr: ["Lam","Moš","Lbb","Lbr","Lbn","Lbh","Mok"],
@@ -5376,7 +5245,7 @@
         }
     }, cultures["nso"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ba"] = $.extend(true, {}, invariant, {
+    culture = cultures["ba"] = $.extend(true, {}, en, {
         name: "ba",
         englishName: "Bashkir",
         nativeName: "Башҡорт",
@@ -5401,7 +5270,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -5428,7 +5296,7 @@
         }
     }, cultures["ba"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["lb"] = $.extend(true, {}, invariant, {
+    culture = cultures["lb"] = $.extend(true, {}, en, {
         name: "lb",
         englishName: "Luxembourgish",
         nativeName: "Lëtzebuergesch",
@@ -5449,7 +5317,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Sonndeg","Méindeg","Dënschdeg","Mëttwoch","Donneschdeg","Freideg","Samschdeg"],
@@ -5466,6 +5333,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -5475,7 +5344,7 @@
         }
     }, cultures["lb"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["kl"] = $.extend(true, {}, invariant, {
+    culture = cultures["kl"] = $.extend(true, {}, en, {
         name: "kl",
         englishName: "Greenlandic",
         nativeName: "kalaallisut",
@@ -5499,7 +5368,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -5516,6 +5384,8 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -5525,7 +5395,7 @@
         }
     }, cultures["kl"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ig"] = $.extend(true, {}, invariant, {
+    culture = cultures["ig"] = $.extend(true, {}, en, {
         name: "ig",
         englishName: "Igbo",
         nativeName: "Igbo",
@@ -5538,7 +5408,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Aiku","Aje","Isegun","Ojo'ru","Ojo'bo","Eti","Abameta"],
                     namesAbbr: ["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],
@@ -5552,19 +5421,13 @@
                 PM: ["Efifie","efifie","EFIFIE"],
                 eras: [{"name":"AD","start":null,"offset":0}],
                 patterns: {
-                    d: "d/M/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    d: "d/M/yyyy"
                 }
             })
         }
     }, cultures["ig"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ii"] = $.extend(true, {}, invariant, {
+    culture = cultures["ii"] = $.extend(true, {}, en, {
         name: "ii",
         englishName: "Yi",
         nativeName: "ꆈꌠꁱꂷ",
@@ -5582,7 +5445,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["ꑭꆏꑍ","ꆏꊂ꒔","ꆏꊂꑍ","ꆏꊂꌕ","ꆏꊂꇖ","ꆏꊂꉬ","ꆏꊂꃘ"],
@@ -5610,7 +5472,7 @@
         }
     }, cultures["ii"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["arn"] = $.extend(true, {}, invariant, {
+    culture = cultures["arn"] = $.extend(true, {}, en, {
         name: "arn",
         englishName: "Mapudungun",
         nativeName: "Mapudungun",
@@ -5625,13 +5487,11 @@
             currency: {
                 pattern: ["-$ n","$ n"],
                 ',': ".",
-                '.': ",",
-                symbol: "$"
+                '.': ","
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
@@ -5659,7 +5519,7 @@
         }
     }, cultures["arn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["moh"] = $.extend(true, {}, invariant, {
+    culture = cultures["moh"] = $.extend(true, {}, en, {
         name: "moh",
         englishName: "Mohawk",
         nativeName: "Kanien'kéha",
@@ -5668,35 +5528,22 @@
             groupSizes: [3,0],
             percent: {
                 groupSizes: [3,0]
-            },
-            currency: {
-                symbol: "$"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Awentatokentì:ke","Awentataón'ke","Ratironhia'kehronòn:ke","Soséhne","Okaristiiáhne","Ronwaia'tanentaktonhne","Entákta"],
                     namesShort: ["S","M","T","W","T","F","S"]
                 },
                 months: {
                     names: ["Tsothohrkó:Wa","Enniska","Enniskó:Wa","Onerahtókha","Onerahtohkó:Wa","Ohiari:Ha","Ohiarihkó:Wa","Seskéha","Seskehkó:Wa","Kenténha","Kentenhkó:Wa","Tsothóhrha",""]
-                },
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
                 }
             })
         }
     }, cultures["moh"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["br"] = $.extend(true, {}, invariant, {
+    culture = cultures["br"] = $.extend(true, {}, en, {
         name: "br",
         englishName: "Breton",
         nativeName: "brezhoneg",
@@ -5717,7 +5564,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Sul","Lun","Meurzh","Merc'her","Yaou","Gwener","Sadorn"],
@@ -5734,6 +5580,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -5743,7 +5591,7 @@
         }
     }, cultures["br"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ug"] = $.extend(true, {}, invariant, {
+    culture = cultures["ug"] = $.extend(true, {}, en, {
         name: "ug",
         englishName: "Uyghur",
         nativeName: "ئۇيغۇرچە",
@@ -5760,7 +5608,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["يەكشەنبە","دۈشەنبە","سەيشەنبە","چارشەنبە","پەيشەنبە","جۈمە","شەنبە"],
@@ -5788,7 +5635,7 @@
         }
     }, cultures["ug"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mi"] = $.extend(true, {}, invariant, {
+    culture = cultures["mi"] = $.extend(true, {}, en, {
         name: "mi",
         englishName: "Maori",
         nativeName: "Reo Māori",
@@ -5798,13 +5645,11 @@
                 pattern: ["-%n","%n"]
             },
             currency: {
-                pattern: ["-$n","$n"],
-                symbol: "$"
+                pattern: ["-$n","$n"]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Rātapu","Rāhina","Rātū","Rāapa","Rāpare","Rāmere","Rāhoroi"],
@@ -5820,8 +5665,6 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, dd MMMM, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd, dd MMMM, yyyy h:mm tt",
                     F: "dddd, dd MMMM, yyyy h:mm:ss tt",
                     M: "dd MMMM",
@@ -5831,7 +5674,7 @@
         }
     }, cultures["mi"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["oc"] = $.extend(true, {}, invariant, {
+    culture = cultures["oc"] = $.extend(true, {}, en, {
         name: "oc",
         englishName: "Occitan",
         nativeName: "Occitan",
@@ -5852,7 +5695,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dimenge","diluns","dimars","dimècres","dijòus","divendres","dissabte"],
@@ -5873,6 +5715,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd,' lo 'd MMMM' de 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd,' lo 'd MMMM' de 'yyyy HH:mm",
                     F: "dddd,' lo 'd MMMM' de 'yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -5882,7 +5726,7 @@
         }
     }, cultures["oc"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["co"] = $.extend(true, {}, invariant, {
+    culture = cultures["co"] = $.extend(true, {}, en, {
         name: "co",
         englishName: "Corsican",
         nativeName: "Corsu",
@@ -5903,7 +5747,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dumenica","luni","marti","mercuri","ghjovi","venderi","sabbatu"],
@@ -5920,6 +5763,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -5929,7 +5774,7 @@
         }
     }, cultures["co"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["gsw"] = $.extend(true, {}, invariant, {
+    culture = cultures["gsw"] = $.extend(true, {}, en, {
         name: "gsw",
         englishName: "Alsatian",
         nativeName: "Elsässisch",
@@ -5950,7 +5795,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Sundàà","Mondàà","Dienschdàà","Mittwuch","Dunnerschdàà","Fridàà","Sàmschdàà"],
@@ -5967,6 +5811,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -5976,7 +5822,7 @@
         }
     }, cultures["gsw"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sah"] = $.extend(true, {}, invariant, {
+    culture = cultures["sah"] = $.extend(true, {}, en, {
         name: "sah",
         englishName: "Yakut",
         nativeName: "саха",
@@ -5998,7 +5844,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -6029,7 +5874,7 @@
         }
     }, cultures["sah"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["qut"] = $.extend(true, {}, invariant, {
+    culture = cultures["qut"] = $.extend(true, {}, en, {
         name: "qut",
         englishName: "K'iche",
         nativeName: "K'iche",
@@ -6041,7 +5886,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["juq'ij","kaq'ij","oxq'ij","kajq'ij","joq'ij","waqq'ij","wuqq'ij"],
                     namesAbbr: ["juq","kaq","oxq","kajq","joq","waqq","wuqq"],
@@ -6068,7 +5912,7 @@
         }
     }, cultures["qut"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["rw"] = $.extend(true, {}, invariant, {
+    culture = cultures["rw"] = $.extend(true, {}, en, {
         name: "rw",
         englishName: "Kinyarwanda",
         nativeName: "Kinyarwanda",
@@ -6089,7 +5933,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Ku wa mbere","Ku wa kabiri","Ku wa gatatu","Ku wa kane","Ku wa gatanu","Ku wa gatandatu","Ku cyumweru"],
                     namesAbbr: ["mbe.","kab.","gat.","kan.","gat.","gat.","cyu."],
@@ -6101,21 +5944,12 @@
                 },
                 AM: ["saa moya z.m.","saa moya z.m.","SAA MOYA Z.M."],
                 PM: ["saa moya z.n.","saa moya z.n.","SAA MOYA Z.N."],
-                eras: [{"name":"AD","start":null,"offset":0}],
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
-                }
+                eras: [{"name":"AD","start":null,"offset":0}]
             })
         }
     }, cultures["rw"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["wo"] = $.extend(true, {}, invariant, {
+    culture = cultures["wo"] = $.extend(true, {}, en, {
         name: "wo",
         englishName: "Wolof",
         nativeName: "Wolof",
@@ -6136,7 +5970,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
@@ -6153,6 +5986,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -6162,7 +5997,7 @@
         }
     }, cultures["wo"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["prs"] = $.extend(true, {}, invariant, {
+    culture = cultures["prs"] = $.extend(true, {}, en, {
         name: "prs",
         englishName: "Dari",
         nativeName: "درى",
@@ -6202,12 +6037,9 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "dd/MM/yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd/MM/yyyy h:mm tt",
                     F: "dd/MM/yyyy h:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -6283,7 +6115,6 @@
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 5,
                 days: {
                     names: ["یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
@@ -6300,8 +6131,6 @@
                 patterns: {
                     d: "yyyy/M/d",
                     D: "yyyy, dd, MMMM, dddd",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "yyyy, dd, MMMM, dddd h:mm tt",
                     F: "yyyy, dd, MMMM, dddd h:mm:ss tt",
                     M: "d MMMM",
@@ -6311,7 +6140,7 @@
         }
     }, cultures["prs"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["gd"] = $.extend(true, {}, invariant, {
+    culture = cultures["gd"] = $.extend(true, {}, en, {
         name: "gd",
         englishName: "Scottish Gaelic",
         nativeName: "Gàidhlig",
@@ -6324,7 +6153,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Didòmhnaich","Diluain","Dimàirt","Diciadain","Diardaoin","Dihaoine","Disathairne"],
@@ -6340,6 +6168,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -6349,7 +6179,7 @@
         }
     }, cultures["gd"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-SA"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-SA"] = $.extend(true, {}, en, {
         name: "ar-SA",
         englishName: "Arabic (Saudi Arabia)",
         nativeName: "العربية (المملكة العربية السعودية)",
@@ -6386,8 +6216,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -6605,8 +6434,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -6697,13 +6525,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -6722,16 +6549,14 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -6751,8 +6576,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -6771,18 +6595,17 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-SA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bg-BG"] = $.extend(true, {}, invariant, {
+    culture = cultures["bg-BG"] = $.extend(true, {}, en, {
         name: "bg-BG",
         englishName: "Bulgarian (Bulgaria)",
         nativeName: "български (България)",
@@ -6803,7 +6626,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -6832,7 +6654,7 @@
         }
     }, cultures["bg-BG"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ca-ES"] = $.extend(true, {}, invariant, {
+    culture = cultures["ca-ES"] = $.extend(true, {}, en, {
         name: "ca-ES",
         englishName: "Catalan (Catalan)",
         nativeName: "català (català)",
@@ -6853,7 +6675,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["diumenge","dilluns","dimarts","dimecres","dijous","divendres","dissabte"],
@@ -6870,6 +6691,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, d' / 'MMMM' / 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d' / 'MMMM' / 'yyyy HH:mm",
                     F: "dddd, d' / 'MMMM' / 'yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -6879,7 +6702,7 @@
         }
     }, cultures["ca-ES"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zh-TW"] = $.extend(true, {}, invariant, {
+    culture = cultures["zh-TW"] = $.extend(true, {}, en, {
         name: "zh-TW",
         englishName: "Chinese (Traditional, Taiwan)",
         nativeName: "中文(台灣)",
@@ -6895,7 +6718,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                     namesAbbr: ["週日","週一","週二","週三","週四","週五","週六"],
@@ -6948,7 +6770,7 @@
         }
     }, cultures["zh-TW"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["cs-CZ"] = $.extend(true, {}, invariant, {
+    culture = cultures["cs-CZ"] = $.extend(true, {}, en, {
         name: "cs-CZ",
         englishName: "Czech (Czech Republic)",
         nativeName: "čeština (Česká republika)",
@@ -6970,7 +6792,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -7003,7 +6824,7 @@
         }
     }, cultures["cs-CZ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["da-DK"] = $.extend(true, {}, invariant, {
+    culture = cultures["da-DK"] = $.extend(true, {}, en, {
         name: "da-DK",
         englishName: "Danish (Denmark)",
         nativeName: "dansk (Danmark)",
@@ -7024,7 +6845,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -7041,6 +6861,8 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -7050,7 +6872,7 @@
         }
     }, cultures["da-DK"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["de-DE"] = $.extend(true, {}, invariant, {
+    culture = cultures["de-DE"] = $.extend(true, {}, en, {
         name: "de-DE",
         englishName: "German (Germany)",
         nativeName: "Deutsch (Deutschland)",
@@ -7072,7 +6894,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -7090,6 +6911,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "dddd, d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d. MMMM yyyy HH:mm",
                     F: "dddd, d. MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -7099,7 +6922,7 @@
         }
     }, cultures["de-DE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["el-GR"] = $.extend(true, {}, invariant, {
+    culture = cultures["el-GR"] = $.extend(true, {}, en, {
         name: "el-GR",
         englishName: "Greek (Greece)",
         nativeName: "Ελληνικά (Ελλάδα)",
@@ -7121,7 +6944,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"],
@@ -7142,8 +6964,6 @@
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd, d MMMM yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd, d MMMM yyyy h:mm tt",
                     F: "dddd, d MMMM yyyy h:mm:ss tt",
                     M: "dd MMMM",
@@ -7153,33 +6973,11 @@
         }
     }, cultures["el-GR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-US"] = $.extend(true, {}, invariant, {
-        name: "en-US",
-        englishName: "English (United States)",
-        nativeName: "English (United States)",
-        language: "en",
-        numberFormat: {
-            currency: {
-                symbol: "$"
-            }
-        },
-        calendars: {
-            standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
-                }
-            })
-        }
+    culture = cultures["en-US"] = $.extend(true, {}, en, {
+
     }, cultures["en-US"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fi-FI"] = $.extend(true, {}, invariant, {
+    culture = cultures["fi-FI"] = $.extend(true, {}, en, {
         name: "fi-FI",
         englishName: "Finnish (Finland)",
         nativeName: "suomi (Suomi)",
@@ -7200,7 +6998,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -7228,7 +7025,7 @@
         }
     }, cultures["fi-FI"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fr-FR"] = $.extend(true, {}, invariant, {
+    culture = cultures["fr-FR"] = $.extend(true, {}, en, {
         name: "fr-FR",
         englishName: "French (France)",
         nativeName: "français (France)",
@@ -7249,7 +7046,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
@@ -7266,6 +7062,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -7275,7 +7073,7 @@
         }
     }, cultures["fr-FR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["he-IL"] = $.extend(true, {}, invariant, {
+    culture = cultures["he-IL"] = $.extend(true, {}, en, {
         name: "he-IL",
         englishName: "Hebrew (Israel)",
         nativeName: "עברית (ישראל)",
@@ -7292,7 +7090,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","שבת"],
                     namesAbbr: ["יום א","יום ב","יום ג","יום ד","יום ה","יום ו","שבת"],
@@ -7306,6 +7103,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd dd MMMM yyyy HH:mm",
                     F: "dddd dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -7329,6 +7128,8 @@
                 patterns: {
                     d: "dd MMMM yyyy",
                     D: "dddd dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd dd MMMM yyyy HH:mm",
                     F: "dddd dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -7338,7 +7139,7 @@
         }
     }, cultures["he-IL"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["hu-HU"] = $.extend(true, {}, invariant, {
+    culture = cultures["hu-HU"] = $.extend(true, {}, en, {
         name: "hu-HU",
         englishName: "Hungarian (Hungary)",
         nativeName: "magyar (Magyarország)",
@@ -7359,7 +7160,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -7388,7 +7188,7 @@
         }
     }, cultures["hu-HU"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["is-IS"] = $.extend(true, {}, invariant, {
+    culture = cultures["is-IS"] = $.extend(true, {}, en, {
         name: "is-IS",
         englishName: "Icelandic (Iceland)",
         nativeName: "íslenska (Ísland)",
@@ -7411,7 +7211,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -7428,6 +7227,8 @@
                 patterns: {
                     d: "d.M.yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -7437,7 +7238,7 @@
         }
     }, cultures["is-IS"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["it-IT"] = $.extend(true, {}, invariant, {
+    culture = cultures["it-IT"] = $.extend(true, {}, en, {
         name: "it-IT",
         englishName: "Italian (Italy)",
         nativeName: "italiano (Italia)",
@@ -7459,7 +7260,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["domenica","lunedì","martedì","mercoledì","giovedì","venerdì","sabato"],
@@ -7476,6 +7276,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -7485,7 +7287,7 @@
         }
     }, cultures["it-IT"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ja-JP"] = $.extend(true, {}, invariant, {
+    culture = cultures["ja-JP"] = $.extend(true, {}, en, {
         name: "ja-JP",
         englishName: "Japanese (Japan)",
         nativeName: "日本語 (日本)",
@@ -7502,7 +7304,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],
                     namesAbbr: ["日","月","火","水","木","金","土"],
@@ -7555,7 +7356,7 @@
         }
     }, cultures["ja-JP"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ko-KR"] = $.extend(true, {}, invariant, {
+    culture = cultures["ko-KR"] = $.extend(true, {}, en, {
         name: "ko-KR",
         englishName: "Korean (Korea)",
         nativeName: "한국어 (대한민국)",
@@ -7569,7 +7370,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
@@ -7624,7 +7424,7 @@
         }
     }, cultures["ko-KR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["nl-NL"] = $.extend(true, {}, invariant, {
+    culture = cultures["nl-NL"] = $.extend(true, {}, en, {
         name: "nl-NL",
         englishName: "Dutch (Netherlands)",
         nativeName: "Nederlands (Nederland)",
@@ -7645,7 +7445,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -7673,7 +7472,7 @@
         }
     }, cultures["nl-NL"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["nb-NO"] = $.extend(true, {}, invariant, {
+    culture = cultures["nb-NO"] = $.extend(true, {}, en, {
         name: "nb-NO",
         englishName: "Norwegian, Bokmål (Norway)",
         nativeName: "norsk, bokmål (Norge)",
@@ -7694,7 +7493,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -7711,6 +7509,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -7720,7 +7520,7 @@
         }
     }, cultures["nb-NO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["pl-PL"] = $.extend(true, {}, invariant, {
+    culture = cultures["pl-PL"] = $.extend(true, {}, en, {
         name: "pl-PL",
         englishName: "Polish (Poland)",
         nativeName: "polski (Polska)",
@@ -7742,7 +7542,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -7763,6 +7562,8 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d MMMM yyyy HH:mm",
                     F: "d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -7772,7 +7573,7 @@
         }
     }, cultures["pl-PL"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["pt-BR"] = $.extend(true, {}, invariant, {
+    culture = cultures["pt-BR"] = $.extend(true, {}, en, {
         name: "pt-BR",
         englishName: "Portuguese (Brazil)",
         nativeName: "Português (Brasil)",
@@ -7794,7 +7595,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"],
                     namesAbbr: ["dom","seg","ter","qua","qui","sex","sáb"],
@@ -7810,6 +7610,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, d' de 'MMMM' de 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d' de 'MMMM' de 'yyyy HH:mm",
                     F: "dddd, d' de 'MMMM' de 'yyyy HH:mm:ss",
                     M: "dd' de 'MMMM",
@@ -7819,7 +7621,7 @@
         }
     }, cultures["pt-BR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["rm-CH"] = $.extend(true, {}, invariant, {
+    culture = cultures["rm-CH"] = $.extend(true, {}, en, {
         name: "rm-CH",
         englishName: "Romansh (Switzerland)",
         nativeName: "Rumantsch (Svizra)",
@@ -7838,7 +7640,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dumengia","glindesdi","mardi","mesemna","gievgia","venderdi","sonda"],
@@ -7855,6 +7656,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d MMMM yyyy HH:mm",
                     F: "dddd, d MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -7864,7 +7667,7 @@
         }
     }, cultures["rm-CH"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ro-RO"] = $.extend(true, {}, invariant, {
+    culture = cultures["ro-RO"] = $.extend(true, {}, en, {
         name: "ro-RO",
         englishName: "Romanian (Romania)",
         nativeName: "română (România)",
@@ -7886,7 +7689,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -7903,6 +7705,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d MMMM yyyy HH:mm",
                     F: "d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -7912,7 +7716,7 @@
         }
     }, cultures["ro-RO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ru-RU"] = $.extend(true, {}, invariant, {
+    culture = cultures["ru-RU"] = $.extend(true, {}, en, {
         name: "ru-RU",
         englishName: "Russian (Russia)",
         nativeName: "русский (Россия)",
@@ -7934,7 +7738,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -7965,7 +7768,7 @@
         }
     }, cultures["ru-RU"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["hr-HR"] = $.extend(true, {}, invariant, {
+    culture = cultures["hr-HR"] = $.extend(true, {}, en, {
         name: "hr-HR",
         englishName: "Croatian (Croatia)",
         nativeName: "hrvatski (Hrvatska)",
@@ -7988,7 +7791,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -8013,14 +7815,13 @@
                     T: "H:mm:ss",
                     f: "d. MMMM yyyy. H:mm",
                     F: "d. MMMM yyyy. H:mm:ss",
-                    M: "d. MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "d. MMMM"
                 }
             })
         }
     }, cultures["hr-HR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sk-SK"] = $.extend(true, {}, invariant, {
+    culture = cultures["sk-SK"] = $.extend(true, {}, en, {
         name: "sk-SK",
         englishName: "Slovak (Slovakia)",
         nativeName: "slovenčina (Slovenská republika)",
@@ -8042,7 +7843,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
                 days: {
@@ -8075,7 +7875,7 @@
         }
     }, cultures["sk-SK"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sq-AL"] = $.extend(true, {}, invariant, {
+    culture = cultures["sq-AL"] = $.extend(true, {}, en, {
         name: "sq-AL",
         englishName: "Albanian (Albania)",
         nativeName: "shqipe (Shqipëria)",
@@ -8096,7 +7896,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -8123,7 +7922,7 @@
         }
     }, cultures["sq-AL"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sv-SE"] = $.extend(true, {}, invariant, {
+    culture = cultures["sv-SE"] = $.extend(true, {}, en, {
         name: "sv-SE",
         englishName: "Swedish (Sweden)",
         nativeName: "svenska (Sverige)",
@@ -8144,7 +7943,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -8161,6 +7959,8 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "'den 'd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "'den 'd MMMM yyyy HH:mm",
                     F: "'den 'd MMMM yyyy HH:mm:ss",
                     M: "'den 'd MMMM",
@@ -8170,7 +7970,7 @@
         }
     }, cultures["sv-SE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["th-TH"] = $.extend(true, {}, invariant, {
+    culture = cultures["th-TH"] = $.extend(true, {}, en, {
         name: "th-TH",
         englishName: "Thai (Thailand)",
         nativeName: "ไทย (ไทย)",
@@ -8208,7 +8008,6 @@
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],
@@ -8233,7 +8032,7 @@
         }
     }, cultures["th-TH"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tr-TR"] = $.extend(true, {}, invariant, {
+    culture = cultures["tr-TR"] = $.extend(true, {}, en, {
         name: "tr-TR",
         englishName: "Turkish (Turkey)",
         nativeName: "Türkçe (Türkiye)",
@@ -8255,7 +8054,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -8272,6 +8070,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "dd MMMM yyyy dddd",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy dddd HH:mm",
                     F: "dd MMMM yyyy dddd HH:mm:ss",
                     M: "dd MMMM",
@@ -8281,7 +8081,7 @@
         }
     }, cultures["tr-TR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ur-PK"] = $.extend(true, {}, invariant, {
+    culture = cultures["ur-PK"] = $.extend(true, {}, en, {
         name: "ur-PK",
         englishName: "Urdu (Islamic Republic of Pakistan)",
         nativeName: "اُردو (پاکستان)",
@@ -8295,7 +8095,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["اتوار","پير","منگل","بدھ","جمعرات","جمعه","هفته"],
@@ -8309,12 +8108,9 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd MMMM, yyyy h:mm tt",
                     F: "dd MMMM, yyyy h:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -8334,12 +8130,9 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "dd/MM/yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd/MM/yyyy h:mm tt",
                     F: "dd/MM/yyyy h:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -8417,7 +8210,7 @@
         }
     }, cultures["ur-PK"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["id-ID"] = $.extend(true, {}, invariant, {
+    culture = cultures["id-ID"] = $.extend(true, {}, en, {
         name: "id-ID",
         englishName: "Indonesian (Indonesia)",
         nativeName: "Bahasa Indonesia (Indonesia)",
@@ -8438,7 +8231,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"],
@@ -8465,7 +8257,7 @@
         }
     }, cultures["id-ID"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["uk-UA"] = $.extend(true, {}, invariant, {
+    culture = cultures["uk-UA"] = $.extend(true, {}, en, {
         name: "uk-UA",
         englishName: "Ukrainian (Ukraine)",
         nativeName: "українська (Україна)",
@@ -8487,7 +8279,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -8519,7 +8310,7 @@
         }
     }, cultures["uk-UA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["be-BY"] = $.extend(true, {}, invariant, {
+    culture = cultures["be-BY"] = $.extend(true, {}, en, {
         name: "be-BY",
         englishName: "Belarusian (Belarus)",
         nativeName: "Беларускі (Беларусь)",
@@ -8540,7 +8331,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -8572,7 +8362,7 @@
         }
     }, cultures["be-BY"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sl-SI"] = $.extend(true, {}, invariant, {
+    culture = cultures["sl-SI"] = $.extend(true, {}, en, {
         name: "sl-SI",
         englishName: "Slovenian (Slovenia)",
         nativeName: "slovenski (Slovenija)",
@@ -8594,7 +8384,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -8622,7 +8411,7 @@
         }
     }, cultures["sl-SI"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["et-EE"] = $.extend(true, {}, invariant, {
+    culture = cultures["et-EE"] = $.extend(true, {}, en, {
         name: "et-EE",
         englishName: "Estonian (Estonia)",
         nativeName: "eesti (Eesti)",
@@ -8643,7 +8432,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -8671,7 +8459,7 @@
         }
     }, cultures["et-EE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["lv-LV"] = $.extend(true, {}, invariant, {
+    culture = cultures["lv-LV"] = $.extend(true, {}, en, {
         name: "lv-LV",
         englishName: "Latvian (Latvia)",
         nativeName: "latviešu (Latvija)",
@@ -8693,7 +8481,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -8725,7 +8512,7 @@
         }
     }, cultures["lv-LV"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["lt-LT"] = $.extend(true, {}, invariant, {
+    culture = cultures["lt-LT"] = $.extend(true, {}, en, {
         name: "lt-LT",
         englishName: "Lithuanian (Lithuania)",
         nativeName: "lietuvių (Lietuva)",
@@ -8747,7 +8534,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -8768,6 +8554,8 @@
                 patterns: {
                     d: "yyyy.MM.dd",
                     D: "yyyy 'm.' MMMM d 'd.'",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "yyyy 'm.' MMMM d 'd.' HH:mm",
                     F: "yyyy 'm.' MMMM d 'd.' HH:mm:ss",
                     M: "MMMM d 'd.'",
@@ -8777,7 +8565,7 @@
         }
     }, cultures["lt-LT"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tg-Cyrl-TJ"] = $.extend(true, {}, invariant, {
+    culture = cultures["tg-Cyrl-TJ"] = $.extend(true, {}, en, {
         name: "tg-Cyrl-TJ",
         englishName: "Tajik (Cyrillic, Tajikistan)",
         nativeName: "Тоҷикӣ (Тоҷикистон)",
@@ -8802,7 +8590,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 days: {
                     names: ["Яш","Душанбе","Сешанбе","Чоршанбе","Панҷшанбе","Ҷумъа","Шанбе"],
@@ -8832,7 +8619,7 @@
         }
     }, cultures["tg-Cyrl-TJ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fa-IR"] = $.extend(true, {}, invariant, {
+    culture = cultures["fa-IR"] = $.extend(true, {}, en, {
         name: "fa-IR",
         englishName: "Persian",
         nativeName: "فارسى (ایران)",
@@ -8863,16 +8650,14 @@
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["يكشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
@@ -8892,8 +8677,7 @@
                     T: "hh:mm:ss tt",
                     f: "yyyy/MM/dd hh:mm tt",
                     F: "yyyy/MM/dd hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -8919,8 +8703,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -9011,18 +8794,17 @@
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["fa-IR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["vi-VN"] = $.extend(true, {}, invariant, {
+    culture = cultures["vi-VN"] = $.extend(true, {}, en, {
         name: "vi-VN",
         englishName: "Vietnamese (Vietnam)",
         nativeName: "Tiếng Việt (Việt Nam)",
@@ -9043,7 +8825,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Chủ Nhật","Thứ Hai","Thứ Ba","Thứ Tư","Thứ Năm","Thứ Sáu","Thứ Bảy"],
@@ -9059,8 +8840,6 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd MMMM yyyy h:mm tt",
                     F: "dd MMMM yyyy h:mm:ss tt",
                     M: "dd MMMM",
@@ -9070,7 +8849,7 @@
         }
     }, cultures["vi-VN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["hy-AM"] = $.extend(true, {}, invariant, {
+    culture = cultures["hy-AM"] = $.extend(true, {}, en, {
         name: "hy-AM",
         englishName: "Armenian (Armenia)",
         nativeName: "Հայերեն (Հայաստան)",
@@ -9083,7 +8862,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -9104,14 +8882,13 @@
                     T: "H:mm:ss",
                     f: "d MMMM, yyyy H:mm",
                     F: "d MMMM, yyyy H:mm:ss",
-                    M: "d MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "d MMMM"
                 }
             })
         }
     }, cultures["hy-AM"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["az-Latn-AZ"] = $.extend(true, {}, invariant, {
+    culture = cultures["az-Latn-AZ"] = $.extend(true, {}, en, {
         name: "az-Latn-AZ",
         englishName: "Azeri (Latin, Azerbaijan)",
         nativeName: "Azərbaycan­ılı (Azərbaycan)",
@@ -9133,7 +8910,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -9165,7 +8941,7 @@
         }
     }, cultures["az-Latn-AZ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["eu-ES"] = $.extend(true, {}, invariant, {
+    culture = cultures["eu-ES"] = $.extend(true, {}, en, {
         name: "eu-ES",
         englishName: "Basque (Basque)",
         nativeName: "euskara (euskara)",
@@ -9186,7 +8962,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["igandea","astelehena","asteartea","asteazkena","osteguna","ostirala","larunbata"],
@@ -9203,6 +8978,7 @@
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dddd, yyyy.'eko' MMMM'k 'd",
+                    t: "HH:mm",
                     T: "H:mm:ss",
                     f: "dddd, yyyy.'eko' MMMM'k 'd HH:mm",
                     F: "dddd, yyyy.'eko' MMMM'k 'd H:mm:ss",
@@ -9212,7 +8988,7 @@
         }
     }, cultures["eu-ES"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["hsb-DE"] = $.extend(true, {}, invariant, {
+    culture = cultures["hsb-DE"] = $.extend(true, {}, en, {
         name: "hsb-DE",
         englishName: "Upper Sorbian (Germany)",
         nativeName: "hornjoserbšćina (Němska)",
@@ -9233,7 +9009,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
                 days: {
@@ -9266,7 +9041,7 @@
         }
     }, cultures["hsb-DE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mk-MK"] = $.extend(true, {}, invariant, {
+    culture = cultures["mk-MK"] = $.extend(true, {}, en, {
         name: "mk-MK",
         englishName: "Macedonian (Former Yugoslav Republic of Macedonia)",
         nativeName: "македонски јазик (Македонија)",
@@ -9287,7 +9062,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -9303,6 +9077,11 @@
                 PM: null,
                 patterns: {
                     d: "dd.MM.yyyy",
+                    D: "dddd, dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
+                    f: "dddd, dd MMMM yyyy HH:mm",
+                    F: "dddd, dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
                     Y: "MMMM yyyy"
                 }
@@ -9310,7 +9089,7 @@
         }
     }, cultures["mk-MK"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tn-ZA"] = $.extend(true, {}, invariant, {
+    culture = cultures["tn-ZA"] = $.extend(true, {}, en, {
         name: "tn-ZA",
         englishName: "Setswana (South Africa)",
         nativeName: "Setswana (Aforika Borwa)",
@@ -9326,7 +9105,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Latshipi","Mosupologo","Labobedi","Laboraro","Labone","Labotlhano","Lamatlhatso"],
                     namesAbbr: ["Ltp.","Mos.","Lbd.","Lbr.","Lbn.","Lbt.","Lmt."],
@@ -9350,7 +9128,7 @@
         }
     }, cultures["tn-ZA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["xh-ZA"] = $.extend(true, {}, invariant, {
+    culture = cultures["xh-ZA"] = $.extend(true, {}, en, {
         name: "xh-ZA",
         englishName: "isiXhosa (South Africa)",
         nativeName: "isiXhosa (uMzantsi Afrika)",
@@ -9366,7 +9144,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["iCawa","uMvulo","uLwesibini","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],
                     namesShort: ["Ca","Mv","Lb","Lt","Ln","Lh","Mg"]
@@ -9388,7 +9165,7 @@
         }
     }, cultures["xh-ZA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zu-ZA"] = $.extend(true, {}, invariant, {
+    culture = cultures["zu-ZA"] = $.extend(true, {}, en, {
         name: "zu-ZA",
         englishName: "isiZulu (South Africa)",
         nativeName: "isiZulu (iNingizimu Afrika)",
@@ -9404,7 +9181,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["iSonto","uMsombuluko","uLwesibili","uLwesithathu","uLwesine","uLwesihlanu","uMgqibelo"],
                     namesAbbr: ["Son.","Mso.","Bi.","Tha.","Ne.","Hla.","Mgq."]
@@ -9427,7 +9203,7 @@
         }
     }, cultures["zu-ZA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["af-ZA"] = $.extend(true, {}, invariant, {
+    culture = cultures["af-ZA"] = $.extend(true, {}, en, {
         name: "af-ZA",
         englishName: "Afrikaans (South Africa)",
         nativeName: "Afrikaans (Suid Afrika)",
@@ -9443,7 +9219,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Sondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrydag","Saterdag"],
                     namesAbbr: ["Son","Maan","Dins","Woen","Dond","Vry","Sat"],
@@ -9467,7 +9242,7 @@
         }
     }, cultures["af-ZA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ka-GE"] = $.extend(true, {}, invariant, {
+    culture = cultures["ka-GE"] = $.extend(true, {}, en, {
         name: "ka-GE",
         englishName: "Georgian (Georgia)",
         nativeName: "ქართული (საქართველო)",
@@ -9488,7 +9263,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -9516,7 +9290,7 @@
         }
     }, cultures["ka-GE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fo-FO"] = $.extend(true, {}, invariant, {
+    culture = cultures["fo-FO"] = $.extend(true, {}, en, {
         name: "fo-FO",
         englishName: "Faroese (Faroe Islands)",
         nativeName: "føroyskt (Føroyar)",
@@ -9538,7 +9312,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -9555,6 +9328,8 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -9564,7 +9339,7 @@
         }
     }, cultures["fo-FO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["hi-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["hi-IN"] = $.extend(true, {}, en, {
         name: "hi-IN",
         englishName: "Hindi (India)",
         nativeName: "हिंदी (भारत)",
@@ -9582,7 +9357,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -9599,16 +9373,17 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["hi-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mt-MT"] = $.extend(true, {}, invariant, {
+    culture = cultures["mt-MT"] = $.extend(true, {}, en, {
         name: "mt-MT",
         englishName: "Maltese (Malta)",
         nativeName: "Malti (Malta)",
@@ -9624,7 +9399,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Il-Ħadd","It-Tnejn","It-Tlieta","L-Erbgħa","Il-Ħamis","Il-Ġimgħa","Is-Sibt"],
@@ -9638,6 +9412,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, d' ta\\' 'MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d' ta\\' 'MMMM yyyy HH:mm",
                     F: "dddd, d' ta\\' 'MMMM yyyy HH:mm:ss",
                     M: "d' ta\\' 'MMMM",
@@ -9647,7 +9423,7 @@
         }
     }, cultures["mt-MT"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["se-NO"] = $.extend(true, {}, invariant, {
+    culture = cultures["se-NO"] = $.extend(true, {}, en, {
         name: "se-NO",
         englishName: "Sami, Northern (Norway)",
         nativeName: "davvisámegiella (Norga)",
@@ -9669,7 +9445,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -9690,6 +9465,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "MMMM d'. b. 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "MMMM d'. b. 'yyyy HH:mm",
                     F: "MMMM d'. b. 'yyyy HH:mm:ss",
                     M: "MMMM d'. b. '",
@@ -9699,7 +9476,7 @@
         }
     }, cultures["se-NO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ms-MY"] = $.extend(true, {}, invariant, {
+    culture = cultures["ms-MY"] = $.extend(true, {}, en, {
         name: "ms-MY",
         englishName: "Malay (Malaysia)",
         nativeName: "Bahasa Melayu (Malaysia)",
@@ -9712,7 +9489,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"],
@@ -9739,7 +9515,7 @@
         }
     }, cultures["ms-MY"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["kk-KZ"] = $.extend(true, {}, invariant, {
+    culture = cultures["kk-KZ"] = $.extend(true, {}, en, {
         name: "kk-KZ",
         englishName: "Kazakh (Kazakhstan)",
         nativeName: "Қазақ (Қазақстан)",
@@ -9761,7 +9537,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -9789,7 +9564,7 @@
         }
     }, cultures["kk-KZ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ky-KG"] = $.extend(true, {}, invariant, {
+    culture = cultures["ky-KG"] = $.extend(true, {}, en, {
         name: "ky-KG",
         englishName: "Kyrgyz (Kyrgyzstan)",
         nativeName: "Кыргыз (Кыргызстан)",
@@ -9811,7 +9586,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -9839,7 +9613,7 @@
         }
     }, cultures["ky-KG"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sw-KE"] = $.extend(true, {}, invariant, {
+    culture = cultures["sw-KE"] = $.extend(true, {}, en, {
         name: "sw-KE",
         englishName: "Kiswahili (Kenya)",
         nativeName: "Kiswahili (Kenya)",
@@ -9851,7 +9625,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Jumapili","Jumatatu","Jumanne","Jumatano","Alhamisi","Ijumaa","Jumamosi"],
                     namesAbbr: ["Jumap.","Jumat.","Juman.","Jumat.","Alh.","Iju.","Jumam."],
@@ -9860,21 +9633,12 @@
                 months: {
                     names: ["Januari","Februari","Machi","Aprili","Mei","Juni","Julai","Agosti","Septemba","Oktoba","Novemba","Decemba",""],
                     namesAbbr: ["Jan","Feb","Mac","Apr","Mei","Jun","Jul","Ago","Sep","Okt","Nov","Dec",""]
-                },
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
                 }
             })
         }
     }, cultures["sw-KE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tk-TM"] = $.extend(true, {}, invariant, {
+    culture = cultures["tk-TM"] = $.extend(true, {}, en, {
         name: "tk-TM",
         englishName: "Turkmen (Turkmenistan)",
         nativeName: "türkmençe (Türkmenistan)",
@@ -9896,7 +9660,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -9923,7 +9686,7 @@
         }
     }, cultures["tk-TM"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["uz-Latn-UZ"] = $.extend(true, {}, invariant, {
+    culture = cultures["uz-Latn-UZ"] = $.extend(true, {}, en, {
         name: "uz-Latn-UZ",
         englishName: "Uzbek (Latin, Uzbekistan)",
         nativeName: "U'zbek (U'zbekiston Respublikasi)",
@@ -9946,7 +9709,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"],
@@ -9962,6 +9724,8 @@
                 patterns: {
                     d: "dd/MM yyyy",
                     D: "yyyy 'yil' d-MMMM",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "yyyy 'yil' d-MMMM HH:mm",
                     F: "yyyy 'yil' d-MMMM HH:mm:ss",
                     M: "d-MMMM",
@@ -9971,7 +9735,7 @@
         }
     }, cultures["uz-Latn-UZ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tt-RU"] = $.extend(true, {}, invariant, {
+    culture = cultures["tt-RU"] = $.extend(true, {}, en, {
         name: "tt-RU",
         englishName: "Tatar (Russia)",
         nativeName: "Татар (Россия)",
@@ -9993,7 +9757,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -10025,7 +9788,7 @@
         }
     }, cultures["tt-RU"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bn-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["bn-IN"] = $.extend(true, {}, en, {
         name: "bn-IN",
         englishName: "Bengali (India)",
         nativeName: "বাংলা (ভারত)",
@@ -10044,7 +9807,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 ':': ".",
                 firstDay: 1,
@@ -10066,14 +9828,13 @@
                     T: "HH.mm.ss",
                     f: "dd MMMM yyyy HH.mm",
                     F: "dd MMMM yyyy HH.mm.ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["bn-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["pa-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["pa-IN"] = $.extend(true, {}, en, {
         name: "pa-IN",
         englishName: "Punjabi (India)",
         nativeName: "ਪੰਜਾਬੀ (ਭਾਰਤ)",
@@ -10091,7 +9852,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -10112,14 +9872,13 @@
                     T: "tt hh:mm:ss",
                     f: "dd MMMM yyyy dddd tt hh:mm",
                     F: "dd MMMM yyyy dddd tt hh:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["pa-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["gu-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["gu-IN"] = $.extend(true, {}, en, {
         name: "gu-IN",
         englishName: "Gujarati (India)",
         nativeName: "ગુજરાતી (ભારત)",
@@ -10137,7 +9896,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -10154,16 +9912,17 @@
                 patterns: {
                     d: "dd-MM-yy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["gu-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["or-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["or-IN"] = $.extend(true, {}, en, {
         name: "or-IN",
         englishName: "Oriya (India)",
         nativeName: "ଓଡ଼ିଆ (ଭାରତ)",
@@ -10181,7 +9940,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["ରବିବାର","ସୋମବାର","ମଙ୍ଗଳବାର","ବୁଧବାର","ଗୁରୁବାର","ଶୁକ୍ରବାର","ଶନିବାର"],
@@ -10196,16 +9954,17 @@
                 patterns: {
                     d: "dd-MM-yy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["or-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ta-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["ta-IN"] = $.extend(true, {}, en, {
         name: "ta-IN",
         englishName: "Tamil (India)",
         nativeName: "தமிழ் (இந்தியா)",
@@ -10223,7 +9982,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -10240,6 +9998,8 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -10249,7 +10009,7 @@
         }
     }, cultures["ta-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["te-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["te-IN"] = $.extend(true, {}, en, {
         name: "te-IN",
         englishName: "Telugu (India)",
         nativeName: "తెలుగు (భారత దేశం)",
@@ -10267,7 +10027,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -10284,16 +10043,17 @@
                 patterns: {
                     d: "dd-MM-yy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["te-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["kn-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["kn-IN"] = $.extend(true, {}, en, {
         name: "kn-IN",
         englishName: "Kannada (India)",
         nativeName: "ಕನ್ನಡ (ಭಾರತ)",
@@ -10311,7 +10071,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -10328,16 +10087,17 @@
                 patterns: {
                     d: "dd-MM-yy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["kn-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ml-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["ml-IN"] = $.extend(true, {}, en, {
         name: "ml-IN",
         englishName: "Malayalam (India)",
         nativeName: "മലയാളം (ഭാരതം)",
@@ -10356,7 +10116,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 ':': ".",
                 firstDay: 1,
@@ -10376,14 +10135,13 @@
                     T: "HH.mm.ss",
                     f: "dd MMMM yyyy HH.mm",
                     F: "dd MMMM yyyy HH.mm.ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["ml-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["as-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["as-IN"] = $.extend(true, {}, en, {
         name: "as-IN",
         englishName: "Assamese (India)",
         nativeName: "অসমীয়া (ভাৰত)",
@@ -10402,7 +10160,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -10431,7 +10188,7 @@
         }
     }, cultures["as-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mr-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["mr-IN"] = $.extend(true, {}, en, {
         name: "mr-IN",
         englishName: "Marathi (India)",
         nativeName: "मराठी (भारत)",
@@ -10449,7 +10206,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -10466,16 +10222,17 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["mr-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sa-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["sa-IN"] = $.extend(true, {}, en, {
         name: "sa-IN",
         englishName: "Sanskrit (India)",
         nativeName: "संस्कृत (भारतम्)",
@@ -10493,7 +10250,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["रविवासरः","सोमवासरः","मङ्गलवासरः","बुधवासरः","गुरुवासरः","शुक्रवासरः","शनिवासरः"],
@@ -10509,16 +10265,17 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy dddd",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy dddd HH:mm",
                     F: "dd MMMM yyyy dddd HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["sa-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mn-MN"] = $.extend(true, {}, invariant, {
+    culture = cultures["mn-MN"] = $.extend(true, {}, en, {
         name: "mn-MN",
         englishName: "Mongolian (Cyrillic, Mongolia)",
         nativeName: "Монгол хэл (Монгол улс)",
@@ -10539,7 +10296,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -10571,7 +10327,7 @@
         }
     }, cultures["mn-MN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bo-CN"] = $.extend(true, {}, invariant, {
+    culture = cultures["bo-CN"] = $.extend(true, {}, en, {
         name: "bo-CN",
         englishName: "Tibetan (PRC)",
         nativeName: "བོད་ཡིག (ཀྲུང་ཧྭ་མི་དམངས་སྤྱི་མཐུན་རྒྱལ་ཁབ།)",
@@ -10590,7 +10346,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["གཟའ་ཉི་མ།","གཟའ་ཟླ་བ།","གཟའ་མིག་དམར།","གཟའ་ལྷག་པ།","གཟའ་ཕུར་བུ།","གཟའ་པ་སངས།","གཟའ་སྤེན་པ།"],
@@ -10607,6 +10362,8 @@
                 patterns: {
                     d: "yyyy/M/d",
                     D: "yyyy'ལོའི་ཟླ' M'ཚེས' d",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "yyyy'ལོའི་ཟླ' M'ཚེས' d HH:mm",
                     F: "yyyy'ལོའི་ཟླ' M'ཚེས' d HH:mm:ss",
                     M: "'ཟླ་' M'ཚེས'd",
@@ -10616,7 +10373,7 @@
         }
     }, cultures["bo-CN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["cy-GB"] = $.extend(true, {}, invariant, {
+    culture = cultures["cy-GB"] = $.extend(true, {}, en, {
         name: "cy-GB",
         englishName: "Welsh (United Kingdom)",
         nativeName: "Cymraeg (y Deyrnas Unedig)",
@@ -10632,7 +10389,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Dydd Sul","Dydd Llun","Dydd Mawrth","Dydd Mercher","Dydd Iau","Dydd Gwener","Dydd Sadwrn"],
@@ -10648,6 +10404,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -10657,7 +10415,7 @@
         }
     }, cultures["cy-GB"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["km-KH"] = $.extend(true, {}, invariant, {
+    culture = cultures["km-KH"] = $.extend(true, {}, en, {
         name: "km-KH",
         englishName: "Khmer (Cambodia)",
         nativeName: "ខ្មែរ (កម្ពុជា)",
@@ -10676,7 +10434,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["ថ្ងៃអាទិត្យ","ថ្ងៃច័ន្ទ","ថ្ងៃអង្គារ","ថ្ងៃពុធ","ថ្ងៃព្រហស្បតិ៍","ថ្ងៃសុក្រ","ថ្ងៃសៅរ៍"],
@@ -10694,6 +10451,7 @@
                     d: "yyyy-MM-dd",
                     D: "d MMMM yyyy",
                     t: "H:mm tt",
+                    T: "HH:mm:ss",
                     f: "d MMMM yyyy H:mm tt",
                     F: "d MMMM yyyy HH:mm:ss",
                     M: "'ថ្ងៃទី' dd 'ខែ' MM",
@@ -10715,17 +10473,17 @@
                 PM: ["ល្ងាច","ល្ងាច","ល្ងាច"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm tt",
+                    T: "HH:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm tt",
-                    F: "dddd, MMMM dd, yyyy HH:mm:ss",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy HH:mm:ss"
                 }
             })
         }
     }, cultures["km-KH"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["lo-LA"] = $.extend(true, {}, invariant, {
+    culture = cultures["lo-LA"] = $.extend(true, {}, en, {
         name: "lo-LA",
         englishName: "Lao (Lao P.D.R.)",
         nativeName: "ລາວ (ສ.ປ.ປ. ລາວ)",
@@ -10744,7 +10502,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["ວັນອາທິດ","ວັນຈັນ","ວັນອັງຄານ","ວັນພຸດ","ວັນພະຫັດ","ວັນສຸກ","ວັນເສົາ"],
                     namesAbbr: ["ອາທິດ","ຈັນ","ອັງຄານ","ພຸດ","ພະຫັດ","ສຸກ","ເສົາ"],
@@ -10760,6 +10517,7 @@
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
                     t: "H:mm tt",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy H:mm tt",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -10769,7 +10527,7 @@
         }
     }, cultures["lo-LA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["gl-ES"] = $.extend(true, {}, invariant, {
+    culture = cultures["gl-ES"] = $.extend(true, {}, en, {
         name: "gl-ES",
         englishName: "Galician (Galician)",
         nativeName: "galego (galego)",
@@ -10790,7 +10548,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["domingo","luns","martes","mércores","xoves","venres","sábado"],
@@ -10818,7 +10575,7 @@
         }
     }, cultures["gl-ES"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["kok-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["kok-IN"] = $.extend(true, {}, en, {
         name: "kok-IN",
         englishName: "Konkani (India)",
         nativeName: "कोंकणी (भारत)",
@@ -10836,7 +10593,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -10853,16 +10609,17 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["kok-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["syr-SY"] = $.extend(true, {}, invariant, {
+    culture = cultures["syr-SY"] = $.extend(true, {}, en, {
         name: "syr-SY",
         englishName: "Syriac (Syria)",
         nativeName: "ܣܘܪܝܝܐ (سوريا)",
@@ -10876,7 +10633,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["ܚܕ ܒܫܒܐ","ܬܪܝܢ ܒܫܒܐ","ܬܠܬܐ ܒܫܒܐ","ܐܪܒܥܐ ܒܫܒܐ","ܚܡܫܐ ܒܫܒܐ","ܥܪܘܒܬܐ","ܫܒܬܐ"],
@@ -10896,14 +10652,13 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["syr-SY"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["si-LK"] = $.extend(true, {}, invariant, {
+    culture = cultures["si-LK"] = $.extend(true, {}, en, {
         name: "si-LK",
         englishName: "Sinhala (Sri Lanka)",
         nativeName: "සිංහල (ශ්‍රී ලංකා)",
@@ -10920,7 +10675,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -10938,16 +10692,15 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "yyyy MMMM' මස 'dd' වැනිදා 'dddd",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "yyyy MMMM' මස 'dd' වැනිදා 'dddd h:mm tt",
-                    F: "yyyy MMMM' මස 'dd' වැනිදා 'dddd h:mm:ss tt"
+                    F: "yyyy MMMM' මස 'dd' වැනිදා 'dddd h:mm:ss tt",
+                    Y: "yyyy MMMM"
                 }
             })
         }
     }, cultures["si-LK"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["iu-Cans-CA"] = $.extend(true, {}, invariant, {
+    culture = cultures["iu-Cans-CA"] = $.extend(true, {}, en, {
         name: "iu-Cans-CA",
         englishName: "Inuktitut (Syllabics, Canada)",
         nativeName: "ᐃᓄᒃᑎᑐᑦ (ᑲᓇᑕᒥ)",
@@ -10959,13 +10712,11 @@
                 groupSizes: [3,0]
             },
             currency: {
-                groupSizes: [3,0],
-                symbol: "$"
+                groupSizes: [3,0]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["ᓈᑦᑏᖑᔭ","ᓇᒡᒐᔾᔭᐅ","ᐊᐃᑉᐱᖅ","ᐱᖓᑦᓯᖅ","ᓯᑕᒻᒥᖅ","ᑕᓪᓕᕐᒥᖅ","ᓯᕙᑖᕐᕕᒃ"],
                     namesAbbr: ["ᓈᑦᑏ","ᓇᒡᒐ","ᐊᐃᑉᐱ","ᐱᖓᑦᓯ","ᓯᑕ","ᑕᓪᓕ","ᓯᕙᑖᕐᕕᒃ"],
@@ -10978,8 +10729,6 @@
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd,MMMM dd,yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd,MMMM dd,yyyy h:mm tt",
                     F: "dddd,MMMM dd,yyyy h:mm:ss tt",
                     Y: "MMMM,yyyy"
@@ -10988,7 +10737,7 @@
         }
     }, cultures["iu-Cans-CA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["am-ET"] = $.extend(true, {}, invariant, {
+    culture = cultures["am-ET"] = $.extend(true, {}, en, {
         name: "am-ET",
         englishName: "Amharic (Ethiopia)",
         nativeName: "አማርኛ (ኢትዮጵያ)",
@@ -11009,7 +10758,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["እሑድ","ሰኞ","ማክሰኞ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],
                     namesAbbr: ["እሑድ","ሰኞ","ማክሰ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],
@@ -11025,8 +10773,6 @@
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd '፣' MMMM d 'ቀን' yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd '፣' MMMM d 'ቀን' yyyy h:mm tt",
                     F: "dddd '፣' MMMM d 'ቀን' yyyy h:mm:ss tt",
                     M: "MMMM d ቀን",
@@ -11036,7 +10782,7 @@
         }
     }, cultures["am-ET"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ne-NP"] = $.extend(true, {}, invariant, {
+    culture = cultures["ne-NP"] = $.extend(true, {}, en, {
         name: "ne-NP",
         englishName: "Nepali (Nepal)",
         nativeName: "नेपाली (नेपाल)",
@@ -11054,7 +10800,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["आइतवार","सोमवार","मङ्गलवार","बुधवार","बिहीवार","शुक्रवार","शनिवार"],
                     namesAbbr: ["आइत","सोम","मङ्गल","बुध","बिही","शुक्र","शनि"],
@@ -11068,19 +10813,13 @@
                 PM: ["बेलुकी","बेलुकी","बेलुकी"],
                 eras: [{"name":"a.d.","start":null,"offset":0}],
                 patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
                     Y: "MMMM,yyyy"
                 }
             })
         }
     }, cultures["ne-NP"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fy-NL"] = $.extend(true, {}, invariant, {
+    culture = cultures["fy-NL"] = $.extend(true, {}, en, {
         name: "fy-NL",
         englishName: "Frisian (Netherlands)",
         nativeName: "Frysk (Nederlân)",
@@ -11101,7 +10840,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -11129,7 +10867,7 @@
         }
     }, cultures["fy-NL"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ps-AF"] = $.extend(true, {}, invariant, {
+    culture = cultures["ps-AF"] = $.extend(true, {}, en, {
         name: "ps-AF",
         englishName: "Pashto (Afghanistan)",
         nativeName: "پښتو (افغانستان)",
@@ -11171,12 +10909,9 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "dd/MM/yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd/MM/yyyy h:mm tt",
                     F: "dd/MM/yyyy h:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -11252,7 +10987,6 @@
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["یکشنبه","دوشنبه","سه‌شنبه","چارشنبه","پنجشنبه","جمعه","شنبه"],
@@ -11269,8 +11003,6 @@
                 patterns: {
                     d: "yyyy/M/d",
                     D: "yyyy, dd, MMMM, dddd",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "yyyy, dd, MMMM, dddd h:mm tt",
                     F: "yyyy, dd, MMMM, dddd h:mm:ss tt",
                     M: "d MMMM",
@@ -11280,7 +11012,7 @@
         }
     }, cultures["ps-AF"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fil-PH"] = $.extend(true, {}, invariant, {
+    culture = cultures["fil-PH"] = $.extend(true, {}, en, {
         name: "fil-PH",
         englishName: "Filipino (Philippines)",
         nativeName: "Filipino (Pilipinas)",
@@ -11292,7 +11024,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Linggo","Lunes","Martes","Mierkoles","Huebes","Biernes","Sabado"],
                     namesAbbr: ["Lin","Lun","Mar","Mier","Hueb","Bier","Saba"],
@@ -11302,21 +11033,12 @@
                     names: ["Enero","Pebrero","Marso","Abril","Mayo","Hunyo","Hulyo","Agosto","Septyembre","Oktubre","Nobyembre","Disyembre",""],
                     namesAbbr: ["En","Peb","Mar","Abr","Mayo","Hun","Hul","Agos","Sept","Okt","Nob","Dis",""]
                 },
-                eras: [{"name":"Anno Domini","start":null,"offset":0}],
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
-                }
+                eras: [{"name":"Anno Domini","start":null,"offset":0}]
             })
         }
     }, cultures["fil-PH"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["dv-MV"] = $.extend(true, {}, invariant, {
+    culture = cultures["dv-MV"] = $.extend(true, {}, en, {
         name: "dv-MV",
         englishName: "Divehi (Maldives)",
         nativeName: "ދިވެހިބަސް (ދިވެހި ރާއްޖެ)",
@@ -11347,10 +11069,11 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "dd/MM/yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd/MM/yyyy HH:mm",
                     F: "dd/MM/yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -11426,7 +11149,6 @@
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
                     namesAbbr: ["އާދީއްތަ","ހޯމަ","އަންގާރަ","ބުދަ","ބުރާސްފަތި","ހުކުރު","ހޮނިހިރު"],
@@ -11442,6 +11164,8 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "ddd, yyyy MMMM dd",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "ddd, yyyy MMMM dd HH:mm",
                     F: "ddd, yyyy MMMM dd HH:mm:ss",
                     Y: "yyyy, MMMM"
@@ -11450,7 +11174,7 @@
         }
     }, cultures["dv-MV"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ha-Latn-NG"] = $.extend(true, {}, invariant, {
+    culture = cultures["ha-Latn-NG"] = $.extend(true, {}, en, {
         name: "ha-Latn-NG",
         englishName: "Hausa (Latin, Nigeria)",
         nativeName: "Hausa (Nigeria)",
@@ -11463,7 +11187,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Lahadi","Litinin","Talata","Laraba","Alhamis","Juma'a","Asabar"],
                     namesAbbr: ["Lah","Lit","Tal","Lar","Alh","Jum","Asa"],
@@ -11477,19 +11200,13 @@
                 PM: ["Yamma","yamma","YAMMA"],
                 eras: [{"name":"AD","start":null,"offset":0}],
                 patterns: {
-                    d: "d/M/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    d: "d/M/yyyy"
                 }
             })
         }
     }, cultures["ha-Latn-NG"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["yo-NG"] = $.extend(true, {}, invariant, {
+    culture = cultures["yo-NG"] = $.extend(true, {}, en, {
         name: "yo-NG",
         englishName: "Yoruba (Nigeria)",
         nativeName: "Yoruba (Nigeria)",
@@ -11502,7 +11219,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Aiku","Aje","Isegun","Ojo'ru","Ojo'bo","Eti","Abameta"],
                     namesAbbr: ["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],
@@ -11516,19 +11232,13 @@
                 PM: ["Ale","ale","ALE"],
                 eras: [{"name":"AD","start":null,"offset":0}],
                 patterns: {
-                    d: "d/M/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    d: "d/M/yyyy"
                 }
             })
         }
     }, cultures["yo-NG"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["quz-BO"] = $.extend(true, {}, invariant, {
+    culture = cultures["quz-BO"] = $.extend(true, {}, en, {
         name: "quz-BO",
         englishName: "Quechua (Bolivia)",
         nativeName: "runasimi (Qullasuyu)",
@@ -11550,7 +11260,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["intichaw","killachaw","atipachaw","quyllurchaw","Ch' askachaw","Illapachaw","k'uychichaw"],
                     namesAbbr: ["int","kil","ati","quy","Ch'","Ill","k'u"],
@@ -11575,7 +11284,7 @@
         }
     }, cultures["quz-BO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["nso-ZA"] = $.extend(true, {}, invariant, {
+    culture = cultures["nso-ZA"] = $.extend(true, {}, en, {
         name: "nso-ZA",
         englishName: "Sesotho sa Leboa (South Africa)",
         nativeName: "Sesotho sa Leboa (Afrika Borwa)",
@@ -11591,7 +11300,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Lamorena","Mošupologo","Labobedi","Laboraro","Labone","Labohlano","Mokibelo"],
                     namesAbbr: ["Lam","Moš","Lbb","Lbr","Lbn","Lbh","Mok"],
@@ -11615,7 +11323,7 @@
         }
     }, cultures["nso-ZA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ba-RU"] = $.extend(true, {}, invariant, {
+    culture = cultures["ba-RU"] = $.extend(true, {}, en, {
         name: "ba-RU",
         englishName: "Bashkir (Russia)",
         nativeName: "Башҡорт (Россия)",
@@ -11640,7 +11348,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -11667,7 +11374,7 @@
         }
     }, cultures["ba-RU"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["lb-LU"] = $.extend(true, {}, invariant, {
+    culture = cultures["lb-LU"] = $.extend(true, {}, en, {
         name: "lb-LU",
         englishName: "Luxembourgish (Luxembourg)",
         nativeName: "Lëtzebuergesch (Luxembourg)",
@@ -11688,7 +11395,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Sonndeg","Méindeg","Dënschdeg","Mëttwoch","Donneschdeg","Freideg","Samschdeg"],
@@ -11705,6 +11411,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -11714,7 +11422,7 @@
         }
     }, cultures["lb-LU"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["kl-GL"] = $.extend(true, {}, invariant, {
+    culture = cultures["kl-GL"] = $.extend(true, {}, en, {
         name: "kl-GL",
         englishName: "Greenlandic (Greenland)",
         nativeName: "kalaallisut (Kalaallit Nunaat)",
@@ -11738,7 +11446,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -11755,6 +11462,8 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -11764,7 +11473,7 @@
         }
     }, cultures["kl-GL"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ig-NG"] = $.extend(true, {}, invariant, {
+    culture = cultures["ig-NG"] = $.extend(true, {}, en, {
         name: "ig-NG",
         englishName: "Igbo (Nigeria)",
         nativeName: "Igbo (Nigeria)",
@@ -11777,7 +11486,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Aiku","Aje","Isegun","Ojo'ru","Ojo'bo","Eti","Abameta"],
                     namesAbbr: ["Aik","Aje","Ise","Ojo","Ojo","Eti","Aba"],
@@ -11791,19 +11499,13 @@
                 PM: ["Efifie","efifie","EFIFIE"],
                 eras: [{"name":"AD","start":null,"offset":0}],
                 patterns: {
-                    d: "d/M/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    d: "d/M/yyyy"
                 }
             })
         }
     }, cultures["ig-NG"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ii-CN"] = $.extend(true, {}, invariant, {
+    culture = cultures["ii-CN"] = $.extend(true, {}, en, {
         name: "ii-CN",
         englishName: "Yi (PRC)",
         nativeName: "ꆈꌠꁱꂷ (ꍏꉸꏓꂱꇭꉼꇩ)",
@@ -11821,7 +11523,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["ꑭꆏꑍ","ꆏꊂ꒔","ꆏꊂꑍ","ꆏꊂꌕ","ꆏꊂꇖ","ꆏꊂꉬ","ꆏꊂꃘ"],
@@ -11849,7 +11550,7 @@
         }
     }, cultures["ii-CN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["arn-CL"] = $.extend(true, {}, invariant, {
+    culture = cultures["arn-CL"] = $.extend(true, {}, en, {
         name: "arn-CL",
         englishName: "Mapudungun (Chile)",
         nativeName: "Mapudungun (Chile)",
@@ -11864,13 +11565,11 @@
             currency: {
                 pattern: ["-$ n","$ n"],
                 ',': ".",
-                '.': ",",
-                symbol: "$"
+                '.': ","
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
@@ -11898,7 +11597,7 @@
         }
     }, cultures["arn-CL"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["moh-CA"] = $.extend(true, {}, invariant, {
+    culture = cultures["moh-CA"] = $.extend(true, {}, en, {
         name: "moh-CA",
         englishName: "Mohawk (Mohawk)",
         nativeName: "Kanien'kéha",
@@ -11907,35 +11606,22 @@
             groupSizes: [3,0],
             percent: {
                 groupSizes: [3,0]
-            },
-            currency: {
-                symbol: "$"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Awentatokentì:ke","Awentataón'ke","Ratironhia'kehronòn:ke","Soséhne","Okaristiiáhne","Ronwaia'tanentaktonhne","Entákta"],
                     namesShort: ["S","M","T","W","T","F","S"]
                 },
                 months: {
                     names: ["Tsothohrkó:Wa","Enniska","Enniskó:Wa","Onerahtókha","Onerahtohkó:Wa","Ohiari:Ha","Ohiarihkó:Wa","Seskéha","Seskehkó:Wa","Kenténha","Kentenhkó:Wa","Tsothóhrha",""]
-                },
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
                 }
             })
         }
     }, cultures["moh-CA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["br-FR"] = $.extend(true, {}, invariant, {
+    culture = cultures["br-FR"] = $.extend(true, {}, en, {
         name: "br-FR",
         englishName: "Breton (France)",
         nativeName: "brezhoneg (Frañs)",
@@ -11956,7 +11642,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Sul","Lun","Meurzh","Merc'her","Yaou","Gwener","Sadorn"],
@@ -11973,6 +11658,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -11982,7 +11669,7 @@
         }
     }, cultures["br-FR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ug-CN"] = $.extend(true, {}, invariant, {
+    culture = cultures["ug-CN"] = $.extend(true, {}, en, {
         name: "ug-CN",
         englishName: "Uyghur (PRC)",
         nativeName: "ئۇيغۇرچە (جۇڭخۇا خەلق جۇمھۇرىيىتى)",
@@ -11999,7 +11686,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["يەكشەنبە","دۈشەنبە","سەيشەنبە","چارشەنبە","پەيشەنبە","جۈمە","شەنبە"],
@@ -12027,7 +11713,7 @@
         }
     }, cultures["ug-CN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mi-NZ"] = $.extend(true, {}, invariant, {
+    culture = cultures["mi-NZ"] = $.extend(true, {}, en, {
         name: "mi-NZ",
         englishName: "Maori (New Zealand)",
         nativeName: "Reo Māori (Aotearoa)",
@@ -12037,13 +11723,11 @@
                 pattern: ["-%n","%n"]
             },
             currency: {
-                pattern: ["-$n","$n"],
-                symbol: "$"
+                pattern: ["-$n","$n"]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Rātapu","Rāhina","Rātū","Rāapa","Rāpare","Rāmere","Rāhoroi"],
@@ -12059,8 +11743,6 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, dd MMMM, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd, dd MMMM, yyyy h:mm tt",
                     F: "dddd, dd MMMM, yyyy h:mm:ss tt",
                     M: "dd MMMM",
@@ -12070,7 +11752,7 @@
         }
     }, cultures["mi-NZ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["oc-FR"] = $.extend(true, {}, invariant, {
+    culture = cultures["oc-FR"] = $.extend(true, {}, en, {
         name: "oc-FR",
         englishName: "Occitan (France)",
         nativeName: "Occitan (França)",
@@ -12091,7 +11773,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dimenge","diluns","dimars","dimècres","dijòus","divendres","dissabte"],
@@ -12112,6 +11793,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd,' lo 'd MMMM' de 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd,' lo 'd MMMM' de 'yyyy HH:mm",
                     F: "dddd,' lo 'd MMMM' de 'yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -12121,7 +11804,7 @@
         }
     }, cultures["oc-FR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["co-FR"] = $.extend(true, {}, invariant, {
+    culture = cultures["co-FR"] = $.extend(true, {}, en, {
         name: "co-FR",
         englishName: "Corsican (France)",
         nativeName: "Corsu (France)",
@@ -12142,7 +11825,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dumenica","luni","marti","mercuri","ghjovi","venderi","sabbatu"],
@@ -12159,6 +11841,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -12168,7 +11852,7 @@
         }
     }, cultures["co-FR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["gsw-FR"] = $.extend(true, {}, invariant, {
+    culture = cultures["gsw-FR"] = $.extend(true, {}, en, {
         name: "gsw-FR",
         englishName: "Alsatian (France)",
         nativeName: "Elsässisch (Frànkrisch)",
@@ -12189,7 +11873,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Sundàà","Mondàà","Dienschdàà","Mittwuch","Dunnerschdàà","Fridàà","Sàmschdàà"],
@@ -12206,6 +11889,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -12215,7 +11900,7 @@
         }
     }, cultures["gsw-FR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sah-RU"] = $.extend(true, {}, invariant, {
+    culture = cultures["sah-RU"] = $.extend(true, {}, en, {
         name: "sah-RU",
         englishName: "Yakut (Russia)",
         nativeName: "саха (Россия)",
@@ -12237,7 +11922,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -12268,7 +11952,7 @@
         }
     }, cultures["sah-RU"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["qut-GT"] = $.extend(true, {}, invariant, {
+    culture = cultures["qut-GT"] = $.extend(true, {}, en, {
         name: "qut-GT",
         englishName: "K'iche (Guatemala)",
         nativeName: "K'iche (Guatemala)",
@@ -12280,7 +11964,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["juq'ij","kaq'ij","oxq'ij","kajq'ij","joq'ij","waqq'ij","wuqq'ij"],
                     namesAbbr: ["juq","kaq","oxq","kajq","joq","waqq","wuqq"],
@@ -12307,7 +11990,7 @@
         }
     }, cultures["qut-GT"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["rw-RW"] = $.extend(true, {}, invariant, {
+    culture = cultures["rw-RW"] = $.extend(true, {}, en, {
         name: "rw-RW",
         englishName: "Kinyarwanda (Rwanda)",
         nativeName: "Kinyarwanda (Rwanda)",
@@ -12328,7 +12011,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Ku wa mbere","Ku wa kabiri","Ku wa gatatu","Ku wa kane","Ku wa gatanu","Ku wa gatandatu","Ku cyumweru"],
                     namesAbbr: ["mbe.","kab.","gat.","kan.","gat.","gat.","cyu."],
@@ -12340,21 +12022,12 @@
                 },
                 AM: ["saa moya z.m.","saa moya z.m.","SAA MOYA Z.M."],
                 PM: ["saa moya z.n.","saa moya z.n.","SAA MOYA Z.N."],
-                eras: [{"name":"AD","start":null,"offset":0}],
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
-                }
+                eras: [{"name":"AD","start":null,"offset":0}]
             })
         }
     }, cultures["rw-RW"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["wo-SN"] = $.extend(true, {}, invariant, {
+    culture = cultures["wo-SN"] = $.extend(true, {}, en, {
         name: "wo-SN",
         englishName: "Wolof (Senegal)",
         nativeName: "Wolof (Sénégal)",
@@ -12375,7 +12048,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
@@ -12392,6 +12064,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -12401,7 +12075,7 @@
         }
     }, cultures["wo-SN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["prs-AF"] = $.extend(true, {}, invariant, {
+    culture = cultures["prs-AF"] = $.extend(true, {}, en, {
         name: "prs-AF",
         englishName: "Dari (Afghanistan)",
         nativeName: "درى (افغانستان)",
@@ -12441,12 +12115,9 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "dd/MM/yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd/MM/yyyy h:mm tt",
                     F: "dd/MM/yyyy h:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -12522,7 +12193,6 @@
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 5,
                 days: {
                     names: ["یکشنبه","دوشنبه","سه‌شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
@@ -12539,8 +12209,6 @@
                 patterns: {
                     d: "yyyy/M/d",
                     D: "yyyy, dd, MMMM, dddd",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "yyyy, dd, MMMM, dddd h:mm tt",
                     F: "yyyy, dd, MMMM, dddd h:mm:ss tt",
                     M: "d MMMM",
@@ -12550,7 +12218,7 @@
         }
     }, cultures["prs-AF"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["gd-GB"] = $.extend(true, {}, invariant, {
+    culture = cultures["gd-GB"] = $.extend(true, {}, en, {
         name: "gd-GB",
         englishName: "Scottish Gaelic (United Kingdom)",
         nativeName: "Gàidhlig (An Rìoghachd Aonaichte)",
@@ -12563,7 +12231,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Didòmhnaich","Diluain","Dimàirt","Diciadain","Diardaoin","Dihaoine","Disathairne"],
@@ -12579,6 +12246,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -12588,7 +12257,7 @@
         }
     }, cultures["gd-GB"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-IQ"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-IQ"] = $.extend(true, {}, en, {
         name: "ar-IQ",
         englishName: "Arabic (Iraq)",
         nativeName: "العربية (العراق)",
@@ -12603,7 +12272,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -12623,8 +12291,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             UmAlQura: $.extend(true, {}, standard, {
@@ -12650,8 +12317,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -12869,8 +12535,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -12961,13 +12626,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
@@ -12986,12 +12650,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -13010,18 +12673,17 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-IQ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zh-CN"] = $.extend(true, {}, invariant, {
+    culture = cultures["zh-CN"] = $.extend(true, {}, en, {
         name: "zh-CN",
         englishName: "Chinese (Simplified, PRC)",
         nativeName: "中文(中华人民共和国)",
@@ -13037,7 +12699,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                     namesAbbr: ["周日","周一","周二","周三","周四","周五","周六"],
@@ -13064,7 +12725,7 @@
         }
     }, cultures["zh-CN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["de-CH"] = $.extend(true, {}, invariant, {
+    culture = cultures["de-CH"] = $.extend(true, {}, en, {
         name: "de-CH",
         englishName: "German (Switzerland)",
         nativeName: "Deutsch (Schweiz)",
@@ -13083,7 +12744,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -13101,6 +12761,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "dddd, d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d. MMMM yyyy HH:mm",
                     F: "dddd, d. MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -13110,11 +12772,10 @@
         }
     }, cultures["de-CH"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-GB"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-GB"] = $.extend(true, {}, en, {
         name: "en-GB",
         englishName: "English (United Kingdom)",
         nativeName: "English (United Kingdom)",
-        language: "en",
         numberFormat: {
             currency: {
                 pattern: ["-$n","$n"],
@@ -13123,11 +12784,12 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -13137,20 +12799,18 @@
         }
     }, cultures["en-GB"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-MX"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-MX"] = $.extend(true, {}, en, {
         name: "es-MX",
         englishName: "Spanish (Mexico)",
         nativeName: "Español (México)",
         language: "es",
         numberFormat: {
             currency: {
-                pattern: ["-$n","$n"],
-                symbol: "$"
+                pattern: ["-$n","$n"]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -13177,7 +12837,7 @@
         }
     }, cultures["es-MX"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fr-BE"] = $.extend(true, {}, invariant, {
+    culture = cultures["fr-BE"] = $.extend(true, {}, en, {
         name: "fr-BE",
         englishName: "French (Belgium)",
         nativeName: "français (Belgique)",
@@ -13198,7 +12858,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
@@ -13215,6 +12874,8 @@
                 patterns: {
                     d: "d/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -13224,7 +12885,7 @@
         }
     }, cultures["fr-BE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["it-CH"] = $.extend(true, {}, invariant, {
+    culture = cultures["it-CH"] = $.extend(true, {}, en, {
         name: "it-CH",
         englishName: "Italian (Switzerland)",
         nativeName: "italiano (Svizzera)",
@@ -13243,7 +12904,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -13261,6 +12921,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "dddd, d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d. MMMM yyyy HH:mm",
                     F: "dddd, d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -13270,7 +12932,7 @@
         }
     }, cultures["it-CH"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["nl-BE"] = $.extend(true, {}, invariant, {
+    culture = cultures["nl-BE"] = $.extend(true, {}, en, {
         name: "nl-BE",
         englishName: "Dutch (Belgium)",
         nativeName: "Nederlands (België)",
@@ -13292,7 +12954,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["zondag","maandag","dinsdag","woensdag","donderdag","vrijdag","zaterdag"],
@@ -13319,7 +12980,7 @@
         }
     }, cultures["nl-BE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["nn-NO"] = $.extend(true, {}, invariant, {
+    culture = cultures["nn-NO"] = $.extend(true, {}, en, {
         name: "nn-NO",
         englishName: "Norwegian, Nynorsk (Norway)",
         nativeName: "norsk, nynorsk (Noreg)",
@@ -13340,7 +13001,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -13357,6 +13017,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -13366,7 +13028,7 @@
         }
     }, cultures["nn-NO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["pt-PT"] = $.extend(true, {}, invariant, {
+    culture = cultures["pt-PT"] = $.extend(true, {}, en, {
         name: "pt-PT",
         englishName: "Portuguese (Portugal)",
         nativeName: "português (Portugal)",
@@ -13388,7 +13050,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -13406,6 +13067,8 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dddd, d' de 'MMMM' de 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d' de 'MMMM' de 'yyyy HH:mm",
                     F: "dddd, d' de 'MMMM' de 'yyyy HH:mm:ss",
                     M: "d/M",
@@ -13415,7 +13078,7 @@
         }
     }, cultures["pt-PT"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sr-Latn-CS"] = $.extend(true, {}, invariant, {
+    culture = cultures["sr-Latn-CS"] = $.extend(true, {}, en, {
         name: "sr-Latn-CS",
         englishName: "Serbian (Latin, Serbia and Montenegro (Former))",
         nativeName: "srpski (Srbija i Crna Gora (Prethodno))",
@@ -13437,7 +13100,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -13466,7 +13128,7 @@
         }
     }, cultures["sr-Latn-CS"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sv-FI"] = $.extend(true, {}, invariant, {
+    culture = cultures["sv-FI"] = $.extend(true, {}, en, {
         name: "sv-FI",
         englishName: "Swedish (Finland)",
         nativeName: "svenska (Finland)",
@@ -13487,7 +13149,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -13504,6 +13165,8 @@
                 patterns: {
                     d: "d.M.yyyy",
                     D: "'den 'd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "'den 'd MMMM yyyy HH:mm",
                     F: "'den 'd MMMM yyyy HH:mm:ss",
                     M: "'den 'd MMMM",
@@ -13513,7 +13176,7 @@
         }
     }, cultures["sv-FI"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["az-Cyrl-AZ"] = $.extend(true, {}, invariant, {
+    culture = cultures["az-Cyrl-AZ"] = $.extend(true, {}, en, {
         name: "az-Cyrl-AZ",
         englishName: "Azeri (Cyrillic, Azerbaijan)",
         nativeName: "Азәрбајҹан (Азәрбајҹан)",
@@ -13535,7 +13198,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -13567,7 +13229,7 @@
         }
     }, cultures["az-Cyrl-AZ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["dsb-DE"] = $.extend(true, {}, invariant, {
+    culture = cultures["dsb-DE"] = $.extend(true, {}, en, {
         name: "dsb-DE",
         englishName: "Lower Sorbian (Germany)",
         nativeName: "dolnoserbšćina (Nimska)",
@@ -13588,7 +13250,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
                 days: {
@@ -13621,7 +13282,7 @@
         }
     }, cultures["dsb-DE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["se-SE"] = $.extend(true, {}, invariant, {
+    culture = cultures["se-SE"] = $.extend(true, {}, en, {
         name: "se-SE",
         englishName: "Sami, Northern (Sweden)",
         nativeName: "davvisámegiella (Ruoŧŧa)",
@@ -13642,7 +13303,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -13663,6 +13323,8 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "MMMM d'. b. 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "MMMM d'. b. 'yyyy HH:mm",
                     F: "MMMM d'. b. 'yyyy HH:mm:ss",
                     M: "MMMM d'. b. '",
@@ -13672,7 +13334,7 @@
         }
     }, cultures["se-SE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ga-IE"] = $.extend(true, {}, invariant, {
+    culture = cultures["ga-IE"] = $.extend(true, {}, en, {
         name: "ga-IE",
         englishName: "Irish (Ireland)",
         nativeName: "Gaeilge (Éire)",
@@ -13685,7 +13347,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Dé Domhnaigh","Dé Luain","Dé Máirt","Dé Céadaoin","Déardaoin","Dé hAoine","Dé Sathairn"],
@@ -13701,6 +13362,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d MMMM yyyy HH:mm",
                     F: "d MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -13710,7 +13373,7 @@
         }
     }, cultures["ga-IE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ms-BN"] = $.extend(true, {}, invariant, {
+    culture = cultures["ms-BN"] = $.extend(true, {}, en, {
         name: "ms-BN",
         englishName: "Malay (Brunei Darussalam)",
         nativeName: "Bahasa Melayu (Brunei Darussalam)",
@@ -13725,13 +13388,11 @@
             currency: {
                 decimals: 0,
                 ',': ".",
-                '.': ",",
-                symbol: "$"
+                '.': ","
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"],
@@ -13758,7 +13419,7 @@
         }
     }, cultures["ms-BN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["uz-Cyrl-UZ"] = $.extend(true, {}, invariant, {
+    culture = cultures["uz-Cyrl-UZ"] = $.extend(true, {}, en, {
         name: "uz-Cyrl-UZ",
         englishName: "Uzbek (Cyrillic, Uzbekistan)",
         nativeName: "Ўзбек (Ўзбекистон)",
@@ -13780,7 +13441,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -13801,6 +13461,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "yyyy 'йил' d-MMMM",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "yyyy 'йил' d-MMMM HH:mm",
                     F: "yyyy 'йил' d-MMMM HH:mm:ss",
                     M: "d-MMMM",
@@ -13810,7 +13472,7 @@
         }
     }, cultures["uz-Cyrl-UZ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bn-BD"] = $.extend(true, {}, invariant, {
+    culture = cultures["bn-BD"] = $.extend(true, {}, en, {
         name: "bn-BD",
         englishName: "Bengali (Bangladesh)",
         nativeName: "বাংলা (বাংলাদেশ)",
@@ -13829,7 +13491,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 ':': ".",
                 firstDay: 1,
@@ -13851,14 +13512,13 @@
                     T: "HH.mm.ss",
                     f: "dd MMMM yyyy HH.mm",
                     F: "dd MMMM yyyy HH.mm.ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["bn-BD"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mn-Mong-CN"] = $.extend(true, {}, invariant, {
+    culture = cultures["mn-Mong-CN"] = $.extend(true, {}, en, {
         name: "mn-Mong-CN",
         englishName: "Mongolian (Traditional Mongolian, PRC)",
         nativeName: "ᠮᠤᠨᠭᠭᠤᠯ ᠬᠡᠯᠡ (ᠪᠦᠭᠦᠳᠡ ᠨᠠᠢᠷᠠᠮᠳᠠᠬᠤ ᠳᠤᠮᠳᠠᠳᠤ ᠠᠷᠠᠳ ᠣᠯᠣᠰ)",
@@ -13877,7 +13537,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ"],
@@ -13905,7 +13564,7 @@
         }
     }, cultures["mn-Mong-CN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["iu-Latn-CA"] = $.extend(true, {}, invariant, {
+    culture = cultures["iu-Latn-CA"] = $.extend(true, {}, en, {
         name: "iu-Latn-CA",
         englishName: "Inuktitut (Latin, Canada)",
         nativeName: "Inuktitut (Kanatami)",
@@ -13914,14 +13573,10 @@
             groupSizes: [3,0],
             percent: {
                 groupSizes: [3,0]
-            },
-            currency: {
-                symbol: "$"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Naattiinguja","Naggajjau","Aippiq","Pingatsiq","Sitammiq","Tallirmiq","Sivataarvik"],
                     namesAbbr: ["Nat","Nag","Aip","Pi","Sit","Tal","Siv"],
@@ -13934,17 +13589,14 @@
                 patterns: {
                     d: "d/MM/yyyy",
                     D: "ddd, MMMM dd,yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "ddd, MMMM dd,yyyy h:mm tt",
-                    F: "ddd, MMMM dd,yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "ddd, MMMM dd,yyyy h:mm:ss tt"
                 }
             })
         }
     }, cultures["iu-Latn-CA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tzm-Latn-DZ"] = $.extend(true, {}, invariant, {
+    culture = cultures["tzm-Latn-DZ"] = $.extend(true, {}, en, {
         name: "tzm-Latn-DZ",
         englishName: "Tamazight (Latin, Algeria)",
         nativeName: "Tamazight (Djazaïr)",
@@ -13964,7 +13616,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 6,
                 days: {
@@ -13985,14 +13636,13 @@
                     T: "H:mm:ss",
                     f: "dd MMMM, yyyy H:mm",
                     F: "dd MMMM, yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["tzm-Latn-DZ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["quz-EC"] = $.extend(true, {}, invariant, {
+    culture = cultures["quz-EC"] = $.extend(true, {}, en, {
         name: "quz-EC",
         englishName: "Quechua (Ecuador)",
         nativeName: "runasimi (Ecuador)",
@@ -14008,13 +13658,11 @@
             currency: {
                 pattern: ["($ n)","$ n"],
                 ',': ".",
-                '.': ",",
-                symbol: "$"
+                '.': ","
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["intichaw","killachaw","atipachaw","quyllurchaw","Ch' askachaw","Illapachaw","k'uychichaw"],
                     namesAbbr: ["int","kil","ati","quy","Ch'","Ill","k'u"],
@@ -14039,7 +13687,7 @@
         }
     }, cultures["quz-EC"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-EG"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-EG"] = $.extend(true, {}, en, {
         name: "ar-EG",
         englishName: "Arabic (Egypt)",
         nativeName: "العربية (مصر)",
@@ -14058,7 +13706,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -14078,8 +13725,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             UmAlQura: $.extend(true, {}, standard, {
@@ -14105,8 +13751,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -14317,12 +13962,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -14348,8 +13992,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -14440,13 +14083,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -14465,12 +14107,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -14489,18 +14130,17 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-EG"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zh-HK"] = $.extend(true, {}, invariant, {
+    culture = cultures["zh-HK"] = $.extend(true, {}, en, {
         name: "zh-HK",
         englishName: "Chinese (Traditional, Hong Kong S.A.R.)",
         nativeName: "中文(香港特別行政區)",
@@ -14515,7 +14155,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                     namesAbbr: ["週日","週一","週二","週三","週四","週五","週六"],
@@ -14542,7 +14181,7 @@
         }
     }, cultures["zh-HK"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["de-AT"] = $.extend(true, {}, invariant, {
+    culture = cultures["de-AT"] = $.extend(true, {}, en, {
         name: "de-AT",
         englishName: "German (Austria)",
         nativeName: "Deutsch (Österreich)",
@@ -14564,7 +14203,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -14582,6 +14220,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "dddd, dd. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, dd. MMMM yyyy HH:mm",
                     F: "dddd, dd. MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -14591,26 +14231,21 @@
         }
     }, cultures["de-AT"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-AU"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-AU"] = $.extend(true, {}, en, {
         name: "en-AU",
         englishName: "English (Australia)",
         nativeName: "English (Australia)",
-        language: "en",
         numberFormat: {
             currency: {
-                pattern: ["-$n","$n"],
-                symbol: "$"
+                pattern: ["-$n","$n"]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 patterns: {
                     d: "d/MM/yyyy",
                     D: "dddd, d MMMM yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd, d MMMM yyyy h:mm tt",
                     F: "dddd, d MMMM yyyy h:mm:ss tt",
                     M: "dd MMMM",
@@ -14620,7 +14255,7 @@
         }
     }, cultures["en-AU"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-ES"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-ES"] = $.extend(true, {}, en, {
         name: "es-ES",
         englishName: "Spanish (Spain, International Sort)",
         nativeName: "Español (España, alfabetización internacional)",
@@ -14641,7 +14276,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
@@ -14669,7 +14303,7 @@
         }
     }, cultures["es-ES"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fr-CA"] = $.extend(true, {}, invariant, {
+    culture = cultures["fr-CA"] = $.extend(true, {}, en, {
         name: "fr-CA",
         englishName: "French (Canada)",
         nativeName: "français (Canada)",
@@ -14684,13 +14318,11 @@
             currency: {
                 pattern: ["(n $)","n $"],
                 ',': " ",
-                '.': ",",
-                symbol: "$"
+                '.': ","
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
@@ -14707,16 +14339,17 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d MMMM yyyy HH:mm",
                     F: "d MMMM yyyy HH:mm:ss",
-                    M: "d MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "d MMMM"
                 }
             })
         }
     }, cultures["fr-CA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sr-Cyrl-CS"] = $.extend(true, {}, invariant, {
+    culture = cultures["sr-Cyrl-CS"] = $.extend(true, {}, en, {
         name: "sr-Cyrl-CS",
         englishName: "Serbian (Cyrillic, Serbia and Montenegro (Former))",
         nativeName: "српски (Србија и Црна Гора (Претходно))",
@@ -14738,7 +14371,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -14767,7 +14399,7 @@
         }
     }, cultures["sr-Cyrl-CS"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["se-FI"] = $.extend(true, {}, invariant, {
+    culture = cultures["se-FI"] = $.extend(true, {}, en, {
         name: "se-FI",
         englishName: "Sami, Northern (Finland)",
         nativeName: "davvisámegiella (Suopma)",
@@ -14788,7 +14420,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -14820,7 +14451,7 @@
         }
     }, cultures["se-FI"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["quz-PE"] = $.extend(true, {}, invariant, {
+    culture = cultures["quz-PE"] = $.extend(true, {}, en, {
         name: "quz-PE",
         englishName: "Quechua (Peru)",
         nativeName: "runasimi (Piruw)",
@@ -14836,7 +14467,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["intichaw","killachaw","atipachaw","quyllurchaw","Ch' askachaw","Illapachaw","k'uychichaw"],
                     namesAbbr: ["int","kil","ati","quy","Ch'","Ill","k'u"],
@@ -14861,7 +14491,7 @@
         }
     }, cultures["quz-PE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-LY"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-LY"] = $.extend(true, {}, en, {
         name: "ar-LY",
         englishName: "Arabic (Libya)",
         nativeName: "العربية (ليبيا)",
@@ -14881,7 +14511,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -14901,8 +14530,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -14928,8 +14556,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -15027,8 +14654,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -15239,13 +14865,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -15264,12 +14889,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -15288,18 +14912,17 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-LY"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zh-SG"] = $.extend(true, {}, invariant, {
+    culture = cultures["zh-SG"] = $.extend(true, {}, en, {
         name: "zh-SG",
         englishName: "Chinese (Simplified, Singapore)",
         nativeName: "中文(新加坡)",
@@ -15307,14 +14930,10 @@
         numberFormat: {
             percent: {
                 pattern: ["-n%","n%"]
-            },
-            currency: {
-                symbol: "$"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                     namesAbbr: ["周日","周一","周二","周三","周四","周五","周六"],
@@ -15338,7 +14957,7 @@
         }
     }, cultures["zh-SG"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["de-LU"] = $.extend(true, {}, invariant, {
+    culture = cultures["de-LU"] = $.extend(true, {}, en, {
         name: "de-LU",
         englishName: "German (Luxembourg)",
         nativeName: "Deutsch (Luxemburg)",
@@ -15360,7 +14979,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -15378,6 +14996,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "dddd, d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d. MMMM yyyy HH:mm",
                     F: "dddd, d. MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -15387,34 +15007,28 @@
         }
     }, cultures["de-LU"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-CA"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-CA"] = $.extend(true, {}, en, {
         name: "en-CA",
         englishName: "English (Canada)",
         nativeName: "English (Canada)",
-        language: "en",
         numberFormat: {
             currency: {
-                pattern: ["-$n","$n"],
-                symbol: "$"
+                pattern: ["-$n","$n"]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "MMMM-dd-yy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "MMMM-dd-yy h:mm tt",
-                    F: "MMMM-dd-yy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "MMMM-dd-yy h:mm:ss tt"
                 }
             })
         }
     }, cultures["en-CA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-GT"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-GT"] = $.extend(true, {}, en, {
         name: "es-GT",
         englishName: "Spanish (Guatemala)",
         nativeName: "Español (Guatemala)",
@@ -15426,7 +15040,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -15453,7 +15066,7 @@
         }
     }, cultures["es-GT"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fr-CH"] = $.extend(true, {}, invariant, {
+    culture = cultures["fr-CH"] = $.extend(true, {}, en, {
         name: "fr-CH",
         englishName: "French (Switzerland)",
         nativeName: "français (Suisse)",
@@ -15471,7 +15084,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -15489,6 +15101,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -15498,7 +15112,7 @@
         }
     }, cultures["fr-CH"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["hr-BA"] = $.extend(true, {}, invariant, {
+    culture = cultures["hr-BA"] = $.extend(true, {}, en, {
         name: "hr-BA",
         englishName: "Croatian (Latin, Bosnia and Herzegovina)",
         nativeName: "hrvatski (Bosna i Hercegovina)",
@@ -15520,7 +15134,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -15545,14 +15158,13 @@
                     T: "H:mm:ss",
                     f: "d. MMMM yyyy. H:mm",
                     F: "d. MMMM yyyy. H:mm:ss",
-                    M: "d. MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "d. MMMM"
                 }
             })
         }
     }, cultures["hr-BA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["smj-NO"] = $.extend(true, {}, invariant, {
+    culture = cultures["smj-NO"] = $.extend(true, {}, en, {
         name: "smj-NO",
         englishName: "Sami, Lule (Norway)",
         nativeName: "julevusámegiella (Vuodna)",
@@ -15574,7 +15186,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -15595,6 +15206,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "MMMM d'. b. 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "MMMM d'. b. 'yyyy HH:mm",
                     F: "MMMM d'. b. 'yyyy HH:mm:ss",
                     M: "MMMM d'. b. '",
@@ -15604,7 +15217,7 @@
         }
     }, cultures["smj-NO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-DZ"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-DZ"] = $.extend(true, {}, en, {
         name: "ar-DZ",
         englishName: "Arabic (Algeria)",
         nativeName: "العربية (الجزائر)",
@@ -15619,7 +15232,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 6,
                 days: {
@@ -15640,8 +15252,7 @@
                     T: "H:mm:ss",
                     f: "dd MMMM, yyyy H:mm",
                     F: "dd MMMM, yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -15667,8 +15278,7 @@
                     T: "H:mm:ss",
                     f: "dd/MM/yyyy H:mm",
                     F: "dd/MM/yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -15766,8 +15376,7 @@
                     T: "H:mm:ss",
                     f: "dd/MMMM/yyyy H:mm",
                     F: "dd/MMMM/yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -15978,13 +15587,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
                     F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -16003,12 +15611,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
-                    F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy H:mm:ss"
                 }
             }),
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
@@ -16027,18 +15634,17 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
-                    F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy H:mm:ss"
                 }
             })
         }
     }, cultures["ar-DZ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zh-MO"] = $.extend(true, {}, invariant, {
+    culture = cultures["zh-MO"] = $.extend(true, {}, en, {
         name: "zh-MO",
         englishName: "Chinese (Traditional, Macao S.A.R.)",
         nativeName: "中文(澳門特別行政區)",
@@ -16053,7 +15659,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                     namesAbbr: ["週日","週一","週二","週三","週四","週五","週六"],
@@ -16080,7 +15685,7 @@
         }
     }, cultures["zh-MO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["de-LI"] = $.extend(true, {}, invariant, {
+    culture = cultures["de-LI"] = $.extend(true, {}, en, {
         name: "de-LI",
         englishName: "German (Liechtenstein)",
         nativeName: "Deutsch (Liechtenstein)",
@@ -16099,7 +15704,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -16117,6 +15721,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "dddd, d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d. MMMM yyyy HH:mm",
                     F: "dddd, d. MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -16126,28 +15732,23 @@
         }
     }, cultures["de-LI"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-NZ"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-NZ"] = $.extend(true, {}, en, {
         name: "en-NZ",
         englishName: "English (New Zealand)",
         nativeName: "English (New Zealand)",
-        language: "en",
         numberFormat: {
             currency: {
-                pattern: ["-$n","$n"],
-                symbol: "$"
+                pattern: ["-$n","$n"]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 AM: ["a.m.","a.m.","A.M."],
                 PM: ["p.m.","p.m.","P.M."],
                 patterns: {
                     d: "d/MM/yyyy",
                     D: "dddd, d MMMM yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd, d MMMM yyyy h:mm tt",
                     F: "dddd, d MMMM yyyy h:mm:ss tt",
                     M: "dd MMMM",
@@ -16157,7 +15758,7 @@
         }
     }, cultures["en-NZ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-CR"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-CR"] = $.extend(true, {}, en, {
         name: "es-CR",
         englishName: "Spanish (Costa Rica)",
         nativeName: "Español (Costa Rica)",
@@ -16177,7 +15778,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -16204,7 +15804,7 @@
         }
     }, cultures["es-CR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fr-LU"] = $.extend(true, {}, invariant, {
+    culture = cultures["fr-LU"] = $.extend(true, {}, en, {
         name: "fr-LU",
         englishName: "French (Luxembourg)",
         nativeName: "français (Luxembourg)",
@@ -16225,7 +15825,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
@@ -16242,6 +15841,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -16251,7 +15852,7 @@
         }
     }, cultures["fr-LU"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bs-Latn-BA"] = $.extend(true, {}, invariant, {
+    culture = cultures["bs-Latn-BA"] = $.extend(true, {}, en, {
         name: "bs-Latn-BA",
         englishName: "Bosnian (Latin, Bosnia and Herzegovina)",
         nativeName: "bosanski (Bosna i Hercegovina)",
@@ -16272,7 +15873,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -16300,7 +15900,7 @@
         }
     }, cultures["bs-Latn-BA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["smj-SE"] = $.extend(true, {}, invariant, {
+    culture = cultures["smj-SE"] = $.extend(true, {}, en, {
         name: "smj-SE",
         englishName: "Sami, Lule (Sweden)",
         nativeName: "julevusámegiella (Svierik)",
@@ -16321,7 +15921,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -16342,6 +15941,8 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "MMMM d'. b. 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "MMMM d'. b. 'yyyy HH:mm",
                     F: "MMMM d'. b. 'yyyy HH:mm:ss",
                     M: "MMMM d'. b. '",
@@ -16351,7 +15952,7 @@
         }
     }, cultures["smj-SE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-MA"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-MA"] = $.extend(true, {}, en, {
         name: "ar-MA",
         englishName: "Arabic (Morocco)",
         nativeName: "العربية (المملكة المغربية)",
@@ -16366,7 +15967,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -16387,8 +15987,7 @@
                     T: "H:mm:ss",
                     f: "dd MMMM, yyyy H:mm",
                     F: "dd MMMM, yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -16414,8 +16013,7 @@
                     T: "H:mm:ss",
                     f: "dd/MM/yyyy H:mm",
                     F: "dd/MM/yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -16513,8 +16111,7 @@
                     T: "H:mm:ss",
                     f: "dd/MMMM/yyyy H:mm",
                     F: "dd/MMMM/yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -16725,13 +16322,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
                     F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -16750,12 +16346,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
-                    F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy H:mm:ss"
                 }
             }),
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
@@ -16774,22 +16369,20 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
-                    F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy H:mm:ss"
                 }
             })
         }
     }, cultures["ar-MA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-IE"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-IE"] = $.extend(true, {}, en, {
         name: "en-IE",
         englishName: "English (Ireland)",
         nativeName: "English (Ireland)",
-        language: "en",
         numberFormat: {
             currency: {
                 pattern: ["-$n","$n"],
@@ -16798,13 +16391,14 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 AM: null,
                 PM: null,
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -16814,7 +16408,7 @@
         }
     }, cultures["en-IE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-PA"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-PA"] = $.extend(true, {}, en, {
         name: "es-PA",
         englishName: "Spanish (Panama)",
         nativeName: "Español (Panamá)",
@@ -16827,7 +16421,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -16841,6 +16434,7 @@
                 PM: ["p.m.","p.m.","P.M."],
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
+                    d: "MM/dd/yyyy",
                     D: "dddd, dd' de 'MMMM' de 'yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
@@ -16853,7 +16447,7 @@
         }
     }, cultures["es-PA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["fr-MC"] = $.extend(true, {}, invariant, {
+    culture = cultures["fr-MC"] = $.extend(true, {}, en, {
         name: "fr-MC",
         englishName: "French (Monaco)",
         nativeName: "français (Principauté de Monaco)",
@@ -16874,7 +16468,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
@@ -16891,6 +16484,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",
@@ -16900,7 +16495,7 @@
         }
     }, cultures["fr-MC"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sr-Latn-BA"] = $.extend(true, {}, invariant, {
+    culture = cultures["sr-Latn-BA"] = $.extend(true, {}, en, {
         name: "sr-Latn-BA",
         englishName: "Serbian (Latin, Bosnia and Herzegovina)",
         nativeName: "srpski (Bosna i Hercegovina)",
@@ -16921,7 +16516,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -16950,7 +16544,7 @@
         }
     }, cultures["sr-Latn-BA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sma-NO"] = $.extend(true, {}, invariant, {
+    culture = cultures["sma-NO"] = $.extend(true, {}, en, {
         name: "sma-NO",
         englishName: "Sami, Southern (Norway)",
         nativeName: "åarjelsaemiengiele (Nöörje)",
@@ -16972,7 +16566,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -16993,6 +16586,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "MMMM d'. b. 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "MMMM d'. b. 'yyyy HH:mm",
                     F: "MMMM d'. b. 'yyyy HH:mm:ss",
                     M: "MMMM d'. b. '",
@@ -17002,7 +16597,7 @@
         }
     }, cultures["sma-NO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-TN"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-TN"] = $.extend(true, {}, en, {
         name: "ar-TN",
         englishName: "Arabic (Tunisia)",
         nativeName: "العربية (تونس)",
@@ -17022,7 +16617,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -17043,8 +16637,7 @@
                     T: "H:mm:ss",
                     f: "dd MMMM, yyyy H:mm",
                     F: "dd MMMM, yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -17070,8 +16663,7 @@
                     T: "H:mm:ss",
                     f: "dd/MM/yyyy H:mm",
                     F: "dd/MM/yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -17169,8 +16761,7 @@
                     T: "H:mm:ss",
                     f: "dd/MMMM/yyyy H:mm",
                     F: "dd/MMMM/yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -17381,13 +16972,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
                     F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -17406,12 +16996,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
-                    F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy H:mm:ss"
                 }
             }),
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
@@ -17430,22 +17019,20 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
-                    F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy H:mm:ss"
                 }
             })
         }
     }, cultures["ar-TN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-ZA"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-ZA"] = $.extend(true, {}, en, {
         name: "en-ZA",
         englishName: "English (South Africa)",
         nativeName: "English (South Africa)",
-        language: "en",
         numberFormat: {
             ',': " ",
             percent: {
@@ -17461,7 +17048,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 patterns: {
                     d: "yyyy/MM/dd",
                     D: "dd MMMM yyyy",
@@ -17476,7 +17062,7 @@
         }
     }, cultures["en-ZA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-DO"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-DO"] = $.extend(true, {}, en, {
         name: "es-DO",
         englishName: "Spanish (Dominican Republic)",
         nativeName: "Español (República Dominicana)",
@@ -17488,7 +17074,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -17515,7 +17100,7 @@
         }
     }, cultures["es-DO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sr-Cyrl-BA"] = $.extend(true, {}, invariant, {
+    culture = cultures["sr-Cyrl-BA"] = $.extend(true, {}, en, {
         name: "sr-Cyrl-BA",
         englishName: "Serbian (Cyrillic, Bosnia and Herzegovina)",
         nativeName: "српски (Босна и Херцеговина)",
@@ -17536,7 +17121,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -17558,14 +17142,13 @@
                     T: "H:mm:ss",
                     f: "d. MMMM yyyy H:mm",
                     F: "d. MMMM yyyy H:mm:ss",
-                    M: "d. MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "d. MMMM"
                 }
             })
         }
     }, cultures["sr-Cyrl-BA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sma-SE"] = $.extend(true, {}, invariant, {
+    culture = cultures["sma-SE"] = $.extend(true, {}, en, {
         name: "sma-SE",
         englishName: "Sami, Southern (Sweden)",
         nativeName: "åarjelsaemiengiele (Sveerje)",
@@ -17586,7 +17169,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -17607,6 +17189,8 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "MMMM d'. b. 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "MMMM d'. b. 'yyyy HH:mm",
                     F: "MMMM d'. b. 'yyyy HH:mm:ss",
                     M: "MMMM d'. b. '",
@@ -17616,7 +17200,7 @@
         }
     }, cultures["sma-SE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-OM"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-OM"] = $.extend(true, {}, en, {
         name: "ar-OM",
         englishName: "Arabic (Oman)",
         nativeName: "العربية (عمان)",
@@ -17632,7 +17216,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -17652,8 +17235,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -17679,8 +17261,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -17778,8 +17359,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -17990,13 +17570,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -18015,12 +17594,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -18039,22 +17617,20 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-OM"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-JM"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-JM"] = $.extend(true, {}, en, {
         name: "en-JM",
         englishName: "English (Jamaica)",
         nativeName: "English (Jamaica)",
-        language: "en",
         numberFormat: {
             currency: {
                 pattern: ["-$n","$n"],
@@ -18063,21 +17639,18 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 patterns: {
                     d: "dd/MM/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["en-JM"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-VE"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-VE"] = $.extend(true, {}, en, {
         name: "es-VE",
         englishName: "Spanish (Bolivarian Republic of Venezuela)",
         nativeName: "Español (Republica Bolivariana de Venezuela)",
@@ -18098,7 +17671,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -18125,7 +17697,7 @@
         }
     }, cultures["es-VE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bs-Cyrl-BA"] = $.extend(true, {}, invariant, {
+    culture = cultures["bs-Cyrl-BA"] = $.extend(true, {}, en, {
         name: "bs-Cyrl-BA",
         englishName: "Bosnian (Cyrillic, Bosnia and Herzegovina)",
         nativeName: "босански (Босна и Херцеговина)",
@@ -18146,7 +17718,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -18168,14 +17739,13 @@
                     T: "H:mm:ss",
                     f: "d. MMMM yyyy H:mm",
                     F: "d. MMMM yyyy H:mm:ss",
-                    M: "d. MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "d. MMMM"
                 }
             })
         }
     }, cultures["bs-Cyrl-BA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sms-FI"] = $.extend(true, {}, invariant, {
+    culture = cultures["sms-FI"] = $.extend(true, {}, en, {
         name: "sms-FI",
         englishName: "Sami, Skolt (Finland)",
         nativeName: "sääm´ǩiõll (Lää´ddjânnam)",
@@ -18196,7 +17766,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -18228,7 +17797,7 @@
         }
     }, cultures["sms-FI"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-YE"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-YE"] = $.extend(true, {}, en, {
         name: "ar-YE",
         englishName: "Arabic (Yemen)",
         nativeName: "العربية (اليمن)",
@@ -18243,7 +17812,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -18263,8 +17831,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             UmAlQura: $.extend(true, {}, standard, {
@@ -18290,8 +17857,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -18509,8 +18075,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -18601,13 +18166,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -18626,12 +18190,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -18650,45 +18213,36 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-YE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-029"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-029"] = $.extend(true, {}, en, {
         name: "en-029",
         englishName: "English (Caribbean)",
         nativeName: "English (Caribbean)",
-        language: "en",
         numberFormat: {
             currency: {
-                pattern: ["-$n","$n"],
-                symbol: "$"
+                pattern: ["-$n","$n"]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    d: "MM/dd/yyyy"
                 }
             })
         }
     }, cultures["en-029"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-CO"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-CO"] = $.extend(true, {}, en, {
         name: "es-CO",
         englishName: "Spanish (Colombia)",
         nativeName: "Español (Colombia)",
@@ -18703,13 +18257,11 @@
             currency: {
                 pattern: ["($ n)","$ n"],
                 ',': ".",
-                '.': ",",
-                symbol: "$"
+                '.': ","
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -18736,7 +18288,7 @@
         }
     }, cultures["es-CO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sr-Latn-RS"] = $.extend(true, {}, invariant, {
+    culture = cultures["sr-Latn-RS"] = $.extend(true, {}, en, {
         name: "sr-Latn-RS",
         englishName: "Serbian (Latin, Serbia)",
         nativeName: "srpski (Srbija)",
@@ -18758,7 +18310,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -18787,7 +18338,7 @@
         }
     }, cultures["sr-Latn-RS"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["smn-FI"] = $.extend(true, {}, invariant, {
+    culture = cultures["smn-FI"] = $.extend(true, {}, en, {
         name: "smn-FI",
         englishName: "Sami, Inari (Finland)",
         nativeName: "sämikielâ (Suomâ)",
@@ -18808,7 +18359,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -18836,7 +18386,7 @@
         }
     }, cultures["smn-FI"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-SY"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-SY"] = $.extend(true, {}, en, {
         name: "ar-SY",
         englishName: "Arabic (Syria)",
         nativeName: "العربية (سوريا)",
@@ -18851,7 +18401,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -18871,8 +18420,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             UmAlQura: $.extend(true, {}, standard, {
@@ -18898,8 +18446,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -19117,8 +18664,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -19209,13 +18755,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
@@ -19234,12 +18779,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -19258,22 +18802,20 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-SY"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-BZ"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-BZ"] = $.extend(true, {}, en, {
         name: "en-BZ",
         englishName: "English (Belize)",
         nativeName: "English (Belize)",
-        language: "en",
         numberFormat: {
             currency: {
                 groupSizes: [3,0],
@@ -19282,9 +18824,9 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 patterns: {
                     d: "dd/MM/yyyy",
+                    D: "dddd, dd MMMM yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, dd MMMM yyyy hh:mm tt",
@@ -19296,7 +18838,7 @@
         }
     }, cultures["en-BZ"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-PE"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-PE"] = $.extend(true, {}, en, {
         name: "es-PE",
         englishName: "Spanish (Peru)",
         nativeName: "Español (Perú)",
@@ -19309,7 +18851,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -19336,7 +18877,7 @@
         }
     }, cultures["es-PE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sr-Cyrl-RS"] = $.extend(true, {}, invariant, {
+    culture = cultures["sr-Cyrl-RS"] = $.extend(true, {}, en, {
         name: "sr-Cyrl-RS",
         englishName: "Serbian (Cyrillic, Serbia)",
         nativeName: "српски (Србија)",
@@ -19358,7 +18899,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -19387,7 +18927,7 @@
         }
     }, cultures["sr-Cyrl-RS"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-JO"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-JO"] = $.extend(true, {}, en, {
         name: "ar-JO",
         englishName: "Arabic (Jordan)",
         nativeName: "العربية (الأردن)",
@@ -19407,7 +18947,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -19427,8 +18966,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             UmAlQura: $.extend(true, {}, standard, {
@@ -19454,8 +18992,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -19673,8 +19210,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -19765,13 +19301,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
@@ -19790,12 +19325,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -19814,22 +19348,20 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-JO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-TT"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-TT"] = $.extend(true, {}, en, {
         name: "en-TT",
         englishName: "English (Trinidad and Tobago)",
         nativeName: "English (Trinidad y Tobago)",
-        language: "en",
         numberFormat: {
             currency: {
                 groupSizes: [3,0],
@@ -19838,9 +19370,9 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 patterns: {
                     d: "dd/MM/yyyy",
+                    D: "dddd, dd MMMM yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, dd MMMM yyyy hh:mm tt",
@@ -19852,7 +19384,7 @@
         }
     }, cultures["en-TT"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-AR"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-AR"] = $.extend(true, {}, en, {
         name: "es-AR",
         englishName: "Spanish (Argentina)",
         nativeName: "Español (Argentina)",
@@ -19867,13 +19399,11 @@
             currency: {
                 pattern: ["$-n","$ n"],
                 ',': ".",
-                '.': ",",
-                symbol: "$"
+                '.': ","
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -19900,7 +19430,7 @@
         }
     }, cultures["es-AR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sr-Latn-ME"] = $.extend(true, {}, invariant, {
+    culture = cultures["sr-Latn-ME"] = $.extend(true, {}, en, {
         name: "sr-Latn-ME",
         englishName: "Serbian (Latin, Montenegro)",
         nativeName: "srpski (Crna Gora)",
@@ -19922,7 +19452,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -19951,7 +19480,7 @@
         }
     }, cultures["sr-Latn-ME"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-LB"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-LB"] = $.extend(true, {}, en, {
         name: "ar-LB",
         englishName: "Arabic (Lebanon)",
         nativeName: "العربية (لبنان)",
@@ -19966,7 +19495,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -19986,8 +19514,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             UmAlQura: $.extend(true, {}, standard, {
@@ -20013,8 +19540,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -20232,8 +19758,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -20324,13 +19849,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
@@ -20349,12 +19873,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -20373,44 +19896,28 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-LB"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-ZW"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-ZW"] = $.extend(true, {}, en, {
         name: "en-ZW",
         englishName: "English (Zimbabwe)",
         nativeName: "English (Zimbabwe)",
-        language: "en",
         numberFormat: {
             currency: {
                 symbol: "Z$"
             }
-        },
-        calendars: {
-            standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
-                }
-            })
         }
     }, cultures["en-ZW"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-EC"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-EC"] = $.extend(true, {}, en, {
         name: "es-EC",
         englishName: "Spanish (Ecuador)",
         nativeName: "Español (Ecuador)",
@@ -20425,13 +19932,11 @@
             currency: {
                 pattern: ["($ n)","$ n"],
                 ',': ".",
-                '.': ",",
-                symbol: "$"
+                '.': ","
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -20458,7 +19963,7 @@
         }
     }, cultures["es-EC"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sr-Cyrl-ME"] = $.extend(true, {}, invariant, {
+    culture = cultures["sr-Cyrl-ME"] = $.extend(true, {}, en, {
         name: "sr-Cyrl-ME",
         englishName: "Serbian (Cyrillic, Montenegro)",
         nativeName: "српски (Црна Гора)",
@@ -20480,7 +19985,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -20509,7 +20013,7 @@
         }
     }, cultures["sr-Cyrl-ME"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-KW"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-KW"] = $.extend(true, {}, en, {
         name: "ar-KW",
         englishName: "Arabic (Kuwait)",
         nativeName: "العربية (الكويت)",
@@ -20529,7 +20033,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -20549,8 +20052,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -20576,8 +20078,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -20675,8 +20176,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -20887,13 +20387,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -20912,12 +20411,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -20936,44 +20434,28 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-KW"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-PH"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-PH"] = $.extend(true, {}, en, {
         name: "en-PH",
         englishName: "English (Republic of the Philippines)",
         nativeName: "English (Philippines)",
-        language: "en",
         numberFormat: {
             currency: {
                 symbol: "Php"
             }
-        },
-        calendars: {
-            standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
-                }
-            })
         }
     }, cultures["en-PH"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-CL"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-CL"] = $.extend(true, {}, en, {
         name: "es-CL",
         englishName: "Spanish (Chile)",
         nativeName: "Español (Chile)",
@@ -20988,13 +20470,11 @@
             currency: {
                 pattern: ["-$ n","$ n"],
                 ',': ".",
-                '.': ",",
-                symbol: "$"
+                '.': ","
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
@@ -21022,7 +20502,7 @@
         }
     }, cultures["es-CL"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-AE"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-AE"] = $.extend(true, {}, en, {
         name: "ar-AE",
         englishName: "Arabic (U.A.E.)",
         nativeName: "العربية (الإمارات العربية المتحدة)",
@@ -21037,7 +20517,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -21057,8 +20536,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             UmAlQura: $.extend(true, {}, standard, {
@@ -21084,8 +20562,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -21303,8 +20780,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -21395,13 +20871,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -21420,12 +20895,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -21444,18 +20918,17 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-AE"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-UY"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-UY"] = $.extend(true, {}, en, {
         name: "es-UY",
         englishName: "Spanish (Uruguay)",
         nativeName: "Español (Uruguay)",
@@ -21476,7 +20949,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
@@ -21504,7 +20976,7 @@
         }
     }, cultures["es-UY"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-BH"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-BH"] = $.extend(true, {}, en, {
         name: "ar-BH",
         englishName: "Arabic (Bahrain)",
         nativeName: "العربية (البحرين)",
@@ -21524,7 +20996,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -21544,8 +21015,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             UmAlQura: $.extend(true, {}, standard, {
@@ -21571,8 +21041,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -21790,8 +21259,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -21882,13 +21350,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -21907,12 +21374,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -21931,18 +21397,17 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-BH"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-PY"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-PY"] = $.extend(true, {}, en, {
         name: "es-PY",
         englishName: "Spanish (Paraguay)",
         nativeName: "Español (Paraguay)",
@@ -21963,7 +21428,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
@@ -21991,7 +21455,7 @@
         }
     }, cultures["es-PY"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ar-QA"] = $.extend(true, {}, invariant, {
+    culture = cultures["ar-QA"] = $.extend(true, {}, en, {
         name: "ar-QA",
         englishName: "Arabic (Qatar)",
         nativeName: "العربية (قطر)",
@@ -22006,7 +21470,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],
@@ -22026,8 +21489,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd MMMM, yyyy hh:mm tt",
                     F: "dd MMMM, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             UmAlQura: $.extend(true, {}, standard, {
@@ -22053,8 +21515,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MMMM/yyyy hh:mm tt",
                     F: "dd/MMMM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -22272,8 +21733,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -22364,13 +21824,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
                     F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -22389,12 +21848,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_TransliteratedFrench: $.extend(true, {}, standard, {
@@ -22413,22 +21871,20 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }
     }, cultures["ar-QA"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-IN"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-IN"] = $.extend(true, {}, en, {
         name: "en-IN",
         englishName: "English (India)",
         nativeName: "English (India)",
-        language: "en",
         numberFormat: {
             groupSizes: [3,2],
             percent: {
@@ -22442,22 +21898,22 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["en-IN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-BO"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-BO"] = $.extend(true, {}, en, {
         name: "es-BO",
         englishName: "Spanish (Bolivia)",
         nativeName: "Español (Bolivia)",
@@ -22478,7 +21934,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -22505,11 +21960,10 @@
         }
     }, cultures["es-BO"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-MY"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-MY"] = $.extend(true, {}, en, {
         name: "en-MY",
         englishName: "English (Malaysia)",
         nativeName: "English (Malaysia)",
-        language: "en",
         numberFormat: {
             percent: {
                 pattern: ["-n%","n%"]
@@ -22520,38 +21974,32 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     namesShort: ["S","M","T","W","T","F","S"]
                 },
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd, d MMMM, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd, d MMMM, yyyy h:mm tt",
                     F: "dddd, d MMMM, yyyy h:mm:ss tt",
-                    M: "d MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "d MMMM"
                 }
             })
         }
     }, cultures["en-MY"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-SV"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-SV"] = $.extend(true, {}, en, {
         name: "es-SV",
         englishName: "Spanish (El Salvador)",
         nativeName: "Español (El Salvador)",
         language: "es",
         numberFormat: {
             currency: {
-                groupSizes: [3,0],
-                symbol: "$"
+                groupSizes: [3,0]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -22578,40 +22026,32 @@
         }
     }, cultures["es-SV"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["en-SG"] = $.extend(true, {}, invariant, {
+    culture = cultures["en-SG"] = $.extend(true, {}, en, {
         name: "en-SG",
         englishName: "English (Singapore)",
         nativeName: "English (Singapore)",
-        language: "en",
         numberFormat: {
             percent: {
                 pattern: ["-n%","n%"]
-            },
-            currency: {
-                symbol: "$"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     namesShort: ["S","M","T","W","T","F","S"]
                 },
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd, d MMMM, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd, d MMMM, yyyy h:mm tt",
                     F: "dddd, d MMMM, yyyy h:mm:ss tt",
-                    M: "d MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "d MMMM"
                 }
             })
         }
     }, cultures["en-SG"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-HN"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-HN"] = $.extend(true, {}, en, {
         name: "es-HN",
         englishName: "Spanish (Honduras)",
         nativeName: "Español (Honduras)",
@@ -22625,7 +22065,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -22652,7 +22091,7 @@
         }
     }, cultures["es-HN"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-NI"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-NI"] = $.extend(true, {}, en, {
         name: "es-NI",
         englishName: "Spanish (Nicaragua)",
         nativeName: "Español (Nicaragua)",
@@ -22666,7 +22105,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -22693,7 +22131,7 @@
         }
     }, cultures["es-NI"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-PR"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-PR"] = $.extend(true, {}, en, {
         name: "es-PR",
         englishName: "Spanish (Puerto Rico)",
         nativeName: "Español (Puerto Rico)",
@@ -22701,13 +22139,11 @@
         numberFormat: {
             currency: {
                 pattern: ["($ n)","$ n"],
-                groupSizes: [3,0],
-                symbol: "$"
+                groupSizes: [3,0]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -22734,7 +22170,7 @@
         }
     }, cultures["es-PR"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["es-US"] = $.extend(true, {}, invariant, {
+    culture = cultures["es-US"] = $.extend(true, {}, en, {
         name: "es-US",
         englishName: "Spanish (United States)",
         nativeName: "Español (Estados Unidos)",
@@ -22743,14 +22179,10 @@
             groupSizes: [3,0],
             percent: {
                 groupSizes: [3,0]
-            },
-            currency: {
-                symbol: "$"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -22762,12 +22194,6 @@
                 },
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
                     M: "dd' de 'MMMM",
                     Y: "MMMM' de 'yyyy"
                 }
@@ -22775,7 +22201,7 @@
         }
     }, cultures["es-US"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bs-Cyrl"] = $.extend(true, {}, invariant, {
+    culture = cultures["bs-Cyrl"] = $.extend(true, {}, en, {
         name: "bs-Cyrl",
         englishName: "Bosnian (Cyrillic)",
         nativeName: "босански",
@@ -22796,7 +22222,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -22818,14 +22243,13 @@
                     T: "H:mm:ss",
                     f: "d. MMMM yyyy H:mm",
                     F: "d. MMMM yyyy H:mm:ss",
-                    M: "d. MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "d. MMMM"
                 }
             })
         }
     }, cultures["bs-Cyrl"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bs-Latn"] = $.extend(true, {}, invariant, {
+    culture = cultures["bs-Latn"] = $.extend(true, {}, en, {
         name: "bs-Latn",
         englishName: "Bosnian (Latin)",
         nativeName: "bosanski",
@@ -22846,7 +22270,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -22874,7 +22297,7 @@
         }
     }, cultures["bs-Latn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sr-Cyrl"] = $.extend(true, {}, invariant, {
+    culture = cultures["sr-Cyrl"] = $.extend(true, {}, en, {
         name: "sr-Cyrl",
         englishName: "Serbian (Cyrillic)",
         nativeName: "српски",
@@ -22896,7 +22319,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -22925,7 +22347,7 @@
         }
     }, cultures["sr-Cyrl"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sr-Latn"] = $.extend(true, {}, invariant, {
+    culture = cultures["sr-Latn"] = $.extend(true, {}, en, {
         name: "sr-Latn",
         englishName: "Serbian (Latin)",
         nativeName: "srpski",
@@ -22947,7 +22369,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -22976,7 +22397,7 @@
         }
     }, cultures["sr-Latn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["smn"] = $.extend(true, {}, invariant, {
+    culture = cultures["smn"] = $.extend(true, {}, en, {
         name: "smn",
         englishName: "Sami (Inari)",
         nativeName: "sämikielâ",
@@ -22997,7 +22418,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -23025,7 +22445,7 @@
         }
     }, cultures["smn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["az-Cyrl"] = $.extend(true, {}, invariant, {
+    culture = cultures["az-Cyrl"] = $.extend(true, {}, en, {
         name: "az-Cyrl",
         englishName: "Azeri (Cyrillic)",
         nativeName: "Азәрбајҹан дили",
@@ -23047,7 +22467,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -23079,7 +22498,7 @@
         }
     }, cultures["az-Cyrl"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sms"] = $.extend(true, {}, invariant, {
+    culture = cultures["sms"] = $.extend(true, {}, en, {
         name: "sms",
         englishName: "Sami (Skolt)",
         nativeName: "sääm´ǩiõll",
@@ -23100,7 +22519,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -23132,7 +22550,7 @@
         }
     }, cultures["sms"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zh"] = $.extend(true, {}, invariant, {
+    culture = cultures["zh"] = $.extend(true, {}, en, {
         name: "zh",
         englishName: "Chinese",
         nativeName: "中文",
@@ -23148,7 +22566,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                     namesAbbr: ["周日","周一","周二","周三","周四","周五","周六"],
@@ -23175,7 +22592,7 @@
         }
     }, cultures["zh"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["nn"] = $.extend(true, {}, invariant, {
+    culture = cultures["nn"] = $.extend(true, {}, en, {
         name: "nn",
         englishName: "Norwegian (Nynorsk)",
         nativeName: "norsk (nynorsk)",
@@ -23196,7 +22613,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -23213,6 +22629,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -23222,7 +22640,7 @@
         }
     }, cultures["nn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["bs"] = $.extend(true, {}, invariant, {
+    culture = cultures["bs"] = $.extend(true, {}, en, {
         name: "bs",
         englishName: "Bosnian",
         nativeName: "bosanski",
@@ -23243,7 +22661,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -23271,7 +22688,7 @@
         }
     }, cultures["bs"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["az-Latn"] = $.extend(true, {}, invariant, {
+    culture = cultures["az-Latn"] = $.extend(true, {}, en, {
         name: "az-Latn",
         englishName: "Azeri (Latin)",
         nativeName: "Azərbaycan­ılı",
@@ -23293,7 +22710,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -23325,7 +22741,7 @@
         }
     }, cultures["az-Latn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sma"] = $.extend(true, {}, invariant, {
+    culture = cultures["sma"] = $.extend(true, {}, en, {
         name: "sma",
         englishName: "Sami (Southern)",
         nativeName: "åarjelsaemiengiele",
@@ -23346,7 +22762,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -23367,6 +22782,8 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "MMMM d'. b. 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "MMMM d'. b. 'yyyy HH:mm",
                     F: "MMMM d'. b. 'yyyy HH:mm:ss",
                     M: "MMMM d'. b. '",
@@ -23376,7 +22793,7 @@
         }
     }, cultures["sma"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["uz-Cyrl"] = $.extend(true, {}, invariant, {
+    culture = cultures["uz-Cyrl"] = $.extend(true, {}, en, {
         name: "uz-Cyrl",
         englishName: "Uzbek (Cyrillic)",
         nativeName: "Ўзбек",
@@ -23398,7 +22815,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -23419,6 +22835,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "yyyy 'йил' d-MMMM",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "yyyy 'йил' d-MMMM HH:mm",
                     F: "yyyy 'йил' d-MMMM HH:mm:ss",
                     M: "d-MMMM",
@@ -23428,7 +22846,7 @@
         }
     }, cultures["uz-Cyrl"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mn-Cyrl"] = $.extend(true, {}, invariant, {
+    culture = cultures["mn-Cyrl"] = $.extend(true, {}, en, {
         name: "mn-Cyrl",
         englishName: "Mongolian (Cyrillic)",
         nativeName: "Монгол хэл",
@@ -23449,7 +22867,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -23481,7 +22898,7 @@
         }
     }, cultures["mn-Cyrl"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["iu-Cans"] = $.extend(true, {}, invariant, {
+    culture = cultures["iu-Cans"] = $.extend(true, {}, en, {
         name: "iu-Cans",
         englishName: "Inuktitut (Syllabics)",
         nativeName: "ᐃᓄᒃᑎᑐᑦ",
@@ -23493,13 +22910,11 @@
                 groupSizes: [3,0]
             },
             currency: {
-                groupSizes: [3,0],
-                symbol: "$"
+                groupSizes: [3,0]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["ᓈᑦᑏᖑᔭ","ᓇᒡᒐᔾᔭᐅ","ᐊᐃᑉᐱᖅ","ᐱᖓᑦᓯᖅ","ᓯᑕᒻᒥᖅ","ᑕᓪᓕᕐᒥᖅ","ᓯᕙᑖᕐᕕᒃ"],
                     namesAbbr: ["ᓈᑦᑏ","ᓇᒡᒐ","ᐊᐃᑉᐱ","ᐱᖓᑦᓯ","ᓯᑕ","ᑕᓪᓕ","ᓯᕙᑖᕐᕕᒃ"],
@@ -23512,8 +22927,6 @@
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd,MMMM dd,yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd,MMMM dd,yyyy h:mm tt",
                     F: "dddd,MMMM dd,yyyy h:mm:ss tt",
                     Y: "MMMM,yyyy"
@@ -23522,7 +22935,7 @@
         }
     }, cultures["iu-Cans"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zh-Hant"] = $.extend(true, {}, invariant, {
+    culture = cultures["zh-Hant"] = $.extend(true, {}, en, {
         name: "zh-Hant",
         englishName: "Chinese (Traditional)",
         nativeName: "中文(繁體)",
@@ -23537,7 +22950,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                     namesAbbr: ["週日","週一","週二","週三","週四","週五","週六"],
@@ -23564,7 +22976,7 @@
         }
     }, cultures["zh-Hant"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["nb"] = $.extend(true, {}, invariant, {
+    culture = cultures["nb"] = $.extend(true, {}, en, {
         name: "nb",
         englishName: "Norwegian (Bokmål)",
         nativeName: "norsk (bokmål)",
@@ -23585,7 +22997,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -23602,6 +23013,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "d. MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "d. MMMM yyyy HH:mm",
                     F: "d. MMMM yyyy HH:mm:ss",
                     M: "d. MMMM",
@@ -23611,7 +23024,7 @@
         }
     }, cultures["nb"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["sr"] = $.extend(true, {}, invariant, {
+    culture = cultures["sr"] = $.extend(true, {}, en, {
         name: "sr",
         englishName: "Serbian",
         nativeName: "srpski",
@@ -23633,7 +23046,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -23662,7 +23074,7 @@
         }
     }, cultures["sr"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tg-Cyrl"] = $.extend(true, {}, invariant, {
+    culture = cultures["tg-Cyrl"] = $.extend(true, {}, en, {
         name: "tg-Cyrl",
         englishName: "Tajik (Cyrillic)",
         nativeName: "Тоҷикӣ",
@@ -23687,7 +23099,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 days: {
                     names: ["Яш","Душанбе","Сешанбе","Чоршанбе","Панҷшанбе","Ҷумъа","Шанбе"],
@@ -23717,7 +23128,7 @@
         }
     }, cultures["tg-Cyrl"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["dsb"] = $.extend(true, {}, invariant, {
+    culture = cultures["dsb"] = $.extend(true, {}, en, {
         name: "dsb",
         englishName: "Lower Sorbian",
         nativeName: "dolnoserbšćina",
@@ -23738,7 +23149,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ". ",
                 firstDay: 1,
                 days: {
@@ -23771,7 +23181,7 @@
         }
     }, cultures["dsb"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["smj"] = $.extend(true, {}, invariant, {
+    culture = cultures["smj"] = $.extend(true, {}, en, {
         name: "smj",
         englishName: "Sami (Lule)",
         nativeName: "julevusámegiella",
@@ -23792,7 +23202,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 1,
                 days: {
@@ -23813,6 +23222,8 @@
                 patterns: {
                     d: "yyyy-MM-dd",
                     D: "MMMM d'. b. 'yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "MMMM d'. b. 'yyyy HH:mm",
                     F: "MMMM d'. b. 'yyyy HH:mm:ss",
                     M: "MMMM d'. b. '",
@@ -23822,7 +23233,7 @@
         }
     }, cultures["smj"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["uz-Latn"] = $.extend(true, {}, invariant, {
+    culture = cultures["uz-Latn"] = $.extend(true, {}, en, {
         name: "uz-Latn",
         englishName: "Uzbek (Latin)",
         nativeName: "U'zbek",
@@ -23845,7 +23256,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"],
@@ -23861,6 +23271,8 @@
                 patterns: {
                     d: "dd/MM yyyy",
                     D: "yyyy 'yil' d-MMMM",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "yyyy 'yil' d-MMMM HH:mm",
                     F: "yyyy 'yil' d-MMMM HH:mm:ss",
                     M: "d-MMMM",
@@ -23870,7 +23282,7 @@
         }
     }, cultures["uz-Latn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["mn-Mong"] = $.extend(true, {}, invariant, {
+    culture = cultures["mn-Mong"] = $.extend(true, {}, en, {
         name: "mn-Mong",
         englishName: "Mongolian (Traditional Mongolian)",
         nativeName: "ᠮᠤᠨᠭᠭᠤᠯ ᠬᠡᠯᠡ",
@@ -23889,7 +23301,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["ᠭᠠᠷᠠᠭ ᠤᠨ ᠡᠳᠦᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠨᠢᠭᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠬᠣᠶᠠᠷ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠭᠤᠷᠪᠠᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠳᠥᠷᠪᠡᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠲᠠᠪᠤᠨ","ᠭᠠᠷᠠᠭ ᠤᠨ ᠵᠢᠷᠭᠤᠭᠠᠨ"],
@@ -23917,7 +23328,7 @@
         }
     }, cultures["mn-Mong"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["iu-Latn"] = $.extend(true, {}, invariant, {
+    culture = cultures["iu-Latn"] = $.extend(true, {}, en, {
         name: "iu-Latn",
         englishName: "Inuktitut (Latin)",
         nativeName: "Inuktitut",
@@ -23926,14 +23337,10 @@
             groupSizes: [3,0],
             percent: {
                 groupSizes: [3,0]
-            },
-            currency: {
-                symbol: "$"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Naattiinguja","Naggajjau","Aippiq","Pingatsiq","Sitammiq","Tallirmiq","Sivataarvik"],
                     namesAbbr: ["Nat","Nag","Aip","Pi","Sit","Tal","Siv"],
@@ -23946,17 +23353,14 @@
                 patterns: {
                     d: "d/MM/yyyy",
                     D: "ddd, MMMM dd,yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "ddd, MMMM dd,yyyy h:mm tt",
-                    F: "ddd, MMMM dd,yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "ddd, MMMM dd,yyyy h:mm:ss tt"
                 }
             })
         }
     }, cultures["iu-Latn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["tzm-Latn"] = $.extend(true, {}, invariant, {
+    culture = cultures["tzm-Latn"] = $.extend(true, {}, en, {
         name: "tzm-Latn",
         englishName: "Tamazight (Latin)",
         nativeName: "Tamazight",
@@ -23976,7 +23380,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 6,
                 days: {
@@ -23997,14 +23400,13 @@
                     T: "H:mm:ss",
                     f: "dd MMMM, yyyy H:mm",
                     F: "dd MMMM, yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }
     }, cultures["tzm-Latn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["ha-Latn"] = $.extend(true, {}, invariant, {
+    culture = cultures["ha-Latn"] = $.extend(true, {}, en, {
         name: "ha-Latn",
         englishName: "Hausa (Latin)",
         nativeName: "Hausa",
@@ -24017,7 +23419,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Lahadi","Litinin","Talata","Laraba","Alhamis","Juma'a","Asabar"],
                     namesAbbr: ["Lah","Lit","Tal","Lar","Alh","Jum","Asa"],
@@ -24031,19 +23432,13 @@
                 PM: ["Yamma","yamma","YAMMA"],
                 eras: [{"name":"AD","start":null,"offset":0}],
                 patterns: {
-                    d: "d/M/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    d: "d/M/yyyy"
                 }
             })
         }
     }, cultures["ha-Latn"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zh-CHS"] = $.extend(true, {}, invariant, {
+    culture = cultures["zh-CHS"] = $.extend(true, {}, en, {
         name: "zh-CHS",
         englishName: "Chinese (Simplified) Legacy",
         nativeName: "中文(简体) 旧版",
@@ -24059,7 +23454,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                     namesAbbr: ["周日","周一","周二","周三","周四","周五","周六"],
@@ -24086,7 +23480,7 @@
         }
     }, cultures["zh-CHS"]);
     culture.calendar = culture.calendars.standard;
-    culture = cultures["zh-CHT"] = $.extend(true, {}, invariant, {
+    culture = cultures["zh-CHT"] = $.extend(true, {}, en, {
         name: "zh-CHT",
         englishName: "Chinese (Traditional) Legacy",
         nativeName: "中文(繁體) 舊版",
@@ -24101,7 +23495,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                     namesAbbr: ["週日","週一","週二","週三","週四","週五","週六"],

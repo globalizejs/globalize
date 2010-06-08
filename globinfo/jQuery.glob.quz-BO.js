@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["quz-BO"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["quz-BO"] = $.extend(true, {}, en, {
         name: "quz-BO",
         englishName: "Quechua (Bolivia)",
         nativeName: "runasimi (Qullasuyu)",
@@ -24,7 +24,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["intichaw","killachaw","atipachaw","quyllurchaw","Ch' askachaw","Illapachaw","k'uychichaw"],
                     namesAbbr: ["int","kil","ati","quy","Ch'","Ill","k'u"],

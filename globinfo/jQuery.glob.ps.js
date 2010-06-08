@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["ps"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["ps"] = $.extend(true, {}, en, {
         name: "ps",
         englishName: "Pashto",
         nativeName: "پښتو",
@@ -44,12 +44,9 @@
                 patterns: {
                     d: "dd/MM/yy",
                     D: "dd/MM/yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dd/MM/yyyy h:mm tt",
                     F: "dd/MM/yyyy h:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -125,7 +122,6 @@
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["یکشنبه","دوشنبه","سه‌شنبه","چارشنبه","پنجشنبه","جمعه","شنبه"],
@@ -142,8 +138,6 @@
                 patterns: {
                     d: "yyyy/M/d",
                     D: "yyyy, dd, MMMM, dddd",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "yyyy, dd, MMMM, dddd h:mm tt",
                     F: "yyyy, dd, MMMM, dddd h:mm:ss tt",
                     M: "d MMMM",

@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["zh-CHS"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["zh-CHS"] = $.extend(true, {}, en, {
         name: "zh-CHS",
         englishName: "Chinese (Simplified) Legacy",
         nativeName: "中文(简体) 旧版",
@@ -18,7 +18,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
                     namesAbbr: ["周日","周一","周二","周三","周四","周五","周六"],

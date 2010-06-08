@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["am"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["am"] = $.extend(true, {}, en, {
         name: "am",
         englishName: "Amharic",
         nativeName: "አማርኛ",
@@ -23,7 +23,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["እሑድ","ሰኞ","ማክሰኞ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],
                     namesAbbr: ["እሑድ","ሰኞ","ማክሰ","ረቡዕ","ሐሙስ","ዓርብ","ቅዳሜ"],
@@ -39,8 +38,6 @@
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd '፣' MMMM d 'ቀን' yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd '፣' MMMM d 'ቀን' yyyy h:mm tt",
                     F: "dddd '፣' MMMM d 'ቀን' yyyy h:mm:ss tt",
                     M: "MMMM d ቀን",

@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["ne-NP"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["ne-NP"] = $.extend(true, {}, en, {
         name: "ne-NP",
         englishName: "Nepali (Nepal)",
         nativeName: "नेपाली (नेपाल)",
@@ -20,7 +20,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["आइतवार","सोमवार","मङ्गलवार","बुधवार","बिहीवार","शुक्रवार","शनिवार"],
                     namesAbbr: ["आइत","सोम","मङ्गल","बुध","बिही","शुक्र","शनि"],
@@ -34,12 +33,6 @@
                 PM: ["बेलुकी","बेलुकी","बेलुकी"],
                 eras: [{"name":"a.d.","start":null,"offset":0}],
                 patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
                     Y: "MMMM,yyyy"
                 }
             })

@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["he-IL"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["he-IL"] = $.extend(true, {}, en, {
         name: "he-IL",
         englishName: "Hebrew (Israel)",
         nativeName: "עברית (ישראל)",
@@ -19,7 +19,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","שבת"],
                     namesAbbr: ["יום א","יום ב","יום ג","יום ד","יום ה","יום ו","שבת"],
@@ -33,6 +32,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd dd MMMM yyyy HH:mm",
                     F: "dddd dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",
@@ -56,6 +57,8 @@
                 patterns: {
                     d: "dd MMMM yyyy",
                     D: "dddd dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd dd MMMM yyyy HH:mm",
                     F: "dddd dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",

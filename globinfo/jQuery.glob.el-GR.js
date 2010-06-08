@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["el-GR"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["el-GR"] = $.extend(true, {}, en, {
         name: "el-GR",
         englishName: "Greek (Greece)",
         nativeName: "Ελληνικά (Ελλάδα)",
@@ -24,7 +24,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Κυριακή","Δευτέρα","Τρίτη","Τετάρτη","Πέμπτη","Παρασκευή","Σάββατο"],
@@ -45,8 +44,6 @@
                 patterns: {
                     d: "d/M/yyyy",
                     D: "dddd, d MMMM yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd, d MMMM yyyy h:mm tt",
                     F: "dddd, d MMMM yyyy h:mm:ss tt",
                     M: "dd MMMM",

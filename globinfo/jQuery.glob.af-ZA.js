@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["af-ZA"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["af-ZA"] = $.extend(true, {}, en, {
         name: "af-ZA",
         englishName: "Afrikaans (South Africa)",
         nativeName: "Afrikaans (Suid Afrika)",
@@ -18,7 +18,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Sondag","Maandag","Dinsdag","Woensdag","Donderdag","Vrydag","Saterdag"],
                     namesAbbr: ["Son","Maan","Dins","Woen","Dond","Vry","Sat"],

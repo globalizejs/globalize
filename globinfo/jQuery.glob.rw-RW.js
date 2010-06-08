@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["rw-RW"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["rw-RW"] = $.extend(true, {}, en, {
         name: "rw-RW",
         englishName: "Kinyarwanda (Rwanda)",
         nativeName: "Kinyarwanda (Rwanda)",
@@ -23,7 +23,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Ku wa mbere","Ku wa kabiri","Ku wa gatatu","Ku wa kane","Ku wa gatanu","Ku wa gatandatu","Ku cyumweru"],
                     namesAbbr: ["mbe.","kab.","gat.","kan.","gat.","gat.","cyu."],
@@ -35,16 +34,7 @@
                 },
                 AM: ["saa moya z.m.","saa moya z.m.","SAA MOYA Z.M."],
                 PM: ["saa moya z.n.","saa moya z.n.","SAA MOYA Z.N."],
-                eras: [{"name":"AD","start":null,"offset":0}],
-                patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
-                }
+                eras: [{"name":"AD","start":null,"offset":0}]
             })
         }
     }, cultures["rw-RW"]);

@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["mi-NZ"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["mi-NZ"] = $.extend(true, {}, en, {
         name: "mi-NZ",
         englishName: "Maori (New Zealand)",
         nativeName: "Reo Māori (Aotearoa)",
@@ -12,13 +12,11 @@
                 pattern: ["-%n","%n"]
             },
             currency: {
-                pattern: ["-$n","$n"],
-                symbol: "$"
+                pattern: ["-$n","$n"]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Rātapu","Rāhina","Rātū","Rāapa","Rāpare","Rāmere","Rāhoroi"],
@@ -34,8 +32,6 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, dd MMMM, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
                     f: "dddd, dd MMMM, yyyy h:mm tt",
                     F: "dddd, dd MMMM, yyyy h:mm:ss tt",
                     M: "dd MMMM",

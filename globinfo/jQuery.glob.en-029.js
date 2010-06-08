@@ -1,29 +1,21 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["en-029"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["en-029"] = $.extend(true, {}, en, {
         name: "en-029",
         englishName: "English (Caribbean)",
         nativeName: "English (Caribbean)",
-        language: "en",
         numberFormat: {
             currency: {
-                pattern: ["-$n","$n"],
-                symbol: "$"
+                pattern: ["-$n","$n"]
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    d: "MM/dd/yyyy"
                 }
             })
         }

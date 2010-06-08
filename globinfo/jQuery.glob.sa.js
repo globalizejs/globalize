@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["sa"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["sa"] = $.extend(true, {}, en, {
         name: "sa",
         englishName: "Sanskrit",
         nativeName: "संस्कृत",
@@ -20,7 +20,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 days: {
                     names: ["रविवासरः","सोमवासरः","मङ्गलवासरः","बुधवासरः","गुरुवासरः","शुक्रवासरः","शनिवासरः"],
@@ -36,10 +35,11 @@
                 patterns: {
                     d: "dd-MM-yyyy",
                     D: "dd MMMM yyyy dddd",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy dddd HH:mm",
                     F: "dd MMMM yyyy dddd HH:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             })
         }

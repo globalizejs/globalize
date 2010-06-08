@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["ja-JP"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["ja-JP"] = $.extend(true, {}, en, {
         name: "ja-JP",
         englishName: "Japanese (Japan)",
         nativeName: "日本語 (日本)",
@@ -19,7 +19,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],
                     namesAbbr: ["日","月","火","水","木","金","土"],

@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["tr-TR"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["tr-TR"] = $.extend(true, {}, en, {
         name: "tr-TR",
         englishName: "Turkish (Turkey)",
         nativeName: "Türkçe (Türkiye)",
@@ -24,7 +24,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 firstDay: 1,
                 days: {
@@ -41,6 +40,8 @@
                 patterns: {
                     d: "dd.MM.yyyy",
                     D: "dd MMMM yyyy dddd",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy dddd HH:mm",
                     F: "dd MMMM yyyy dddd HH:mm:ss",
                     M: "dd MMMM",

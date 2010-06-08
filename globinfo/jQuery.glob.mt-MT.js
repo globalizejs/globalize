@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["mt-MT"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["mt-MT"] = $.extend(true, {}, en, {
         name: "mt-MT",
         englishName: "Maltese (Malta)",
         nativeName: "Malti (Malta)",
@@ -18,7 +18,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Il-Ħadd","It-Tnejn","It-Tlieta","L-Erbgħa","Il-Ħamis","Il-Ġimgħa","Is-Sibt"],
@@ -32,6 +31,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd, d' ta\\' 'MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd, d' ta\\' 'MMMM yyyy HH:mm",
                     F: "dddd, d' ta\\' 'MMMM yyyy HH:mm:ss",
                     M: "d' ta\\' 'MMMM",

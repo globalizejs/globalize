@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["ms-BN"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["ms-BN"] = $.extend(true, {}, en, {
         name: "ms-BN",
         englishName: "Malay (Brunei Darussalam)",
         nativeName: "Bahasa Melayu (Brunei Darussalam)",
@@ -17,13 +17,11 @@
             currency: {
                 decimals: 0,
                 ',': ".",
-                '.': ",",
-                symbol: "$"
+                '.': ","
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"],

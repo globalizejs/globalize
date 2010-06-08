@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["nso-ZA"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["nso-ZA"] = $.extend(true, {}, en, {
         name: "nso-ZA",
         englishName: "Sesotho sa Leboa (South Africa)",
         nativeName: "Sesotho sa Leboa (Afrika Borwa)",
@@ -18,7 +18,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["Lamorena","Mošupologo","Labobedi","Laboraro","Labone","Labohlano","Mokibelo"],
                     namesAbbr: ["Lam","Moš","Lbb","Lbr","Lbn","Lbh","Mok"],

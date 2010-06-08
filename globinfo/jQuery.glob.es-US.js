@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["es-US"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["es-US"] = $.extend(true, {}, en, {
         name: "es-US",
         englishName: "Spanish (United States)",
         nativeName: "Español (Estados Unidos)",
@@ -11,14 +11,10 @@
             groupSizes: [3,0],
             percent: {
                 groupSizes: [3,0]
-            },
-            currency: {
-                symbol: "$"
             }
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 days: {
                     names: ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],
                     namesAbbr: ["dom","lun","mar","mié","jue","vie","sáb"],
@@ -30,12 +26,6 @@
                 },
                 eras: [{"name":"d.C.","start":null,"offset":0}],
                 patterns: {
-                    d: "M/d/yyyy",
-                    D: "dddd, MMMM dd, yyyy",
-                    t: "h:mm tt",
-                    T: "h:mm:ss tt",
-                    f: "dddd, MMMM dd, yyyy h:mm tt",
-                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
                     M: "dd' de 'MMMM",
                     Y: "MMMM' de 'yyyy"
                 }

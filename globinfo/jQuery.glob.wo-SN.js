@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["wo-SN"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["wo-SN"] = $.extend(true, {}, en, {
         name: "wo-SN",
         englishName: "Wolof (Senegal)",
         nativeName: "Wolof (Sénégal)",
@@ -23,7 +23,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 days: {
                     names: ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"],
@@ -40,6 +39,8 @@
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dddd d MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dddd d MMMM yyyy HH:mm",
                     F: "dddd d MMMM yyyy HH:mm:ss",
                     M: "d MMMM",

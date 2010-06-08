@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["ar-DZ"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["ar-DZ"] = $.extend(true, {}, en, {
         name: "ar-DZ",
         englishName: "Arabic (Algeria)",
         nativeName: "العربية (الجزائر)",
@@ -17,7 +17,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': "-",
                 firstDay: 6,
                 days: {
@@ -38,8 +37,7 @@
                     T: "H:mm:ss",
                     f: "dd MMMM, yyyy H:mm",
                     F: "dd MMMM, yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -65,8 +63,7 @@
                     T: "H:mm:ss",
                     f: "dd/MM/yyyy H:mm",
                     F: "dd/MM/yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -164,8 +161,7 @@
                     T: "H:mm:ss",
                     f: "dd/MMMM/yyyy H:mm",
                     F: "dd/MMMM/yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     _yearInfo: [
@@ -376,13 +372,12 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"ap. J.-C.","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
                     F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Gregorian_Arabic: $.extend(true, {}, standard, {
@@ -401,12 +396,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
-                    F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy H:mm:ss"
                 }
             }),
             Gregorian_TransliteratedEnglish: $.extend(true, {}, standard, {
@@ -425,12 +419,11 @@
                 PM: ["م","م","م"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "H:mm",
                     T: "H:mm:ss",
                     f: "dddd, MMMM dd, yyyy H:mm",
-                    F: "dddd, MMMM dd, yyyy H:mm:ss",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy H:mm:ss"
                 }
             })
         }

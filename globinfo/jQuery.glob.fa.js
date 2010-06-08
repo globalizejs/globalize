@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["fa"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["fa"] = $.extend(true, {}, en, {
         name: "fa",
         englishName: "Persian",
         nativeName: "فارسى",
@@ -33,16 +33,14 @@
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             }),
             Gregorian_Localized: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 6,
                 days: {
                     names: ["يكشنبه","دوشنبه","سه شنبه","چهارشنبه","پنجشنبه","جمعه","شنبه"],
@@ -62,8 +60,7 @@
                     T: "hh:mm:ss tt",
                     f: "yyyy/MM/dd hh:mm tt",
                     F: "yyyy/MM/dd hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 }
             }),
             Hijri: $.extend(true, {}, standard, {
@@ -89,8 +86,7 @@
                     T: "hh:mm:ss tt",
                     f: "dd/MM/yyyy hh:mm tt",
                     F: "dd/MM/yyyy hh:mm:ss tt",
-                    M: "dd MMMM",
-                    Y: "MMMM, yyyy"
+                    M: "dd MMMM"
                 },
                 convert: {
                     // Adapted to Script from System.Globalization.HijriCalendar
@@ -181,12 +177,11 @@
                 PM: ["ب.ظ","ب.ظ","ب.ظ"],
                 eras: [{"name":"م","start":null,"offset":0}],
                 patterns: {
-                    D: "dddd, MMMM dd, yyyy",
+                    d: "MM/dd/yyyy",
                     t: "hh:mm tt",
                     T: "hh:mm:ss tt",
                     f: "dddd, MMMM dd, yyyy hh:mm tt",
-                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt",
-                    Y: "MMMM, yyyy"
+                    F: "dddd, MMMM dd, yyyy hh:mm:ss tt"
                 }
             })
         }

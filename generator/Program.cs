@@ -22,7 +22,7 @@ namespace Globalization {
         public NumberFormatInfo numberFormat;
         public Dictionary<String, DateFormatInfo> calendars;
         private CultureInfo culture;
-        public static Dictionary<String, Object> InvariantGlobInfo;
+        public static Dictionary<String, Object> BasisGlobInfo;
 
 
         private static string[] _numberNegativePatterns = "(n)|-n|- n|n-|n -".Split('|');
@@ -63,15 +63,14 @@ namespace Globalization {
                 if (type == gregorianType) {
                     var calendarType = ((GregorianCalendar)calendar).CalendarType;
                     if (calendarType == GregorianCalendarTypes.USEnglish) {
-                        // we include the Gregorian_USEnglish culture as part of the Invariant culture
+                        // we include the Gregorian_USEnglish culture as part of the built-in 'en' culture
                         // because it is so common -- it is an optional calendar of every single english
                         // speaking culture. So, skip it when found for any other culture.
                         continue;
                     }
                     else if (culture == CultureInfo.InvariantCulture) {
                         // invariant has one calendar, Gregorian_Localized, which is identical
-                        // to Gregorian_USEnglish. This one will take the place of any _USEnglish
-                        // calendards found in other cultures.
+                        // to Gregorian_USEnglish.
                         name = " Gregorian_USEnglish";
                     }
                     else {
@@ -300,13 +299,13 @@ namespace Globalization {
             var str = jss.Serialize(this);
             var dictionary = jss.Deserialize<Dictionary<String, Object>>(str);
             var cals = (Dictionary<String, Object>) dictionary["calendars"];
-            Dictionary<String, Object> invariantStandardCal = null;
-            if (culture != CultureInfo.InvariantCulture) {
-                invariantStandardCal = (Dictionary<String, Object>)((Dictionary<String, Object>)GlobalizationInfo.InvariantGlobInfo["calendars"])["standard"];
+            Dictionary<String, Object> basisStandardCal = null;
+            if (GlobalizationInfo.BasisGlobInfo != null) {
+                basisStandardCal = (Dictionary<String, Object>)((Dictionary<String, Object>)GlobalizationInfo.BasisGlobInfo["calendars"])["standard"];
                 foreach (var pair in this.calendars) {
                     var cal = (Dictionary<String, Object>)cals[pair.Key];
-                    // make each calendar a diff from the standard invariant calendar
-                    cals[pair.Key] = cal = DiffGlobInfos(invariantStandardCal, cal);
+                    // make each calendar a diff from the standard basis calendar
+                    cals[pair.Key] = cal = DiffGlobInfos(basisStandardCal, cal);
                     // apply convert script if it exists
                     if (!String.IsNullOrEmpty(pair.Value.convertScriptBlock)) {
                         cal["convert"] = pair.Value.convertScriptBlock;
@@ -328,7 +327,7 @@ namespace Globalization {
             string cultureFragment = ToJavaScript(culture, dictionary, 2, false);
 
             if (aggregateScript != null) {
-                aggregateScript.AppendFormat(CultureInfo.InvariantCulture, @"    culture = cultures[""{0}""] = $.extend(true, {{}}, invariant, {{
+                aggregateScript.AppendFormat(CultureInfo.InvariantCulture, @"    culture = cultures[""{0}""] = $.extend(true, {{}}, en, {{
 {1}
     }}, cultures[""{0}""]);
     culture.calendar = culture.calendars.standard;
@@ -337,9 +336,9 @@ namespace Globalization {
 
             return string.Format(CultureInfo.InvariantCulture, @"(function($) {{
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures[""{0}""] = $.extend(true, {{}}, invariant, {{
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures[""{0}""] = $.extend(true, {{}}, en, {{
 {1}
     }}, cultures[""{0}""]);
     culture.calendar = culture.calendars.standard;
@@ -535,7 +534,7 @@ namespace Globalization {
 
         private static void WriteCulture(string outputdir, CultureInfo culture, StringBuilder aggregateScript) {
             var globInfo = GlobalizationInfo.GetGlobInfo(culture);
-            var diff = culture == CultureInfo.InvariantCulture ? globInfo.ToDictionary() : GlobalizationInfo.DiffGlobInfos(GlobalizationInfo.InvariantGlobInfo, globInfo.ToDictionary());
+            var diff = (culture == CultureInfo.InvariantCulture || culture.Name.Equals("en")) ? globInfo.ToDictionary() : GlobalizationInfo.DiffGlobInfos(GlobalizationInfo.BasisGlobInfo, globInfo.ToDictionary());
             var script = GlobalizationInfo.GenerateJavaScript(culture, culture.Name, diff, aggregateScript);
             var filePath = Path.Combine(outputdir, "jQuery.glob." + (String.IsNullOrEmpty(culture.Name) ? "invariant" : culture.Name) + ".js");
 
@@ -552,22 +551,20 @@ namespace Globalization {
         static void Main(string[] args) {
             string outputdir = args.Length > 0 ? args[0] : "output";
             Directory.CreateDirectory(outputdir);
-            GlobalizationInfo.InvariantGlobInfo = GlobalizationInfo.GetGlobInfo(CultureInfo.InvariantCulture).ToDictionary();
+            GlobalizationInfo.BasisGlobInfo = GlobalizationInfo.GetGlobInfo(CultureInfo.CreateSpecificCulture("en")).ToDictionary();
 
             StringBuilder aggregateScript = new StringBuilder();
             aggregateScript.Append(
 @"(function($) {
     var culture, cultures = $.cultures,
-    invariant = cultures.invariant,
-    standard = invariant.calendars.standard;
+    en = cultures.en,
+    standard = en.calendars.standard;
 
 ");
 
-            WriteCulture(outputdir, CultureInfo.InvariantCulture, null);
-
             int count = 0;
             foreach (var culture in CultureInfo.GetCultures(CultureTypes.AllCultures)) {
-                if (!String.IsNullOrEmpty(culture.Name) && culture != CultureInfo.InvariantCulture) {
+                if (!String.IsNullOrEmpty(culture.Name) && culture != CultureInfo.InvariantCulture && culture.Name != "en") {
                     WriteCulture(outputdir, culture, aggregateScript);
                     count++;
                 }

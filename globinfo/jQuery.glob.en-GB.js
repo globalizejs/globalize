@@ -1,12 +1,11 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["en-GB"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["en-GB"] = $.extend(true, {}, en, {
         name: "en-GB",
         englishName: "English (United Kingdom)",
         nativeName: "English (United Kingdom)",
-        language: "en",
         numberFormat: {
             currency: {
                 pattern: ["-$n","$n"],
@@ -15,11 +14,12 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 firstDay: 1,
                 patterns: {
                     d: "dd/MM/yyyy",
                     D: "dd MMMM yyyy",
+                    t: "HH:mm",
+                    T: "HH:mm:ss",
                     f: "dd MMMM yyyy HH:mm",
                     F: "dd MMMM yyyy HH:mm:ss",
                     M: "dd MMMM",

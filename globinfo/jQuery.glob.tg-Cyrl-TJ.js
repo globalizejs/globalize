@@ -1,8 +1,8 @@
 (function($) {
     var cultures = $.cultures,
-        invariant = cultures.invariant,
-        standard = invariant.calendars.standard,
-        culture = cultures["tg-Cyrl-TJ"] = $.extend(true, {}, invariant, {
+        en = cultures.en,
+        standard = en.calendars.standard,
+        culture = cultures["tg-Cyrl-TJ"] = $.extend(true, {}, en, {
         name: "tg-Cyrl-TJ",
         englishName: "Tajik (Cyrillic, Tajikistan)",
         nativeName: "Тоҷикӣ (Тоҷикистон)",
@@ -27,7 +27,6 @@
         },
         calendars: {
             standard: $.extend(true, {}, standard, {
-                name: "Gregorian_Localized",
                 '/': ".",
                 days: {
                     names: ["Яш","Душанбе","Сешанбе","Чоршанбе","Панҷшанбе","Ҷумъа","Шанбе"],
