@@ -149,7 +149,7 @@ jQuery.localize("myplugin", "fr", {
 var obj = jQuery.localize("myplugin", "fr");
 alert(obj.foo); // "foo"
 </pre>
-Note that localize() will find the closest match available per the same semantics as the jQuery.findClosestCulture function. If there is no match, the translation given is for the neutral culture, if any.
+Note that localize() will find the closest match available per the same semantics as the jQuery.findClosestCulture function. If there is no match, the translation given is for the 'en' culture, if one was specified.
 <pre>
 jQuery.localize("myplugin", "", {
     foo: "foo (en)",
@@ -197,7 +197,7 @@ Using this mechanism, the 'fr' culture will be created if it does not exist. And
 Each culture is defined in its own script with the naming scheme jQuery.glob.&lt;code&gt;.js (along with its minified version, jQuery.glob.&lt;code&gt;.min.js). You may include any number of these scripts, making them available in the jQuery.cultures mapping. Including one of these scripts does NOT automatically make it the default culture selected with jQuery.culture.
 </p>
 <p>
-The neutral culture that comes with jQuery.glob.js is heavily commented, describing the purpose of each of the fields defined by a culture. Note that every culture includes all of these fields, even if they are the same as the netural culture. However, the script uses jQuery's $.extend to copy from the neutral culture, so looking at the raw scripts will only show you what is different in that culture from the neutral culture. The neutral culture is listed here along with the comments:
+The default culture that comes with jQuery.glob.js is 'en', and heavily commented, describing the purpose of each of the fields defined by a culture. Note that every culture includes all of these fields, even if they are the same as this culture. However, the script uses jQuery's $.extend to copy from this culture, so looking at the raw scripts will only show you what is different in that culture from 'en'. The 'en' culture is listed here along with the comments:
 <pre>
 jQuery.cultures.en = {
     // A unique name for the culture in the form &lt;language code&gt;-&lt;country/region code&lt;
