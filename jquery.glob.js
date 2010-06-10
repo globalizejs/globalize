@@ -17,26 +17,53 @@ $.extend({
             match = name;
         }
         else {
-            var cultures = $.cultures,
-                list = $.isArray( name ) ? name : [ name ],
-                i, l = list.length;
+            var lang,
+                cultures = $.cultures,
+                list = $.isArray( name ) ? name : name.split( ',' ),
+                i, l = list.length,
+                prioritized = [];
             for ( i = 0; i < l; i++ ) {
-                name = list[ i ];
-                match = cultures[ name ];
+                name = trim( list[ i ] );
+                var pri, parts = name.split( ';' );
+                lang = trim( parts[ 0 ] );
+                if ( parts.length === 1 ) {
+                    pri = 1;
+                }
+                else {
+                    name = trim( parts[ 1 ] );
+                    if ( name.indexOf("q=") === 0 ) {
+                        name = name.substr( 2 );
+                        pri = parseFloat( name, 10 );
+                        pri = isNaN( pri ) ? 0 : pri;
+                    }
+                    else {
+                        pri = 1;
+                    }
+                }
+                prioritized.push( { lang: lang, pri: pri } );
+            }
+            prioritized.sort(function(a, b) {
+                return a.pri < b.pri ? 1 : -1;
+            });
+            for ( i = 0; i < l; i++ ) {
+                lang = prioritized[ i ].lang;
+                match = cultures[ lang ];
+                // exact match?
                 if ( match ) {
                     return match;
                 }
             }
             for ( i = 0; i < l; i++ ) {
-                name = list[ i ];
+                lang = prioritized[ i ].lang;
+                // for each entry try its neutral language
                 do {
-                    var index = name.lastIndexOf( "-" );
+                    var index = lang.lastIndexOf( "-" );
                     if ( index === -1 ) {
                         break;
                     }
                     // strip off the last part. e.g. en-US => en
-                    name = name.substr( 0, index );
-                    match = cultures[ name ];
+                    lang = lang.substr( 0, index );
+                    match = cultures[ lang ];
                     if ( match ) {
                         return match;
                     }
