@@ -26,7 +26,7 @@ This jQuery plugin enables complex culture-aware number and date parsing and for
 Each language, and the countries that speak that language, have different expectations when it comes to how numbers (including currency and percentages) and dates should appear. Obviously, each language has different names for the days of the week and the months of the year. But they also have different expectations to the structure of dates, such what order the day, month and year are in. In number formatting, not only does the character used to deliniate number groupings and the decimal portion, but the placement of those characters differ. 
 </p>
 <p>
-A user using an application should be able to read and write dates and numbers in the format they are occustomed to. This plugin makes this possible, providing an API to convert user-entered numbers and dates -- in their own format -- into real numbers and dates, and conversely, to format numbers and dates into that format.
+A user using an application should be able to read and write dates and numbers in the format they are accustomed to. This plugin makes this possible, providing an API to convert user-entered numbers and dates -- in their own format -- into real numbers and dates, and conversely, to format numbers and dates into that format.
 </p>
 
 <a name="what"></a>
