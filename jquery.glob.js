@@ -452,6 +452,18 @@ function isArray(obj) {
    return toString.call(obj) === "[object Array]";
 }
 
+function arrayIndexOf( array, item ) {
+    if ( array.indexOf ) {
+        return array.indexOf( item );
+    }
+    for ( var i = 0, length = array.length; i < length; i++ ) {
+        if ( array[ i ] === item ) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 // *************************************** Numbers ***************************************
 
 function expandNumber(number, precision, formatInfo) {
@@ -697,13 +709,13 @@ function getDayIndex(cal, value, abbr) {
     }
     value = toUpper( value );
     if ( abbr ) {
-        ret = $.inArray( value, upperDays[ 1 ] );
+        ret = arrayIndexOf( upperDays[ 1 ], value );
         if ( ret === -1 ) {
-            ret = $.inArray( value, upperDays[ 2 ] );
+            ret = arrayIndexOf( upperDays[ 2 ], value );
         }
     }
     else {
-        ret = $.inArray( value, upperDays[ 0 ] );
+        ret = arrayIndexOf( upperDays[ 0 ], value );
     }
     return ret;
 }
@@ -724,9 +736,9 @@ function getMonthIndex(cal, value, abbr) {
         ];
     }
     value = toUpper( value );
-    var i = $.inArray( value, abbr ? upperMonths[ 1 ] : upperMonths[ 0 ] );
+    var i = arrayIndexOf( abbr ? upperMonths[ 1 ] : upperMonths[ 0 ], value );
     if ( i < 0 ) {
-        i = $.inArray( value, abbr ? upperMonthsGen[ 1 ] : upperMonthsGen[ 0 ] );
+        i = arrayIndexOf( abbr ? upperMonthsGen[ 1 ] : upperMonthsGen[ 0 ], value );
     }
     return i;
 }
