@@ -195,7 +195,7 @@ $.extend({
     parseDate: function(value, formats, culture) {
         culture = $.findClosestCulture( culture );
 
-        var date;
+        var date, prop, patterns;
         if ( formats ) {
             if ( typeof formats === "string" ) {
                 formats = [ formats ];
@@ -213,12 +213,13 @@ $.extend({
             }
         }
         else {
-            $.each( culture.calendar.patterns, function( name, format ) {
-                date = parseExact( value, format, culture );
+            patterns = culture.calendar.patterns;
+            for ( prop in patterns ) {
+                date = parseExact( value, patterns[prop], culture );
                 if ( date ) {
-                    return false;
+                    break;
                 }
-            });
+            }
         }
         return date || null;
     }
