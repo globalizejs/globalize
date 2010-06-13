@@ -19,7 +19,7 @@ $.extend({
         else {
             var lang,
                 cultures = $.cultures,
-                list = $.isArray( name ) ? name : name.split( ',' ),
+                list = isArray( name ) ? name : name.split( ',' ),
                 i, l = list.length,
                 prioritized = [];
             for ( i = 0; i < l; i++ ) {
@@ -425,7 +425,8 @@ en.calendar = en.calendar || en.calendars.standard;
 var regexTrim = /^\s+|\s+$/g,
     regexInfinity = /^[+-]?infinity$/i,
     regexHex = /^0x[a-f0-9]+$/i,
-    regexParseFloat = /^[+-]?\d*\.?\d*(e[+-]?\d+)?$/;
+    regexParseFloat = /^[+-]?\d*\.?\d*(e[+-]?\d+)?$/,
+    toString = Object.prototype.toString;
 
 function startsWith(value, pattern) {
     return value.indexOf( pattern ) === 0;
@@ -444,6 +445,10 @@ function zeroPad(str, count, left) {
         str = (left ? ('0' + str) : (str + '0'));
     }
     return str;
+}
+
+function isArray(obj) {
+   return toString.call(obj) === "[object Array]";
 }
 
 // *************************************** Numbers ***************************************
