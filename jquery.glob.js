@@ -667,9 +667,11 @@ function toUpper(value) {
 }
 
 function toUpperArray(arr) {
-    return $.map(arr, function(e) {
-        return toUpper(e);
-    });
+    var results = [];
+    for ( var i = 0, l = arr.length; i < l; i++ ) {
+        results[i] = toUpper(arr[i]);
+    }
+    return results;
 }
 
 function getEraYear(date, cal, era, sortable) {
