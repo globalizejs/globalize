@@ -7,223 +7,222 @@
 var localized = { en: {} };
 localized["default"] = localized.en;
 
-$.extend({
-    findClosestCulture: function(name) {
-        var match;
-        if ( !name ) {
-            match = $.culture || $.cultures["default"];
-        }
-        else if ( $.isPlainObject( name ) ) {
-            match = name;
-        }
-        else {
-            var lang,
-                cultures = $.cultures,
-                list = isArray( name ) ? name : name.split( ',' ),
-                i, l = list.length,
-                prioritized = [];
-            for ( i = 0; i < l; i++ ) {
-                name = trim( list[ i ] );
-                var pri, parts = name.split( ';' );
-                lang = trim( parts[ 0 ] );
-                if ( parts.length === 1 ) {
-                    pri = 1;
+
+$.findClosestCulture = function(name) {
+    var match;
+    if ( !name ) {
+        match = $.culture || $.cultures["default"];
+    }
+    else if ( $.isPlainObject( name ) ) {
+        match = name;
+    }
+    else {
+        var lang,
+            cultures = $.cultures,
+            list = isArray( name ) ? name : name.split( ',' ),
+            i, l = list.length,
+            prioritized = [];
+        for ( i = 0; i < l; i++ ) {
+            name = trim( list[ i ] );
+            var pri, parts = name.split( ';' );
+            lang = trim( parts[ 0 ] );
+            if ( parts.length === 1 ) {
+                pri = 1;
+            }
+            else {
+                name = trim( parts[ 1 ] );
+                if ( name.indexOf("q=") === 0 ) {
+                    name = name.substr( 2 );
+                    pri = parseFloat( name, 10 );
+                    pri = isNaN( pri ) ? 0 : pri;
                 }
                 else {
-                    name = trim( parts[ 1 ] );
-                    if ( name.indexOf("q=") === 0 ) {
-                        name = name.substr( 2 );
-                        pri = parseFloat( name, 10 );
-                        pri = isNaN( pri ) ? 0 : pri;
-                    }
-                    else {
-                        pri = 1;
-                    }
+                    pri = 1;
                 }
-                prioritized.push( { lang: lang, pri: pri } );
             }
-            prioritized.sort(function(a, b) {
-                return a.pri < b.pri ? 1 : -1;
-            });
-            for ( i = 0; i < l; i++ ) {
-                lang = prioritized[ i ].lang;
+            prioritized.push( { lang: lang, pri: pri } );
+        }
+        prioritized.sort(function(a, b) {
+            return a.pri < b.pri ? 1 : -1;
+        });
+        for ( i = 0; i < l; i++ ) {
+            lang = prioritized[ i ].lang;
+            match = cultures[ lang ];
+            // exact match?
+            if ( match ) {
+                return match;
+            }
+        }
+        for ( i = 0; i < l; i++ ) {
+            lang = prioritized[ i ].lang;
+            // for each entry try its neutral language
+            do {
+                var index = lang.lastIndexOf( "-" );
+                if ( index === -1 ) {
+                    break;
+                }
+                // strip off the last part. e.g. en-US => en
+                lang = lang.substr( 0, index );
                 match = cultures[ lang ];
-                // exact match?
                 if ( match ) {
                     return match;
                 }
             }
-            for ( i = 0; i < l; i++ ) {
-                lang = prioritized[ i ].lang;
-                // for each entry try its neutral language
-                do {
-                    var index = lang.lastIndexOf( "-" );
-                    if ( index === -1 ) {
-                        break;
-                    }
-                    // strip off the last part. e.g. en-US => en
-                    lang = lang.substr( 0, index );
-                    match = cultures[ lang ];
-                    if ( match ) {
-                        return match;
-                    }
-                }
-                while ( 1 );
-            }
+            while ( 1 );
         }
-        return match || null;
-    },
-    preferCulture: function(name) {
-        $.culture = $.findClosestCulture( name ) || $.cultures["default"];
-    },
-    localize: function(key, culture, value) {
-        if (typeof culture === 'string') {
-            culture = culture || "default";
-            culture = $.cultures[ culture ] || { name: culture };
+    }
+    return match || null;
+}
+$.preferCulture = function(name) {
+    $.culture = $.findClosestCulture( name ) || $.cultures["default"];
+}
+$.localize = function(key, culture, value) {
+    if (typeof culture === 'string') {
+        culture = culture || "default";
+        culture = $.cultures[ culture ] || { name: culture };
+    }
+    var local = localized[ culture.name ];
+    if ( arguments.length === 3 ) {
+        if ( !local) {
+            local = localized[ culture.name ] = {};
         }
-        var local = localized[ culture.name ];
-        if ( arguments.length === 3 ) {
-            if ( !local) {
-                local = localized[ culture.name ] = {};
-            }
-            local[ key ] = value;
+        local[ key ] = value;
+    }
+    else {
+        if ( local ) {
+            value = local[ key ];
         }
-        else {
-            if ( local ) {
-                value = local[ key ];
+        if ( typeof value === 'undefined' ) {
+            var language = localized[ culture.language ];
+            if ( language ) {
+                value = language[ key ];
             }
             if ( typeof value === 'undefined' ) {
-                var language = localized[ culture.language ];
-                if ( language ) {
-                    value = language[ key ];
-                }
-                if ( typeof value === 'undefined' ) {
-                    value = localized["default"][ key ];
-                }
+                value = localized["default"][ key ];
             }
         }
-        return typeof value === "undefined" ? null : value;
-    },
-    format: function(value, format, culture) {
-        culture = $.findClosestCulture( culture );
-        if ( typeof value === "number" ) {
-            value = formatNumber( value, format, culture );
-        }
-        else if ( value instanceof Date ) {
-            value = formatDate( value, format, culture );
-        }
-        return value;
-    },
-    parseInt: function(value, radix, culture) {
-        return Math.floor( $.parseFloat( value, radix, culture ) );
-    },
-    parseFloat: function(value, radix, culture) {
-        culture = $.findClosestCulture( culture );
-        var ret = NaN,
-            nf = culture.numberFormat;
+    }
+    return typeof value === "undefined" ? null : value;
+}
+$.format = function(value, format, culture) {
+    culture = $.findClosestCulture( culture );
+    if ( typeof value === "number" ) {
+        value = formatNumber( value, format, culture );
+    }
+    else if ( value instanceof Date ) {
+        value = formatDate( value, format, culture );
+    }
+    return value;
+}
+$.parseInt = function(value, radix, culture) {
+    return Math.floor( $.parseFloat( value, radix, culture ) );
+}
+$.parseFloat = function(value, radix, culture) {
+    culture = $.findClosestCulture( culture );
+    var ret = NaN,
+        nf = culture.numberFormat;
 
-        // trim leading and trailing whitespace
-        value = trim( value );
-    
-        // allow infinity or hexidecimal
-        if (regexInfinity.test(value)) {
-            ret = parseFloat(value, radix);
+    // trim leading and trailing whitespace
+    value = trim( value );
+
+    // allow infinity or hexidecimal
+    if (regexInfinity.test(value)) {
+        ret = parseFloat(value, radix);
+    }
+    else if (!radix && regexHex.test(value)) {
+        ret = parseInt(value, 16);
+    }
+    else {
+        var signInfo = parseNegativePattern( value, nf, nf.pattern[0] ),
+            sign = signInfo[0],
+            num = signInfo[1];
+        // determine sign and number
+        if ( sign === "" && nf.pattern[0] !== "-n" ) {
+            signInfo = parseNegativePattern( value, nf, "-n" );
+            sign = signInfo[0];
+            num = signInfo[1];
         }
-        else if (!radix && regexHex.test(value)) {
-            ret = parseInt(value, 16);
+        sign = sign || "+";
+        // determine exponent and number
+        var exponent,
+            intAndFraction,
+            exponentPos = num.indexOf( 'e' );
+        if ( exponentPos < 0 ) exponentPos = num.indexOf( 'E' );
+        if ( exponentPos < 0 ) {
+            intAndFraction = num;
+            exponent = null;
         }
         else {
-            var signInfo = parseNegativePattern( value, nf, nf.pattern[0] ),
-                sign = signInfo[0],
-                num = signInfo[1];
-            // determine sign and number
-            if ( sign === "" && nf.pattern[0] !== "-n" ) {
-                signInfo = parseNegativePattern( value, nf, "-n" );
-                sign = signInfo[0];
-                num = signInfo[1];
-            }
-            sign = sign || "+";
-            // determine exponent and number
-            var exponent,
-                intAndFraction,
-                exponentPos = num.indexOf( 'e' );
-            if ( exponentPos < 0 ) exponentPos = num.indexOf( 'E' );
-            if ( exponentPos < 0 ) {
-                intAndFraction = num;
-                exponent = null;
-            }
-            else {
-                intAndFraction = num.substr( 0, exponentPos );
-                exponent = num.substr( exponentPos + 1 );
-            }
-            // determine decimal position
-            var integer,
-                fraction,
-                decSep = nf['.'],
-                decimalPos = intAndFraction.indexOf( decSep );
-            if ( decimalPos < 0 ) {
-                integer = intAndFraction;
-                fraction = null;
-            }
-            else {
-                integer = intAndFraction.substr( 0, decimalPos );
-                fraction = intAndFraction.substr( decimalPos + decSep.length );
-            }
-            // handle groups (e.g. 1,000,000)
-            var groupSep = nf[","];
-            integer = integer.split(groupSep).join('');
-            var altGroupSep = groupSep.replace(/\u00A0/g, " ");
-            if ( groupSep !== altGroupSep ) {
-                integer = integer.split(altGroupSep).join('');
-            }
-            // build a natively parsable number string
-            var p = sign + integer;
-            if ( fraction !== null ) {
-                p += '.' + fraction;
-            }
-            if ( exponent !== null ) {
-                // exponent itself may have a number patternd
-                var expSignInfo = parseNegativePattern( exponent, nf, "-n" );
-                p += 'e' + (expSignInfo[0] || "+") + expSignInfo[1];
-            }
-            if ( regexParseFloat.test( p ) ) {
-                ret = parseFloat( p );
-            }
+            intAndFraction = num.substr( 0, exponentPos );
+            exponent = num.substr( exponentPos + 1 );
         }
-        return ret;
-    },
-    parseDate: function(value, formats, culture) {
-        culture = $.findClosestCulture( culture );
+        // determine decimal position
+        var integer,
+            fraction,
+            decSep = nf['.'],
+            decimalPos = intAndFraction.indexOf( decSep );
+        if ( decimalPos < 0 ) {
+            integer = intAndFraction;
+            fraction = null;
+        }
+        else {
+            integer = intAndFraction.substr( 0, decimalPos );
+            fraction = intAndFraction.substr( decimalPos + decSep.length );
+        }
+        // handle groups (e.g. 1,000,000)
+        var groupSep = nf[","];
+        integer = integer.split(groupSep).join('');
+        var altGroupSep = groupSep.replace(/\u00A0/g, " ");
+        if ( groupSep !== altGroupSep ) {
+            integer = integer.split(altGroupSep).join('');
+        }
+        // build a natively parsable number string
+        var p = sign + integer;
+        if ( fraction !== null ) {
+            p += '.' + fraction;
+        }
+        if ( exponent !== null ) {
+            // exponent itself may have a number patternd
+            var expSignInfo = parseNegativePattern( exponent, nf, "-n" );
+            p += 'e' + (expSignInfo[0] || "+") + expSignInfo[1];
+        }
+        if ( regexParseFloat.test( p ) ) {
+            ret = parseFloat( p );
+        }
+    }
+    return ret;
+}
+$.parseDate = function(value, formats, culture) {
+    culture = $.findClosestCulture( culture );
 
-        var date, prop, patterns;
-        if ( formats ) {
-            if ( typeof formats === "string" ) {
-                formats = [ formats ];
-            }
-            if ( formats.length ) {
-                for ( var i = 0, l = formats.length; i < l; i++ ) {
-                    var format = formats[ i ];
-                    if ( format ) {
-                        date = parseExact( value, format, culture );
-                        if ( date ) {
-                            break;
-                        }
+    var date, prop, patterns;
+    if ( formats ) {
+        if ( typeof formats === "string" ) {
+            formats = [ formats ];
+        }
+        if ( formats.length ) {
+            for ( var i = 0, l = formats.length; i < l; i++ ) {
+                var format = formats[ i ];
+                if ( format ) {
+                    date = parseExact( value, format, culture );
+                    if ( date ) {
+                        break;
                     }
                 }
             }
         }
-        else {
-            patterns = culture.calendar.patterns;
-            for ( prop in patterns ) {
-                date = parseExact( value, patterns[prop], culture );
-                if ( date ) {
-                    break;
-                }
+    }
+    else {
+        patterns = culture.calendar.patterns;
+        for ( prop in patterns ) {
+            date = parseExact( value, patterns[prop], culture );
+            if ( date ) {
+                break;
             }
         }
-        return date || null;
     }
-});
+    return date || null;
+}
 
 // 1.    When defining a culture, all fields are required except the ones stated as optional.
 // 2.    You can use $.extend to copy an existing culture and provide only the differing values,
