@@ -11,15 +11,15 @@ localized["default"] = localized.en;
 $.findClosestCulture = function(name) {
     var match;
     if ( !name ) {
-        match = $.culture || $.cultures["default"];
+        return $.culture || $.cultures["default"];
     }
-    else if ( $.isPlainObject( name ) ) {
-        match = name;
+    if ( isString( name ) ) {
+        name = name.split( ',' );
     }
-    else {
+    if ( isArray( name ) ) {
         var lang,
             cultures = $.cultures,
-            list = isArray( name ) ? name : name.split( ',' ),
+            list = name,
             i, l = list.length,
             prioritized = [];
         for ( i = 0; i < l; i++ ) {
@@ -70,6 +70,9 @@ $.findClosestCulture = function(name) {
             }
             while ( 1 );
         }
+    }
+    else if ( typeof name === 'object' ) {
+        return name;
     }
     return match || null;
 }
