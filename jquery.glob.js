@@ -1,24 +1,50 @@
 /*
- * jQuery Globalization plugin
+ * Globalization
  * http://github.com/nje/jquery-glob
  */
-(function($) {
+(function() {
 
-var localized = { en: {} };
+var Globalization = {},
+    localized = { en: {} };
 localized["default"] = localized.en;
 
+Globalization.extend = function( deep ) {
+    var target = arguments[ 1 ] || {};
+    for ( var i = 2, l = arguments.length; i < l; i++ ) {
+        var source = arguments[ i ];
+        if ( source ) {
+            for ( var field in source ) {
+                var sourceVal = source[ field ];
+                if ( typeof sourceVal !== "undefined" ) {
+                    if ( deep && (isObject( sourceVal ) || isArray( sourceVal )) ) {
+                        var targetVal = target[ field ];
+                        // extend onto the existing value, or create a new one
+                        targetVal = targetVal && (isObject( targetVal ) || isArray( targetVal ))
+                            ? targetVal
+                            : (isArray( sourceVal ) ? [] : {});
+                        target[ field ] = this.extend( true, targetVal, sourceVal );
+                    }
+                    else {
+                        target[ field ] = sourceVal;
+                    }
+                }
+            }
+        }
+    }
+    return target;
+}
 
-$.findClosestCulture = function(name) {
+Globalization.findClosestCulture = function(name) {
     var match;
     if ( !name ) {
-        return $.culture || $.cultures["default"];
+        return this.culture || this.cultures["default"];
     }
     if ( isString( name ) ) {
         name = name.split( ',' );
     }
     if ( isArray( name ) ) {
         var lang,
-            cultures = $.cultures,
+            cultures = this.cultures,
             list = name,
             i, l = list.length,
             prioritized = [];
@@ -76,13 +102,13 @@ $.findClosestCulture = function(name) {
     }
     return match || null;
 }
-$.preferCulture = function(name) {
-    $.culture = $.findClosestCulture( name ) || $.cultures["default"];
+Globalization.preferCulture = function(name) {
+    this.culture = this.findClosestCulture( name ) || this.cultures["default"];
 }
-$.localize = function(key, culture, value) {
+Globalization.localize = function(key, culture, value) {
     if (typeof culture === 'string') {
         culture = culture || "default";
-        culture = $.cultures[ culture ] || { name: culture };
+        culture = this.cultures[ culture ] || { name: culture };
     }
     var local = localized[ culture.name ];
     if ( arguments.length === 3 ) {
@@ -107,8 +133,8 @@ $.localize = function(key, culture, value) {
     }
     return typeof value === "undefined" ? null : value;
 }
-$.format = function(value, format, culture) {
-    culture = $.findClosestCulture( culture );
+Globalization.format = function(value, format, culture) {
+    culture = this.findClosestCulture( culture );
     if ( typeof value === "number" ) {
         value = formatNumber( value, format, culture );
     }
@@ -117,11 +143,11 @@ $.format = function(value, format, culture) {
     }
     return value;
 }
-$.parseInt = function(value, radix, culture) {
-    return Math.floor( $.parseFloat( value, radix, culture ) );
+Globalization.parseInt = function(value, radix, culture) {
+    return Math.floor( this.parseFloat( value, radix, culture ) );
 }
-$.parseFloat = function(value, radix, culture) {
-    culture = $.findClosestCulture( culture );
+Globalization.parseFloat = function(value, radix, culture) {
+    culture = this.findClosestCulture( culture );
     var ret = NaN,
         nf = culture.numberFormat;
 
@@ -195,8 +221,8 @@ $.parseFloat = function(value, radix, culture) {
     }
     return ret;
 }
-$.parseDate = function(value, formats, culture) {
-    culture = $.findClosestCulture( culture );
+Globalization.parseDate = function(value, formats, culture) {
+    culture = this.findClosestCulture( culture );
 
     var date, prop, patterns;
     if ( formats ) {
@@ -228,7 +254,7 @@ $.parseDate = function(value, formats, culture) {
 }
 
 // 1.    When defining a culture, all fields are required except the ones stated as optional.
-// 2.    You can use $.extend to copy an existing culture and provide only the differing values,
+// 2.    You can use Globalization.extend to copy an existing culture and provide only the differing values,
 //       a good practice since most cultures do not differ too much from the 'default' culture.
 //       DO use the 'default' culture if you do this, as it is the only one that definitely
 //       exists.
@@ -244,10 +270,10 @@ $.parseDate = function(value, formats, culture) {
 // To define a culture, use the following pattern, which handles defining the culture based
 // on the 'default culture, extending it with the existing culture if it exists, and defining
 // it if it does not exist.
-// $.cultures.foo = $.extend(true, $.extend(true, {}, $.cultures['default'], fooCulture), $.cultures.foo)
+// Globalization.cultures.foo = Globalization.extend(true, Globalization.extend(true, {}, Globalization.cultures['default'], fooCulture), Globalization.cultures.foo)
 
-var cultures = $.cultures = $.cultures || {};
-var en = cultures["default"] = cultures.en = $.extend(true, {
+var cultures = Globalization.cultures = Globalization.cultures || {};
+var en = cultures["default"] = cultures.en = Globalization.extend(true, {
     // A unique name for the culture in the form <language code>-<country/region code>
     name: "en",
     // the name of the culture in the english language
@@ -451,7 +477,15 @@ function zeroPad(str, count, left) {
 }
 
 function isArray(obj) {
-   return toString.call(obj) === "[object Array]";
+    return toString.call(obj) === "[object Array]";
+}
+
+function isString(obj) {
+    return toString.call(obj) === "[object String]";
+}
+
+function isObject(obj) {
+    return toString.call(obj) === "[object Object]";
 }
 
 function arrayIndexOf( array, item ) {
@@ -1282,5 +1316,19 @@ function formatDate(value, format, culture) {
     return ret.join( '' );
 }
 
-})(jQuery);
+// EXPORTS
+
+window.Globalization = Globalization;
+
+//jQuery.findClosestCulture = Globalization.findClosestCulture;
+//jQuery.culture = Globalization.culture;
+//jQuery.cultures = Globalization.cultures
+//jQuery.preferCulture = Globalization.preferCulture
+//jQuery.localize = Globalization.localize
+//jQuery.format = Globalization.format
+//jQuery.parseInt = Globalization.parseInt
+//jQuery.parseFloat = Globalization.parseFloat
+//jQuery.parseDate = Globalization.parseDate
+
+})();
 
