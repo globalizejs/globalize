@@ -1,3 +1,5 @@
+require 'patches/active_record/xml_attribute_serializer'
+
 module Globalize
   autoload :ActiveRecord, 'globalize/active_record'
 

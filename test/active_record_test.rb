@@ -428,7 +428,7 @@ class ActiveRecordTest < ActiveSupport::TestCase
   test "don't override existing translation class" do
     assert PostTranslation.new.respond_to?(:existing_method)
   end
-  
+
   test "has_many and named scopes work with globalize" do
     blog = Blog.create
     assert_nothing_raised { blog.posts.foobar }
@@ -442,21 +442,21 @@ class ActiveRecordTest < ActiveSupport::TestCase
     User.expects(:reflect_on_all_validations => validations)
     assert_equal [:name], User.required_attributes
   end
-  
+
   test "attribute_names returns translated and regular attribute names" do
     Post.create :subject => "foo", :content => "bar"
     assert_equal Post.last.attribute_names.sort, %w[blog_id content id subject]
   end
-  
+
   test "attributes returns translated and regular attributes" do
     Post.create :subject => "foo", :content => "bar"
     assert_equal Post.last.attributes.keys.sort, %w[blog_id content id subject]
   end
-  
+
   test "to_xml includes translated fields" do
     Post.create :subject => "foo", :content => "bar"
-    assert Post.last.to_xml =~ /subject/
-    assert Post.last.to_xml =~ /content/
+    assert Post.last.to_xml =~ %r(<subject>foo</subject>)
+    assert Post.last.to_xml =~ %r(<content>bar</content>)
   end
 end
 
