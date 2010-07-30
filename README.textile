@@ -1,24 +1,22 @@
-h1. Globalize2
+h1. Globalize3
 
-Globalize2 is the successor of Globalize for Rails.
+Globalize3 is the successor of Globalize for Rails. Globalize is targeted at ActiveRecord 3.
 
 It is compatible with and builds on the new "I18n api in Ruby on Rails":http://guides.rubyonrails.org/i18n.html. and adds model translations to ActiveRecord.
 
-Globalize2 is much more lightweight and compatible than its predecessor was. Model translations in Globalize2 use default ActiveRecord features and do not limit any ActiveRecord functionality any more.
+Globalize3 is much more lightweight and compatible than its predecessor was. Model translations in Globalize3 use default ActiveRecord features and do not limit any ActiveRecord functionality any more.
 
 h2. Requirements
 
-ActiveRecord
+ActiveRecord > 3.0.0.rc
 I18n
-
-(or Rails > 2.2)
 
 h2. Installation
 
-To install Globalize2 with its default setup just use:
+To install Globalize3 with its default setup just use:
 
 <pre><code>
-script/plugin install git://github.com/joshmh/globalize2.git
+$ gem install globalize3
 </code></pre>
 
 h2. Model translations
@@ -35,13 +33,13 @@ Allows you to values for the attributes :title and :text per locale:
 
 <pre><code>
 I18n.locale = :en
-post.title # => Globalize2 rocks!
+post.title # => Globalize3 rocks!
 
 I18n.locale = :he
 post.title # => גלובאלייז2 שולט!
 </code></pre>
 
-In order to make this work, you'll need to add the appropriate translation tables. Globalize2 comes with a handy helper method to help you do this. It's called @create_translation_table!@. Here's an example:
+In order to make this work, you'll need to add the appropriate translation tables. Globalize3 comes with a handy helper method to help you do this. It's called @create_translation_table!@. Here's an example:
 
 <pre><code>
 class CreatePosts < ActiveRecord::Migration
@@ -60,13 +58,9 @@ end
 
 Note that the ActiveRecord model @Post@ must already exist and have a @translates@ directive listing the translated fields.
 
-h2. Migration from Globalize
+h2. Migration from Globalize for Rails (version 1)
 
 See this script by Tomasz Stachewicz: http://gist.github.com/120867
-
-h2. Changes since Globalize2 v0.1.0
-
-* The association globalize_translations has been renamed to translations.
 
 h2. Alternative Solutions
 
@@ -77,10 +71,10 @@ h2. Alternative Solutions
 
 h2. Related solutions
 
-* "globalize2_versioning":http://github.com/joshmh/globalize2_versioning - acts_as_versioned style versioning for Globalize2 (Joshua Harvey)
-* "i18n_multi_locales_validations":http://github.com/ZenCocoon/i18n_multi_locales_validations - multi-locales attributes validations to validates attributes from Globalize2 translations models (Sébastien Grosjean)
-* "Globalize2 Demo App":http://github.com/svenfuchs/globalize2-demo - demo application for Globalize2 (Sven Fuchs)</li>
-* "migrate_from_globalize1":http://gist.github.com/120867 - migrate model translations from Globalize1 to Globalize2 (Tomasz Stachewicz)</li>
+* "globalize2_versioning":http://github.com/joshmh/globalize2_versioning - acts_as_versioned style versioning for globalize2 (Joshua Harvey)
+* "i18n_multi_locales_validations":http://github.com/ZenCocoon/i18n_multi_locales_validations - multi-locales attributes validations to validates attributes from globalize2 translations models (Sébastien Grosjean)
+* "globalize2 Demo App":http://github.com/svenfuchs/globalize2-demo - demo application for globalize2 (Sven Fuchs)</li>
+* "migrate_from_globalize1":http://gist.github.com/120867 - migrate model translations from Globalize1 to globalize2 (Tomasz Stachewicz)</li>
 * "easy_globalize2_accessors":http://github.com/astropanic/easy_globalize2_accessors - easily access (read and write) globalize2-translated fields (astropanic, Tomasz Stachewicz)</li>
 * "globalize2-easy-translate":http://github.com/bsamman/globalize2-easy-translate - adds methods to easily access or set translated attributes to your model (bsamman)</li>
-* "batch_translations":http://github.com/alvarezrilla/batch_translations - allow saving multiple Globalize2 translations in the same request (Jose Alvarez Rilla)</li>
+* "batch_translations":http://github.com/alvarezrilla/batch_translations - allow saving multiple globalize2 translations in the same request (Jose Alvarez Rilla)</li>
