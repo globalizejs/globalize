@@ -93,9 +93,7 @@ class MigrationTest < ActiveSupport::TestCase
     )
     assert UltraLongModelNameWithoutProper.connection.index_exists?(
       :ultra_long_model_name_without_proper_translations,
-      :name => UltraLongModelNameWithoutProper.send(
-        :translation_index_name
-      )
+      :name => UltraLongModelNameWithoutProper.send(:translation_index_name)
     )
   end
 

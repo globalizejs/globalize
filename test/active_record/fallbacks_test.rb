@@ -75,7 +75,7 @@ if I18n.respond_to?(:fallbacks)
       assert_equal 'foo', post.subject
 
       I18n.locale = :'en-US'
-      post.update_attribute :subject, 'bar'
+      post.update_attributes(:subject => 'bar')
 
       I18n.locale = :'de-DE'
       assert_equal 'bar', post.subject
@@ -89,7 +89,7 @@ if I18n.respond_to?(:fallbacks)
       assert_equal 'foo', child.content
 
       I18n.locale = :'en-US'
-      child.update_attribute :content, 'bar'
+      child.update_attributes(:content => 'bar')
 
       I18n.locale = :'de-DE'
       assert_equal 'bar', child.content

@@ -16,7 +16,7 @@ class TranlationClassTest < ActiveSupport::TestCase
 
   test 'defines a reader for :locale that always returns a symbol' do
     post = Post::Translation.new
-    post.write_attribute('locale', 'de')
+    post.send(:write_attribute, 'locale', 'de')
     assert_equal :de, post.locale
   end
 

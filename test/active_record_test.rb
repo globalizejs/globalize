@@ -61,7 +61,7 @@ class ActiveRecordTest < ActiveSupport::TestCase
 
   test "update_attribute succeeds with valid values" do
     post = Post.create(:subject => 'foo', :content => 'bar')
-    post.update_attribute(:subject, 'baz')
+    post.update_attributes(:subject => 'baz')
     assert_equal 'baz', Post.first.subject
   end
 
@@ -266,7 +266,7 @@ class ActiveRecordTest < ActiveSupport::TestCase
 
     ActiveRecord::Base.locale = :de
     assert_equal :en, I18n.locale
-    post.update_attribute(:subject, 'foo [de]')
+    post.update_attributes(:subject => 'foo [de]')
     assert_equal 'foo [de]', Post.first.subject
 
     ActiveRecord::Base.locale = :en
@@ -282,9 +282,9 @@ class ActiveRecordTest < ActiveSupport::TestCase
     Post.locale = :de
     post = Post.create(:subject => 'foo')
     Post.locale = :es
-    post.update_attribute(:subject, 'bar')
+    post.update_attributes(:subject => 'bar')
     Post.locale = :fr
-    post.update_attribute(:subject, 'baz')
+    post.update_attributes(:subject => 'baz')
     assert_equal [:de, :es, :fr], post.available_locales
     assert_equal [:de, :es, :fr], Post.first.available_locales
   end
@@ -419,7 +419,7 @@ class ActiveRecordTest < ActiveSupport::TestCase
     Post.locale = :en
     post = Post.create(:subject => 'foo', :content => 'bar')
     Post.locale = :de
-    post.update_attribute(:subject, "German foo")
+    post.update_attributes(:subject => "German foo")
     assert_equal 'German foo', post.subject_before_type_cast
     Post.locale = :en
     assert_equal 'foo', post.subject_before_type_cast

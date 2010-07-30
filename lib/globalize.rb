@@ -12,4 +12,4 @@ module Globalize
   end
 end
 
-ActiveRecord::Base.send(:include, Globalize::ActiveRecord)
+ActiveRecord::Base.extend(Globalize::ActiveRecord::ActMacro)

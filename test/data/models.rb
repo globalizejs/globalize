@@ -10,7 +10,9 @@ end
 class Post < ActiveRecord::Base
   translates :subject, :content
   validates_presence_of :subject
-  named_scope :foobar, :conditions => { :title => "foobar" }
+
+  scope_method = ::ActiveRecord::VERSION::MAJOR >= 3 ? :scope : :named_scope
+  send(scope_method, :foobar, :conditions => { :title => "foobar" })
 end
 
 class Blog < ActiveRecord::Base
