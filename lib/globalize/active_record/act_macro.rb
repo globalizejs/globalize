@@ -27,15 +27,13 @@ module Globalize
                                 :foreign_key => class_name.foreign_key,
                                 :dependent   => :delete_all
 
-        scope_method = ::ActiveRecord::VERSION::MAJOR >= 3 ? :scope : :named_scope
-
-        send(scope_method, :with_translations, lambda { |locale|
+        scope :with_translations, lambda { |locale|
           conditions = required_attributes.map do |attribute|
             "#{quoted_translation_table_name}.#{attribute} IS NOT NULL"
           end
           conditions << "#{quoted_translation_table_name}.locale = ?"
           { :include => :translations, :conditions => [conditions.join(' AND '), locale] }
-        })
+        }
 
         attr_names.each { |attr_name| translated_attr_accessor(attr_name) }
       end
