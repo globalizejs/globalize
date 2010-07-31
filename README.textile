@@ -61,6 +61,7 @@ Note that the ActiveRecord model @Post@ must already exist and have a @translate
 h2. Changes since Globalize2
 
 * `translation_table_name` was renamed to `translations_table_name`
+* `available_locales` has been removed. please use `translated_locales`
 
 h2. Migration from Globalize for Rails (version 1)
 

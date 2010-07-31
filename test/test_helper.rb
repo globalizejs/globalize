@@ -26,7 +26,7 @@ DatabaseCleaner.strategy = :truncation
 class Test::Unit::TestCase
   def setup
     I18n.locale = :en
-    ActiveRecord::Base.locale = nil
+    Globalize.locale = nil
     DatabaseCleaner.start
   end
 
@@ -35,7 +35,7 @@ class Test::Unit::TestCase
   end
   
   def with_locale(*args, &block)
-    I18n.with_locale(*args, &block)
+    Globalize.with_locale(*args, &block)
   end
   
   def assert_included(item, array)

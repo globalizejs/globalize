@@ -1,21 +1,14 @@
 module Globalize
   module ActiveRecord
     module ClassMethods
-      delegate :available_locales, :set_translations_table_name, :to => :translation_class
-
-      def with_locale(locale, &block)
-        previous_locale, self.locale = self.locale, locale
-        result = yield
-        self.locale = previous_locale
-        result
-      end
+      delegate :translated_locales, :set_translations_table_name, :to => :translation_class
 
       def with_locales(*locales)
         scoped & translation_class.with_locales(*locales)
       end
 
       def with_translations(*locales)
-        locales = available_locales if locales.empty?
+        locales = translated_locales if locales.empty?
         includes(:translations).with_locales(locales).with_required_attributes
       end
 
@@ -26,7 +19,7 @@ module Globalize
       end
 
       def with_translated_attribute(name, value, locales = nil)
-        locales ||= Globalize.fallbacks(I18n.locale)
+        locales ||= Globalize.fallbacks
         with_translations.where(
           translated_column_name(name)    => value,
           translated_column_name(:locale) => locales.map(&:to_s)
@@ -75,11 +68,11 @@ module Globalize
 
         def translated_attr_accessor(name)
           define_method :"#{name}=", lambda { |value|
-            globalize.write(self.class.locale || I18n.locale, name, value)
+            globalize.write(Globalize.locale, name, value)
             self[name] = value
           }
           define_method name, lambda { |*args|
-            globalize.fetch(args.first || self.class.locale || I18n.locale, name)
+            globalize.fetch(args.first || Globalize.locale, name)
           }
           alias_method :"#{name}_before_type_cast", name
         end

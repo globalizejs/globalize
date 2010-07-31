@@ -1,14 +1,6 @@
 module Globalize
   module ActiveRecord
     module ActMacro
-      def locale
-        (defined?(@@locale) && @@locale)
-      end
-
-      def locale=(locale)
-        @@locale = locale
-      end
-
       def translates(*attr_names)
         return if translates?
 

@@ -90,22 +90,22 @@ class Globalize3Test < Test::Unit::TestCase
     assert post.to_xml =~ %r(<content>bar</content>)
   end
 
-  test "Model.available_locales" do
+  test "Model.translated_locales" do
     first = Post.create!(:title => 'title', :locale => :en)
     first.update_attributes(:title => 'Title', :locale => :de)
 
     second = Post.create!(:title => 'title', :locale => :en)
     second.update_attributes(:title => 'titre', :locale => :fr)
 
-    assert_equal [:de, :en, :fr], Post.available_locales
-    assert_equal [:de, :en], first.available_locales
-    assert_equal [:en, :fr], second.available_locales
+    assert_equal [:de, :en, :fr], Post.translated_locales
+    assert_equal [:de, :en], first.translated_locales
+    assert_equal [:en, :fr], second.translated_locales
 
     first.reload
     second.reload
     
-    assert_equal [:de, :en], first.available_locales
-    assert_equal [:en, :fr], second.available_locales
+    assert_equal [:de, :en], first.translated_locales
+    assert_equal [:en, :fr], second.translated_locales
   end
 
   test "a model with an after_save callback that reloads the model still saves correctly" do

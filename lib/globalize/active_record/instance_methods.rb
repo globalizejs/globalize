@@ -1,23 +1,19 @@
 module Globalize
   module ActiveRecord
     module InstanceMethods
-      delegate :available_locales, :to => :translations
+      delegate :translated_locales, :to => :translations
 
       def globalize
         @globalize ||= Adapter.new self
       end
 
       def attributes
-        self.attribute_names.inject({}) do |attrs, name|
-          attrs[name] = read_attribute(name) ||
-            (globalize.fetch(I18n.locale, name) rescue nil)
-          attrs
-        end
+        super.merge(translated_attributes)
       end
 
       def attributes=(attributes, *args)
         if locale = attributes.try(:delete, :locale)
-          self.class.with_locale(locale) { super }
+          Globalize.with_locale(locale) { super }
         else
           super
         end
@@ -26,14 +22,10 @@ module Globalize
       def attribute_names
         translated_attribute_names.map(&:to_s) + super
       end
-
-      def translated_locales
-        translations.map(&:locale)
-      end
-
+      
       def translated_attributes
         translated_attribute_names.inject({}) do |attributes, name|
-          attributes.merge(name => send(name))
+          attributes.merge(name.to_s => send(name))
         end
       end
 
