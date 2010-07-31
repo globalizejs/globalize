@@ -41,17 +41,13 @@ class TranslationClassTest < Test::Unit::TestCase
     assert PostTranslation.new.respond_to?(:existing_method)
   end
 
-  # TODO
-  #
-  # test "required_attributes don't include non-translated attributes" do
-  #   validations = [
-  #     stub(:name => :name, :macro => :validates_presence_of),
-  #     stub(:name => :email, :macro => :validates_presence_of)
-  #   ]
-  #   User.expects(:reflect_on_all_validations => validations)
-  #   assert_equal [:name], User.required_attributes
-  # end
-  
+  test "required_attributes returns required attributes (i.e. validates_presence_of)" do
+    assert_equal [:name, :email], User.required_attributes
+  end
+
+  test "required_translated_attributes do not include non-translated attributes" do
+    assert_equal [:name], User.required_translated_attributes
+  end
 end
 
 

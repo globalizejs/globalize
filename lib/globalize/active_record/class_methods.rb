@@ -13,7 +13,7 @@ module Globalize
       end
 
       def with_required_attributes
-        required_attributes.inject(scoped) do |scope, name|
+        required_translated_attributes.inject(scoped) do |scope, name|
           scope.where("#{translated_column_name(name)} IS NOT NULL")
         end
       end
@@ -27,11 +27,11 @@ module Globalize
       end
 
       def required_attributes
-        # TODO
-        # @required_attributes ||= reflect_on_all_validations.select do |validation|
-        #   validation.macro == :validates_presence_of && translated_attribute_names.include?(validation.name)
-        # end.map(&:name)
-        []
+        validators.map { |v| v.attributes if v.is_a?(ActiveModel::Validations::PresenceValidator) }.flatten
+      end
+
+      def required_translated_attributes
+        translated_attribute_names & required_attributes
       end
 
       def translation_class
