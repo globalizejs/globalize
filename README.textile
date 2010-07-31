@@ -1,10 +1,8 @@
 h1. Globalize3
 
-Globalize3 is the successor of Globalize for Rails. Globalize is targeted at ActiveRecord 3.
+Globalize3 is the successor of Globalize for Rails. Globalize is targeted at ActiveRecord 3. It is compatible with and builds on the new "I18n api in Ruby on Rails":http://guides.rubyonrails.org/i18n.html and adds model translations to ActiveRecord.
 
-It is compatible with and builds on the new "I18n api in Ruby on Rails":http://guides.rubyonrails.org/i18n.html. and adds model translations to ActiveRecord.
-
-Globalize3 is much more lightweight and compatible than its predecessor was. Model translations in Globalize3 use default ActiveRecord features and do not limit any ActiveRecord functionality any more.
+Globalize3 is much more lightweight and compatible than its predecessor Globalize for Rails was. Model translations in Globalize3 use default ActiveRecord features and do not limit any ActiveRecord functionality any more.
 
 h2. Requirements
 
