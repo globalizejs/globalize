@@ -1,28 +1,46 @@
-$:.unshift File.expand_path('../../lib', __FILE__)
-
 require 'rubygems'
 require 'test/unit'
 require 'active_record'
-require 'active_support'
-require 'active_support/test_case'
+require 'fileutils'
+require 'logger'
+require 'database_cleaner'
 require 'mocha'
-require 'globalize'
+require 'pathname_local'
+require 'test_declarative'
 require 'ruby-debug'
-# require 'validation_reflection'
 
-config = { :adapter => 'sqlite3', :database => ':memory:' }
-ActiveRecord::Base.establish_connection(config)
+$:.unshift Pathname.local('../lib').to_s
+require 'globalize'
 
-class ActiveSupport::TestCase
-  def reset_db!(schema_path = nil)
-    schema_path ||= File.expand_path(File.dirname(__FILE__) + '/data/schema.rb')
-    ActiveRecord::Migration.verbose = false
-    ActiveRecord::Base.silence { load(schema_path) }
+log = '/tmp/globalize3_test.log'
+FileUtils.touch(log) unless File.exists?(log)
+ActiveRecord::Base.logger = Logger.new(log)
+ActiveRecord::LogSubscriber.attach_to(:active_record)
+ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :database => ':memory:')
+
+require Pathname.local('data/schema')
+require Pathname.local('data/models')
+
+DatabaseCleaner.strategy = :truncation
+
+class Test::Unit::TestCase
+  def setup
+    I18n.locale = :en
+    ActiveRecord::Base.locale = nil
+    DatabaseCleaner.start
   end
 
-  def assert_member(item, array)
-    assert_block "Item #{item} is not in array #{array}" do
-      array.member?(item)
+  def teardown
+    DatabaseCleaner.clean
+  end
+  
+  def with_locale(*args, &block)
+    I18n.with_locale(*args, &block)
+  end
+  
+  def assert_included(item, array)
+    assert_block "Item #{item.inspect} is not included in the array #{array.inspect}" do
+      array.include?(item)
     end
   end
 
@@ -37,14 +55,21 @@ class ActiveSupport::TestCase
       association.name.to_s == associated.to_s
     }
   end
+
+  def assert_translated(record, locale, attributes, translations)
+    I18n.locale = locale
+    assert_equal Array(translations), Array(attributes).map { |name| record.send(name) }
+  end
 end
 
-module ActiveRecord
-  module ConnectionAdapters
-    class AbstractAdapter
-      def index_exists?(table_name, column_name)
-        indexes(table_name).any? { |index| index.name == index_name(table_name, column_name) }
-      end
+ActiveRecord::Base.class_eval do
+  class << self
+    def index_exists?(index_name)
+      connection.indexes(table_name).any? { |index| index.name == index_name.to_s }
+    end
+
+    def index_exists_on?(column_name)
+      connection.indexes(table_name).any? { |index| index.columns == [column_name.to_s] }
     end
   end
 end

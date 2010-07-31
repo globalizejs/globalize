@@ -1,8 +1,7 @@
-require File.expand_path(File.dirname(__FILE__) + '/../test_helper')
-require File.expand_path(File.dirname(__FILE__) + '/../data/models')
+require File.expand_path('../../test_helper', __FILE__)
 
 if I18n.respond_to?(:fallbacks)
-  class TranslatedTest < ActiveSupport::TestCase
+  class TranslatedTest < Test::Unit::TestCase
     def setup
       I18n.locale = :'en-US'
       I18n.fallbacks.clear

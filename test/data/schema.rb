@@ -1,3 +1,5 @@
+ActiveRecord::Migration.verbose = false
+
 ActiveRecord::Schema.define do
   create_table :blogs, :force => true do |t|
     t.string   :description
@@ -10,7 +12,7 @@ ActiveRecord::Schema.define do
   create_table :post_translations, :force => true do |t|
     t.string     :locale
     t.references :post
-    t.string     :subject
+    t.string     :title
     t.text       :content
   end
 
@@ -31,7 +33,7 @@ ActiveRecord::Schema.define do
   create_table :comment_translations, :force => true do |t|
     t.string     :locale
     t.references :comment
-    t.string     :subject
+    t.string     :title
     t.text       :content
   end
 

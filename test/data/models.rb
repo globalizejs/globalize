@@ -1,21 +1,26 @@
-#require 'ruby2ruby'
-#require 'parse_tree'
-#require 'parse_tree_extensions'
-#require 'pp'
+class Post < ActiveRecord::Base
+  translates :title, :content
+  validates_presence_of :title
+  scope :with_some_title, :conditions => { :title => 'some_title' }
+end
 
 class PostTranslation < ActiveRecord::Base
   def existing_method ; end
 end
 
-class Post < ActiveRecord::Base
-  translates :subject, :content
-  validates_presence_of :subject
-  scope :foobar, :conditions => { :title => "foobar" }
+class ReloadingPost < Post
+  after_create { reload }
 end
 
 class Blog < ActiveRecord::Base
   has_many :posts, :order => 'id ASC'
 end
+
+
+class Validatee < ActiveRecord::Base
+  translates :string
+end
+
 
 class Parent < ActiveRecord::Base
   translates :content
@@ -34,20 +39,8 @@ class TranslatedComment < Comment
 end
 
 class UltraLongModelNameWithoutProper < ActiveRecord::Base
-  translates :subject, :content
-  validates_presence_of :subject
-end
-
-class Reloader < Parent
-  after_create :do_reload
-
-  def do_reload
-    reload
-  end
-end
-
-class Validatee < ActiveRecord::Base
-  translates :string
+  translates :title, :content
+  validates_presence_of :title
 end
 
 class User < ActiveRecord::Base

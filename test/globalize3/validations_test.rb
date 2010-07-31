@@ -1,15 +1,32 @@
-require File.expand_path(File.dirname(__FILE__) + '/../test_helper')
-require File.expand_path(File.dirname(__FILE__) + '/../data/models')
+require File.expand_path('../../test_helper', __FILE__)
 
-class ValidationTest < ActiveSupport::TestCase
-  def setup
-    reset_db!
-  end
-  
+class ValidationsTest < Test::Unit::TestCase
   def teardown
-    Validatee.instance_variable_set(:@validate_callbacks, CallbackChain.new)
+    super
+    Validatee.reset_callbacks(:validate)
   end
   
+  # TODO
+  #
+  # test "a record with valid values on non-default locale validates" do
+  #   assert Post.create(:title => 'foo', :locale => :de).valid?
+  # end
+
+  test "update_attribute succeeds with valid values" do
+    post = Post.create(:title => 'foo')
+    post.update_attributes(:title => 'baz')
+    assert post.valid?
+    assert_equal 'baz', Post.first.title
+  end
+
+  test "update_attributes fails with invalid values" do
+    post = Post.create(:title => 'foo')
+    assert !post.update_attributes(:title => '')
+    assert !post.valid?
+    assert_not_nil post.reload.attributes['title']
+    assert_equal 'foo', post.title
+  end
+
   test "validates_presence_of" do
     Validatee.class_eval { validates_presence_of :string }
     assert !Validatee.new.valid?

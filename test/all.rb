@@ -1,2 +1,1 @@
-files = Dir[File.dirname(__FILE__) + '/**/*_test.rb']
-files.each { |file| require file }
+Dir[File.expand_path('../**/*_test.rb', __FILE__)].each { |file| require file }

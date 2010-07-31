@@ -27,12 +27,16 @@ module Globalize
                                 :foreign_key => class_name.foreign_key,
                                 :dependent   => :delete_all
 
-        scope :with_translations, lambda { |locale|
-          conditions = required_attributes.map do |attribute|
-            "#{quoted_translation_table_name}.#{attribute} IS NOT NULL"
-          end
-          conditions << "#{quoted_translation_table_name}.locale = ?"
-          { :include => :translations, :conditions => [conditions.join(' AND '), locale] }
+        scope :with_translations, lambda { |*locales|
+          # TODO
+          # locales = available_locales if locales.empty?
+          # conditions = required_attributes.map do |attribute|
+          #   "#{quoted_translation_table_name}.#{attribute} IS NOT NULL"
+          # end
+          locales = [I18n.locale] if locales.empty?
+          conditions = []
+          conditions << "#{quoted_translation_table_name}.locale IN (?)"
+          { :include => :translations, :conditions => [conditions.join(' AND '), locales.map(&:to_s)] }
         }
 
         attr_names.each { |attr_name| translated_attr_accessor(attr_name) }
