@@ -90,7 +90,7 @@ class Globalize3Test < Test::Unit::TestCase
     assert post.to_xml =~ %r(<content>bar</content>)
   end
 
-  test "Model.translated_locales" do
+  test "translated_locales returns locales that have translations" do
     first = Post.create!(:title => 'title', :locale => :en)
     first.update_attributes(:title => 'Title', :locale => :de)
 
@@ -139,13 +139,4 @@ class Globalize3Test < Test::Unit::TestCase
     assert_translated translated_comment, :en, :content, 'content'
     assert_translated translated_comment, :de, :content, 'Inhalt'
   end
-
-  # test 'complex writing and stashing' do
-  #   post = Post.create(:title => 'foo', :content => 'bar')
-  #   post.title = nil
-  #   assert_nil post.title
-  #   assert !post.valid?
-  #   post.title = 'stashed_foo'
-  #   assert_equal 'stashed_foo', post.title
-  # end
 end

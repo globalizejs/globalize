@@ -5,7 +5,7 @@ module Globalize
 
   class << self
     def locale
-      (defined?(@@locale) && @@locale) || I18n.locale
+      defined?(@@locale) && @@locale || I18n.locale
     end
 
     def locale=(locale)
@@ -13,7 +13,8 @@ module Globalize
     end
 
     def with_locale(locale, &block)
-      previous_locale, self.locale = self.locale, locale
+      previous_locale = defined?(@@locale) && @@locale || nil
+      self.locale = locale
       result = yield
       self.locale = previous_locale
       result

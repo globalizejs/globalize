@@ -3,6 +3,12 @@
 require File.expand_path('../../test_helper', __FILE__)
 
 class AttributesTest < Test::Unit::TestCase
+  test 'defines accessors for the translated attributes' do
+    post = Post.new
+    assert post.respond_to?(:title)
+    assert post.respond_to?(:title=)
+  end
+
   test "attribute_names returns translated and regular attribute names" do
     assert_equal %w(blog_id content title), Post.new.attribute_names.sort
   end
@@ -10,6 +16,10 @@ class AttributesTest < Test::Unit::TestCase
   test "attributes returns translated and regular attributes" do
     post = Post.create(:title => 'foo')
     assert_equal({ 'id' => post.id, 'blog_id' => nil, 'title' => 'foo', 'content' => nil }, post.attributes)
+  end
+
+  test 'translated_attribute_names returns translated attribute names' do
+    assert_equal [:title, :content], Post.translated_attribute_names
   end
 
   test "a translated attribute writer returns its argument" do
@@ -85,5 +95,24 @@ class AttributesTest < Test::Unit::TestCase
     assert_translated child, :en, :content, 'foo'
     assert_translated child, :de, :content, 'bar'
     assert_translated child, :he, :content, 'baz'
+  end
+
+  test 'attribute reader without arguments will use the current locale on Globalize or I18n' do
+    with_locale(:de) do
+      Post.create!(:title => 'Titel', :content => 'Inhalt')
+    end
+    I18n.locale = :de
+    assert_equal 'Titel', Post.first.title
+  
+    I18n.locale = :en
+    Globalize.locale = :de
+    assert_equal 'Titel', Post.first.title
+  end
+
+  test 'attribute reader when passed a locale will use the given locale' do
+    post = with_locale(:de) do
+      Post.create!(:title => 'Titel', :content => 'Inhalt')
+    end
+    assert_equal 'Titel', post.title(:de)
   end
 end
