@@ -90,13 +90,22 @@ class Globalize3Test < Test::Unit::TestCase
     assert post.to_xml =~ %r(<content>bar</content>)
   end
 
-  test "available_locales" do
-    post = Post.create!(:title => 'title', :locale => :en)
-    post.update_attributes(:title => 'Title', :locale => :de)
-    post.update_attributes(:title => 'titre', :locale => :fr)
+  test "Model.available_locales" do
+    first = Post.create!(:title => 'title', :locale => :en)
+    first.update_attributes(:title => 'Title', :locale => :de)
 
-    assert_equal [:de, :en, :fr], post.available_locales
-    assert_equal [:de, :en, :fr], Post.first.available_locales
+    second = Post.create!(:title => 'title', :locale => :en)
+    second.update_attributes(:title => 'titre', :locale => :fr)
+
+    assert_equal [:de, :en, :fr], Post.available_locales
+    assert_equal [:de, :en], first.available_locales
+    assert_equal [:en, :fr], second.available_locales
+
+    first.reload
+    second.reload
+    
+    assert_equal [:de, :en], first.available_locales
+    assert_equal [:en, :fr], second.available_locales
   end
 
   test "a model with an after_save callback that reloads the model still saves correctly" do
@@ -131,37 +140,6 @@ class Globalize3Test < Test::Unit::TestCase
     assert_translated translated_comment, :de, :content, 'Inhalt'
   end
 
-  # test "can create a proxy class for a namespaced model" do
-  #   assert_nothing_raised do
-  #     module Foo
-  #       module Bar
-  #         class Baz < ActiveRecord::Base
-  #           translates :bumm
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
-  #
-  # test "don't override existing translation class" do
-  #   assert PostTranslation.new.respond_to?(:existing_method)
-  # end
-  #
-  #
-  # test "required_attributes don't include non-translated attributes" do
-  #   validations = [
-  #     stub(:name => :name, :macro => :validates_presence_of),
-  #     stub(:name => :email, :macro => :validates_presence_of)
-  #   ]
-  #   User.expects(:reflect_on_all_validations => validations)
-  #   assert_equal [:name], User.required_attributes
-  # end
-
-
-
-
-
-
   # test 'complex writing and stashing' do
   #   post = Post.create(:title => 'foo', :content => 'bar')
   #   post.title = nil
@@ -169,62 +147,5 @@ class Globalize3Test < Test::Unit::TestCase
   #   assert !post.valid?
   #   post.title = 'stashed_foo'
   #   assert_equal 'stashed_foo', post.title
-  # end
-
-  # test 'translated class locale setting' do
-  #   assert ActiveRecord::Base.respond_to?(:locale)
-  #   assert_equal :en, I18n.locale
-  #   assert_nil ActiveRecord::Base.locale
-  #
-  #   I18n.locale = :de
-  #   assert_equal :de, I18n.locale
-  #   assert_nil ActiveRecord::Base.locale
-  #
-  #   ActiveRecord::Base.locale = :es
-  #   assert_equal :de, I18n.locale
-  #   assert_equal :es, ActiveRecord::Base.locale
-  #
-  #   I18n.locale = :fr
-  #   assert_equal :fr, I18n.locale
-  #   assert_equal :es, ActiveRecord::Base.locale
-  # end
-
-  # test "untranslated class responds to locale" do
-  #   assert Blog.respond_to?(:locale)
-  # end
-
-  # test "to ensure locales in different classes are the same" do
-  #   ActiveRecord::Base.locale = :de
-  #   assert_equal :de, ActiveRecord::Base.locale
-  #   assert_equal :de, Parent.locale
-  #
-  #   Parent.locale = :es
-  #   assert_equal :es, ActiveRecord::Base.locale
-  #   assert_equal :es, Parent.locale
-  # end
-
-  # test "attribute saving goes by content locale and not global locale" do
-  #   ActiveRecord::Base.locale = :de
-  #   assert_equal :en, I18n.locale
-  #   Post.create :title => 'foo'
-  #   assert_equal :de, Post.first.translations.first.locale
-  # end
-  #
-  # test "attribute loading goes by content locale and not global locale" do
-  #   post = Post.create(:title => 'foo')
-  #   assert_nil ActiveRecord::Base.locale
-  #
-  #   ActiveRecord::Base.locale = :de
-  #   assert_equal :en, I18n.locale
-  #   post.update_attributes(:title => 'foo [de]')
-  #   assert_equal 'foo [de]', Post.first.title
-  #
-  #   ActiveRecord::Base.locale = :en
-  #   assert_equal 'foo', Post.first.title
-  # end
-  #
-  # test "access content locale before setting" do
-  #   Globalize::ActiveRecord::ActMacro.class_eval "remove_class_variable(:@@locale)"
-  #   assert_nothing_raised { ActiveRecord::Base.locale }
   # end
 end

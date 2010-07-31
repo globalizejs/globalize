@@ -24,9 +24,7 @@ module Globalize
 
       def save_translations!
         stash.each do |locale, attrs|
-          # TODO use find_or_initialize_by_locale
-          translation = record.translations.by_locale(locale.to_s).first
-          translation ||= record.translations.build(:locale => locale.to_s)
+          translation = record.translations.find_or_initialize_by_locale(locale.to_s)
           attrs.each { |attr_name, value| translation[attr_name] = value }
           translation.save!
         end
@@ -35,7 +33,6 @@ module Globalize
 
       def reset
         cache.clear
-        # stash.clear
       end
 
       protected
@@ -43,13 +40,13 @@ module Globalize
         def fetch_translation(locale)
           locale = locale.to_sym
           record.translations.loaded? ? record.translations.detect { |t| t.locale == locale } :
-            record.translations.by_locale(locale)
+            record.translations.with_locales(locale)
         end
 
         def fetch_translations(locale)
           # only query if not already included with :include => translations
           record.translations.loaded? ? record.translations :
-            record.translations.by_locales(Globalize.fallbacks(locale))
+            record.translations.with_locales(Globalize.fallbacks(locale))
         end
 
         def fetch_attribute(locale, attr_name)

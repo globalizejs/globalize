@@ -44,21 +44,20 @@ class Test::Unit::TestCase
     end
   end
 
-  def assert_belongs_to(model, associated)
-    assert model.reflect_on_all_associations(:belongs_to).detect { |association|
-      association.name.to_s == associated.to_s
-    }
+  def assert_belongs_to(model, other)
+    assert_association(model, :belongs_to, other)
   end
 
-  def assert_has_many(model, associated)
-    assert model.reflect_on_all_associations(:has_many).detect { |association|
-      association.name.to_s == associated.to_s
-    }
+  def assert_has_many(model, other)
+    assert_association(model, :has_many, other)
+  end
+
+  def assert_association(model, type, other)
+    assert model.reflect_on_all_associations(type).any? { |a| a.name.to_s == other.to_s }
   end
 
   def assert_translated(record, locale, attributes, translations)
-    I18n.locale = locale
-    assert_equal Array(translations), Array(attributes).map { |name| record.send(name) }
+    assert_equal Array(translations), Array(attributes).map { |name| record.send(name, locale) }
   end
 end
 

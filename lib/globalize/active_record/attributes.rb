@@ -1,5 +1,6 @@
 # Helper class for storing values per locale. Used by Globalize::Adapter
 # to stash and cache attribute values.
+
 module Globalize
   module ActiveRecord
     class Attributes < Hash

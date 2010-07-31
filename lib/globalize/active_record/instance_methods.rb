@@ -1,6 +1,8 @@
 module Globalize
   module ActiveRecord
     module InstanceMethods
+      delegate :available_locales, :to => :translations
+
       def globalize
         @globalize ||= Adapter.new self
       end
@@ -14,7 +16,7 @@ module Globalize
       end
 
       def attributes=(attributes, *args)
-        if attributes.respond_to?(:delete) && locale = attributes.delete(:locale)
+        if locale = attributes.try(:delete, :locale)
           self.class.with_locale(locale) { super }
         else
           super
@@ -23,10 +25,6 @@ module Globalize
 
       def attribute_names
         translated_attribute_names.map(&:to_s) + super
-      end
-
-      def available_locales
-        translations.select('DISTINCT locale').map(&:locale)
       end
 
       def translated_locales

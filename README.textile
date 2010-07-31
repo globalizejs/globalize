@@ -58,6 +58,10 @@ end
 
 Note that the ActiveRecord model @Post@ must already exist and have a @translates@ directive listing the translated fields.
 
+h2. Changes since Globalize2
+
+* `translation_table_name` was renamed to `translations_table_name`
+
 h2. Migration from Globalize for Rails (version 1)
 
 See this script by Tomasz Stachewicz: http://gist.github.com/120867

@@ -1,5 +1,7 @@
 require File.expand_path('../../test_helper', __FILE__)
 
+# TODO move these elsewhere
+
 class TranslatesTest < Test::Unit::TestCase
   # test 'defines a :locale accessors on ActiveRecord::Base' do
   #   ActiveRecord::Base.locale = :de
@@ -46,35 +48,35 @@ class TranslatesTest < Test::Unit::TestCase
     assert post.respond_to?(:title=)
   end
 
-  test 'attribute reader without arguments will use the current locale on ActiveRecord::Base or I18n' do
-    post = Post.with_locale(:de) do
-      Post.create!(:title => 'Titel', :content => 'Inhalt')
-    end
-    I18n.locale = :de
-    assert_equal 'Titel', post.title
-
-    I18n.locale = :en
-    ActiveRecord::Base.locale = :de
-    assert_equal 'Titel', post.title
-  end
+  # test 'attribute reader without arguments will use the current locale on ActiveRecord::Base or I18n' do
+  #   post = with_locale(:de) do
+  #     Post.create!(:title => 'Titel', :content => 'Inhalt')
+  #   end
+  #   I18n.locale = :de
+  #   assert_equal 'Titel', post.title
+  # 
+  #   I18n.locale = :en
+  #   ActiveRecord::Base.locale = :de
+  #   assert_equal 'Titel', post.title
+  # end
 
   test 'attribute reader when passed a locale will use the given locale' do
-    post = Post.with_locale(:de) do
+    post = with_locale(:de) do
       Post.create!(:title => 'Titel', :content => 'Inhalt')
     end
     assert_equal 'Titel', post.title(:de)
   end
 
-  test 'attribute reader will use the current locale on ActiveRecord::Base or I18n' do
-    post = Post.with_locale(:en) do
-      Post.create!(:title => 'title', :content => 'content')
-    end
-    I18n.locale = :de
-    post.title = 'Titel'
-    assert_equal 'Titel', post.title
-
-    ActiveRecord::Base.locale = :en
-    post.title = 'title'
-    assert_equal 'title', post.title
-  end
+  # test 'attribute reader will use the current locale on ActiveRecord::Base or I18n' do
+  #   post = with_locale(:en) do
+  #     Post.create!(:title => 'title', :content => 'content')
+  #   end
+  #   I18n.locale = :de
+  #   post.title = 'Titel'
+  #   assert_equal 'Titel', post.title
+  # 
+  #   ActiveRecord::Base.locale = :en
+  #   post.title = 'title'
+  #   assert_equal 'title', post.title
+  # end
 end
