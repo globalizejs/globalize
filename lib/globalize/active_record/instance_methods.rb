@@ -12,17 +12,17 @@ module Globalize
       end
 
       def attributes=(attributes, *args)
-        if locale = attributes.try(:delete, :locale)
-          Globalize.with_locale(locale) { super }
-        else
-          super
-        end
+        with_given_locale(attributes) { super }
+      end
+
+      def update_attributes(attributes, *args)
+        with_given_locale(attributes) { super }
       end
 
       def attribute_names
         translated_attribute_names.map(&:to_s) + super
       end
-      
+
       def translated_attributes
         translated_attribute_names.inject({}) do |attributes, name|
           attributes.merge(name.to_s => send(name))
@@ -47,6 +47,14 @@ module Globalize
 
         def save_translations!
           globalize.save_translations!
+        end
+
+        def with_given_locale(attributes, &block)
+          if locale = attributes.try(:delete, :locale)
+            Globalize.with_locale(locale, &block)
+          else
+            yield
+          end
         end
     end
   end
