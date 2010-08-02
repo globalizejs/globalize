@@ -58,7 +58,7 @@ module Globalize
       def method_missing(method, *args)
         if method.to_s =~ /^find_(first_|)by_(\w+)$/ && translated_attribute_names.include?($2.to_sym)
           result = with_translated_attribute($2, args.first)
-          $1 == 'first_' ? result.first : result
+          $1 == 'first_' ? result.first : result.all
         else
           super
         end
