@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
 end
 </code></pre>
 
-Allows you to values for the attributes :title and :text per locale:
+Allows you to translate the attributes :title and :text per locale:
 
 <pre><code>
 I18n.locale = :en
