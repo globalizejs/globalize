@@ -22,7 +22,7 @@ module Globalize
         locales ||= Globalize.fallbacks
         with_translations.where(
           translated_column_name(name)    => value,
-          translated_column_name(:locale) => locales.map(&:to_s)
+          translated_column_name(:locale) => Array(locales).map(&:to_s)
         )
       end
 
