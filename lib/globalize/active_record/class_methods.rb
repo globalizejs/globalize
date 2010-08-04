@@ -26,6 +26,10 @@ module Globalize
         )
       end
 
+      def translated?(name)
+        translated_attribute_names.include?(name)
+      end
+
       def required_attributes
         validators.map { |v| v.attributes if v.is_a?(ActiveModel::Validations::PresenceValidator) }.flatten
       end
@@ -52,11 +56,11 @@ module Globalize
       end
 
       def respond_to?(method, *args, &block)
-        method.to_s =~ /^find_by_(\w+)$/ && translated_attribute_names.include?($1.to_sym) || super
+        method.to_s =~ /^find_by_(\w+)$/ && translated?($1.to_sym) || super
       end
 
       def method_missing(method, *args)
-        if method.to_s =~ /^find_(first_|)by_(\w+)$/ && translated_attribute_names.include?($2.to_sym)
+        if method.to_s =~ /^find_(first_|)by_(\w+)$/ && translated?($2.to_sym)
           result = with_translated_attribute($2, args.first)
           $1 == 'first_' ? result.first : result.all
         else
@@ -67,13 +71,12 @@ module Globalize
       protected
 
         def translated_attr_accessor(name)
-          define_method :"#{name}=", lambda { |value|
-            globalize.write(Globalize.locale, name, value)
-            self[name] = value
-          }
-          define_method name, lambda { |*args|
+          define_method(:"#{name}=") do |value|
+            self[name] = globalize.write(Globalize.locale, name, value)
+          end
+          define_method(name) do |*args|
             globalize.fetch(args.first || Globalize.locale, name)
-          }
+          end
           alias_method :"#{name}_before_type_cast", name
         end
     end
