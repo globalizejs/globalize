@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'test/unit'
 require 'active_record'
+require 'vestal_versions'
 require 'fileutils'
 require 'logger'
 require 'database_cleaner'
@@ -11,6 +12,7 @@ require 'ruby-debug'
 
 $:.unshift Pathname.local('../lib').to_s
 require 'globalize'
+require 'globalize/versioning/vestal_versions'
 
 log = '/tmp/globalize3_test.log'
 FileUtils.touch(log) unless File.exists?(log)

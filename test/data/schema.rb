@@ -41,8 +41,8 @@ ActiveRecord::Schema.define do
   end
 
   create_table :validatee_translations, :force => true do |t|
-    t.string     :locale
     t.references :validatee
+    t.string     :locale
     t.string     :string
   end
 
@@ -50,8 +50,29 @@ ActiveRecord::Schema.define do
     t.string :email
   end
 
-  create_table :users_translations, :force => true do |t|
+  create_table :user_translations, :force => true do |t|
     t.references :user
+    t.string     :locale
     t.string     :name
+  end
+
+  create_table :versions do |t|
+    t.belongs_to :versioned, :polymorphic => true
+    t.belongs_to :user, :polymorphic => true
+    t.string :user_name
+    t.text :change_log
+    t.integer :number
+    t.string :tag
+
+    t.timestamps
+  end
+
+  change_table :versions do |t|
+    t.index [:versioned_id, :versioned_type]
+    t.index [:user_id, :user_type]
+    t.index :user_name
+    t.index :number
+    t.index :tag
+    t.index :created_at
   end
 end
