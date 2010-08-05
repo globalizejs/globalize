@@ -1,14 +1,10 @@
 require 'rubygems'
+require 'bundler/setup'
 require 'test/unit'
-require 'active_record'
-require 'vestal_versions'
 require 'fileutils'
 require 'logger'
-require 'database_cleaner'
-require 'mocha'
-require 'pathname_local'
-require 'test_declarative'
-require 'ruby-debug'
+
+Bundler.require(:default, :test)
 
 $:.unshift Pathname.local('../lib').to_s
 require 'globalize'

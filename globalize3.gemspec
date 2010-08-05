@@ -23,4 +23,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pathname_local'
   s.add_development_dependency 'test_declarative'
   s.add_development_dependency 'vestal_versions'
+  s.add_development_dependency 'ruby-debug'
+  s.add_development_dependency 'sqlite3-ruby'
 end
