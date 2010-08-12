@@ -48,7 +48,7 @@ class Migrated < ActiveRecord::Base
   translates :name
 end
 
-class UltraLongMigratedModelNameWithoutProper < ActiveRecord::Base
+class MigratedWithUltraLongModelName < ActiveRecord::Base
   translates :name
 end
 
