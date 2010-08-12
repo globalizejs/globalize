@@ -39,12 +39,16 @@ class TranslatedComment < Comment
   translates :content
 end
 
-class UltraLongModelNameWithoutProper < ActiveRecord::Base
-  translates :title, :content
-  validates_presence_of :title
-end
-
 class User < ActiveRecord::Base
   translates :name
   validates_presence_of :name, :email
 end
+
+class Migrated < ActiveRecord::Base
+  translates :name
+end
+
+class UltraLongMigratedModelNameWithoutProper < ActiveRecord::Base
+  translates :name
+end
+

@@ -37,6 +37,10 @@ ActiveRecord::Schema.define do
     t.text       :content
   end
 
+  create_table :migrated, :force => true do |t|
+    t.string :name
+  end
+
   create_table :validatees, :force => true do |t|
   end
 

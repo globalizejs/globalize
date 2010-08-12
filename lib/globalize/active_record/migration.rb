@@ -12,7 +12,7 @@ module Globalize
           end
         end
 
-        self.connection.create_table(translations_table_name) do |t|
+        connection.create_table(translations_table_name) do |t|
           t.references table_name.sub(/^#{table_name_prefix}/, "").singularize
           t.string :locale
           fields.each do |name, type|
@@ -21,7 +21,7 @@ module Globalize
           t.timestamps
         end
 
-        self.connection.add_index(
+        connection.add_index(
           translations_table_name, 
           "#{table_name.sub(/^#{table_name_prefix}/, "").singularize}_id",
           :name => translation_index_name
