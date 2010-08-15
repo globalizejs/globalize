@@ -1,4 +1,5 @@
 require 'patches/active_record/xml_attribute_serializer'
+require 'patches/active_record/query_method'
 
 module Globalize
   autoload :ActiveRecord, 'globalize/active_record'
@@ -6,18 +7,18 @@ module Globalize
 
   class << self
     def locale
-      defined?(@@locale) && @@locale || I18n.locale
+      read_locale || I18n.locale
     end
 
     def locale=(locale)
-      @@locale = locale
+      set_locale(locale)
     end
 
     def with_locale(locale, &block)
-      previous_locale = defined?(@@locale) && @@locale || nil
-      self.locale = locale
+      previous_locale = read_locale
+      set_locale(locale)
       result = yield
-      self.locale = previous_locale
+      set_locale(previous_locale)
       result
     end
 
@@ -28,6 +29,16 @@ module Globalize
     def fallbacks(locale = self.locale)
       fallbacks? ? I18n.fallbacks[locale] : [locale.to_sym]
     end
+    
+    protected
+    
+      def read_locale
+        Thread.current[:globalize_locale]
+      end
+    
+      def set_locale(locale)
+        Thread.current[:globalize_locale] = locale
+      end
   end
 end
 
