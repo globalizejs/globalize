@@ -7,6 +7,7 @@ ActiveRecord::Schema.define do
 
   create_table :posts, :force => true do |t|
     t.references :blog
+    # t.boolean    :published
   end
 
   create_table :post_translations, :force => true do |t|
@@ -14,6 +15,8 @@ ActiveRecord::Schema.define do
     t.references :post
     t.string     :title
     t.text       :content
+    t.boolean    :published
+    t.datetime   :published_at
   end
 
   create_table :parents, :force => true do |t|
@@ -68,6 +71,7 @@ ActiveRecord::Schema.define do
     t.text :change_log
     t.integer :number
     t.string :tag
+    t.string :locale
 
     t.timestamps
   end

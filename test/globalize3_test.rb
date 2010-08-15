@@ -16,6 +16,17 @@ class Globalize3Test < Test::Unit::TestCase
     assert_translated post, :de, :title, 'Titel'
   end
 
+  test "can translate boolean values" do
+    post = Post.create(:title => 'Titel', :published => true, :locale => :de)
+    assert_translated post, :de, :published, true
+  end
+
+  test "can translate datetime values" do
+    now = Time.now
+    post = Post.create(:title => 'Titel', :published_at => now, :locale => :de)
+    assert_translated post, :de, :published_at, now
+  end
+
   test "attributes= uses the given locale" do
     post = Post.create(:title => 'title')
     post.attributes = { :title => 'Titel', :locale => :de }
@@ -103,7 +114,7 @@ class Globalize3Test < Test::Unit::TestCase
 
     first.reload
     second.reload
-    
+
     assert_equal [:de, :en], first.translated_locales
     assert_equal [:en, :fr], second.translated_locales
   end

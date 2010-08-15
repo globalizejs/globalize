@@ -19,3 +19,17 @@ ActiveRecord::Base.class_eval do
     alias_method_chain :versioned, :globalize
   end
 end
+
+VestalVersions::Version.class_eval do
+  before_save do |version|
+    version.locale = Globalize.locale.to_s
+  end
+
+  class Condition
+    def to_sql
+      "locale = '#{Globalize.locale.to_s}'"
+    end
+  end
+
+  default_scope(:conditions => Condition.new)
+end

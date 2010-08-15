@@ -6,15 +6,15 @@ require 'logger'
 
 Bundler.require(:default, :test)
 
-$:.unshift Pathname.local('../lib').to_s
-require 'globalize'
-require 'globalize/versioning/vestal_versions'
-
 log = '/tmp/globalize3_test.log'
 FileUtils.touch(log) unless File.exists?(log)
 ActiveRecord::Base.logger = Logger.new(log)
 ActiveRecord::LogSubscriber.attach_to(:active_record)
 ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :database => ':memory:')
+
+$:.unshift Pathname.local('../lib').to_s
+require 'globalize'
+require 'globalize/versioning/vestal_versions'
 
 require Pathname.local('data/schema')
 require Pathname.local('data/models')
@@ -55,7 +55,7 @@ class Test::Unit::TestCase
   end
 
   def assert_translated(record, locale, attributes, translations)
-    assert_equal Array(translations), Array(attributes).map { |name| record.send(name, locale) }
+    assert_equal Array.wrap(translations), Array.wrap(attributes).map { |name| record.send(name, locale) }
   end
 end
 

@@ -2,14 +2,14 @@
 
 require File.expand_path('../../test_helper', __FILE__)
 
-class ContentLocaleTest < Test::Unit::TestCase
+class LocaleTest < Test::Unit::TestCase
   test "Globalize has locale accessors" do
     assert Globalize.respond_to?(:locale)
     assert Globalize.respond_to?(:locale=)
   end
 
   test "Globalize.locale reader can be called before a locale was set" do
-    Globalize.class_eval 'remove_class_variable(:@@locale)'
+    Globalize.locale = nil
     assert_nothing_raised { Globalize.locale }
   end
 

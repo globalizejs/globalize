@@ -5,27 +5,29 @@ module Globalize
       # The stash keeps track of new or changed values that need to be saved.
       attr_reader :record, :cache, :stash
 
+      delegate :translation_class, :to => :'record.class'
+
       def initialize(record)
         @record = record
         @cache = Attributes.new
         @stash = Attributes.new
       end
 
-      def fetch(locale, attr_name)
-        cache.contains?(locale, attr_name) ?
-          cache.read(locale, attr_name) :
-          cache.write(locale, attr_name, fetch_attribute(locale, attr_name))
+      def fetch(locale, name)
+        cache.contains?(locale, name) ?
+          type_cast(name, cache.read(locale, name)) :
+          cache.write(locale, name, fetch_attribute(locale, name))
       end
 
-      def write(locale, attr_name, value)
-        stash.write(locale, attr_name, value)
-        cache.write(locale, attr_name, value)
+      def write(locale, name, value)
+        stash.write(locale, name, value)
+        cache.write(locale, name, value)
       end
 
       def save_translations!
         stash.each do |locale, attrs|
           translation = record.translations.find_or_initialize_by_locale(locale.to_s)
-          attrs.each { |attr_name, value| translation[attr_name] = value }
+          attrs.each { |name, value| translation[name] = value }
           translation.save!
         end
         stash.clear
@@ -36,6 +38,24 @@ module Globalize
       end
 
       protected
+
+        def type_cast(name, value)
+          if value.nil?
+            nil
+          elsif column = column_for_attribute(name)
+            column.type_cast(value)
+          else
+            value
+          end
+        end
+
+        def column_for_attribute(name)
+          translation_class.columns_hash[name.to_s]
+        end
+
+        def unserializable_attribute?(name, column)
+          column.text? && translation_class.serialized_attributes[name.to_s]
+        end
 
         def fetch_translation(locale)
           locale = locale.to_sym
@@ -49,13 +69,13 @@ module Globalize
             record.translations.with_locales(Globalize.fallbacks(locale))
         end
 
-        def fetch_attribute(locale, attr_name)
+        def fetch_attribute(locale, name)
           translations = fetch_translations(locale)
           value, requested_locale = nil, locale
 
           Globalize.fallbacks(locale).each do |fallback|
             translation = translations.detect { |t| t.locale == fallback }
-            value  = translation && translation.send(attr_name)
+            value  = translation && translation.send(name)
             locale = fallback && break if value
           end
 

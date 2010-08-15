@@ -10,16 +10,16 @@ module Globalize
         self.fetch(locale)
       end
 
-      def contains?(locale, attr_name)
-        self[locale].has_key?(attr_name)
+      def contains?(locale, name)
+        self[locale].has_key?(name.to_s)
       end
 
-      def read(locale, attr_name)
-        self[locale][attr_name]
+      def read(locale, name)
+        self[locale][name.to_s]
       end
 
-      def write(locale, attr_name, value)
-        self[locale][attr_name] = value
+      def write(locale, name, value)
+        self[locale][name.to_s] = value
       end
     end
   end

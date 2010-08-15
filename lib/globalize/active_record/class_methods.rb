@@ -27,7 +27,7 @@ module Globalize
       end
 
       def translated?(name)
-        translated_attribute_names.include?(name)
+        translated_attribute_names.include?(name.to_sym)
       end
 
       def required_attributes
@@ -72,10 +72,10 @@ module Globalize
 
         def translated_attr_accessor(name)
           define_method(:"#{name}=") do |value|
-            self[name] = globalize.write(Globalize.locale, name, value)
+            write_attribute(name, value, Globalize.locale)
           end
           define_method(name) do |*args|
-            globalize.fetch(args.first || Globalize.locale, name)
+            read_attribute(name, args.first || Globalize.locale)
           end
           alias_method :"#{name}_before_type_cast", name
         end

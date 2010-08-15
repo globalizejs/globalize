@@ -68,6 +68,8 @@ As of writing (2010-08-05) the original vestal_versions respository has not been
 
 Please also note that @update_attribute@ currently hides itself from dirty tracking in ActiveRecord >= 3.0.0.beta (which is considered a "regression":http://github.com/rails/rails/commit/01629d180468049d17a8be6900e27a4f0d2b18c4#commitcomment-123199). That means that you currently need to use attribute writers or @update_attributes@ in order to track changes/versions for your models.
 
+Also, please see the tests in test/globalize3/versioning_test.rb for some current gotchas.
+
 h2. Changes since Globalize2
 
 * `translation_table_name` was renamed to `translations_table_name`

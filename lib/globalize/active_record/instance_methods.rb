@@ -4,7 +4,7 @@ module Globalize
       delegate :translated_locales, :to => :translations
 
       def globalize
-        @globalize ||= Adapter.new self
+        @globalize ||= Adapter.new(self)
       end
 
       def attributes
@@ -15,12 +15,33 @@ module Globalize
         with_given_locale(attributes) { super }
       end
 
+      def update_attributes!(attributes, *args)
+        with_given_locale(attributes) { super }
+      end
+
       def update_attributes(attributes, *args)
         with_given_locale(attributes) { super }
       end
 
+      def write_attribute(name, value, locale = nil)
+        super(name, value)
+        globalize.write(locale || Globalize.locale, name, value) if translated?(name)
+      end
+
+      def read_attribute(name, locale = nil)
+        if self.class.translated?(name)
+          globalize.fetch(locale || Globalize.locale, name)
+        else
+          super(name)
+        end
+      end
+          
       def attribute_names
         translated_attribute_names.map(&:to_s) + super
+      end
+      
+      def translated?(name)
+        self.class.translated?(name)
       end
 
       def translated_attributes
