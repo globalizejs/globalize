@@ -71,6 +71,7 @@ module Globalize
         end
 
         def with_given_locale(attributes, &block)
+          attributes.symbolize_keys! if attributes.respond_to?(:symbolize_keys!)
           if locale = attributes.try(:delete, :locale)
             Globalize.with_locale(locale, &block)
           else
