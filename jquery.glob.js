@@ -764,7 +764,7 @@ function getMonthIndex(cal, value, abbr) {
     if ( !upperMonths ) {
         cal._upperMonths = upperMonths = [
             toUpperArray( months.names ),
-            toUpperArray( months.namesAbbr ),
+            toUpperArray( months.namesAbbr )
         ];
         cal._upperMonthsGen = upperMonthsGen = [
             toUpperArray( monthsGen.names ),
