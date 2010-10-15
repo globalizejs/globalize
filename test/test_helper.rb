@@ -12,12 +12,12 @@ ActiveRecord::Base.logger = Logger.new(log)
 ActiveRecord::LogSubscriber.attach_to(:active_record)
 ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :database => ':memory:')
 
-$:.unshift Pathname.local('../lib').to_s
+$:.unshift File.expand_path('../../lib', __FILE__)
 require 'globalize'
 require 'globalize/versioning/vestal_versions'
 
-require Pathname.local('data/schema')
-require Pathname.local('data/models')
+require File.expand_path('../data/schema', __FILE__)
+require File.expand_path('../data/models', __FILE__)
 
 DatabaseCleaner.strategy = :truncation
 
@@ -31,11 +31,11 @@ class Test::Unit::TestCase
   def teardown
     DatabaseCleaner.clean
   end
-  
+
   def with_locale(*args, &block)
     Globalize.with_locale(*args, &block)
   end
-  
+
   def assert_included(item, array)
     assert_block "Item #{item.inspect} is not included in the array #{array.inspect}" do
       array.include?(item)
