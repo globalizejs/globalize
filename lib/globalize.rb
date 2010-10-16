@@ -1,3 +1,4 @@
+require 'active_record'
 require 'patches/active_record/xml_attribute_serializer'
 require 'patches/active_record/query_method'
 
@@ -29,13 +30,13 @@ module Globalize
     def fallbacks(locale = self.locale)
       fallbacks? ? I18n.fallbacks[locale] : [locale.to_sym]
     end
-    
+
     protected
-    
+
       def read_locale
         Thread.current[:globalize_locale]
       end
-    
+
       def set_locale(locale)
         Thread.current[:globalize_locale] = locale
       end

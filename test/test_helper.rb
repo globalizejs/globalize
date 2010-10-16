@@ -5,6 +5,8 @@ require 'fileutils'
 require 'logger'
 
 Bundler.require(:default, :test)
+require 'database_cleaner'
+require 'test_declarative'
 
 log = '/tmp/globalize3_test.log'
 FileUtils.touch(log) unless File.exists?(log)
