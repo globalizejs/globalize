@@ -16,7 +16,7 @@ ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :database => ':me
 
 $:.unshift File.expand_path('../../lib', __FILE__)
 require 'globalize'
-require 'globalize/versioning/vestal_versions'
+# require 'globalize/versioning/vestal_versions'
 
 require File.expand_path('../data/schema', __FILE__)
 require File.expand_path('../data/models', __FILE__)
