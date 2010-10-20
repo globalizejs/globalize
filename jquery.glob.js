@@ -1,6 +1,10 @@
-/*
- * Globalization
- * http://github.com/nje/jquery-glob
+/*!
+ * jQuery Globalization Plugin
+ * http://github.com/jquery/jquery-global
+ *
+ * Copyright Software Freedom Conservancy, Inc.
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
  */
 (function() {
 
