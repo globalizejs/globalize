@@ -1,10 +1,10 @@
 $: << File.expand_path('../lib', __FILE__)
 
-require 'globalize/version'
+require 'globalize3/version'
 
 Gem::Specification.new do |s|
   s.name         = 'globalize3'
-  s.version      = Globalize::VERSION
+  s.version      = Globalize3::VERSION
   s.authors      = ['Sven Fuchs', 'Joshua Harvey', 'Clemens Kofler', 'John-Paul Bader']
   s.email        = 'nobody@globalize-rails.org'
   s.homepage     = 'http://github.com/svenfuchs/globlize3'
