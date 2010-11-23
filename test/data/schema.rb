@@ -1,6 +1,10 @@
 ActiveRecord::Migration.verbose = false
 
 ActiveRecord::Schema.define do
+  create_table :translations, :force => true do |t|
+    t.string   :blah
+  end
+
   create_table :blogs, :force => true do |t|
     t.string   :description
   end

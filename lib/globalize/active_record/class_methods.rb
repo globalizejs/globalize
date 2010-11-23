@@ -39,7 +39,11 @@ module Globalize
       end
 
       def translation_class
-        klass = const_get(:Translation) rescue const_set(:Translation, Class.new(Translation))
+        klass = self.const_get(:Translation) rescue nil
+        if(klass.nil? || (klass.class_name != (self.class_name + "Translation")))
+          klass = self.const_set(:Translation, Class.new(Globalize::ActiveRecord::Translation))
+        end
+        
         if klass.table_name == 'translations'
           klass.set_table_name(translation_options[:table_name])
           klass.belongs_to name.underscore.gsub('/', '_')

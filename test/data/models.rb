@@ -1,3 +1,7 @@
+# this little innocent class here makes 0.0.9 test fail
+class Translation < ActiveRecord::Base
+end
+
 class Post < ActiveRecord::Base
   translates :title, :content, :published, :published_at
   validates_presence_of :title
@@ -51,4 +55,3 @@ end
 class MigratedWithUltraLongModelName < ActiveRecord::Base
   translates :name
 end
-

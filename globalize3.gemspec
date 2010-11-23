@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'activerecord', '>= 3.0.0'
   s.add_dependency 'activemodel', '>= 3.0.0'
 
-  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'database_cleaner', '0.5.2'
   s.add_development_dependency 'mocha'
   s.add_development_dependency 'pathname_local'
   s.add_development_dependency 'test_declarative'
