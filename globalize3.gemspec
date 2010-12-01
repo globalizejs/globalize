@@ -23,7 +23,14 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'mocha'
   s.add_development_dependency 'pathname_local'
   s.add_development_dependency 'test_declarative'
-  s.add_development_dependency 'ruby-debug'
+
+  case ENV["RUBY_VERSION"]
+  when /1\.8\.\d.+$/
+    s.add_development_dependency 'ruby-debug'
+  when /1\.9\.\d.+$/
+    s.add_development_dependency 'ruby-debug19'
+  end
+
   s.add_development_dependency 'sqlite3-ruby'
   # s.add_development_dependency 'vestal_versions'
 end
