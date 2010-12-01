@@ -25,7 +25,7 @@ module Globalize
       end
 
       def class_name
-        class_name = table_name[table_name_prefix.length..-(table_name_suffix.length + 1)].camelize
+        class_name = table_name[table_name_prefix.length..-(table_name_suffix.length + 1)].downcase.camelize
         pluralize_table_names ? class_name.singularize : class_name
       end
 
