@@ -29,7 +29,7 @@ Each language, and the countries that speak that language, have different
 expectations when it comes to how numbers (including currency and percentages)
 and dates should appear. Obviously, each language has different names for the
 days of the week and the months of the year. But they also have different
-expectations to the structure of dates, such what order the day, month and year
+expectations for the structure of dates, such what order the day, month and year
 are in. In number formatting, not only does the character used to deliniate
 number groupings and the decimal portion, but the placement of those characters
 differ.
