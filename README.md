@@ -54,7 +54,7 @@ between them.
 </p>
 <p>
 So, it does not seem useful to define cultures by their language alone. Nor
-is it useful to define a culture by it's country alone, as many countries have
+is it useful to define a culture by its country alone, as many countries have
 many official languages, spoken by sizable populations. Therefore, cultures are
 defined as a combination of the language and the country speaking it. Each
 culture is given a unique code that is a combination of an ISO 639 two-letter
