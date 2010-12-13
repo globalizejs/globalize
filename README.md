@@ -86,10 +86,10 @@ defined in each culture.
 <a name="culture"></a>
 <h2 id="culture">jQuery.culture</h2>
 <p>
-This property is set to the culture currently being used. This serves as the
-default culture if no culture is specified on the various parsing and
-formatting functions. For example, to change the current culture, set it to
-one of the available cultures:
+This property is set to the culture currently selected. An optional culture can
+be specified for the various parsing and formatting functions; it defaults to
+jQuery.culture when omitted. To change the current culture, set it to one of
+the available cultures, for example:
 <pre>
 jQuery.culture = jQuery.cultures["fr-FR"];
 </pre>
@@ -129,7 +129,8 @@ alert(jQuery.culture.name) // 'fr'
 &lt;/script>
 </pre>
 
-In any case, if no match is found, the 'default' culture is selected.
+In any case, if no match is found the neutral English culture "en" is selected
+by default.
 </p>
 <p>
 Each culture string may also follow the pattern defined in
@@ -145,7 +146,7 @@ to 1). If that language is not an exact match for any of the cultures available
 on jQuery.cultures, then 'es' is the next highest priority with 0.5, etc. If
 none of these match, just like with the array syntax, the search starts over
 and the same rules are applied to the corresponding neutral language culture
-for each. If still none match, the default 'en' culture is used.
+for each. If still none match, the neutral English culture "en" is used.
 </p>
 
 <a name="find"></a>
@@ -237,7 +238,7 @@ alert(obj.foo); // "foo"
 </pre>
 Note that localize() will find the closest match available per the same
 semantics as the jQuery.findClosestCulture function. If there is no match, the
-translation given is for the 'default' culture, if one was specified.
+translation given is for the neutral English culture "en" by default.
 <pre>
 jQuery.localize("myplugin", "", {
     foo: "foo (en)",
@@ -309,14 +310,15 @@ Each culture is defined in its own script with the naming scheme
 jQuery.glob.&lt;code&gt;.js (along with its minified version,
 jQuery.glob.&lt;code&gt;.min.js). You may include any number of these scripts,
 making them available in the jQuery.cultures mapping. Including one of these
-scripts does NOT automatically make it the default culture selected with
-jQuery.culture.
+scripts does NOT automatically make it the current culture selected in the
+jQuery.culture property.
 </p>
 <p>
-The default culture that comes with jQuery.glob.js is 'default', and heavily
-commented, describing the purpose of each of the fields defined by a culture.
-Note that every culture includes all of these fields, even if they are the same
-as this culture. However, the script uses jQuery's $.extend to copy from this
+The neutral English culture is defined directly in jQuery.glob.js, and set
+both to the properties "en" and "default" of the jQuery.cultures mapping.
+Extensive comments describe the purpose of each of the fields defined. Note
+that every culture includes all of these fields, even if they are the same as
+this culture. However, the script uses jQuery's $.extend to copy from this
 culture, so looking at the raw scripts will only show you what is different in
 that culture from 'default'. The 'default' culture is listed here along with
 the comments:
