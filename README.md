@@ -86,10 +86,10 @@ defined in each culture.
 <a name="culture"></a>
 <h2 id="culture">jQuery.culture</h2>
 <p>
-This is set to the culture currently being used. This serves as the default
-culture if no culture is specified on the various parsing and formatting
-functions. For example, to change the current culture, set it to one of the
-available cultures:
+This property is set to the culture currently being used. This serves as the
+default culture if no culture is specified on the various parsing and
+formatting functions. For example, to change the current culture, set it to
+one of the available cultures:
 <pre>
 jQuery.culture = jQuery.cultures["fr-FR"];
 </pre>
