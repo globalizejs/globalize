@@ -271,8 +271,8 @@ localize().
 <h2 id="extend">Utilizing and Extending Cultures</h2>
 <p>
 The culture information included with each culture is mostly necessary for the
-parsing and formatting methods, but not all of it. For example, the the Native
-and English names for each culture is given, as well as a boolean indicating
+parsing and formatting methods, but not all of it. For example, the Native and
+English names for each culture is given, as well as a boolean indicating
 whether the language is right-to-left. This may be useful information for your
 own purposes. You may also add to the culture information directly if so
 desired. It is important to do so in a way that handles the fact that the
@@ -497,7 +497,7 @@ jQuery.cultures['default'] = jQuery.cultures.en = {
                 http://blogs.msdn.com/michkap/archive/2004/12/25/332259.aspx
             convert:
                 Allows for the support of non-gregorian based calendars. This
-                convert object is used to to convert a date to and from a
+                convert object is used to convert a date to and from a
                 gregorian calendar date to handle parsing and formatting.
                 The two functions:
                     fromGregorian(date)
@@ -651,7 +651,7 @@ sortable format that is always the same for every culture:
 </p>
 <p>
 When more specific control is needed over the formatting, you may use any
-format you wish by specifing the the following custom tokens:
+format you wish by specifing the following custom tokens:
 <table>
 <tr>
    <th>Token</th>
