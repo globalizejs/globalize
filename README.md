@@ -1,7 +1,7 @@
 <h1>Introduction</h1>
 <p>
 This jQuery plugin enables complex culture-aware number and date parsing and
-formatting, including the raw culture information for hunderds of different
+formatting, including the raw culture information for hundreds of different
 languages and countries, as well as an extensible system for localization.
 </p>
 <ul>
