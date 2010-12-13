@@ -331,7 +331,7 @@ jQuery.cultures['default'] = jQuery.cultures.en = {
     // A unique name for the culture in the form
     // &lt;language code&gt;-&lt;country/region code&lt;
     name: "English",
-    // the name of the culture in the english language
+    // the name of the culture in the English language
     englishName: "English",
     // the name of the culture in its own language
     nativeName: "English",
