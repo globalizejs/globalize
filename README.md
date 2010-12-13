@@ -65,8 +65,8 @@ the United States.
 <p>
 Yet, it is perhaps unreasonable to expect application developers to cater to
 every possible language/country combination perfectly. It is important then to
-define so-called "neutral" cultures based on each language. This culture
-defines the most likely accepted set of rules by anyone speaking that language,
+define so-called "neutral" cultures based on each language. These cultures
+define the most likely accepted set of rules by anyone speaking that language,
 whatever the country. Neutral cultures are defined only by their language code.
 For example, "es" is the neutral culture for Spanish.
 </p>
