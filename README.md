@@ -196,6 +196,7 @@ Parses a string representing a floating point number in the given the radix
 culture (or the current culture, if not specified).
 </p>
 
+<a name="parseDate"></a>
 <h2>jQuery.parseDate(value, formats, culture)</h2>
 <p>
 Parses a string representing a date into a JavaScript Date object, taking into
