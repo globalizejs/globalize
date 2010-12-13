@@ -96,7 +96,7 @@ jQuery.culture = jQuery.cultures["fr-FR"];
 </p>
 
 <a name="prefer"></a>
-<h2 id="prefer">jQuery.preferCulture</h2>
+<h2 id="prefer">jQuery.preferCulture(name)</h2>
 <p>
 An application that supports globalization and/or localization will need to
 have a way to determine the user's preference. Attempting to automatically
@@ -148,7 +148,7 @@ for each. If still none match, the default 'en' culture is used.
 </p>
 
 <a name="find"></a>
-<h2 id="find">jQuery.findClosestCulture</h2>
+<h2 id="find">jQuery.findClosestCulture(name)</h2>
 <p>
 Just like preferCulture, but it returns the matching culture, if any, rather
 than setting jQuery.culture to it.
