@@ -104,9 +104,9 @@ determine the appropriate culture is useful, but it is good practice to always
 offer the user a choice, by whatever means.
 </p>
 <p>
-Whatever your mechanism, it is likely you would have to correlate the user's
-preferences with the list of cultures the app has specifically decided to
-support. This API allows you to tell jQuery.glob.js what cultures the user
+Whatever your mechanism, it is likely that you will have to correlate the
+user's preferences with the list of cultures the app has specifically decided
+to support. This API allows you to tell jQuery.glob.js what cultures the user
 prefers, and select the best match given the culture scripts you have included.
 </p>
 <p>
