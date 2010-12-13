@@ -74,10 +74,10 @@ For example, "es" is the neutral culture for Spanish.
 <a name="cultures"></a>
 <h2 id="cultures">jQuery.cultures</h2>
 <p>
-A mapping of culture code to that culture. For example, jQuery.cultures.fr is
-an object representing the complete culture definition for the neutral French
-culture. Note that jQuery.glob.js alone only includes an English culture. To
-get additional cultures, you must seperately reference one or more of the
+A mapping of culture codes to culture objects. For example, jQuery.cultures.fr
+is an object representing the complete culture definition for the neutral
+French culture. Note that jQuery.glob.js alone only includes an English culture.
+To get additional cultures, you must seperately reference one or more of the
 culture scripts that come with it. See below on what fields are defined in
 each culture.
 </p>
