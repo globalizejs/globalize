@@ -53,7 +53,7 @@ the language being English, the expected date formatting still greatly differs
 between them.
 </p>
 <p>
-So, it seems it is not useful to define cultures by their language alone. Nor
+So, it does not seem useful to define cultures by their language alone. Nor
 is it useful to define a culture by it's country alone, as many countries have
 many official languages, spoken by sizable populations. Therefore, cultures are
 defined as a combination of the language and the country speaking it. Each
