@@ -136,7 +136,7 @@ by default.
 Each culture string may also follow the pattern defined in
 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.4"
 >RFC2616 sec 14.4</a>. That is, a culture name may include a 'quality' value
-that indicates it preference.
+that indicates an estimate of the user's preference for the language.
 
 <pre>
 jQuery.preferCulture("fr;q=0.4, es;q=0.5, he");
