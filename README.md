@@ -46,7 +46,7 @@ and dates into that string format.
 <h2 id="what">What is a Culture?</h2>
 <p>
 jQuery.glob.js defines roughly 350 cultures. Part of the reason for this large
-number, besides there being a lot of cultures of the world, is because for
+number, besides there being a lot of cultures in the world, is because for
 some languages, expectations differ amoung the countries that speak it.
 English, for example, is an official language in dozens of countries. Despite
 the language being English, the expected date formatting still greatly differs
