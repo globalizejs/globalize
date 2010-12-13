@@ -143,7 +143,7 @@ jQuery.preferCulture("fr;q=0.4, es;q=0.5, he");
 </pre>
 In this example, the neutral Hebrew culture "he" is given top priority (an
 unspecified quality is equal to 1). If that language is not an exact match for
-any of the cultures available on jQuery.cultures, then "es" is the next highest
+any of the cultures available in jQuery.cultures, then "es" is the next highest
 priority with 0.5, etc. If none of these match, just like with the array syntax,
 the search starts over and the same rules are applied to the corresponding
 neutral language culture for each. If still none match, the neutral English
