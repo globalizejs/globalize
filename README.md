@@ -111,7 +111,7 @@ to select the best match given the culture scripts that you have included.
 </p>
 <p>
 If you pass an array, the first culture for which there is a match (that
-culture's script has been referenced) will be used. If none matches, the search
+culture's script has been referenced) will be used. If none match, the search
 restarts using the corresponding neutral cultures. For example, if the
 application has included only the neutral "fr" culture, any of these would
 select it:
