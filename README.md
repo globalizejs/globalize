@@ -65,7 +65,7 @@ the United States.
 <p>
 Yet, it is perhaps unreasonable to expect application developers to cater to
 every possible language/country combination perfectly. It is important then to
-define so-called "neutral" cultures based on each language. These cultures
+define so-called 'neutral' cultures based on each language. These cultures
 define the most likely accepted set of rules by anyone speaking that language,
 whatever the country. Neutral cultures are defined only by their language code.
 For example, "es" is the neutral culture for Spanish.
@@ -119,13 +119,13 @@ select it:
 &lt;script src="jQuery.glob.fr.js" type="text/javascript">&lt;/script>
 &lt;script type="text/javascript">
 jQuery.preferCulture("fr");
-alert(jQuery.culture.name) // 'fr'
+alert(jQuery.culture.name) // "fr"
 
 jQuery.preferCulture("fr-FR");
-alert(jQuery.culture.name) // 'fr'
+alert(jQuery.culture.name) // "fr"
 
 jQuery.preferCulture(["es-MX", "fr-FR"]);
-alert(jQuery.culture.name) // 'fr'
+alert(jQuery.culture.name) // "fr"
 &lt;/script>
 </pre>
 
@@ -141,7 +141,7 @@ that indicates it preference.
 <pre>
 jQuery.preferCulture("fr;q=0.4, es;q=0.5, he");
 </pre>
-In this example, 'he' is given top priority (an unspecified quality is equal
+In this example, "he" is given top priority (an unspecified quality is equal
 to 1). If that language is not an exact match for any of the cultures available
 on jQuery.cultures, then 'es' is the next highest priority with 0.5, etc. If
 none of these match, just like with the array syntax, the search starts over
@@ -220,7 +220,7 @@ jQuery.parseDate("1/2/2003"); // Sat Feb 01 2003
 Gets or sets a localized value. This function allows you to extend the
 information available to a particular culture, and to easily retrieve it
 without worrying about finding the most appropriate culture. For example, to
-define the word "translate" in French:
+define the word 'translate' in French:
 <pre>
 jQuery.localize("translate", "fr", "traduire");
 </pre>
@@ -250,14 +250,14 @@ jQuery.localize("myplugin", "fr", {
 });
 
 jQuery.culture = jQuery.cultures["fr"];
-alert(jQuery.localize("myplugin").foo); // foo
+alert(jQuery.localize("myplugin").foo); // "foo"
 
 jQuery.culture = jQuery.cultures["fr-FR"];
-alert(jQuery.localize("myplugin").foo); // foo
+alert(jQuery.localize("myplugin").foo); // "foo"
 
 jQuery.culture = jQuery.cultures["es-MX"];
 jQuery.culture = jQuery.cultures["fr-FR"];
-alert(jQuery.localize("myplugin").foo); // foo (en)
+alert(jQuery.localize("myplugin").foo); // "foo (en)"
 </pre>
 Also note that localize() does not require loading the culture information
 script. You may use localize() for localization purposes without utilizing the
@@ -282,9 +282,9 @@ in a way that both defines if it does not exist and adds to it if it does
 exist.
 </p>
 <p>
-As an example, in the U.S., the word "billion" means the number 1,000,000,000
-(9 zeros). But in other countries, that number is "1000 million" or a
-"milliard", and a billion is 1,000,000,000,000 (12 zeros). If you needed to
+As an example, in the U.S., the word 'billion' means the number 1,000,000,000
+(9 zeros). But in other countries, that number is '1000 million' or a
+'milliard', and a billion is 1,000,000,000,000 (12 zeros). If you needed to
 provide functionality to your app or custom plugin that needed to know how many
 zeros are in a 'billion', you could extend the culture information as follows:
 <pre>
@@ -295,7 +295,7 @@ jQuery.cultures.fr = jQuery.extend(true, {
     }
 }, jQuery.cultures.fr);
 </pre>
-Using this mechanism, the 'fr' culture will be created if it does not exist.
+Using this mechanism, the "fr" culture will be created if it does not exist.
 And if it does, the given values will be added to it, taking care not to
 overwrite anything that is already defined (if you'd prefer to overwrite, you'd
 switch the last two arguments). When the jQuery.glob.fr.js script is eventually
@@ -337,19 +337,19 @@ jQuery.cultures['default'] = jQuery.cultures.en = {
     nativeName: "English",
     // whether the culture uses right-to-left text
     isRTL: false,
-    // 'language' is used for so-called "specific" cultures.
-    // For example, the culture "es-CL" means "Spanish, in Chili".
+    // "language" is used for so-called 'specific' cultures.
+    // For example, the culture "es-CL" means Spanish in Chili.
     // It represents the Spanish-speaking culture as it is in Chili,
     // which might have different formatting rules or even translations
-    // than Spanish in Spain. A "neutral" culture is one that is not
+    // than Spanish in Spain. A 'neutral' culture is one that is not
     // specific to a region. For example, the culture "es" is the generic
     // Spanish culture, which may be a more generalized version of the language
     // that may or may not be what a specific culture expects.
-    // For a specific culture like "es-CL", the 'language' field refers to the
+    // For a specific culture like "es-CL", the "language" field refers to the
     // neutral, generic culture information for the language it is using.
     // This is not always a simple matter of the string before the dash.
     // For example, the "zh-Hans" culture is netural (Simplified Chinese).
-    // And the 'zh-SG' culture is Simplified Chinese in Singapore, whose lanugage
+    // And the "zh-SG" culture is Simplified Chinese in Singapore, whose lanugage
     // field is "zh-CHS", not "zh".
     // This field should be used to navigate from a specific culture to it's
     // more general, neutral culture. If a culture is already as general as it 
@@ -411,7 +411,7 @@ jQuery.cultures['default'] = jQuery.cultures.en = {
         }
     },
     // calendars defines all the possible calendars used by this culture.
-    // There should be at least one defined with name 'standard', and is the
+    // There should be at least one defined with name "standard", and is the
     // default calendar used by the culture.
     // A calendar contains information about how dates are formatted,
     // information about the calendar's eras, a standard set of the date
@@ -518,7 +518,7 @@ jQuery.cultures['default'] = jQuery.cultures.en = {
 <p>
 Each culture can have several possible calendars. The calendar named "standard"
 is the default calendar used by that culture. You may change the calendar in
-use by setting the 'calendar' field. Take a look at the calendars defined by
+use by setting the "calendar" field. Take a look at the calendars defined by
 each culture by looking at the script or enumerating its calendars collection.
 <pre>
 // switch to a non-standard calendar
@@ -589,7 +589,7 @@ are abbreivated. Many cultures even include "genitive" month names, which are
 different from the typical names and are used only in certain cases.
 </p>
 <p>
-Also, each culture has a set of "standard" or "typical" formats. For example,
+Also, each culture has a set of 'standard' or 'typical' formats. For example,
 in en-US, when displaying a date in its fullest form, it looks like
 "Saturday, November 05, 1955". Note the non-abbreivated day and month name, the
 zero padded date, and four digit year. So, jQuery.glob.js defines a certain set
