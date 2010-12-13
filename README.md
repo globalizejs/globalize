@@ -78,8 +78,9 @@ A mapping of culture codes to culture objects. For example, jQuery.cultures.fr
 is an object representing the complete culture definition for the neutral
 French culture. Note that jQuery.glob.js alone only includes an English culture.
 To get additional cultures, you must seperately reference one or more of the
-culture scripts that come with it. See below which fields are defined in
-each culture.
+culture scripts that come with it. You can see in the section
+<a href="#defining">Defining Culture Information</a> below which fields are
+defined in each culture.
 </p>
 
 <a name="culture"></a>
