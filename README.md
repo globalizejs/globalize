@@ -316,14 +316,18 @@ jQuery.culture property.
 <p>
 The neutral English culture is defined directly in jQuery.glob.js, and set
 both to the properties "en" and "default" of the jQuery.cultures mapping.
-Extensive comments describe the purpose of each of the fields defined. Note
-that every culture includes all of these fields, even if they are the same as
-this culture. However, the script uses jQuery's $.extend to copy from this
-culture, so looking at the raw scripts will only show you what is different in
-that culture from 'default'. The 'default' culture is listed here along with
-the comments:
+Extensive comments describe the purpose of each of the fields defined.
+</p>
+<p>
+Looking at the souce code of the scripts for each culture, you will notice
+that each script uses jQuery's $.extend to copy the properties of the neutral
+English culture "en", as a common basis, and defines only the properties that
+differ from neutral English.
+</p>
+<p>
+The neutral English culture is listed here along with the comments:
 <pre>
-jQuery.cultures['default'] = {
+jQuery.cultures['default'] = jQuery.cultures.en = {
     // A unique name for the culture in the form
     // &lt;language code&gt;-&lt;country/region code&lt;
     name: "English",
