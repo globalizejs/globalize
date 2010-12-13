@@ -59,7 +59,7 @@ several official languages, spoken by sizable populations. Therefore, cultures
 are defined as a combination of the language and the country speaking it. Each
 culture is given a unique code that is a combination of an ISO 639 two-letter
 lowercase culture code for the language, and a two-letter uppercase code for
-the country or region. For example, "en-US" is the culture code for English, in
+the country or region. For example, "en-US" is the culture code for English in
 the United States.
 </p>
 <p>
