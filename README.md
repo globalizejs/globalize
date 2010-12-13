@@ -348,11 +348,11 @@ jQuery.cultures['default'] = jQuery.cultures.en = {
     // For a specific culture like "es-CL", the "language" field refers to the
     // neutral, generic culture information for the language it is using.
     // This is not always a simple matter of the string before the dash.
-    // For example, the "zh-Hans" culture is netural (Simplified Chinese).
-    // And the "zh-SG" culture is Simplified Chinese in Singapore, whose lanugage
-    // field is "zh-CHS", not "zh".
+    // For example, the "zh-Hans" culture is neutral (Simplified Chinese).
+    // And the "zh-SG" culture is Simplified Chinese in Singapore, whose
+    // language field is "zh-CHS", not "zh".
     // This field should be used to navigate from a specific culture to it's
-    // more general, neutral culture. If a culture is already as general as it 
+    // more general, neutral culture. If a culture is already as general as it
     // can get, the language may refer to itself.
     language: "en",
     // numberFormat defines general number formatting rules, like the digits in
@@ -493,7 +493,7 @@ jQuery.cultures['default'] = jQuery.cultures.en = {
             monthsGenitive:
                 Same as months but used when the day preceeds the month.
                 Omit if the culture has no genitive distinction in month names.
-                For an explaination of genitive months, see
+                For an explanation of genitive months, see
                 http://blogs.msdn.com/michkap/archive/2004/12/25/332259.aspx
             convert:
                 Allows for the support of non-gregorian based calendars. This
@@ -585,13 +585,13 @@ Parsing with parseInt and parseFloat also accepts any of these formats.
 Date formatting varies wildly by culture, not just in the spelling of month and
 day names, and the date separator, but by the expected order of the various
 date components, whether to use a 12 or 24 hour clock, and how months and days
-are abbreivated. Many cultures even include "genitive" month names, which are
+are abbreviated. Many cultures even include "genitive" month names, which are
 different from the typical names and are used only in certain cases.
 </p>
 <p>
 Also, each culture has a set of 'standard' or 'typical' formats. For example,
 in en-US, when displaying a date in its fullest form, it looks like
-"Saturday, November 05, 1955". Note the non-abbreivated day and month name, the
+"Saturday, November 05, 1955". Note the non-abbreviated day and month name, the
 zero padded date, and four digit year. So, jQuery.glob.js defines a certain set
 of "standard" formatting strings for dates that are aliases to the specific
 formats for the culture. See the 2nd table below for the meaning of each token
@@ -690,7 +690,7 @@ format you wish by specifing the following custom tokens:
 </tr>
 <tr>
    <td>MMM</td>
-   <td>Month name (abbreivated)</td>
+   <td>Month name (abbreviated)</td>
    <td>Sept</td>
 </tr>
 <tr>
