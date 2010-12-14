@@ -45,7 +45,7 @@ and dates into that string format.
 <a name="what"></a>
 <h2 id="what">What is a Culture?</h2>
 <p>
-jQuery.glob.js defines roughly 350 cultures. Part of the reason for this large
+jquery.glob.js defines roughly 350 cultures. Part of the reason for this large
 number, besides there being a lot of cultures in the world, is because for
 some languages, expectations differ amoung the countries that speak it.
 English, for example, is an official language in dozens of countries. Despite
@@ -76,7 +76,7 @@ For example, "es" is the neutral culture for Spanish.
 <p>
 A mapping of culture codes to culture objects. For example, jQuery.cultures.fr
 is an object representing the complete culture definition for the neutral
-French culture. Note that jQuery.glob.js alone only includes an English culture.
+French culture. Note that jquery.glob.js alone only includes an English culture.
 To get additional cultures, you must seperately reference one or more of the
 culture scripts that come with it. You can see in the section
 <a href="#defining">Defining Culture Information</a> below which fields are
@@ -272,7 +272,7 @@ Also note that localize() does not require loading the culture information
 script. You may use localize() for localization purposes without utilizing the
 parsing and formatting functions which depend on the cultures. If you do use
 both, it does not matter what order you include them in, either may be first
--- the jQuery.glob.&lt;code&gt;.js script, or your own script which uses
+-- the jquery.glob.&lt;code&gt;.js script, or your own script which uses
 localize(), as long as property names do not overlap.
 </p>
 
@@ -307,7 +307,7 @@ jQuery.cultures.fr = jQuery.extend(true, {
 Using this mechanism, the "fr" culture will be created if it does not exist.
 And if it does, the given values will be added to it, taking care not to
 overwrite anything that is already defined (if you'd prefer to overwrite, you'd
-switch the last two arguments). When the jQuery.glob.fr.js script is eventually
+switch the last two arguments). When the jquery.glob.fr.js script is eventually
 included, it too uses this technique, ensuring addition to the already-defined
 culture information.
 </p>
@@ -316,14 +316,14 @@ culture information.
 <h2 id="defining">Defining Culture Information</h2>
 <p>
 Each culture is defined in its own script with the naming scheme
-jQuery.glob.&lt;code&gt;.js (along with its minified version,
-jQuery.glob.&lt;code&gt;.min.js). You may include any number of these scripts,
+jquery.glob.&lt;code&gt;.js (along with its minified version,
+jquery.glob.&lt;code&gt;.min.js). You may include any number of these scripts,
 making them available in the jQuery.cultures mapping. Including one of these
 scripts does NOT automatically make it the current culture selected in the
 jQuery.culture property.
 </p>
 <p>
-The neutral English culture is defined directly in jQuery.glob.js, and set
+The neutral English culture is defined directly in jquery.glob.js, and set
 both to the properties "en" and "default" of the jQuery.cultures mapping.
 Extensive comments describe the purpose of each of the fields defined.
 </p>
@@ -601,7 +601,7 @@ different from the typical names and are used only in certain cases.
 Also, each culture has a set of 'standard' or 'typical' formats. For example,
 in en-US, when displaying a date in its fullest form, it looks like
 "Saturday, November 05, 1955". Note the non-abbreviated day and month name, the
-zero padded date, and four digit year. So, jQuery.glob.js defines a certain set
+zero padded date, and four digit year. So, jquery.glob.js defines a certain set
 of "standard" formatting strings for dates that are aliases to the specific
 formats for the culture. See the 2nd table below for the meaning of each token
 in the en-US examples.
