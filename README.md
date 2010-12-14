@@ -106,8 +106,9 @@ offer the user a choice, by whatever means.
 <p>
 Whatever your mechanism, it is likely that you will have to correlate the
 user's preferences with the list of cultures supported in the app. This
-function allows you to tell jQuery.glob.js which cultures the user prefers, and
-to select the best match given the culture scripts that you have included.
+function allows you to select the best match given the culture scripts that you
+have included and to set the jQuery.culture property to the culture which the
+user prefers.
 </p>
 <p>
 If you pass an array, the first culture for which there is a match (that
