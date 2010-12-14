@@ -560,7 +560,7 @@ There are four main types of number formatting:
 Even within the same culture, the formatting rules can vary between these four
 types of numbers. For example, the expected number of decimal places may differ
 from the number format to the currency format. Each format token may also be
-followed by a number. The number determines how many decimals places to display
+followed by a number. The number determines how many decimal places to display
 for all the format types except decimal, for which it means the minimum number
 of digits to display, zero padding it if necessary. Also note that the way
 negative numbers are represented in each culture can vary, such as what the
