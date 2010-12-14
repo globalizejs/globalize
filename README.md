@@ -179,9 +179,9 @@ jQuery.format(new Date(1955,10,5), "dddd MMMM d, yyyy"); // Saturday November 5,
 <a name="parseInt"></a>
 <h2 id="parseInt">jQuery.parseInt(value, radix, culture)</h2>
 <p>
-Parses a string representing a whole number in the given the radix (10 by
-default), taking into account any formatting rules followed by the given
-culture (or the current culture, if not specified).
+Parses a string representing a whole number in the given radix (10 by default),
+taking into account any formatting rules followed by the given culture (or the
+current culture, if not specified).
 <pre>
 // assuming a culture where "," is the group separator
 // and "." is the decimal separator
@@ -195,8 +195,8 @@ jQuery.parseInt("1.234,56"); // 1234
 <a name="parseFloat"></a>
 <h2 id="parseFloat">jQuery.parseFloat(value, radix, culture)</h2>
 <p>
-Parses a string representing a floating point number in the given the radix
-(10 by default), taking into account any formatting rules followed by the given
+Parses a string representing a floating point number in the given radix (10 by
+default), taking into account any formatting rules followed by the given
 culture (or the current culture, if not specified).
 </p>
 
