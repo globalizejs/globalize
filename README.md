@@ -159,8 +159,10 @@ rather than setting jQuery.culture to it.
 <h2 id="format">jQuery.format(value, format, culture)</h2>
 <p>
 Formats a date or number according to the given format string and the given
-culture (or the current culture if not specified). See the section below on
-number and date formatting tokens for details on the available formats.
+culture (or the current culture if not specified). See the sections
+<a href="#numbers">Number Formatting</a> and
+<a href="#dates">Date Formatting</a> below for details on the available
+formats.
 <pre>
 // assuming a culture with number grouping of 3 digits,
 // using "," separator and "." decimal symbol.
