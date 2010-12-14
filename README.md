@@ -117,8 +117,6 @@ restarts using the corresponding neutral cultures. For example, if the
 application has included only the neutral "fr" culture, any of these would
 select it:
 <pre>
-&lt;script src="jQuery.glob.fr.js" type="text/javascript">&lt;/script>
-&lt;script type="text/javascript">
 jQuery.preferCulture("fr");
 alert(jQuery.culture.name) // "fr"
 
@@ -127,7 +125,6 @@ alert(jQuery.culture.name) // "fr"
 
 jQuery.preferCulture(["es-MX", "fr-FR"]);
 alert(jQuery.culture.name) // "fr"
-&lt;/script>
 </pre>
 
 In any case, if no match is found the neutral English culture "en" is selected
