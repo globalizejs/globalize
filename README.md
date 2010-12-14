@@ -255,15 +255,15 @@ jQuery.localize("myplugin", "", { // falsy values "", null, undefined...
     bar: "bar (en)"
 });
 jQuery.localize("myplugin", "fr", {
-    foo: "foo",
-    bar: "bar"
+    foo: "foo (fr)",
+    bar: "bar (fr)"
 });
 
 jQuery.culture = jQuery.cultures["fr"];
-alert(jQuery.localize("myplugin").foo); // "foo"
+alert(jQuery.localize("myplugin").foo); // "foo (fr)"
 
 jQuery.culture = jQuery.cultures["fr-FR"];
-alert(jQuery.localize("myplugin").foo); // "foo"
+alert(jQuery.localize("myplugin").foo); // "foo (fr)"
 
 jQuery.culture = jQuery.cultures["es-MX"];
 jQuery.culture = jQuery.cultures["fr-FR"];
