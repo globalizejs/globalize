@@ -601,13 +601,14 @@ different from the typical names and are used only in certain cases.
 Also, each culture has a set of 'standard' or 'typical' formats. For example,
 in "en-US", when displaying a date in its fullest form, it looks like
 "Saturday, November 05, 1955". Note the non-abbreviated day and month name, the
-zero padded date, and four digit year. So, jquery.glob.js defines a certain set
-of 'standard' formatting strings for dates that are aliases to the specific
-formats for the culture. See the 2nd table below for the meaning of each token
-in the "en-US" examples.
+zero padded date, and four digit year. So, jquery.glob.js expects a certain set
+of 'standard' formatting strings for dates in the "patterns" property of the
+"standard" calendar of each culture, that describe specific formats for the
+culture. See the 2nd table below for the meaning of each token in the "en-US"
+examples.
 <table>
 <tr>
-  <th>Token</th>
+  <th>Format</th>
   <th>Meaning</th>
   <th>en-US (example)</th>
 </tr>
