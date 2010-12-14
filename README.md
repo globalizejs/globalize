@@ -364,8 +364,9 @@ jQuery.cultures["default"] = jQuery.cultures.en = {
     // more general, neutral culture. If a culture is already as general as it
     // can get, the language may refer to itself.
     language: "en",
-    // numberFormat defines general number formatting rules, like the digits in
-    // each grouping, the group separator, and how negative numbers are displayed.
+    // "numberFormat" defines general number formatting rules, like the digits
+    // in each grouping, the group separator, and how negative numbers are
+    // displayed.
     numberFormat: {
         // [negativePattern]
         // Note, numberFormat.pattern has no 'positivePattern' unlike percent
@@ -419,9 +420,9 @@ jQuery.cultures["default"] = jQuery.cultures.en = {
             symbol: "$"
         }
     },
-    // calendars defines all the possible calendars used by this culture.
-    // There should be at least one defined with name "standard", and is the
-    // default calendar used by the culture.
+    // "calendars" property defines all the possible calendars used by this
+    // culture. There should be at least one defined with name "standard", and
+    // is the default calendar used by the culture.
     // A calendar contains information about how dates are formatted,
     // information about the calendar's eras, a standard set of the date
     // formats, translations for day and month names, and if the calendar is
