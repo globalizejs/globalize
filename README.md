@@ -287,7 +287,7 @@ own purposes. You may also add to the culture information directly if so
 desired. It is important to do so in a way that handles the fact that the
 culture info may not be provided, may not be provided yet, or may already be
 provided. Using jQuery's extend() method, it is possible to define a culture
-in a way that both defines if it does not exist and adds to it if it does
+in a way that both defines it if it does not exist and adds to it if it does
 exist.
 </p>
 <p>
