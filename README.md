@@ -421,7 +421,7 @@ jQuery.cultures["default"] = jQuery.cultures.en = {
         }
     },
     // "calendars" property defines all the possible calendars used by this
-    // culture. There should be at least one defined with name "standard", and
+    // culture. There should be at least one defined with name "standard" which
     // is the default calendar used by the culture.
     // A calendar contains information about how dates are formatted,
     // information about the calendar's eras, a standard set of the date
