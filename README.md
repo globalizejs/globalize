@@ -111,11 +111,11 @@ have included and to set the jQuery.culture property to the culture which the
 user prefers.
 </p>
 <p>
-If you pass an array, the first culture for which there is a match (that
-culture's script has been referenced) will be used. If none match, the search
-restarts using the corresponding neutral cultures. For example, if the
-application has included only the neutral "fr" culture, any of these would
-select it:
+If you pass an array of names instead of a single name string, the first
+culture for which there is a match (that culture's script has been referenced)
+will be used. If none match, the search restarts using the corresponding
+neutral cultures. For example, if the application has included only the neutral
+"fr" culture, any of these would select it:
 <pre>
 jQuery.preferCulture("fr");
 alert(jQuery.culture.name) // "fr"
