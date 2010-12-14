@@ -151,8 +151,8 @@ culture "en" is used.
 <a name="find"></a>
 <h2 id="find">jQuery.findClosestCulture(name)</h2>
 <p>
-Just like preferCulture, but it returns the matching culture, if any, rather
-than setting jQuery.culture to it.
+Just like preferCulture(name), but it returns the matching culture, if any,
+rather than setting jQuery.culture to it.
 </p>
 
 <a name="format"></a>
