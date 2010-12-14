@@ -198,6 +198,14 @@ jQuery.parseInt("1.234,56"); // 1234
 Parses a string representing a floating point number in the given radix (10 by
 default), taking into account any formatting rules followed by the given
 culture (or the current culture, if not specified).
+<pre>
+// assuming a culture where "," is the group separator
+// and "." is the decimal separator
+jQuery.parseFloat("1,234.56"); // 1234.56
+// assuming a culture where "." is the group separator
+// and "," is the decimal separator
+jQuery.parseFloat("1.234,56"); // 1234.56
+</pre>
 </p>
 
 <a name="parseDate"></a>
