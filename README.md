@@ -507,9 +507,8 @@ jQuery.cultures["default"] = jQuery.cultures.en = {
                 http://blogs.msdn.com/michkap/archive/2004/12/25/332259.aspx
             convert:
                 Allows for the support of non-gregorian based calendars. This
-                convert object is used to convert a date to and from a
-                gregorian calendar date to handle parsing and formatting.
-                The two functions:
+                "convert" object defines two functions to convert a date to and
+                from a gregorian calendar date:
                     fromGregorian(date)
                         Given the date as a parameter, return an array with
                         parts [year, month, day] corresponding to the
