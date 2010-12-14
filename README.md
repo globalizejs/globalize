@@ -246,8 +246,8 @@ var obj = jQuery.localize("myplugin", "fr");
 alert(obj.foo); // "foo"
 </pre>
 Note that localize() will find the closest match available per the same
-semantics as the jQuery.findClosestCulture function. If there is no match, the
-translation given is for the neutral English culture "en" by default.
+semantics as the jQuery.findClosestCulture() function. If there is no match,
+the translation given is for the neutral English culture "en" by default.
 <pre>
 jQuery.localize("myplugin", "", {
     foo: "foo (en)",
