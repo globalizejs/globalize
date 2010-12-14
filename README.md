@@ -249,7 +249,8 @@ Note that localize() will find the closest match available per the same
 semantics as the jQuery.findClosestCulture() function. If there is no match,
 the translation given is for the neutral English culture "en" by default.
 <pre>
-jQuery.localize("myplugin", "", {
+jQuery.localize("myplugin", "", { // falsy values "", null, undefined...
+                                  // are all equivalent to "en" or "default"
     foo: "foo (en)",
     bar: "bar (en)"
 });
