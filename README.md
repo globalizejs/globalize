@@ -273,7 +273,7 @@ script. You may use localize() for localization purposes without utilizing the
 parsing and formatting functions which depend on the cultures. If you do use
 both, it does not matter what order you include them in, either may be first
 -- the jQuery.glob.&lt;code&gt;.js script, or your own script which uses
-localize().
+localize(), as long as property names do not overlap.
 </p>
 
 <a name="extend"></a>
