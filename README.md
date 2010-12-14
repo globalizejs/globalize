@@ -656,7 +656,7 @@ in the "en-US" examples.
 <p>
 In addition to these standard formats, there is the 'S' format. This is a
 sortable format that is always the same for every culture:
-<strong>yyyy'-'MM'-'dd'T'HH':'mm':'ss</strong>.
+"<strong>yyyy'-'MM'-'dd'T'HH':'mm':'ss</strong>".
 </p>
 <p>
 When more specific control is needed over the formatting, you may use any
