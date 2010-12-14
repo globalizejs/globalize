@@ -266,7 +266,6 @@ jQuery.culture = jQuery.cultures["fr-FR"];
 alert(jQuery.localize("myplugin").foo); // "foo (fr)"
 
 jQuery.culture = jQuery.cultures["es-MX"];
-jQuery.culture = jQuery.cultures["fr-FR"];
 alert(jQuery.localize("myplugin").foo); // "foo (en)"
 </pre>
 Also note that localize() does not require loading the culture information
