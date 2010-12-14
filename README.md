@@ -475,8 +475,8 @@ jQuery.cultures["default"] = jQuery.cultures.en = {
             // starting from the current year: "+19" would correspond to 2029
             // if the current year is 2010.
             twoDigitYearMax: 2029,
-            // set of predefined date and time patterns used by the culture
-            // these represent the format someone in this culture would expect
+            // set of predefined date and time patterns used by the culture.
+            // These represent the format someone in this culture would expect
             // to see given the portions of the date that are shown.
             patterns: {
                 // short date pattern
