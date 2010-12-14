@@ -338,7 +338,7 @@ The neutral English culture is listed here along with the comments:
 <pre>
 jQuery.cultures["default"] = jQuery.cultures.en = {
     // A unique name for the culture in the form
-    // &lt;language code&gt;-&lt;country/region code&lt;
+    // &lt;language code&gt;-&lt;country/region code&gt;
     name: "English",
     // the name of the culture in the English language
     englishName: "English",
