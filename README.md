@@ -740,7 +740,7 @@ format you wish by specifing the following custom tokens:
 </tr>
 <tr>
    <td>h</td>
-   <td>Hours (leading zero)</td>
+   <td>Hours (no leading zero)</td>
    <td>6</td>
 </tr>
 <tr>
