@@ -721,12 +721,12 @@ format you wish by specifing the following custom tokens:
 <tr>
    <td>'literal'</td>
    <td>Literal Text</td>
-   <td>'Hmmmm'...</td>
+   <td>'of the clock'</td>
 </tr>
 <tr>
    <td>\'</td>
    <td>Single Quote</td>
-   <td>&nbsp;</td>
+   <td>'o'\''clock'</td><!-- o'clock -->
 </tr>
 <tr>
    <td>m</td>
