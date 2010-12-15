@@ -740,12 +740,12 @@ format you wish by specifing the following custom tokens:
 </tr>
 <tr>
    <td>h</td>
-   <td>Hours (no leading zero)</td>
+   <td>Hours (12 hour time, no leading zero)</td>
    <td>6</td>
 </tr>
 <tr>
    <td>hh</td>
-   <td>Hours (leading zero)</td>
+   <td>Hours (12 hour time, leading zero)</td>
    <td>06</td>
 </tr>
 <tr>
