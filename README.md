@@ -604,13 +604,13 @@ in "en-US", when displaying a date in its fullest form, it looks like
 zero padded date, and four digit year. So, jquery.glob.js expects a certain set
 of 'standard' formatting strings for dates in the "patterns" property of the
 "standard" calendar of each culture, that describe specific formats for the
-culture. See the 2nd table below for the meaning of each token in the "en-US"
-examples.
+culture. The third column shows example values in the neutral English culture
+"en-US"; see the second table for the meaning tokens used in date formats.
 <table>
 <tr>
   <th>Format</th>
   <th>Meaning</th>
-  <th>en-US (example)</th>
+  <th>"en-US"</th>
 </tr>
 <tr>
    <td>f</td>
