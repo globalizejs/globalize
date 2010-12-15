@@ -656,7 +656,7 @@ culture. The third column shows example values in the neutral English culture
 </p>
 <p>
 In addition to these standard formats, there is the 'S' format. This is a
-sortable format that is always the same for every culture:
+sortable format that is identical in every culture:
 "<strong>yyyy'-'MM'-'dd'T'HH':'mm':'ss</strong>".
 </p>
 <p>
