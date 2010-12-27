@@ -8,8 +8,7 @@
  */
 (function() {
 
-var Globalization = {},
-    localized = { en: {} };
+var Globalization = {}, localized = { en: {} };
 localized["default"] = localized.en;
 
 Globalization.extend = function( deep ) {
@@ -110,10 +109,12 @@ Globalization.preferCulture = function(name) {
     this.culture = this.findClosestCulture( name ) || this.cultures["default"];
 }
 Globalization.localize = function(key, culture, value) {
-    if (typeof culture === 'string') {
-        culture = culture || "default";
-        culture = this.cultures[ culture ] || { name: culture };
+    // usign default culture in case culture is not provided
+    if (typeof culture !== 'string') {
+        culture = this.culture.name || this.culture || "default";
     }
+    culture = this.cultures[ culture ] || { name: culture };
+
     var local = localized[ culture.name ];
     if ( arguments.length === 3 ) {
         if ( !local) {
@@ -301,7 +302,7 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
     // And the 'zh-SG' culture is Simplified Chinese in Singapore, whose lanugage
     // field is "zh-CHS", not "zh".
     // This field should be used to navigate from a specific culture to it's
-    // more general, neutral culture. If a culture is already as general as it 
+    // more general, neutral culture. If a culture is already as general as it
     // can get, the language may refer to itself.
     language: "en",
     // numberFormat defines general number formatting rules, like the digits in
@@ -311,7 +312,7 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
         // Note, numberFormat.pattern has no 'positivePattern' unlike percent and currency,
         // but is still defined as an array for consistency with them.
         //  negativePattern: one of "(n)|-n|- n|n-|n -"
-        pattern: ["-n"], 
+        pattern: ["-n"],
         // number of decimal places normally shown
         decimals: 2,
         // string that separates number groups, as in 1,000,000
@@ -329,7 +330,7 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
             // [negativePattern, positivePattern]
             //     negativePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
             //     positivePattern: one of "n %|n%|%n|% n"
-            pattern: ["-n %","n %"], 
+            pattern: ["-n %","n %"],
             // number of decimal places normally shown
             decimals: 2,
             // array of numbers indicating the size of each number group.
@@ -393,7 +394,7 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
             },
             // AM and PM designators in one of these forms:
             // The usual view, and the upper and lower case versions
-            //      [standard,lowercase,uppercase] 
+            //      [standard,lowercase,uppercase]
             // The culture does not use AM or PM (likely all standard date formats use 24 hour time)
             //      null
             AM: ["AM", "am", "AM"],
@@ -447,7 +448,7 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
                         Given the date as a parameter, return an array with parts [year, month, day]
                         corresponding to the non-gregorian based year, month, and day for the calendar.
                     toGregorian(year, month, day)
-                        Given the non-gregorian year, month, and day, return a new Date() object 
+                        Given the non-gregorian year, month, and day, return a new Date() object
                         set to the corresponding date in the gregorian calendar.
             */
         }
@@ -516,7 +517,7 @@ function expandNumber(number, precision, formatInfo) {
         rounded = number;
     }
     number = rounded;
-        
+
     var numberString = number+"",
         right = "",
         split = numberString.split(/e/i),
@@ -525,7 +526,7 @@ function expandNumber(number, precision, formatInfo) {
     split = numberString.split( "." );
     numberString = split[ 0 ];
     right = split.length > 1 ? split[ 1 ] : "";
-        
+
     var l;
     if ( exponent > 0 ) {
         right = zeroPad( right, exponent, false );
@@ -732,7 +733,7 @@ function getEraYear(date, cal, era, sortable) {
         // convert normal gregorian year to era-shifted gregorian
         // year by subtracting the era offset
         year -= cal.eras[ era ].offset;
-    }    
+    }
     return year;
 }
 
@@ -1157,7 +1158,7 @@ function formatDate(value, format, culture) {
         }
         return r;
     }
-    
+
     function hasDay() {
         if ( foundDay || checkedDay ) {
             return foundDay;
@@ -1166,7 +1167,7 @@ function formatDate(value, format, culture) {
         checkedDay = true;
         return foundDay;
     }
-    
+
     function getPart( date, part ) {
         if ( converted ) {
             return converted[ part ];
@@ -1201,7 +1202,7 @@ function formatDate(value, format, culture) {
             ret.push( ar[ 0 ] );
             continue;
         }
-        
+
         var current = ar[ 0 ],
             clength = current.length;
 
@@ -1288,7 +1289,7 @@ function formatDate(value, format, culture) {
                 // Milliseconds
                 ret.push( padZeros( value.getMilliseconds(), 3 ).substr( 0, clength ) );
                 break;
-            case "z": 
+            case "z":
                 // Time zone offset, no leading zero
             case "zz":
                 // Time zone offset with leading zero
