@@ -32,3 +32,9 @@ test('retrieve plugin translations with assigned culture', function() {
   });
   strictEqual( $.localize("jQuery.localize").day, "Tag", "translate 'day' to german" );
 });
+
+test('retrieve transtaltions with new culture', function() {
+  $.culture = "pirate";
+  $.localize("translate", "pirate", "TARRRR");
+  strictEqual( $.localize("translate"), "TARRRR", "translate 'translate' to pirate language" );
+});

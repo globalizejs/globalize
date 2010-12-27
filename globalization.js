@@ -107,7 +107,7 @@ Globalization.preferCulture = function(name) {
 Globalization.localize = function(key, culture, value) {
     // usign default culture in case culture is not provided
     if (typeof culture !== 'string') {
-        culture = this.culture.name || "default";
+        culture = this.culture.name || this.culture || "default";
     }
     culture = this.cultures[ culture ] || { name: culture };
     var local = localized[ culture.name ];
