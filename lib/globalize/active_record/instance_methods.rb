@@ -28,8 +28,8 @@ module Globalize
         globalize.write(locale || Globalize.locale, name, value) if translated?(name)
       end
 
-      def read_attribute(name, locale = nil)
-        if self.class.translated?(name)
+      def read_attribute(name, locale = nil, access_raw_attribute = false)
+        if self.class.translated?(name) and !access_raw_attribute
           globalize.fetch(locale || Globalize.locale, name)
         else
           super(name)
@@ -48,6 +48,12 @@ module Globalize
         translated_attribute_names.inject({}) do |attributes, name|
           attributes.merge(name.to_s => send(name))
         end
+      end
+
+      def untranslated_attributes
+        attrs = {}
+        attribute_names.each { |name| attrs[name] = read_attribute(name, nil, true) }
+        attrs
       end
 
       def set_translations(options)
