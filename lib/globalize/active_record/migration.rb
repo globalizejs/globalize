@@ -71,11 +71,28 @@ module Globalize
         end
 
         def move_data_to_translation_table
-          # TODO
+          # Find all of the existing untranslated attributes for this model.
+          all_model_fields = @model.all
+          model_attributes = all_model_fields.collect {|m| m.untranslated_attributes}
+          all_model_fields.each do |model_record|
+            # Assign the attributes back to the model which will enable globalize3 to translate them.
+            model_record.attributes = model_attributes.detect{|a| a['id'] == model_record.id}
+            model_record.save!
+          end
         end
 
         def move_data_to_model_table
-          # TODO
+          # Find all of the translated attributes for all records in the model.
+          all_translated_attributes = @model.all.collect{|m| m.attributes}
+          all_translated_attributes.each do |translated_record|
+            # Create a hash containing the translated column names and their values.
+            translated_attribute_names.inject(fields_to_update={}) do |f, name|
+              f.update({name.to_sym => translated_record[name.to_s]})
+            end
+
+            # Now, update the actual model's record with the hash.
+            @model.update_all(fields_to_update, {:id => translated_record['id']})
+          end
         end
 
         def validate_translated_fields
