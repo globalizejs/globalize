@@ -28,8 +28,9 @@ module Globalize
         globalize.write(locale || Globalize.locale, name, value) if translated?(name)
       end
 
-      def read_attribute(name, locale = nil, access_raw_attribute = false)
-        if self.class.translated?(name) and !access_raw_attribute
+      def read_attribute(name, locale = nil, options = {})
+        options = {:untranslated => false}.merge(options)
+        if self.class.translated?(name) and !options[:untranslated]
           globalize.fetch(locale || Globalize.locale, name)
         else
           super(name)
@@ -50,9 +51,13 @@ module Globalize
         end
       end
 
+      # This method is basically the method built into Rails
+      # but we have to pass {:untranslated => true}
       def untranslated_attributes
         attrs = {}
-        attribute_names.each { |name| attrs[name] = read_attribute(name, nil, true) }
+        attribute_names.each do |name|
+          attrs[name] = read_attribute(name, nil, {:untranslated => true})
+        end
         attrs
       end
 
