@@ -43,7 +43,7 @@ module Globalize
         if(klass.nil? || (klass.class_name != (self.class_name + "Translation")))
           klass = self.const_set(:Translation, Class.new(Globalize::ActiveRecord::Translation))
         end
-        
+
         if klass.table_name == 'translations'
           klass.set_table_name(translation_options[:table_name])
           klass.belongs_to name.underscore.gsub('/', '_')
@@ -76,10 +76,10 @@ module Globalize
 
         def translated_attr_accessor(name)
           define_method(:"#{name}=") do |value|
-            write_attribute(name, value, Globalize.locale)
+            write_attribute(name, value)
           end
           define_method(name) do |*args|
-            read_attribute(name, args.first || Globalize.locale)
+            read_attribute(name, {:locale => args.first})
           end
           alias_method :"#{name}_before_type_cast", name
         end

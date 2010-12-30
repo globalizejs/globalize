@@ -23,24 +23,39 @@ module Globalize
         with_given_locale(attributes) { super }
       end
 
-      def write_attribute(name, value, locale = nil)
+      def write_attribute(name, value, options = {})
         super(name, value)
-        globalize.write(locale || Globalize.locale, name, value) if translated?(name)
+
+        if translated?(name)
+          # Deprecate old use of locale
+          unless options.is_a?(Hash)
+            warn "[DEPRECATION] passing 'locale' as #{options.inspect} is deprecated. Please use {:locale => #{options.inspect}} instead."
+            options = {:locale => options}
+          end
+          options = {:locale => nil}.merge(options)
+          globalize.write(options[:locale] || Globalize.locale, name, value)
+        end
       end
 
-      def read_attribute(name, locale = nil, options = {})
-        options = {:untranslated => false}.merge(options)
-        if self.class.translated?(name) and !options[:untranslated]
-          globalize.fetch(locale || Globalize.locale, name)
+      def read_attribute(name, options = {})
+        # Deprecate old use of locale
+        unless options.is_a?(Hash)
+          warn "[DEPRECATION] passing 'locale' as #{options.inspect} is deprecated. Please use {:locale => #{options.inspect}} instead."
+          options = {:locale => options}
+        end
+
+        options = {:translated => true, :locale => nil}.merge(options)
+        if self.class.translated?(name) and options[:translated]
+          globalize.fetch(options[:locale] || Globalize.locale, name)
         else
           super(name)
         end
       end
-          
+
       def attribute_names
         translated_attribute_names.map(&:to_s) + super
       end
-      
+
       def translated?(name)
         self.class.translated?(name)
       end
@@ -52,11 +67,11 @@ module Globalize
       end
 
       # This method is basically the method built into Rails
-      # but we have to pass {:untranslated => true}
+      # but we have to pass {:translated => false}
       def untranslated_attributes
         attrs = {}
         attribute_names.each do |name|
-          attrs[name] = read_attribute(name, nil, {:untranslated => true})
+          attrs[name] = read_attribute(name, {:translated => false})
         end
         attrs
       end
