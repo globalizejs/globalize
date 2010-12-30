@@ -60,3 +60,6 @@ class UppercaseTableName < ActiveRecord::Base
   set_table_name "UPPERCASE_TABLE_NAME"
   translates :name
 end
+
+class Untranslated < ActiveRecord::Base
+end

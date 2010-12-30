@@ -49,6 +49,10 @@ ActiveRecord::Schema.define do
     t.string :untranslated
   end
 
+  create_table :untranslateds, :force => true do |t|
+    t.string :name
+  end
+
   create_table :validatees, :force => true do |t|
   end
 
