@@ -24,8 +24,11 @@ module Globalize
       end
 
       def write_attribute(name, value, locale = nil)
-        super(name, value)
-        globalize.write(locale || Globalize.locale, name, value) if translated?(name)
+        # Make sure that we return some value as some methods might 
+        # rely on the data
+        return_value = super(name, value)
+        return_value = globalize.write(locale || Globalize.locale, name, value) if translated?(name)
+        return_value
       end
 
       def read_attribute(name, locale = nil)
