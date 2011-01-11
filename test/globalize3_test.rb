@@ -101,6 +101,12 @@ class Globalize3Test < Test::Unit::TestCase
     assert post.to_xml =~ %r(<content>bar</content>)
   end
 
+  test "to_xml doesn't affect untranslated models" do
+    blog = Blog.create(:description => "my blog")
+    blog.reload
+    assert blog.to_xml =~ %r(<description>my blog</description>)
+  end
+
   test "translated_locales returns locales that have translations" do
     first = Post.create!(:title => 'title', :locale => :en)
     first.update_attributes(:title => 'Title', :locale => :de)

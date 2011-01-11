@@ -74,7 +74,7 @@ module Globalize
           value, requested_locale = nil, locale
 
           Globalize.fallbacks(locale).each do |fallback|
-            translation = translations.detect { |t| t.locale == fallback }
+            translation = translations.to_a.detect { |t| t.locale == fallback }
             value  = translation && translation.send(name)
             locale = fallback && break if value
           end
@@ -97,3 +97,4 @@ module Globalize
     end
   end
 end
+
