@@ -58,15 +58,15 @@ Note that the ActiveRecord model @Post@ must already exist and have a @translate
 
 h2. Migrating existing data to and from the translated version
 
-As well as creating a translation table, you can also use @create_translation_table!@ to migrate across any 
-existing data to the default locale. This can also operate in reverse to restore any translations from the default locale 
+As well as creating a translation table, you can also use @create_translation_table!@ to migrate across any
+existing data to the default locale. This can also operate in reverse to restore any translations from the default locale
 back to the model when you don't want to use a translation table anymore using @drop_translation_table!@
 
 This feature makes use of @untranslated_fields@ which allows access to the model's attributes as they were before
 the translation was applied. Here's an example (which assumes you already have a model called @Post@ and its table exists):
 
 <pre><code>
-  class CreatePosts < ActiveRecord::Migration
+  class TranslatePosts < ActiveRecord::Migration
     def self.up
       Post.create_translation_table!({
         :title => :string,
