@@ -7,22 +7,21 @@ languages and countries, as well as an extensible system for localization.
 <ul>
 <li><a href="#why">Why Globalization</a></li>
 <li><a href="#what">What is a Culture?</a></li>
-<li><a href="#cultures">jQuery.cultures</a></li>
-<li><a href="#culture">jQuery.culture</a></li>
-<li><a href="#prefer">jQuery.preferCulture</a></li>
-<li><a href="#find">jQuery.findClosestCulture</a></li>
-<li><a href="#format">jQuery.format</a></li>
-<li><a href="#parseInt">jQuery.parseInt</a></li>
-<li><a href="#parseFloat">jQuery.parseFloat</a></li>
-<li><a href="#parseDate">jQuery.parseDate</a></li>
-<li><a href="#localize">jQuery.localize</a></li>
+<li><a href="#cultures">jQuery.global.cultures</a></li>
+<li><a href="#culture">jQuery.global.culture</a></li>
+<li><a href="#prefer">jQuery.global.preferCulture</a></li>
+<li><a href="#find">jQuery.global.findClosestCulture</a></li>
+<li><a href="#format">jQuery.global.format</a></li>
+<li><a href="#parseInt">jQuery.global.parseInt</a></li>
+<li><a href="#parseFloat">jQuery.global.parseFloat</a></li>
+<li><a href="#parseDate">jQuery.global.parseDate</a></li>
+<li><a href="#localize">jQuery.global.localize</a></li>
 <li><a href="#extend">Utilizing and Extending Cultures</a></li>
 <li><a href="#defining">Defining Culture Information</a></li>
 <li><a href="#numbers">Number Formatting</a></li>
 <li><a href="#dates">Date Formatting</a></li>
 </ul>
 
-<a name="why"></a>
 <h2 id="why">Why Globalization?</h2>
 <p>
 Each language, and the countries that speak that language, have different
@@ -37,15 +36,14 @@ those characters differ as well.
 <p>
 A user using an application should be able to read and write dates and numbers
 in the format they are accustomed to. This plugin makes this possible,
-providing an API to convert user-entered number and date strings -- in their
-own format -- into actual numbers and dates, and conversely, to format numbers
+providing an API to convert user-entered number and date strings - in their
+own format - into actual numbers and dates, and conversely, to format numbers
 and dates into that string format.
 </p>
 
-<a name="what"></a>
 <h2 id="what">What is a Culture?</h2>
 <p>
-jquery.glob.js defines roughly 350 cultures. Part of the reason for this large
+jquery.global.js defines roughly 350 cultures. Part of the reason for this large
 number, besides there being a lot of cultures in the world, is because for
 some languages, expectations differ amoung the countries that speak it.
 English, for example, is an official language in dozens of countries. Despite
@@ -71,32 +69,29 @@ whatever the country. Neutral cultures are defined only by their language code.
 For example, "es" is the neutral culture for Spanish.
 </p>
 
-<a name="cultures"></a>
-<h2 id="cultures">jQuery.cultures</h2>
+<h2 id="cultures">jQuery.global.cultures</h2>
 <p>
-A mapping of culture codes to culture objects. For example, jQuery.cultures.fr
-is an object representing the complete culture definition for the neutral
-French culture. Note that jquery.glob.js alone only includes an English culture.
-To get additional cultures, you must seperately reference one or more of the
-culture scripts that come with it. You can see in the section
-<a href="#defining">Defining Culture Information</a> below which fields are
-defined in each culture.
+A mapping of culture codes to culture objects. For example,
+jQuery.global.cultures.fr is an object representing the complete culture
+definition for the neutral French culture. Note that jquery.global.js alone only
+includes an English culture. To get additional cultures, you must seperately
+reference one or more of the culture scripts that come with it. You can see in
+the section <a href="#defining">Defining Culture Information</a> below which
+fields are defined in each culture.
 </p>
 
-<a name="culture"></a>
-<h2 id="culture">jQuery.culture</h2>
+<h2 id="culture">jQuery.global.culture</h2>
 <p>
 This property is set to the culture currently selected. An optional culture can
 be specified for the various parsing and formatting functions; it defaults to
-jQuery.culture when omitted. To change the current culture, set it to one of
-the available cultures, for example:
+jQuery.global.culture when omitted. To change the current culture, set it to one
+of the available cultures, for example:
 <pre>
-jQuery.culture = jQuery.cultures["fr-FR"];
+jQuery.global.culture = jQuery.global.cultures["fr-FR"];
 </pre>
 </p>
 
-<a name="prefer"></a>
-<h2 id="prefer">jQuery.preferCulture(name)</h2>
+<h2 id="prefer">jQuery.global.preferCulture(name)</h2>
 <p>
 An application that supports globalization and/or localization will need to
 have a way to determine the user's preference. Attempting to automatically
@@ -107,8 +102,8 @@ offer the user a choice, by whatever means.
 Whatever your mechanism, it is likely that you will have to correlate the
 user's preferences with the list of cultures supported in the app. This
 function allows you to select the best match given the culture scripts that you
-have included and to set the jQuery.culture property to the culture which the
-user prefers.
+have included and to set the jQuery.global.culture property to the culture which
+the user prefers.
 </p>
 <p>
 If you pass an array of names instead of a single name string, the first
@@ -117,14 +112,14 @@ will be used. If none match, the search restarts using the corresponding
 neutral cultures. For example, if the application has included only the neutral
 "fr" culture, any of these would select it:
 <pre>
-jQuery.preferCulture("fr");
-alert(jQuery.culture.name) // "fr"
+jQuery.global.preferCulture("fr");
+alert(jQuery.global.culture.name) // "fr"
 
-jQuery.preferCulture("fr-FR");
-alert(jQuery.culture.name) // "fr"
+jQuery.global.preferCulture("fr-FR");
+alert(jQuery.global.culture.name) // "fr"
 
-jQuery.preferCulture(["es-MX", "fr-FR"]);
-alert(jQuery.culture.name) // "fr"
+jQuery.global.preferCulture(["es-MX", "fr-FR"]);
+alert(jQuery.global.culture.name) // "fr"
 </pre>
 
 In any case, if no match is found the neutral English culture "en" is selected
@@ -137,26 +132,24 @@ Each culture string may also follow the pattern defined in
 that indicates an estimate of the user's preference for the language.
 
 <pre>
-jQuery.preferCulture("fr;q=0.4, es;q=0.5, he");
+jQuery.global.preferCulture("fr;q=0.4, es;q=0.5, he");
 </pre>
 In this example, the neutral Hebrew culture "he" is given top priority (an
 unspecified quality is equal to 1). If that language is not an exact match for
-any of the cultures available in jQuery.cultures, then "es" is the next highest
-priority with 0.5, etc. If none of these match, just like with the array syntax,
-the search starts over and the same rules are applied to the corresponding
-neutral language culture for each. If still none match, the neutral English
-culture "en" is used.
+any of the cultures available in jQuery.global.cultures, then "es" is the next
+highest priority with 0.5, etc. If none of these match, just like with the array
+syntax, the search starts over and the same rules are applied to the
+corresponding neutral language culture for each. If still none match, the
+neutral English culture "en" is used.
 </p>
 
-<a name="find"></a>
-<h2 id="find">jQuery.findClosestCulture(name)</h2>
+<h2 id="find">jQuery.global.findClosestCulture(name)</h2>
 <p>
 Just like preferCulture(name), but it just returns the matching culture, if
-any, without setting it to the jQuery.culture property.
+any, without setting it to the jQuery.global.culture property.
 </p>
 
-<a name="format"></a>
-<h2 id="format">jQuery.format(value, format, culture)</h2>
+<h2 id="format">jQuery.global.format(value, format, culture)</h2>
 <p>
 Formats a date or number according to the given format string and the given
 culture (or the current culture if not specified). See the sections
@@ -166,18 +159,17 @@ formats.
 <pre>
 // assuming a culture with number grouping of 3 digits,
 // using "," separator and "." decimal symbol.
-jQuery.format(1234.567, "n"); // "1,234.57"
-jQuery.format(1234.567, "n1"); // "1,234.6"
-jQuery.format(1234.567, "n0"); // "1,235"
+jQuery.global.format(1234.567, "n"); // "1,234.57"
+jQuery.global.format(1234.567, "n1"); // "1,234.6"
+jQuery.global.format(1234.567, "n0"); // "1,235"
 
 // assuming a culture with "/" as the date separator symbol
-jQuery.format(new Date(1955,10,5), "yyyy/MM/dd"); // 1955/11/05
-jQuery.format(new Date(1955,10,5), "dddd MMMM d, yyyy"); // Saturday November 5, 1955
+jQuery.global.format(new Date(1955,10,5), "yyyy/MM/dd"); // "1955/11/05"
+jQuery.global.format(new Date(1955,10,5), "dddd MMMM d, yyyy"); // "Saturday November 5, 1955"
 </pre>
 </p>
 
-<a name="parseInt"></a>
-<h2 id="parseInt">jQuery.parseInt(value, radix, culture)</h2>
+<h2 id="parseInt">jQuery.global.parseInt(value, radix, culture)</h2>
 <p>
 Parses a string representing a whole number in the given radix (10 by default),
 taking into account any formatting rules followed by the given culture (or the
@@ -185,15 +177,14 @@ current culture, if not specified).
 <pre>
 // assuming a culture where "," is the group separator
 // and "." is the decimal separator
-jQuery.parseInt("1,234.56"); // 1234
+jQuery.global.parseInt("1,234.56"); // 1234
 // assuming a culture where "." is the group separator
 // and "," is the decimal separator
-jQuery.parseInt("1.234,56"); // 1234
+jQuery.global.parseInt("1.234,56"); // 1234
 </pre>
 </p>
 
-<a name="parseFloat"></a>
-<h2 id="parseFloat">jQuery.parseFloat(value, radix, culture)</h2>
+<h2 id="parseFloat">jQuery.global.parseFloat(value, radix, culture)</h2>
 <p>
 Parses a string representing a floating point number in the given radix (10 by
 default), taking into account any formatting rules followed by the given
@@ -201,82 +192,80 @@ culture (or the current culture, if not specified).
 <pre>
 // assuming a culture where "," is the group separator
 // and "." is the decimal separator
-jQuery.parseFloat("1,234.56"); // 1234.56
+jQuery.global.parseFloat("1,234.56"); // 1234.56
 // assuming a culture where "." is the group separator
 // and "," is the decimal separator
-jQuery.parseFloat("1.234,56"); // 1234.56
+jQuery.global.parseFloat("1.234,56"); // 1234.56
 </pre>
 </p>
 
-<a name="parseDate"></a>
-<h2>jQuery.parseDate(value, formats, culture)</h2>
+<h2 id="parseDate">jQuery.global.parseDate(value, formats, culture)</h2>
 <p>
 Parses a string representing a date into a JavaScript Date object, taking into
 account the given possible formats (or the given culture's set of default
 formats if not given). As before, the current culture is used if one is not
 specified.
 <pre>
-jQuery.culture = jQuery.culture.en;
-jQuery.parseDate("1/2/2003"); // Thu Jan 02 2003
-jQuery.culture = jQuery.culture.fr;
-jQuery.parseDate("1/2/2003"); // Sat Feb 01 2003
+jQuery.global.culture = jQuery.culture.en;
+jQuery.global.parseDate("1/2/2003"); // Thu Jan 02 2003
+jQuery.global.culture = jQuery.culture.fr;
+jQuery.global.parseDate("1/2/2003"); // Sat Feb 01 2003
 </pre>
 </p>
 
-<a name="localize"></a>
-<h2 id="localize">jQuery.localize(key, culture, value)</h2>
+<h2 id="localize">jQuery.global.localize(key, culture, value)</h2>
 <p>
 Gets or sets a localized value. This function allows you to extend the
 information available to a particular culture, and to easily retrieve it
 without worrying about finding the most appropriate culture. For example, to
 define the word 'translate' in French:
 <pre>
-jQuery.localize("translate", "fr", "traduire");
+jQuery.global.localize("translate", "fr", "traduire");
 </pre>
-The value may be any value you wish -- a string, number, object, etc. You can
+The value may be any value you wish: a string, number, object, etc. You can
 then define a grouping of localized values common to a feature, plugin, or
 application.
 <pre>
-jQuery.localize("myplugin", "fr", {
+jQuery.global.localize("myplugin", "fr", {
     foo: "foo",
     bar: "bar"
 });
 
-var obj = jQuery.localize("myplugin", "fr");
+var obj = jQuery.global.localize("myplugin", "fr");
 alert(obj.foo); // "foo"
 </pre>
 Note that localize() will find the closest match available per the same
-semantics as the jQuery.findClosestCulture() function. If there is no match,
-the translation given is for the neutral English culture "en" by default.
+semantics as the jQuery.global.findClosestCulture() function. If there is no
+match, the translation given is for the neutral English culture "en" by default.
 <pre>
-jQuery.localize("myplugin", "", { // falsy values "", null, undefined...
-                                  // are all equivalent to "en" or "default"
+// falsy values "", null, undefined...
+// are all equivalent to "en" or "default"
+jQuery.global.localize("myplugin", "", { 
     foo: "foo (en)",
     bar: "bar (en)"
 });
-jQuery.localize("myplugin", "fr", {
+jQuery.global.localize("myplugin", "fr", {
     foo: "foo (fr)",
     bar: "bar (fr)"
 });
 
-jQuery.culture = jQuery.cultures["fr"];
-alert(jQuery.localize("myplugin").foo); // "foo (fr)"
+jQuery.global.culture = jQuery.global.cultures["fr"];
+alert(jQuery.global.localize("myplugin").foo); // "foo (fr)"
 
-jQuery.culture = jQuery.cultures["fr-FR"];
-alert(jQuery.localize("myplugin").foo); // "foo (fr)"
+jQuery.global.culture = jQuery.global.cultures["fr-FR"];
+alert(jQuery.global.localize("myplugin").foo); // "foo (fr)"
 
-jQuery.culture = jQuery.cultures["es-MX"];
-alert(jQuery.localize("myplugin").foo); // "foo (en)"
+jQuery.global.culture = jQuery.global.cultures["es-MX"];
+alert(jQuery.global.localize("myplugin").foo); // "foo (en)"
 </pre>
 Also note that localize() does not require loading the culture information
 script. You may use localize() for localization purposes without utilizing the
 parsing and formatting functions which depend on the cultures. If you do use
 both, it does not matter what order you include them in, either may be first
--- the jquery.glob.&lt;code&gt;.js script, or your own script which uses
+-- the jquery.global.&lt;code&gt;.js script, or your own script which uses
 localize(), as long as property names do not overlap.
 </p>
 
-<a name="extend"></a>
 <h2 id="extend">Utilizing and Extending Cultures</h2>
 <p>
 The culture information included with each culture is mostly necessary for the
@@ -298,33 +287,32 @@ provide functionality to your app or custom plugin that needed to know how many
 zeros are in a 'billion', you could extend the culture information as follows:
 <pre>
 // define culture information without overwriting any existing values 
-jQuery.cultures.fr = jQuery.extend(true, {
+jQuery.global.cultures.fr = jQuery.extend(true, {
     numberFormat: {
         billionZeros: 12
     }
-}, jQuery.cultures.fr);
+}, jQuery.global.cultures.fr);
 </pre>
 Using this mechanism, the "fr" culture will be created if it does not exist.
 And if it does, the given values will be added to it, taking care not to
 overwrite anything that is already defined (if you'd prefer to overwrite, you'd
-switch the last two arguments). When the jquery.glob.fr.js script is eventually
+switch the last two arguments). When the jquery.global.fr.js script is eventually
 included, it too uses this technique, ensuring addition to the already-defined
 culture information.
 </p>
 
-<a name="defining"></a>
 <h2 id="defining">Defining Culture Information</h2>
 <p>
 Each culture is defined in its own script with the naming scheme
-jquery.glob.&lt;code&gt;.js (along with its minified version,
-jquery.glob.&lt;code&gt;.min.js). You may include any number of these scripts,
-making them available in the jQuery.cultures mapping. Including one of these
-scripts does NOT automatically make it the current culture selected in the
-jQuery.culture property.
+jquery.global.&lt;code&gt;.js (along with its minified version,
+jquery.global.&lt;code&gt;.min.js). You may include any number of these scripts,
+making them available in the jQuery.global.cultures mapping. Including one of
+these scripts does NOT automatically make it the current culture selected in the
+jQuery.global.culture property.
 </p>
 <p>
-The neutral English culture is defined directly in jquery.glob.js, and set
-both to the properties "en" and "default" of the jQuery.cultures mapping.
+The neutral English culture is defined directly in jquery.global.js, and set
+both to the properties "en" and "default" of the jQuery.global.cultures mapping.
 Extensive comments describe the purpose of each of the fields defined.
 </p>
 <p>
@@ -336,7 +324,7 @@ differ from neutral English.
 <p>
 The neutral English culture is listed here along with the comments:
 <pre>
-jQuery.cultures["default"] = jQuery.cultures.en = {
+jQuery.global.cultures["default"] = jQuery.global.cultures.en = {
     // A unique name for the culture in the form
     // &lt;language code&gt;-&lt;country/region code&gt;
     name: "English",
@@ -531,14 +519,13 @@ use by setting the "calendar" field. Take a look at the calendars defined by
 each culture by looking at the script or enumerating its calendars collection.
 <pre>
 // switch to a non-standard calendar
-$.culture.calendar = $.culture.calendars.SomeOtherCalendar;
+$.global.culture.calendar = $.global.culture.calendars.SomeOtherCalendar;
 // back to the standard calendar
-$.culture.calendar = $.culture.calendars.standard;
+$.global.culture.calendar = $.global.culture.calendars.standard;
 </pre>
 
 </p>
 
-<a name="numbers"></a>
 <h2 id="numbers">Number Formatting</h2>
 <p>
 When formatting a number with format(), the main purpose is to convert the
@@ -568,27 +555,26 @@ negative sign is, and whether the negative sign appears before or after the
 number. This is especially apparent with currency formatting, where many
 cultures use parentheses instead of a negative sign.
 <pre>
-// just for example -- will vary by culture
-jQuery.format(123.45, "n"); // 123.45
-jQuery.format(123.45, "n0"); // 123
-jQuery.format(123.45, "n1"); // 123.5
+// just for example - will vary by culture
+jQuery.global.format(123.45, "n"); // 123.45
+jQuery.global.format(123.45, "n0"); // 123
+jQuery.global.format(123.45, "n1"); // 123.5
 
-jQuery.format(123.45, "d"); // 123
-jQuery.format(12, "d3"); // 012
+jQuery.global.format(123.45, "d"); // 123
+jQuery.global.format(12, "d3"); // 012
 
-jQuery.format(123.45, "c"); // $123.45
-jQuery.format(123.45, "c0"); // $123
-jQuery.format(123.45, "c1"); // $123.5
-jQuery.format(-123.45, "c"); // ($123.55)
+jQuery.global.format(123.45, "c"); // $123.45
+jQuery.global.format(123.45, "c0"); // $123
+jQuery.global.format(123.45, "c1"); // $123.5
+jQuery.global.format(-123.45, "c"); // ($123.55)
 
-jQuery.format(0.12345, "p"); // 12.35 %
-jQuery.format(0.12345, "p0"); // 12 %
-jQuery.format(0.12345, "p4"); // 12.3450 %
+jQuery.global.format(0.12345, "p"); // 12.35 %
+jQuery.global.format(0.12345, "p0"); // 12 %
+jQuery.global.format(0.12345, "p4"); // 12.3450 %
 </pre>
 Parsing with parseInt and parseFloat also accepts any of these formats.
 </p>
 
-<a name="dates"></a>
 <h2 id="dates">Date Formatting</h2>
 <p>
 Date formatting varies wildly by culture, not just in the spelling of month and
@@ -601,7 +587,7 @@ different from the typical names and are used only in certain cases.
 Also, each culture has a set of 'standard' or 'typical' formats. For example,
 in "en-US", when displaying a date in its fullest form, it looks like
 "Saturday, November 05, 1955". Note the non-abbreviated day and month name, the
-zero padded date, and four digit year. So, jquery.glob.js expects a certain set
+zero padded date, and four digit year. So, jquery.global.js expects a certain set
 of 'standard' formatting strings for dates in the "patterns" property of the
 "standard" calendar of each culture, that describe specific formats for the
 culture. The third column shows example values in the neutral English culture
