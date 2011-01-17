@@ -1,4 +1,4 @@
-module('jQuery.global.localize', {
+module('localize', {
   teardown: function() {
     $.global.culture = undefined;
   }

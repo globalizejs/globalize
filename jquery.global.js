@@ -151,6 +151,9 @@ Globalization.format = function(value, format, culture) {
 Globalization.parseInt = function(value, radix, culture) {
     return Math.floor( this.parseFloat( value, radix, culture ) );
 }
+Globalization.parseCurrency = function(value, culture) {
+	return this.parseFloat(value.replace(/[^\d,.-]/g, ""), 10, culture);
+}
 Globalization.parseFloat = function(value, radix, culture) {
     culture = this.findClosestCulture( culture );
     var ret = NaN,
