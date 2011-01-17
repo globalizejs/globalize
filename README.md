@@ -14,6 +14,7 @@ languages and countries, as well as an extensible system for localization.
 <li><a href="#format">jQuery.global.format</a></li>
 <li><a href="#parseInt">jQuery.global.parseInt</a></li>
 <li><a href="#parseFloat">jQuery.global.parseFloat</a></li>
+<li><a href="#parseCurrency">jQuery.global.parseCurrency</a></li>
 <li><a href="#parseDate">jQuery.global.parseDate</a></li>
 <li><a href="#localize">jQuery.global.localize</a></li>
 <li><a href="#extend">Utilizing and Extending Cultures</a></li>
@@ -196,6 +197,20 @@ jQuery.global.parseFloat("1,234.56"); // 1234.56
 // assuming a culture where "." is the group separator
 // and "," is the decimal separator
 jQuery.global.parseFloat("1.234,56"); // 1234.56
+</pre>
+</p>
+
+<h2 id="parseCurrency">jQuery.global.parseCurrency(value, culture)</h2>
+<p>
+Parses a string representing a currency, taking into account any formatting
+rules followed by the given culture (or the current culture, if not specified).
+<pre>
+// assuming a culture where "," is the group separator
+// and "." is the decimal separator
+jQuery.global.parseCurrency("$1,234.56"); // 1234.56
+// assuming a culture where "." is the group separator
+// and "," is the decimal separator
+jQuery.global.parseCurrency("1.234,56 €"); // 1234.56
 </pre>
 </p>
 
