@@ -1,5 +1,5 @@
 (function($) {
-    var culture, cultures = $.cultures,
+    var culture, cultures = $.global.cultures,
     en = cultures.en,
     standard = en.calendars.standard;
 

@@ -5,8 +5,8 @@
     <link type="text/css" rel="Stylesheet" href="demo-datepicker.css" />
     <link type="text/css" rel="Stylesheet" href="jquery-ui-1.8.1.custom.css" />
     <script type="text/javascript" src="../jquery-1.4.4.js"></script>
-    <script type="text/javascript" src="../jquery.glob.js"></script>
-    <script type="text/javascript" src="../globinfo/jquery.glob.all.min.js"></script>
+    <script type="text/javascript" src="../jquery.global.js"></script>
+    <script type="text/javascript" src="../globinfo/jquery.glob.all.js"></script>
     <script type="text/javascript" src="jquery.ui.core.js"></script>
     <script type="text/javascript" src="jquery.ui.datepicker.js"></script>
 </head>
@@ -35,7 +35,7 @@ function sortByName(map) {
     });
     return arr;
 }
-var sortedCultures = sortByName($.cultures);
+var sortedCultures = sortByName($.global.cultures);
 
 $.fn.dateSample = function(culture) {
     this.each(function() {
@@ -58,10 +58,10 @@ $.fn.dateSample = function(culture) {
             selected.text("");
 
             formats.empty();
-            $.each($.cultures[thisCulture].calendar.patterns, function(name) {
+            $.each($.global.cultures[thisCulture].calendar.patterns, function(name) {
                 $("<option/>", {
                     value: name,
-                    text: $.cultures[thisCulture].calendar.patterns[name]
+                    text: $.global.cultures[thisCulture].calendar.patterns[name]
                 }).appendTo(formats);
             });
             formats.val("d");

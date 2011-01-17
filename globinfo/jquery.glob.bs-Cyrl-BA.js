@@ -1,5 +1,5 @@
 (function($) {
-    var cultures = $.cultures,
+    var cultures = $.global.cultures,
         en = cultures.en,
         standard = en.calendars.standard,
         culture = cultures["bs-Cyrl-BA"] = $.extend(true, {}, en, {

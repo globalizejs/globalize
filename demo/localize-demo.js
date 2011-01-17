@@ -2,13 +2,13 @@ $(document).ready(function() {
   $.extend($.tmpl.tag, {
     "t": {
       _default: { $2: 'null' },
-      open: "var localize_path = $1.split('.'); var depth = localize_path.length; var localized = jQuery.localize(localize_path[0], $2); for(i = 1; i < depth; i++) { localized = localized[localize_path[i]]; }; _.push(localized);"
+      open: "var localize_path = $1.split('.'); var depth = localize_path.length; var localized = jQuery.global.localize(localize_path[0], $2); for(i = 1; i < depth; i++) { localized = localized[localize_path[i]]; }; _.push(localized);"
     }
   });
 
-  $.culture = "en";
+  $.global.culture = "en";
 
-  $.localize("home", "en", {
+  $.global.localize("home", "en", {
     desc: "Great movies",
     movies: {
       clockwork_orange: {
@@ -20,7 +20,7 @@ $(document).ready(function() {
     }
   });
 
-  $.localize("home", "de", {
+  $.global.localize("home", "de", {
     desc: "Tolle Filme",
     movies: {
       clockwork_orange: {

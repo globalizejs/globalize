@@ -1322,16 +1322,7 @@ function formatDate(value, format, culture) {
 }
 
 // EXPORTS
-
-jQuery.findClosestCulture = Globalization.findClosestCulture;
-jQuery.culture = Globalization.culture;
-jQuery.cultures = Globalization.cultures
-jQuery.preferCulture = Globalization.preferCulture
-jQuery.localize = Globalization.localize
-jQuery.format = Globalization.format
-jQuery.parseInt = Globalization.parseInt
-jQuery.parseFloat = Globalization.parseFloat
-jQuery.parseDate = Globalization.parseDate
+jQuery.global = Globalization;
 
 })();
 

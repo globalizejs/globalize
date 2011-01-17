@@ -943,7 +943,7 @@ $.extend(Datepicker.prototype, {
        @param  culture   string - the culture to format the date as, omit to use the datepicker default culture.
 	   @return  string - the date in the above format */
     formatDate: function(date, format, culture) {
-        return $.format(date, format, culture || this._defaults.culture);
+        return $.global.format(date, format, culture || this._defaults.culture);
     },
 
     _expandFormat: function(calendar, format) {
@@ -1045,7 +1045,7 @@ $.extend(Datepicker.prototype, {
             val = this._defaults[name];
             if (typeof val === "undefined") {
                 var cultureName = inst.settings.culture || this._defaults.culture,
-                    culture = $.findClosestCulture(cultureName);
+                    culture = $.global.findClosestCulture(cultureName);
                 // try a culture value or a culture calendar value
                 // e.g. 'isRTL' (culture.isRTL) or 'days' (culture.calendar.days)
                 val = culture[name];
@@ -1053,7 +1053,7 @@ $.extend(Datepicker.prototype, {
                     val = culture.calendar[name];
                     if (typeof val === "undefined") {
                         // then try datepicker specific data for the culture
-                        var localized = $.localize('datepicker', cultureName || this._defaults.culture);
+                        var localized = $.global.localize('datepicker', cultureName || this._defaults.culture);
                         val = localized[name];
                     }
                 }
@@ -1999,7 +1999,7 @@ var regions = {
     }
 };
 $.each(regions, function(name, value) {
-    $.localize('datepicker', name, value);
+    $.global.localize('datepicker', name, value);
 });
 
 

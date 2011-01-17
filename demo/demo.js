@@ -19,11 +19,11 @@ jQuery(function($) {
     $.extend($.tmplcmd, {
         demoFormat: {
             _default: [0,0],
-            prefix: "_.push(jQuery.format(numbers[$2],formats[$1]));"
+            prefix: "_.push(jQuery.global.format(numbers[$2],formats[$1]));"
         },
         demoDateFormat: {
             _default: [0,0],
-            prefix: "_.push(jQuery.format(dates[$2],typeof $1 === 'number' ? dateFormats[$1] : $1));"
+            prefix: "_.push(jQuery.global.format(dates[$2],typeof $1 === 'number' ? dateFormats[$1] : $1));"
         }
     });
 
@@ -35,7 +35,7 @@ jQuery(function($) {
     });
 
     // fill cultures dropdown with the available cultures
-    $.each(sortByName($.cultures), function(i, culture) {
+    $.each(sortByName($.global.cultures), function(i, culture) {
         $("<option/>", {
             value: culture.name,
             text: culture.name + ": " + culture.englishName + " (" + culture.nativeName + ")"
@@ -49,7 +49,7 @@ jQuery(function($) {
 
     // re-render templates after selecting a calendar
     var calendars = $("#calendars").bind("change keyup", function() {
-        $.culture.calendar = $.culture.calendars[calendars.val()] || $.culture.calendars.standard;
+        $.global.culture.calendar = $.global.culture.calendars[calendars.val()] || $.global.culture.calendars.standard;
         render();
     });
 
@@ -76,13 +76,13 @@ jQuery(function($) {
         // sets the current culture to the value specified in the cultures dropdown,
         // populates the calendars dropdown with that cultures calendars,
         // and renders the formatting templates.
-        $.preferCulture($("#cultures").val());
+        $.global.preferCulture($("#cultures").val());
 
         calendars.empty();
-        $.each(sortByName($.culture.calendars), function(i, cal) {
+        $.each(sortByName($.global.culture.calendars), function(i, cal) {
             $("<option/>", { value: cal.name, text: cal.name }).appendTo(calendars);
         });
-        calendars.val($.culture.calendar.name);
+        calendars.val($.global.culture.calendar.name);
 
         render();
     }
@@ -94,15 +94,15 @@ jQuery(function($) {
         $("#format").empty();
         $("#formattmpl").render({}).appendTo("#format");
 
-        $("#englishName").text($.culture.englishName);
-        $("#nativeName").text($.culture.nativeName);
-        $("#isRTL").text($.culture.isRTL ? "YES" : "no");
+        $("#englishName").text($.global.culture.englishName);
+        $("#nativeName").text($.global.culture.nativeName);
+        $("#isRTL").text($.global.culture.isRTL ? "YES" : "no");
 
         $("#infonumber").empty();
-        $("#infonumbertmpl").render($.culture.numberFormat).appendTo("#infonumber");
+        $("#infonumbertmpl").render($.global.culture.numberFormat).appendTo("#infonumber");
 
         $("#infodate").empty();
-        $("#infodatetmpl").render($.culture.calendar).appendTo("#infodate");
+        $("#infodatetmpl").render($.global.culture.calendar).appendTo("#infodate");
     }
 
     // initial rendering
