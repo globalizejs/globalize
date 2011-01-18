@@ -31,3 +31,13 @@ test("format-parse all, currency", function() {
 		equal( $.global.parseFloat(formatted, 10, culture), value, culture + ": " + formatted );
 	});
 });
+
+test("format-parse all, date", function() {
+	$.each($.global.cultures, function(culture, cultureInfo) {
+		var value = new Date();
+		// TODO is there a better way to get comparable results?
+		value.setTime(0);
+		var formatted = $.global.format(value, "F", culture);
+		deepEqual( $.global.parseDate(formatted, "F", culture), value, culture + ": " + formatted );
+	});
+});
