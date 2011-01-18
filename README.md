@@ -22,6 +22,7 @@ languages and countries, as well as an extensible system for localization.
 <li><a href="#dates">Date Formatting</a></li>
 </ul>
 
+<a name="why"></a>
 <h2 id="why">Why Globalization?</h2>
 <p>
 Each language, and the countries that speak that language, have different
@@ -41,6 +42,7 @@ own format - into actual numbers and dates, and conversely, to format numbers
 and dates into that string format.
 </p>
 
+<a name="what"></a>
 <h2 id="what">What is a Culture?</h2>
 <p>
 jquery.global.js defines roughly 350 cultures. Part of the reason for this large
@@ -69,6 +71,7 @@ whatever the country. Neutral cultures are defined only by their language code.
 For example, "es" is the neutral culture for Spanish.
 </p>
 
+<a name="cultures"></a>
 <h2 id="cultures">jQuery.global.cultures</h2>
 <p>
 A mapping of culture codes to culture objects. For example,
@@ -80,6 +83,7 @@ the section <a href="#defining">Defining Culture Information</a> below which
 fields are defined in each culture.
 </p>
 
+<a name="culture"></a>
 <h2 id="culture">jQuery.global.culture</h2>
 <p>
 This property is set to the culture currently selected. An optional culture can
@@ -91,6 +95,7 @@ jQuery.global.culture = jQuery.global.cultures["fr-FR"];
 </pre>
 </p>
 
+<a name="prefer"></a>
 <h2 id="prefer">jQuery.global.preferCulture(name)</h2>
 <p>
 An application that supports globalization and/or localization will need to
@@ -143,12 +148,14 @@ corresponding neutral language culture for each. If still none match, the
 neutral English culture "en" is used.
 </p>
 
+<a name="find"></a>
 <h2 id="find">jQuery.global.findClosestCulture(name)</h2>
 <p>
 Just like preferCulture(name), but it just returns the matching culture, if
 any, without setting it to the jQuery.global.culture property.
 </p>
 
+<a name="format"></a>
 <h2 id="format">jQuery.global.format(value, format, culture)</h2>
 <p>
 Formats a date or number according to the given format string and the given
@@ -169,6 +176,7 @@ jQuery.global.format(new Date(1955,10,5), "dddd MMMM d, yyyy"); // "Saturday Nov
 </pre>
 </p>
 
+<a name="parseInt"></a>
 <h2 id="parseInt">jQuery.global.parseInt(value, radix, culture)</h2>
 <p>
 Parses a string representing a whole number in the given radix (10 by default),
@@ -184,6 +192,7 @@ jQuery.global.parseInt("1.234,56"); // 1234
 </pre>
 </p>
 
+<a name="parseFloat"></a>
 <h2 id="parseFloat">jQuery.global.parseFloat(value, radix, culture)</h2>
 <p>
 Parses a string representing a floating point number in the given radix (10 by
@@ -199,6 +208,7 @@ jQuery.global.parseFloat("1.234,56"); // 1234.56
 </pre>
 </p>
 
+<a name="parseDate"></a>
 <h2 id="parseDate">jQuery.global.parseDate(value, formats, culture)</h2>
 <p>
 Parses a string representing a date into a JavaScript Date object, taking into
@@ -213,6 +223,7 @@ jQuery.global.parseDate("1/2/2003"); // Sat Feb 01 2003
 </pre>
 </p>
 
+<a name="localize"></a>
 <h2 id="localize">jQuery.global.localize(key, culture, value)</h2>
 <p>
 Gets or sets a localized value. This function allows you to extend the
@@ -266,6 +277,7 @@ both, it does not matter what order you include them in, either may be first
 localize(), as long as property names do not overlap.
 </p>
 
+<a name="extend"></a>
 <h2 id="extend">Utilizing and Extending Cultures</h2>
 <p>
 The culture information included with each culture is mostly necessary for the
@@ -301,6 +313,7 @@ included, it too uses this technique, ensuring addition to the already-defined
 culture information.
 </p>
 
+<a name="defining"></a>
 <h2 id="defining">Defining Culture Information</h2>
 <p>
 Each culture is defined in its own script with the naming scheme
@@ -526,6 +539,7 @@ $.global.culture.calendar = $.global.culture.calendars.standard;
 
 </p>
 
+<a name="numbers"></a>
 <h2 id="numbers">Number Formatting</h2>
 <p>
 When formatting a number with format(), the main purpose is to convert the
@@ -575,6 +589,7 @@ jQuery.global.format(0.12345, "p4"); // 12.3450 %
 Parsing with parseInt and parseFloat also accepts any of these formats.
 </p>
 
+<a name="dates"></a>
 <h2 id="dates">Date Formatting</h2>
 <p>
 Date formatting varies wildly by culture, not just in the spelling of month and
