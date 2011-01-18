@@ -21,6 +21,7 @@ test("basics, currency", function() {
 	equal( $.global.parseFloat("$5.51"), 5.51 );
 	equal( $.global.parseInt("5,51 €", 10, "de-DE"), 5 );
 	equal( $.global.parseFloat("5,51 €", 10, "de-DE"), 5.51 );
+	equal( $.global.parseFloat("5,51 €", "de-DE"), 5.51, "optional radix" );
 });
 
 test("format-parse all, currency", function() {
@@ -28,7 +29,7 @@ test("format-parse all, currency", function() {
 		// TODO is there a better approach to verify cultures with no decimal?
 		var value = cultureInfo.numberFormat.currency.decimals ? 6.51 : 5;
 		var formatted = $.global.format(value, "c", culture);
-		equal( $.global.parseFloat(formatted, 10, culture), value, culture + ": " + formatted );
+		equal( $.global.parseFloat(formatted, culture), value, culture + ": " + formatted );
 	});
 });
 
