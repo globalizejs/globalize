@@ -35,6 +35,14 @@ class LocaleTest < Test::Unit::TestCase
     assert_translated Post.first, :de, :title, 'Titel'
   end
 
+  test 'with_locales calls block once with each locale given temporarily set' do
+    locales = Globalize.with_locales :en, [:de, :fr] do |locale|
+      assert_equal locale, Globalize.locale
+      locale
+    end
+    assert_equal [:en, :de, :fr], locales
+  end
+
   test "attribute saving goes by content locale and not global locale" do
     Globalize.locale = :de
     assert_equal :en, I18n.locale
