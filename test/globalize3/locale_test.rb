@@ -31,8 +31,12 @@ class LocaleTest < Test::Unit::TestCase
   end
 
   test 'with_locale temporarily sets the given locale and yields the block' do
-    Globalize.with_locale(:de) { Post.create!(:title => 'Titel') }
-    assert_translated Post.first, :de, :title, 'Titel'
+    assert_equal :en, Globalize.locale
+    Globalize.with_locale :de do |locale|
+      assert_equal :de, Globalize.locale
+      assert_equal :de, locale
+    end
+    assert_equal :en, Globalize.locale
   end
 
   test 'with_locales calls block once with each locale given temporarily set' do
