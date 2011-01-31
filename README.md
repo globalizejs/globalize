@@ -121,10 +121,10 @@ jQuery.global.preferCulture("fr");
 alert(jQuery.global.culture.name) // "fr"
 
 jQuery.global.preferCulture("fr-FR");
-alert(jQuery.global.culture.name) // "fr"
+alert(jQuery.global.culture.name) // "fr-FR"
 
 jQuery.global.preferCulture(["es-MX", "fr-FR"]);
-alert(jQuery.global.culture.name) // "fr"
+alert(jQuery.global.culture.name) // "es-MX"
 </pre>
 
 In any case, if no match is found the neutral English culture "en" is selected
@@ -251,7 +251,7 @@ match, the translation given is for the neutral English culture "en" by default.
 <pre>
 // falsy values "", null, undefined...
 // are all equivalent to "en" or "default"
-jQuery.global.localize("myplugin", "", { 
+jQuery.global.localize("myplugin", "", {
     foo: "foo (en)",
     bar: "bar (en)"
 });
@@ -298,7 +298,7 @@ As an example, in the U.S., the word 'billion' means the number 1,000,000,000
 provide functionality to your app or custom plugin that needed to know how many
 zeros are in a 'billion', you could extend the culture information as follows:
 <pre>
-// define culture information without overwriting any existing values 
+// define culture information without overwriting any existing values
 jQuery.global.cultures.fr = jQuery.extend(true, {
     numberFormat: {
         billionZeros: 12
@@ -374,7 +374,7 @@ jQuery.global.cultures["default"] = jQuery.global.cultures.en = {
         // and currency, but is still defined as an array for consistency with
         // them.
         //    negativePattern: one of "(n)|-n|- n|n-|n -"
-        pattern: ["-n"], 
+        pattern: ["-n"],
         // number of decimal places normally shown
         decimals: 2,
         // string that separates number groups, as in 1,000,000
@@ -392,7 +392,7 @@ jQuery.global.cultures["default"] = jQuery.global.cultures.en = {
             // [negativePattern, positivePattern]
             //     negativePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
             //     positivePattern: one of "n %|n%|%n|% n"
-            pattern: ["-n %","n %"], 
+            pattern: ["-n %","n %"],
             // number of decimal places normally shown
             decimals: 2,
             // array of numbers indicating the size of each number group.
@@ -455,7 +455,7 @@ jQuery.global.cultures["default"] = jQuery.global.cultures.en = {
             ],
             // AM and PM designators in one of these forms:
             // The usual view, and the upper and lower case versions
-            //      [standard,lowercase,uppercase] 
+            //      [standard,lowercase,uppercase]
             // The culture does not use AM or PM (likely all standard date
             // formats use 24 hour time)
             //      null
