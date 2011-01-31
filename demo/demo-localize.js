@@ -40,4 +40,10 @@ $(document).ready(function() {
   };
 
   $( "#movies-tmpl" ).tmpl( home ).appendTo( "#movies" );
+
+  $('#languages').click(function(event) {
+    event.preventDefault();
+    $.global.culture = $(event.target).html();
+    $("#movies").html($( "#movies-tmpl" ).tmpl(home));
+  });
 });
