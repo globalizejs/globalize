@@ -74,7 +74,7 @@ Globalization.findClosestCulture = function(name) {
         prioritized.sort(function(a, b) {
             return a.pri < b.pri ? 1 : -1;
         });
-		
+
         // exact match
         for ( i = 0; i < l; i++ ) {
             lang = prioritized[ i ].lang;
@@ -83,7 +83,7 @@ Globalization.findClosestCulture = function(name) {
                 return match;
             }
         }
-		
+
         // neutral language match
         for ( i = 0; i < l; i++ ) {
             lang = prioritized[ i ].lang;
@@ -101,7 +101,7 @@ Globalization.findClosestCulture = function(name) {
             }
             while ( 1 );
         }
-		
+
         // last resort: match first culture using that language
 		for ( i = 0; i < l; i++ ) {
             lang = prioritized[ i ].lang;
@@ -170,7 +170,7 @@ Globalization.parseFloat = function(value, radix, culture) {
 		culture = radix;
 		radix = 10;
 	}
-	
+
     culture = this.findClosestCulture( culture );
     var ret = NaN,
         nf = culture.numberFormat;
