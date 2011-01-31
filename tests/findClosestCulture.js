@@ -1,3 +1,5 @@
+(function() {
+
 var allCultures, de, deDE, en;
 
 module("findClosestCulture", {
@@ -64,3 +66,5 @@ test("if q is not defined it shoud be 1", function() {
 test("match language defined by q", function() {
 	ok( QUnit.equiv($.global.findClosestCulture("fr;q=0.4, de-DE;q=0.5"), deDE) );
 });
+
+})();
