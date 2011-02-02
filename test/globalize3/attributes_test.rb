@@ -122,6 +122,22 @@ class AttributesTest < Test::Unit::TestCase
     end
     assert_equal 'Titel', post.title(:de)
   end
-  
+
+  test 'stores translations from clonned new record' do
+    clonned = Post.new(:title => 'title', :content => 'content').clone
+    clonned.content = 'another content'
+    with_locale(:de) { clonned.title = 'Titel' }
+
+    assert_translated clonned, :en, :title,   'title'               # original
+    assert_translated clonned, :en, :content, 'another content'     # changed
+    assert_translated clonned, :de, :title,   'Titel'               # new
+
+    clonned.save!
+    clonned.reload
+
+    assert_translated clonned, :en, :title,   'title'
+    assert_translated clonned, :en, :content, 'another content'
+    assert_translated clonned, :de, :title,   'Titel'
+  end
   
 end
