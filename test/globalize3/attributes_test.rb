@@ -122,53 +122,5 @@ class AttributesTest < Test::Unit::TestCase
     end
     assert_equal 'Titel', post.title(:de)
   end
-
-  def standard_post
-    p = Post.new({:title => 'title', :content => 'content'})
-    with_locale(:he) { p.title= 'שם' }
-    return p
-  end
-
-  def translations_modifications(clonned)
-    clonned.content = 'another content'
-    with_locale(:de) { clonned.title = 'Titel' }
-  end
-
-  def translations_assertions(clonned)
-    assert_translated clonned, :en, :title,   'title'               # original
-    assert_translated clonned, :en, :content, 'another content'     # changed
-    assert_translated clonned, :de, :title,   'Titel'               # new
-    assert_translated clonned, :he, :title,    'שם'                 # untouched language
-  end
-
-  def check_stored_translations(clonned)
-    translations_modifications(clonned)
-    translations_assertions(clonned)
-    clonned.save!
-    clonned.reload
-    translations_assertions(clonned)
-  end
-
-  test 'stores translations from clonned new record' do
-    check_stored_translations(standard_post.clone)
-  end
-
-  test 'stores translations from clonned created record' do
-    clonned = standard_post.tap{|p| p.save!}.clone
-    check_stored_translations(clonned)
-  end
-
-  test 'stores translations from clonned found record' do
-    org = standard_post
-    org.save!
-    check_stored_translations( Post.find(org).clone )
-  end
-
-  test 'stores translations from clonned reloaded after creation record' do
-    org = standard_post
-    org.save!
-
-    check_stored_translations(org.reload.clone)
-  end
   
 end
