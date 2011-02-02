@@ -93,7 +93,34 @@ module Globalize
         super(options)
       end
 
+      def clone
+        obj = super
+        return obj unless respond_to?(:translated_attribute_names)
+
+        obj.instance_variable_set(:@translations, nil) if new_record? # Reset the collection because of rails bug: http://pastie.org/1521874
+        obj.instance_variable_set(:@globalize, nil )
+        each_locale_and_translated_attribute do |locale, name|
+          obj.globalize.write(locale, name, globalize.fetch(locale, name) )
+        end
+
+        return obj
+      end
+
       protected
+
+        def each_locale_and_translated_attribute
+          used_locales.each do |locale|
+            translated_attribute_names.each do |name|
+              yield locale, name
+            end
+          end
+        end
+
+        def used_locales
+          locales = globalize.cache.keys.concat(globalize.stash.keys).concat(translations.translated_locales)
+          locales.uniq!
+          locales
+        end
 
         def save_translations!
           globalize.save_translations!
