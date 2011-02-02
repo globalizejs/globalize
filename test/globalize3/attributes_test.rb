@@ -125,6 +125,68 @@ class AttributesTest < Test::Unit::TestCase
 
   test 'stores translations from clonned new record' do
     clonned = Post.new(:title => 'title', :content => 'content').clone
+    assert clonned.new_record?
+    
+    clonned.content = 'another content'
+    with_locale(:de) { clonned.title = 'Titel' }
+
+    assert_translated clonned, :en, :title,   'title'               # original
+    assert_translated clonned, :en, :content, 'another content'     # changed
+    assert_translated clonned, :de, :title,   'Titel'               # new
+
+    clonned.save!
+    clonned.reload
+
+    assert_translated clonned, :en, :title,   'title'
+    assert_translated clonned, :en, :content, 'another content'
+    assert_translated clonned, :de, :title,   'Titel'
+  end
+
+  
+
+  test 'stores translations from clonned saved record' do
+    clonned = Post.create!(:title => 'title', :content => 'content').clone
+    assert clonned.new_record?
+
+    clonned.content = 'another content'
+    with_locale(:de) { clonned.title = 'Titel' }
+
+    assert_translated clonned, :en, :title,   'title'               # original
+    assert_translated clonned, :en, :content, 'another content'     # changed
+    assert_translated clonned, :de, :title,   'Titel'               # new
+
+    clonned.save!
+    clonned.reload
+
+    assert_translated clonned, :en, :title,   'title'
+    assert_translated clonned, :en, :content, 'another content'
+    assert_translated clonned, :de, :title,   'Titel'
+  end
+
+  test 'stores translations from clonned found record' do
+    original = Post.create!(:title => 'title', :content => 'content')
+    clonned = Post.find(original).clone
+    assert clonned.new_record?
+    
+    clonned.content = 'another content'
+    with_locale(:de) { clonned.title = 'Titel' }
+
+    assert_translated clonned, :en, :title,   'title'               # original
+    assert_translated clonned, :en, :content, 'another content'     # changed
+    assert_translated clonned, :de, :title,   'Titel'               # new
+
+    clonned.save!
+    clonned.reload
+
+    assert_translated clonned, :en, :title,   'title'
+    assert_translated clonned, :en, :content, 'another content'
+    assert_translated clonned, :de, :title,   'Titel'
+  end
+
+  test 'stores translations from clonned reloaded after creation record' do
+    clonned = Post.create!(:title => 'title', :content => 'content').reload.clone
+    assert clonned.new_record?
+
     clonned.content = 'another content'
     with_locale(:de) { clonned.title = 'Titel' }
 
