@@ -1237,7 +1237,7 @@ function formatDate(value, format, culture) {
                 //Day of the week, as a three-letter abbreviation
             case "dddd":
                 // Day of the week, using the full name
-                names = (clength === 3) ? cal.days.namesAbbr : cal.days.names;
+                var names = (clength === 3) ? cal.days.namesAbbr : cal.days.names;
                 ret.push( names[ value.getDay() ] );
                 break;
             case "d":
