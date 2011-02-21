@@ -7,7 +7,7 @@ module Globalize
         options = attr_names.extract_options!
         options[:table_name] ||= "#{table_name.singularize}_translations"
 
-        class_inheritable_accessor :translated_attribute_names, :translation_options
+        class_attribute :translated_attribute_names, :translation_options
         self.translated_attribute_names = attr_names.map(&:to_sym)
         self.translation_options        = options
 
