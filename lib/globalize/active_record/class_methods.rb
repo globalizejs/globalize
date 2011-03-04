@@ -60,7 +60,7 @@ module Globalize
       end
 
       def respond_to?(method, *args, &block)
-        method.to_s =~ /^find_by_(\w+)$/ && translated?($1.to_sym) || super
+        method.to_s =~ /^find_(all_|)by_(\w+)$/ && translated?($2.to_sym) || super
       end
 
       def method_missing(method, *args)
