@@ -63,7 +63,8 @@ ActiveRecord::Schema.define do
   end
 
   create_table :users, :force => true do |t|
-    t.string :email
+    t.string   :email
+    t.datetime :created_at
   end
 
   create_table :user_translations, :force => true do |t|

@@ -1,12 +1,28 @@
 require File.expand_path('../../test_helper', __FILE__)
 
 class DynamicFindersTest < Test::Unit::TestCase
-  test "simple dynamic finders do work" do
-    Post.create(:title => 'foo')
-    Post.create(:title => 'bar')
 
-    assert_equal 'foo', Post.find_by_title('foo').title
-    assert_equal 'foo', Post.find_all_by_title('foo').first.title
+  Rpa = "rpa@gavdi.com"
+
+  test "Does not break normal finders" do
+    user = User.create!(:name => "name", :email => Rpa)
+
+    assert_equal user,   User.find_by_email(user.email)
+    assert_equal [user], User.find_all_by_email([user.email])
+
+    assert_equal user, User.find_by_id_and_created_at(user.id, user.created_at)
+    assert_equal user, User.find_by_id_and_email(user.id, user.email)
+
+    assert_equal [user], User.find_all_by_id_and_created_at(user.id, user.created_at)
+    assert_equal [user], User.find_all_by_id_and_email(user.id, user.email)
+  end
+
+  test "simple dynamic finders do work" do
+    foo = Post.create!(:title => 'foo')
+    Post.create!(:title => 'bar')
+
+    assert_equal foo, Post.find_by_title('foo')
+    assert_equal [foo], Post.find_all_by_title('foo').to_a
   end
 
   test "simple dynamic finders do work on sti models" do
@@ -32,4 +48,5 @@ class DynamicFindersTest < Test::Unit::TestCase
     assert !Post.respond_to?(:find_by_foo)
     assert !Post.respond_to?(:find_all_by_foo)
   end
+
 end
