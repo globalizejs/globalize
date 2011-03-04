@@ -4,10 +4,8 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class DynamicFindersTest < Test::Unit::TestCase
 
-  Rpa = "rpa@gavdi.com"
-
   test "Does not break normal finders" do
-    user = User.create!(:name => "name", :email => Rpa)
+    user = User.create!(:name => "name", :email => "email@example.org")
 
     assert_equal user,   User.find_by_email(user.email)
     assert_equal [user], User.find_all_by_email([user.email])
@@ -118,6 +116,44 @@ class TwoTranslatedAttributesDynamicFindersTest < Test::Unit::TestCase
 
     assert_equal [], Post.find_all_by_content_and_title(["not existing"], @title1)
     assert_equal [], Post.find_all_by_content_and_title(@content, ["not existing"])
+  end
+
+end
+
+class TranslatedAndNormalAttributeDynamicFindersTest < Test::Unit::TestCase
+
+  def setup
+    @name1, @name2, @email = "n1", "n2", "email@example.org"
+    @p1 = User.create!(:name => @name1, :email => @email)
+    @p2 = User.create!(:name => @name2, :email => @email)
+  end
+
+  test "find one element by two translation columns" do
+    assert_equal @p1, User.find_by_name_and_email(@name1, @email)
+    assert_equal @p2, User.find_by_email_and_name(@email, @name2)
+  end
+
+  test "return nil for none existing values" do
+    assert_nil User.find_by_email_and_name(@email, "not exisiting")
+    assert_nil User.find_by_email_and_name("not existing", @name2)
+
+    assert_nil User.find_by_name_and_email("not exisiting", @email)
+    assert_nil User.find_by_name_and_email(@name2, "not existing")
+  end
+
+  test "find elements by two translation columns" do
+    two_results = User.find_all_by_name_and_email([@name1, @name2], @email)
+    assert two_results.include?(@p1)
+    assert two_results.include?(@p2)
+    assert_equal @p2, User.find_all_by_email_and_name(@email, @name2)
+  end
+
+  test "returns empty result set for none existing values" do
+    assert_equal [], User.find_all_by_name_and_email([@name1, @name2], "not existing")
+    assert_equal [], User.find_all_by_name_and_email("not existing", @email)
+
+    assert_equal [], User.find_all_by_email_and_name(["not existing"], @name1)
+    assert_equal [], User.find_all_by_email_and_name(@email, ["not existing"])
   end
 
 end
