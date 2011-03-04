@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require File.expand_path('../../test_helper', __FILE__)
 
 class DynamicFindersTest < Test::Unit::TestCase
@@ -27,6 +29,32 @@ class DynamicFindersTest < Test::Unit::TestCase
 
     assert_equal [foo], Post.find_all_by_title('foo')
     assert_equal [],    Post.find_all_by_title('non existing')
+  end
+
+  # https://github.com/svenfuchs/globalize3/issues#issue/5
+  test "simple dynamic finders retruns results from current locale and fallbacks" do
+    en, de, he = 'title', 'titel', 'שם'
+    post = Post.create!(:title => en)
+    post.update_attributes!(:title => de, :locale => :de)
+    post.update_attributes!(:title => he, :locale => :he)
+
+    with_locale(:en) do
+      assert Post.find_by_title(en)
+      assert_nil Post.find_by_title(de)
+    end
+
+    with_locale(:de) do
+      assert Post.find_by_title(en)
+      assert Post.find_by_title(de)
+      assert_nil Post.find_by_title(he)
+    end
+
+    with_locale(:he) do
+      assert Post.find_by_title(en)
+      assert Post.find_by_title(he)
+      assert_nil Post.find_by_title(de)
+    end
+    
   end
 
   test "simple dynamic finders do work on sti models" do
