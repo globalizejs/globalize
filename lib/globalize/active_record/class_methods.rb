@@ -59,20 +59,33 @@ module Globalize
         "#{translation_class.table_name}.#{name}"
       end
 
-      def respond_to?(method, *args, &block)
-        method.to_s =~ /^find_(all_|)by_(\w+)$/ && translated?($2.to_sym) || super
+      if RUBY_VERSION < '1.9'
+        def respond_to?(method_id, *args, &block)
+          supported_on_missing?(method_id) || super
+        end
+      else
+        def respond_to_missing?(method_id, include_private = false)
+          supported_on_missing?(method_id) || super
+        end
       end
 
-      def method_missing(method_id, *arguments, &block)
+      def supported_on_missing?(method_id)
         return super unless respond_to?(:translated_attribute_names)
         match = ::ActiveRecord::DynamicFinderMatch.match(method_id) || ::ActiveRecord::DynamicScopeMatch.match(method_id)
-        return super if match.nil?
+        return false if match.nil?
 
         attribute_names = match.attribute_names.map(&:to_sym)
         translated_attributes = attribute_names & translated_attribute_names
-        return super if translated_attributes.empty?
+        return false if translated_attributes.empty?
 
         untranslated_attributes = attribute_names - translated_attributes
+        return false if untranslated_attributes.any?{|unt| ! respond_to?(:"scoped_by_#{unt}")}
+        return [match, attribute_names, translated_attributes, untranslated_attributes]
+      end
+
+      def method_missing(method_id, *arguments, &block)
+        match, attribute_names, translated_attributes, untranslated_attributes = supported_on_missing?(method_id)
+        return super unless match
 
         scope = scoped
 
@@ -92,15 +105,15 @@ module Globalize
 
       protected
 
-        def translated_attr_accessor(name)
-          define_method(:"#{name}=") do |value|
-            write_attribute(name, value)
-          end
-          define_method(name) do |*args|
-            read_attribute(name, {:locale => args.first})
-          end
-          alias_method :"#{name}_before_type_cast", name
+      def translated_attr_accessor(name)
+        define_method(:"#{name}=") do |value|
+          write_attribute(name, value)
         end
+        define_method(name) do |*args|
+          read_attribute(name, {:locale => args.first})
+        end
+        alias_method :"#{name}_before_type_cast", name
+      end
 
     end
 
