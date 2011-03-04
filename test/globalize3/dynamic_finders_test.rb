@@ -36,23 +36,29 @@ class DynamicFindersTest < Test::Unit::TestCase
     post.update_attributes!(:title => de, :locale => :de)
     post.update_attributes!(:title => he, :locale => :he)
 
-    with_locale(:en) do
-      assert Post.find_by_title(en)
-      assert_nil Post.find_by_title(de)
-    end
+    with_fallbacks do
+      I18n.fallbacks.clear
+      I18n.fallbacks.map 'de' => %w(de en), 'he' => %w(he en)
 
-    with_locale(:de) do
-      assert Post.find_by_title(en)
-      assert Post.find_by_title(de)
-      assert_nil Post.find_by_title(he)
-    end
+      with_locale(:en) do
+        assert Post.find_by_title(en)
+        assert_nil Post.find_by_title(de)
+      end
 
-    with_locale(:he) do
-      assert Post.find_by_title(en)
-      assert Post.find_by_title(he)
-      assert_nil Post.find_by_title(de)
+      with_locale(:de) do
+        assert Post.find_by_title(en)
+        assert Post.find_by_title(de)
+        assert_nil Post.find_by_title(he)
+      end
+
+      with_locale(:he) do
+        assert Post.find_by_title(en)
+        assert Post.find_by_title(he)
+        assert_nil Post.find_by_title(de)
+      end
+
+      I18n.fallbacks.clear
     end
-    
   end
 
   test "simple dynamic finders do work on sti models" do
@@ -72,11 +78,18 @@ class DynamicFindersTest < Test::Unit::TestCase
     end
   end
 
-  test "respond_to? should return true for all possible dynamic finders" do
+  test "responds to possible dynamic finders" do
     assert Post.respond_to?(:find_by_title)
     assert Post.respond_to?(:find_all_by_title)
-    assert !Post.respond_to?(:find_by_foo)
-    assert !Post.respond_to?(:find_all_by_foo)
+    assert Post.respond_to?(:find_by_title_and_content)
+    assert Post.respond_to?(:find_all_by_title_and_content)
+  end
+
+  test "does not responds to impossible dynamic finders" do
+    assert ! Post.respond_to?(:find_by_foo)
+    assert ! Post.respond_to?(:find_all_by_foo)
+    assert ! Post.respond_to?(:find_by_title_and_foo)
+    assert ! Post.respond_to?(:find_all_by_title_and_foo)
   end
 
 end
@@ -107,7 +120,7 @@ class TwoTranslatedAttributesDynamicFindersTest < Test::Unit::TestCase
     assert two_results.include?(@p1)
     assert two_results.include?(@p2)
 
-    assert_equal @p2, Post.find_all_by_content_and_title(@content, @title2)
+    assert_equal [@p2], Post.find_all_by_content_and_title(@content, @title2)
   end
 
   test "returns empty result set for none existing values" do
@@ -128,7 +141,7 @@ class TranslatedAndNormalAttributeDynamicFindersTest < Test::Unit::TestCase
     @p2 = User.create!(:name => @name2, :email => @email)
   end
 
-  test "find one element by two translation columns" do
+  test "find one element by two columns" do
     assert_equal @p1, User.find_by_name_and_email(@name1, @email)
     assert_equal @p2, User.find_by_email_and_name(@email, @name2)
   end
@@ -145,7 +158,7 @@ class TranslatedAndNormalAttributeDynamicFindersTest < Test::Unit::TestCase
     two_results = User.find_all_by_name_and_email([@name1, @name2], @email)
     assert two_results.include?(@p1)
     assert two_results.include?(@p2)
-    assert_equal @p2, User.find_all_by_email_and_name(@email, @name2)
+    assert_equal [@p2], User.find_all_by_email_and_name(@email, @name2)
   end
 
   test "returns empty result set for none existing values" do

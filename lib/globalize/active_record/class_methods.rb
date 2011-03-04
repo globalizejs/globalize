@@ -63,13 +63,31 @@ module Globalize
         method.to_s =~ /^find_(all_|)by_(\w+)$/ && translated?($2.to_sym) || super
       end
 
-      def method_missing(method, *args)
-        if method.to_s =~ /^find_(all_|)by_(\w+)$/ && translated?($2.to_sym)
-          result = with_translated_attribute($2, args.first)
-          $1 == 'all_' ? result.all : result.first
-        else
-          super
+      def method_missing(method_id, *arguments, &block)
+        return super unless respond_to?(:translated_attribute_names)
+        match = ::ActiveRecord::DynamicFinderMatch.match(method_id) || ::ActiveRecord::DynamicScopeMatch.match(method_id)
+        return super if match.nil?
+
+        attribute_names = match.attribute_names.map(&:to_sym)
+        translated_attributes = attribute_names & translated_attribute_names
+        return super if translated_attributes.empty?
+
+        untranslated_attributes = attribute_names - translated_attributes
+
+        scope = scoped
+
+        translated_attributes.each do |attr|
+          scope = scope.with_translated_attribute(attr, arguments[attribute_names.index(attr)])
         end
+
+        untranslated_attributes.each do |unt|
+          index = attribute_names.index(unt)
+          raise StandarError unless index
+          scope = scope.send(:"scoped_by_#{unt}", arguments[index])
+        end
+
+        return scope.send(match.finder) if match.is_a?(::ActiveRecord::DynamicFinderMatch)
+        return scope
       end
 
       protected
@@ -83,6 +101,9 @@ module Globalize
           end
           alias_method :"#{name}_before_type_cast", name
         end
+
     end
+
   end
+  
 end
