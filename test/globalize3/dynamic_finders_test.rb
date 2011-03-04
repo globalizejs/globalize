@@ -25,4 +25,11 @@ class DynamicFindersTest < Test::Unit::TestCase
       post.save
     end
   end
+
+  test "respond_to? should return true for all possible dynamic finders" do
+    assert Post.respond_to?(:find_by_title)
+    assert Post.respond_to?(:find_all_by_title)
+    assert !Post.respond_to?(:find_by_foo)
+    assert !Post.respond_to?(:find_all_by_foo)
+  end
 end
