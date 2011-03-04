@@ -19,10 +19,14 @@ class DynamicFindersTest < Test::Unit::TestCase
 
   test "simple dynamic finders do work" do
     foo = Post.create!(:title => 'foo')
-    Post.create!(:title => 'bar')
+    bar = Post.create!(:title => 'bar')
 
     assert_equal foo, Post.find_by_title('foo')
-    assert_equal [foo], Post.find_all_by_title('foo').to_a
+    assert_equal bar, Post.find_by_title('bar')
+    assert_nil        Post.find_by_title("non existing")
+
+    assert_equal [foo], Post.find_all_by_title('foo')
+    assert_equal [],    Post.find_all_by_title('non existing')
   end
 
   test "simple dynamic finders do work on sti models" do
