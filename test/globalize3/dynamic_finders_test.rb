@@ -82,3 +82,42 @@ class DynamicFindersTest < Test::Unit::TestCase
   end
 
 end
+
+class TwoTranslatedAttributesDynamicFindersTest < Test::Unit::TestCase
+
+  def setup
+    @title1, @title2, @content = "n1", "n2", "desc"
+    @p1 = Post.create!(:title => @title1, :content => @content)
+    @p2 = Post.create!(:title => @title2, :content => @content)
+  end
+
+  test "find one element by two translation columns" do
+    assert_equal @p1, Post.find_by_title_and_content(@title1, @content)
+    assert_equal @p2, Post.find_by_content_and_title(@content, @title2)
+  end
+
+  test "return nil for none existing values" do
+    assert_nil Post.find_by_content_and_title(@content, "not exisiting")
+    assert_nil Post.find_by_content_and_title("not existing", @title2)
+    
+    assert_nil Post.find_by_title_and_content("not exisiting", @content)
+    assert_nil Post.find_by_title_and_content(@title2, "not existing")
+  end
+
+  test "find elements by two translation columns" do
+    two_results = Post.find_all_by_title_and_content([@title1, @title2], @content)
+    assert two_results.include?(@p1)
+    assert two_results.include?(@p2)
+
+    assert_equal @p2, Post.find_all_by_content_and_title(@content, @title2)
+  end
+
+  test "returns empty result set for none existing values" do
+    assert_equal [], Post.find_all_by_title_and_content([@title1, @title2], "not existing")
+    assert_equal [], Post.find_all_by_title_and_content("not existing", @content)
+
+    assert_equal [], Post.find_all_by_content_and_title(["not existing"], @title1)
+    assert_equal [], Post.find_all_by_content_and_title(@content, ["not existing"])
+  end
+
+end
