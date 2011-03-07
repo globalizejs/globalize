@@ -62,7 +62,7 @@ As well as creating a translation table, you can also use @create_translation_ta
 existing data to the default locale. This can also operate in reverse to restore any translations from the default locale
 back to the model when you don't want to use a translation table anymore using @drop_translation_table!@
 
-This feature makes use of @untranslated_fields@ which allows access to the model's attributes as they were before
+This feature makes use of @untranslated_attributes@ which allows access to the model's attributes as they were before
 the translation was applied. Here's an example (which assumes you already have a model called @Post@ and its table exists):
 
 <pre><code>
