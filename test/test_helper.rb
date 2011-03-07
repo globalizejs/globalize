@@ -39,6 +39,16 @@ class Test::Unit::TestCase
     Globalize.with_locale(*args, &block)
   end
 
+  def with_fallbacks
+    previous = I18n.backend
+    I18n.backend = BackendWithFallbacks.new
+    I18n.pretend_fallbacks
+    return yield
+  ensure
+    I18n.hide_fallbacks
+    I18n.backend = previous
+  end
+
   def assert_included(item, array)
     assert_block "Item #{item.inspect} is not included in the array #{array.inspect}" do
       array.include?(item)
@@ -73,3 +83,22 @@ ActiveRecord::Base.class_eval do
     end
   end
 end
+
+class BackendWithFallbacks < I18n::Backend::Simple
+  include I18n::Backend::Fallbacks
+end
+
+meta = class << I18n; self; end
+meta.class_eval do
+  alias_method(:alternatives, :fallbacks)
+
+  def pretend_fallbacks
+    class << I18n; self; end.send(:alias_method, :fallbacks, :alternatives)
+  end
+
+  def hide_fallbacks
+    class << I18n; self; end.send(:remove_method, :fallbacks)
+  end
+end
+
+I18n.hide_fallbacks

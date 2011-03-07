@@ -3,25 +3,36 @@ module Globalize
     class Adapter
       # The cache caches attributes that already were looked up for read access.
       # The stash keeps track of new or changed values that need to be saved.
-      attr_reader :record, :cache, :stash
+      attr_accessor :record, :stash
+      private :record=, :stash=
 
       delegate :translation_class, :to => :'record.class'
 
       def initialize(record)
-        @record = record
-        @cache = Attributes.new
-        @stash = Attributes.new
+        self.record = record
+        self.stash = Attributes.new
+      end
+
+      def fetch_stash(locale, name)
+        value = stash.read(locale, name)
+        return value if value
+        return nil
       end
 
       def fetch(locale, name)
-        cache.contains?(locale, name) ?
-          type_cast(name, cache.read(locale, name)) :
-          cache.write(locale, name, fetch_attribute(locale, name))
+        Globalize.fallbacks(locale).each do |fallback|
+          value = fetch_stash(fallback, name) || fetch_attribute(fallback, name)
+
+          if value
+            set_metadata(value, :locale => fallback, :requested_locale => locale)
+            return value
+          end
+        end
+        return nil
       end
 
       def write(locale, name, value)
         stash.write(locale, name, value)
-        cache.write(locale, name, value)
       end
 
       def save_translations!
@@ -30,70 +41,62 @@ module Globalize
           attrs.each { |name, value| translation[name] = value }
           translation.save!
         end
+        record.translations.reset
         stash.clear
       end
 
       def reset
-        cache.clear
+        stash.clear
       end
 
       protected
 
-        def type_cast(name, value)
-          if value.nil?
-            nil
-          elsif column = column_for_attribute(name)
-            column.type_cast(value)
-          else
-            value
-          end
-        end
-
-        def column_for_attribute(name)
-          translation_class.columns_hash[name.to_s]
-        end
-
-        def unserializable_attribute?(name, column)
-          column.text? && translation_class.serialized_attributes[name.to_s]
-        end
-
-        def fetch_translation(locale)
-          locale = locale.to_sym
-          record.translations.loaded? ? record.translations.detect { |t| t.locale == locale } :
-            record.translations.with_locales(locale)
-        end
-
-        def fetch_translations(locale)
-          # only query if not already included with :include => translations
-          record.translations.loaded? ? record.translations :
-            record.translations.with_locales(Globalize.fallbacks(locale))
-        end
-
-        def fetch_attribute(locale, name)
-          translations = fetch_translations(locale)
-          value, requested_locale = nil, locale
-
-          Globalize.fallbacks(locale).each do |fallback|
-            translation = translations.to_a.detect { |t| t.locale == fallback }
-            value  = translation && translation.send(name)
-            locale = fallback && break if value
-          end
-
-          set_metadata(value, :locale => locale, :requested_locale => requested_locale)
+      def type_cast(name, value)
+        if value.nil?
+          nil
+        elsif column = column_for_attribute(name)
+          column.type_cast(value)
+        else
           value
         end
+      end
 
-        def set_metadata(object, metadata)
-          if object.respond_to?(:translation_metadata)
-            object.translation_metadata.merge!(meta_data)
-          end
-        end
+      def column_for_attribute(name)
+        translation_class.columns_hash[name.to_s]
+      end
 
-        def translation_metadata_accessor(object)
-          return if obj.respond_to?(:translation_metadata)
-          class << object; attr_accessor :translation_metadata end
-          object.translation_metadata ||= {}
-        end
+      def unserializable_attribute?(name, column)
+        column.text? && translation_class.serialized_attributes[name.to_s]
+      end
+
+      def fetch_translation(locale)
+        locale = locale.to_sym
+        record.translations.loaded? ? record.translations.detect { |t| t.locale == locale } :
+          record.translations.with_locales(locale)
+      end
+
+      def fetch_translations(locale) # change to take array
+        # only query if not already included with :include => translations
+        record.translations.loaded? ? record.translations :
+          record.translations.with_locales(Globalize.fallbacks(locale)) # retrives but does not store the translations!
+      end
+
+      def fetch_attribute(locale, name)
+        translations = fetch_translations(locale) # TODO move up
+        translation = translations.to_a.detect { |t| t.locale == locale }
+        return translation && translation.send(name)
+      end
+
+      def set_metadata(object, metadata)
+        object.translation_metadata.merge!(meta_data) if object.respond_to?(:translation_metadata)
+        object
+      end
+
+      def translation_metadata_accessor(object)
+        return if obj.respond_to?(:translation_metadata)
+        class << object; attr_accessor :translation_metadata end
+        object.translation_metadata ||= {}
+      end
     end
   end
 end
