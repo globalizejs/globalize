@@ -46,6 +46,7 @@ module Globalize
       end
 
       def reset
+        stash.clear
       end
 
       protected

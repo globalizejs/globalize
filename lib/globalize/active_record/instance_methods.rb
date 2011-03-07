@@ -24,7 +24,8 @@ module Globalize
       end
 
       def write_attribute(name, value, options = {})
-        raise 'y' if value.nil?
+        # raise 'y' if value.nil? # TODO.
+
         # Make sure that we return some value as some methods might
         # rely on the data
         return_value = super(name, value)

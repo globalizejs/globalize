@@ -7,7 +7,7 @@ class TranslatedTest < Test::Unit::TestCase
     I18n.backend = BackendWithFallbacks.new
 
     I18n.locale = :'en-US'
-    I18n.fallbacks.clear
+    I18n.fallbacks = ::I18n::Locale::Fallbacks.new
   end
 
   def teardown

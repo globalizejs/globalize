@@ -98,7 +98,7 @@ ActiveRecord::Schema.define do
     t.string :name
   end
 
-  create_table :uppercase_table_name_translations, :force => true do |t|
+  create_table :UPPERCASE_TABLE_NAME_translations, :force => true do |t|
     t.integer 'UPPERCASE_TABLE_NAME_id'
     t.string     :locale
     t.string     :name
