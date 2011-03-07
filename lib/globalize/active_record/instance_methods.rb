@@ -119,7 +119,7 @@ module Globalize
         end
 
         def used_locales
-          locales = globalize.cache.keys.concat(globalize.stash.keys).concat(translations.translated_locales)
+          locales = globalize.stash.keys.concat(globalize.stash.keys).concat(translations.translated_locales)
           locales.uniq!
           locales
         end
