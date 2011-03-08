@@ -18,9 +18,15 @@ module Globalize
     def with_locale(locale, &block)
       previous_locale = read_locale
       set_locale(locale)
-      result = yield
+      result = yield(locale)
       set_locale(previous_locale)
       result
+    end
+
+    def with_locales(*locales, &block)
+      locales.flatten.map do |locale|
+        with_locale(locale, &block)
+      end
     end
 
     def fallbacks?
