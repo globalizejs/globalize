@@ -62,13 +62,13 @@ module Globalize
       end
 
       def respond_to?(method, *args, &block)
-        method.to_s =~ /^find_by_(\w+)$/ && translated?($1.to_sym) || super
+        method.to_s =~ /^find_(all_|)by_(\w+)$/ && translated?($2.to_sym) || super
       end
 
       def method_missing(method, *args)
-        if method.to_s =~ /^find_(first_|)by_(\w+)$/ && translated?($2.to_sym)
+        if method.to_s =~ /^find_(all_|)by_(\w+)$/ && translated?($2.to_sym)
           result = with_translated_attribute($2, args.first)
-          $1 == 'first_' ? result.first : result.all
+          $1 == 'all_' ? result.all : result.first
         else
           super
         end
