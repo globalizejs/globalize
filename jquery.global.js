@@ -1,5 +1,6 @@
 /*!
- * jQuery Globalization Plugin
+ * jQuery Globalization Plugin v1.0.0pre
+
  * http://github.com/jquery/jquery-global
  *
  * Copyright Software Freedom Conservancy, Inc.

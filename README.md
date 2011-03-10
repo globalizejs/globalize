@@ -1,3 +1,8 @@
+# jQuery Global plugin v1.0.0pre.
+
+_Note: This plugin is currently in beta form and may change significantly before version 1.0 is released. 
+
+<p>
 <h1>Introduction</h1>
 <p>
 This jQuery plugin enables complex culture-aware number and date parsing and
