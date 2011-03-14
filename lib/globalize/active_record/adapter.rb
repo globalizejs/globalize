@@ -49,7 +49,7 @@ module Globalize
         stash.clear
       end
 
-      protected
+    protected
 
       def type_cast(name, value)
         if value.nil?
@@ -69,18 +69,8 @@ module Globalize
         column.text? && translation_class.serialized_attributes[name.to_s]
       end
 
-      def fetch_translations(locale) # change to take array
-        # only query if not already included with :include => translations
-        if record.translations.loaded?
-          record.translations
-        else
-          # retrieves but does not store the translations!
-          record.translations.with_locales(Globalize.fallbacks(locale))
-        end
-      end
-
       def fetch_attribute(locale, name)
-        translations = fetch_translations(locale) # TODO move up
+        translations = record.translations # TODO move up
         translation = translations.to_a.detect { |t| t.locale == locale }
         return translation && translation.send(name)
       end
