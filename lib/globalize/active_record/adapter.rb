@@ -14,9 +14,11 @@ module Globalize
       end
 
       def fetch(locale, name)
-        cache.contains?(locale, name) ?
-          type_cast(name, cache.read(locale, name)) :
+        if cache.contains?(locale, name)
+          type_cast(name, cache.read(locale, name))
+        else
           cache.write(locale, name, fetch_attribute(locale, name))
+        end
       end
 
       def write(locale, name, value)
@@ -59,14 +61,20 @@ module Globalize
 
         def fetch_translation(locale)
           locale = locale.to_sym
-          record.translations.loaded? ? record.translations.detect { |t| t.locale == locale } :
+          if record.translations.loaded?
+            record.translations.detect { |t| t.locale == locale }
+          else
             record.translations.with_locales(locale)
+          end
         end
 
         def fetch_translations(locale)
           # only query if not already included with :include => translations
-          record.translations.loaded? ? record.translations :
+          if record.translations.loaded?
+            record.translations
+          else
             record.translations.with_locales(Globalize.fallbacks(locale))
+          end
         end
 
         def fetch_attribute(locale, name)
@@ -97,4 +105,3 @@ module Globalize
     end
   end
 end
-
