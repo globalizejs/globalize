@@ -105,7 +105,7 @@ module Globalize
         return scope
       end
 
-      protected
+    protected
 
       def translated_attr_accessor(name)
         define_method(:"#{name}=") do |value|

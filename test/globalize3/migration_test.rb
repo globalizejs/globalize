@@ -126,31 +126,31 @@ class MigrationTest < Test::Unit::TestCase
     assert_equal 'Untranslated', untranslated.untranslated_attributes['name']
   end
 
-  protected
+protected
 
-    def reset_schema(*models)
-      models.each do |model|
-        model.reset_column_information rescue nil
-        model::Translation.reset_column_information rescue nil
-        model.drop_translation_table! if model::Translation.table_exists?
-      end
+  def reset_schema(*models)
+    models.each do |model|
+      model.reset_column_information rescue nil
+      model::Translation.reset_column_information rescue nil
+      model.drop_translation_table! if model::Translation.table_exists?
     end
+  end
 
-    def column_type(name)
-      Migrated::Translation.columns.detect { |c| c.name == name.to_s }.try(:type)
+  def column_type(name)
+    Migrated::Translation.columns.detect { |c| c.name == name.to_s }.try(:type)
+  end
+
+  def assert_migration_table(fields)
+    assert Migrated::Translation.table_exists?
+    assert Migrated::Translation.index_exists_on?(:migrated_id)
+
+    assert_equal :string,   column_type(:locale)
+    assert_equal :integer,  column_type(:migrated_id)
+    assert_equal :datetime, column_type(:created_at)
+    assert_equal :datetime, column_type(:updated_at)
+
+    fields.each do |name, type|
+      assert_equal type, column_type(name)
     end
-
-    def assert_migration_table(fields)
-      assert Migrated::Translation.table_exists?
-      assert Migrated::Translation.index_exists_on?(:migrated_id)
-
-      assert_equal :string,   column_type(:locale)
-      assert_equal :integer,  column_type(:migrated_id)
-      assert_equal :datetime, column_type(:created_at)
-      assert_equal :datetime, column_type(:updated_at)
-
-      fields.each do |name, type|
-        assert_equal type, column_type(name)
-      end
-    end
+  end
 end

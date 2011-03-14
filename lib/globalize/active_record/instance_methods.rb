@@ -108,34 +108,34 @@ module Globalize
         return obj
       end
 
-      protected
+    protected
 
-        def each_locale_and_translated_attribute
-          used_locales.each do |locale|
-            translated_attribute_names.each do |name|
-              yield locale, name
-            end
+      def each_locale_and_translated_attribute
+        used_locales.each do |locale|
+          translated_attribute_names.each do |name|
+            yield locale, name
           end
         end
+      end
 
-        def used_locales
-          locales = globalize.stash.keys.concat(globalize.stash.keys).concat(translations.translated_locales)
-          locales.uniq!
-          locales
-        end
+      def used_locales
+        locales = globalize.stash.keys.concat(globalize.stash.keys).concat(translations.translated_locales)
+        locales.uniq!
+        locales
+      end
 
-        def save_translations!
-          globalize.save_translations!
-        end
+      def save_translations!
+        globalize.save_translations!
+      end
 
-        def with_given_locale(attributes, &block)
-          attributes.symbolize_keys! if attributes.respond_to?(:symbolize_keys!)
-          if locale = attributes.try(:delete, :locale)
-            Globalize.with_locale(locale, &block)
-          else
-            yield
-          end
+      def with_given_locale(attributes, &block)
+        attributes.symbolize_keys! if attributes.respond_to?(:symbolize_keys!)
+        if locale = attributes.try(:delete, :locale)
+          Globalize.with_locale(locale, &block)
+        else
+          yield
         end
+      end
     end
   end
 end
