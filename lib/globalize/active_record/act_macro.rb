@@ -19,7 +19,8 @@ module Globalize
                                 :dependent   => :delete_all,
                                 :extend      => HasManyExtensions
 
-        after_save :save_translations!
+        after_create :save_translations!
+        after_update :save_translations!
 
         attr_names.each { |attr_name| translated_attr_accessor(attr_name) }
       end

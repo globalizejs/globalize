@@ -123,5 +123,4 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal 'Titel', post.title(:de)
   end
   
-  
 end

@@ -63,7 +63,8 @@ ActiveRecord::Schema.define do
   end
 
   create_table :users, :force => true do |t|
-    t.string :email
+    t.string   :email
+    t.datetime :created_at
   end
 
   create_table :user_translations, :force => true do |t|
@@ -97,7 +98,7 @@ ActiveRecord::Schema.define do
     t.string :name
   end
 
-  create_table :uppercase_table_name_translations, :force => true do |t|
+  create_table :UPPERCASE_TABLE_NAME_translations, :force => true do |t|
     t.integer 'UPPERCASE_TABLE_NAME_id'
     t.string     :locale
     t.string     :name
