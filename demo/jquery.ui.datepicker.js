@@ -917,7 +917,7 @@ $.extend(Datepicker.prototype, {
        @param  culture   string - the culture to parse the date as, omit to use the datepicker default culture.
 	   @return  Date - the extracted date value or null if value is blank */
 	parseDate: function (value, formats, culture) {
-        return $.parseDate(value, formats, culture || this._defaults.culture);
+        return $.global.parseDate(value, formats, culture || this._defaults.culture);
 	},
 
 	/* Standard date formats. */

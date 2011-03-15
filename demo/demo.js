@@ -54,10 +54,10 @@ jQuery(function($) {
     });
 
     $("#parseDate").change(function() {
-        $("#parseDateResult").text($.parseDate($(this).val()).toString());
+        $("#parseDateResult").text($.global.parseDate($(this).val()).toString());
     });
     $("#parseNumber").change(function() {
-        $("#parseNumberResult").text($.parseFloat($(this).val()).toString());
+        $("#parseNumberResult").text($.global.parseFloat($(this).val()).toString());
     });
 
     function sortByName(map) {
