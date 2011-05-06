@@ -24,6 +24,8 @@ module Globalize
       end
 
       def write_attribute(name, value, options = {})
+        # raise 'y' if value.nil? # TODO.
+
         # Make sure that we return some value as some methods might
         # rely on the data
         return_value = super(name, value)
@@ -93,20 +95,47 @@ module Globalize
         super(options)
       end
 
-      protected
+      def clone
+        obj = super
+        return obj unless respond_to?(:translated_attribute_names)
 
-        def save_translations!
-          globalize.save_translations!
+        obj.instance_variable_set(:@translations, nil) if new_record? # Reset the collection because of rails bug: http://pastie.org/1521874
+        obj.instance_variable_set(:@globalize, nil )
+        each_locale_and_translated_attribute do |locale, name|
+          obj.globalize.write(locale, name, globalize.fetch(locale, name) )
         end
 
-        def with_given_locale(attributes, &block)
-          attributes.symbolize_keys! if attributes.respond_to?(:symbolize_keys!)
-          if locale = attributes.try(:delete, :locale)
-            Globalize.with_locale(locale, &block)
-          else
-            yield
+        return obj
+      end
+
+    protected
+
+      def each_locale_and_translated_attribute
+        used_locales.each do |locale|
+          translated_attribute_names.each do |name|
+            yield locale, name
           end
         end
+      end
+
+      def used_locales
+        locales = globalize.stash.keys.concat(globalize.stash.keys).concat(translations.translated_locales)
+        locales.uniq!
+        locales
+      end
+
+      def save_translations!
+        globalize.save_translations!
+      end
+
+      def with_given_locale(attributes, &block)
+        attributes.symbolize_keys! if attributes.respond_to?(:symbolize_keys!)
+        if locale = attributes.try(:delete, :locale)
+          Globalize.with_locale(locale, &block)
+        else
+          yield
+        end
+      end
     end
   end
 end

@@ -37,15 +37,15 @@ module Globalize
       fallbacks? ? I18n.fallbacks[locale] : [locale.to_sym]
     end
 
-    protected
+  protected
 
-      def read_locale
-        Thread.current[:globalize_locale]
-      end
+    def read_locale
+      Thread.current[:globalize_locale]
+    end
 
-      def set_locale(locale)
-        Thread.current[:globalize_locale] = locale
-      end
+    def set_locale(locale)
+      Thread.current[:globalize_locale] = locale
+    end
   end
 end
 

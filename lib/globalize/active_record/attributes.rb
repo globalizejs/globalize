@@ -3,7 +3,7 @@
 
 module Globalize
   module ActiveRecord
-    class Attributes < Hash
+    class Attributes < Hash # TODO: Think about using HashWithIndifferentAccess ?
       def [](locale)
         locale = locale.to_sym
         self[locale] = {} unless has_key?(locale)
@@ -19,6 +19,7 @@ module Globalize
       end
 
       def write(locale, name, value)
+        #raise 'z' if value.nil? # TODO
         self[locale][name.to_s] = value
       end
     end

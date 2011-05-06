@@ -126,7 +126,7 @@ class Globalize3Test < Test::Unit::TestCase
   end
 
   test "a model with an after_save callback that reloads the model still saves correctly" do
-    reloading_post = ReloadingPost.create(:title => 'title')
+    reloading_post = ReloadingPost.create!(:title => 'title')
     assert_equal 'title', reloading_post.title
     assert_translated reloading_post, :en, :title, 'title'
   end
