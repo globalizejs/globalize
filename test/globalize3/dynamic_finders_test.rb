@@ -37,7 +37,7 @@ class DynamicFindersTest < Test::Unit::TestCase
     post.update_attributes!(:title => he, :locale => :he)
 
     with_fallbacks do
-      I18n.fallbacks = {de: [:de, :en], he: [:he, :en], en: [:en]}
+      I18n.fallbacks = {:de => [:de, :en], :he => [:he, :en], :en => [:en]}
 
       with_locale(:en) do
         assert Post.find_by_title(en)
