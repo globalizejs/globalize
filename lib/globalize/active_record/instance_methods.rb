@@ -26,10 +26,6 @@ module Globalize
       def write_attribute(name, value, options = {})
         # raise 'y' if value.nil? # TODO.
 
-        # Make sure that we return some value as some methods might
-        # rely on the data
-        return_value = super(name, value)
-
         if translated?(name)
           # Deprecate old use of locale
           unless options.is_a?(Hash)
@@ -37,9 +33,11 @@ module Globalize
             options = {:locale => options}
           end
           options = {:locale => nil}.merge(options)
-          return_value = globalize.write(options[:locale] || Globalize.locale, name, value)
+          attribute_will_change! name.to_s
+          globalize.write(options[:locale] || Globalize.locale, name, value)
+        else
+          super(name, value)
         end
-        return_value
       end
 
       def read_attribute(name, options = {})

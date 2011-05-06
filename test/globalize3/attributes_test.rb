@@ -122,5 +122,12 @@ class AttributesTest < Test::Unit::TestCase
     end
     assert_equal 'Titel', post.title(:de)
   end
-  
+
+  test 'modifying a translated attribute does not change the untranslated value' do
+    post = Post.create(:title => 'title')
+    before = post.untranslated_attributes['title']
+    post.title = 'changed title'
+    assert_equal post.untranslated_attributes['title'], before
+  end
+
 end
