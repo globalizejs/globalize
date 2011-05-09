@@ -72,7 +72,7 @@ module Globalize
       end
 
       def supported_on_missing?(method_id)
-        #return super unless respond_to?(:translated_attribute_names)
+        return super unless RUBY_VERSION < '1.9' || respond_to?(:translated_attribute_names)
         match = ::ActiveRecord::DynamicFinderMatch.match(method_id) || ::ActiveRecord::DynamicScopeMatch.match(method_id)
         return false if match.nil?
 
