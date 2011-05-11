@@ -30,6 +30,20 @@ class LocaleTest < Test::Unit::TestCase
     assert_equal :es, Globalize.locale
   end
 
+  test "Globalize locale setting with strings" do
+    I18n.locale = 'de'
+    Globalize.locale = 'de'
+    assert_equal I18n.locale, Globalize.locale
+
+    I18n.locale = 'de'
+    Globalize.locale = :de
+    assert_equal I18n.locale, Globalize.locale
+
+    I18n.locale =  :de
+    Globalize.locale = 'de'
+    assert_equal I18n.locale, Globalize.locale
+  end
+
   test 'with_locale temporarily sets the given locale and yields the block' do
     assert_equal :en, Globalize.locale
     Globalize.with_locale :de do |locale|
