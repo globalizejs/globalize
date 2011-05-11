@@ -44,7 +44,7 @@ module Globalize
     end
 
     def set_locale(locale)
-      Thread.current[:globalize_locale] = locale
+      Thread.current[:globalize_locale] = locale.to_sym rescue nil
     end
   end
 end
