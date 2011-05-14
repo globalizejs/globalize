@@ -3,7 +3,10 @@ module Globalize
     class Translation < ::ActiveRecord::Base
       class << self
         def with_locales(*locales)
-          where(:locale => locales.flatten.map(&:to_s))
+          # Avoid using "IN" with SQL queries when only using one locale.
+          locales = locales.flatten.map(&:to_s)
+          locales = locales.first if locales.one?
+          where(:locale => locales)
         end
         alias with_locale with_locales
 
