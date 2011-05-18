@@ -23,7 +23,7 @@ module Globalize
         Globalize.fallbacks(locale).each do |fallback|
           value = fetch_stash(fallback, name) || fetch_attribute(fallback, name)
 
-          if value
+          unless value.blank?
             set_metadata(value, :locale => fallback, :requested_locale => locale)
             return value
           end
