@@ -122,7 +122,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal 'foo', post.title
 
     post.update_attribute :title, ''
-    assert_equal '', post.title
+    assert_equal 'foo', post.title
   end
 end
 # TODO should validate_presence_of take fallbacks into account? maybe we need
