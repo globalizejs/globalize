@@ -1,5 +1,5 @@
 module Globalize
   module Versioning
-    autoload :VestalVersions, 'globalize/versioning/vestal_versions'
+    autoload :PaperTrail, 'globalize/versioning/paper_trail'
   end
 end

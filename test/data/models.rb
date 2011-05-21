@@ -5,7 +5,7 @@ end
 class Post < ActiveRecord::Base
   translates :title, :content, :published, :published_at
   validates_presence_of :title
-  # versioned
+  has_paper_trail
   scope :with_some_title, :conditions => { :title => 'some_title' }
 end
 

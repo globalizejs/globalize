@@ -37,6 +37,7 @@ class AttributesTest < Test::Unit::TestCase
     post = Post.create(:title => 'title')
     post.update_attributes(:title => 'Titel', :locale => :de)
     post.reload
+    debugger
 
     assert_translated post, :en, :title, 'title'
     assert_translated post, :de, :title, 'Titel'
