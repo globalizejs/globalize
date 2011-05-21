@@ -65,7 +65,7 @@ module Globalize
 
       def translated_attributes
         translated_attribute_names.inject({}) do |attributes, name|
-          attributes.merge(name.to_s => send(name))
+          attributes.merge(name.to_s => translation.send(name))
         end
       end
 
@@ -107,11 +107,22 @@ module Globalize
       end
 
       def translation
-        if @translation.nil? or @translation.try(:locale) != ::Globalize.locale
-          @translation = translations.with_locale(::Globalize.locale).first
-          @translation ||= translations.build(:locale => ::Globalize.locale)
+        translation_for(::Globalize.locale)
+      end
+
+      def translation_for(locale)
+        @translation_caches ||= {}
+        unless @translation_caches[locale]
+          _translation = translations.with_locale(locale).first
+          debugger if $_bar
+          _translation ||= translations.build(:locale => locale)
+          @translation_caches[locale] = _translation
         end
-        @translation
+        @translation_caches[locale]
+      end
+
+      def rollback
+        @translation_caches[::Globalize.locale] = translation.previous_version
       end
 
     protected
@@ -132,6 +143,7 @@ module Globalize
 
       def save_translations!
         globalize.save_translations!
+        @translation_caches = {}
       end
 
       def with_given_locale(attributes, &block)

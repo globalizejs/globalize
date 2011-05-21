@@ -25,3 +25,11 @@ module Globalize
     end
   end
 end
+
+# Setting this will force polymorphic associations to subclassed objects
+# to use their table_name rather than the parent object's table name,
+# which will allow you to get their models back in a more appropriate
+# format.
+#
+# See http://www.ruby-forum.com/topic/159894 for details.
+Globalize::ActiveRecord::Translation.abstract_class = true

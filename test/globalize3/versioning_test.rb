@@ -3,8 +3,6 @@ require File.expand_path('../../test_helper', __FILE__)
 class VersioningTest < Test::Unit::TestCase
   test "versions are scoped to the current Globalize locale" do
     post = Post.create!(:title => 'title v1', :content => '')
-    debugger
-    true
     post.update_attributes!(:title => 'title v2')
     assert_equal ['en', 'en'], post.versions.map(&:locale)
 
@@ -28,9 +26,10 @@ class VersioningTest < Test::Unit::TestCase
     post.update_attributes!(:title => 'title v3')
 
     # Roll back 2 versions in default locale
-    post.versions.last.reify
-    post.versions.last.reify
+    post.rollback
+    post.rollback
 
+    debugger
     assert_equal 'title v1', post.title(:en)
     assert_equal 'Titel v1', post.title(:de)
   end
@@ -57,17 +56,18 @@ class VersioningTest < Test::Unit::TestCase
     end
 
     with_locale(:en) do
-      post.versions.last.reify
+      post.rollback
       assert_equal 'title v2', post.title
       assert !post.published?
 
-      post.versions.last.reify
+      post.rollback
       assert_equal 'title v1', post.title
       assert !post.published?
     end
 
     with_locale(:de) do
-      post.versions.last.reify
+      debugger
+      post.rollback
       assert_equal 'Titel v1', post.title
       assert !post.published?
     end
