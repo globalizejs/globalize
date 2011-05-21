@@ -81,7 +81,7 @@ module Globalize
 
       def set_translations(options)
         options.keys.each do |locale|
-          translation = translations.find_by_locale(locale.to_s) ||
+          translation = translation_for(locale) ||
             translations.build(:locale => locale.to_s)
           translation.update_attributes!(options[locale])
         end
@@ -114,7 +114,6 @@ module Globalize
         @translation_caches ||= {}
         unless @translation_caches[locale]
           _translation = translations.with_locale(locale).first
-          debugger if $_bar
           _translation ||= translations.build(:locale => locale)
           @translation_caches[locale] = _translation
         end

@@ -4,15 +4,16 @@ class VersioningTest < Test::Unit::TestCase
   test "versions are scoped to the current Globalize locale" do
     post = Post.create!(:title => 'title v1', :content => '')
     post.update_attributes!(:title => 'title v2')
-    assert_equal ['en', 'en'], post.versions.map(&:locale)
+    # Creates a 'created' version, an initial update, and the update
+    assert_equal ['en', 'en', 'en'], post.versions.map(&:locale)
 
     Globalize.locale = :de
     post.update_attributes!(:title => 'Titel v1')
-    assert_equal ['de'], post.versions.map(&:locale)
+    assert_equal ['de', 'de'], post.versions.map(&:locale)
 
     Globalize.locale = :en
     post.versions.reset # hrmmm.
-    assert_equal ['en', 'en'], post.versions.map(&:locale)
+    assert_equal ['en', 'en', 'en'], post.versions.map(&:locale)
   end
 
   test "does not create a version for initial locale" do
@@ -29,7 +30,6 @@ class VersioningTest < Test::Unit::TestCase
     post.rollback
     post.rollback
 
-    debugger
     assert_equal 'title v1', post.title(:en)
     assert_equal 'Titel v1', post.title(:de)
   end
@@ -66,7 +66,6 @@ class VersioningTest < Test::Unit::TestCase
     end
 
     with_locale(:de) do
-      debugger
       post.rollback
       assert_equal 'Titel v1', post.title
       assert !post.published?

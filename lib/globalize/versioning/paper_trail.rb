@@ -23,6 +23,7 @@ ActiveRecord::Base.class_eval do
 end
 
 Version.class_eval do
+
   before_save do |version|
     version.locale = Globalize.locale.to_s
   end
@@ -31,5 +32,11 @@ Version.class_eval do
     "locale = '#{Globalize.locale.to_s}'"
   end
 
-  default_scope(:conditions => locale_conditions_to_sql)
+  scope :for_this_locale, lambda{ { :conditions => locale_conditions_to_sql } }
+
+  def sibling_versions_with_locales
+    sibling_versions_without_locales.for_this_locale
+  end
+  alias_method_chain :sibling_versions, :locales
+
 end
