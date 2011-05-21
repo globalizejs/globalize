@@ -11,7 +11,7 @@ ActiveRecord::Schema.define do
 
   create_table :posts, :force => true do |t|
     t.references :blog
-    # t.boolean    :published
+    t.boolean    :published
   end
 
   create_table :post_translations, :force => true do |t|

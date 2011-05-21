@@ -106,6 +106,14 @@ module Globalize
         return obj
       end
 
+      def translation
+        if @translation.nil? or @translation.try(:locale) != ::Globalize.locale
+          @translation = translations.with_locale(::Globalize.locale).first
+          @translation ||= translations.build(:locale => ::Globalize.locale)
+        end
+        @translation
+      end
+
     protected
 
       def each_locale_and_translated_attribute
