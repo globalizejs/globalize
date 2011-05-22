@@ -50,4 +50,3 @@ module Globalize
 end
 
 ActiveRecord::Base.extend(Globalize::ActiveRecord::ActMacro)
-ActiveRecord::Base.extend(Globalize::Versioning::PaperTrail)

@@ -38,5 +38,4 @@ Version.class_eval do
     sibling_versions_without_locales.for_this_locale
   end
   alias_method_chain :sibling_versions, :locales
-
 end

@@ -23,6 +23,8 @@ module Globalize
         after_update :save_translations!
 
         if options[:versioning]
+          ::ActiveRecord::Base.extend(Globalize::Versioning::PaperTrail)
+
           translation_class.has_paper_trail
           delegate :version, :versions, :to => :translation
         end
