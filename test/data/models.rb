@@ -3,9 +3,8 @@ class Translation < ActiveRecord::Base
 end
 
 class Post < ActiveRecord::Base
-  translates :title, :content, :published, :published_at
+  translates :title, :content, :published, :published_at, :versioning => true
   validates_presence_of :title
-  # versioned
   scope :with_some_title, :conditions => { :title => 'some_title' }
 end
 

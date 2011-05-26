@@ -65,7 +65,7 @@ module Globalize
 
       def translated_attributes
         translated_attribute_names.inject({}) do |attributes, name|
-          attributes.merge(name.to_s => send(name))
+          attributes.merge(name.to_s => translation.send(name))
         end
       end
 
@@ -81,7 +81,7 @@ module Globalize
 
       def set_translations(options)
         options.keys.each do |locale|
-          translation = translations.find_by_locale(locale.to_s) ||
+          translation = translation_for(locale) ||
             translations.build(:locale => locale.to_s)
           translation.update_attributes!(options[locale])
         end
@@ -106,6 +106,24 @@ module Globalize
         return obj
       end
 
+      def translation
+        translation_for(::Globalize.locale)
+      end
+
+      def translation_for(locale)
+        @translation_caches ||= {}
+        unless @translation_caches[locale]
+          _translation = translations.with_locale(locale).first
+          _translation ||= translations.build(:locale => locale)
+          @translation_caches[locale] = _translation
+        end
+        @translation_caches[locale]
+      end
+
+      def rollback
+        @translation_caches[::Globalize.locale] = translation.previous_version
+      end
+
     protected
 
       def each_locale_and_translated_attribute
@@ -124,6 +142,7 @@ module Globalize
 
       def save_translations!
         globalize.save_translations!
+        @translation_caches = {}
       end
 
       def with_given_locale(attributes, &block)

@@ -45,10 +45,7 @@ module Globalize
             klass = self.const_set(:Translation, Class.new(Globalize::ActiveRecord::Translation))
           end
 
-          if klass.table_name == 'translations'
-            klass.set_table_name(translation_options[:table_name])
-            klass.belongs_to name.underscore.gsub('/', '_')
-          end
+          klass.belongs_to name.underscore.gsub('/', '_')
           klass
         end
       end

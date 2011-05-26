@@ -11,7 +11,7 @@ ActiveRecord::Schema.define do
 
   create_table :posts, :force => true do |t|
     t.references :blog
-    # t.boolean    :published
+    t.boolean    :published
   end
 
   create_table :post_translations, :force => true do |t|
@@ -73,26 +73,17 @@ ActiveRecord::Schema.define do
     t.string     :name
   end
 
-  create_table :versions do |t|
-    t.belongs_to :versioned, :polymorphic => true
-    t.belongs_to :user, :polymorphic => true
-    t.string :user_name
-    t.text :change_log
-    t.integer :number
-    t.string :tag
-    t.string :locale
-
-    t.timestamps
+  create_table "versions", :force => true do |t|
+    t.string   "item_type",  :null => false
+    t.integer  "item_id",    :null => false
+    t.string   "event",      :null => false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.string   "locale"
+    t.datetime "created_at"
   end
 
-  change_table :versions do |t|
-    t.index [:versioned_id, :versioned_type]
-    t.index [:user_id, :user_type]
-    t.index :user_name
-    t.index :number
-    t.index :tag
-    t.index :created_at
-  end
+  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
   create_table 'UPPERCASE_TABLE_NAME', :force => true do |t|
     t.string :name

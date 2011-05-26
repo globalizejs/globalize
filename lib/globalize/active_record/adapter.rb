@@ -70,8 +70,7 @@ module Globalize
       end
 
       def fetch_attribute(locale, name)
-        translations ||= record.translations
-        translation = translations.detect{|t| t.locale == locale}
+        translation = record.translation_for(locale)
         return translation && translation.send(name)
       end
 

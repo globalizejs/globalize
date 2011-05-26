@@ -22,6 +22,13 @@ module Globalize
         after_create :save_translations!
         after_update :save_translations!
 
+        if options[:versioning]
+          ::ActiveRecord::Base.extend(Globalize::Versioning::PaperTrail)
+
+          translation_class.has_paper_trail
+          delegate :version, :versions, :to => :translation
+        end
+
         attr_names.each { |attr_name| translated_attr_accessor(attr_name) }
       end
 
