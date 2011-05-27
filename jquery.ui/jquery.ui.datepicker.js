@@ -1943,9 +1943,9 @@ var regions = {
         "dateFormat": "d"
     },
     "sk": {
-        "closeText": "Zavrie\u00c5\u00a5",
-        "prevText": "&#x3c;Predch\u00c3\u00a1dzaj\u00c3\u00baci",
-        "nextText": "Nasleduj\u00c3\u00baci&#x3e;",
+        "closeText": "Zavrie\u0165",
+        "prevText": "&#x3c;Predch\u00E1dzaj\u00FAci",
+        "nextText": "Nasleduj\u00FAci&#x3e;",
         "currentText": "Dnes",
         "weekHeader": "Ty",
         "dateFormat": "d"
