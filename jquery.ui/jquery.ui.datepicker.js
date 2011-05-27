@@ -1,5 +1,5 @@
 /*
- * jQuery UI Datepicker 1.8.13
+ * jQuery UI Datepicker 1.8.13 (modified version from jquery.global)
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -39,26 +39,9 @@ function Datepicker() {
 	this._unselectableClass = 'ui-datepicker-unselectable'; // The name of the unselectable cell marker class
 	this._currentClass = 'ui-datepicker-current-day'; // The name of the current day marker class
 	this._dayOverClass = 'ui-datepicker-days-cell-over'; // The name of the day hover marker class
-	this.regional = []; // Available regional settings, indexed by language code
-	this.regional[''] = { // Default regional settings
-		closeText: 'Done', // Display text for close link
-		prevText: 'Prev', // Display text for previous month link
-		nextText: 'Next', // Display text for next month link
-		currentText: 'Today', // Display text for current month link
-		monthNames: ['January','February','March','April','May','June',
-			'July','August','September','October','November','December'], // Names of months for drop-down and formatting
-		monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], // For formatting
-		dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], // For formatting
-		dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], // For formatting
-		dayNamesMin: ['Su','Mo','Tu','We','Th','Fr','Sa'], // Column headings for days starting at Sunday
-		weekHeader: 'Wk', // Column header for week of the year
-		dateFormat: 'mm/dd/yy', // See format options on parseDate
-		firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
-		isRTL: false, // True if right-to-left language, false if left-to-right
-		showMonthAfterYear: false, // True if the year select precedes month, false for month then year
-		yearSuffix: '' // Additional text to append to the year in the month headers
-	};
 	this._defaults = { // Global defaults for all the date picker instances
+        dateFormat: 'd',
+        culture: '', // use jQuery.culture by default
 		showOn: 'focus', // 'focus' for popup on focus,
 			// 'button' for trigger button, or 'both' for either
 		showAnim: 'fadeIn', // Name of jQuery animation for popup
@@ -83,9 +66,6 @@ function Datepicker() {
 		showWeek: false, // True to show week of the year, false to not show it
 		calculateWeek: this.iso8601Week, // How to calculate the week of the year,
 			// takes a Date and returns the number of the week for it
-		shortYearCutoff: '+10', // Short year values < this are in the current century,
-			// > this are in the previous century,
-			// string value starting with '+' for current year + value
 		minDate: null, // The earliest selectable date, or null for no limit
 		maxDate: null, // The latest selectable date, or null for no limit
 		duration: 'fast', // Duration of display/closure
@@ -107,7 +87,6 @@ function Datepicker() {
 		showButtonPanel: false, // True to show button panel, false to not show it
 		autoSize: false // True to size the input for the date format, false to leave as is
 	};
-	$.extend(this._defaults, this.regional['']);
 	this.dpDiv = bindHover($('<div id="' + this._mainDivId + '" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>'));
 }
 
@@ -237,7 +216,7 @@ $.extend(Datepicker.prototype, {
 		if (this._get(inst, 'autoSize') && !inst.inline) {
 			var date = new Date(2009, 12 - 1, 20); // Ensure double digits
 			var dateFormat = this._get(inst, 'dateFormat');
-			if (dateFormat.match(/[DM]/)) {
+			if (dateFormat.match(/ddd|MMM/)) {
 				var findMax = function(names) {
 					var max = 0;
 					var maxI = 0;
@@ -249,10 +228,10 @@ $.extend(Datepicker.prototype, {
 					}
 					return maxI;
 				};
-				date.setMonth(findMax(this._get(inst, (dateFormat.match(/MM/) ?
-					'monthNames' : 'monthNamesShort'))));
-				date.setDate(findMax(this._get(inst, (dateFormat.match(/DD/) ?
-					'dayNames' : 'dayNamesShort'))) + 20 - date.getDay());
+                var months = this._get(inst, 'months'),
+                    days = this._get(inst, 'days');
+                date.setMonth(findMax(months[dateFormat.match(/MMMM/) ? "names" : "namesAbbr"]));
+                date.setDate(findMax(days[dateFormat.match(/dddd/) ? "names" : "namesAbbr"]) + 20 - date.getDay());
 			}
 			inst.input.attr('size', this._formatDate(inst, date).length);
 		}
@@ -576,7 +555,7 @@ $.extend(Datepicker.prototype, {
 	_doKeyPress: function(event) {
 		var inst = $.datepicker._getInst(event.target);
 		if ($.datepicker._get(inst, 'constrainInput')) {
-			var chars = $.datepicker._possibleChars($.datepicker._get(inst, 'dateFormat'));
+			var chars = $.datepicker._possibleChars(inst.settings.culture || $.datepicker._defaults.culture, $.datepicker._get(inst, 'dateFormat'));
 			var chr = String.fromCharCode(event.charCode == undefined ? event.keyCode : event.charCode);
 			return event.ctrlKey || event.metaKey || (chr < ' ' || !chars || chars.indexOf(chr) > -1);
 		}
@@ -587,9 +566,10 @@ $.extend(Datepicker.prototype, {
 		var inst = $.datepicker._getInst(event.target);
 		if (inst.input.val() != inst.lastVal) {
 			try {
-				var date = $.datepicker.parseDate($.datepicker._get(inst, 'dateFormat'),
-					(inst.input ? inst.input.val() : null),
-					$.datepicker._getFormatConfig(inst));
+				var date = $.datepicker.parseDate(
+                                (inst.input ? inst.input.val() : null),
+                                $.datepicker._get(inst, 'dateFormat'),
+                                inst.settings.culture);
 				if (date) { // only if valid
 					$.datepicker._setDateFromField(inst);
 					$.datepicker._updateAlternate(inst);
@@ -919,7 +899,7 @@ $.extend(Datepicker.prototype, {
 		if (altField) { // update alternate field too
 			var altFormat = this._get(inst, 'altFormat') || this._get(inst, 'dateFormat');
 			var date = this._getDate(inst);
-			var dateStr = this.formatDate(altFormat, date, this._getFormatConfig(inst));
+			var dateStr = this.formatDate(date, altFormat, inst.settings.culture);
 			$(altField).each(function() { $(this).val(dateStr); });
 		}
 	},
@@ -948,312 +928,155 @@ $.extend(Datepicker.prototype, {
 	/* Parse a string value into a date object.
 	   See formatDate below for the possible formats.
 
-	   @param  format    string - the expected format of the date
-	   @param  value     string - the date in the above format
-	   @param  settings  Object - attributes include:
-	                     shortYearCutoff  number - the cutoff year for determining the century (optional)
-	                     dayNamesShort    string[7] - abbreviated names of the days from Sunday (optional)
-	                     dayNames         string[7] - names of the days from Sunday (optional)
-	                     monthNamesShort  string[12] - abbreviated names of the months (optional)
-	                     monthNames       string[12] - names of the months (optional)
+	   @param  value     string - the date in the following format(s)
+	   @param  formats   string - the expected format of the date, or array of possible format strings
+       @param  culture   string - the culture to parse the date as, omit to use the datepicker default culture.
 	   @return  Date - the extracted date value or null if value is blank */
-	parseDate: function (format, value, settings) {
-		if (format == null || value == null)
-			throw 'Invalid arguments';
-		value = (typeof value == 'object' ? value.toString() : value + '');
-		if (value == '')
-			return null;
-		var shortYearCutoff = (settings ? settings.shortYearCutoff : null) || this._defaults.shortYearCutoff;
-		shortYearCutoff = (typeof shortYearCutoff != 'string' ? shortYearCutoff :
-				new Date().getFullYear() % 100 + parseInt(shortYearCutoff, 10));
-		var dayNamesShort = (settings ? settings.dayNamesShort : null) || this._defaults.dayNamesShort;
-		var dayNames = (settings ? settings.dayNames : null) || this._defaults.dayNames;
-		var monthNamesShort = (settings ? settings.monthNamesShort : null) || this._defaults.monthNamesShort;
-		var monthNames = (settings ? settings.monthNames : null) || this._defaults.monthNames;
-		var year = -1;
-		var month = -1;
-		var day = -1;
-		var doy = -1;
-		var literal = false;
-		// Check whether a format character is doubled
-		var lookAhead = function(match) {
-			var matches = (iFormat + 1 < format.length && format.charAt(iFormat + 1) == match);
-			if (matches)
-				iFormat++;
-			return matches;
-		};
-		// Extract a number from the string value
-		var getNumber = function(match) {
-			var isDoubled = lookAhead(match);
-			var size = (match == '@' ? 14 : (match == '!' ? 20 :
-				(match == 'y' && isDoubled ? 4 : (match == 'o' ? 3 : 2))));
-			var digits = new RegExp('^\\d{1,' + size + '}');
-			var num = value.substring(iValue).match(digits);
-			if (!num)
-				throw 'Missing number at position ' + iValue;
-			iValue += num[0].length;
-			return parseInt(num[0], 10);
-		};
-		// Extract a name from the string value and convert to an index
-		var getName = function(match, shortNames, longNames) {
-			var names = $.map(lookAhead(match) ? longNames : shortNames, function (v, k) {
-				return [ [k, v] ];
-			}).sort(function (a, b) {
-				return -(a[1].length - b[1].length);
-			});
-			var index = -1;
-			$.each(names, function (i, pair) {
-				var name = pair[1];
-				if (value.substr(iValue, name.length).toLowerCase() == name.toLowerCase()) {
-					index = pair[0];
-					iValue += name.length;
-					return false;
-				}
-			});
-			if (index != -1)
-				return index + 1;
-			else
-				throw 'Unknown name at position ' + iValue;
-		};
-		// Confirm that a literal character matches the string value
-		var checkLiteral = function() {
-			if (value.charAt(iValue) != format.charAt(iFormat))
-				throw 'Unexpected literal at position ' + iValue;
-			iValue++;
-		};
-		var iValue = 0;
-		for (var iFormat = 0; iFormat < format.length; iFormat++) {
-			if (literal)
-				if (format.charAt(iFormat) == "'" && !lookAhead("'"))
-					literal = false;
-				else
-					checkLiteral();
-			else
-				switch (format.charAt(iFormat)) {
-					case 'd':
-						day = getNumber('d');
-						break;
-					case 'D':
-						getName('D', dayNamesShort, dayNames);
-						break;
-					case 'o':
-						doy = getNumber('o');
-						break;
-					case 'm':
-						month = getNumber('m');
-						break;
-					case 'M':
-						month = getName('M', monthNamesShort, monthNames);
-						break;
-					case 'y':
-						year = getNumber('y');
-						break;
-					case '@':
-						var date = new Date(getNumber('@'));
-						year = date.getFullYear();
-						month = date.getMonth() + 1;
-						day = date.getDate();
-						break;
-					case '!':
-						var date = new Date((getNumber('!') - this._ticksTo1970) / 10000);
-						year = date.getFullYear();
-						month = date.getMonth() + 1;
-						day = date.getDate();
-						break;
-					case "'":
-						if (lookAhead("'"))
-							checkLiteral();
-						else
-							literal = true;
-						break;
-					default:
-						checkLiteral();
-				}
-		}
-		if (year == -1)
-			year = new Date().getFullYear();
-		else if (year < 100)
-			year += new Date().getFullYear() - new Date().getFullYear() % 100 +
-				(year <= shortYearCutoff ? 0 : -100);
-		if (doy > -1) {
-			month = 1;
-			day = doy;
-			do {
-				var dim = this._getDaysInMonth(year, month - 1);
-				if (day <= dim)
-					break;
-				month++;
-				day -= dim;
-			} while (true);
-		}
-		var date = this._daylightSavingAdjust(new Date(year, month - 1, day));
-		if (date.getFullYear() != year || date.getMonth() + 1 != month || date.getDate() != day)
-			throw 'Invalid date'; // E.g. 31/02/00
-		return date;
+	parseDate: function (value, formats, culture) {
+        return $.global.parseDate(value, formats, culture || this._defaults.culture);
 	},
 
 	/* Standard date formats. */
-	ATOM: 'yy-mm-dd', // RFC 3339 (ISO 8601)
-	COOKIE: 'D, dd M yy',
-	ISO_8601: 'yy-mm-dd',
-	RFC_822: 'D, d M y',
-	RFC_850: 'DD, dd-M-y',
-	RFC_1036: 'D, d M y',
-	RFC_1123: 'D, d M yy',
-	RFC_2822: 'D, d M yy',
-	RSS: 'D, d M y', // RFC 822
+	ATOM: 'yyyy-mm-dd', // RFC 3339 (ISO 8601)
+	COOKIE: 'ddd, dd mmm yyyy',
+	ISO_8601: 'yyyy-mm-dd',
+	RFC_822: 'ddd, d mmm yy',
+	RFC_850: 'dddd, dd-mmm-yy',
+	RFC_1036: 'ddd, d mmm yy',
+	RFC_1123: 'ddd, d mmm yyyy',
+	RFC_2822: 'ddd, d mmm yyyy',
+	RSS: 'ddd, d mmm yy', // RFC 822
 	TICKS: '!',
 	TIMESTAMP: '@',
-	W3C: 'yy-mm-dd', // ISO 8601
+	W3C: 'yyyy-mm-dd', // ISO 8601
 
 	_ticksTo1970: (((1970 - 1) * 365 + Math.floor(1970 / 4) - Math.floor(1970 / 100) +
 		Math.floor(1970 / 400)) * 24 * 60 * 60 * 10000000),
 
-	/* Format a date object into a string value.
-	   The format can be combinations of the following:
-	   d  - day of month (no leading zero)
-	   dd - day of month (two digit)
-	   o  - day of year (no leading zeros)
-	   oo - day of year (three digit)
-	   D  - day name short
-	   DD - day name long
-	   m  - month of year (no leading zero)
-	   mm - month of year (two digit)
-	   M  - month name short
-	   MM - month name long
-	   y  - year (two digit)
-	   yy - year (four digit)
-	   @ - Unix timestamp (ms since 01/01/1970)
-	   ! - Windows ticks (100ns since 01/01/0001)
-	   '...' - literal text
-	   '' - single quote
-
-	   @param  format    string - the desired format of the date
-	   @param  date      Date - the date value to format
-	   @param  settings  Object - attributes include:
-	                     dayNamesShort    string[7] - abbreviated names of the days from Sunday (optional)
-	                     dayNames         string[7] - names of the days from Sunday (optional)
-	                     monthNamesShort  string[12] - abbreviated names of the months (optional)
-	                     monthNames       string[12] - names of the months (optional)
+    /*
+	   @param  value     string - the date to format
+	   @param  formats   string - the format of the date
+       @param  culture   string - the culture to format the date as, omit to use the datepicker default culture.
 	   @return  string - the date in the above format */
-	formatDate: function (format, date, settings) {
-		if (!date)
-			return '';
-		var dayNamesShort = (settings ? settings.dayNamesShort : null) || this._defaults.dayNamesShort;
-		var dayNames = (settings ? settings.dayNames : null) || this._defaults.dayNames;
-		var monthNamesShort = (settings ? settings.monthNamesShort : null) || this._defaults.monthNamesShort;
-		var monthNames = (settings ? settings.monthNames : null) || this._defaults.monthNames;
-		// Check whether a format character is doubled
-		var lookAhead = function(match) {
-			var matches = (iFormat + 1 < format.length && format.charAt(iFormat + 1) == match);
-			if (matches)
-				iFormat++;
-			return matches;
-		};
-		// Format a number, with leading zero if necessary
-		var formatNumber = function(match, value, len) {
-			var num = '' + value;
-			if (lookAhead(match))
-				while (num.length < len)
-					num = '0' + num;
-			return num;
-		};
-		// Format a name, short or long as requested
-		var formatName = function(match, value, shortNames, longNames) {
-			return (lookAhead(match) ? longNames[value] : shortNames[value]);
-		};
-		var output = '';
-		var literal = false;
-		if (date)
-			for (var iFormat = 0; iFormat < format.length; iFormat++) {
-				if (literal)
-					if (format.charAt(iFormat) == "'" && !lookAhead("'"))
-						literal = false;
-					else
-						output += format.charAt(iFormat);
-				else
-					switch (format.charAt(iFormat)) {
-						case 'd':
-							output += formatNumber('d', date.getDate(), 2);
-							break;
-						case 'D':
-							output += formatName('D', date.getDay(), dayNamesShort, dayNames);
-							break;
-						case 'o':
-							output += formatNumber('o',
-								(date.getTime() - new Date(date.getFullYear(), 0, 0).getTime()) / 86400000, 3);
-							break;
-						case 'm':
-							output += formatNumber('m', date.getMonth() + 1, 2);
-							break;
-						case 'M':
-							output += formatName('M', date.getMonth(), monthNamesShort, monthNames);
-							break;
-						case 'y':
-							output += (lookAhead('y') ? date.getFullYear() :
-								(date.getYear() % 100 < 10 ? '0' : '') + date.getYear() % 100);
-							break;
-						case '@':
-							output += date.getTime();
-							break;
-						case '!':
-							output += date.getTime() * 10000 + this._ticksTo1970;
-							break;
-						case "'":
-							if (lookAhead("'"))
-								output += "'";
-							else
-								literal = true;
-							break;
-						default:
-							output += format.charAt(iFormat);
-					}
-			}
-		return output;
-	},
+    formatDate: function(date, format, culture) {
+        return $.global.format(date, format, culture || this._defaults.culture);
+    },
+
+    _expandFormat: function(calendar, format) {
+        // expands unspecified or single character date formats into the full pattern.
+        format = format || "F";
+        var pattern,
+            patterns = cal.patterns,
+            len = format.length;
+        if ( len === 1 ) {
+            pattern = patterns[ format ];
+            if ( !pattern ) {
+                $.error( "Invalid date format string '" + format + "'." );
+            }
+            format = pattern;
+        }
+        else if ( len === 2  && format.charAt(0) === "%" ) {
+            // %X escape format -- intended as a custom format string that is only one character, not a built-in format.
+            format = format.charAt( 1 );
+        }
+        return format;
+    },
 
 	/* Extract all possible characters from the date format. */
-	_possibleChars: function (format) {
-		var chars = '';
-		var literal = false;
-		// Check whether a format character is doubled
-		var lookAhead = function(match) {
-			var matches = (iFormat + 1 < format.length && format.charAt(iFormat + 1) == match);
-			if (matches)
-				iFormat++;
-			return matches;
-		};
-		for (var iFormat = 0; iFormat < format.length; iFormat++)
-			if (literal)
-				if (format.charAt(iFormat) == "'" && !lookAhead("'"))
-					literal = false;
-				else
-					chars += format.charAt(iFormat);
-			else
-				switch (format.charAt(iFormat)) {
-					case 'd': case 'm': case 'y': case '@':
-						chars += '0123456789';
-						break;
-					case 'D': case 'M':
-						return null; // Accept anything
-					case "'":
-						if (lookAhead("'"))
-							chars += "'";
-						else
-							literal = true;
-						break;
-					default:
-						chars += format.charAt(iFormat);
-				}
-		return chars;
-	},
+    _possibleChars: function(culture, format) {
+        // expand single digit formats, then escape regular expression characters.
+        format = expandFormat( culture.calendar, format );
+        var filtered = '',
+            quotes,
+            chars = '';
+        // enumerate the characters, capturing quoted strings
+        // and filtering them out
+        for (var i = 0, l = format.length; i < l; i++) {
+            var c = format.charAt(i);
+            if (escape) {
+                chars += c;
+            }
+            else if (c === '\\') {
+                escape = true;
+            }
+            else if (c === "'") {
+                quotes = !quotes;
+            }
+            else if (quotes) {
+                chars += c;
+                filtered += ' ';
+            }
+            else {
+                filtered += c;
+            }
+        }
 
+        // now look for built in tokens and allow the appropriate characters
+        var match,
+            regexParts = /\/|dddd|ddd|dd|d|MMMM|MMM|MM|M|yyyy|yy|y|hh|h|HH|H|mm|m|ss|s|tt|t|fff|ff|f|zzz|zz|z|gg|g|./g;
+
+        while ( (match = regexParts.exec( filtered )) !== null ) {
+            switch(match[0]) {
+                case 'dddd': case 'ddd':
+                case 'MMMM': case 'MMM':
+                case 'gg': case 'g':
+                case 'tt': case 't':
+                    // accept anything
+                    return null; 
+                case 'yyyy':
+                case 'fff':
+                case 'ff':
+                case 'f':
+                case 'dd': case 'd':
+                case 'MM': case 'M':
+                case 'yy': case 'y':
+                case 'HH': case 'H':
+                case 'hh': case 'h':
+                case 'mm': case 'm':
+                case 'ss': case 's':
+                    chars += '0123456789';
+                    break;
+                case 'zzz':
+                    chars += '-+:0123456789';
+                    break;
+                case 'zz': case 'z':
+                    chars += '-+0123456789';
+                    break;
+                case '/':
+                    chars += cal["/"];
+                    break;
+                default: 
+                    chars += match[0];
+                    break;
+            }
+        }
+        return chars;
+    },
 	/* Get a setting value, defaulting if necessary. */
-	_get: function(inst, name) {
-		return inst.settings[name] !== undefined ?
-			inst.settings[name] : this._defaults[name];
-	},
-
+    _get: function(inst, name) {
+        // try instance settings
+        var val = inst.settings[name];
+        if (typeof val === "undefined") {
+            // then try global defaults
+            val = this._defaults[name];
+            if (typeof val === "undefined") {
+                var cultureName = inst.settings.culture || this._defaults.culture,
+                    culture = $.global.findClosestCulture(cultureName);
+                // try a culture value or a culture calendar value
+                // e.g. 'isRTL' (culture.isRTL) or 'days' (culture.calendar.days)
+                val = culture[name];
+                if (typeof val === "undefined") {
+                    val = culture.calendar[name];
+                    if (typeof val === "undefined") {
+                        // then try datepicker specific data for the culture
+                        var localized = $.global.localize('datepicker', cultureName || this._defaults.culture);
+                        val = localized[name];
+                    }
+                }
+            }
+        }
+        return val;
+    },
 	/* Parse existing date and initialise date picker. */
 	_setDateFromField: function(inst, noDefault) {
 		if (inst.input.val() == inst.lastVal) {
@@ -1263,9 +1086,8 @@ $.extend(Datepicker.prototype, {
 		var dates = inst.lastVal = inst.input ? inst.input.val() : null;
 		var date, defaultDate;
 		date = defaultDate = this._getDefaultDate(inst);
-		var settings = this._getFormatConfig(inst);
 		try {
-			date = this.parseDate(dateFormat, dates, settings) || defaultDate;
+			date = this.parseDate(dates, dateFormat, inst.settings.culture) || defaultDate;
 		} catch (event) {
 			this.log(event);
 			dates = (noDefault ? '' : dates);
@@ -1294,8 +1116,8 @@ $.extend(Datepicker.prototype, {
 		};
 		var offsetString = function(offset) {
 			try {
-				return $.datepicker.parseDate($.datepicker._get(inst, 'dateFormat'),
-					offset, $.datepicker._getFormatConfig(inst));
+				return $.datepicker.parseDate(offset, $.datepicker._get(inst, 'dateFormat'),
+					inst.settings.culture);
 			}
 			catch (e) {
 				// Ignore
@@ -1413,18 +1235,19 @@ $.extend(Datepicker.prototype, {
 		inst.drawMonth = drawMonth;
 		inst.drawYear = drawYear;
 		var prevText = this._get(inst, 'prevText');
-		prevText = (!navigationAsDateFormat ? prevText : this.formatDate(prevText,
-			this._daylightSavingAdjust(new Date(drawYear, drawMonth - stepMonths, 1)),
-			this._getFormatConfig(inst)));
+        var culture = inst.settings.culture;
+		prevText = !navigationAsDateFormat
+            ? prevText
+            : this.formatDate(this._daylightSavingAdjust(new Date(drawYear, drawMonth - stepMonths, 1)), prevText, culture);
 		var prev = (this._canAdjustMonth(inst, -1, drawYear, drawMonth) ?
 			'<a class="ui-datepicker-prev ui-corner-all" onclick="DP_jQuery_' + dpuuid +
 			'.datepicker._adjustDate(\'#' + inst.id + '\', -' + stepMonths + ', \'M\');"' +
 			' title="' + prevText + '"><span class="ui-icon ui-icon-circle-triangle-' + ( isRTL ? 'e' : 'w') + '">' + prevText + '</span></a>' :
 			(hideIfNoPrevNext ? '' : '<a class="ui-datepicker-prev ui-corner-all ui-state-disabled" title="'+ prevText +'"><span class="ui-icon ui-icon-circle-triangle-' + ( isRTL ? 'e' : 'w') + '">' + prevText + '</span></a>'));
 		var nextText = this._get(inst, 'nextText');
-		nextText = (!navigationAsDateFormat ? nextText : this.formatDate(nextText,
-			this._daylightSavingAdjust(new Date(drawYear, drawMonth + stepMonths, 1)),
-			this._getFormatConfig(inst)));
+		nextText = !navigationAsDateFormat
+            ? nextText
+            : this.formatDate(this._daylightSavingAdjust(new Date(drawYear, drawMonth + stepMonths, 1)), nextText, culture);
 		var next = (this._canAdjustMonth(inst, +1, drawYear, drawMonth) ?
 			'<a class="ui-datepicker-next ui-corner-all" onclick="DP_jQuery_' + dpuuid +
 			'.datepicker._adjustDate(\'#' + inst.id + '\', +' + stepMonths + ', \'M\');"' +
@@ -1433,7 +1256,7 @@ $.extend(Datepicker.prototype, {
 		var currentText = this._get(inst, 'currentText');
 		var gotoDate = (this._get(inst, 'gotoCurrent') && inst.currentDay ? currentDate : today);
 		currentText = (!navigationAsDateFormat ? currentText :
-			this.formatDate(currentText, gotoDate, this._getFormatConfig(inst)));
+			this.formatDate(gotoDate, currentText, culture));
 		var controls = (!inst.inline ? '<button type="button" class="ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all" onclick="DP_jQuery_' + dpuuid +
 			'.datepicker._hideDatepicker();">' + this._get(inst, 'closeText') + '</button>' : '');
 		var buttonPanel = (showButtonPanel) ? '<div class="ui-datepicker-buttonpane ui-widget-content">' + (isRTL ? controls : '') +
@@ -1443,11 +1266,8 @@ $.extend(Datepicker.prototype, {
 		var firstDay = parseInt(this._get(inst, 'firstDay'),10);
 		firstDay = (isNaN(firstDay) ? 0 : firstDay);
 		var showWeek = this._get(inst, 'showWeek');
-		var dayNames = this._get(inst, 'dayNames');
-		var dayNamesShort = this._get(inst, 'dayNamesShort');
-		var dayNamesMin = this._get(inst, 'dayNamesMin');
-		var monthNames = this._get(inst, 'monthNames');
-		var monthNamesShort = this._get(inst, 'monthNamesShort');
+		var dayNames = this._get(inst, 'days');
+		var monthNames = this._get(inst, 'months');
 		var beforeShowDay = this._get(inst, 'beforeShowDay');
 		var showOtherMonths = this._get(inst, 'showOtherMonths');
 		var selectOtherMonths = this._get(inst, 'selectOtherMonths');
@@ -1476,14 +1296,14 @@ $.extend(Datepicker.prototype, {
 					(/all|left/.test(cornerClass) && row == 0 ? (isRTL ? next : prev) : '') +
 					(/all|right/.test(cornerClass) && row == 0 ? (isRTL ? prev : next) : '') +
 					this._generateMonthYearHeader(inst, drawMonth, drawYear, minDate, maxDate,
-					row > 0 || col > 0, monthNames, monthNamesShort) + // draw month headers
+					row > 0 || col > 0, monthNames) + // draw month headers
 					'</div><table class="ui-datepicker-calendar"><thead>' +
 					'<tr>';
 				var thead = (showWeek ? '<th class="ui-datepicker-week-col">' + this._get(inst, 'weekHeader') + '</th>' : '');
 				for (var dow = 0; dow < 7; dow++) { // days of the week
 					var day = (dow + firstDay) % 7;
 					thead += '<th' + ((dow + firstDay + 6) % 7 >= 5 ? ' class="ui-datepicker-week-end"' : '') + '>' +
-						'<span title="' + dayNames[day] + '">' + dayNamesMin[day] + '</span></th>';
+						'<span title="' + dayNames.names[day] + '">' + dayNames.namesShort[day] + '</span></th>';
 				}
 				calender += thead + '</tr></thead><tbody>';
 				var daysInMonth = this._getDaysInMonth(drawYear, drawMonth);
@@ -1546,15 +1366,37 @@ $.extend(Datepicker.prototype, {
 
 	/* Generate the month and year header. */
 	_generateMonthYearHeader: function(inst, drawMonth, drawYear, minDate, maxDate,
-			secondary, monthNames, monthNamesShort) {
+			secondary, monthNames) {
 		var changeMonth = this._get(inst, 'changeMonth');
 		var changeYear = this._get(inst, 'changeYear');
-		var showMonthAfterYear = this._get(inst, 'showMonthAfterYear');
+        var monthYearPattern = this._get(inst, 'patterns').Y;
+        var showMonthAfterYear = monthYearPattern.indexOf("M") > monthYearPattern.indexOf("y");
+        // format looks like _MMMM_yyyy_ or _yyyy_MMMM_ and may only have two digit year or shorter months. We must determine the prefix,
+        // suffix, and text between the two sections.
+        var parts, yearSuffix;
+        if (showMonthAfterYear) {
+            // month is last, so parts[1] is the month suffix, parts[0] is the year and year suffix
+            parts = monthYearPattern.split(/MMMM|MMM|MM|M/g);
+            //monthSuffix unused (e.g. 'dic de 2010' in Spanish)
+            //monthSuffix = parts[1] || "";
+            yearSuffix = parts[0].split(/yyyy|yy/g)[1] || "";
+        }
+        else {
+            // year is last, so parts[1] is the year suffix, parts[0] is the month and month suffix
+            parts = monthYearPattern.split(/yyyy|yy/g);
+            yearSuffix = parts[1] || "";
+            //monthSuffix unused (e.g. 'dic de 2010' in Spanish)
+            //monthSuffix = parts[0].split(/MMMM|MMM|MM|M/g)[1] || "";
+        }
+        // in the Y pattern, literal portions are enclosed in single quotes
+        // Also exclude date separators
+        var dateSep = this._get(inst, '/');
+        yearSuffix = yearSuffix.replace(new RegExp("['/\\" + dateSep + "]", "g"), "");
 		var html = '<div class="ui-datepicker-title">';
 		var monthHtml = '';
 		// month selection
 		if (secondary || !changeMonth)
-			monthHtml += '<span class="ui-datepicker-month">' + monthNames[drawMonth] + '</span>';
+			monthHtml += '<span class="ui-datepicker-month">' + monthNames.names[drawMonth] + '</span>';
 		else {
 			var inMinYear = (minDate && minDate.getFullYear() == drawYear);
 			var inMaxYear = (maxDate && maxDate.getFullYear() == drawYear);
@@ -1567,7 +1409,7 @@ $.extend(Datepicker.prototype, {
 						(!inMaxYear || month <= maxDate.getMonth()))
 					monthHtml += '<option value="' + month + '"' +
 						(month == drawMonth ? ' selected="selected"' : '') +
-						'>' + monthNamesShort[month] + '</option>';
+						'>' + monthNames.namesAbbr[month] + '</option>';
 			}
 			monthHtml += '</select>';
 		}
@@ -1607,7 +1449,7 @@ $.extend(Datepicker.prototype, {
 				inst.yearshtml = null;
 			}
 		}
-		html += this._get(inst, 'yearSuffix');
+		html += yearSuffix;
 		if (showMonthAfterYear)
 			html += (secondary || !(changeMonth && changeYear) ? '&#xa0;' : '') + monthHtml;
 		html += '</div>'; // Close datepicker_header
@@ -1685,16 +1527,6 @@ $.extend(Datepicker.prototype, {
 			(!maxDate || date.getTime() <= maxDate.getTime()));
 	},
 
-	/* Provide the configuration settings for formatting/parsing. */
-	_getFormatConfig: function(inst) {
-		var shortYearCutoff = this._get(inst, 'shortYearCutoff');
-		shortYearCutoff = (typeof shortYearCutoff != 'string' ? shortYearCutoff :
-			new Date().getFullYear() % 100 + parseInt(shortYearCutoff, 10));
-		return {shortYearCutoff: shortYearCutoff,
-			dayNamesShort: this._get(inst, 'dayNamesShort'), dayNames: this._get(inst, 'dayNames'),
-			monthNamesShort: this._get(inst, 'monthNamesShort'), monthNames: this._get(inst, 'monthNames')};
-	},
-
 	/* Format the given date for display. */
 	_formatDate: function(inst, day, month, year) {
 		if (!day) {
@@ -1705,7 +1537,7 @@ $.extend(Datepicker.prototype, {
 		var date = (day ? (typeof day == 'object' ? day :
 			this._daylightSavingAdjust(new Date(year, month, day))) :
 			this._daylightSavingAdjust(new Date(inst.currentYear, inst.currentMonth, inst.currentDay)));
-		return this.formatDate(this._get(inst, 'dateFormat'), date, this._getFormatConfig(inst));
+		return this.formatDate(date, this._get(inst, 'dateFormat'), inst.settings.culture);
 	}
 });
 
@@ -1787,5 +1619,437 @@ $.datepicker.version = "1.8.13";
 // Workaround for #4055
 // Add another global to avoid noConflict issues with inline event handlers
 window['DP_jQuery_' + dpuuid] = $;
+
+// regional data
+var regions = {
+    "en": {
+        "closeText": "Done",
+        "prevText": "Prev",
+        "nextText": "Next",
+        "currentText": "Today",
+        "weekHeader": "Wk",
+        "dateFormat": "d"
+    },
+    "af": {
+        "closeText": "Selekteer",
+        "prevText": "Vorige",
+        "nextText": "Volgende",
+        "currentText": "Vandag",
+        "weekHeader": "Wk",
+        "dateFormat": "d"
+    },
+    "zh-TW": {
+        "closeText": "\u95dc\u9589",
+        "prevText": "&#x3c;\u4e0a\u6708",
+        "nextText": "\u4e0b\u6708&#x3e;",
+        "currentText": "\u4eca\u5929",
+        "weekHeader": "\u5468",
+        "dateFormat": "d"
+    },
+    "ar": {
+        "closeText": "\u0625\u063a\u0644\u0627\u0642",
+        "prevText": "&#x3c;\u0627\u0644\u0633\u0627\u0628\u0642",
+        "nextText": "\u0627\u0644\u062a\u0627\u0644\u064a&#x3e;",
+        "currentText": "\u0627\u0644\u064a\u0648\u0645",
+        "weekHeader": "\u0623\u0633\u0628\u0648\u0639",
+        "dateFormat": "d"
+    },
+    "az": {
+        "closeText": "Ba\u011fla",
+        "prevText": "&#x3c;Geri",
+        "nextText": "\u0130r\u0259li&#x3e;",
+        "currentText": "Bug\u00fcn",
+        "weekHeader": "Hf",
+        "dateFormat": "d"
+    },
+    "bg": {
+        "closeText": "\u0437\u0430\u0442\u0432\u043e\u0440\u0438",
+        "prevText": "&#x3c;\u043d\u0430\u0437\u0430\u0434",
+        "nextText": "\u043d\u0430\u043f\u0440\u0435\u0434&#x3e;",
+        "currentText": "\u0434\u043d\u0435\u0441",
+        "weekHeader": "Wk",
+        "dateFormat": "d"
+    },
+    "bs": {
+        "closeText": "Zatvori",
+        "prevText": "&#x3c;",
+        "nextText": "&#x3e;",
+        "currentText": "Danas",
+        "weekHeader": "Wk",
+        "dateFormat": "d"
+    },
+    "ca": {
+        "closeText": "Tancar",
+        "prevText": "&#x3c;Ant",
+        "nextText": "Seg&#x3e;",
+        "currentText": "Avui",
+        "weekHeader": "Sm",
+        "dateFormat": "d"
+    },
+    "cs": {
+        "closeText": "Zav\u0159\u00edt",
+        "prevText": "&#x3c;D\u0159\u00edve",
+        "nextText": "Pozd\u011bji&#x3e;",
+        "currentText": "Nyn\u00ed",
+        "weekHeader": "T\u00fdd",
+        "dateFormat": "d"
+    },
+    "da": {
+        "closeText": "Luk",
+        "prevText": "&#x3c;Forrige",
+        "nextText": "N\u00e6ste&#x3e;",
+        "currentText": "Idag",
+        "weekHeader": "Uge",
+        "dateFormat": "d"
+    },
+    "de": {
+        "closeText": "schlie\u00dfen",
+        "prevText": "&#x3c;zur\u00fcck",
+        "nextText": "Vor&#x3e;",
+        "currentText": "heute",
+        "weekHeader": "Wo",
+        "dateFormat": "d"
+    },
+    "el": {
+        "closeText": "\u039a\u03bb\u03b5\u03af\u03c3\u03b9\u03bc\u03bf",
+        "prevText": "\u03a0\u03c1\u03bf\u03b7\u03b3\u03bf\u03cd\u03bc\u03b5\u03bd\u03bf\u03c2",
+        "nextText": "\u0395\u03c0\u03cc\u03bc\u03b5\u03bd\u03bf\u03c2",
+        "currentText": "\u03a4\u03c1\u03ad\u03c7\u03c9\u03bd \u039c\u03ae\u03bd\u03b1\u03c2",
+        "weekHeader": "\u0395\u03b2\u03b4",
+        "dateFormat": "d"
+    },
+    "en-GB": {
+        "closeText": "Done",
+        "prevText": "Prev",
+        "nextText": "Next",
+        "currentText": "Today",
+        "weekHeader": "Wk",
+        "dateFormat": "d"
+    },
+    "eo": {
+        "closeText": "Fermi",
+        "prevText": "&lt;Anta",
+        "nextText": "Sekv&gt;",
+        "currentText": "Nuna",
+        "weekHeader": "Sb",
+        "dateFormat": "dd/MM/yyyy"
+    },
+    "es": {
+        "closeText": "Cerrar",
+        "prevText": "&#x3c;Ant",
+        "nextText": "Sig&#x3e;",
+        "currentText": "Hoy",
+        "weekHeader": "Sm",
+        "dateFormat": "d"
+    },
+    "et": {
+        "closeText": "Sulge",
+        "prevText": "Eelnev",
+        "nextText": "J\u00e4rgnev",
+        "currentText": "T\u00e4na",
+        "weekHeader": "Sm",
+        "dateFormat": "d"
+    },
+    "eu": {
+        "closeText": "Egina",
+        "prevText": "&#x3c;Aur",
+        "nextText": "Hur&#x3e;",
+        "currentText": "Gaur",
+        "weekHeader": "Wk",
+        "dateFormat": "d"
+    },
+    "fa": {
+        "closeText": "\u0628\u0633\u062a\u0646",
+        "prevText": "&#x3c;\u0642\u0628\u0644\u064a",
+        "nextText": "\u0628\u0639\u062f\u064a&#x3e;",
+        "currentText": "\u0627\u0645\u0631\u0648\u0632",
+        "weekHeader": "\u0647\u0641",
+        "dateFormat": "d"
+    },
+    "fi": {
+        "closeText": "Sulje",
+        "prevText": "&laquo;Edellinen",
+        "nextText": "Seuraava&raquo;",
+        "currentText": "T&auml;n&auml;&auml;n",
+        "weekHeader": "Vk",
+        "dateFormat": "d"
+    },
+    "fo": {
+        "closeText": "Lat aftur",
+        "prevText": "&#x3c;Fyrra",
+        "nextText": "N\u00e6sta&#x3e;",
+        "currentText": "\u00cd dag",
+        "weekHeader": "Vk",
+        "dateFormat": "d"
+    },
+    "fr-CH": {
+        "closeText": "Fermer",
+        "prevText": "&#x3c;Pr\u00e9c",
+        "nextText": "Suiv&#x3e;",
+        "currentText": "Courant",
+        "weekHeader": "Sm",
+        "dateFormat": "d"
+    },
+    "fr": {
+        "closeText": "Fermer",
+        "prevText": "&#x3c;Pr\u00e9c",
+        "nextText": "Suiv&#x3e;",
+        "currentText": "Courant",
+        "weekHeader": "Sm",
+        "dateFormat": "d"
+    },
+    "he": {
+        "closeText": "\u05e1\u05d2\u05d5\u05e8",
+        "prevText": "&#x3c;\u05d4\u05e7\u05d5\u05d3\u05dd",
+        "nextText": "\u05d4\u05d1\u05d0&#x3e;",
+        "currentText": "\u05d4\u05d9\u05d5\u05dd",
+        "weekHeader": "Wk",
+        "dateFormat": "d"
+    },
+    "hr": {
+        "closeText": "Zatvori",
+        "prevText": "&#x3c;",
+        "nextText": "&#x3e;",
+        "currentText": "Danas",
+        "weekHeader": "Tje",
+        "dateFormat": "d"
+    },
+    "hu": {
+        "closeText": "bez\u00c3\u00a1r\u00c3\u00a1s",
+        "prevText": "&laquo;&nbsp;vissza",
+        "nextText": "el\u00c5\u2018re&nbsp;&raquo;",
+        "currentText": "ma",
+        "weekHeader": "H\u00c3\u00a9",
+        "dateFormat": "d"
+    },
+    "hy": {
+        "closeText": "\u00d5\u201c\u00d5\u00a1\u00d5\u00af\u00d5\u00a5\u00d5\u00ac",
+        "prevText": "&#x3c;\u00d5\u2020\u00d5\u00a1\u00d5\u00ad.",
+        "nextText": "\u00d5\u20ac\u00d5\u00a1\u00d5\u00bb.&#x3e;",
+        "currentText": "\u00d4\u00b1\u00d5\u00b5\u00d5\u00bd\u00d6\u2026\u00d6\u20ac",
+        "weekHeader": "\u00d5\u2021\u00d4\u00b2\u00d5\u008f",
+        "dateFormat": "d"
+    },
+    "id": {
+        "closeText": "Tutup",
+        "prevText": "&#x3c;mundur",
+        "nextText": "maju&#x3e;",
+        "currentText": "hari ini",
+        "weekHeader": "Mg",
+        "dateFormat": "d"
+    },
+    "is": {
+        "closeText": "Loka",
+        "prevText": "&#x3c; Fyrri",
+        "nextText": "N&aelig;sti &#x3e;",
+        "currentText": "&Iacute; dag",
+        "weekHeader": "Vika",
+        "dateFormat": "d"
+    },
+    "it": {
+        "closeText": "Chiudi",
+        "prevText": "&#x3c;Prec",
+        "nextText": "Succ&#x3e;",
+        "currentText": "Oggi",
+        "weekHeader": "Sm",
+        "dateFormat": "d"
+    },
+    "ja": {
+        "closeText": "\u9589\u3058\u308b",
+        "prevText": "&#x3c;\u524d",
+        "nextText": "\u6b21&#x3e;",
+        "currentText": "\u4eca\u65e5",
+        "weekHeader": "\u9031",
+        "dateFormat": "d"
+    },
+    "ko": {
+        "closeText": "\u00eb\u2039\u00ab\u00ea\u00b8\u00b0",
+        "prevText": "\u00ec\u009d\u00b4\u00ec\u00a0\u201e\u00eb\u2039\u00ac",
+        "nextText": "\u00eb\u2039\u00a4\u00ec\u009d\u0152\u00eb\u2039\u00ac",
+        "currentText": "\u00ec\u02dc\u00a4\u00eb\u0160\u02dc",
+        "weekHeader": "Wk",
+        "dateFormat": "d"
+    },
+    "lt": {
+        "closeText": "U\u00c5\u00bedaryti",
+        "prevText": "&#x3c;Atgal",
+        "nextText": "Pirmyn&#x3e;",
+        "currentText": "\u00c5\u00a0iandien",
+        "weekHeader": "Wk",
+        "dateFormat": "d"
+    },
+    "lv": {
+        "closeText": "Aizv\u00c4\u201crt",
+        "prevText": "Iepr",
+        "nextText": "N\u00c4\u0081ka",
+        "currentText": "\u00c5\u00a0odien",
+        "weekHeader": "Nav",
+        "dateFormat": "d"
+    },
+    "ms": {
+        "closeText": "Tutup",
+        "prevText": "&#x3c;Sebelum",
+        "nextText": "Selepas&#x3e;",
+        "currentText": "hari ini",
+        "weekHeader": "Mg",
+        "dateFormat": "d"
+    },
+    "nl": {
+        "closeText": "Sluiten",
+        "prevText": "\u2190",
+        "nextText": "\u2192",
+        "currentText": "Vandaag",
+        "weekHeader": "Wk",
+        "dateFormat": "d"
+    },
+    "no": {
+        "closeText": "Lukk",
+        "prevText": "&laquo;Forrige",
+        "nextText": "Neste&raquo;",
+        "currentText": "I dag",
+        "weekHeader": "Uke",
+        "dateFormat": "d"
+    },
+    "pl": {
+        "closeText": "Zamknij",
+        "prevText": "&#x3c;Poprzedni",
+        "nextText": "Nast\u00c4\u2122pny&#x3e;",
+        "currentText": "Dzi\u00c5\u203a",
+        "weekHeader": "Tydz",
+        "dateFormat": "d"
+    },
+    "pt-BR": {
+        "closeText": "Fechar",
+        "prevText": "&#x3c;Anterior",
+        "nextText": "Pr&oacute;ximo&#x3e;",
+        "currentText": "Hoje",
+        "weekHeader": "Sm",
+        "dateFormat": "d"
+    },
+    "ro": {
+        "closeText": "\u00cenchide",
+        "prevText": "&laquo; Luna precedent\u0103",
+        "nextText": "Luna urm\u0103toare &raquo;",
+        "currentText": "Azi",
+        "weekHeader": "S\u0103pt",
+        "dateFormat": "d"
+    },
+    "ru": {
+        "closeText": "\u00d0\u2014\u00d0\u00b0\u00d0\u00ba\u00d1\u20ac\u00d1\u2039\u00d1\u201a\u00d1\u0152",
+        "prevText": "&#x3c;\u00d0\u0178\u00d1\u20ac\u00d0\u00b5\u00d0\u00b4",
+        "nextText": "\u00d0\u00a1\u00d0\u00bb\u00d0\u00b5\u00d0\u00b4&#x3e;",
+        "currentText": "\u00d0\u00a1\u00d0\u00b5\u00d0\u00b3\u00d0\u00be\u00d0\u00b4\u00d0\u00bd\u00d1\u008f",
+        "weekHeader": "\u00d0\u009d\u00d0\u00b5",
+        "dateFormat": "d"
+    },
+    "sk": {
+        "closeText": "Zavrie\u00c5\u00a5",
+        "prevText": "&#x3c;Predch\u00c3\u00a1dzaj\u00c3\u00baci",
+        "nextText": "Nasleduj\u00c3\u00baci&#x3e;",
+        "currentText": "Dnes",
+        "weekHeader": "Ty",
+        "dateFormat": "d"
+    },
+    "sl": {
+        "closeText": "Zapri",
+        "prevText": "&lt;Prej&#x161;nji",
+        "nextText": "Naslednji&gt;",
+        "currentText": "Trenutni",
+        "weekHeader": "Teden",
+        "dateFormat": "d"
+    },
+    "sq": {
+        "closeText": "mbylle",
+        "prevText": "&#x3c;mbrapa",
+        "nextText": "P\u00ebrpara&#x3e;",
+        "currentText": "sot",
+        "weekHeader": "Ja",
+        "dateFormat": "d"
+    },
+    "sr-SR": {
+        "closeText": "Zatvori",
+        "prevText": "&#x3c;",
+        "nextText": "&#x3e;",
+        "currentText": "Danas",
+        "weekHeader": "Sed",
+        "dateFormat": "dd/MM/yyyy"
+    },
+    "sr": {
+        "closeText": "\u0417\u0430\u0442\u0432\u043e\u0440\u0438",
+        "prevText": "&#x3c;",
+        "nextText": "&#x3e;",
+        "currentText": "\u0414\u0430\u043d\u0430\u0441",
+        "weekHeader": "\u0421\u0435\u0434",
+        "dateFormat": "d"
+    },
+    "sv": {
+        "closeText": "St\u00e4ng",
+        "prevText": "&laquo;F\u00f6rra",
+        "nextText": "N\u00e4sta&raquo;",
+        "currentText": "Idag",
+        "weekHeader": "Ve",
+        "dateFormat": "d"
+    },
+    "ta": {
+        "closeText": "\u0bae\u0bc2\u0b9f\u0bc1",
+        "prevText": "\u0bae\u0bc1\u0ba9\u0bcd\u0ba9\u0bc8\u0baf\u0ba4\u0bc1",
+        "nextText": "\u0b85\u0b9f\u0bc1\u0ba4\u0bcd\u0ba4\u0ba4\u0bc1",
+        "currentText": "\u0b87\u0ba9\u0bcd\u0bb1\u0bc1",
+        "weekHeader": "\u041d\u0435",
+        "dateFormat": "d"
+    },
+    "th": {
+        "closeText": "\u0e1b\u0e34\u0e14",
+        "prevText": "&laquo;&nbsp;\u0e22\u0e49\u0e2d\u0e19",
+        "nextText": "\u0e16\u0e31\u0e14\u0e44\u0e1b&nbsp;&raquo;",
+        "currentText": "\u0e27\u0e31\u0e19\u0e19\u0e35\u0e49",
+        "weekHeader": "Wk",
+        "dateFormat": "d"
+    },
+    "tr": {
+        "closeText": "kapat",
+        "prevText": "&#x3c;geri",
+        "nextText": "ileri&#x3e",
+        "currentText": "bug\u00c3\u00bcn",
+        "weekHeader": "Hf",
+        "dateFormat": "d"
+    },
+    "uk": {
+        "closeText": "\u00d0\u2014\u00d0\u00b0\u00d0\u00ba\u00d1\u20ac\u00d0\u00b8\u00d1\u201a\u00d0\u00b8",
+        "prevText": "&#x3c;",
+        "nextText": "&#x3e;",
+        "currentText": "\u00d0\u00a1\u00d1\u0152\u00d0\u00be\u00d0\u00b3\u00d0\u00be\u00d0\u00b4\u00d0\u00bd\u00d1\u2013",
+        "weekHeader": "\u00d0\u009d\u00d0\u00b5",
+        "dateFormat": "d"
+    },
+    "vi": {
+        "closeText": "\u0110\u00f3ng",
+        "prevText": "&#x3c;Tr\u01b0\u1edbc",
+        "nextText": "Ti\u1ebfp&#x3e;",
+        "currentText": "H\u00f4m nay",
+        "weekHeader": "Tu",
+        "dateFormat": "d"
+    },
+    "zh-CN": {
+        "closeText": "\u00e5\u2026\u00b3\u00e9\u2014\u00ad",
+        "prevText": "&#x3c;\u00e4\u00b8\u0160\u00e6\u0153\u02c6",
+        "nextText": "\u00e4\u00b8\u2039\u00e6\u0153\u02c6&#x3e;",
+        "currentText": "\u00e4\u00bb\u0160\u00e5\u00a4\u00a9",
+        "weekHeader": "\u00e5\u2018\u00a8",
+        "dateFormat": "d"
+    },
+    "zh-HK": {
+        "closeText": "\u00e9\u2014\u0153\u00e9\u2013\u2030",
+        "prevText": "&#x3c;\u00e4\u00b8\u0160\u00e6\u0153\u02c6",
+        "nextText": "\u00e4\u00b8\u2039\u00e6\u0153\u02c6&#x3e;",
+        "currentText": "\u00e4\u00bb\u0160\u00e5\u00a4\u00a9",
+        "weekHeader": "\u00e5\u2018\u00a8",
+        "dateFormat": "d"
+    }
+};
+$.each(regions, function(name, value) {
+    $.global.localize('datepicker', name, value);
+});
+
 
 })(jQuery);
