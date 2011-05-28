@@ -116,13 +116,29 @@ class TranslatedTest < Test::Unit::TestCase
 
   test 'fallbacks with empty translations' do
     I18n.fallbacks.map :'de-DE' => [ :'en-US' ]
+    task = Task.create :name => 'foo'
+
+    I18n.locale = :'de-DE'
+    assert_equal 'foo', task.name
+
+    task.update_attribute :name, ''
+    assert_equal 'foo', task.name
+  end
+
+  test 'fallbacks with empty translations 2' do
+    I18n.fallbacks.map :'de-DE' => [ :'en-US' ]
+    task = Task.create :name => 'foo'
     post = Post.create :title => 'foo'
 
     I18n.locale = :'de-DE'
+    assert_equal 'foo', task.name
     assert_equal 'foo', post.title
 
+    task.update_attribute :name, ''
+    assert_equal 'foo', task.name
+
     post.update_attribute :title, ''
-    assert_equal 'foo', post.title
+    assert_equal '', post.title
   end
 end
 # TODO should validate_presence_of take fallbacks into account? maybe we need

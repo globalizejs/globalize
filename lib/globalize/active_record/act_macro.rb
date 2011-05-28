@@ -7,9 +7,10 @@ module Globalize
         options = attr_names.extract_options!
         options[:table_name] ||= "#{table_name.singularize}_translations"
 
-        class_attribute :translated_attribute_names, :translation_options
+        class_attribute :translated_attribute_names, :translation_options, :fallbacks_for_empty_translations
         self.translated_attribute_names = attr_names.map(&:to_sym)
         self.translation_options        = options
+        self.fallbacks_for_empty_translations = options[:fallbacks_for_empty_translations]
 
         include InstanceMethods
         extend  ClassMethods, Migration

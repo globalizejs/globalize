@@ -23,7 +23,7 @@ module Globalize
         Globalize.fallbacks(locale).each do |fallback|
           value = fetch_stash(fallback, name) || fetch_attribute(fallback, name)
 
-          unless value.blank?
+          unless fallbacks_for?(value)
             set_metadata(value, :locale => fallback, :requested_locale => locale)
             return value
           end
@@ -83,6 +83,14 @@ module Globalize
         return if obj.respond_to?(:translation_metadata)
         class << object; attr_accessor :translation_metadata end
         object.translation_metadata ||= {}
+      end
+
+      def fallbacks_for?(object)
+        object.nil? || (fallbacks_for_empty_translations? && object.blank?)
+      end
+
+      def fallbacks_for_empty_translations?
+        record.fallbacks_for_empty_translations
       end
     end
   end

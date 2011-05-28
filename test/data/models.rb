@@ -62,3 +62,7 @@ end
 
 class Untranslated < ActiveRecord::Base
 end
+
+class Task < ActiveRecord::Base
+  translates :name, :fallbacks_for_empty_translations => true
+end
