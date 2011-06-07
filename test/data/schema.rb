@@ -73,6 +73,17 @@ ActiveRecord::Schema.define do
     t.string     :name
   end
 
+  create_table :tasks, :force => true do |t|
+    t.string   :name
+    t.datetime :created_at
+  end
+
+  create_table :task_translations, :force => true do |t|
+    t.references :task
+    t.string     :locale
+    t.string     :name
+  end
+
   create_table "versions", :force => true do |t|
     t.string   "item_type",  :null => false
     t.integer  "item_id",    :null => false

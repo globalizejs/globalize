@@ -95,6 +95,50 @@ Please also note that @update_attribute@ currently hides itself from dirty track
 
 Also, please see the tests in test/globalize3/versioning_test.rb for some current gotchas.
 
+h2. I18n fallbacks for empty translations
+
+It is possible to enable fallbacks for empty translations. It will depend on the configuration setting you have set for I18n translations in your Rails config.
+
+You can enable them by adding the next line to @config/application.rb@ (or only @config/environments/production.rb@ if you only want them in production)
+
+<pre><code>config.i18n.fallbacks = true</code></pre>
+
+By default, globalize3 will only use fallbacks when your translation model does not exist or the translation value for the item you've requested is @nil@. However it is possible to also use fallbacks for @blank@ translations by adding @:fallbacks_for_empty_translations => true@ to the @translates@ method.
+
+<pre><code>
+  class Post < ActiveRecord::Base
+    translates :title, :name
+  end
+
+  puts post.translations.inspect
+  # => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">, #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
+
+  I18n.locale = :en
+  post.title # => 'Globalize3 rocks!'
+  post.name  # => 'Globalize3'
+
+  I18n.locale = :nl
+  post.title # => ''
+  post.name  # => 'Globalize3'
+</code></pre>
+<pre><code>
+  class Post < ActiveRecord::Base
+    translates :title, :name, :fallbacks_for_empty_translations => true
+  end
+
+  puts post.translations.inspect
+  # => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">, #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
+
+  I18n.locale = :en
+  post.title # => 'Globalize3 rocks!'
+  post.name  # => 'Globalize3'
+
+  I18n.locale = :nl
+  post.title # => 'Globalize3 rocks!'
+  post.name  # => 'Globalize3'
+</code></pre>
+
+
 h2. Changes since Globalize2
 
 * `translation_table_name` was renamed to `translations_table_name`
