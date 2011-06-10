@@ -14,7 +14,7 @@
             currency: {
                 pattern: ["-$n","$n"],
                 decimals: 0,
-                symbol: "\"
+                symbol: "¥"
             }
         },
         calendars: {
