@@ -14,7 +14,7 @@
             currency: {
                 pattern: ["-$n","$n"],
                 decimals: 0,
-                symbol: "¥"
+                symbol: "\"
             }
         },
         calendars: {
@@ -55,7 +55,12 @@
                 },
                 AM: ["午前","午前","午前"],
                 PM: ["午後","午後","午後"],
-                eras: [{"name":"平成","start":null,"offset":1867},{"name":"昭和","start":-1812153600000,"offset":1911},{"name":"大正","start":-1357603200000,"offset":1925},{"name":"明治","start":60022080000,"offset":1988}],
+                eras: [
+                    { "name": "平成", "start": new Date("1989/1/8").getTime(), "offset": 1988 },
+                    { "name": "昭和", "start": new Date("1926/12/25").getTime(), "offset": 1925 },
+                    { "name": "大正", "start": new Date("1912/7/30").getTime(), "offset": 1911 },
+                    { "name": "明治", "start": new Date("1968/9/8").getTime(), "offset": 1867 }
+                ],
                 twoDigitYearMax: 99,
                 patterns: {
                     d: "gg y/M/d",
