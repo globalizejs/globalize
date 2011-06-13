@@ -9,10 +9,15 @@
  */
 (function( $ ) {
 
-var Globalization = {}, localized = { en: {} };
-localized[ "default" ] = localized.en;
+$.global = $.global || {};
 
-Globalization.extend = function( deep ) {
+var localized = {
+	"default": {}
+};
+
+localized[ "en" ] = localized[ "default" ];
+
+$.global.extend = $.extend || function( deep ) {
 	var target = arguments[ 1 ] || {};
 	for ( var i = 2, l = arguments.length; i < l; i++ ) {
 		var source = arguments[ i ];
@@ -38,7 +43,7 @@ Globalization.extend = function( deep ) {
 	return target;
 }
 
-Globalization.findClosestCulture = function( name ) {
+$.global.findClosestCulture = function( name ) {
 	var match;
 	if ( !name ) {
 		return this.culture || this.cultures[ "default" ];
@@ -119,10 +124,10 @@ Globalization.findClosestCulture = function( name ) {
 	}
 	return match || null;
 }
-Globalization.preferCulture = function( name ) {
+$.global.preferCulture = function( name ) {
 	this.culture = this.findClosestCulture( name ) || this.cultures[ "default" ];
 }
-Globalization.localize = function( key, culture, value ) {
+$.global.localize = function( key, culture, value ) {
 	// usign default culture in case culture is not provided
 	if ( typeof culture !== "string" ) {
 		culture = this.culture.name || this.culture || "default";
@@ -152,7 +157,7 @@ Globalization.localize = function( key, culture, value ) {
 	}
 	return typeof value === "undefined" ? null : value;
 }
-Globalization.format = function( value, format, culture ) {
+$.global.format = function( value, format, culture ) {
 	culture = this.findClosestCulture( culture );
 	if ( typeof value === "number" ) {
 		value = formatNumber( value, format, culture );
@@ -162,10 +167,10 @@ Globalization.format = function( value, format, culture ) {
 	}
 	return value;
 }
-Globalization.parseInt = function( value, radix, culture ) {
+$.global.parseInt = function( value, radix, culture ) {
 	return Math.floor( this.parseFloat(value, radix, culture) );
 }
-Globalization.parseFloat = function( value, radix, culture ) {
+$.global.parseFloat = function( value, radix, culture ) {
 	// make radix optional
 	if ( typeof radix === "string" ) {
 		culture = radix;
@@ -253,7 +258,7 @@ Globalization.parseFloat = function( value, radix, culture ) {
 	}
 	return ret;
 }
-Globalization.parseDate = function( value, formats, culture ) {
+$.global.parseDate = function( value, formats, culture ) {
 	culture = this.findClosestCulture( culture );
 
 	var date, prop, patterns;
@@ -286,14 +291,13 @@ Globalization.parseDate = function( value, formats, culture ) {
 }
 
 // 1.	 When defining a culture, all fields are required except the ones stated as optional.
-// 2.	 You can use Globalization.extend to copy an existing culture and provide only the differing values,
+// 2.	 You can use $.global.extend() to copy an existing culture and provide only the differing values,
 //		 a good practice since most cultures do not differ too much from the "default" culture.
 //		 DO use the "default" culture if you do this, as it is the only one that definitely
 //		 exists.
 // 3.	 Other plugins may add to the culture information provided by extending it. However,
 //		 that plugin may extend it prior to the culture being defined, or after. Therefore,
-//		 do not overwrite values that already exist when defining the baseline for a culture,
-//		 by extending your culture object with the existing one.
+//		 do not overwrite an existing culture, but always extend it with additional values.
 // 4.	 Each culture should have a ".calendars" object with at least one calendar named "standard"
 //		 which serves as the default calendar in use by that culture.
 // 5.	 Each culture should have a ".calendar" object which is the current calendar being used,
@@ -302,13 +306,15 @@ Globalization.parseDate = function( value, formats, culture ) {
 // To define a culture, use the following pattern, which handles defining the culture based
 // on the "default" culture, extending it with the existing culture if it exists, and defining
 // it if it does not exist.
-// Globalization.cultures[ "foo" ] = Globalization.extend( true,
-//		Globalization.extend( true, {}, Globalization.cultures["default"], fooCulture ),
-// 		Globalization.cultures[ "foo" ]
+// $.global.cultures[ "foo" ] = $.global.extend( true, {},
+//   $.global.cultures[ "default" ],
+//   $.global.cultures[ "foo" ] || {},
+//   fooCulture
 // );
+// $.global.cultures[ "foo" ].calendar = $.global.cultures[ "foo" ].calendars.standard;
 
-var cultures = Globalization.cultures = Globalization.cultures || {};
-var en = cultures["default"] = cultures.en = Globalization.extend( true, {
+$.global.cultures = $.global.cultures || {};
+$.global.cultures[ "default" ] = {
 	// A unique name for the culture in the form <language code>-<country/region code>
 	name: "en",
 	// the name of the culture in the english language
@@ -375,8 +381,8 @@ var en = cultures["default"] = cultures.en = Globalization.extend( true, {
 		},
 		currency: {
 			// [negativePattern, positivePattern]
-			//	   negativePattern: one of "($n)|-$n|$-n|$n-|(n$)|-n$|n-$|n$-|-n $|-$ n|n $-|$ n-|$ -n|n- $|($ n)|(n $)"
-			//	   positivePattern: one of "$n|n$|$ n|n $"
+			//   negativePattern: one of "($n)|-$n|$-n|$n-|(n$)|-n$|n-$|n$-|-n $|-$ n|n $-|$ n-|$ -n|n- $|($ n)|(n $)"
+			//   positivePattern: one of "$n|n$|$ n|n $"
 			pattern: [ "($n)", "$n" ],
 			// number of decimal places normally shown
 			decimals: 2,
@@ -487,8 +493,10 @@ var en = cultures["default"] = cultures.en = Globalization.extend( true, {
 			*/
 		}
 	}
-}, cultures.en);
-en.calendar = en.calendar || en.calendars.standard;
+};
+$.global.cultures[ "default" ].calendar = $.global.cultures[ "default" ].calendars.standard;
+
+$.global.cultures[ "en" ] = $.global.cultures[ "default" ];
 
 var regexTrim = /^\s+|\s+$/g,
 	regexInfinity = /^[+-]?infinity$/i,
@@ -1383,8 +1391,5 @@ function formatDate( value, format, culture ) {
 	}
 	return ret.join( "" );
 }
-
-// EXPORTS
-jQuery.global = Globalization;
 
 }( jQuery ));
