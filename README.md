@@ -303,19 +303,20 @@ As an example, in the U.S., the word "billion" means the number 1,000,000,000
 provide functionality to your app or custom plugin that needed to know how many
 zeros are in a "billion", you could extend the culture information as follows:
 <pre>
-// define culture information without overwriting any existing values
-jQuery.global.cultures.fr = jQuery.extend( true, {
-	numberFormat: {
-		billionZeros: 12
+// define additional culture information for a possibly existing culture
+$.global.cultures.fr = $.global.extend( true, {},
+	jQuery.global.cultures.fr || {},
+	{
+		numberFormat: {
+			billionZeros: 12
+		}
 	}
-}, jQuery.global.cultures.fr);
+);
 </pre>
 Using this mechanism, the "fr" culture will be created if it does not exist.
-And if it does, the given values will be added to it, taking care not to
-overwrite anything that is already defined (if you'd prefer to overwrite, you'd
-switch the last two arguments). When the jquery.global.fr.js script is eventually
-included, it too uses this technique, ensuring addition to the already-defined
-culture information.
+And if it does, the given values will be added to it. When the
+jquery.global.fr.js script is eventually included, it too uses this technique,
+ensuring addition to the already-defined culture information.
 </p>
 
 <a name="defining"></a>
