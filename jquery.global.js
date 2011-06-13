@@ -7,10 +7,10 @@
  * Dual licensed under the MIT or GPL Version 2 licenses.
  * http://jquery.org/license
  */
-(function() {
+(function( $ ) {
 
 var Globalization = {}, localized = { en: {} };
-localized["default"] = localized.en;
+localized[ "default" ] = localized.en;
 
 Globalization.extend = function( deep ) {
 	var target = arguments[ 1 ] || {};
@@ -20,12 +20,12 @@ Globalization.extend = function( deep ) {
 			for ( var field in source ) {
 				var sourceVal = source[ field ];
 				if ( typeof sourceVal !== "undefined" ) {
-					if ( deep && (isObject( sourceVal ) || isArray( sourceVal )) ) {
+					if ( deep && ( isObject(sourceVal) || isArray(sourceVal) ) ) {
 						var targetVal = target[ field ];
 						// extend onto the existing value, or create a new one
-						targetVal = targetVal && (isObject( targetVal ) || isArray( targetVal ))
+						targetVal = targetVal && ( isObject(targetVal) || isArray(targetVal) )
 							? targetVal
-							: (isArray( sourceVal ) ? [] : {});
+							: ( isArray(sourceVal) ? [] : {} );
 						target[ field ] = this.extend( true, targetVal, sourceVal );
 					}
 					else {
@@ -38,29 +38,29 @@ Globalization.extend = function( deep ) {
 	return target;
 }
 
-Globalization.findClosestCulture = function(name) {
+Globalization.findClosestCulture = function( name ) {
 	var match;
 	if ( !name ) {
-		return this.culture || this.cultures["default"];
+		return this.culture || this.cultures[ "default" ];
 	}
-	if ( isString( name ) ) {
-		name = name.split( ',' );
+	if ( isString(name) ) {
+		name = name.split( "," );
 	}
-	if ( isArray( name ) ) {
+	if ( isArray(name) ) {
 		var lang,
 			cultures = this.cultures,
 			list = name,
 			i, l = list.length,
 			prioritized = [];
 		for ( i = 0; i < l; i++ ) {
-			name = trim( list[ i ] );
-			var pri, parts = name.split( ';' );
-			lang = trim( parts[ 0 ] );
+			name = trim( list[i] );
+			var pri, parts = name.split( ";" );
+			lang = trim( parts[0] );
 			if ( parts.length === 1 ) {
 				pri = 1;
 			}
 			else {
-				name = trim( parts[ 1 ] );
+				name = trim( parts[1] );
 				if ( name.indexOf("q=") === 0 ) {
 					name = name.substr( 2 );
 					pri = parseFloat( name, 10 );
@@ -70,9 +70,9 @@ Globalization.findClosestCulture = function(name) {
 					pri = 1;
 				}
 			}
-			prioritized.push( { lang: lang, pri: pri } );
+			prioritized.push({ lang: lang, pri: pri });
 		}
-		prioritized.sort(function(a, b) {
+		prioritized.sort(function( a, b ) {
 			return a.pri < b.pri ? 1 : -1;
 		});
 
@@ -114,24 +114,24 @@ Globalization.findClosestCulture = function(name) {
 			}
 		}
 	}
-	else if ( typeof name === 'object' ) {
+	else if ( typeof name === "object" ) {
 		return name;
 	}
 	return match || null;
 }
-Globalization.preferCulture = function(name) {
-	this.culture = this.findClosestCulture( name ) || this.cultures["default"];
+Globalization.preferCulture = function( name ) {
+	this.culture = this.findClosestCulture( name ) || this.cultures[ "default" ];
 }
-Globalization.localize = function(key, culture, value) {
+Globalization.localize = function( key, culture, value ) {
 	// usign default culture in case culture is not provided
-	if (typeof culture !== 'string') {
+	if ( typeof culture !== "string" ) {
 		culture = this.culture.name || this.culture || "default";
 	}
 	culture = this.cultures[ culture ] || { name: culture };
 
 	var local = localized[ culture.name ];
 	if ( arguments.length === 3 ) {
-		if ( !local) {
+		if ( !local ) {
 			local = localized[ culture.name ] = {};
 		}
 		local[ key ] = value;
@@ -140,19 +140,19 @@ Globalization.localize = function(key, culture, value) {
 		if ( local ) {
 			value = local[ key ];
 		}
-		if ( typeof value === 'undefined' ) {
+		if ( typeof value === "undefined" ) {
 			var language = localized[ culture.language ];
 			if ( language ) {
 				value = language[ key ];
 			}
-			if ( typeof value === 'undefined' ) {
-				value = localized["default"][ key ];
+			if ( typeof value === "undefined" ) {
+				value = localized[ "default" ][ key ];
 			}
 		}
 	}
 	return typeof value === "undefined" ? null : value;
 }
-Globalization.format = function(value, format, culture) {
+Globalization.format = function( value, format, culture ) {
 	culture = this.findClosestCulture( culture );
 	if ( typeof value === "number" ) {
 		value = formatNumber( value, format, culture );
@@ -162,12 +162,12 @@ Globalization.format = function(value, format, culture) {
 	}
 	return value;
 }
-Globalization.parseInt = function(value, radix, culture) {
-	return Math.floor( this.parseFloat( value, radix, culture ) );
+Globalization.parseInt = function( value, radix, culture ) {
+	return Math.floor( this.parseFloat(value, radix, culture) );
 }
-Globalization.parseFloat = function(value, radix, culture) {
+Globalization.parseFloat = function( value, radix, culture ) {
 	// make radix optional
-	if (typeof radix === "string") {
+	if ( typeof radix === "string" ) {
 		culture = radix;
 		radix = 10;
 	}
@@ -176,39 +176,39 @@ Globalization.parseFloat = function(value, radix, culture) {
 	var ret = NaN,
 		nf = culture.numberFormat;
 
-	if (value.indexOf(culture.numberFormat.currency.symbol) > -1) {
+	if ( value.indexOf(culture.numberFormat.currency.symbol) > -1 ) {
 		// remove currency symbol
-		value = value.replace(culture.numberFormat.currency.symbol, "");
+		value = value.replace( culture.numberFormat.currency.symbol, "" );
 		// replace decimal seperator
-		value = value.replace(culture.numberFormat.currency["."], culture.numberFormat["."]);
+		value = value.replace( culture.numberFormat.currency["."], culture.numberFormat["."] );
 	}
 
 	// trim leading and trailing whitespace
 	value = trim( value );
 
 	// allow infinity or hexidecimal
-	if (regexInfinity.test(value)) {
-		ret = parseFloat(value, radix);
+	if ( regexInfinity.test(value) ) {
+		ret = parseFloat( value, radix );
 	}
-	else if (!radix && regexHex.test(value)) {
-		ret = parseInt(value, 16);
+	else if ( !radix && regexHex.test(value) ) {
+		ret = parseInt( value, 16 );
 	}
 	else {
 		var signInfo = parseNegativePattern( value, nf, nf.pattern[0] ),
-			sign = signInfo[0],
-			num = signInfo[1];
+			sign = signInfo[ 0 ],
+			num = signInfo[ 1 ];
 		// determine sign and number
 		if ( sign === "" && nf.pattern[0] !== "-n" ) {
 			signInfo = parseNegativePattern( value, nf, "-n" );
-			sign = signInfo[0];
-			num = signInfo[1];
+			sign = signInfo[ 0 ];
+			num = signInfo[ 1 ];
 		}
 		sign = sign || "+";
 		// determine exponent and number
 		var exponent,
 			intAndFraction,
-			exponentPos = num.indexOf( 'e' );
-		if ( exponentPos < 0 ) exponentPos = num.indexOf( 'E' );
+			exponentPos = num.indexOf( "e" );
+		if ( exponentPos < 0 ) exponentPos = num.indexOf( "E" );
 		if ( exponentPos < 0 ) {
 			intAndFraction = num;
 			exponent = null;
@@ -220,7 +220,7 @@ Globalization.parseFloat = function(value, radix, culture) {
 		// determine decimal position
 		var integer,
 			fraction,
-			decSep = nf['.'],
+			decSep = nf[ "." ],
 			decimalPos = intAndFraction.indexOf( decSep );
 		if ( decimalPos < 0 ) {
 			integer = intAndFraction;
@@ -231,29 +231,29 @@ Globalization.parseFloat = function(value, radix, culture) {
 			fraction = intAndFraction.substr( decimalPos + decSep.length );
 		}
 		// handle groups (e.g. 1,000,000)
-		var groupSep = nf[","];
-		integer = integer.split(groupSep).join('');
-		var altGroupSep = groupSep.replace(/\u00A0/g, " ");
+		var groupSep = nf[ "," ];
+		integer = integer.split( groupSep ).join( "" );
+		var altGroupSep = groupSep.replace( /\u00A0/g, " " );
 		if ( groupSep !== altGroupSep ) {
-			integer = integer.split(altGroupSep).join('');
+			integer = integer.split( altGroupSep ).join( "" );
 		}
 		// build a natively parsable number string
 		var p = sign + integer;
 		if ( fraction !== null ) {
-			p += '.' + fraction;
+			p += "." + fraction;
 		}
 		if ( exponent !== null ) {
 			// exponent itself may have a number patternd
 			var expSignInfo = parseNegativePattern( exponent, nf, "-n" );
-			p += 'e' + (expSignInfo[0] || "+") + expSignInfo[1];
+			p += "e" + ( expSignInfo[0] || "+" ) + expSignInfo[ 1 ];
 		}
-		if ( regexParseFloat.test( p ) ) {
+		if ( regexParseFloat.test(p) ) {
 			ret = parseFloat( p );
 		}
 	}
 	return ret;
 }
-Globalization.parseDate = function(value, formats, culture) {
+Globalization.parseDate = function( value, formats, culture ) {
 	culture = this.findClosestCulture( culture );
 
 	var date, prop, patterns;
@@ -287,8 +287,8 @@ Globalization.parseDate = function(value, formats, culture) {
 
 // 1.	 When defining a culture, all fields are required except the ones stated as optional.
 // 2.	 You can use Globalization.extend to copy an existing culture and provide only the differing values,
-//		 a good practice since most cultures do not differ too much from the 'default' culture.
-//		 DO use the 'default' culture if you do this, as it is the only one that definitely
+//		 a good practice since most cultures do not differ too much from the "default" culture.
+//		 DO use the "default" culture if you do this, as it is the only one that definitely
 //		 exists.
 // 3.	 Other plugins may add to the culture information provided by extending it. However,
 //		 that plugin may extend it prior to the culture being defined, or after. Therefore,
@@ -300,12 +300,15 @@ Globalization.parseDate = function(value, formats, culture) {
 //		 it may be dynamically changed at any time to one of the calendars in ".calendars".
 
 // To define a culture, use the following pattern, which handles defining the culture based
-// on the 'default culture, extending it with the existing culture if it exists, and defining
+// on the "default" culture, extending it with the existing culture if it exists, and defining
 // it if it does not exist.
-// Globalization.cultures.foo = Globalization.extend(true, Globalization.extend(true, {}, Globalization.cultures['default'], fooCulture), Globalization.cultures.foo)
+// Globalization.cultures[ "foo" ] = Globalization.extend( true,
+//		Globalization.extend( true, {}, Globalization.cultures["default"], fooCulture ),
+// 		Globalization.cultures[ "foo" ]
+// );
 
 var cultures = Globalization.cultures = Globalization.cultures || {};
-var en = cultures["default"] = cultures.en = Globalization.extend(true, {
+var en = cultures["default"] = cultures.en = Globalization.extend( true, {
 	// A unique name for the culture in the form <language code>-<country/region code>
 	name: "en",
 	// the name of the culture in the english language
@@ -314,7 +317,7 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
 	nativeName: "English",
 	// whether the culture uses right-to-left text
 	isRTL: false,
-	// 'language' is used for so-called "specific" cultures.
+	// "language" is used for so-called "specific" cultures.
 	// For example, the culture "es-CL" means "Spanish, in Chili".
 	// It represents the Spanish-speaking culture as it is in Chili,
 	// which might have different formatting rules or even translations
@@ -322,11 +325,11 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
 	// specific to a region. For example, the culture "es" is the generic
 	// Spanish culture, which may be a more generalized version of the language
 	// that may or may not be what a specific culture expects.
-	// For a specific culture like "es-CL", the 'language' field refers to the
+	// For a specific culture like "es-CL", the "language" field refers to the
 	// neutral, generic culture information for the language it is using.
 	// This is not always a simple matter of the string before the dash.
 	// For example, the "zh-Hans" culture is netural (Simplified Chinese).
-	// And the 'zh-SG' culture is Simplified Chinese in Singapore, whose lanugage
+	// And the "zh-SG" culture is Simplified Chinese in Singapore, whose lanugage
 	// field is "zh-CHS", not "zh".
 	// This field should be used to navigate from a specific culture to it's
 	// more general, neutral culture. If a culture is already as general as it
@@ -336,37 +339,37 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
 	// each grouping, the group separator, and how negative numbers are displayed.
 	numberFormat: {
 		// [negativePattern]
-		// Note, numberFormat.pattern has no 'positivePattern' unlike percent and currency,
+		// Note, numberFormat.pattern has no "positivePattern" unlike percent and currency,
 		// but is still defined as an array for consistency with them.
 		//	negativePattern: one of "(n)|-n|- n|n-|n -"
-		pattern: ["-n"],
+		pattern: [ "-n" ],
 		// number of decimal places normally shown
 		decimals: 2,
 		// string that separates number groups, as in 1,000,000
-		',': ",",
+		",": ",",
 		// string that separates a number from the fractional portion, as in 1.99
-		'.': ".",
+		".": ".",
 		// array of numbers indicating the size of each number group.
 		// TODO: more detailed description and example
-		groupSizes: [3],
+		groupSizes: [ 3 ],
 		// symbol used for positive numbers
-		'+': "+",
+		"+": "+",
 		// symbol used for negative numbers
-		'-': "-",
+		"-": "-",
 		percent: {
 			// [negativePattern, positivePattern]
 			//	   negativePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
 			//	   positivePattern: one of "n %|n%|%n|% n"
-			pattern: ["-n %","n %"],
+			pattern: [ "-n %", "n %" ],
 			// number of decimal places normally shown
 			decimals: 2,
 			// array of numbers indicating the size of each number group.
 			// TODO: more detailed description and example
-			groupSizes: [3],
+			groupSizes: [ 3 ],
 			// string that separates number groups, as in 1,000,000
-			',': ",",
+			",": ",",
 			// string that separates a number from the fractional portion, as in 1.99
-			'.': ".",
+			".": ".",
 			// symbol used to represent a percentage
 			symbol: "%"
 		},
@@ -374,22 +377,22 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
 			// [negativePattern, positivePattern]
 			//	   negativePattern: one of "($n)|-$n|$-n|$n-|(n$)|-n$|n-$|n$-|-n $|-$ n|n $-|$ n-|$ -n|n- $|($ n)|(n $)"
 			//	   positivePattern: one of "$n|n$|$ n|n $"
-			pattern: ["($n)","$n"],
+			pattern: [ "($n)", "$n" ],
 			// number of decimal places normally shown
 			decimals: 2,
 			// array of numbers indicating the size of each number group.
 			// TODO: more detailed description and example
-			groupSizes: [3],
+			groupSizes: [ 3 ],
 			// string that separates number groups, as in 1,000,000
-			',': ",",
+			",": ",",
 			// string that separates a number from the fractional portion, as in 1.99
-			'.': ".",
+			".": ".",
 			// symbol used to represent currency
 			symbol: "$"
 		}
 	},
 	// calendars defines all the possible calendars used by this culture.
-	// There should be at least one defined with name 'standard', and is the default
+	// There should be at least one defined with name "standard", and is the default
 	// calendar used by the culture.
 	// A calendar contains information about how dates are formatted, information about
 	// the calendar's eras, a standard set of the date formats,
@@ -399,33 +402,33 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
 		standard: {
 			// name that identifies the type of calendar this is
 			name: "Gregorian_USEnglish",
-			// separator of parts of a date (e.g. '/' in 11/05/1955)
-			'/': "/",
-			// separator of parts of a time (e.g. ':' in 05:44 PM)
-			':': ":",
+			// separator of parts of a date (e.g. "/" in 11/05/1955)
+			"/": "/",
+			// separator of parts of a time (e.g. ":" in 05:44 PM)
+			":": ":",
 			// the first day of the week (0 = Sunday, 1 = Monday, etc)
 			firstDay: 0,
 			days: {
 				// full day names
-				names: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+				names: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ],
 				// abbreviated day names
-				namesAbbr: ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+				namesAbbr: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ],
 				// shortest day names
-				namesShort: ["Su","Mo","Tu","We","Th","Fr","Sa"]
+				namesShort: [ "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" ]
 			},
 			months: {
 				// full month names (13 months for lunar calendards -- 13th month should be "" if not lunar)
-				names: ["January","February","March","April","May","June","July","August","September","October","November","December",""],
+				names: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "" ],
 				// abbreviated month names
-				namesAbbr: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""]
+				namesAbbr: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "" ]
 			},
 			// AM and PM designators in one of these forms:
 			// The usual view, and the upper and lower case versions
 			//		[standard,lowercase,uppercase]
 			// The culture does not use AM or PM (likely all standard date formats use 24 hour time)
 			//		null
-			AM: ["AM", "am", "AM"],
-			PM: ["PM", "pm", "PM"],
+			AM: [ "AM", "am", "AM" ],
+			PM: [ "PM", "pm", "PM" ],
 			eras: [
 				// eras in reverse chronological order.
 				// name: the name of the era in this culture (e.g. A.D., C.E.)
@@ -471,10 +474,10 @@ var en = cultures["default"] = cultures.en = Globalization.extend(true, {
 				Allows for the support of non-gregorian based calendars. This convert object is used to
 				to convert a date to and from a gregorian calendar date to handle parsing and formatting.
 				The two functions:
-					fromGregorian(date)
-						Given the date as a parameter, return an array with parts [year, month, day]
+					fromGregorian( date )
+						Given the date as a parameter, return an array with parts [ year, month, day ]
 						corresponding to the non-gregorian based year, month, and day for the calendar.
-					toGregorian(year, month, day)
+					toGregorian( year, month, day )
 						Given the non-gregorian year, month, and day, return a new Date() object
 						set to the corresponding date in the gregorian calendar.
 			*/
@@ -489,35 +492,35 @@ var regexTrim = /^\s+|\s+$/g,
 	regexParseFloat = /^[+-]?\d*\.?\d*(e[+-]?\d+)?$/,
 	toString = Object.prototype.toString;
 
-function startsWith(value, pattern) {
+function startsWith( value, pattern ) {
 	return value.indexOf( pattern ) === 0;
 }
 
-function endsWith(value, pattern) {
+function endsWith( value, pattern ) {
 	return value.substr( value.length - pattern.length ) === pattern;
 }
 
-function trim(value) {
-	return (value+"").replace( regexTrim, "" );
+function trim( value ) {
+	return ( value + "" ).replace( regexTrim, "" );
 }
 
-function zeroPad(str, count, left) {
-	for (var l=str.length; l < count; l++) {
-		str = (left ? ('0' + str) : (str + '0'));
+function zeroPad( str, count, left ) {
+	for ( var l = str.length; l < count; l++ ) {
+		str = ( left ? ("0" + str) : (str + "0") );
 	}
 	return str;
 }
 
-function isArray(obj) {
-	return toString.call(obj) === "[object Array]";
+function isArray( obj ) {
+	return toString.call( obj ) === "[object Array]";
 }
 
-function isString(obj) {
-	return toString.call(obj) === "[object String]";
+function isString( obj ) {
+	return toString.call( obj ) === "[object String]";
 }
 
-function isObject(obj) {
-	return toString.call(obj) === "[object Object]";
+function isObject( obj ) {
+	return toString.call( obj ) === "[object Object]";
 }
 
 function arrayIndexOf( array, item ) {
@@ -525,7 +528,7 @@ function arrayIndexOf( array, item ) {
 		return array.indexOf( item );
 	}
 	for ( var i = 0, length = array.length; i < length; i++ ) {
-		if ( array[ i ] === item ) {
+		if ( array[i] === item ) {
 			return i;
 		}
 	}
@@ -534,7 +537,7 @@ function arrayIndexOf( array, item ) {
 
 // *************************************** Numbers ***************************************
 
-function expandNumber(number, precision, formatInfo) {
+function expandNumber( number, precision, formatInfo ) {
 	var groupSizes = formatInfo.groupSizes,
 		curSize = groupSizes[ 0 ],
 		curGroupIndex = 1,
@@ -547,8 +550,8 @@ function expandNumber(number, precision, formatInfo) {
 
 	var numberString = number+"",
 		right = "",
-		split = numberString.split(/e/i),
-		exponent = split.length > 1 ? parseInt( split[ 1 ], 10 ) : 0;
+		split = numberString.split( /e/i ),
+		exponent = split.length > 1 ? parseInt( split[1], 10 ) : 0;
 	numberString = split[ 0 ];
 	split = numberString.split( "." );
 	numberString = split[ 0 ];
@@ -568,22 +571,22 @@ function expandNumber(number, precision, formatInfo) {
 	}
 
 	if ( precision > 0 ) {
-		right = formatInfo['.'] +
-			((right.length > precision) ? right.slice( 0, precision ) : zeroPad( right, precision ));
+		right = formatInfo[ "." ] +
+			( (right.length > precision) ? right.slice(0, precision) : zeroPad(right, precision) );
 	}
 	else {
 		right = "";
 	}
 
 	var stringIndex = numberString.length - 1,
-		sep = formatInfo[","],
+		sep = formatInfo[ "," ],
 		ret = "";
 
 	while ( stringIndex >= 0 ) {
 		if ( curSize === 0 || curSize > stringIndex ) {
-			return numberString.slice( 0, stringIndex + 1 ) + ( ret.length ? ( sep + ret + right ) : right );
+			return numberString.slice( 0, stringIndex + 1 ) + ( ret.length ? (sep + ret + right) : right );
 		}
-		ret = numberString.slice( stringIndex - curSize + 1, stringIndex + 1 ) + ( ret.length ? ( sep + ret ) : "" );
+		ret = numberString.slice( stringIndex - curSize + 1, stringIndex + 1 ) + ( ret.length ? (sep + ret) : "" );
 
 		stringIndex -= curSize;
 
@@ -596,66 +599,66 @@ function expandNumber(number, precision, formatInfo) {
 }
 
 
-function parseNegativePattern(value, nf, negativePattern) {
-	var neg = nf["-"],
-		pos = nf["+"],
+function parseNegativePattern( value, nf, negativePattern ) {
+	var neg = nf[ "-" ],
+		pos = nf[ "+" ],
 		ret;
-	switch (negativePattern) {
+	switch ( negativePattern ) {
 		case "n -":
-			neg = ' ' + neg;
-			pos = ' ' + pos;
+			neg = " " + neg;
+			pos = " " + pos;
 			// fall through
 		case "n-":
-			if ( endsWith( value, neg ) ) {
-				ret = [ '-', value.substr( 0, value.length - neg.length ) ];
+			if ( endsWith(value, neg) ) {
+				ret = [ "-", value.substr(0, value.length - neg.length) ];
 			}
-			else if ( endsWith( value, pos ) ) {
-				ret = [ '+', value.substr( 0, value.length - pos.length ) ];
+			else if ( endsWith(value, pos) ) {
+				ret = [ "+", value.substr(0, value.length - pos.length) ];
 			}
 			break;
 		case "- n":
-			neg += ' ';
-			pos += ' ';
+			neg += " ";
+			pos += " ";
 			// fall through
 		case "-n":
-			if ( startsWith( value, neg ) ) {
-				ret = [ '-', value.substr( neg.length ) ];
+			if ( startsWith(value, neg) ) {
+				ret = [ "-", value.substr(neg.length) ];
 			}
 			else if ( startsWith(value, pos) ) {
-				ret = [ '+', value.substr( pos.length ) ];
+				ret = [ "+", value.substr(pos.length) ];
 			}
 			break;
 		case "(n)":
-			if ( startsWith( value, '(' ) && endsWith( value, ')' ) ) {
-				ret = [ '-', value.substr( 1, value.length - 2 ) ];
+			if ( startsWith(value, "(") && endsWith(value, ")") ) {
+				ret = [ "-", value.substr(1, value.length - 2) ];
 			}
 			break;
 	}
-	return ret || [ '', value ];
+	return ret || [ "", value ];
 }
 
-function formatNumber(value, format, culture) {
-	if ( !format || format === 'i' ) {
+function formatNumber( value, format, culture ) {
+	if ( !format || format === "i" ) {
 		return culture.name.length ? value.toLocaleString() : value.toString();
 	}
 	format = format || "D";
 
 	var nf = culture.numberFormat,
-		number = Math.abs(value),
+		number = Math.abs( value ),
 		precision = -1,
 		pattern;
-	if (format.length > 1) precision = parseInt( format.slice( 1 ), 10 );
+	if ( format.length > 1 ) precision = parseInt( format.slice(1), 10 );
 
 	var current = format.charAt( 0 ).toUpperCase(),
 		formatInfo;
 
-	switch (current) {
+	switch ( current ) {
 		case "D":
-			pattern = 'n';
-			if (precision !== -1) {
-				number = zeroPad( ""+number, precision, true );
+			pattern = "n";
+			if ( precision !== -1 ) {
+				number = zeroPad( "" + number, precision, true );
 			}
-			if (value < 0) number = -number;
+			if ( value < 0 ) number = -number;
 			break;
 		case "N":
 			formatInfo = nf;
@@ -665,8 +668,8 @@ function formatNumber(value, format, culture) {
 			// fall through
 		case "P":
 			formatInfo = formatInfo || nf.percent;
-			pattern = value < 0 ? formatInfo.pattern[0] : (formatInfo.pattern[1] || "n");
-			if (precision === -1) precision = formatInfo.decimals;
+			pattern = value < 0 ? formatInfo.pattern[ 0 ] : ( formatInfo.pattern[1] || "n" );
+			if ( precision === -1 ) precision = formatInfo.decimals;
 			number = expandNumber( number * (current === "P" ? 100 : 1), precision, formatInfo );
 			break;
 		default:
@@ -675,17 +678,17 @@ function formatNumber(value, format, culture) {
 
 	var patternParts = /n|\$|-|%/g,
 		ret = "";
-	for (;;) {
+	for ( ;; ) {
 		var index = patternParts.lastIndex,
-			ar = patternParts.exec(pattern);
+			ar = patternParts.exec( pattern );
 
 		ret += pattern.slice( index, ar ? ar.index : pattern.length );
 
-		if (!ar) {
+		if ( !ar ) {
 			break;
 		}
 
-		switch (ar[0]) {
+		switch ( ar[0] ) {
 			case "n":
 				ret += number;
 				break;
@@ -694,8 +697,8 @@ function formatNumber(value, format, culture) {
 				break;
 			case "-":
 				// don't make 0 negative
-				if ( /[1-9]/.test( number ) ) {
-					ret += nf["-"];
+				if ( /[1-9]/.test(number) ) {
+					ret += nf[ "-" ];
 				}
 				break;
 			case "%":
@@ -709,17 +712,17 @@ function formatNumber(value, format, culture) {
 
 // *************************************** Dates ***************************************
 
-function outOfRange(value, low, high) {
+function outOfRange( value, low, high ) {
 	return value < low || value > high;
 }
 
-function expandYear(cal, year) {
+function expandYear( cal, year ) {
 	// expands 2-digit year into 4 digits.
 	var now = new Date(),
-		era = getEra(now);
+		era = getEra( now );
 	if ( year < 100 ) {
 		var twoDigitYearMax = cal.twoDigitYearMax;
-		twoDigitYearMax = typeof twoDigitYearMax === 'string' ? new Date().getFullYear() % 100 + parseInt( twoDigitYearMax, 10 ) : twoDigitYearMax;
+		twoDigitYearMax = typeof twoDigitYearMax === "string" ? new Date().getFullYear() % 100 + parseInt( twoDigitYearMax, 10 ) : twoDigitYearMax;
 		var curr = getEraYear( now, cal, era );
 		year += curr - ( curr % 100 );
 		if ( year > twoDigitYearMax ) {
@@ -729,7 +732,7 @@ function expandYear(cal, year) {
 	return year;
 }
 
-function getEra(date, eras) {
+function getEra( date, eras ) {
 	if ( !eras ) return 0;
 	var start, ticks = date.getTime();
 	for ( var i = 0, l = eras.length; i < l; i++ ) {
@@ -741,20 +744,20 @@ function getEra(date, eras) {
 	return 0;
 }
 
-function toUpper(value) {
-	// 'he-IL' has non-breaking space in weekday names.
-	return value.split( "\u00A0" ).join(' ').toUpperCase();
+function toUpper( value ) {
+	// "he-IL" has non-breaking space in weekday names.
+	return value.split( "\u00A0" ).join( " " ).toUpperCase();
 }
 
-function toUpperArray(arr) {
+function toUpperArray( arr ) {
 	var results = [];
 	for ( var i = 0, l = arr.length; i < l; i++ ) {
-		results[i] = toUpper(arr[i]);
+		results[ i ] = toUpper( arr[i] );
 	}
 	return results;
 }
 
-function getEraYear(date, cal, era, sortable) {
+function getEraYear( date, cal, era, sortable ) {
 	var year = date.getFullYear();
 	if ( !sortable && cal.eras ) {
 		// convert normal gregorian year to era-shifted gregorian
@@ -764,7 +767,7 @@ function getEraYear(date, cal, era, sortable) {
 	return year;
 }
 
-function getDayIndex(cal, value, abbr) {
+function getDayIndex( cal, value, abbr ) {
 	var ret,
 		days = cal.days,
 		upperDays = cal._upperDays;
@@ -777,18 +780,18 @@ function getDayIndex(cal, value, abbr) {
 	}
 	value = toUpper( value );
 	if ( abbr ) {
-		ret = arrayIndexOf( upperDays[ 1 ], value );
+		ret = arrayIndexOf( upperDays[1], value );
 		if ( ret === -1 ) {
-			ret = arrayIndexOf( upperDays[ 2 ], value );
+			ret = arrayIndexOf( upperDays[2], value );
 		}
 	}
 	else {
-		ret = arrayIndexOf( upperDays[ 0 ], value );
+		ret = arrayIndexOf( upperDays[0], value );
 	}
 	return ret;
 }
 
-function getMonthIndex(cal, value, abbr) {
+function getMonthIndex( cal, value, abbr ) {
 	var months = cal.months,
 		monthsGen = cal.monthsGenitive || cal.months,
 		upperMonths = cal._upperMonths,
@@ -804,14 +807,14 @@ function getMonthIndex(cal, value, abbr) {
 		];
 	}
 	value = toUpper( value );
-	var i = arrayIndexOf( abbr ? upperMonths[ 1 ] : upperMonths[ 0 ], value );
+	var i = arrayIndexOf( abbr ? upperMonths[1] : upperMonths[0], value );
 	if ( i < 0 ) {
-		i = arrayIndexOf( abbr ? upperMonthsGen[ 1 ] : upperMonthsGen[ 0 ], value );
+		i = arrayIndexOf( abbr ? upperMonthsGen[1] : upperMonthsGen[0], value );
 	}
 	return i;
 }
 
-function appendPreOrPostMatch(preMatch, strings) {
+function appendPreOrPostMatch( preMatch, strings ) {
 	// appends pre- and post- token match strings while removing escaped characters.
 	// Returns a single quote count which is used to determine if the token occurs
 	// in a string literal.
@@ -820,16 +823,16 @@ function appendPreOrPostMatch(preMatch, strings) {
 	for ( var i = 0, il = preMatch.length; i < il; i++ ) {
 		var c = preMatch.charAt( i );
 		switch ( c ) {
-			case '\'':
+			case "\'":
 				if ( escaped ) {
-					strings.push( "'" );
+					strings.push( "\'" );
 				}
 				else {
 					quoteCount++;
 				}
 				escaped = false;
 				break;
-			case '\\':
+			case "\\":
 				if ( escaped ) {
 					strings.push( "\\" );
 				}
@@ -844,7 +847,7 @@ function appendPreOrPostMatch(preMatch, strings) {
 	return quoteCount;
 }
 
-function expandFormat(cal, format) {
+function expandFormat( cal, format ) {
 	// expands unspecified or single character date formats into the full pattern.
 	format = format || "F";
 	var pattern,
@@ -853,18 +856,18 @@ function expandFormat(cal, format) {
 	if ( len === 1 ) {
 		pattern = patterns[ format ];
 		if ( !pattern ) {
-			throw "Invalid date format string '" + format + "'.";
+			throw "Invalid date format string \'" + format + "\'.";
 		}
 		format = pattern;
 	}
-	else if ( len === 2	 && format.charAt(0) === "%" ) {
+	else if ( len === 2 && format.charAt(0) === "%" ) {
 		// %X escape format -- intended as a custom format string that is only one character, not a built-in format.
 		format = format.charAt( 1 );
 	}
 	return format;
 }
 
-function getParseRegExp(cal, format) {
+function getParseRegExp( cal, format ) {
 	// converts a format string into a regular expression with groups that
 	// can be used to extract date fields from a date string.
 	// check for a cached parse regex.
@@ -881,7 +884,7 @@ function getParseRegExp(cal, format) {
 
 	// expand single digit formats, then escape regular expression characters.
 	var expFormat = expandFormat( cal, format ).replace( /([\^\$\.\*\+\?\|\[\]\(\)\{\}])/g, "\\\\$1" ),
-		regexp = ["^"],
+		regexp = [ "^" ],
 		groups = [],
 		index = 0,
 		quoteCount = 0,
@@ -889,14 +892,14 @@ function getParseRegExp(cal, format) {
 		match;
 
 	// iterate through each date token found.
-	while ( (match = tokenRegExp.exec( expFormat )) !== null ) {
+	while ( (match = tokenRegExp.exec(expFormat )) !== null ) {
 		var preMatch = expFormat.slice( index, match.index );
 		index = tokenRegExp.lastIndex;
 
 		// don't replace any matches that occur inside a string literal.
 		quoteCount += appendPreOrPostMatch( preMatch, regexp );
 		if ( quoteCount % 2 ) {
-			regexp.push( match[ 0 ] );
+			regexp.push( match[0] );
 			continue;
 		}
 
@@ -905,53 +908,53 @@ function getParseRegExp(cal, format) {
 			len = m.length,
 			add;
 		switch ( m ) {
-			case 'dddd': case 'ddd':
-			case 'MMMM': case 'MMM':
-			case 'gg': case 'g':
+			case "dddd": case "ddd":
+			case "MMMM": case "MMM":
+			case "gg": case "g":
 				add = "(\\D+)";
 				break;
-			case 'tt': case 't':
+			case "tt": case "t":
 				add = "(\\D*)";
 				break;
-			case 'yyyy':
-			case 'fff':
-			case 'ff':
-			case 'f':
+			case "yyyy":
+			case "fff":
+			case "ff":
+			case "f":
 				add = "(\\d{" + len + "})";
 				break;
-			case 'dd': case 'd':
-			case 'MM': case 'M':
-			case 'yy': case 'y':
-			case 'HH': case 'H':
-			case 'hh': case 'h':
-			case 'mm': case 'm':
-			case 'ss': case 's':
+			case "dd": case "d":
+			case "MM": case "M":
+			case "yy": case "y":
+			case "HH": case "H":
+			case "hh": case "h":
+			case "mm": case "m":
+			case "ss": case "s":
 				add = "(\\d\\d?)";
 				break;
-			case 'zzz':
+			case "zzz":
 				add = "([+-]?\\d\\d?:\\d{2})";
 				break;
-			case 'zz': case 'z':
+			case "zz": case "z":
 				add = "([+-]?\\d\\d?)";
 				break;
-			case '/':
-				add = "(\\" + cal["/"] + ")";
+			case "/":
+				add = "(\\" + cal[ "/" ] + ")";
 				break;
 			default:
-				throw "Invalid date format pattern '" + m + "'.";
+				throw "Invalid date format pattern \'" + m + "\'.";
 				break;
 		}
 		if ( add ) {
 			regexp.push( add );
 		}
-		groups.push( match[ 0 ] );
+		groups.push( match[0] );
 	}
-	appendPreOrPostMatch( expFormat.slice( index ), regexp );
+	appendPreOrPostMatch( expFormat.slice(index), regexp );
 	regexp.push( "$" );
 
 	// allow whitespace to differ when matching formats.
-	var regexpStr = regexp.join( '' ).replace( /\s+/g, "\\s+" ),
-		parseRegExp = {'regExp': regexpStr, 'groups': groups};
+	var regexpStr = regexp.join( "" ).replace( /\s+/g, "\\s+" ),
+		parseRegExp = { "regExp": regexpStr, "groups": groups };
 
 	// cache the regex for this format.
 	return re[ format ] = parseRegExp;
@@ -962,16 +965,16 @@ function getTokenRegExp() {
 	return /\/|dddd|ddd|dd|d|MMMM|MMM|MM|M|yyyy|yy|y|hh|h|HH|H|mm|m|ss|s|tt|t|fff|ff|f|zzz|zz|z|gg|g/g;
 }
 
-function parseExact(value, format, culture) {
+function parseExact( value, format, culture ) {
 	// try to parse the date string by matching against the format string
 	// while using the specified culture for date field names.
 	value = trim( value );
 	var cal = culture.calendar,
 		// convert date formats into regular expressions with groupings.
 		// use the regexp to determine the input format and extract the date fields.
-		parseInfo = getParseRegExp(cal, format),
-		match = new RegExp(parseInfo.regExp).exec(value);
-	if (match === null) {
+		parseInfo = getParseRegExp( cal, format ),
+		match = new RegExp( parseInfo.regExp ).exec( value );
+	if ( match === null ) {
 		return null;
 	}
 	// found a date format that matches the input.
@@ -987,93 +990,96 @@ function parseExact(value, format, culture) {
 				clength = current.length,
 				matchInt = parseInt( matchGroup, 10 );
 			switch ( current ) {
-				case 'dd': case 'd':
+				case "dd": case "d":
 					// Day of month.
 					date = matchInt;
 					// check that date is generally in valid range, also checking overflow below.
-					if ( outOfRange( date, 1, 31 ) ) return null;
+					if ( outOfRange(date, 1, 31) ) return null;
 					break;
-				case 'MMM':
-				case 'MMMM':
+				case "MMM": case "MMMM":
 					month = getMonthIndex( cal, matchGroup, clength === 3 );
-					if ( outOfRange( month, 0, 11 ) ) return null;
+					if ( outOfRange(month, 0, 11) ) return null;
 					break;
-				case 'M': case 'MM':
+				case "M": case "MM":
 					// Month.
 					month = matchInt - 1;
-					if ( outOfRange( month, 0, 11 ) ) return null;
+					if ( outOfRange(month, 0, 11) ) return null;
 					break;
-				case 'y': case 'yy':
-				case 'yyyy':
+				case "y": case "yy":
+				case "yyyy":
 					year = clength < 4 ? expandYear( cal, matchInt ) : matchInt;
-					if ( outOfRange( year, 0, 9999 ) ) return null;
+					if ( outOfRange(year, 0, 9999) ) return null;
 					break;
-				case 'h': case 'hh':
+				case "h": case "hh":
 					// Hours (12-hour clock).
 					hour = matchInt;
 					if ( hour === 12 ) hour = 0;
-					if ( outOfRange( hour, 0, 11 ) ) return null;
+					if ( outOfRange(hour, 0, 11) ) return null;
 					break;
-				case 'H': case 'HH':
+				case "H": case "HH":
 					// Hours (24-hour clock).
 					hour = matchInt;
-					if ( outOfRange( hour, 0, 23 ) ) return null;
+					if ( outOfRange(hour, 0, 23) ) return null;
 					break;
-				case 'm': case 'mm':
+				case "m": case "mm":
 					// Minutes.
 					min = matchInt;
-					if ( outOfRange( min, 0, 59 ) ) return null;
+					if ( outOfRange(min, 0, 59) ) return null;
 					break;
-				case 's': case 'ss':
+				case "s": case "ss":
 					// Seconds.
 					sec = matchInt;
-					if ( outOfRange( sec, 0, 59 ) ) return null;
+					if ( outOfRange(sec, 0, 59) ) return null;
 					break;
-				case 'tt': case 't':
+				case "tt": case "t":
 					// AM/PM designator.
 					// see if it is standard, upper, or lower case PM. If not, ensure it is at least one of
 					// the AM tokens. If not, fail the parse for this format.
 					pmHour = cal.PM && ( matchGroup === cal.PM[0] || matchGroup === cal.PM[1] || matchGroup === cal.PM[2] );
-					if ( !pmHour && ( !cal.AM || (matchGroup !== cal.AM[0] && matchGroup !== cal.AM[1] && matchGroup !== cal.AM[2]) ) ) return null;
+					if (
+						!pmHour && (
+							!cal.AM || ( matchGroup !== cal.AM[0] && matchGroup !== cal.AM[1] && matchGroup !== cal.AM[2] )
+						)
+					) return null;
 					break;
-				case 'f':
+				case "f":
 					// Deciseconds.
-				case 'ff':
+				case "ff":
 					// Centiseconds.
-				case 'fff':
+				case "fff":
 					// Milliseconds.
-					msec = matchInt * Math.pow( 10, 3-clength );
-					if ( outOfRange( msec, 0, 999 ) ) return null;
+					msec = matchInt * Math.pow( 10, 3 - clength );
+					if ( outOfRange(msec, 0, 999) ) return null;
 					break;
-				case 'ddd':
+				case "ddd":
 					// Day of week.
-				case 'dddd':
+				case "dddd":
 					// Day of week.
 					weekDay = getDayIndex( cal, matchGroup, clength === 3 );
-					if ( outOfRange( weekDay, 0, 6 ) ) return null;
+					if ( outOfRange(weekDay, 0, 6) ) return null;
 					break;
-				case 'zzz':
+				case "zzz":
 					// Time zone offset in +/- hours:min.
 					var offsets = matchGroup.split( /:/ );
 					if ( offsets.length !== 2 ) return null;
-					hourOffset = parseInt( offsets[ 0 ], 10 );
-					if ( outOfRange( hourOffset, -12, 13 ) ) return null;
-					var minOffset = parseInt( offsets[ 1 ], 10 );
-					if ( outOfRange( minOffset, 0, 59 ) ) return null;
-					tzMinOffset = (hourOffset * 60) + (startsWith( matchGroup, '-' ) ? -minOffset : minOffset);
+					hourOffset = parseInt( offsets[0], 10 );
+					if ( outOfRange(hourOffset, -12, 13) ) return null;
+					var minOffset = parseInt( offsets[1], 10 );
+					if ( outOfRange(minOffset, 0, 59) ) return null;
+					tzMinOffset = ( hourOffset * 60 ) + ( startsWith(matchGroup, "-") ? -minOffset : minOffset );
 					break;
-				case 'z': case 'zz':
+				case "z": case "zz":
 					// Time zone offset in +/- hours.
 					hourOffset = matchInt;
-					if ( outOfRange( hourOffset, -12, 13 ) ) return null;
+					if ( outOfRange(hourOffset, -12, 13) ) return null;
 					tzMinOffset = hourOffset * 60;
 					break;
-				case 'g': case 'gg':
+				case "g": case "gg":
 					var eraName = matchGroup;
 					if ( !eraName || !cal.eras ) return null;
 					eraName = trim( eraName.toLowerCase() );
 					for ( var i = 0, l = cal.eras.length; i < l; i++ ) {
-						if ( eraName === cal.eras[ i ].name.toLowerCase() ) {
+						if ( eraName === cal.eras[i].name.toLowerCase() ) {
 							era = i;
 							break;
 						}
@@ -1093,7 +1099,7 @@ function parseExact(value, format, culture) {
 		// year must be shifted to normal gregorian year
 		// but not if year was not specified, its already normal gregorian
 		// per the main if clause above.
-		year += cal.eras[ (era || 0) ].offset;
+		year += cal.eras[( era || 0 )].offset;
 	}
 	// set default day and month to 1 and January, so if unspecified, these are the defaults
 	// instead of the current day/month.
@@ -1131,15 +1137,15 @@ function parseExact(value, format, culture) {
 		// Safari limits hours and minutes to the range of -127 to 127.	 We need to use setHours
 		// to ensure both these fields will not exceed this range.	adjustedMin will range
 		// somewhere between -1440 and 1500, so we only need to split this into hours.
-		result.setHours( result.getHours() + parseInt( adjustedMin / 60, 10 ), adjustedMin % 60 );
+		result.setHours( result.getHours() + parseInt(adjustedMin / 60, 10), adjustedMin % 60 );
 	}
 	return result;
 }
 
-function formatDate(value, format, culture) {
+function formatDate( value, format, culture ) {
 	var cal = culture.calendar,
 		convert = cal.convert;
-	if ( !format || !format.length || format === 'i' ) {
+	if ( !format || !format.length || format === "i" ) {
 		var ret;
 		if ( culture && culture.name.length ) {
 			if ( convert ) {
@@ -1149,7 +1155,7 @@ function formatDate(value, format, culture) {
 			else {
 				var eraDate = new Date( value.getTime() ),
 					era = getEra( value, cal.eras );
-				eraDate.setFullYear( getEraYear( value, cal, era ) );
+				eraDate.setFullYear( getEraYear(value, cal, era) );
 				ret = eraDate.toLocaleString();
 			}
 		}
@@ -1166,7 +1172,7 @@ function formatDate(value, format, culture) {
 	// Start with an empty string
 	ret = [];
 	var hour,
-		zeros = ['0','00','000'],
+		zeros = [ "0", "00", "000" ],
 		foundDay,
 		checkedDay,
 		dayPartRegExp = /([^d]|^)(d|dd)([^d]|$)/g,
@@ -1174,10 +1180,10 @@ function formatDate(value, format, culture) {
 		tokenRegExp = getTokenRegExp(),
 		converted;
 
-	function padZeros(num, c) {
-		var r, s = num+'';
+	function padZeros( num, c ) {
+		var r, s = num + "";
 		if ( c > 1 && s.length < c ) {
-			r = ( zeros[ c - 2 ] + s);
+			r = ( zeros[c - 2] + s);
 			return r.substr( r.length - c, c );
 		}
 		else {
@@ -1210,7 +1216,7 @@ function formatDate(value, format, culture) {
 		converted = convert.fromGregorian( value );
 	}
 
-	for (;;) {
+	for ( ; ; ) {
 		// Save the current index
 		var index = tokenRegExp.lastIndex,
 			// Look for the next pattern
@@ -1226,7 +1232,7 @@ function formatDate(value, format, culture) {
 
 		// do not replace any matches that occur inside a string literal.
 		if ( quoteCount % 2 ) {
-			ret.push( ar[ 0 ] );
+			ret.push( ar[0] );
 			continue;
 		}
 
@@ -1238,30 +1244,38 @@ function formatDate(value, format, culture) {
 				//Day of the week, as a three-letter abbreviation
 			case "dddd":
 				// Day of the week, using the full name
-				var names = (clength === 3) ? cal.days.namesAbbr : cal.days.names;
-				ret.push( names[ value.getDay() ] );
+				var names = ( clength === 3 ) ? cal.days.namesAbbr : cal.days.names;
+				ret.push( names[value.getDay()] );
 				break;
 			case "d":
 				// Day of month, without leading zero for single-digit days
 			case "dd":
 				// Day of month, with leading zero for single-digit days
 				foundDay = true;
-				ret.push( padZeros( getPart( value, 2 ), clength ) );
+				ret.push(
+					padZeros( getPart(value, 2), clength )
+				);
 				break;
 			case "MMM":
 				// Month, as a three-letter abbreviation
 			case "MMMM":
 				// Month, using the full name
 				var part = getPart( value, 1 );
-				ret.push( (cal.monthsGenitive && hasDay())
-					? cal.monthsGenitive[ clength === 3 ? "namesAbbr" : "names" ][ part ]
-					: cal.months[ clength === 3 ? "namesAbbr" : "names" ][ part ] );
+				ret.push(
+					( cal.monthsGenitive && hasDay() )
+					?
+					cal.monthsGenitive[ clength === 3 ? "namesAbbr" : "names" ][ part ]
+					:
+					cal.months[ clength === 3 ? "namesAbbr" : "names" ][ part ]
+				);
 				break;
 			case "M":
 				// Month, as digits, with no leading zero for single-digit months
 			case "MM":
 				// Month, as digits, with leading zero for single-digit months
-				ret.push( padZeros( getPart( value, 1 ) + 1, clength ) );
+				ret.push(
+					padZeros( getPart(value, 1) + 1, clength )
+				);
 				break;
 			case "y":
 				// Year, as two digits, but with no leading zero for years less than 10
@@ -1269,11 +1283,13 @@ function formatDate(value, format, culture) {
 				// Year, as two digits, with leading zero for years less than 10
 			case "yyyy":
 				// Year represented by four full digits
-				part = converted ? converted[ 0 ] : getEraYear( value, cal, getEra( value, eras ), sortable );
+				part = converted ? converted[ 0 ] : getEraYear( value, cal, getEra(value, eras), sortable );
 				if ( clength < 4 ) {
 					part = part % 100;
 				}
-				ret.push( padZeros( part, clength ) );
+				ret.push(
+					padZeros( part, clength )
+				);
 				break;
 			case "h":
 				// Hours with no leading zero for single-digit hours, using 12-hour clock
@@ -1281,32 +1297,40 @@ function formatDate(value, format, culture) {
 				// Hours with leading zero for single-digit hours, using 12-hour clock
 				hour = value.getHours() % 12;
 				if ( hour === 0 ) hour = 12;
-				ret.push( padZeros( hour, clength ) );
+				ret.push(
+					padZeros( hour, clength )
+				);
 				break;
 			case "H":
 				// Hours with no leading zero for single-digit hours, using 24-hour clock
 			case "HH":
 				// Hours with leading zero for single-digit hours, using 24-hour clock
-				ret.push( padZeros( value.getHours(), clength ) );
+				ret.push(
+					padZeros( value.getHours(), clength )
+				);
 				break;
 			case "m":
 				// Minutes with no leading zero	 for single-digit minutes
 			case "mm":
 				// Minutes with leading zero  for single-digit minutes
-				ret.push( padZeros( value.getMinutes(), clength ) );
+				ret.push(
+					padZeros( value.getMinutes(), clength )
+				);
 				break;
 			case "s":
 				// Seconds with no leading zero for single-digit seconds
 			case "ss":
 				// Seconds with leading zero for single-digit seconds
-				ret.push( padZeros(value .getSeconds(), clength ) );
+				ret.push(
+					padZeros( value.getSeconds(), clength )
+				);
 				break;
 			case "t":
 				// One character am/pm indicator ("a" or "p")
 			case "tt":
 				// Multicharacter am/pm indicator
-				part = value.getHours() < 12 ? (cal.AM ? cal.AM[0] : " ") : (cal.PM ? cal.PM[0] : " ");
-				ret.push( clength === 1 ? part.charAt( 0 ) : part );
+				part = value.getHours() < 12 ? ( cal.AM ? cal.AM[0] : "  ") : ( cal.PM ? cal.PM[0] : " " );
+				ret.push( clength === 1 ? part.charAt(0) : part );
 				break;
 			case "f":
 				// Deciseconds
@@ -1314,42 +1338,49 @@ function formatDate(value, format, culture) {
 				// Centiseconds
 			case "fff":
 				// Milliseconds
-				ret.push( padZeros( value.getMilliseconds(), 3 ).substr( 0, clength ) );
+				ret.push(
+					padZeros( value.getMilliseconds(), 3 ).substr( 0, clength )
+				);
 				break;
 			case "z":
 				// Time zone offset, no leading zero
 			case "zz":
 				// Time zone offset with leading zero
 				hour = value.getTimezoneOffset() / 60;
-				ret.push( (hour <= 0 ? '+' : '-') + padZeros( Math.floor( Math.abs( hour ) ), clength ) );
+				ret.push(
+					( hour <= 0 ? "+" : "-" ) + padZeros( Math.floor(Math.abs(hour)), clength )
+				);
 				break;
 			case "zzz":
 				// Time zone offset with leading zero
 				hour = value.getTimezoneOffset() / 60;
-				ret.push( (hour <= 0 ? '+' : '-') + padZeros( Math.floor( Math.abs( hour ) ), 2 ) +
+				ret.push(
+					( hour <= 0 ? "+" : "-" ) + padZeros( Math.floor(Math.abs(hour)), 2 )
 					// Hard coded ":" separator, rather than using cal.TimeSeparator
 					// Repeated here for consistency, plus ":" was already assumed in date parsing.
-					":" + padZeros( Math.abs( value.getTimezoneOffset() % 60 ), 2 ) );
+					+ ":" + padZeros( Math.abs(value.getTimezoneOffset() % 60), 2 )
+				);
 				break;
 			case "g":
 			case "gg":
 				if ( cal.eras ) {
-					ret.push( cal.eras[ getEra(value, eras) ].name );
+					ret.push(
+						cal.eras[ getEra(value, eras) ].name
+					);
 				}
 				break;
 		case "/":
 			ret.push( cal["/"] );
 			break;
 		default:
-			throw "Invalid date format pattern '" + current + "'.";
+			throw "Invalid date format pattern \'" + current + "\'.";
 			break;
 		}
 	}
-	return ret.join( '' );
+	return ret.join( "" );
 }
 
 // EXPORTS
 jQuery.global = Globalization;
 
-})();
-
+}( jQuery ));
