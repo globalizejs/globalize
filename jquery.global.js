@@ -1329,7 +1329,7 @@ function formatDate( value, format, culture ) {
 				// One character am/pm indicator ("a" or "p")
 			case "tt":
 				// Multicharacter am/pm indicator
-				part = value.getHours() < 12 ? ( cal.AM ? cal.AM[0] : "  ") : ( cal.PM ? cal.PM[0] : " " );
+				part = value.getHours() < 12 ? ( cal.AM ? cal.AM[0] : " ") : ( cal.PM ? cal.PM[0] : " " );
 				ret.push( clength === 1 ? part.charAt(0) : part );
 				break;
 			case "f":
