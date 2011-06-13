@@ -341,7 +341,7 @@ var en = cultures["default"] = cultures.en = Globalization.extend( true, {
 		// [negativePattern]
 		// Note, numberFormat.pattern has no "positivePattern" unlike percent and currency,
 		// but is still defined as an array for consistency with them.
-		//	negativePattern: one of "(n)|-n|- n|n-|n -"
+		//   negativePattern: one of "(n)|-n|- n|n-|n -"
 		pattern: [ "-n" ],
 		// number of decimal places normally shown
 		decimals: 2,
@@ -358,8 +358,8 @@ var en = cultures["default"] = cultures.en = Globalization.extend( true, {
 		"-": "-",
 		percent: {
 			// [negativePattern, positivePattern]
-			//	   negativePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
-			//	   positivePattern: one of "n %|n%|%n|% n"
+			//   negativePattern: one of "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %"
+			//   positivePattern: one of "n %|n%|%n|% n"
 			pattern: [ "-n %", "n %" ],
 			// number of decimal places normally shown
 			decimals: 2,
@@ -424,9 +424,9 @@ var en = cultures["default"] = cultures.en = Globalization.extend( true, {
 			},
 			// AM and PM designators in one of these forms:
 			// The usual view, and the upper and lower case versions
-			//		[standard,lowercase,uppercase]
+			//   [ standard, lowercase, uppercase ]
 			// The culture does not use AM or PM (likely all standard date formats use 24 hour time)
-			//		null
+			//   null
 			AM: [ "AM", "am", "AM" ],
 			PM: [ "PM", "pm", "PM" ],
 			eras: [
@@ -434,7 +434,11 @@ var en = cultures["default"] = cultures.en = Globalization.extend( true, {
 				// name: the name of the era in this culture (e.g. A.D., C.E.)
 				// start: when the era starts in ticks (gregorian, gmt), null if it is the earliest supported era.
 				// offset: offset in years from gregorian calendar
-				{ "name": "A.D.", "start": null, "offset": 0 }
+				{
+					"name": "A.D.",
+					"start": null,
+					"offset": 0
+				}
 			],
 			// when a two digit year is given, it will never be parsed as a four digit
 			// year greater than this year (in the appropriate era for the culture)
@@ -678,7 +682,7 @@ function formatNumber( value, format, culture ) {
 
 	var patternParts = /n|\$|-|%/g,
 		ret = "";
-	for ( ;; ) {
+	for ( ; ; ) {
 		var index = patternParts.lastIndex,
 			ar = patternParts.exec( pattern );
 
@@ -892,7 +896,7 @@ function getParseRegExp( cal, format ) {
 		match;
 
 	// iterate through each date token found.
-	while ( (match = tokenRegExp.exec(expFormat )) !== null ) {
+	while ( (match = tokenRegExp.exec(expFormat)) !== null ) {
 		var preMatch = expFormat.slice( index, match.index );
 		index = tokenRegExp.lastIndex;
 
@@ -1310,9 +1314,9 @@ function formatDate( value, format, culture ) {
 				);
 				break;
 			case "m":
-				// Minutes with no leading zero	 for single-digit minutes
+				// Minutes with no leading zero for single-digit minutes
 			case "mm":
-				// Minutes with leading zero  for single-digit minutes
+				// Minutes with leading zero for single-digit minutes
 				ret.push(
 					padZeros( value.getMinutes(), clength )
 				);
@@ -1329,7 +1333,7 @@ function formatDate( value, format, culture ) {
 				// One character am/pm indicator ("a" or "p")
 			case "tt":
 				// Multicharacter am/pm indicator
-				part = value.getHours() < 12 ? ( cal.AM ? cal.AM[0] : " ") : ( cal.PM ? cal.PM[0] : " " );
+				part = value.getHours() < 12 ? ( cal.AM ? cal.AM[0] : " " ) : ( cal.PM ? cal.PM[0] : " " );
 				ret.push( clength === 1 ? part.charAt(0) : part );
 				break;
 			case "f":
