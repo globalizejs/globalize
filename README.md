@@ -1,6 +1,8 @@
 # jQuery Global plugin v1.0.0pre.
 
-_Note: This plugin is currently in beta form and may change significantly before version 1.0 is released. 
+_Note: This plugin is currently in beta form and may change significantly before version 1.0 is released.
+
+For build instructions, scroll down to the very bottom of this file.
 
 <p>
 <h1>Introduction</h1>
@@ -25,6 +27,7 @@ languages and countries, as well as an extensible system for localization.
 <li><a href="#defining">Defining Culture Information</a></li>
 <li><a href="#numbers">Number Formatting</a></li>
 <li><a href="#dates">Date Formatting</a></li>
+<li><a href="#build">Build</a></li>
 </ul>
 
 <a name="why"></a>
@@ -823,3 +826,40 @@ format you wish by specifing the following custom tokens:
 </table>
 </p>
 
+<h1 id="build">Build</h1>
+
+This plugin works by generating JavaScript containing metadata and functions based on culture info in the Microsoft .Net Framework 4. The plugin and generator were originally written by Microsoft and contributed to the jQuery project by assigning the copyright to the Software Freedom Conservancy.
+
+## Requirements ##
+
+<ul>
+	<li>Windows</li>
+	<li>Microsoft .Net Framework 3.5 <a href="http://www.microsoft.com/download/en/details.aspx?id=21">download dotnetfx35.exe</a>
+		<ul>
+			<li>This is required for the Microsoft Ajax Minifier 4 (see below)</li>
+		</ul>
+	</li>
+	<li>Microsoft .Net Framework 4 (Full, not just Client Profile) <a href="http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=0a391abd-25c1-4fc0-919f-b21f31ab88b7">download dotNetFx40_Full_x86_x64.exe</a>
+		<ul>
+			<li>This is required to build and run the generator</li>
+		</ul>
+	</li>
+	<li>Microsoft Ajax Minifier 4 <a href="http://aspnet.codeplex.com/releases/view/40584">download AjaxMin4Setup.msi</a>
+		<ul>
+			<li>This is required to build and run the generator</li>
+		</ul>
+	</li>
+</ul>
+
+## Building the generator ##
+
+1. Open a Windows Command Prompt ( Start -> Run... -> cmd )
+1. Change directory to top-level of project (where README.md is located)
+1. >C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild generator\glob-generator.csproj
+
+## Running the generator
+
+1. Open a Windows Command Prompt
+1. Change directory to top-level of project (where README.md is located)
+1. >generator\bin\Debug\glob-generator.exe /o:globinfo
+1. >generator\bin\Debug\glob-generator.exe /o:globinfo /g:jQuery /n:jquery.glob.{0}.js

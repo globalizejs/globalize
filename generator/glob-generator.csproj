@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxMin">
-      <HintPath>C:\Program Files (x86)\Microsoft\Microsoft Ajax Minifier 4\AjaxMin.dll</HintPath>
+      <HintPath>$(ProgramFiles)\Microsoft\Microsoft Ajax Minifier 4\AjaxMin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />

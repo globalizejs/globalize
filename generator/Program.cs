@@ -348,7 +348,7 @@ namespace Globalization {
 
             if (!String.IsNullOrEmpty(extend)) {
                 return string.Format(CultureInfo.InvariantCulture, @"(function($) {{
-    var cultures = $.cultures,
+    var cultures = $.global.cultures,
         en = cultures.en,
         standard = en.calendars.standard,
         culture = cultures[""{0}""] = $.{2}(true, {{}}, en, {{
@@ -359,7 +359,7 @@ namespace Globalization {
             }
             else {
                 return string.Format(CultureInfo.InvariantCulture, @"(function($) {{
-    var culture = $.cultures[""{0}""] = {{
+    var culture = $.global.cultures[""{0}""] = {{
 {1}
     }};
     culture.calendar = culture.calendars.standard;
@@ -623,7 +623,7 @@ options:
             if (!String.IsNullOrEmpty(extend)) {
                 aggregateScript.Append(
     @"(function($) {
-    var culture, cultures = $.cultures,
+    var culture, cultures = $.global.cultures,
     en = cultures.en,
     standard = en.calendars.standard;
 
@@ -632,7 +632,7 @@ options:
             else {
                 aggregateScript.Append(
     @"(function($) {
-    var cultures = $.cultures;
+    var cultures = $.global.cultures;
 
 ");
             }
