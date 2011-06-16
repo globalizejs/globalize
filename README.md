@@ -305,7 +305,7 @@ provide functionality to your app or custom plugin that needed to know how many
 zeros are in a "billion", you could extend the culture information as follows:
 <pre>
 // define additional culture information for a possibly existing culture
-$.global.cultures.fr = $.global.extend( true, {},
+Globalize.cultures.fr = Globalize.extend( true, {},
 	Globalize.cultures.fr || {},
 	{
 		numberFormat: {
@@ -538,9 +538,9 @@ use by setting the "calendar" field. Take a look at the calendars defined by
 each culture by looking at the script or enumerating its calendars collection.
 <pre>
 // switch to a non-standard calendar
-$.global.culture.calendar = $.global.culture.calendars.SomeOtherCalendar;
+Globalize.culture.calendar = Globalize.culture.calendars.SomeOtherCalendar;
 // back to the standard calendar
-$.global.culture.calendar = $.global.culture.calendars.standard;
+Globalize.culture.calendar = Globalize.culture.calendars.standard;
 </pre>
 
 </p>
