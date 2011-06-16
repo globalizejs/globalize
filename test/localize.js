@@ -1,40 +1,40 @@
 module('localize', {
   teardown: function() {
-    $.global.culture = undefined;
+    Globalize.culture = undefined;
   }
 });
 
 
 test('set and retrieve translations', function() {
-  $.global.localize("translate", "fr", "traduire");
-  strictEqual( $.global.localize("translate", "fr"), "traduire", "translate 'translate' to french" );
+  Globalize.localize("translate", "fr", "traduire");
+  strictEqual( Globalize.localize("translate", "fr"), "traduire", "translate 'translate' to french" );
 });
 
 test('set and retrieve plugin translations', function() {
-  $.global.localize("jQuery.localize.plugin", "de", {
+  Globalize.localize("jQuery.localize.plugin", "de", {
     day: "Tag",
     month: "Monat"
   });
-  strictEqual( $.global.localize("jQuery.localize.plugin", "de").day, "Tag", "translate 'day' to german" );
+  strictEqual( Globalize.localize("jQuery.localize.plugin", "de").day, "Tag", "translate 'day' to german" );
 });
 
 test('retrieve translations with assigned culture', function() {
-  $.global.culture = $.global.cultures.fr;
-  $.global.localize("translate", "fr", "traduire");
-  strictEqual( $.global.localize("translate"), "traduire", "translate 'translate' to french" );
+  Globalize.culture = Globalize.cultures.fr;
+  Globalize.localize("translate", "fr", "traduire");
+  strictEqual( Globalize.localize("translate"), "traduire", "translate 'translate' to french" );
 });
 
 test('retrieve plugin translations with assigned culture', function() {
-  $.global.culture = $.global.cultures.de;
-  $.global.localize("jQuery.localize", "de", {
+  Globalize.culture = Globalize.cultures.de;
+  Globalize.localize("jQuery.localize", "de", {
     day: "Tag",
     month: "Monat"
   });
-  strictEqual( $.global.localize("jQuery.localize").day, "Tag", "translate 'day' to german" );
+  strictEqual( Globalize.localize("jQuery.localize").day, "Tag", "translate 'day' to german" );
 });
 
 test('retrieve transtaltions with new culture', function() {
-  $.global.culture = "pirate";
-  $.global.localize("translate", "pirate", "TARRRR");
-  strictEqual( $.global.localize("translate"), "TARRRR", "translate 'translate' to pirate language" );
+  Globalize.culture = "pirate";
+  Globalize.localize("translate", "pirate", "TARRRR");
+  strictEqual( Globalize.localize("translate"), "TARRRR", "translate 'translate' to pirate language" );
 });
