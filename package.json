@@ -1,0 +1,20 @@
+{
+  "name"          : "globalize",
+  "description"   : "Internationlized date and number formatting and parsing, and localization.",
+  "homepage"      : "https://github.com/jquery/jquery-global",
+  "keywords"      : ["util", "server", "client", "browser"],
+  "author"        : "",
+  "contributors"  : [
+  	"Dave Reed <dareed@microsoft.com>",
+	"Richard Worth <rdworth@gmail.com>",
+	"Jörn Zaefferer <joern.zaefferer@gmail.com>",
+	"Eric Bréchemier",
+	"Nikolaus Graf",
+	"Tobie Langel",
+	"Boris Moore"
+  ],
+  "dependencies"  : [],
+  "repository"    : {"type": "git", "url": "git://github.com/jquery/jquery-global.git"},
+  "main"          : "lib/globalize.js",
+  "version"       : "0.1pre"
+}
