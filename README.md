@@ -14,7 +14,6 @@ languages and countries, as well as an extensible system for localization.
 <li><a href="#what">What is a Culture?</a></li>
 <li><a href="#cultures">Globalize.cultures</a></li>
 <li><a href="#culture">Globalize.culture</a></li>
-<li><a href="#prefer">Globalize.preferCulture</a></li>
 <li><a href="#find">Globalize.findClosestCulture</a></li>
 <li><a href="#format">Globalize.format</a></li>
 <li><a href="#parseInt">Globalize.parseInt</a></li>
@@ -90,19 +89,7 @@ fields are defined in each culture.
 </p>
 
 <a name="culture"></a>
-<h2 id="culture">Globalize.culture</h2>
-<p>
-This property is set to the culture currently selected. An optional culture can
-be specified for the various parsing and formatting functions; it defaults to
-Globalize.culture when omitted. To change the current culture, set it to one
-of the available cultures, for example:
-<pre>
-Globalize.culture = Globalize.cultures[ "fr-FR" ];
-</pre>
-</p>
-
-<a name="prefer"></a>
-<h2 id="prefer">Globalize.preferCulture( name )</h2>
+<h2 id="culture">Globalize.culture( name )</h2>
 <p>
 An application that supports globalization and/or localization will need to
 have a way to determine the user's preference. Attempting to automatically
@@ -143,7 +130,7 @@ Each culture string may also follow the pattern defined in
 that indicates an estimate of the user's preference for the language.
 
 <pre>
-Globalize.preferCulture( "fr;q=0.4, es;q=0.5, he" );
+Globalize.culture( "fr;q=0.4, es;q=0.5, he" );
 </pre>
 In this example, the neutral Hebrew culture "he" is given top priority (an
 unspecified quality is equal to 1). If that language is not an exact match for
@@ -157,7 +144,7 @@ neutral English culture "en" is used.
 <a name="find"></a>
 <h2 id="find">Globalize.findClosestCulture( name )</h2>
 <p>
-Just like preferCulture( name ), but it just returns the matching culture, if
+Just like culture( name ), but it just returns the matching culture, if
 any, without setting it to the Globalize.culture property.
 </p>
 
