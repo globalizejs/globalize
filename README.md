@@ -110,14 +110,14 @@ will be used. If none match, the search restarts using the corresponding
 neutral cultures. For example, if the application has included only the neutral
 "fr" culture, any of these would select it:
 <pre>
-Globalize.preferCulture( "fr" );
-alert( Globalize.culture.name ) // "fr"
+Globalize.culture( "fr" );
+alert( Globalize.culture().name ) // "fr"
 
-Globalize.preferCulture( "fr-FR" );
-alert( Globalize.culture.name ) // "fr-FR"
+Globalize.culture( "fr-FR" );
+alert( Globalize.culture().name ) // "fr-FR"
 
-Globalize.preferCulture([ "es-MX", "fr-FR" ]);
-alert( Globalize.culture.name ) // "es-MX"
+Globalize.culture([ "es-MX", "fr-FR" ]);
+alert( Globalize.culture().name ) // "es-MX"
 </pre>
 
 In any case, if no match is found the neutral English culture "en" is selected
