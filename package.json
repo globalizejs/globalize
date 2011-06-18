@@ -1,6 +1,6 @@
 {
 	"name": "globalize",
-	"description": "Internationlized date and number formatting and parsing, and localization.",
+	"description": "Globalization and localization library for formatting and parsing strings, dates, numbers and currency in over 350 cultures.",
 	"homepage": "https://github.com/jquery/jquery-global",
 	"keywords": ["util", "server", "client", "browser"],
 	"author": "",
