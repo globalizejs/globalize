@@ -5,7 +5,7 @@ For <a href="build">build instructions</a>, scroll down to the very bottom of th
 <p>
 <h1>Introduction</h1>
 <p>
-This jQuery plugin enables complex culture-aware number and date parsing and
+This JavaScript library enables complex culture-aware number and date parsing and
 formatting, including the raw culture information for hundreds of different
 languages and countries, as well as an extensible system for localization.
 </p>
@@ -209,9 +209,9 @@ account the given possible formats (or the given culture's set of default
 formats if not given). As before, the current culture is used if one is not
 specified.
 <pre>
-Globalize.culture = jQuery.culture.en;
+Globalize.culture( "en" );
 Globalize.parseDate( "1/2/2003" ); // Thu Jan 02 2003
-Globalize.culture = jQuery.culture.fr;
+Globalize.culture( "fr" );
 Globalize.parseDate( "1/2/2003" ); // Sat Feb 01 2003
 </pre>
 </p>
@@ -278,11 +278,7 @@ parsing and formatting methods, but not all of it. For example, the Native and
 English names for each culture is given, as well as a boolean indicating
 whether the language is right-to-left. This may be useful information for your
 own purposes. You may also add to the culture information directly if so
-desired. It is important to do so in a way that handles the fact that the
-culture info may not be provided, may not be provided yet, or may already be
-provided. Using jQuery's extend() method, it is possible to define a culture
-in a way that both defines it if it does not exist and adds to it if it does
-exist.
+desired.
 </p>
 <p>
 As an example, in the U.S., the word "billion" means the number 1,000,000,000
@@ -323,7 +319,7 @@ Extensive comments describe the purpose of each of the fields defined.
 </p>
 <p>
 Looking at the souce code of the scripts for each culture, you will notice
-that each script uses jQuery's $.extend to copy the properties of the neutral
+that each script uses Globalize.addCultureInfo() to have the "default" neutral
 English culture "en", as a common basis, and defines only the properties that
 differ from neutral English.
 </p>
@@ -812,7 +808,10 @@ format you wish by specifing the following custom tokens:
 
 <h1 id="build">Build</h1>
 
-This plugin works by generating JavaScript containing metadata and functions based on culture info in the Microsoft .Net Framework 4. The plugin and generator were originally written by Microsoft and contributed to the jQuery project by assigning the copyright to the Software Freedom Conservancy.
+This plugin works by generating JavaScript containing metadata and functions
+based on culture info in the Microsoft .Net Framework 4. The plugin and
+generator were originally written by Microsoft and contributed to the jQuery
+project by assigning the copyright to the Software Freedom Conservancy.
 
 ## Requirements ##
 
