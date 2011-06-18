@@ -1,7 +1,5 @@
 # Globalize
 
-For <a href="build">build instructions</a>, scroll down to the very bottom of this file.
-
 <p>
 <h1>Introduction</h1>
 <p>
@@ -781,7 +779,7 @@ functions based on culture info in the Microsoft .Net Framework 4.
 
 <ul>
 	<li>Windows</li>
-	<li>Microsoft .Net Framework 4 (Full, not just Client Profile) <a href="http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=0a391abd-25c1-4fc0-919f-b21f31ab88b7">download dotNetFx40_Full_x86_x64.exe</a><br>(required to build and run the generator)</li>
+	<li>Microsoft .Net Framework 4 (Full, not just Client Profile) <a href="http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=0a391abd-25c1-4fc0-919f-b21f31ab88b7">download dotNetFx40_Full_x86_x64.exe</a></li>
 </ul>
 
 <h2>Building the generator</h2>
