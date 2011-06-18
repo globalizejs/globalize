@@ -834,5 +834,4 @@ This plugin works by generating JavaScript containing metadata and functions bas
 
 1. Open a Windows Command Prompt
 1. Change directory to top-level of project (where README.md is located)
-1. >generator\bin\Debug\glob-generator.exe /o:globinfo
-1. >generator\bin\Debug\glob-generator.exe /o:globinfo /g:jQuery /n:globalize.culture.{0}.js
+1. >generator\bin\Debug\glob-generator.exe
