@@ -818,10 +818,7 @@ This plugin works by generating JavaScript containing metadata and functions bas
 
 <ul>
 	<li>Windows</li>
-	<li>Microsoft .Net Framework 3.5 <a href="http://www.microsoft.com/download/en/details.aspx?id=21">download dotnetfx35.exe</a>
-<br>(required for the Microsoft Ajax Minifier 4, see below)</li>
 	<li>Microsoft .Net Framework 4 (Full, not just Client Profile) <a href="http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=0a391abd-25c1-4fc0-919f-b21f31ab88b7">download dotNetFx40_Full_x86_x64.exe</a><br>(required to build and run the generator)</li>
-	<li>Microsoft Ajax Minifier 4 <a href="http://aspnet.codeplex.com/releases/view/40584">download AjaxMin4Setup.msi</a><br> (required to build and run the generator)</li>
 </ul>
 
 ## Building the generator ##
