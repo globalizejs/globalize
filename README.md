@@ -828,10 +828,10 @@ This plugin works by generating JavaScript containing metadata and functions bas
 
 1. Open a Windows Command Prompt ( Start -> Run... -> cmd )
 1. Change directory to top-level of project (where README.md is located)
-1. >C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild generator\glob-generator.csproj
+1. >C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild generator\generator.csproj
 
 ## Running the generator
 
 1. Open a Windows Command Prompt
 1. Change directory to top-level of project (where README.md is located)
-1. >generator\bin\Debug\glob-generator.exe
+1. >generator\bin\Debug\generator.exe
