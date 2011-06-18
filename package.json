@@ -19,5 +19,8 @@
 		"url": "git://github.com/jquery/jquery-global.git"
 	},
 	"main": "lib/globalize.js",
+	"files": [
+		"lib/cultures"
+	],
 	"version": "0.1pre"
 }

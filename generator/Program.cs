@@ -329,20 +329,11 @@ namespace Globalization {
             string cultureFragment = ToJavaScript(extend, culture, dictionary, 1, false);
 
             if (aggregateScript != null) {
-                if (!String.IsNullOrEmpty(extend)) {
-                    aggregateScript.AppendFormat(CultureInfo.InvariantCulture, @"	culture = cultures[""{0}""] = $.{2}(true, {{}}, en, {{
+                aggregateScript.AppendFormat(CultureInfo.InvariantCulture, @"
+Globalize.addCultureInfo( ""{0}"", ""default"", {{
 {1}
-	}}, cultures[""{0}""]);
-	culture.calendar = culture.calendars.standard;
+}});
 ", name, cultureFragment, extend);
-                }
-                else {
-                    aggregateScript.AppendFormat(CultureInfo.InvariantCulture, @"	culture = cultures[""{0}""] = {{
-{1}
-	}};
-	culture.calendar = culture.calendars.standard;
-", name, cultureFragment);
-                }
             }
 
                 return string.Format(CultureInfo.InvariantCulture, @"/*
@@ -595,9 +586,6 @@ options:
 
             StringBuilder aggregateScript = new StringBuilder();
 
-
-
-
 /*
 
 Globalize.addCultureInfo( ""{0}"", ""default"", {{
@@ -607,13 +595,6 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
 }}( this ));
 "
 */
-
-
-
-
-
-
-
 
             aggregateScript.Append(
     @"/*
@@ -652,7 +633,7 @@ if ( typeof require !== ""undefined""
                 }
             }
 
-            aggregateScript.Append("\r\n\r\n}( this ));\r\n");
+            aggregateScript.Append("\r\n}( this ));\r\n");
             string aggregateScriptString = aggregateScript.ToString();
             string aggregatePath = Path.Combine(outputdir, aggregateFileName);
             File.WriteAllText(aggregatePath, aggregateScriptString);
