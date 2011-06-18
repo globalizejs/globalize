@@ -24,7 +24,7 @@ languages and countries, as well as an extensible system for localization.
 <li><a href="#defining">Defining Culture Information</a></li>
 <li><a href="#numbers">Number Formatting</a></li>
 <li><a href="#dates">Date Formatting</a></li>
-<li><a href="#build">Build</a></li>
+<li><a href="#generating">Generating Culture Files</a></li>
 </ul>
 
 <a name="why"></a>
@@ -36,7 +36,7 @@ and dates should appear. Obviously, each language has different names for the
 days of the week and the months of the year. But they also have different
 expectations for the structure of dates, such as what order the day, month and
 year are in. In number formatting, not only does the character used to
-deliniate number groupings and the decimal portion differ, but the placement of
+delineate number groupings and the decimal portion differ, but the placement of
 those characters differ as well.
 </p>
 <p>
@@ -50,9 +50,9 @@ and dates into that string format.
 <a name="what"></a>
 <h2 id="what">What is a Culture?</h2>
 <p>
-globalize.js defines roughly 350 cultures. Part of the reason for this large
+Globalize defines roughly 350 cultures. Part of the reason for this large
 number, besides there being a lot of cultures in the world, is because for
-some languages, expectations differ amoung the countries that speak it.
+some languages, expectations differ among the countries that speak it.
 English, for example, is an official language in dozens of countries. Despite
 the language being English, the expected date formatting still greatly differs
 between them.
@@ -81,15 +81,15 @@ For example, "es" is the neutral culture for Spanish.
 <p>
 A mapping of culture codes to culture objects. For example,
 Globalize.cultures.fr is an object representing the complete culture
-definition for the neutral French culture. Note that globalize.js alone only
-includes an English culture. To get additional cultures, you must seperately
-reference one or more of the culture scripts that come with it. You can see in
-the section <a href="#defining">Defining Culture Information</a> below which
-fields are defined in each culture.
+definition for the neutral French culture. Note that the main globalize.js file
+alone only includes a neutral English culture. To get additional cultures, you
+must include one or more of the culture scripts that come with it. You
+can see in the section <a href="#defining">Defining Culture Information</a>
+below which fields are defined in each culture.
 </p>
 
 <a name="culture"></a>
-<h2 id="culture">Globalize.culture( name )</h2>
+<h2 id="culture">Globalize.culture( selector )</h2>
 <p>
 An application that supports globalization and/or localization will need to
 have a way to determine the user's preference. Attempting to automatically
@@ -100,8 +100,8 @@ offer the user a choice, by whatever means.
 Whatever your mechanism, it is likely that you will have to correlate the
 user's preferences with the list of cultures supported in the app. This
 function allows you to select the best match given the culture scripts that you
-have included and to set the Globalize.culture property to the culture which
-the user prefers.
+have included and to set the Globalize culture to the culture which the user
+prefers.
 </p>
 <p>
 If you pass an array of names instead of a single name string, the first
@@ -111,16 +111,16 @@ neutral cultures. For example, if the application has included only the neutral
 "fr" culture, any of these would select it:
 <pre>
 Globalize.culture( "fr" );
-alert( Globalize.culture().name ) // "fr"
+console.log( Globalize.culture().name ) // "fr"
 
 Globalize.culture( "fr-FR" );
-alert( Globalize.culture().name ) // "fr-FR"
+console.log( Globalize.culture().name ) // "fr-FR"
 
 Globalize.culture([ "es-MX", "fr-FR" ]);
-alert( Globalize.culture().name ) // "es-MX"
+console.log( Globalize.culture().name ) // "es-MX"
 </pre>
 
-In any case, if no match is found the neutral English culture "en" is selected
+In any case, if no match is found, the neutral English culture "en" is selected
 by default.
 </p>
 <p>
@@ -142,10 +142,11 @@ neutral English culture "en" is used.
 </p>
 
 <a name="find"></a>
-<h2 id="find">Globalize.findClosestCulture( name )</h2>
+<h2 id="find">Globalize.findClosestCulture( selector )</h2>
 <p>
-Just like culture( name ), but it just returns the matching culture, if
-any, without setting it to the Globalize.culture property.
+Just like .culture( selector ), but it just returns the matching culture, if
+any, without setting it to the current Globalize culture, returned by
+.culture().
 </p>
 
 <a name="format"></a>
@@ -217,57 +218,24 @@ Globalize.parseDate( "1/2/2003" ); // Sat Feb 01 2003
 </p>
 
 <a name="localize"></a>
-<h2 id="localize">Globalize.localize( key, culture, value )</h2>
+<h2 id="localize">Globalize.localize( key, culture )</h2>
 <p>
 Gets or sets a localized value. This function allows you to extend the
 information available to a particular culture, and to easily retrieve it
 without worrying about finding the most appropriate culture. For example, to
 define the word "translate" in French:
 <pre>
-Globalize.localize( "translate", "fr", "traduire" );
-</pre>
-The value may be any value you wish: a string, number, object, etc. You can
-then define a grouping of localized values common to a feature, plugin, or
-application.
-<pre>
-Globalize.localize( "myplugin", "fr", {
-	foo: "foo",
-	bar: "bar"
+Globalize.addCultureInfo( "fr", {
+	messages: {
+		"translate": "traduire"
+	}
 });
-
-var obj = Globalize.localize( "myplugin", "fr" );
-alert( obj.foo ); // "foo"
+console.log( Globalize.localize( "translate", "fr" ) ); // "traduire"
 </pre>
 Note that localize() will find the closest match available per the same
 semantics as the Globalize.findClosestCulture() function. If there is no
-match, the translation given is for the neutral English culture "en" by default.
-<pre>
-// falsy values "", null, undefined...
-// are all equivalent to "en" or "default"
-Globalize.localize( "myplugin", "", {
-	foo: "foo (en)",
-	bar: "bar (en)"
-});
-Globalize.localize( "myplugin", "fr", {
-	foo: "foo (fr)",
-	bar: "bar (fr)"
-});
-
-Globalize.culture = Globalize.cultures[ "fr" ];
-alert( Globalize.localize("myplugin").foo ); // "foo (fr)"
-
-Globalize.culture = Globalize.cultures[ "fr-FR" ];
-alert( Globalize.localize("myplugin").foo ); // "foo (fr)"
-
-Globalize.culture = Globalize.cultures[ "es-MX" ];
-alert( Globalize.localize("myplugin").foo ); // "foo (en)"
-</pre>
-Also note that localize() does not require loading the culture information
-script. You may use localize() for localization purposes without utilizing the
-parsing and formatting functions which depend on the cultures. If you do use
-both, it does not matter what order you include them in, either may be first
--- the globalize.&lt;code&gt;.js script, or your own script which uses
-localize(), as long as property names do not overlap.
+match, the translation given is for the neutral English culture "en" by
+default.
 </p>
 
 <a name="extend"></a>
@@ -288,26 +256,21 @@ provide functionality to your app or custom plugin that needed to know how many
 zeros are in a "billion", you could extend the culture information as follows:
 <pre>
 // define additional culture information for a possibly existing culture
-Globalize.cultures.fr = Globalize.extend( true, {},
-	Globalize.cultures.fr || {},
-	{
-		numberFormat: {
-			billionZeros: 12
-		}
+Globalize.addCultureInfo( "fr", {
+	numberFormat: {
+		billionZeroes: 12
 	}
-);
+});
 </pre>
 Using this mechanism, the "fr" culture will be created if it does not exist.
-And if it does, the given values will be added to it. When the
-globalize.culture.fr.js script is eventually included, it too uses this technique,
-ensuring addition to the already-defined culture information.
+And if it does, the given values will be added to it.
 </p>
 
 <a name="defining"></a>
 <h2 id="defining">Defining Culture Information</h2>
 <p>
 Each culture is defined in its own script with the naming scheme
-globalize.culture.&lt;code&gt;.js. You may include any number of these scripts,
+globalize.culture.&lt;name&gt;.js. You may include any number of these scripts,
 making them available in the Globalize.cultures mapping. Including one of
 these scripts does NOT automatically make it the current culture selected in the
 Globalize.culture property.
@@ -318,7 +281,7 @@ both to the properties "en" and "default" of the Globalize.cultures mapping.
 Extensive comments describe the purpose of each of the fields defined.
 </p>
 <p>
-Looking at the souce code of the scripts for each culture, you will notice
+Looking at the source code of the scripts for each culture, you will notice
 that each script uses Globalize.addCultureInfo() to have the "default" neutral
 English culture "en", as a common basis, and defines only the properties that
 differ from neutral English.
@@ -326,7 +289,7 @@ differ from neutral English.
 <p>
 The neutral English culture is listed here along with the comments:
 <pre>
-Globalize.cultures[ "default" ] = Globalize.cultures.en = {
+Globalize.cultures[ "default" ] = {
 	// A unique name for the culture in the form
 	// &lt;language code&gt;-&lt;country/region code&gt;
 	name: "English",
@@ -510,7 +473,9 @@ Globalize.cultures[ "default" ] = Globalize.cultures.en = {
 						gregorian calendar.
 			*/
 		}
-	}
+	},
+	// Map of messages used by .localize()
+	messages: {}
 }
 </pre>
 </p>
@@ -591,7 +556,7 @@ different from the typical names and are used only in certain cases.
 Also, each culture has a set of "standard" or "typical" formats. For example,
 in "en-US", when displaying a date in its fullest form, it looks like
 "Saturday, November 05, 1955". Note the non-abbreviated day and month name, the
-zero padded date, and four digit year. So, globalize.js expects a certain set
+zero padded date, and four digit year. So, Globalize expects a certain set
 of "standard" formatting strings for dates in the "patterns" property of the
 "standard" calendar of each culture, that describe specific formats for the
 culture. The third column shows example values in the neutral English culture
@@ -651,7 +616,7 @@ sortable format that is identical in every culture:
 </p>
 <p>
 When more specific control is needed over the formatting, you may use any
-format you wish by specifing the following custom tokens:
+format you wish by specifying the following custom tokens:
 <table>
 <tr>
    <th>Token</th>
@@ -806,28 +771,27 @@ format you wish by specifing the following custom tokens:
 </table>
 </p>
 
-<h1 id="build">Build</h1>
+<a name="generating">
+<h1 id="generating">Generating Culture Files</h1>
 
-This plugin works by generating JavaScript containing metadata and functions
-based on culture info in the Microsoft .Net Framework 4. The plugin and
-generator were originally written by Microsoft and contributed to the jQuery
-project by assigning the copyright to the Software Freedom Conservancy.
+The Globalize culture files are generated JavaScript containing metadata and
+functions based on culture info in the Microsoft .Net Framework 4.
 
-## Requirements ##
+<h2>Requirements</h2>
 
 <ul>
 	<li>Windows</li>
 	<li>Microsoft .Net Framework 4 (Full, not just Client Profile) <a href="http://www.microsoft.com/downloads/en/details.aspx?displaylang=en&FamilyID=0a391abd-25c1-4fc0-919f-b21f31ab88b7">download dotNetFx40_Full_x86_x64.exe</a><br>(required to build and run the generator)</li>
 </ul>
 
-## Building the generator ##
+<h2>Building the generator</h2>
 
 1. Open a Windows Command Prompt ( Start -> Run... -> cmd )
-1. Change directory to top-level of project (where README.md is located)
-1. >C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild generator\generator.csproj
+1. Change directory to root of Globalize project (where README.md file is located)
+1. >"C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild" generator\generator.csproj
 
-## Running the generator
+<h2>Running the generator</h2>
 
 1. Open a Windows Command Prompt
-1. Change directory to top-level of project (where README.md is located)
-1. >generator\bin\Debug\generator.exe
+1. Change directory to root of Globalize project (where README.md file is located)
+1. >"generator\bin\Debug\generator.exe"
