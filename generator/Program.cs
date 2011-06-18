@@ -573,22 +573,13 @@ namespace Globalization {
 
         [STAThread]
         static void Main(string[] args) {
-            string outputdir = "output";
+            string outputdir = "lib";
             string extend = "extend";
             string global = "Globalization";
-            string fileName = "Globalization.{0}.js";
+            string fileName = "globalize.culture.{0}.js";
             foreach (string param in string.Join(" ", args).SplitCommandLine()) {
                 if (param.StartsWith("/o:")) {
                     outputdir = param.Substring("/o:".Length);
-                }
-                else if (param.StartsWith("/e:")) {
-                    extend = param.Substring("/e:".Length);
-                }
-                else if (param.StartsWith("/g:")) {
-                    global = param.Substring("/g:".Length);
-                }
-                else if (param.StartsWith("/n:")) {
-                    fileName = param.Substring("/n:".Length);
                 }
                 else if (param == "/?") {
                     Console.Write(@"
@@ -600,16 +591,6 @@ options:
         created if it does not exist. Existing scripts there will be
         overwritten if necessary.
         default: 'output'
-    /e: Name of the 'extend' function on the given global. This is used
-        so that each globalization file extends the standard one,
-        reducing the amount of data in each. Set it to empty to disable
-        this feature, and each script will have the full set of data.
-        default: 'extend'
-    /g: The name of the global to add cultures to.
-        default: 'Globalization'
-    /n: File name format. {0} is replaced with the culture key. The
-        extension is changed to 'min.js' for the minified version.
-        default: 'Globalization.{0}.js
 
 ");
                     return;
