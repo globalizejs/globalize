@@ -1,12 +1,10 @@
 # Globalize
 
-<p>
-<h1>Introduction</h1>
-<p>
 This JavaScript library enables complex culture-aware number and date parsing and
 formatting, including the raw culture information for hundreds of different
 languages and countries, as well as an extensible system for localization.
-</p>
+
+<hr>
 <ul>
 <li><a href="#why">Why Globalization</a></li>
 <li><a href="#what">What is a Culture?</a></li>
