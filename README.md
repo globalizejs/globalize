@@ -1,8 +1,9 @@
 # Globalize
 
-This JavaScript library enables complex culture-aware number and date parsing and
-formatting, including the raw culture information for hundreds of different
-languages and countries, as well as an extensible system for localization.
+A JavaScript Globalization library. Enables complex culture-aware number and
+date parsing and formatting, including the raw culture information for
+hundreds of different languages and countries, as well as an extensible system
+for localization.
 
 <hr>
 <ul>
