@@ -1,6 +1,6 @@
 {
 	"name": "globalize",
-	"version": "0.1pre",
+	"version": "0.1.0a1",
 	"description": "New age globalization and localization. Formats and parses strings, dates and numbers in over 350 cultures.",
 	"keywords": [
 		"utility",
