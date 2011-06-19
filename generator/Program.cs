@@ -339,7 +339,7 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
                 return string.Format(CultureInfo.InvariantCulture, @"/*
  * Globalize Culture {0} @VERSION
  *
- * http://github.com/jquery/jquery-global
+ * http://github.com/jquery/globalize
  *
  * Copyright Software Freedom Conservancy, Inc.
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -608,7 +608,7 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
     @"/*
  * Globalize Cultures @VERSION
  *
- * http://github.com/jquery/jquery-global
+ * http://github.com/jquery/globalize
  *
  * Copyright Software Freedom Conservancy, Inc.
  * Dual licensed under the MIT or GPL Version 2 licenses.
