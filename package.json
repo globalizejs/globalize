@@ -26,10 +26,10 @@
 	"main": "./lib/globalize.js",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/jquery/jquery-global.git"
+		"url": "git://github.com/jquery/globalize.git"
 	},
 	"bugs": {
-		"web": "http://github.com/jquery/jquery-global/issues"
+		"web": "http://github.com/jquery/globalize/issues"
 	},
 	"directories": {
 		"lib": "./lib"
