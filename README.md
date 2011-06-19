@@ -39,7 +39,7 @@ those characters differ as well.
 </p>
 <p>
 A user using an application should be able to read and write dates and numbers
-in the format they are accustomed to. This plugin makes this possible,
+in the format they are accustomed to. This library makes this possible,
 providing an API to convert user-entered number and date strings - in their
 own format - into actual numbers and dates, and conversely, to format numbers
 and dates into that string format.
