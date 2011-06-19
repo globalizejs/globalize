@@ -32,7 +32,8 @@
 		"web": "http://github.com/jquery/globalize/issues"
 	},
 	"directories": {
-		"lib": "./lib"
+		"lib": "./lib",
+		"examples": "./examples"
 	},
 	"licenses": [
 		{
