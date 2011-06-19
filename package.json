@@ -1,26 +1,43 @@
 {
 	"name": "globalize",
-	"description": "Globalization and localization library for formatting and parsing strings, dates, numbers and currency in over 350 cultures.",
-	"homepage": "https://github.com/jquery/jquery-global",
-	"keywords": ["util", "server", "client", "browser"],
-	"author": "",
-	"contributors": [
-		"Dave Reed <dareed@microsoft.com>",
-		"Richard Worth <rdworth@gmail.com>",
-		"Jörn Zaefferer <joern.zaefferer@gmail.com>",
-		"Eric Bréchemier",
-		"Nikolaus Graf",
-		"Tobie Langel",
-		"Boris Moore"
+	"version": "0.1pre",
+	"description": "New age globalization and localization. Formats and parses strings, dates and numbers in over 350 cultures.",
+	"keywords": [
+		"utility",
+		"globalization", "internationalization", "multilingualization", "localization",
+		"g11n", "i18n", "m17n", "L10n",
+		"localize", "format", "parse", "translate",
+		"strings", "numbers", "dates", "times",
+		"calendars", "cultures", "languages", "locales"
 	],
-	"dependencies": [],
+	"homepage": "http://wiki.jqueryui.com/Globalization",
+	"author": "Dave Reed <dareed@microsoft.com> (http://weblogs.asp.net/infinitiesloop)",
+	"contributors": [
+		"Richard D. Worth <rdworth@gmail.com> (http://rdworth.org)",
+		"Jörn Zaefferer <joern.zaefferer@gmail.com> (http://bassistance.de)",
+		"Legal-Box <legalbox@eric.brechemier.name> (http://www.legal-box.com)",
+		"Nikolaus Graf (http://www.nikgraf.com)",
+		"Tobie Langel <tobie.langel@gmail.com> (http://tobielangel.com)",
+		"Boris Moore <borismoore@gmail.com> (http://www.borismoore.com)"
+	],
+	"files": [
+		"./lib/cultures"
+	],
+	"main": "./lib/globalize.js",
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/jquery/jquery-global.git"
 	},
-	"main": "lib/globalize.js",
-	"files": [
-		"lib/cultures"
-	],
-	"version": "0.1pre"
+	"bugs": {
+		"web": "http://github.com/jquery/jquery-global/issues"
+	},
+	"directories": {
+		"lib": "./lib"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://jquery.org/license"
+		}
+	]
 }
