@@ -13,7 +13,7 @@ using System.Diagnostics;
 using Globalization;
 
 namespace Globalization {
-	public class GlobalizationInfo {
+    public class GlobalizationInfo {
         public string name = "";
         public string englishName;
         public string nativeName;
@@ -561,7 +561,7 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
             string extend = "extend";
             string global = "Globalization";
             string fileName = "globalize.culture.{0}.js";
-			string aggregateFileName = "globalize.cultures.js";
+            string aggregateFileName = "globalize.cultures.js";
             foreach (string param in string.Join(" ", args).SplitCommandLine()) {
                 if (param.StartsWith("/o:")) {
                     outputdir = param.Substring("/o:".Length);
