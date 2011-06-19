@@ -3,12 +3,12 @@
 <head>
 	<meta charset="UTF-8">
     <title>Globalization Demo</title>
-    <link type="text/css" rel="Stylesheet" href="demo.css">
+    <link type="text/css" rel="Stylesheet" href="examples.css">
     <script src="../lib/globalize.js"></script>
     <script src="../lib/cultures/globalize.cultures.js"></script>
-    <script src="jquery-1.4.4.js"></script>
-    <script src="jquery.tmpl.js"></script>
-    <script src="demo.js"></script>
+    <script src="external/jquery-1.4.4.js"></script>
+    <script src="external/jquery.tmpl.js"></script>
+    <script src="browser.js"></script>
     <script id="formattmpl" type="text/x-jquery-tmpl">
         <tr>
             <th>Number</th>
@@ -40,7 +40,6 @@
         <tr class="result">
             <td>
 				{{=}}
-
             </td>
             {{each(j) dateFormats}}
             <td>

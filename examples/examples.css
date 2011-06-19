@@ -78,18 +78,3 @@ div.active {
 	font-size: x-small;
 	margin-bottom: 10px;
 }
-
-.demosection {
-	width: 800px
-}
-
-.demo {
-	float: left;
-	min-height: 300px;
-	border: 1px solid #EFEFEF;
-	font-size: smaller;
-}
-.demo select 
-{
-	font-size: x-small;
-}
