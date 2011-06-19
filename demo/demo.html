@@ -1,14 +1,15 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
+	<meta charset="UTF-8">
     <title>Globalization Demo</title>
-    <link type="text/css" rel="Stylesheet" href="demo.css" />
-    <script type="text/javascript" src="../jquery-1.4.4.js"></script>
-    <script type="text/javascript" src="jquery.tmpl.js"></script>
-    <script type="text/javascript" src="../jquery.global.js"></script>
-    <script type="text/javascript" src="../globinfo/jquery.glob.all.js"></script>
-    <script type="text/javascript" src="demo.js"></script>
-    <script id="formattmpl" type="text/html">
+    <link type="text/css" rel="Stylesheet" href="demo.css">
+    <script src="../lib/globalize.js"></script>
+    <script src="../lib/cultures/globalize.cultures.js"></script>
+    <script src="jquery-1.4.4.js"></script>
+    <script src="jquery.tmpl.js"></script>
+    <script src="demo.js"></script>
+    <script id="formattmpl" type="text/x-jquery-tmpl">
         <tr>
             <th>Number</th>
             {{each formats}}
@@ -28,7 +29,7 @@
         </tr>
         {{/each}}
     </script>
-    <script id="dateformattmpl" type="text/html">
+    <script id="dateformattmpl" type="text/x-jquery-tmpl">
         <tr>
             <th>Date</th>
             {{each dateFormats}}
@@ -49,7 +50,7 @@
         </tr>
         {{/each}}
     </script>
-    <script type="text/html" id="infonumbertmpl">
+    <script id="infonumbertmpl" type="text/x-jquery-tmpl">
         <legend>Number Formatting</legend>
         <table class="info">
             <tr>
@@ -102,7 +103,7 @@
             </tr>
         </table>
     </script>
-    <script type="text/html" id="infodatetmpl">
+    <script id="infodatetmpl" type="text/x-jquery-tmpl">
         <legend>Date Formatting</legend>
         <table class="info">
             <tr>
@@ -198,11 +199,11 @@
 
 <body>
 <div id="intro">
-This is a demo of the Globalization plugin being proposed by Microsoft. You can follow the discussion and provide feedback on the jQuery developer forum, here:
-<br/><a href="http://forum.jquery.com/topic/proposal-for-a-globalization-plugin-jquery-glob-js">jQuery Discussion</a>
+This is a demo of the Globalize library. You can follow the discussion and provide feedback on the planning page, here:
+<br/><a href="http://wiki.jqueryui.com/Globalization">Globalization wiki page</a>
 <br/>
 And you can view the source from here or keep up to date with it on github, here:
-<br/><a href="https://github.com/jquery/jquery-global/">jQuery Globalization on GitHub</a>
+<br/><a href="https://github.com/jquery/globalize/">Globalize on GitHub</a>
 </div>
 
 <div>
@@ -260,8 +261,6 @@ Interesting cultures to preview:
 </ul>
 
 </div>
-
-
 
 </body>
 </html>
