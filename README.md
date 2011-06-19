@@ -9,14 +9,15 @@ as an extensible system for localization.
 <ul>
 <li><a href="#why">Why Globalization</a></li>
 <li><a href="#what">What is a Culture?</a></li>
+<li><a href="#addCultureInfo">Globalize.addCultureInfo</a></li>
 <li><a href="#cultures">Globalize.cultures</a></li>
 <li><a href="#culture">Globalize.culture</a></li>
 <li><a href="#find">Globalize.findClosestCulture</a></li>
 <li><a href="#format">Globalize.format</a></li>
+<li><a href="#localize">Globalize.localize</a></li>
 <li><a href="#parseInt">Globalize.parseInt</a></li>
 <li><a href="#parseFloat">Globalize.parseFloat</a></li>
 <li><a href="#parseDate">Globalize.parseDate</a></li>
-<li><a href="#localize">Globalize.localize</a></li>
 <li><a href="#extend">Utilizing and Extending Cultures</a></li>
 <li><a href="#defining">Defining Culture Information</a></li>
 <li><a href="#numbers">Number Formatting</a></li>
@@ -73,6 +74,17 @@ whatever the country. Neutral cultures are defined only by their language code.
 For example, "es" is the neutral culture for Spanish.
 </p>
 
+<a name="addCultureInfo"></a>
+<h2 id="addCultureInfo">Globalize.addCultureInfo( cultureName, extendCultureName, info )</h2>
+<p>
+This method allows you to create a new culture based on an existing culture or
+add to existing culture info. If the optional argument <pre>extendCultureName</pre>
+is not supplied, it will extend the existing culture if it exists or create a new
+culture based on the default culture if it doesn't exist. If cultureName is not
+supplied, it will add the supplied info to the current culture. See .culture().
+</p>
+
+
 <a name="cultures"></a>
 <h2 id="cultures">Globalize.cultures</h2>
 <p>
@@ -96,7 +108,7 @@ offer the user a choice, by whatever means.
 <p>
 Whatever your mechanism, it is likely that you will have to correlate the
 user's preferences with the list of cultures supported in the app. This
-function allows you to select the best match given the culture scripts that you
+method allows you to select the best match given the culture scripts that you
 have included and to set the Globalize culture to the culture which the user
 prefers.
 </p>
@@ -167,6 +179,28 @@ Globalize.format( new Date(1955,10,5), "dddd MMMM d, yyyy" ); // "Saturday Novem
 </pre>
 </p>
 
+<a name="localize"></a>
+<h2 id="localize">Globalize.localize( key, culture )</h2>
+<p>
+Gets or sets a localized value. This method allows you to extend the
+information available to a particular culture, and to easily retrieve it
+without worrying about finding the most appropriate culture. For example, to
+define the word "translate" in French:
+<pre>
+Globalize.addCultureInfo( "fr", {
+	messages: {
+		"translate": "traduire"
+	}
+});
+console.log( Globalize.localize( "translate", "fr" ) ); // "traduire"
+</pre>
+Note that localize() will find the closest match available per the same
+semantics as the Globalize.findClosestCulture() method. If there is no
+match, the translation given is for the neutral English culture "en" by
+default.
+</p>
+
+
 <a name="parseInt"></a>
 <h2 id="parseInt">Globalize.parseInt( value, radix, culture )</h2>
 <p>
@@ -212,27 +246,6 @@ Globalize.parseDate( "1/2/2003" ); // Thu Jan 02 2003
 Globalize.culture( "fr" );
 Globalize.parseDate( "1/2/2003" ); // Sat Feb 01 2003
 </pre>
-</p>
-
-<a name="localize"></a>
-<h2 id="localize">Globalize.localize( key, culture )</h2>
-<p>
-Gets or sets a localized value. This function allows you to extend the
-information available to a particular culture, and to easily retrieve it
-without worrying about finding the most appropriate culture. For example, to
-define the word "translate" in French:
-<pre>
-Globalize.addCultureInfo( "fr", {
-	messages: {
-		"translate": "traduire"
-	}
-});
-console.log( Globalize.localize( "translate", "fr" ) ); // "traduire"
-</pre>
-Note that localize() will find the closest match available per the same
-semantics as the Globalize.findClosestCulture() function. If there is no
-match, the translation given is for the neutral English culture "en" by
-default.
 </p>
 
 <a name="extend"></a>
