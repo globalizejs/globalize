@@ -337,7 +337,7 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
             }
 
                 return string.Format(CultureInfo.InvariantCulture, @"/*
- * Globalize Culture {0} @VERSION
+ * Globalize Culture {0}
  *
  * http://github.com/jquery/globalize
  *
@@ -606,7 +606,7 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
 
             aggregateScript.Append(
     @"/*
- * Globalize Cultures @VERSION
+ * Globalize Cultures
  *
  * http://github.com/jquery/globalize
  *
