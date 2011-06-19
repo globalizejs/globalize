@@ -548,6 +548,14 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
         private static void WriteCulture(string outputdir, string fileName, string extend, string global, CultureInfo culture, StringBuilder aggregateScript) {
             var globInfo = GlobalizationInfo.GetGlobInfo(culture);
             var diff = (String.IsNullOrEmpty(extend) || culture == CultureInfo.InvariantCulture || culture.Name.Equals("en")) ? globInfo.ToDictionary(false) : GlobalizationInfo.DiffGlobInfos(GlobalizationInfo.BasisGlobInfo, globInfo.ToDictionary(true));
+
+            // Fix for Issue #31 - en-US 'englishName' is wrong
+            // Special case diff of englishName for en-US. The generator diff seemingly finds both "en" and "en-US" to
+            // have englishName "English (United States)" but globalize.js (correctly) has the neutral "English" for "en"/"default"
+            if (culture.Name.Equals("en-US")) {
+                diff.Add("englishName", globInfo.englishName);
+            }
+
             var script = GlobalizationInfo.GenerateJavaScript(extend, global, culture, culture.Name, diff, aggregateScript);
             var filePath = Path.Combine(outputdir, String.Format(fileName, (String.IsNullOrEmpty(culture.Name) ? "invariant" : culture.Name)));
 
