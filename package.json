@@ -10,7 +10,7 @@
 		"strings", "numbers", "dates", "times",
 		"calendars", "cultures", "languages", "locales"
 	],
-	"homepage": "http://wiki.jqueryui.com/Globalization",
+	"homepage": "http://wiki.jqueryui.com/Globalize",
 	"author": "Dave Reed <dareed@microsoft.com> (http://weblogs.asp.net/infinitiesloop)",
 	"contributors": [
 		"Richard D. Worth <rdworth@gmail.com> (http://rdworth.org)",
