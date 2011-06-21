@@ -544,7 +544,7 @@ Globalize.format( 12, "d3" ); // 012
 Globalize.format( 123.45, "c" ); // $123.45
 Globalize.format( 123.45, "c0" ); // $123
 Globalize.format( 123.45, "c1" ); // $123.5
-Globalize.format( -123.45, "c" ); // ($123.55)
+Globalize.format( -123.45, "c" ); // ($123.45)
 
 Globalize.format( 0.12345, "p" ); // 12.35 %
 Globalize.format( 0.12345, "p0" ); // 12 %
