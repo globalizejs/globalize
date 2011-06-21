@@ -9,6 +9,8 @@ test("Number Formatting - n for number", function() {
 test("Number Formatting - d for decimal", function() {
 	equal( Globalize.format(123.45, "d"), "123" );
 	equal( Globalize.format(12, "d3"), "012" );
+	equal( Globalize.format(-12, "d"), "-12" );
+	equal( Globalize.format(-12, "d4"), "-0012" );
 });
 
 test("Number Formatting - c for currency", function() {
