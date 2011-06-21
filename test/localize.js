@@ -1,3 +1,4 @@
+module( "localize", {} );
 
 test('set and retrieve translations', function() {
 	Globalize.addCultureInfo("fr", {
