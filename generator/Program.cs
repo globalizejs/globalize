@@ -111,8 +111,11 @@ namespace Globalization {
                 decimalSeparator = nf.NumberDecimalSeparator,
                 groupSeparator = nf.NumberGroupSeparator,
                 groupSizes = nf.NumberGroupSizes,
+                NaN = nf.NaNSymbol,
                 negative = nf.NegativeSign,
+                negativeInfinity = nf.NegativeInfinitySymbol,
                 positive = nf.PositiveSign,
+                positiveInfinity = nf.PositiveInfinitySymbol,
                 pattern = new string[] { GetFromStringList(_numberNegativePatterns, nf.NumberNegativePattern) },
                 currency = new GlobalizationInfo.NumberFormatInfo.NumberClassFormatInfo {
                     decimals = nf.CurrencyDecimalDigits,
@@ -493,8 +496,11 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
             public string groupSeparator;
             public string decimalSeparator;
             public int[] groupSizes;
-            public string positive;
+            public string NaN;
             public string negative;
+            public string negativeInfinity;
+            public string positive;
+            public string positiveInfinity;
             public NumberClassFormatInfo percent;
             public NumberClassFormatInfo currency;
 
