@@ -2,7 +2,9 @@ module("parseFloat");
 
 test("basics, float", function() {
 	equal( Globalize.parseInt("5.51"), 5 );
+	equal( Globalize.parseInt("-5.51"), -5 );
 	equal( Globalize.parseFloat("5.51"), 5.51 );
+	equal( Globalize.parseFloat("-5.51"), -5.51 );
 	equal( Globalize.parseInt("5,51", 10, "de-DE"), 5 );
 	equal( Globalize.parseFloat("5,51", 10, "de-DE"), 5.51 );
 });
