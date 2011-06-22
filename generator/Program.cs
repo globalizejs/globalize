@@ -553,6 +553,7 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
             // Special case diff of englishName for en-US. The generator diff seemingly finds both "en" and "en-US" to
             // have englishName "English (United States)" but globalize.js (correctly) has the neutral "English" for "en"/"default"
             if (culture.Name.Equals("en-US")) {
+                diff.Add("name", globInfo.name);
                 diff.Add("englishName", globInfo.englishName);
             }
 
