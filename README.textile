@@ -139,6 +139,20 @@ By default, globalize3 will only use fallbacks when your translation model does 
 </code></pre>
 
 
+h2. Scoping objects by those with translations
+
+To only return objects that have a translation for the given locale we can use the `with_translations` scope. This will only return records that have a translations for the passed in locale.
+
+<pre><code>
+
+Post.with_translations('en') # => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">, #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
+
+Post.with_translations(I18n.locale) # => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">, #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
+
+Post.with_translations('de') # => []
+
+</code></pre>
+
 h2. Changes since Globalize2
 
 * `translation_table_name` was renamed to `translations_table_name`
