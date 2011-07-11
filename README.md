@@ -131,6 +131,9 @@ console.log( Globalize.culture().name ) // "es-MX"
 
 In any case, if no match is found, the neutral English culture "en" is selected
 by default.
+
+If you don't pass a selector, .culture() will return the current Globalize
+culture.
 </p>
 <p>
 Each culture string may also follow the pattern defined in
@@ -496,9 +499,9 @@ use by setting the "calendar" field. Take a look at the calendars defined by
 each culture by looking at the script or enumerating its calendars collection.
 <pre>
 // switch to a non-standard calendar
-Globalize.culture.calendar = Globalize.culture.calendars.SomeOtherCalendar;
+Globalize.culture().calendar = Globalize.culture().calendars.SomeOtherCalendar;
 // back to the standard calendar
-Globalize.culture.calendar = Globalize.culture.calendars.standard;
+Globalize.culture().calendar = Globalize.culture().calendars.standard;
 </pre>
 
 </p>
