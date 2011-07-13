@@ -11,8 +11,9 @@
 		"calendars", "cultures", "languages", "locales"
 	],
 	"homepage": "http://wiki.jqueryui.com/Globalize",
-	"author": "Dave Reed <dareed@microsoft.com> (http://weblogs.asp.net/infinitiesloop)",
+	"author": "The jQuery Project",
 	"contributors": [
+		"Dave Reed <dareed@microsoft.com> (http://weblogs.asp.net/infinitiesloop)",
 		"Richard D. Worth <rdworth@gmail.com> (http://rdworth.org)",
 		"Jörn Zaefferer <joern.zaefferer@gmail.com> (http://bassistance.de)",
 		"Legal-Box <legalbox@eric.brechemier.name> (http://www.legal-box.com)",
