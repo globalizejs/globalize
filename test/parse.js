@@ -19,12 +19,13 @@ test("basics, currency", function() {
 	// use the format "(n)" in both currency and number formatting
 	equal( Globalize.parseInt("(5.51₭)", "lo"), -5 );
 	equal( Globalize.parseFloat("(5.51₭)", "lo"), -5.51 );
-
-	// #47 - Return NaN instead of 0 for invalid values
-	equal( String( Globalize.parseInt("foo") ), "NaN" );
-	equal( String( Globalize.parseFloat("foo") ), "NaN" );
-
 	equal( Globalize.parseInt("5,51 €", 10, "de-DE"), 5 );
 	equal( Globalize.parseFloat("5,51 €", 10, "de-DE"), 5.51 );
 	equal( Globalize.parseFloat("5,51 €", "de-DE"), 5.51, "optional radix" );
+});
+
+test("invalid input", function() {
+	// #47 - Return NaN instead of 0 for invalid values
+	ok( isNaN(Globalize.parseInt("foo")) );
+	ok( isNaN(Globalize.parseFloat("foo")) );
 });
