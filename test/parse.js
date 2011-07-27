@@ -1,12 +1,19 @@
-module("parseFloat");
+module("parseFloat", {
+	setup: function() {
+		Globalize.culture( "default" );
+	}
+});
 
 test("basics, float", function() {
-	equal( Globalize.parseInt("5.51"), 5 );
-	equal( Globalize.parseInt("-5.51"), -5 );
 	equal( Globalize.parseFloat("5.51"), 5.51 );
 	equal( Globalize.parseFloat("-5.51"), -5.51 );
-	equal( Globalize.parseInt("5,51", 10, "de-DE"), 5 );
 	equal( Globalize.parseFloat("5,51", 10, "de-DE"), 5.51 );
+});
+
+test("basics, int", function() {
+	equal( Globalize.parseInt("5.51"), 5 );
+	equal( Globalize.parseInt("-5.51"), -5 );
+	equal( Globalize.parseInt("5,51", 10, "de-DE"), 5 );
 });
 
 test("basics, currency", function() {
