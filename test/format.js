@@ -1,5 +1,48 @@
 module( "format", lifecycle );
 
+// #57 Timezone offset formatting
+test("Date Formatting - zz/zzz for timezone offset", function() {
+	function checkDateFormat( culture, format ) {
+		culture = Globalize.culture( culture );
+
+		var rFormat = new RegExp(
+			"(\\" + culture.numberFormat[ "-" ] + "\\d{2})" +
+			"(\\" + culture.calendar[ ":" ] + "\\d{2})?"
+		);
+
+		var matches = Globalize
+			.format( new Date(), format, culture )
+			.match( rFormat );
+
+		switch( format ) {
+			case "zz": {
+				return !!matches[ 1 ];
+			} break;
+			case "zzz": {
+				return !!matches[ 2 ];
+			} break;
+		}
+
+		return false;
+	}
+
+	Globalize.cultures[ "test" ] = {
+		calendar: {
+			":" : "."
+		},
+		numberFormat: {
+			"-" : "\u2212"
+		}
+	};
+
+	ok( checkDateFormat( "test", "zz" ) );
+	ok( checkDateFormat( "test", "zzz" ) );
+
+	// "bn" culture uses "." for ":"
+	ok( checkDateFormat( "bn", "zz" ) );
+	ok( checkDateFormat( "bn", "zzz" ) );
+});
+
 test("Number Formatting - n for number", function() {
 	equal( Globalize.format(123.45, "n"), "123.45" );
 	equal( Globalize.format(123.45, "n0"), "123" );
