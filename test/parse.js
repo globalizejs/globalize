@@ -20,6 +20,10 @@ test("basics, currency", function() {
 	equal( Globalize.parseInt("(5.51₭)", "lo"), -5 );
 	equal( Globalize.parseFloat("(5.51₭)", "lo"), -5.51 );
 
+	// #47 - Return NaN instead of 0 for invalid values
+	equal( String( Globalize.parseInt("foo") ), "NaN" );
+	equal( String( Globalize.parseFloat("foo") ), "NaN" );
+
 	equal( Globalize.parseInt("5,51 €", 10, "de-DE"), 5 );
 	equal( Globalize.parseFloat("5,51 €", 10, "de-DE"), 5.51 );
 	equal( Globalize.parseFloat("5,51 €", "de-DE"), 5.51, "optional radix" );
