@@ -1,4 +1,4 @@
-module( "localize", {} );
+module( "localize", lifecycle );
 
 test('set and retrieve translations', function() {
 	Globalize.addCultureInfo("fr", {
@@ -21,27 +21,27 @@ test('retrieve translations with new culture', function() {
 });
 
 test('Retrieve translations for the most appropriate culture', function() {
-  Globalize.addCultureInfo("default", {
-    messages: {
-      "hello": "hello",
-      "world": "world"
-    }
-  });
+	Globalize.addCultureInfo("default", {
+		messages: {
+			"hello": "hello",
+			"world": "world"
+		}
+	});
 
-  Globalize.addCultureInfo("es", {
-    messages: {
-      "world": "mundo"
-    }
-  });
+	Globalize.addCultureInfo("es", {
+		messages: {
+			"world": "mundo"
+		}
+	});
 
-  Globalize.culture("es");
+	Globalize.culture("es");
 
-  strictEqual( Globalize.localize("world"), "mundo", "Key exists in current culture 'es'");
-  strictEqual( Globalize.localize("world", "es"), "mundo", "Key exists in specified culture");
-  strictEqual( Globalize.localize("world", "fr"), "world",
-    "Key does not exist in specified culture but does exist in default culture");
-  strictEqual( Globalize.localize("hello"), "hello",
-    "Key does not exist in current culture, but does exist in default culture");
-  strictEqual( Globalize.localize("goodbye"), undefined,
-    "Key does not exist in current culture or default culture");
+	strictEqual( Globalize.localize("world"), "mundo", "Key exists in current culture 'es'");
+	strictEqual( Globalize.localize("world", "es"), "mundo", "Key exists in specified culture");
+	strictEqual( Globalize.localize("world", "fr"), "world",
+		"Key does not exist in specified culture but does exist in default culture");
+	strictEqual( Globalize.localize("hello"), "hello",
+		"Key does not exist in current culture, but does exist in default culture");
+	strictEqual( Globalize.localize("goodbye"), undefined,
+		"Key does not exist in current culture or default culture");
 });
