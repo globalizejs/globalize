@@ -1,4 +1,4 @@
-module( "cultures", {} );
+module( "cultures", lifecycle );
 
 test("Culture name property and key", function() {
 	var name,
