@@ -41,6 +41,7 @@ module Globalize
           attrs.each { |name, value| translation[name] = value }
           translation.save!
         end
+        record.translations.each(&:reload)
         record.translations.reset
         stash.clear
       end
