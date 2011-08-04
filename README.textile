@@ -39,6 +39,10 @@ post.title # => גלובאלייז2 שולט!
 
 In order to make this work, you'll need to add the appropriate translation tables. Globalize3 comes with a handy helper method to help you do this. It's called @create_translation_table!@. Here's an example:
 
+<em>Note that if you're using rails ~> 3.1.0.rc migrations has only the <tt>change</tt> instance method</em>
+
+h3. Rails 3.0
+
 <pre><code>
 class CreatePosts < ActiveRecord::Migration
   def self.up
@@ -48,6 +52,25 @@ class CreatePosts < ActiveRecord::Migration
     Post.create_translation_table! :title => :string, :text => :text
   end
   def self.down
+    drop_table :posts
+    Post.drop_translation_table!
+  end
+end
+</code></pre>
+
+h3. Rails ~> 3.1.0.rc
+
+<em>Do not use the change method</em>
+
+<pre><code>
+class CreatePosts < ActiveRecord::Migration
+  def up
+    create_table :posts do |t|
+      t.timestamps
+    end
+    Post.create_translation_table! :title => :string, :text => :text
+  end
+  def down
     drop_table :posts
     Post.drop_translation_table!
   end
