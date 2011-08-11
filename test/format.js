@@ -1,4 +1,4 @@
-module( "format", {} );
+module( "format", lifecycle );
 
 test("Number Formatting - n for number", function() {
 	equal( Globalize.format(123.45, "n"), "123.45" );

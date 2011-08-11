@@ -1,4 +1,4 @@
-module("instance");
+module("instance", lifecycle );
 
 test("constructor sets culture", function() {
 	var globalizeDe = Globalize("de");

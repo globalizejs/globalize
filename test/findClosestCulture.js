@@ -1,18 +1,10 @@
 (function() {
 
-var allCultures, de, deDE, en;
+module("findClosestCulture", lifecycle );
 
-module("findClosestCulture", {
-  setup: function() {
-    allCultures = Globalize.cultures;
-		en = Globalize.cultures.en;
-		de = Globalize.cultures.de;
-		deDE = Globalize.cultures["de-DE"];
-  },
-  teardown: function() {
-    Globalize.cultures = allCultures;
-  }
-});
+var en = originalCultures( "en" ),
+	de = originalCultures( "de" ),
+	deDE = originalCultures( "de-DE" );
 
 test("default should be en", function() {
 	// use QUnit.equiv to avoid page-long printing

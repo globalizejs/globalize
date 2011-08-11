@@ -1,8 +1,4 @@
-module("parseFloat", {
-	setup: function() {
-		Globalize.culture( "default" );
-	}
-});
+module("parseFloat", lifecycle );
 
 test("basics, float", function() {
 	equal( Globalize.parseFloat("5.51"), 5.51 );
