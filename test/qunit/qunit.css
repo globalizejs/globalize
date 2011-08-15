@@ -186,6 +186,7 @@
 	color: #710909;
 	background-color: #fff;
 	border-left: 26px solid #EE5757;
+	white-space: pre;
 }
 
 #qunit-tests > li:last-child {
