@@ -5,7 +5,7 @@ require 'globalize3/version'
 Gem::Specification.new do |s|
   s.name         = 'globalize3'
   s.version      = Globalize3::VERSION
-  s.authors      = ['Sven Fuchs', 'Joshua Harvey', 'Clemens Kofler', 'John-Paul Bader']
+  s.authors      = ['Sven Fuchs', 'Joshua Harvey', 'Clemens Kofler', 'John-Paul Bader', 'Tomasz Stachewicz', 'Philip Arndt']
   s.email        = 'nobody@globalize-rails.org'
   s.homepage     = 'http://github.com/svenfuchs/globalize3'
   s.summary      = 'Rails I18n: de-facto standard library for ActiveRecord 3 model/data translation'
@@ -25,12 +25,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pathname_local'
   s.add_development_dependency 'test_declarative'
 
-  case ENV["RUBY_VERSION"]
-  when /1\.8\.\d.+$/
-    s.add_development_dependency 'ruby-debug'
-  when /1\.9\.\d.+$/
-    s.add_development_dependency 'ruby-debug19'
-  end
-
-  s.add_development_dependency 'sqlite3-ruby'
+  s.add_development_dependency 'sqlite3'
 end
