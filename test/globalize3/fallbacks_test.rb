@@ -153,7 +153,7 @@ class TranslatedTest < Test::Unit::TestCase
 
     task.save
 
-    assert_equal 1, task.translations.length
+    assert_equal [:de], task.translations.map(&:locale).sort
   end
 end
 # TODO should validate_presence_of take fallbacks into account? maybe we need
