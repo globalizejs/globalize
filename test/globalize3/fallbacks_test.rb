@@ -143,14 +143,11 @@ class TranslatedTest < Test::Unit::TestCase
 
   test 'creating just one translation when fallbacks set' do
     I18n.fallbacks.clear
-    I18n.fallbacks.map :de => [ :en ]
+    I18n.fallbacks.map :de => [ :fr ]
     I18n.locale = :de
 
     task = Task.new :name => 'foo'
-
-    assert_equal [:de, :en], task.translations.map(&:locale).sort
     assert_equal false, task.translations.any?(&:persisted?)
-
     task.save
 
     assert_equal [:de], task.translations.map(&:locale).sort

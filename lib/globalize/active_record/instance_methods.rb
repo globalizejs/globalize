@@ -34,7 +34,9 @@ module Globalize
           end
           options = {:locale => nil}.merge(options)
           attribute_will_change! name.to_s
-          globalize.write(options[:locale] || Globalize.locale, name, value)
+          the_locale = options[:locale] || Globalize.locale
+          self.translations.reject!{|t| t.new_record? && t.locale != the_locale}
+          globalize.write(the_locale, name, value)
         else
           super(name, value)
         end
@@ -113,7 +115,7 @@ module Globalize
       def translation_for(locale)
         @translation_caches ||= {}
         unless @translation_caches[locale]
-          # Enumberable#detect is better since we have the translations collection (already) loaded 
+          # Enumberable#detect is better since we have the translations collection (already) loaded
           # using either Model.includes(:translations) or Model.with_translations
           _translation = translations.detect{|t| t.locale.to_s == locale.to_s}
           _translation ||= translations.build(:locale => locale)

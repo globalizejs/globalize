@@ -37,13 +37,16 @@ module Globalize
 
       def save_translations!
         stash.each do |locale, attrs|
-          translation = record.translations.find_or_initialize_by_locale(locale.to_s)
-          attrs.each { |name, value| translation[name] = value }
-          translation.save!
+          if attrs.any?
+            translation = record.translations.find_or_initialize_by_locale(locale.to_s)
+            attrs.each { |name, value| translation[name] = value }
+            translation.save!
+          end
         end
+
         record.translations.each(&:reload)
         record.translations.reset
-        stash.clear
+        reset
       end
 
       def reset
