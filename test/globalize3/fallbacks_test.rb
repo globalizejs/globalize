@@ -140,6 +140,13 @@ class TranslatedTest < Test::Unit::TestCase
     post.update_attribute :title, ''
     assert_equal '', post.title
   end
+
+  test 'creating just one translation when fallbacks set' do
+    I18n.fallbacks.map :'de-DE' => [ :'en-US' ]
+    task = Task.create :name => 'foo'
+
+    assert_equal 1, task.translations.length
+  end
 end
 # TODO should validate_presence_of take fallbacks into account? maybe we need
 #   an extra validation call, or more options for validate_presence_of.
