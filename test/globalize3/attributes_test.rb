@@ -9,6 +9,18 @@ class AttributesTest < Test::Unit::TestCase
     assert post.respond_to?(:title=)
   end
 
+  test 'does not save translations unless saved' do
+    post = Post.new
+    assert post.translations.all?(&:new_record?)
+
+    post.title = 'something'
+    assert post.translations.all?(&:new_record?)
+
+    post.save
+    assert post.translations.all?(&:persisted?)
+    assert_equal 1, post.translations.length
+  end
+
   test "attribute_names returns translated and regular attribute names" do
     assert_equal %w(blog_id content title), Post.new.attribute_names.sort & %w(blog_id content title)
   end
@@ -18,7 +30,7 @@ class AttributesTest < Test::Unit::TestCase
     attributes = post.attributes.slice('id', 'blog_id', 'title', 'content')
     assert_equal({ 'id' => post.id, 'blog_id' => nil, 'title' => 'foo', 'content' => nil }, attributes)
   end
-  
+
   test "write_attribute for non-translated attributes should return the value" do
     user = User.create(:name => 'Max Mustermann', :email => 'max@mustermann.de')
     new_email = 'm.muster@mann.de'
@@ -110,7 +122,7 @@ class AttributesTest < Test::Unit::TestCase
     end
     I18n.locale = :de
     assert_equal 'Titel', Post.first.title
-  
+
     I18n.locale = :en
     Globalize.locale = :de
     assert_equal 'Titel', Post.first.title
