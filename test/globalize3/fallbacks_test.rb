@@ -149,7 +149,7 @@ class TranslatedTest < Test::Unit::TestCase
     task = Task.new :name => 'foo'
 
     assert_equal [:de, :en], task.translations.map(&:locale).sort
-    assert_equal true, task.translations.empty?(&:persisted?)
+    assert_equal false, task.translations.any?(&:persisted?)
 
     task.save
 
