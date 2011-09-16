@@ -116,7 +116,8 @@ module Globalize
         @translation_caches ||= {}
         unless @translation_caches[locale]
           # Fetch translations from database as those in the translation collection may be incomplete
-          _translation = translations.with_locale(locale).first
+          _translation = translations.detect{|t| t.locale.to_s == locale.to_s}
+          _translation ||= translations.with_locale(locale).first
           _translation ||= translations.build(:locale => locale)
           @translation_caches[locale] = _translation
         end
