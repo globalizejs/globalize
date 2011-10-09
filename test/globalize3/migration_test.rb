@@ -8,6 +8,7 @@ class MigrationTest < Test::Unit::TestCase
     reset_schema(Migrated, MigratedWithUltraLongModelName)
     assert !Migrated::Translation.table_exists?
     assert !Migrated::Translation.index_exists_on?(:migrated_id)
+    assert !Migrated::Translation.index_exists_on?(:locale)
   end
 
   def teardown
@@ -46,10 +47,12 @@ class MigrationTest < Test::Unit::TestCase
     Migrated.create_translation_table!(:name => :string)
     assert Migrated::Translation.table_exists?
     assert Migrated::Translation.index_exists_on?(:migrated_id)
+    assert Migrated::Translation.index_exists_on?(:locale)
 
     Migrated.drop_translation_table!
     assert !Migrated::Translation.table_exists?
     assert !Migrated::Translation.index_exists_on?(:migrated_id)
+    assert !Migrated::Translation.index_exists_on?(:locale)
   end
 
   test 'drop_translation_table! can not be called on non-translated models' do
