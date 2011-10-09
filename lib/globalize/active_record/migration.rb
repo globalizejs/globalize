@@ -60,6 +60,11 @@ module Globalize
             "#{table_name.sub(/^#{table_name_prefix}/, "").singularize}_id",
             :name => translation_index_name
           )
+          # index for select('DISTINCT locale') call in translation.rb
+          connection.add_index(
+            translations_table_name,
+            :locale
+          )
         end
 
         def drop_translation_table
