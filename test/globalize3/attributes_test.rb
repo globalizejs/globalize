@@ -142,4 +142,7 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal post.untranslated_attributes['title'], before
   end
 
+  test 'translated column is fetched from translation' do
+    assert_equal :text, Parent.new.column_for_attribute(:content).try(:type)
+  end
 end
