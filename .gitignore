@@ -5,3 +5,4 @@
 .DS_Store
 generator/bin
 generator/obj
+examples/formatter/bin/

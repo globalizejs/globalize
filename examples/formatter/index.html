@@ -6,18 +6,16 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script src="../../lib/globalize.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../lib/cultures/globalize.cultures.js" type="text/javascript" charset="utf-8"></script>
-		<script src="maenulabs.Formatter.js" type="text/javascript" charset="utf-8"></script>
-		<script src="maenulabs.GlobalizeLocalizer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="globalize.maenulabs.formatter.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			Globalize.culture("de-CH");
 			Globalize.addCultureInfo("de-CH", {
 				messages: {
-					"nonsense": "Triff mich um %t. Bring %c. %0n Stunden später geht's weiter. Am %1$D heisst \"%s\" übersetzt %4$S.",
-					"wood": "Holz"
+					"nonsense": "Triff mich um %t. Bring %c. %0n Stunden später geht's weiter. Am %1$D."
 				}
 			});
 			document.write(Globalize.localize("nonsense",
-				[new Date(2011, 10, 17, 16, 23, 2), 123.4567, 5, "wood"]));
+				[new Date(2011, 10, 17, 16, 23, 2), 123.4567, 5]));
 		</script>
 	</head>
 	<body>
