@@ -30,7 +30,14 @@ module Globalize
 
           create_translation_table
           move_data_to_translation_table if options[:migrate_data]
+          remove_source_columns if options[:remove_source_columns]
           create_translations_index
+        end
+
+        def remove_source_columns
+          translated_attribute_names.each do |attribute|
+            connection.remove_column(table_name, attribute)
+          end
         end
 
         def drop_translation_table!(options = {})
@@ -76,17 +83,18 @@ module Globalize
         end
 
         def move_data_to_translation_table
-          # Find all of the existing untranslated attributes for this model.
-          all_model_fields = @model.all
-          model_attributes = all_model_fields.collect {|m| m.untranslated_attributes}
-          all_model_fields.each do |model_record|
-            # Assign the attributes back to the model which will enable globalize3 to translate them.
-            model_record.attributes = model_attributes.detect{|a| a['id'] == model_record.id}
-            model_record.save!
+          model.find_each do |record|
+            translation = record.translations.build(:locale => I18n.default_locale)
+            translated_attribute_names.each do |attribute|
+              translation[attribute] = record[attribute]
+            end
+            translation.save!
           end
         end
 
         def move_data_to_model_table
+          add_missing_columns
+
           # Find all of the translated attributes for all records in the model.
           all_translated_attributes = @model.all.collect{|m| m.attributes}
           all_translated_attributes.each do |translated_record|
@@ -124,6 +132,18 @@ module Globalize
           index_name = "index_#{translations_table_name}_on_#{table_name.singularize}_id"
           index_name.size < 50 ? index_name : "index_#{Digest::SHA1.hexdigest(index_name)}"
         end
+
+
+        private
+
+        def add_missing_columns
+          translated_attribute_names.map(&:to_s).each do |attribute|
+            unless model.column_names.include?(attribute)
+              connection.add_column(table_name, attribute, model::Translation.columns_hash[attribute].type)
+            end
+          end
+        end
+
       end
     end
   end
