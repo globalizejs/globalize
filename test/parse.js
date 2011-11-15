@@ -10,6 +10,8 @@ test("basics, int", function() {
 	equal( Globalize.parseInt("5.51"), 5 );
 	equal( Globalize.parseInt("-5.51"), -5 );
 	equal( Globalize.parseInt("5,51", 10, "de-DE"), 5 );
+	equal( Globalize.parseInt("5000000000"), 5000000000 );
+	equal( Globalize.parseInt("-5000000000"), -5000000000 );
 });
 
 test("basics, currency", function() {
