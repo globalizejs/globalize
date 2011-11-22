@@ -11,15 +11,7 @@ module Globalize
         super.merge(translated_attributes)
       end
 
-      def attributes=(attributes, *args)
-        with_given_locale(attributes) { super }
-      end
-
-      def update_attributes!(attributes, *args)
-        with_given_locale(attributes) { super }
-      end
-
-      def update_attributes(attributes, *args)
+      def assign_attributes(attributes, options = {})
         with_given_locale(attributes) { super }
       end
 
