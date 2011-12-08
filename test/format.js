@@ -2,8 +2,12 @@ module( "format", lifecycle );
 
 test("Number Formatting - n for number", function() {
 	equal( Globalize.format(123.45, "n"), "123.45" );
+
+	equal( Globalize.format(123.4, "n"), "123.4" );
 	equal( Globalize.format(123.45, "n0"), "123" );
 	equal( Globalize.format(123.45, "n1"), "123.5" );
+	equal( Globalize.format(123.45, "n4"), "123.4500" );
+	equal( Globalize.format(123.4, "n2"), "123.40" );
 });
 
 test("Number Formatting - d for decimal", function() {
@@ -18,12 +22,16 @@ test("Number Formatting - c for currency", function() {
 	equal( Globalize.format(123.45, "c"), "$123.45" );
 	equal( Globalize.format(123.45, "c0"), "$123" );
 	equal( Globalize.format(123.45, "c1"), "$123.5" );
+	equal( Globalize.format(123.45, "c2"), "$123.45" );
+	equal( Globalize.format(123.45, "c4"), "$123.4500" );
 	equal( Globalize.format(-123.45, "c"), "($123.45)" );
 });
 
 test("Number Formatting - p for percentage", function() {
 	equal( Globalize.format(0.12345, "p"), "12.35 %" );
+	equal( Globalize.format(0.12, "p"), "12 %" );
 	equal( Globalize.format(0.12345, "p0"), "12 %" );
+	equal( Globalize.format(0.12345, "p2"), "12.35 %" );
 	equal( Globalize.format(0.12345, "p4"), "12.3450 %" );
 });
 
