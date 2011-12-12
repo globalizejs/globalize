@@ -123,9 +123,9 @@ module Globalize
       def translation_for(locale)
         @translation_caches ||= {}
         unless @translation_caches[locale]
-          # Enumberable#detect is better since we have the translations collection (already) loaded
-          # using either Model.includes(:translations) or Model.with_translations
+          # Fetch translations from database as those in the translation collection may be incomplete
           _translation = translations.detect{|t| t.locale.to_s == locale.to_s}
+          _translation ||= translations.with_locale(locale).first
           _translation ||= translations.build(:locale => locale)
           @translation_caches[locale] = _translation
         end
