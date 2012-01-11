@@ -14,13 +14,13 @@ module Globalize
       def self.included(base)
         # Maintain Rails 3.0.x compatibility while adding Rails 3.1.x compatibility
         if base.method_defined?(:assign_attributes)
-          base.module_eval do
+          base.class_eval %{
             def assign_attributes(attributes, options = {})
               with_given_locale(attributes) { super }
             end
-          end
+          }
         else
-          base.module_eval do
+          base.class_eval %{
             def attributes=(attributes, *args)
               with_given_locale(attributes) { super }
             end
@@ -32,7 +32,7 @@ module Globalize
             def update_attributes(attributes, *args)
               with_given_locale(attributes) { super }
             end
-          end
+          }
         end
       end
 
