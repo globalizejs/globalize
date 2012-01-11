@@ -7,10 +7,7 @@ env:
   - RAILS_3_0=true DB=postgres
   - RAILS_3_0=true DB=mysql
 rvm:
-  - 1.8.7
+  - ree
   - 1.9.2
   - 1.9.3
   - rbx
-  - rbx-2.0
-  - ree
-  - jruby
