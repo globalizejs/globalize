@@ -11,8 +11,29 @@ module Globalize
         super.merge(translated_attributes)
       end
 
-      def assign_attributes(attributes, options = {})
-        with_given_locale(attributes) { super }
+      def self.included(base)
+        # Maintain Rails 3.0.x compatibility while adding Rails 3.1.x compatibility
+        if base.method_defined?(:assign_attributes)
+          base.module_eval do
+            def assign_attributes(attributes, options = {})
+              with_given_locale(attributes) { super }
+            end
+          end
+        else
+          base.module_eval do
+            def attributes=(attributes, *args)
+              with_given_locale(attributes) { super }
+            end
+
+            def update_attributes!(attributes, *args)
+              with_given_locale(attributes) { super }
+            end
+
+            def update_attributes(attributes, *args)
+              with_given_locale(attributes) { super }
+            end
+          end
+        end
       end
 
       def write_attribute(name, value, options = {})
