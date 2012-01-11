@@ -41,14 +41,6 @@ module Globalize
           super(name, value)
         end
       end
-      
-      def column_for_attribute(name)
-        if translated?(name)
-          translation.column_for_attribute(name)
-        else
-          super
-        end
-      end
 
       def read_attribute(name, options = {})
         # Deprecate old use of locale
