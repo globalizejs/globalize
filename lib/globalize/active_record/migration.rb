@@ -83,12 +83,23 @@ module Globalize
         end
 
         def move_data_to_translation_table
-          model.find_each do |record|
-            translation = record.translations.build(:locale => I18n.default_locale)
-            translated_attribute_names.each do |attribute|
-              translation[attribute] = record[attribute]
-            end
-            translation.save!
+        # this refactored version might be a good idea, 
+        #  but only if made into a code that doesn't break tests
+        # model.find_each do |record|
+        #   translation = record.translations.build(:locale => I18n.default_locale)
+        #    translated_attribute_names.each do |attribute|
+        #      translation[attribute] = record[attribute]
+        #    end
+        #    translation.save!
+        # end
+        
+          # Find all of the existing untranslated attributes for this model.
+          all_model_fields = @model.all
+          model_attributes = all_model_fields.collect {|m| m.untranslated_attributes}
+          all_model_fields.each do |model_record|
+            # Assign the attributes back to the model which will enable globalize3 to translate them.
+            model_record.attributes = model_attributes.detect{|a| a['id'] == model_record.id}
+            model_record.save!
           end
         end
 
