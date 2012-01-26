@@ -106,15 +106,17 @@ the translation was applied. Here's an example (which assumes you already have a
 
 h2. Versioning with Globalize3
 
-Globalize3 nicely integrates with "vestal_versions":http://github.com/laserlemon/vestal_versions:
+Globalize3 nicely integrates with
+"paper_trail":https://github.com/airblade/paper_trail.  To add versioning 
+support to your model, you'll want to add the <code>:versioning => true</code>
+option to your call to <code>translates</code>.  An example from our test suite:
 
 <pre><code>
-require 'globalize/versioning/vestal_versions'
+  translates :title, :content, :published, :published_at, :versioning => true
 </code></pre>
 
-As of writing (2010-08-05) the original vestal_versions respository has not been updated to be compatible with Rails 3 though. You can use "this fork":http://github.com/svenfuchs/vestal_versions though. "Globalize3's Gemfile":http://github.com/svenfuchs/globalize3/blob/master/Gemfile#L10 is currently set up accordingly.
-
-Please also note that @update_attribute@ currently hides itself from dirty tracking in ActiveRecord >= 3.0.0.beta (which is considered a "regression":http://github.com/rails/rails/commit/01629d180468049d17a8be6900e27a4f0d2b18c4#commitcomment-123199). That means that you currently need to use attribute writers or @update_attributes@ in order to track changes/versions for your models.
+You will also need to have already generated the versions table that paper_trail
+expects.  See the paper_trail README for more details.
 
 Also, please see the tests in test/globalize3/versioning_test.rb for some current gotchas.
 
