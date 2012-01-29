@@ -6,9 +6,9 @@ class MigrationTest < Test::Unit::TestCase
   def setup
     super
     reset_schema(Migrated, MigratedWithUltraLongModelName)
-    assert !Migrated::Translation.table_exists?
-    assert !Migrated::Translation.index_exists_on?(:migrated_id)
-    assert !Migrated::Translation.index_exists_on?(:locale)
+    assert Migrated.translation_class.table_exists? == false
+    assert Migrated.translation_class.index_exists_on?(:migrated_id) == false
+    assert Migrated.translation_class.index_exists_on?(:locale) == false
   end
 
   def teardown
@@ -45,14 +45,14 @@ class MigrationTest < Test::Unit::TestCase
 
   test 'drop_translation_table! drops the translations table' do
     Migrated.create_translation_table!(:name => :string)
-    assert Migrated::Translation.table_exists?
-    assert Migrated::Translation.index_exists_on?(:migrated_id)
-    assert Migrated::Translation.index_exists_on?(:locale)
+    assert Migrated.translation_class.table_exists?
+    assert Migrated.translation_class.index_exists_on?(:migrated_id)
+    assert Migrated.translation_class.index_exists_on?(:locale)
 
     Migrated.drop_translation_table!
-    assert !Migrated::Translation.table_exists?
-    assert !Migrated::Translation.index_exists_on?(:migrated_id)
-    assert !Migrated::Translation.index_exists_on?(:locale)
+    assert !Migrated.translation_class.table_exists?
+    assert !Migrated.translation_class.index_exists_on?(:migrated_id)
+    assert !Migrated.translation_class.index_exists_on?(:locale)
   end
 
   test 'drop_translation_table! can not be called on non-translated models' do
@@ -73,8 +73,8 @@ class MigrationTest < Test::Unit::TestCase
     model = MigratedWithUltraLongModelName
     model.create_translation_table!(:name => :string)
 
-    assert model::Translation.table_exists?
-    assert model::Translation.index_exists?(model.send(:translation_index_name))
+    assert model.translation_class.table_exists?
+    assert model.translation_class.index_exists?(model.send(:translation_index_name))
   end
 
   test 'drop_translation_table! can deal with ultra long table names' do
@@ -82,8 +82,8 @@ class MigrationTest < Test::Unit::TestCase
     model.create_translation_table!(:name => :string)
     model.drop_translation_table!
 
-    assert !model::Translation.table_exists?
-    assert !model::Translation.index_exists?(:ultra_long_model_name_without_proper_id)
+    assert !model.translation_class.table_exists?
+    assert !model.translation_class.index_exists?(:ultra_long_model_name_without_proper_id)
   end
 
   # This test is relatively exhaustive in that it tests the full stack of
@@ -95,7 +95,7 @@ class MigrationTest < Test::Unit::TestCase
     # Ensure we have a "Fresh" version. Can't use reset_schema because it's not a translated model, yet.
     model = Untranslated
     model.drop_translation_table! if model.respond_to?(:drop_translation_table!)
-    model.reset_column_information rescue nil
+    model.reset_column_information
 
     # First create an untranslated record
     untranslated = model.create! :name => 'Untranslated'
@@ -103,7 +103,7 @@ class MigrationTest < Test::Unit::TestCase
     # Now add translation support and migrate (also tests .untranslated_attributes)
     model.instance_eval %{ translates :name }
     model.create_translation_table!({:name => :string}, {:migrate_data => true})
-    assert model::Translation.table_exists?
+    assert model.translation_class.table_exists?
 
     # Reload the untranslated record
     untranslated.reload
@@ -121,8 +121,8 @@ class MigrationTest < Test::Unit::TestCase
 
     # Now we need to rollback then undo
     model.drop_translation_table! :migrate_data => true
-    model.reset_column_information rescue nil
-    assert !model::Translation.table_exists?
+    model.reset_column_information
+    assert !model.translation_class.table_exists?
     untranslated.reload
 
     # Was it restored? (also tests .untranslated_attributes)
@@ -134,18 +134,18 @@ protected
   def reset_schema(*models)
     models.each do |model|
       model.reset_column_information
-      model::Translation.reset_column_information
-      model.drop_translation_table! if model::Translation.table_exists?
+      model.translation_class.reset_column_information
+      model.drop_translation_table! if model.translation_class.table_exists?
     end
   end
 
   def column_type(name)
-    Migrated::Translation.columns.detect { |c| c.name == name.to_s }.try(:type)
+    Migrated.translation_class.columns.detect { |c| c.name == name.to_s }.try(:type)
   end
 
   def assert_migration_table(fields)
-    assert Migrated::Translation.table_exists?
-    assert Migrated::Translation.index_exists_on?(:migrated_id)
+    assert Migrated.translation_class.table_exists?
+    assert Migrated.translation_class.index_exists_on?(:migrated_id)
 
     assert_equal :string,   column_type(:locale)
     assert_equal :integer,  column_type(:migrated_id)
