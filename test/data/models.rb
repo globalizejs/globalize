@@ -56,7 +56,7 @@ class MigratedWithUltraLongModelName < ActiveRecord::Base
 end
 
 class UppercaseTableName < ActiveRecord::Base
-  set_table_name "UPPERCASE_TABLE_NAME"
+  self.table_name = "UPPERCASE_TABLE_NAME"
   translates :name
 end
 
