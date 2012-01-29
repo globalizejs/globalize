@@ -133,8 +133,8 @@ protected
 
   def reset_schema(*models)
     models.each do |model|
-      model.reset_column_information rescue nil
-      model::Translation.reset_column_information rescue nil
+      model.reset_column_information
+      model::Translation.reset_column_information
       model.drop_translation_table! if model::Translation.table_exists?
     end
   end
