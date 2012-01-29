@@ -15,6 +15,8 @@ module Globalize
         include InstanceMethods
         extend  ClassMethods, Migration
 
+        translation_class.table_name = options[:table_name] if translation_class.table_name.blank?
+
         has_many :translations, :class_name  => translation_class.name,
                                 :foreign_key => class_name.foreign_key,
                                 :dependent   => :destroy,
