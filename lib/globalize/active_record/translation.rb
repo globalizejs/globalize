@@ -2,6 +2,12 @@ module Globalize
   module ActiveRecord
     class Translation < ::ActiveRecord::Base
       class << self
+        # Sometimes ActiveRecord queries .table_exists? before the table name
+        # has even been set which results in catastrophic failure.
+        def table_exists?
+          table_name.present? && super
+        end
+
         def with_locales(*locales)
           # Avoid using "IN" with SQL queries when only using one locale.
           locales = locales.flatten.map(&:to_s)
