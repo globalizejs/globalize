@@ -6,7 +6,7 @@ Globalize3 is much more lightweight and compatible than its predecessor Globaliz
 
 h2. Requirements
 
-ActiveRecord > 3.0.0.rc
+ActiveRecord > 3.0.0
 I18n
 
 h2. Installation
