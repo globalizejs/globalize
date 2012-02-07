@@ -32,6 +32,7 @@ module Globalize
           move_data_to_translation_table if options[:migrate_data]
           remove_source_columns if options[:remove_source_columns]
           create_translations_index
+          clear_schema_cache!
         end
 
         def remove_source_columns
@@ -44,6 +45,7 @@ module Globalize
           move_data_to_model_table if options[:migrate_data]
           drop_translations_index
           drop_translation_table
+          clear_schema_cache!
         end
 
         def complete_translated_fields
@@ -144,6 +146,9 @@ module Globalize
           index_name.size < 50 ? index_name : "index_#{Digest::SHA1.hexdigest(index_name)}"
         end
 
+        def clear_schema_cache!
+          connection.schema_cache.clear! if connection.respond_to? :schema_cache
+        end
 
         private
 
