@@ -79,7 +79,7 @@ module Globalize
       end
 
       def set_metadata(object, metadata)
-        object.translation_metadata.merge!(meta_data) if object.respond_to?(:translation_metadata)
+        object.translation_metadata.merge!(metadata) if object.respond_to?(:translation_metadata)
         object
       end
 
