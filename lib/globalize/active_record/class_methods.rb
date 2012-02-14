@@ -98,11 +98,9 @@ module Globalize
           scope = scope.send(:"scoped_by_#{unt}", arguments[index])
         end
 
-        if match.is_a?(::ActiveRecord::DynamicFinderMatch)
-          found = scope.send(match.finder)
-          return nil if found.nil?
-          return found.is_a?(Array) ? found.map(&:reload) : found.reload
-        end
+        return scope.send(match.finder).tap do |found|
+          found.is_a?(Array) ? found.map { |f| f.translations.reload } : found.translations.reload unless found.nil?
+        end if match.is_a?(::ActiveRecord::DynamicFinderMatch)
         return scope
       end
 
