@@ -17,7 +17,7 @@ module Globalize
         alias with_locale with_locales
 
         def translated_locales
-          select('DISTINCT locale').map(&:locale).sort
+          select('DISTINCT locale').map(&:locale).sort { |l,r| l.to_s <=> r.to_s }
         end
       end
 
