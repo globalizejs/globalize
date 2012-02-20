@@ -574,6 +574,15 @@ of "standard" formatting strings for dates in the "patterns" property of the
 "standard" calendar of each culture, that describe specific formats for the
 culture. The third column shows example values in the neutral English culture
 "en-US"; see the second table for the meaning tokens used in date formats.
+
+<pre>
+// just for example - will vary by culture
+Globalize.format( new Date(2012, 1, 20), 'd' ); // 2/20/2012
+Globalize.format( new Date(2012, 1, 20), 'D' ); // Monday, February 20, 2012
+</pre>
+<p>
+
+</p>
 <table>
 <tr>
   <th>Format</th>
