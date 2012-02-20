@@ -7,3 +7,5 @@ NOTES
 Gemfile.lock
 .rvmrc
 *.sw*
+*.gem
+.rbx
