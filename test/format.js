@@ -21,6 +21,13 @@ test("Number Formatting - c for currency", function() {
 	equal( Globalize.format(-123.45, "c"), "($123.45)" );
 });
 
+test("Number Formatting - c for currency with target currency", function(){
+	equal( Globalize.format(123.45, "c(EUR)"), "EUR123.45" );
+	equal( Globalize.format(123.45, "c(EUR)0"), "EUR123" );
+	equal( Globalize.format(123.45, "c(EUR)1"), "EUR123.5" );
+	equal( Globalize.format(-123.45, "c(EUR)"), "(EUR123.45)" );
+});
+
 test("Number Formatting - p for percentage", function() {
 	equal( Globalize.format(0.12345, "p"), "12.35 %" );
 	equal( Globalize.format(0.12345, "p0"), "12 %" );
