@@ -51,7 +51,7 @@ test("match xx if multiple are provided is provided", function() {
 	ok( QUnit.equiv(Globalize.findClosestCulture("de-DE, ha"), deDE) );
 });
 
-test("if q is not defined it shoud be 1", function() {
+test("if q is not defined it should be 1", function() {
 	ok( QUnit.equiv(Globalize.findClosestCulture("fr;q=0.4, es;q=0.5, de-DE"), deDE) );
 });
 
