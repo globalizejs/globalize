@@ -21,6 +21,7 @@ as an extensible system for localization.
 <li><a href="#extend">Utilizing and Extending Cultures</a></li>
 <li><a href="#defining">Defining Culture Information</a></li>
 <li><a href="#numbers">Number Formatting</a></li>
+<li><a href="#currency">Currency Formatting</a></li>
 <li><a href="#dates">Date Formatting</a></li>
 <li><a href="#generating">Generating Culture Files</a></li>
 </ul>
@@ -555,6 +556,27 @@ Globalize.format( 0.12345, "p4" ); // 12.3450 %
 </pre>
 Parsing with parseInt and parseFloat also accepts any of these formats.
 </p>
+
+<a name="currency"></a>
+<h2 id="currency">Currency Formatting</h2>
+<p>
+Globalize has a default currency symbol for each locale. This is used when
+formatting a currency value such as
+<pre>
+Globalize.format( 1234.56, "c" ); // $1,234.56
+</pre>
+You can change the currency symbol for a locale by modifying the culture's
+<code>numberFormat.currency.symbol</code> property:
+<pre>
+Globalize.culture( "en-US" ).numberFormat.currency.symbol = '\u20ac'; // euro sign U+20AC
+</pre>
+If you need to switch between currency symbols, you could write a function
+to do that, such as
+<pre>
+function setCurrency( currSym ) {
+  Globalize.culture().numberFormat.currency.symbol = currSym;
+}
+</pre>
 
 <a name="dates"></a>
 <h2 id="dates">Date Formatting</h2>
