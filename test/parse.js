@@ -29,6 +29,13 @@ test("basics, currency", function() {
 	equal( Globalize.parseFloat("5,51 €", "de-DE"), 5.51, "optional radix" );
 });
 
+test("basics, date", function() {
+	equal( Globalize.parseDate('2011/17/11 13:23:12','yyyy/dd/MM HH:mm:ss','fr').valueOf(), (new Date(2011, 10, 17, 13, 23, 12)).valueOf() );
+	equal( Globalize.parseDate('2011-17-11 13:23:12','yyyy-dd-MM HH:mm:ss','fr').valueOf(), (new Date(2011, 10, 17, 13, 23, 12)).valueOf() );
+	equal( Globalize.parseDate('2011/17/11 13:23:12','yyyy/dd/MM HH:mm:ss','fr-CA').valueOf(), (new Date(2011, 10, 17, 13, 23, 12)).valueOf() );
+	equal( Globalize.parseDate('2011-17-11 13:23:12','yyyy-dd-MM HH:mm:ss','fr-CA').valueOf(), (new Date(2011, 10, 17, 13, 23, 12)).valueOf() );
+});
+
 test("invalid input", function() {
 	// #47 - Return NaN instead of 0 for invalid values
 	ok( isNaN(Globalize.parseInt("foo")) );
