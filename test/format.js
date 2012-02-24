@@ -38,6 +38,19 @@ test("NaN", function() {
 	equal( Globalize.format(NaN, "p1"), "NaN" );
 });
 
+test("expontential notation", function() {
+	equal( Globalize.format( 1e-0, "n9" ), "1.000000000" );
+	equal( Globalize.format( 1e-1, "n9" ), "0.100000000" );
+	equal( Globalize.format( 1e-2, "n9" ), "0.010000000" );
+	equal( Globalize.format( 1e-3, "n9" ), "0.001000000" );
+	equal( Globalize.format( 1e-4, "n9" ), "0.000100000" );
+	equal( Globalize.format( 1e-5, "n9" ), "0.000010000" );
+	equal( Globalize.format( 1e-6, "n9" ), "0.000001000" );
+	equal( Globalize.format( 1e-7, "n9" ), "0.000000100" );
+	equal( Globalize.format( 1e-8, "n9" ), "0.000000010" );
+	equal( Globalize.format( 1e-9, "n9" ), "0.000000001" );
+});
+
 test("Negative Infinity", function() {
 	equal( Globalize.format(-Infinity, "n"), "-Infinity" );
 	equal( Globalize.format(-Infinity, "n1"), "-Infinity" );
