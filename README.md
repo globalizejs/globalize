@@ -24,6 +24,7 @@ as an extensible system for localization.
 <li><a href="#currency">Currency Formatting</a></li>
 <li><a href="#dates">Date Formatting</a></li>
 <li><a href="#generating">Generating Culture Files</a></li>
+<li><a href="#building">Building Globalize</a></li>
 </ul>
 
 <a name="why"></a>
@@ -815,7 +816,7 @@ format you wish by specifying the following custom tokens:
 </table>
 </p>
 
-<a name="generating">
+<a name="generating"></a>
 <h1 id="generating">Generating Culture Files</h1>
 
 The Globalize culture files are generated JavaScript containing metadata and
@@ -839,3 +840,20 @@ functions based on culture info in the Microsoft .Net Framework 4.
 1. Open a Windows Command Prompt
 1. Change directory to root of Globalize project (where README.md file is located)
 1. >"generator\bin\Debug\generator.exe"
+
+<a name="building"></a>
+<h1 id="building">Building Globalize</h1>
+
+Globalize is built using <a href="https://github.com/cowboy/grunt">grunt</a>, a
+node-based build utility. First, make sure grunt is installed globally:
+
+<pre>
+> npm install -g grunt
+</pre>
+
+then you can lint and test by simply running grunt in the globalize folder
+
+<pre>
+> cd globalize
+> grunt
+</pre>
