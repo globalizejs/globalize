@@ -701,7 +701,7 @@ format you wish by specifying the following custom tokens:
 <tr>
    <td>MMM</td>
    <td>Month name (abbreviated)</td>
-   <td>Sept</td>
+   <td>Sep</td>
 </tr>
 <tr>
    <td>MMMM</td>
