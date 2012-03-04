@@ -66,3 +66,8 @@ end
 class Task < ActiveRecord::Base
   translates :name, :fallbacks_for_empty_translations => true
 end
+
+class NewsItem < ActiveRecord::Base
+  translates :name, :foreign_key => :news_id
+  self.table_name = :news
+end

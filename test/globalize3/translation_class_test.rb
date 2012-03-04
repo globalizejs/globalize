@@ -42,7 +42,13 @@ class TranslationClassTest < Test::Unit::TestCase
       UppercaseTableName.create
     end
   end
-  
+
+  test "can create a translation class for model with custom table name" do
+    assert_nothing_raised do
+      NewsItem.create
+    end
+  end
+
   test "does not override existing translation class" do
     assert PostTranslation.new.respond_to?(:existing_method)
   end

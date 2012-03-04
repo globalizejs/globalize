@@ -6,6 +6,7 @@ module Globalize
 
         options = attr_names.extract_options!
         options[:table_name] ||= "#{table_name.singularize}_translations"
+        options[:foreign_key] ||= class_name.foreign_key
 
         class_attribute :translated_attribute_names, :translation_options, :fallbacks_for_empty_translations
         self.translated_attribute_names = attr_names.map(&:to_sym)
@@ -18,7 +19,7 @@ module Globalize
         translation_class.table_name = options[:table_name] if translation_class.table_name.blank?
 
         has_many :translations, :class_name  => translation_class.name,
-                                :foreign_key => class_name.foreign_key,
+                                :foreign_key => options[:foreign_key],
                                 :dependent   => :destroy,
                                 :extend      => HasManyExtensions
 
