@@ -21,7 +21,7 @@ module Globalize
 
       def fetch(locale, name)
         Globalize.fallbacks(locale).each do |fallback|
-          value = fetch_stash(fallback, name) || fetch_attribute(fallback, name)
+          value = stash.contains?(fallback, name) ? fetch_stash(fallback, name) : fetch_attribute(fallback, name)
 
           unless fallbacks_for?(value)
             set_metadata(value, :locale => fallback, :requested_locale => locale)
