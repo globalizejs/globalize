@@ -115,4 +115,14 @@ ActiveRecord::Schema.define do
     t.string     :locale
     t.string     :title
   end
+
+  create_table :pages, :force => true do |t|
+  end
+
+  create_table :page_translations, :force => true do |t|
+    t.integer    :page_id
+    t.string     :locale
+    t.string     :title
+    t.string     :body
+  end
 end
