@@ -71,3 +71,8 @@ class NewsItem < ActiveRecord::Base
   translates :name, :foreign_key => :news_id
   self.table_name = :news
 end
+
+class Page < ActiveRecord::Base
+  translates :title
+  translates :body
+end

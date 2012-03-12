@@ -162,4 +162,10 @@ class Globalize3Test < Test::Unit::TestCase
     assert_translated translated_comment, :en, :content, 'content'
     assert_translated translated_comment, :de, :content, 'Inhalt'
   end
+
+  test "calling translates a second times adds the new attributes to the translated attributes" do
+    page = Page.new :title => 'Wilkommen', :body => 'Ein body', :locale => :de
+    assert_translated page, :de, :title, 'Wilkommen'
+    assert_translated page, :de, :body, 'Ein body'
+  end
 end

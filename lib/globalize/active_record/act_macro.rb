@@ -2,38 +2,44 @@ module Globalize
   module ActiveRecord
     module ActMacro
       def translates(*attr_names)
-        return if translates?
 
         options = attr_names.extract_options!
-        options[:table_name] ||= "#{table_name.singularize}_translations"
-        options[:foreign_key] ||= class_name.foreign_key
+        attr_names = attr_names.map(&:to_sym)
 
-        class_attribute :translated_attribute_names, :translation_options, :fallbacks_for_empty_translations
-        self.translated_attribute_names = attr_names.map(&:to_sym)
-        self.translation_options        = options
-        self.fallbacks_for_empty_translations = options[:fallbacks_for_empty_translations]
+        unless translates?
+          options[:table_name] ||= "#{table_name.singularize}_translations"
+          options[:foreign_key] ||= class_name.foreign_key
 
-        include InstanceMethods
-        extend  ClassMethods, Migration
+          class_attribute :translated_attribute_names, :translation_options, :fallbacks_for_empty_translations
+          self.translated_attribute_names = []
+          self.translation_options        = options
+          self.fallbacks_for_empty_translations = options[:fallbacks_for_empty_translations]
 
-        translation_class.table_name = options[:table_name] if translation_class.table_name.blank?
+          include InstanceMethods
+          extend  ClassMethods, Migration
 
-        has_many :translations, :class_name  => translation_class.name,
-                                :foreign_key => options[:foreign_key],
-                                :dependent   => :destroy,
-                                :extend      => HasManyExtensions
+          translation_class.table_name = options[:table_name] if translation_class.table_name.blank?
 
-        after_create :save_translations!
-        after_update :save_translations!
+          has_many :translations, :class_name  => translation_class.name,
+                                  :foreign_key => options[:foreign_key],
+                                  :dependent   => :destroy,
+                                  :extend      => HasManyExtensions
 
-        if options[:versioning]
-          ::ActiveRecord::Base.extend(Globalize::Versioning::PaperTrail)
+          after_create :save_translations!
+          after_update :save_translations!
 
-          translation_class.has_paper_trail
-          delegate :version, :versions, :to => :translation
+          if options[:versioning]
+            ::ActiveRecord::Base.extend(Globalize::Versioning::PaperTrail)
+
+            translation_class.has_paper_trail
+            delegate :version, :versions, :to => :translation
+          end
+
         end
 
-        attr_names.each { |attr_name| translated_attr_accessor(attr_name) }
+        new_attr_names = attr_names - translated_attribute_names
+        new_attr_names.each { |attr_name| translated_attr_accessor(attr_name) }
+        self.translated_attribute_names += new_attr_names
       end
 
       def class_name
