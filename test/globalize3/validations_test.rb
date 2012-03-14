@@ -75,17 +75,12 @@ class ValidationsTest < Test::Unit::TestCase
     assert Validatee.new(:string => '1').valid?
   end
 
-  # This doesn't pass and Rails' validates_uniqueness_of implementation doesn't
-  # seem to be extensible easily. One can work around that by either defining
-  # a custom validation on the Validatee model itself, or by using validates_uniqueness_of
-  # on Validatee::Translation.
-  # 
-  # test "validates_uniqueness_of" do
-  #   Validatee.class_eval { validates_uniqueness_of :string }
-  #   Validatee.create!(:string => 'a')
-  #   assert !Validatee.new(:string => 'a').valid?
-  #   assert Validatee.new(:string => 'b').valid?
-  # end
+  test "validates_uniqueness_of" do
+    Validatee.class_eval { validates_uniqueness_of :string }
+    Validatee.create!(:string => 'a')
+    assert !Validatee.new(:string => 'a').valid?
+    assert Validatee.new(:string => 'b').valid?
+  end
 
   # test "validates_associated" do
   # end
