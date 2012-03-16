@@ -191,6 +191,7 @@ h2. Alternative Solutions
 
 * "Veger's fork":http://github.com/veger/globalize2 - uses default AR schema for the default locale, delegates to the translations table for other locales only
 * "TranslatableColumns":http://github.com/iain/translatable_columns - have multiple languages of the same attribute in a model (Iain Hecker)
+* "Traco":https://github.com/barsoom/traco - A newer take on using multiple columns in the same model (Barsoom)
 * "localized_record":http://github.com/glennpow/localized_record - allows records to have localized attributes without any modifications to the database (Glenn Powell)
 * "model_translations":http://github.com/janne/model_translations - Minimal implementation of Globalize2 style model translations (Jan Andersson)
 
