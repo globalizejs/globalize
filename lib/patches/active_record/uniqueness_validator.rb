@@ -7,8 +7,8 @@ ActiveRecord::Validations::UniquenessValidator.class_eval do
       finder_class = klass.translation_class
       table = finder_class.arel_table
 
-      relation = build_relation(finder_class, table, attribute, value).and(table[:locale].eq(Globalize.locale.to_s))
-      relation = relation.and(table[:"#{klass.name.downcase}_id"].not_eq(record.send(:id))) if record.persisted?
+      relation = build_relation(finder_class, table, attribute, value).and(table[:locale].eq(Globalize.locale))
+      relation = relation.and(table[:id].not_eq(record.send(:id))) if record.persisted?
 
 #      TODO: add scope with translated attributes
 

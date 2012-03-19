@@ -77,9 +77,18 @@ class ValidationsTest < Test::Unit::TestCase
 
   test "validates_uniqueness_of" do
     Validatee.class_eval { validates_uniqueness_of :string }
-    Validatee.create!(:string => 'a')
+    validatee = Validatee.create!(:string => 'a')
+
+    #create
     assert !Validatee.new(:string => 'a').valid?
     assert Validatee.new(:string => 'b').valid?
+    Globalize.with_locale(:de) { assert Validatee.new(:string => 'a').valid? }
+
+    # update
+    Validatee.create!(:string => 'b')
+    assert validatee.update_attributes(:string => 'a')
+    assert !validatee.update_attributes(:string => 'b')
+    Globalize.with_locale(:de) { assert validatee.update_attributes(:string => 'b') }
   end
 
   # test "validates_associated" do
