@@ -17,6 +17,27 @@ class DynamicFindersTest < Test::Unit::TestCase
     assert_equal [user], User.find_all_by_id_and_email(user.id, user.email)
   end
 
+  test "Does not break find_or_initialize finders" do
+    user = User.create!(:name => "Jim", :email => "email@example.org")
+
+    new_user = User.find_or_initialize_by_name("Bob")
+
+    assert_equal new_user.name, "Bob"
+    assert_equal user, User.find_or_initialize_by_name_and_email("Jim", "email@example.org")
+  end
+
+  test "Does not break find_or_create finders" do
+    user = User.create!(:name => "Jim", :email => "email@example.org")
+
+    user_count_before = User.count
+    new_user = User.find_or_create_by_name_and_email("Bob", "bob@example.org")
+    assert_equal user_count_before + 1, User.count
+    assert_equal new_user.name, "Bob"
+    assert_equal new_user.email, "bob@example.org"
+
+    assert_equal user, User.find_or_create_by_name("Jim")
+  end
+
   test "simple dynamic finders do work" do
     foo = Post.create!(:title => 'foo')
     bar = Post.create!(:title => 'bar')
