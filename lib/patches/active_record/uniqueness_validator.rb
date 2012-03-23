@@ -3,7 +3,7 @@ require 'active_record/validations/uniqueness.rb'
 ActiveRecord::Validations::UniquenessValidator.class_eval do
   def validate_each_with_translations(record, attribute, value)
     klass = record.class
-    if klass.translates? && klass.translated_attribute_names.include?(attribute.to_sym)
+    if klass.translates? && klass.translated?(attribute)
       finder_class = klass.translation_class
       table = finder_class.arel_table
 
