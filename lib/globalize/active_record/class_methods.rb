@@ -98,10 +98,43 @@ module Globalize
           scope = scope.send(:"scoped_by_#{unt}", arguments[index])
         end
 
-        return scope.send(match.finder).tap do |found|
-          found.is_a?(Array) ? found.map { |f| f.translations.reload } : found.translations.reload unless found.nil?
-        end if match.is_a?(::ActiveRecord::DynamicFinderMatch)
+        if match.is_a?(::ActiveRecord::DynamicFinderMatch)
+          if match.instantiator? and scope.blank?
+            return scope.find_or_instantiator_by_attributes match, attribute_names, *arguments, &block
+          end
+
+          return scope.send(match.finder).tap do |found|
+            found.is_a?(Array) ? found.map { |f| f.translations.reload } : found.translations.reload unless found.nil?
+          end
+        end
         return scope
+      end
+
+      def find_or_instantiator_by_attributes(match, attributes, *args)
+        options = args.size > 1 && args.last(2).all?{ |a| a.is_a?(Hash) } ? args.extract_options! : {}
+        protected_attributes_for_create, unprotected_attributes_for_create = {}, {}
+        args.each_with_index do |arg, i|
+          if arg.is_a?(Hash)
+            protected_attributes_for_create = args[i].with_indifferent_access
+          else
+            unprotected_attributes_for_create[attributes[i]] = args[i]
+          end
+        end
+
+        record = if ::ActiveRecord::VERSION::STRING < "3.1.0"
+          class_name.constantize.new do |r|
+            r.send(:attributes=, protected_attributes_for_create, true) unless protected_attributes_for_create.empty?
+            r.send(:attributes=, unprotected_attributes_for_create, false) unless unprotected_attributes_for_create.empty?
+          end
+        else
+          class_name.constantize.new(protected_attributes_for_create, options) do |r|
+            r.assign_attributes(unprotected_attributes_for_create, :without_protection => true)
+          end
+        end
+        yield(record) if block_given?
+        record.send(match.bang? ? :save! : :save) if match.instantiator.eql?(:create)
+
+        record
       end
 
     protected
