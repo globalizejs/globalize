@@ -80,6 +80,17 @@ class Globalize3Test < Test::Unit::TestCase
     assert_equal 'foo', post.title
   end
 
+  test "reload works with translated attributes when updated elsewhere" do
+    post = Post.create(:title => 'foo')
+    post.title  # make sure its fetched from the DB
+
+    Post.find_by_id(post.id).update_attributes! :title => 'bar'
+
+    post.reload
+
+    assert_equal 'bar', post.title
+  end
+
   test "reload accepts standard finder options" do
     post = Post.create(:title => "title")
     assert post.reload(:readonly => true, :lock => true)
