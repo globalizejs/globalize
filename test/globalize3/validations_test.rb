@@ -89,6 +89,13 @@ class ValidationsTest < Test::Unit::TestCase
     assert validatee.update_attributes(:string => 'a')
     assert !validatee.update_attributes(:string => 'b')
     Globalize.with_locale(:de) { assert validatee.update_attributes(:string => 'b') }
+
+    # nested model (to check for this: https://github.com/resolve/refinerycms/pull/1486 )
+    Nested::NestedValidatee.class_eval { validates_uniqueness_of :string }
+    nested_validatee = Nested::NestedValidatee.create!(:string => 'a')
+    Nested::NestedValidatee.create!(:string => 'b')
+    assert nested_validatee.update_attributes(:string => 'a')
+    assert !nested_validatee.update_attributes(:string => 'b')
   end
 
   # test "validates_associated" do
