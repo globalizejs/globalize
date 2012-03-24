@@ -11,6 +11,9 @@ ActiveRecord::Validations::UniquenessValidator.class_eval do
       relation = relation.and(table[klass.reflect_on_association(:translations).foreign_key].not_eq(record.send(:id))) if record.persisted?
 
 #      TODO: add scope with translated attributes
+      if options[:scope]
+        ActiveRecord::Base.logger.warn("WARNING: Globalize3 does not currently support `scope` option on uniqueness validation for translated attributes.")
+      end
 
       if finder_class.unscoped.where(relation).exists?
         record.errors.add(attribute, :taken, options.except(:case_sensitive, :scope).merge(:value => value))
