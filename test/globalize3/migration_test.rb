@@ -31,6 +31,12 @@ class MigrationTest < Test::Unit::TestCase
     end
   end
 
+  test "create_translation_table!(:name => {:type => :test, :default => '123'}) adds the translations table with options" do
+    Migrated.create_translation_table!(:name => {:type => :text, :default => '123'})
+    assert_migration_table(:name => :text)
+    assert_equal column_default(:name), '123'
+  end
+
   test 'passing a non-translated field name raises BadFieldName' do
     assert_raise BadFieldName do
       Migrated.create_translation_table!(:content => :text)
@@ -141,6 +147,10 @@ protected
 
   def column_type(name)
     Migrated.translation_class.columns.detect { |c| c.name == name.to_s }.try(:type)
+  end
+
+  def column_default(name)
+    Migrated.translation_class.columns.detect { |c| c.name == name.to_s }.try(:default)
   end
 
   def assert_migration_table(fields)
