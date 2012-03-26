@@ -103,6 +103,7 @@ module Globalize
       end
 
       def reload(options = nil)
+        @translation_caches.clear if defined? @translation_caches
         translated_attribute_names.each { |name| @attributes.delete(name.to_s) }
         globalize.reset
         super(options)
