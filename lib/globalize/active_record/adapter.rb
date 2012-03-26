@@ -20,7 +20,7 @@ module Globalize
       end
 
       def fetch(locale, name)
-        Globalize.fallbacks(locale).each do |fallback|
+        record.globalize_fallbacks(locale).each do |fallback|
           value = stash.contains?(fallback, name) ? fetch_stash(fallback, name) : fetch_attribute(fallback, name)
 
           unless fallbacks_for?(value)

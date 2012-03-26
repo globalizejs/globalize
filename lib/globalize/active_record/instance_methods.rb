@@ -137,6 +137,10 @@ module Globalize
         @translation_caches[locale]
       end
 
+      def globalize_fallbacks(locale)
+        Globalize.fallbacks(locale)
+      end
+
       def rollback
         @translation_caches[::Globalize.locale] = translation.previous_version
       end
