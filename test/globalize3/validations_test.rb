@@ -75,17 +75,30 @@ class ValidationsTest < Test::Unit::TestCase
     assert Validatee.new(:string => '1').valid?
   end
 
-  # This doesn't pass and Rails' validates_uniqueness_of implementation doesn't
-  # seem to be extensible easily. One can work around that by either defining
-  # a custom validation on the Validatee model itself, or by using validates_uniqueness_of
-  # on Validatee::Translation.
-  # 
-  # test "validates_uniqueness_of" do
-  #   Validatee.class_eval { validates_uniqueness_of :string }
-  #   Validatee.create!(:string => 'a')
-  #   assert !Validatee.new(:string => 'a').valid?
-  #   assert Validatee.new(:string => 'b').valid?
-  # end
+  test "validates_uniqueness_of" do
+    Validatee.class_eval { validates_uniqueness_of :string }
+    # make sure Validatee and Validatee::Translation table ids are not the same (for tests)
+    10.times { Validatee::Translation.create }
+    validatee = Validatee.create!(:string => 'a')
+
+    #create
+    assert !Validatee.new(:string => 'a').valid?
+    assert Validatee.new(:string => 'b').valid?
+    Globalize.with_locale(:de) { assert Validatee.new(:string => 'a').valid? }
+
+    # update
+    Validatee.create!(:string => 'b')
+    assert validatee.update_attributes(:string => 'a')
+    assert !validatee.update_attributes(:string => 'b')
+    Globalize.with_locale(:de) { assert validatee.update_attributes(:string => 'b') }
+
+    # nested model (to check for this: https://github.com/resolve/refinerycms/pull/1486 )
+    Nested::NestedValidatee.class_eval { validates_uniqueness_of :string }
+    nested_validatee = Nested::NestedValidatee.create!(:string => 'a')
+    Nested::NestedValidatee.create!(:string => 'b')
+    assert nested_validatee.update_attributes(:string => 'a')
+    assert !nested_validatee.update_attributes(:string => 'b')
+  end
 
   # test "validates_associated" do
   # end

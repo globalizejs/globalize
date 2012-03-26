@@ -25,6 +25,12 @@ class Validatee < ActiveRecord::Base
   translates :string
 end
 
+module Nested
+  class NestedValidatee < ActiveRecord::Base
+    translates :string
+  end
+end
+
 
 class Parent < ActiveRecord::Base
   translates :content

@@ -62,6 +62,15 @@ ActiveRecord::Schema.define do
     t.string     :string
   end
 
+  create_table :nested_validatees, :force => true do |t|
+  end
+
+  create_table :nested_validatee_translations, :force => true do |t|
+    t.references :nested_validatee
+    t.string     :locale
+    t.string     :string
+  end
+
   create_table :users, :force => true do |t|
     t.string   :email
     t.datetime :created_at
