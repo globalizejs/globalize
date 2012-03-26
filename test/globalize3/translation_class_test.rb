@@ -60,6 +60,13 @@ class TranslationClassTest < Test::Unit::TestCase
   test "required_translated_attributes do not include non-translated attributes" do
     assert_equal [:name], User.required_translated_attributes
   end
+  
+  test "valid translations must have an assoicated (non-empty) locale" do
+    assert !Post::Translation.new.valid?
+    assert !Post::Translation.new(:locale => nil).valid?
+    assert !Post::Translation.new(:locale => '').valid?
+    assert Post::Translation.new(:locale => 'de').valid?
+  end
 end
 
 
