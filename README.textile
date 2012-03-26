@@ -77,6 +77,23 @@ class CreatePosts < ActiveRecord::Migration
 end
 </code></pre>
 
+Also, you can pass options for specific columns. Here’s an example:
+
+<pre><code>
+class CreatePosts < ActiveRecord::Migration
+  def up
+    create_table :posts do |t|
+      t.timestamps
+    end
+    Post.create_translation_table! :title => :string, :text => {:type => :text, :null => false, :default => 'abc'}
+  end
+  def down
+    drop_table :posts
+    Post.drop_translation_table!
+  end
+end
+</code></pre>
+
 Note that the ActiveRecord model @Post@ must already exist and have a @translates@ directive listing the translated fields.
 
 h2. Migrating existing data to and from the translated version

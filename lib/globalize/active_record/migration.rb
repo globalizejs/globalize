@@ -58,7 +58,13 @@ module Globalize
           connection.create_table(translations_table_name) do |t|
             t.references table_name.sub(/^#{table_name_prefix}/, '').singularize
             t.string :locale
-            fields.each { |name, type| t.column name, type }
+            fields.each do |name, options|
+              if options.is_a? Hash
+                t.column name, options.delete(:type), options
+              else
+                t.column name, options
+              end
+            end
             t.timestamps
           end
         end
@@ -112,9 +118,13 @@ module Globalize
         end
 
         def validate_translated_fields
-          fields.each do |name, type|
+          fields.each do |name, options|
             raise BadFieldName.new(name) unless valid_field_name?(name)
-            raise BadFieldType.new(name, type) unless valid_field_type?(name, type)
+            if options.is_a? Hash
+              raise BadFieldType.new(name, options[:type]) unless valid_field_type?(name, options[:type])
+            else
+              raise BadFieldType.new(name, options) unless valid_field_type?(name, options)
+            end
           end
         end
 
