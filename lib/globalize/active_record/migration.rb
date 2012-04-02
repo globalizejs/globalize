@@ -78,7 +78,8 @@ module Globalize
           # index for select('DISTINCT locale') call in translation.rb
           connection.add_index(
             translations_table_name,
-            :locale
+            :locale,
+            :name => translation_locale_index_name
           )
         end
 
@@ -143,6 +144,12 @@ module Globalize
         def translation_index_name
           # FIXME what's the max size of an index name?
           index_name = "index_#{translations_table_name}_on_#{table_name.singularize}_id"
+          index_name.size < 50 ? index_name : "index_#{Digest::SHA1.hexdigest(index_name)}"
+        end
+
+        def translation_locale_index_name
+          # FIXME what's the max size of an index name?
+          index_name = "index_#{translations_table_name}_on_locale"
           index_name.size < 50 ? index_name : "index_#{Digest::SHA1.hexdigest(index_name)}"
         end
 
