@@ -171,6 +171,26 @@ class TranslatedTest < Test::Unit::TestCase
 
     Task.fallbacks = nil
   end
+
+  test 'fallback to each other' do
+    I18n.fallbacks.clear
+    Globalize.fallbacks = {:en => [:en, :pl], :pl => [:pl, :en]}
+    I18n.locale = :en
+
+    en_task = Task.create(:name => 'en_text')
+    assert_equal 'en_text', en_task.name
+
+    I18n.locale = :pl
+
+    pl_task = Task.create(:name => 'pl_text')
+    assert_equal 'pl_text', pl_task.name
+    assert_equal 'en_text', en_task.name
+
+    I18n.locale = :en
+    assert_equal 'pl_text', pl_task.name
+
+    Globalize.fallbacks = nil
+  end
 end
 # TODO should validate_presence_of take fallbacks into account? maybe we need
 #   an extra validation call, or more options for validate_presence_of.
