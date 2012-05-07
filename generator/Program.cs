@@ -15,7 +15,7 @@ using Globalization;
 namespace Globalization {
     public interface IGlobalizationInfoAdjustment
     {
-        string[] GlobalizationInfoNames { get; }
+        string[] Cultures { get; }
 
         GlobalizationInfo Adjust(GlobalizationInfo info);
     }
@@ -50,12 +50,12 @@ namespace Globalization {
                     {
                         ConstructorInfo adjustmentConstructorInfo = adjustmentType.GetConstructor(new Type[] { });
                         IGlobalizationInfoAdjustment adjustmentInstance = (IGlobalizationInfoAdjustment)adjustmentConstructorInfo.Invoke(new Object[] { });
-                        foreach (string globalizationInfoName in adjustmentInstance.GlobalizationInfoNames)
+                        foreach (string culture in adjustmentInstance.Cultures)
                         {
-                            if (!adjustmentsInstances.ContainsKey(globalizationInfoName))
-                                adjustmentsInstances.Add(globalizationInfoName, adjustmentInstance);
+                            if (!adjustmentsInstances.ContainsKey(culture))
+                                adjustmentsInstances.Add(culture, adjustmentInstance);
                             else
-                                throw new ApplicationException("An attempt was made to register more than one IGlobalizationInfoAdjustment for culture '" + globalizationInfoName + "'.");
+                                throw new ApplicationException("An attempt was made to register more than one IGlobalizationInfoAdjustment for culture '" + culture + "'.");
                         }
                     }
                 }

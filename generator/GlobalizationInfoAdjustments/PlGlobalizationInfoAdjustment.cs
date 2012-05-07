@@ -8,11 +8,11 @@ namespace Generator.GlobalizationInfoAdjustments
 {
     public class PlGlobalizationInfoAdjustment : IGlobalizationInfoAdjustment
     {
-        private static string[] _globalizationInfoNames = new string[] { "pl", "pl-PL" };
+        private static string[] _cultures = new string[] { "pl", "pl-PL" };
 
-        public string[] GlobalizationInfoNames
+        public string[] Cultures
         {
-            get { return _globalizationInfoNames; }
+            get { return _cultures; }
         }
 
         public GlobalizationInfo Adjust(GlobalizationInfo info)
