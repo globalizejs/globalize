@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+	<head>
+		<title>Test maenuLabs Formatter for Globalize</title>
+		
+		<link rel="stylesheet" type="text/css" href="../../lib/jasmine-1.0.2/jasmine.css">
+		
+		<script type="text/javascript" src="../../lib/jasmine-1.0.2/jasmine.js"></script>
+		<script type="text/javascript" src="../../lib/jasmine-1.0.2/jasmine-html.js"></script>
+		<script type="text/javascript" src="../../lib/jquery-1.5.1.min.js"></script>
+		<script type="text/javascript" src="../../../../lib/globalize.js"></script>
+		<script type="text/javascript" src="../../../../lib/cultures/globalize.cultures.js"></script>
+		
+		<!-- include source files here... -->
+		<script type="text/javascript" src="../main/maenulabs.Formatter.js"></script>
+		<script type="text/javascript" src="../main/maenulabs.GlobalizeLocalizer.js"></script>
+		<script type="text/javascript" src="../main/globalize.maenulabs.extensions.js"></script>
+		
+		<!-- include spec files here... -->
+		<script type="text/javascript" src="maenulabs.Formatter.test.js"></script>
+		<script type="text/javascript" src="maenulabs.GlobalizeLocalizer.test.js"></script>
+		<script type="text/javascript" src="globalize.maenulabs.extensions.test.js"></script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+				jasmine.getEnv().execute();
+			});
+		</script>
+		
+	</head>
+	
+	<body>
+	
+	</body>
+	
+</html>
