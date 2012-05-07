@@ -13,6 +13,13 @@ using System.Diagnostics;
 using Globalization;
 
 namespace Globalization {
+    public interface IGlobalizationInfoAdjustment
+    {
+        string[] GlobalizationInfoNames { get; }
+
+        GlobalizationInfo Adjust(GlobalizationInfo info);
+    }
+
     public class GlobalizationInfo {
         public string name = "";
         public string englishName;
@@ -30,6 +37,30 @@ namespace Globalization {
         private static string[] _percentNegativePatterns = "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %".Split('|');
         private static string[] _currencyPositivePatterns = "$n|n$|$ n|n $".Split('|');
         private static string[] _percentPositivePatterns = "n %|n%|%n|% n".Split('|');
+        private static Dictionary<String, IGlobalizationInfoAdjustment> adjustmentsInstances = new Dictionary<string,IGlobalizationInfoAdjustment>();
+
+        static GlobalizationInfo()
+        {
+            Type adjustmentInterfaceType = typeof(IGlobalizationInfoAdjustment);
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                foreach (Type adjustmentType in assembly.GetTypes())
+                {
+                    if (adjustmentInterfaceType.IsAssignableFrom(adjustmentType) && adjustmentType.IsPublic && !adjustmentType.IsAbstract)
+                    {
+                        ConstructorInfo adjustmentConstructorInfo = adjustmentType.GetConstructor(new Type[] { });
+                        IGlobalizationInfoAdjustment adjustmentInstance = (IGlobalizationInfoAdjustment)adjustmentConstructorInfo.Invoke(new Object[] { });
+                        foreach (string globalizationInfoName in adjustmentInstance.GlobalizationInfoNames)
+                        {
+                            if (!adjustmentsInstances.ContainsKey(globalizationInfoName))
+                                adjustmentsInstances.Add(globalizationInfoName, adjustmentInstance);
+                            else
+                                throw new ApplicationException("An attempt was made to register more than one IGlobalizationInfoAdjustment for culture '" + globalizationInfoName + "'.");
+                        }
+                    }
+                }
+            }
+        }
 
         public static GlobalizationInfo GetGlobInfo(CultureInfo culture) {
             var info = new GlobalizationInfo {
@@ -42,7 +73,7 @@ namespace Globalization {
                 numberFormat = GetNumberFormatInfo(culture),
                 calendars = GetCalendars(culture)
             };
-            return info;
+            return adjustmentsInstances.ContainsKey(info.name) ? adjustmentsInstances[info.name].Adjust(info) : info;
         }
 
         public static Dictionary<String, DateFormatInfo> GetCalendars(CultureInfo culture) {
