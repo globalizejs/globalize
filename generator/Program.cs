@@ -356,9 +356,9 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
 
 var Globalize;
 
-if ( typeof require !== ""undefined"" &&
-	typeof exports !== ""undefined"" &&
-	typeof module !== ""undefined"" ) {{
+if ( typeof require !== ""undefined""
+	&& typeof exports !== ""undefined""
+	&& typeof module !== ""undefined"" ) {{
 	// Assume CommonJS
 	Globalize = require( ""globalize"" );
 }} else {{
@@ -376,16 +376,7 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
 
         private static string Serialize(object value) {
             // no need to escape single quotes
-            return _jss.Serialize(value).Replace("\\u0027", "'")
-                // Unsafe Characters
-                // There are characters that are handled inconsistently in browsers, and so must be escaped when placed in strings.
-                // http://www.jslint.com/lint.html#unsafe
-                .Replace("\xad", "\\xad")
-                .Replace("\u070f", "\\u070f")
-                .Replace("\u200c", "\\u200c")
-                .Replace("\u200d", "\\u200d")
-                .Replace("\u200f", "\\u200f")
-                .Replace("\u202f", "\\u202f");
+            return _jss.Serialize(value).Replace("\\u0027", "'");
         }
 
         private static string ToJavaScript(string extend, CultureInfo culture, Dictionary<String, Object> dictionary, int level, bool isCalendars) {
@@ -420,9 +411,6 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
                 }
                 else if (pair.Key.Equals("timeSeparator")) {
                     sb.AppendFormat("{0}\":\": {1}", padding, Serialize(pair.Value));
-                }
-                else if (pair.Key.Equals("NaN")) {
-                    sb.AppendFormat("{0}\"NaN\": {1}", padding, Serialize(pair.Value));
                 }
                 else {
                     sb.AppendFormat("{0}{1}: {2}", padding, pair.Key, Serialize(pair.Value));
@@ -641,9 +629,9 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
 
 var Globalize;
 
-if ( typeof require !== ""undefined"" &&
-	typeof exports !== ""undefined"" &&
-	typeof module !== ""undefined"" ) {
+if ( typeof require !== ""undefined""
+	&& typeof exports !== ""undefined""
+	&& typeof module !== ""undefined"" ) {
 	// Assume CommonJS
 	Globalize = require( ""globalize"" );
 } else {

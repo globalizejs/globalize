@@ -21,10 +21,8 @@ as an extensible system for localization.
 <li><a href="#extend">Utilizing and Extending Cultures</a></li>
 <li><a href="#defining">Defining Culture Information</a></li>
 <li><a href="#numbers">Number Formatting</a></li>
-<li><a href="#currency">Currency Formatting</a></li>
 <li><a href="#dates">Date Formatting</a></li>
 <li><a href="#generating">Generating Culture Files</a></li>
-<li><a href="#building">Building Globalize</a></li>
 </ul>
 
 <a name="why"></a>
@@ -558,27 +556,6 @@ Globalize.format( 0.12345, "p4" ); // 12.3450 %
 Parsing with parseInt and parseFloat also accepts any of these formats.
 </p>
 
-<a name="currency"></a>
-<h2 id="currency">Currency Formatting</h2>
-<p>
-Globalize has a default currency symbol for each locale. This is used when
-formatting a currency value such as
-<pre>
-Globalize.format( 1234.56, "c" ); // $1,234.56
-</pre>
-You can change the currency symbol for a locale by modifying the culture's
-<code>numberFormat.currency.symbol</code> property:
-<pre>
-Globalize.culture( "en-US" ).numberFormat.currency.symbol = '\u20ac'; // euro sign U+20AC
-</pre>
-If you need to switch between currency symbols, you could write a function
-to do that, such as
-<pre>
-function setCurrency( currSym ) {
-  Globalize.culture().numberFormat.currency.symbol = currSym;
-}
-</pre>
-
 <a name="dates"></a>
 <h2 id="dates">Date Formatting</h2>
 <p>
@@ -597,15 +574,6 @@ of "standard" formatting strings for dates in the "patterns" property of the
 "standard" calendar of each culture, that describe specific formats for the
 culture. The third column shows example values in the neutral English culture
 "en-US"; see the second table for the meaning tokens used in date formats.
-
-<pre>
-// just for example - will vary by culture
-Globalize.format( new Date(2012, 1, 20), 'd' ); // 2/20/2012
-Globalize.format( new Date(2012, 1, 20), 'D' ); // Monday, February 20, 2012
-</pre>
-<p>
-
-</p>
 <table>
 <tr>
   <th>Format</th>
@@ -701,7 +669,7 @@ format you wish by specifying the following custom tokens:
 <tr>
    <td>MMM</td>
    <td>Month name (abbreviated)</td>
-   <td>Sep</td>
+   <td>Sept</td>
 </tr>
 <tr>
    <td>MMMM</td>
@@ -816,7 +784,7 @@ format you wish by specifying the following custom tokens:
 </table>
 </p>
 
-<a name="generating"></a>
+<a name="generating">
 <h1 id="generating">Generating Culture Files</h1>
 
 The Globalize culture files are generated JavaScript containing metadata and
@@ -840,20 +808,3 @@ functions based on culture info in the Microsoft .Net Framework 4.
 1. Open a Windows Command Prompt
 1. Change directory to root of Globalize project (where README.md file is located)
 1. >"generator\bin\Debug\generator.exe"
-
-<a name="building"></a>
-<h1 id="building">Building Globalize</h1>
-
-Globalize is built using <a href="https://github.com/cowboy/grunt">grunt</a>, a
-node-based build utility. First, make sure grunt is installed globally:
-
-<pre>
-> npm install -g grunt
-</pre>
-
-then you can lint and test by simply running grunt in the globalize folder
-
-<pre>
-> cd globalize
-> grunt
-</pre>

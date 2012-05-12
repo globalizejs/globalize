@@ -1,5 +1,48 @@
 module( "format", lifecycle );
 
+// #57 Timezone offset formatting
+test("Date Formatting - zz/zzz for timezone offset", function() {
+	function checkDateFormat( culture, format ) {
+		culture = Globalize.culture( culture );
+
+		var rFormat = new RegExp(
+			"(\\" + culture.numberFormat[ "-" ] + "\\d{2})" +
+			"(\\" + culture.calendar[ ":" ] + "\\d{2})?"
+		);
+
+		var matches = Globalize
+			.format( new Date(), format, culture )
+			.match( rFormat );
+
+		switch( format ) {
+			case "zz": {
+				return !!matches[ 1 ];
+			} break;
+			case "zzz": {
+				return !!matches[ 2 ];
+			} break;
+		}
+
+		return false;
+	}
+
+	Globalize.cultures[ "test" ] = {
+		calendar: {
+			":" : "."
+		},
+		numberFormat: {
+			"-" : "\u2212"
+		}
+	};
+
+	ok( checkDateFormat( "test", "zz" ) );
+	ok( checkDateFormat( "test", "zzz" ) );
+
+	// "bn" culture uses "." for ":"
+	ok( checkDateFormat( "bn", "zz" ) );
+	ok( checkDateFormat( "bn", "zzz" ) );
+});
+
 test("Number Formatting - n for number", function() {
 	equal( Globalize.format(123.45, "n"), "123.45" );
 	equal( Globalize.format(123.45, "n0"), "123" );
@@ -36,19 +79,6 @@ test("NaN", function() {
 	equal( Globalize.format(NaN, "c1"), "NaN" );
 	equal( Globalize.format(NaN, "p"), "NaN" );
 	equal( Globalize.format(NaN, "p1"), "NaN" );
-});
-
-test("expontential notation", function() {
-	equal( Globalize.format( 1e-0, "n9" ), "1.000000000" );
-	equal( Globalize.format( 1e-1, "n9" ), "0.100000000" );
-	equal( Globalize.format( 1e-2, "n9" ), "0.010000000" );
-	equal( Globalize.format( 1e-3, "n9" ), "0.001000000" );
-	equal( Globalize.format( 1e-4, "n9" ), "0.000100000" );
-	equal( Globalize.format( 1e-5, "n9" ), "0.000010000" );
-	equal( Globalize.format( 1e-6, "n9" ), "0.000001000" );
-	equal( Globalize.format( 1e-7, "n9" ), "0.000000100" );
-	equal( Globalize.format( 1e-8, "n9" ), "0.000000010" );
-	equal( Globalize.format( 1e-9, "n9" ), "0.000000001" );
 });
 
 test("Negative Infinity", function() {
