@@ -5,7 +5,7 @@ test('set and retrieve translations', function() {
 		messages: {
 			"translate": "traduire"
 		}
-	});
+	})
 	strictEqual( Globalize.localize("translate", "fr"), "traduire", "translate 'translate' to french" );
 	strictEqual( Globalize("fr").localize("translate"), "traduire", "translate 'translate' to french" );
 });
