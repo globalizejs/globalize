@@ -5,14 +5,14 @@ class MigrationTest < Test::Unit::TestCase
 
   def setup
     super
-    reset_schema(Migrated, MigratedWithUltraLongModelName)
+    reset_schema(Migrated, MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters)
     assert Migrated.translation_class.table_exists? == false
     assert Migrated.translation_class.index_exists_on?(:migrated_id) == false
     assert Migrated.translation_class.index_exists_on?(:locale) == false
   end
 
   def teardown
-    reset_schema(Migrated, MigratedWithUltraLongModelName)
+    reset_schema(Migrated, MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters)
   end
 
   test 'create_translation_table!(:name => :text) adds the translations table' do
@@ -67,24 +67,33 @@ class MigrationTest < Test::Unit::TestCase
     end
   end
 
-  test "translation_index_name returns a readable index name if it's not longer than 50 characters" do
+  test "translation_index_name returns a readable index name if it's not longer than 64 characters" do
     assert_equal 'index_migrated_translations_on_migrated_id', Migrated.send(:translation_index_name)
   end
 
-  test "translation_index_name returns a hashed index name if it's longer than 50 characters" do
-    assert_match /^index_[a-z0-9]{40}$/, MigratedWithUltraLongModelName.send(:translation_index_name)
+  test "translation_index_name returns a hashed index name if it's longer than 64 characters" do
+    assert_match /^index_[a-z0-9]{40}$/, MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters.send(:translation_index_name)
+  end
+
+  test "translation_locale_index_name returns a readable index name if it's not longer than 64 characters" do
+    assert_equal 'index_migrated_translations_on_locale', Migrated.send(:translation_locale_index_name)
+  end
+
+  test "translation_locale_index_name returns a hashed index name if it's longer than 64 characters" do
+    assert_match /^index_[a-z0-9]{40}$/, MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters.send(:translation_locale_index_name)
   end
 
   test 'create_translation_table! can deal with ultra long table names' do
-    model = MigratedWithUltraLongModelName
+    model = MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters
     model.create_translation_table!(:name => :string)
 
     assert model.translation_class.table_exists?
     assert model.translation_class.index_exists?(model.send(:translation_index_name))
+    assert model.translation_class.index_exists?(model.send(:translation_locale_index_name))
   end
 
   test 'drop_translation_table! can deal with ultra long table names' do
-    model = MigratedWithUltraLongModelName
+    model = MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters
     model.create_translation_table!(:name => :string)
     model.drop_translation_table!
 

@@ -57,7 +57,7 @@ class Migrated < ActiveRecord::Base
   translates :name
 end
 
-class MigratedWithUltraLongModelName < ActiveRecord::Base
+class MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters < ActiveRecord::Base
   translates :name
 end
 
