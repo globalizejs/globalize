@@ -70,7 +70,7 @@ module Globalize
 
       def supported_on_missing?(method_id)
         return super unless RUBY_VERSION < '1.9' || respond_to?(:translated_attribute_names)
-        match = ::ActiveRecord::DynamicFinderMatch.match(method_id) || ::ActiveRecord::DynamicScopeMatch.match(method_id)
+        match = defined?(::ActiveRecord::DynamicFinderMatch) && (::ActiveRecord::DynamicFinderMatch.match(method_id) || ::ActiveRecord::DynamicScopeMatch.match(method_id))
         return false if match.nil?
 
         attribute_names = match.attribute_names.map(&:to_sym)
@@ -98,7 +98,7 @@ module Globalize
           scope = scope.send(:"scoped_by_#{unt}", arguments[index])
         end
 
-        if match.is_a?(::ActiveRecord::DynamicFinderMatch)
+        if defined?(::ActiveRecord::DynamicFinderMatch) && match.is_a?(::ActiveRecord::DynamicFinderMatch)
           if match.instantiator? and scope.blank?
             return scope.find_or_instantiator_by_attributes match, attribute_names, *arguments, &block
           end
