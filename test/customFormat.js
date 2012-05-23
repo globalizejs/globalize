@@ -50,6 +50,7 @@ test("Number Formatting - custom w/ mixed # and 0", function() {
 	equal( Globalize.format(1234.567, "0,#,#,0.0#"), "1,234.57" );
 	equal( Globalize.format(-0.59, '#,##0.00'), "-0.59" );
 	equal( Globalize.format(-2.2, '#,##0.00##'), "-2.20" );
+	equal( Globalize.format(-300.35, '#,##0.00##'), "-300.35" );
 });
 
 test("Number Formatting - custom w/ mixed # and 0 and integers", function() {
