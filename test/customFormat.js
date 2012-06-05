@@ -24,6 +24,8 @@ test("Number Formatting - custom w/ 0 padding", function() {
 test("Number Formatting - custom w/ #", function() {
 	equal( Globalize.format(1234.567, "#"), "1235" );
 	equal( Globalize.format(1234.567, "#."), "1235" );
+	equal( Globalize.format(0.567, "#.#"), ".6" );
+	equal( Globalize.format(-0.567, "#.#"), "-.6" );
 	equal( Globalize.format(1234.567, ",#"), "1235" );
 	equal( Globalize.format(1234.567, "##"), "1235" );
 	equal( Globalize.format(1234.567, ".##"), "1234.57" );
