@@ -97,7 +97,6 @@ test("Number Formatting - custom w/ various edge cases", function() {
 	equal( Globalize.format(1234.567, "#,,,#.#"), "1,234.6" );
 	equal( Globalize.format(1234.567, "#.#,#"), "1234.57" );
 	equal( Globalize.format(1234.567, ",#.#"), "1234.6" );
-	equal( Globalize.format(1234.567, "#,.#"), "1.2" );
 	equal( Globalize.format(1234.567, ",.#"), "1234.6" );
 	equal( Globalize.format(1234.567, ""), "1234.567" );
 	equal( Globalize.format(1234.567, "0000, ,0000, ,0000.00"), "000,0 00,00 1,234.57" );
@@ -112,4 +111,9 @@ test("Number Formatting - custom w/ various edge cases", function() {
 	equal( Globalize.format(0.1234, ",."), "" );
 	equal( Globalize.format(0.1234, "0."), "0" );
 	equal( Globalize.format(0, "positive\\;still positive;negative;zero"), "zero" );
+});
+
+test("Number Formatting - custom w/ number scaling", function() {
+	expect(0);
+//	equal( Globalize.format(1234.567, "#,.#"), "1.2" );
 });
