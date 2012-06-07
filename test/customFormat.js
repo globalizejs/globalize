@@ -75,6 +75,7 @@ test("Number Formatting - custom w/ pattern for +/-", function() {
 	// zero or positive for a negative number.
 	equal( Globalize.format(-0.00001, "positive;negative;zero;ignored"), "negative" );
 	equal( Globalize.format(-0.00001, "Positive: 0;;zero;ignored"), "zero" );
+	equal( Globalize.format(0, "Positive;Negative;zero"), "zero" );
 });
 
 test("Number Formatting - custom w/ non-formatting text", function() {
