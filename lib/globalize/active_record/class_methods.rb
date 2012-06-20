@@ -122,12 +122,12 @@ module Globalize
         end
 
         record = if ::ActiveRecord::VERSION::STRING < "3.1.0"
-          class_name.constantize.new do |r|
+          new do |r|
             r.send(:attributes=, protected_attributes_for_create, true) unless protected_attributes_for_create.empty?
             r.send(:attributes=, unprotected_attributes_for_create, false) unless unprotected_attributes_for_create.empty?
           end
         else
-          class_name.constantize.new(protected_attributes_for_create, options) do |r|
+          new(protected_attributes_for_create, options) do |r|
             r.assign_attributes(unprotected_attributes_for_create, :without_protection => true)
           end
         end
