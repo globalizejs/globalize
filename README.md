@@ -650,7 +650,7 @@ Globalize.format( new Date(2012, 1, 20), 'D' ); // Monday, February 20, 2012
 <tr>
    <td>M</td>
    <td>Month/Day</td>
-   <td>yyyy MMMM</td>
+   <td>MMMM dd</td>
 </tr>
 </table>
 </p>
