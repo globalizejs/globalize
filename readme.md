@@ -1,9 +1,9 @@
 # Globalize3
 
-Globalize3 is the successor of Globalize for Rails and is targeted at ActiveRecord 3.
-It is compatible with and builds on the new
-"I18n API in Ruby on Rails":http://guides.rubyonrails.org/i18n.html and adds model
-translations to ActiveRecord.
+Globalize3 is the successor of Globalize for Rails and is targeted at
+ActiveRecord version 3.x. It is compatible with and builds on the new
+"I18n API in Ruby on Rails":http://guides.rubyonrails.org/i18n.html and adds
+model translations to ActiveRecord.
 
 Globalize3 is much more lightweight and compatible than its predecessor.
 Model translations in Globalize3 use default ActiveRecord features and no longer
@@ -50,9 +50,10 @@ post.title # => גלובאלייז2 שולט!
 
 In order to make this work, you'll need to add the appropriate translation tables.
 Globalize3 comes with a handy helper method to help you do this.
-It's called @create_translation_table!@. Here's an example:
+It's called `create_translation_table!`. Here's an example:
 
-__Note that if you're using rails >= 3.1.0 migrations have only the +change+ instance method__
+__Note that if you're using rails >= 3.1.0 migrations have only the `change`
+instance method__
 
 ### Rails 3.0
 
@@ -98,7 +99,8 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.timestamps
     end
-    Post.create_translation_table! :title => :string, :text => {:type => :text, :null => false, :default => 'abc'}
+    Post.create_translation_table! :title => :string,
+      :text => {:type => :text, :null => false, :default => 'abc'}
   end
   def down
     drop_table :posts
@@ -107,16 +109,20 @@ class CreatePosts < ActiveRecord::Migration
 end
 ```
 
-Note that the ActiveRecord model @Post@ must already exist and have a @translates@ directive listing the translated fields.
+Note that the ActiveRecord model `Post` must already exist and have a `translates`
+directive listing the translated fields.
 
 ## Migrating existing data to and from the translated version
 
-As well as creating a translation table, you can also use @create_translation_table!@ to migrate across any
-existing data to the default locale. This can also operate in reverse to restore any translations from the default locale
-back to the model when you don't want to use a translation table anymore using @drop_translation_table!@
+As well as creating a translation table, you can also use `create_translation_table!`
+to migrate across any existing data to the default locale. This can also operate
+in reverse to restore any translations from the default locale back to the model
+when you don't want to use a translation table anymore using `drop_translation_table!`
 
-This feature makes use of @untranslated_attributes@ which allows access to the model's attributes as they were before
-the translation was applied. Here's an example (which assumes you already have a model called @Post@ and its table exists):
+This feature makes use of `untranslated_attributes` which allows access to the
+model's attributes as they were before the translation was applied. Here's an
+example (which assumes you already have a model called `Post` and its table
+exists):
 
 ```ruby
 class TranslatePosts < ActiveRecord::Migration
@@ -139,7 +145,7 @@ end
 
 Globalize3 nicely integrates with
 "paper_trail":https://github.com/airblade/paper_trail.  To add versioning
-support to your model, you'll want to add the <code>:versioning => true</code>
+support to your model, you'll want to add the `:versioning => true`
 option to your call to <code>translates</code>.  An example from our test suite:
 
 ```ruby
@@ -149,19 +155,25 @@ translates :title, :content, :published, :published_at, :versioning => true
 You will also need to have already generated the versions table that paper_trail
 expects.  See the paper_trail README for more details.
 
-Also, please see the tests in test/globalize3/versioning_test.rb for some current gotchas.
+Also, please see the tests in `test/globalize3/versioning_test.rb` for some
+current gotchas.
 
 ## I18n fallbacks for empty translations
 
-It is possible to enable fallbacks for empty translations. It will depend on the configuration setting you have set for I18n translations in your Rails config.
+It is possible to enable fallbacks for empty translations. It will depend on the
+configuration setting you have set for I18n translations in your Rails config.
 
-You can enable them by adding the next line to @config/application.rb@ (or only @config/environments/production.rb@ if you only want them in production)
+You can enable them by adding the next line to `config/application.rb` (or only
+`config/environments/production.rb` if you only want them in production)
 
 ```ruby
 config.i18n.fallbacks = true
 ```
 
-By default, globalize3 will only use fallbacks when your translation model does not exist or the translation value for the item you've requested is @nil@. However it is possible to also use fallbacks for @blank@ translations by adding @:fallbacks_for_empty_translations => true@ to the @translates@ method.
+By default, globalize3 will only use fallbacks when your translation model does
+not exist or the translation value for the item you've requested is `nil`.
+However it is possible to also use fallbacks for `blank` translations by adding
+`:fallbacks_for_empty_translations => true` to the `translates` method.
 
 ```ruby
 class Post < ActiveRecord::Base
@@ -169,7 +181,8 @@ class Post < ActiveRecord::Base
 end
 
 puts post.translations.inspect
-# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">, #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
+# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
+      #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
 
 I18n.locale = :en
 post.title # => 'Globalize3 rocks!'
@@ -186,7 +199,8 @@ class Post < ActiveRecord::Base
 end
 
 puts post.translations.inspect
-# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">, #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
+# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
+      #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
 
 I18n.locale = :en
 post.title # => 'Globalize3 rocks!'
@@ -200,12 +214,21 @@ post.name  # => 'Globalize3'
 
 ## Scoping objects by those with translations
 
-To only return objects that have a translation for the given locale we can use the `with_translations` scope. This will only return records that have a translations for the passed in locale.
+To only return objects that have a translation for the given locale we can use
+the `with_translations` scope. This will only return records that have a
+translations for the passed in locale.
 
 ```ruby
-Post.with_translations('en') # => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">, #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
-Post.with_translations(I18n.locale) # => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">, #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
-Post.with_translations('de') # => []
+Post.with_translations('en')
+# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
+      #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
+
+Post.with_translations(I18n.locale)
+# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
+      #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
+
+Post.with_translations('de')
+# => []
 ```
 
 ## Changes since Globalize2
@@ -229,8 +252,8 @@ See this script by Tomasz Stachewicz: http://gist.github.com/120867
 
 * "globalize2_versioning":http://github.com/joshmh/globalize2_versioning - acts_as_versioned style versioning for globalize2 (Joshua Harvey)
 * "i18n_multi_locales_validations":http://github.com/ZenCocoon/i18n_multi_locales_validations - multi-locales attributes validations to validates attributes from globalize2 translations models (Sébastien Grosjean)
-* "globalize2 Demo App":http://github.com/svenfuchs/globalize2-demo - demo application for globalize2 (Sven Fuchs)</li>
-* "migrate_from_globalize1":http://gist.github.com/120867 - migrate model translations from Globalize1 to globalize2 (Tomasz Stachewicz)</li>
-* "easy_globalize2_accessors":http://github.com/astropanic/easy_globalize2_accessors - easily access (read and write) globalize2-translated fields (astropanic, Tomasz Stachewicz)</li>
-* "globalize2-easy-translate":http://github.com/bsamman/globalize2-easy-translate - adds methods to easily access or set translated attributes to your model (bsamman)</li>
-* "batch_translations":http://github.com/rilla/batch_translations - allow saving multiple globalize2 translations in the same request (Jose Alvarez Rilla)</li>
+* "globalize2 Demo App":http://github.com/svenfuchs/globalize2-demo - demo application for globalize2 (Sven Fuchs)
+* "migrate_from_globalize1":http://gist.github.com/120867 - migrate model translations from Globalize1 to globalize2 (Tomasz Stachewicz)
+* "easy_globalize2_accessors":http://github.com/astropanic/easy_globalize2_accessors - easily access (read and write) globalize2-translated fields (astropanic, Tomasz Stachewicz)
+* "globalize2-easy-translate":http://github.com/bsamman/globalize2-easy-translate - adds methods to easily access or set translated attributes to your model (bsamman)
+* "batch_translations":http://github.com/rilla/batch_translations - allow saving multiple globalize2 translations in the same request (Jose Alvarez Rilla)
