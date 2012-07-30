@@ -5,7 +5,7 @@ class ValidationsTest < Test::Unit::TestCase
     super
     Validatee.reset_callbacks(:validate)
   end
-  
+
   # TODO
   #
   # test "a record with valid values on non-default locale validates" do
@@ -44,31 +44,31 @@ class ValidationsTest < Test::Unit::TestCase
     assert !Validatee.new(:string => '0').valid?
     assert Validatee.new(:string => '1').valid?
   end
-  
+
   test "validates_length_of (:is)" do
     Validatee.class_eval { validates_length_of :string, :is => 1 }
     assert !Validatee.new(:string => 'aa').valid?
     assert Validatee.new(:string => 'a').valid?
   end
-  
+
   test "validates_format_of" do
     Validatee.class_eval { validates_format_of :string, :with => /^\d+$/ }
     assert !Validatee.new(:string => 'a').valid?
     assert Validatee.new(:string => '1').valid?
   end
-  
+
   test "validates_inclusion_of" do
     Validatee.class_eval { validates_inclusion_of :string, :in => %(a) }
     assert !Validatee.new(:string => 'b').valid?
     assert Validatee.new(:string => 'a').valid?
   end
-  
+
   test "validates_exclusion_of" do
     Validatee.class_eval { validates_exclusion_of :string, :in => %(b) }
     assert !Validatee.new(:string => 'b').valid?
     assert Validatee.new(:string => 'a').valid?
   end
-  
+
   test "validates_numericality_of" do
     Validatee.class_eval { validates_numericality_of :string }
     assert !Validatee.new(:string => 'a').valid?
@@ -84,7 +84,10 @@ class ValidationsTest < Test::Unit::TestCase
     #create
     assert !Validatee.new(:string => 'a').valid?
     assert Validatee.new(:string => 'b').valid?
-    Globalize.with_locale(:de) { assert Validatee.new(:string => 'a').valid? }
+    Globalize.with_locale(:de) {
+      assert Validatee.new(:string => 'a').valid?,
+             "Validate with string 'a' was incorrectly considered invalid #{Validatee.first.attributes.inspect}"
+    }
 
     # update
     Validatee.create!(:string => 'b')
