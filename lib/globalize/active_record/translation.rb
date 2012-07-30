@@ -16,7 +16,7 @@ module Globalize
           # Avoid using "IN" with SQL queries when only using one locale.
           locales = locales.flatten.map(&:to_s)
           locales = locales.first if locales.one?
-          where(:locale => locales)
+          where :locale => locales
         end
         alias with_locale with_locales
 
@@ -26,11 +26,12 @@ module Globalize
       end
 
       def locale
-        read_attribute(:locale).to_s.intern
+        _locale = read_attribute :locale
+        _locale.present? ? _locale.to_sym : _locale
       end
 
       def locale=(locale)
-        write_attribute(:locale, locale.to_s)
+        write_attribute :locale, locale.to_s
       end
     end
   end
