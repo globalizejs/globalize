@@ -3,7 +3,7 @@ module Globalize
     class Translation < ::ActiveRecord::Base
 
       attr_accessible :locale
-      validates_presence_of :locale
+      validates :locale, :presence => true
 
       class << self
         # Sometimes ActiveRecord queries .table_exists? before the table name
