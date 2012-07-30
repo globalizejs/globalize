@@ -110,7 +110,7 @@ class TranslatedTest < Test::Unit::TestCase
     I18n.locale = :'de-DE'
     assert_equal 'foo', post.title
 
-    post.update_attribute :title, nil
+    post.update_attributes :title => nil
     assert_equal 'foo', post.title
   end
 
@@ -121,7 +121,7 @@ class TranslatedTest < Test::Unit::TestCase
     I18n.locale = :'de-DE'
     assert_equal 'foo', task.name
 
-    task.update_attribute :name, ''
+    task.update_attributes :name => ''
     assert_equal 'foo', task.name
   end
 
@@ -134,10 +134,10 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal 'foo', task.name
     assert_equal 'foo', post.title
 
-    task.update_attribute :name, ''
+    task.update_attributes :name => ''
     assert_equal 'foo', task.name
 
-    post.update_attribute :title, ''
+    post.update_attributes :title => ''
     assert_equal '', post.title
   end
 

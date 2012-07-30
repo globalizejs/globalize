@@ -12,7 +12,7 @@ class ValidationsTest < Test::Unit::TestCase
   #   assert Post.create(:title => 'foo', :locale => :de).valid?
   # end
 
-  test "update_attribute succeeds with valid values" do
+  test "update_attributes succeeds with valid values" do
     post = Post.create(:title => 'foo')
     post.update_attributes(:title => 'baz')
     assert post.valid?

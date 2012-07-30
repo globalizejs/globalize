@@ -76,12 +76,4 @@ class VersioningTest < Test::Unit::TestCase
       assert !post.published?
     end
   end
-
-  # test "versioning with vestal_versions works (using update_attribute)" do
-  #   post = Post.create!(:title => 'title', :content => '')
-  #   assert_equal 1, post.version
-  #
-  #   assert post.update_attribute(:title, 'changed title')
-  #   assert_equal 2, post.version
-  # end
 end
