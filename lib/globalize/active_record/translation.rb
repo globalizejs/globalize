@@ -1,9 +1,9 @@
 module Globalize
   module ActiveRecord
     class Translation < ::ActiveRecord::Base
-    
+
       attr_accessible :locale
-      
+
       class << self
         # Sometimes ActiveRecord queries .table_exists? before the table name
         # has even been set which results in catastrophic failure.

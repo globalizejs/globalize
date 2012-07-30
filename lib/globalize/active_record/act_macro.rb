@@ -35,6 +35,9 @@ module Globalize
             delegate :version, :versions, :to => :translation
           end
 
+          translation_class.instance_eval %{
+            attr_accessible :#{attr_names.join(', :')}
+          } if attr_names.present?
         end
 
         new_attr_names = attr_names - translated_attribute_names

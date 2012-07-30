@@ -42,13 +42,12 @@ class AttributesTest < Test::Unit::TestCase
     assert_translated post, :de, [:title, :content], ['Titel', 'geänderter Inhalt']
   end
 
-  test "set_translations raises an UnknownAttributeError on unknown attributes" do
+  test "set_translations raises an ::NoMethodError on unknown attributes" do
     post = Post.create(:title => 'title', :content => 'content', :locale => :en)
     post.update_attributes(:title => 'Titel', :content => 'Inhalt', :locale => :de)
 
-    options = { :de => { :does_not_exist => 'should raise' } }
-    assert_raises(ActiveRecord::UnknownAttributeError, 'unknown attribute: does_not_exist') do
-      post.set_translations options
+    assert_raises(NoMethodError, 'unknown attribute: does_not_exist') do
+      post.set_translations(:de => { :does_not_exist => 'should raise' })
     end
   end
 end

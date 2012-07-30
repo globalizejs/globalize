@@ -97,8 +97,12 @@ module Globalize
       def set_translations(options)
         options.keys.each do |locale|
           translation = translation_for(locale) ||
-            translations.build(:locale => locale.to_s)
-          translation.update_attributes!(options[locale])
+                        translations.build(:locale => locale.to_s)
+
+          options[locale].each do |key, value|
+            translation.send :"#{key}=", value
+          end
+          translation.save
         end
       end
 
