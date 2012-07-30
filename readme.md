@@ -220,12 +220,16 @@ translations for the passed in locale.
 
 ```ruby
 Post.with_translations('en')
-# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
-      #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
+# => [
+  #<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
+  #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>
+]
 
 Post.with_translations(I18n.locale)
-# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
-      #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
+# => [
+  #<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
+  #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>
+]
 
 Post.with_translations('de')
 # => []
