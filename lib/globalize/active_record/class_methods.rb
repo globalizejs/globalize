@@ -103,7 +103,7 @@ module Globalize
             return scope.find_or_instantiator_by_attributes match, attribute_names, *arguments, &block
           end
           match_finder_method = match.finder.to_s
-          match_finder_method << "!" if match.bang?
+          match_finder_method << "!" if match.bang? && ::ActiveRecord::VERSION::STRING >= "3.1.0"
           return scope.send(match_finder_method).tap do |found|
             found.is_a?(Array) ? found.map { |f| f.translations.reload } : found.translations.reload unless found.nil?
           end

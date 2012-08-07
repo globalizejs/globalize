@@ -50,9 +50,11 @@ class DynamicFindersTest < Test::Unit::TestCase
     assert_equal [],    Post.find_all_by_title('non existing')
   end
 
-  test "dynamic finders do work with bangs" do
-    assert_raise ActiveRecord::RecordNotFound do
-      Post.find_by_title!('non existing')
+  if ::ActiveRecord::VERSION::STRING >= "3.1.0"
+    test "dynamic finders do work with bangs" do
+      assert_raise ActiveRecord::RecordNotFound do
+        Post.find_by_title!('non existing')
+      end
     end
   end
 
@@ -143,7 +145,7 @@ class TwoTranslatedAttributesDynamicFindersTest < Test::Unit::TestCase
   test "return nil for none existing values" do
     assert_nil Post.find_by_content_and_title(@content, "not exisiting")
     assert_nil Post.find_by_content_and_title("not existing", @title2)
-    
+
     assert_nil Post.find_by_title_and_content("not exisiting", @content)
     assert_nil Post.find_by_title_and_content(@title2, "not existing")
   end
