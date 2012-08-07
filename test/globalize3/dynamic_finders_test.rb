@@ -50,6 +50,12 @@ class DynamicFindersTest < Test::Unit::TestCase
     assert_equal [],    Post.find_all_by_title('non existing')
   end
 
+  test "dynamic finders do work with bangs" do
+    assert_raise ActiveRecord::RecordNotFound do
+      Post.find_by_title!('non existing')
+    end
+  end
+
   # https://github.com/svenfuchs/globalize3/issues#issue/5
   test "simple dynamic finders retruns results from current locale and fallbacks" do
     en, de, he = 'title', 'titel', 'שם'

@@ -102,8 +102,9 @@ module Globalize
           if match.instantiator? and scope.blank?
             return scope.find_or_instantiator_by_attributes match, attribute_names, *arguments, &block
           end
-
-          return scope.send(match.finder).tap do |found|
+          match_finder_method = match.finder.to_s
+          match_finder_method << "!" if match.bang?
+          return scope.send(match_finder_method).tap do |found|
             found.is_a?(Array) ? found.map { |f| f.translations.reload } : found.translations.reload unless found.nil?
           end
         end
