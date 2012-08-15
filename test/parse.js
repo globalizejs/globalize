@@ -36,6 +36,23 @@ test("basics, date", function() {
 	equal( Globalize.parseDate('2011-17-11 13:23:12','yyyy-dd-MM HH:mm:ss','fr-CA').valueOf(), (new Date(2011, 10, 17, 13, 23, 12)).valueOf() );
 });
 
+test("native es5, date", function() {
+	var date = new Date(2012, 8, 15, 10, 15, 30, 123);
+	// ISO 8601: YYYY-MM-DDTHH:mm:ss.sssZ
+	if(date.toISOString){
+		equal(Globalize.parseDate(date.toISOString()).valueOf(), date.valueOf(), "should parse date strings from Date.prototype.toISOString");
+	} else {
+		ok(true, "browser doesn't support Date.prototype.toISOString (ISO 8601)");
+	}
+	// toJSON
+	if(date.toJSON && !isNaN(Date.parse(date.toJSON()))){
+		equal(Globalize.parseDate(date.toJSON()).valueOf(), date.valueOf(), "should parse date strings from Date.prototype.toJSON");
+	} else {
+		ok(true, "browser doesn't support Date.prototype.toJSON or parsing it's output");
+	}
+
+});
+
 test("invalid input", function() {
 	// #47 - Return NaN instead of 0 for invalid values
 	ok( isNaN(Globalize.parseInt("foo")) );
