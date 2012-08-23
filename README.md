@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/jquery/globalize.png)](http://travis-ci.org/jquery/globalize)
 # Globalize
 
 A JavaScript library for globalization and localization. Enables complex
