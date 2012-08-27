@@ -75,10 +75,10 @@ class ValidationsTest < MiniTest::Spec
     assert Validatee.new(:string => '1').valid?
   end
 
-  it "validates_uniqueness_of" do
+  it "validates_uniqueness_of (basic tests)" do
     Validatee.class_eval { validates_uniqueness_of :string }
     # make sure Validatee and Validatee::Translation table ids are not the same (for tests)
-    10.times { Validatee::Translation.create }
+    10.times { Validatee::Translation.create :locale => "en" }
     validatee = Validatee.create!(:string => 'a')
 
     #create
@@ -93,18 +93,38 @@ class ValidationsTest < MiniTest::Spec
     Validatee.create!(:string => 'b')
     assert validatee.update_attributes(:string => 'a')
     assert !validatee.update_attributes(:string => 'b')
-    Globalize.with_locale(:de) {
-      validatee.update_attributes(:string => 'b')
-      assert_equal 0, validatee.errors.count
-      assert validatee.valid?
-    }
+    Globalize.with_locale(:de) { assert validatee.update_attributes(:string => 'b') }
 
+  end
+
+  it "validates_uniqueness_of (with nested model)" do
     # nested model (to check for this: https://github.com/resolve/refinerycms/pull/1486 )
     Nested::NestedValidatee.class_eval { validates_uniqueness_of :string }
     nested_validatee = Nested::NestedValidatee.create!(:string => 'a')
     Nested::NestedValidatee.create!(:string => 'b')
     assert nested_validatee.update_attributes(:string => 'a')
     assert !nested_validatee.update_attributes(:string => 'b')
+  end
+
+  it "validates_uniqueness_of (with options[:scope])" do
+    # uniqueness validation on translated attribute with scope
+    ScopedValidatee.class_eval { validates_uniqueness_of :string, :scope => [:integer,:scope_string] }
+    ScopedValidatee.create!(:string => 'c', :integer => 1, :scope_string => 'd')
+
+    assert !ScopedValidatee.new(:string => 'c', :integer => 1, :scope_string => 'd').valid?
+
+    assert ScopedValidatee.new(:string => 'c', :integer => 1, :scope_string => 'a').valid?
+    assert ScopedValidatee.new(:string => 'c', :integer => 1).valid?
+    assert ScopedValidatee.new(:string => 'c', :integer => 0, :scope_string => 'd').valid?
+    assert ScopedValidatee.new(:string => 'c', :scope_string => 'd').valid?
+    assert ScopedValidatee.new(:string => 'c', :integer => 0, :scope_string => 'a').valid?
+
+    # check to make sure standard uniqueness validation still works
+    ScopedValidatee.class_eval { validates_uniqueness_of :another_integer }
+    ScopedValidatee.create!(:string => 'abc', :another_integer => 1)
+
+    assert !ScopedValidatee.new(:another_integer => 1).valid?
+    assert ScopedValidatee.new(:another_integer => 0).valid?
   end
 
   # it "validates_associated" do

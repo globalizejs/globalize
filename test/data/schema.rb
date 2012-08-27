@@ -90,6 +90,17 @@ ActiveRecord::Schema.define do
     t.string     :string
   end
 
+  create_table :scoped_validatees, :force => true do |t|
+    t.integer :integer, :another_integer
+  end
+
+  create_table :scoped_validatee_translations, :force => true do |t|
+    t.references :scoped_validatee
+    t.string     :locale
+    t.string     :string
+    t.string     :scope_string
+  end
+
   create_table :users, :force => true do |t|
     t.string   :email
     t.datetime :created_at
