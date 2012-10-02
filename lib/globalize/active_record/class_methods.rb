@@ -45,7 +45,7 @@ module Globalize
             klass = self.const_set(:Translation, Class.new(Globalize::ActiveRecord::Translation))
           end
 
-          klass.belongs_to name.underscore.gsub('/', '_')
+          klass.belongs_to name.underscore.gsub('/', '_').to_sym
           klass
         end
       end

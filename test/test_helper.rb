@@ -63,7 +63,7 @@ class Test::Unit::TestCase
   end
 
   def assert_association(model, type, other)
-    assert model.reflect_on_all_associations(type).any? { |a| a.name.to_s == other.to_s }
+    assert model.reflect_on_all_associations(type).any? { |a| a.name == other }
   end
 
   def assert_translated(record, locale, attributes, translations)
