@@ -212,6 +212,9 @@ default.
 Parses a string representing a whole number in the given radix (10 by default),
 taking into account any formatting rules followed by the given culture (or the
 current culture, if not specified).
+
+If a percentage is passed into parseInt, the percent sign will be removed and the number parsed as is.
+Example: 12.34% would be returned as 12.
 <pre>
 // assuming a culture where "," is the group separator
 // and "." is the decimal separator
@@ -228,6 +231,9 @@ Globalize.parseInt( "1.234,56" ); // 1234
 Parses a string representing a floating point number in the given radix (10 by
 default), taking into account any formatting rules followed by the given
 culture (or the current culture, if not specified).
+
+If a percentage is passed into parseFloat, the percent sign will be removed and the number parsed as is.
+Example: 12.34% would be returned as 12.34
 <pre>
 // assuming a culture where "," is the group separator
 // and "." is the decimal separator

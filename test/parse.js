@@ -14,6 +14,15 @@ test("basics, int", function() {
 	equal( Globalize.parseInt("-5000000000"), -5000000000 );
 });
 
+test( "basic, percentage", function() {
+	equal( Globalize.parseInt( "12%" ), "12" );
+	equal( Globalize.parseInt( "12.34%" ), "12" );
+	equal( Globalize.parseInt( "-12.34%" ), "-12" );
+	equal( Globalize.parseFloat( "12%" ), "12" );
+	equal( Globalize.parseFloat( "12.34%" ), "12.34" );
+	equal( Globalize.parseFloat( "-12.34%" ), "-12.34" );
+});
+
 test("basics, currency", function() {
 	equal( Globalize.parseInt("$5.51"), 5 );
 	equal( Globalize.parseFloat("$5.51"), 5.51 );
