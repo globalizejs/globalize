@@ -27,6 +27,11 @@ test("basics, currency", function() {
 	equal( Globalize.parseInt("5,51 €", 10, "de-DE"), 5 );
 	equal( Globalize.parseFloat("5,51 €", 10, "de-DE"), 5.51 );
 	equal( Globalize.parseFloat("5,51 €", "de-DE"), 5.51, "optional radix" );
+
+	// #44 - Test Currencies with a space between negative and number
+	equal( Globalize.parseInt("-R$ 5,51", "pt-BR"), -5 );
+	equal( Globalize.parseFloat("-R$ 5,51", "pt-BR"), -5.51 );
+
 });
 
 test("basics, date", function() {
