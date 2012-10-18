@@ -10,7 +10,7 @@
 		"strings", "numbers", "dates", "times",
 		"calendars", "cultures", "languages", "locales"
 	],
-	"homepage": "http://wiki.jqueryui.com/Globalize",
+	"homepage": "https://github.com/jquery/globalize",
 	"author": "The jQuery Project",
 	"contributors": [
 		"Dave Reed <dareed@microsoft.com> (http://weblogs.asp.net/infinitiesloop)",
@@ -21,9 +21,6 @@
 		"Tobie Langel <tobie.langel@gmail.com> (http://tobielangel.com)",
 		"Boris Moore <borismoore@gmail.com> (http://www.borismoore.com)"
 	],
-	"files": [
-		"./lib/cultures"
-	],
 	"main": "./lib/globalize.js",
 	"repository": {
 		"type": "git",
@@ -32,9 +29,8 @@
 	"bugs": {
 		"web": "http://github.com/jquery/globalize/issues"
 	},
-	"directories": {
-		"lib": "./lib",
-		"examples": "./examples"
+	"devDependencies": {
+		"grunt": "0.3.17"
 	},
 	"licenses": [
 		{

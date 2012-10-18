@@ -5,3 +5,5 @@
 .DS_Store
 generator/bin
 generator/obj
+node_modules
+dist
