@@ -54,6 +54,18 @@ class AttributesTest < Test::Unit::TestCase
     assert_translated post, :de, :title, 'Titel'
   end
 
+  test "a translated attribute reader does not create empty translations when loaded in a new locale" do
+    post = Post.create(:title => 'title')
+    assert_equal 1, post.translations.length
+    I18n.locale = :de
+    
+    post.reload
+    assert_equal 1, post.translations.length
+    
+    post.save
+    assert_equal 1, post.translations.length
+  end
+
   test "a translated attribute reader returns the correct translation for an unsaved record after locale switching" do
     post = Post.create(:title => 'title')
     with_locale(:de) { post.title = 'Titel' }
