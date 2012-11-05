@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors      = ['Sven Fuchs', 'Joshua Harvey', 'Clemens Kofler', 'John-Paul Bader', 'Tomasz Stachewicz', 'Philip Arndt']
   s.email        = 'nobody@globalize-rails.org'
   s.homepage     = 'http://github.com/svenfuchs/globalize3'
-  s.summary      = 'Rails I18n: de-facto standard library for ActiveRecord 3 model/data translation'
+  s.summary      = 'Rails I18n de-facto standard library for ActiveRecord 3 model/data translation'
   s.description  = "#{s.summary}."
 
   s.files        = Dir['{lib/**/*,[A-Z]*}']
