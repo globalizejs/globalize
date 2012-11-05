@@ -1,5 +1,3 @@
-$: << File.expand_path('../lib', __FILE__)
-
 require 'globalize3/version'
 
 Gem::Specification.new do |s|
