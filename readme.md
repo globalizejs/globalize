@@ -52,8 +52,9 @@ In order to make this work, you'll need to add the appropriate translation table
 Globalize3 comes with a handy helper method to help you do this.
 It's called `create_translation_table!`. Here's an example:
 
-_Note that if you're using Rails versions >= 3.1.0 then migrations that you
-generate may only have the `change` instance method._
+_Note that your migrations can use `create_translation_table!` and `drop_translation_table!`
+only inside the `up` and `down` instance methods, respectively. You cannot use `create_translation_table!`
+and `drop_translation_table!` inside the `change` instance method in Rails >= 3.1.0._
 
 ### Rails 3.0
 
@@ -74,7 +75,7 @@ end
 
 ### Rails >= 3.1.0
 
-***Do not use the change method!***
+***Do not use the `change` method, use `up` and `down`!***
 
 ```ruby
 class CreatePosts < ActiveRecord::Migration
