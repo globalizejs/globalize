@@ -4,7 +4,7 @@ ActiveRecord::Validations::UniquenessValidator.class_eval do
   def validate_each_with_translations(record, attribute, value)
     klass = record.class
     if klass.translates? && klass.translated?(attribute)
-      if methods.include? :build_relation
+      if methods.include?(:build_relation) || respond_to?(:build_relation)
         finder_class = klass.translation_class
         table = finder_class.arel_table
 
