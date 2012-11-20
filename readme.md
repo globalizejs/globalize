@@ -156,6 +156,9 @@ translates :title, :content, :published, :published_at, :versioning => true
 You will also need to have already generated the versions table that paper_trail
 expects.  See the paper_trail README for more details.
 
+If you are adding globalize3 to any previously versioned models, please note
+that you will need to add a new `locale` column to your versioning table.
+
 Also, please see the tests in `test/globalize3/versioning_test.rb` for some
 current gotchas.
 
