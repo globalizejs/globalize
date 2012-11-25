@@ -134,4 +134,24 @@ ActiveRecord::Schema.define do
     t.string     :title
     t.string     :body
   end
+  
+  create_table :serialized_attrs, :force => true do |t|
+    t.text       :meta
+  end
+  
+  create_table :serialized_attr_translations, :force => true do |t|
+    t.integer    :serialized_attr_id
+    t.string     :locale
+    t.text       :meta
+  end
+  
+  create_table :serialized_hashes, :force => true do |t|
+    t.text       :meta
+  end
+  
+  create_table :serialized_hash_translations, :force => true do |t|
+    t.integer    :serialized_hash_id
+    t.string     :locale
+    t.text       :meta
+  end
 end

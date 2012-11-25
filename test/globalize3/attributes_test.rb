@@ -141,5 +141,22 @@ class AttributesTest < Test::Unit::TestCase
     post.title = 'changed title'
     assert_equal post.untranslated_attributes['title'], before
   end
-
+  
+  test 'serializable attribute with default marshalling, without data' do
+    data = nil
+    model = SerializedAttr.create
+    assert_equal data, model.meta
+  end
+  
+  test 'serializable attribute with default marshalling, with data' do
+    data = {:foo => "bar", :whats => "up"}
+    model = SerializedAttr.create(:meta => data)
+    assert_equal data, model.meta
+  end
+  
+  test 'serializable attribute with specified marshalling' do
+    data = {}
+    model = SerializedHash.create
+    assert_equal data, model.meta
+  end
 end

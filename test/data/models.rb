@@ -86,3 +86,13 @@ class Page < ActiveRecord::Base
   translates :title
   translates :body
 end
+
+class SerializedAttr < ActiveRecord::Base
+  serialize :meta
+  translates :meta
+end
+
+class SerializedHash < ActiveRecord::Base
+  serialize :meta, Hash
+  translates :meta
+end
