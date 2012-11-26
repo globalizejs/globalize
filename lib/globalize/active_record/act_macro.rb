@@ -42,8 +42,14 @@ module Globalize
           # detect and apply serialization
           attr_names.each do |attr_name|
             serializer = self.serialized_attributes[attr_name.to_s]
+            
             if serializer.present?
-              serializer = serializer.object_class if serializer.is_a?(::ActiveRecord::Coders::YAMLColumn)
+              if defined?(::ActiveRecord::Coders::YAMLColumn)\
+                and serializer.is_a?(::ActiveRecord::Coders::YAMLColumn)
+                
+                serializer = serializer.object_class
+              end
+              
               translation_class.send :serialize, attr_name, serializer
             end
           end

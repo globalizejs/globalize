@@ -154,9 +154,17 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal data, model.meta
   end
   
-  test 'serializable attribute with specified marshalling' do
-    data = {}
-    model = SerializedHash.create
-    assert_equal data, model.meta
+  if ENV['RAILS_3_0']
+    test 'serializable attribute with specified marshalling, without data, rails 3.0' do
+      data = nil
+      model = SerializedHash.new
+      assert_equal data, model.meta
+    end
+  else
+    test 'serializable attribute with specified marshalling, without data, rails 3.1+' do
+      data = {}
+      model = SerializedHash.new
+      assert_equal data, model.meta
+    end
   end
 end
