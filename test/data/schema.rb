@@ -49,8 +49,17 @@ ActiveRecord::Schema.define do
     t.string :untranslated
   end
 
+  create_table :two_attributes_migrateds, :force => true do |t|
+    t.string :name
+    t.string :untranslated
+  end
+
   create_table :untranslateds, :force => true do |t|
     t.string :name
+  end
+  create_table :two_attributes_untranslateds, :force => true do |t|
+    t.string :name
+    t.string :body
   end
 
   create_table :validatees, :force => true do |t|
