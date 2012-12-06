@@ -215,6 +215,29 @@ post.title # => 'Globalize3 rocks!'
 post.name  # => 'Globalize3'
 ```
 
+## Fallback locales to each other
+
+It is possible to setup locales to fallback to each other.
+
+```ruby
+class Post < ActiveRecord::Base
+  translates :title, :name
+end
+
+Globalize.fallbacks = {:en => [:en, :pl], :pl => [:pl, :en]}
+
+I18n.locale = :en
+en_post = Post.create(:title => 'en_title')
+
+I18n.locale = :pl
+pl_post = Post.create(:title => 'pl_title')
+en_post.title # => 'en_title'
+
+I18n.locale = :en
+en_post.title # => 'en_title'
+pl_post.title # => 'pl_title'
+```
+
 
 ## Scoping objects by those with translations
 
