@@ -38,21 +38,12 @@ module Globalize
       I18n.respond_to?(:fallbacks)
     end
 
-    def fallbacks(locale = self.locale)
-      if read_fallbacks.blank?
-        i18n_fallbacks? ? I18n.fallbacks[locale] : [locale.to_sym]
-      else
-        if read_fallbacks.is_a? Array
-          read_fallbacks
-        elsif read_fallbacks.is_a? Hash
-          read_fallbacks.each do |key, value|
-            return value if locale.to_sym.eql? key.to_sym
-          end
-          i18n_fallbacks? ? I18n.fallbacks[locale] : [locale.to_sym]
-        else
-          [read_fallbacks]
-        end
-      end
+    def fallbacks(for_locale = self.locale)
+      read_fallbacks[for_locale] || default_fallbacks(for_locale)
+    end
+
+    def default_fallbacks(for_locale = self.locale)
+      i18n_fallbacks? ? I18n.fallbacks[for_locale] : [for_locale.to_sym]
     end
 
   protected
@@ -62,15 +53,23 @@ module Globalize
     end
 
     def set_locale(locale)
-      Thread.current[:globalize_locale] = locale.to_sym rescue nil
+      Thread.current[:globalize_locale] = locale.try(:to_sym)
     end
 
     def read_fallbacks
-      Thread.current[:fallbacks]
+      hash = HashWithIndifferentAccess.new
+
+      if (fb = Thread.current[:fallbacks]).present?
+        fb.each do |key, value|
+          hash[key] = value.presence || [key]
+        end
+      end
+
+      hash
     end
 
-    def set_fallbacks(locales)
-      Thread.current[:fallbacks] = locales rescue nil
+    def set_fallbacks(locales = {})
+      Thread.current[:fallbacks] = locales
     end
   end
 end
