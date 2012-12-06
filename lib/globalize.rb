@@ -57,19 +57,17 @@ module Globalize
     end
 
     def read_fallbacks
-      hash = HashWithIndifferentAccess.new
-
-      if (fb = Thread.current[:fallbacks]).present?
-        fb.each do |key, value|
-          hash[key] = value.presence || [key]
-        end
-      end
-
-      hash
+      Thread.current[:fallbacks] || HashWithIndifferentAccess.new
     end
 
-    def set_fallbacks(locales = {})
-      Thread.current[:fallbacks] = locales
+    def set_fallbacks(locales)
+      fallback_hash = HashWithIndifferentAccess.new
+
+      locales.each do |key, value|
+        fallback_hash[key] = value.presence || [key]
+      end if locales.present?
+
+      Thread.current[:fallbacks] = fallback_hash
     end
   end
 end
