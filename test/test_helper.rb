@@ -25,7 +25,7 @@ DatabaseCleaner.strategy = :truncation
 
 class Test::Unit::TestCase
   def setup
-    I18n.locale = :en
+    I18n.locale = I18n.default_locale = :en
     Globalize.locale = nil
     DatabaseCleaner.start
   end

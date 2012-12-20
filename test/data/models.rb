@@ -78,6 +78,28 @@ class Task < ActiveRecord::Base
   end
 end
 
+class LegacyTask < ActiveRecord::Base
+  if self.respond_to?(:table_name=)
+    self.table_name = :tasks
+  else
+    set_table_name :tasks
+  end
+end
+
+
+class Word < ActiveRecord::Base
+  translates :term, :definition
+end
+
+class LegacyWord < ActiveRecord::Base
+  if self.respond_to?(:table_name=)
+    self.table_name = :words
+  else
+    set_table_name :words
+  end
+end
+
+
 class NewsItem < ActiveRecord::Base
   translates :name, :foreign_key => :news_id
   self.table_name = :news
