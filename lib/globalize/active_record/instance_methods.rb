@@ -45,11 +45,10 @@ module Globalize
             warn "[DEPRECATION] passing 'locale' as #{options.inspect} is deprecated. Please use {:locale => #{options.inspect}} instead."
             options = {:locale => options}
           end
-          options = {:locale => nil}.merge(options)
+          options = {:locale => Globalize.locale}.merge(options)
           attribute_will_change! name.to_s
-          the_locale = options[:locale] || Globalize.locale
-          self.translations.reject!{|t| t.new_record? && t.locale != the_locale}
-          globalize.write(the_locale, name, value)
+
+          globalize.write(options[:locale], name, value)
         else
           super(name, value)
         end
