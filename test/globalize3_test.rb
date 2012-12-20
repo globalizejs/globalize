@@ -150,13 +150,6 @@ class Globalize3Test < Test::Unit::TestCase
     assert_equal ['title 1', 'title 2'], Post.with_translations.map(&:title)
   end
 
-  test "translation_for ignores with_translations scope" do
-    post = with_locale(:de) { Post.create(:title => 'title de') }
-    with_locale(:en) { post.update_attributes(:title => 'title en') }
-    
-    assert_equal 'title en', Post.with_translations(:de).first.translation_for(:en).title
-  end
-
   test "a subclass of an untranslated model can translate attributes" do
     post = Post.create(:title => 'title')
     translated_comment = TranslatedComment.create(:post => post, :content => 'content')
