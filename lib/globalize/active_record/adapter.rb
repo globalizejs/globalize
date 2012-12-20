@@ -28,6 +28,7 @@ module Globalize
             return value
           end
         end
+
         return nil
       end
 
@@ -74,7 +75,7 @@ module Globalize
       end
 
       def fetch_attribute(locale, name)
-        translation = record.translation_for(locale)
+        translation = record.translation_for(locale, false)
         return translation && translation.send(name)
       end
 

@@ -64,7 +64,11 @@ module Globalize
 
         options = {:translated => true, :locale => nil}.merge(options)
         if self.class.translated?(name) and options[:translated]
-          globalize.fetch(options[:locale] || Globalize.locale, name)
+          if (value = globalize.fetch(options[:locale] || Globalize.locale, name))
+            value
+          elsif serialized_attributes.has_key?(name.to_s)
+            super(name)
+          end
         else
           super(name)
         end
@@ -130,14 +134,14 @@ module Globalize
         translation_for(::Globalize.locale)
       end
 
-      def translation_for(locale)
+      def translation_for(locale, build_if_missing = true)
         @translation_caches ||= {}
         unless @translation_caches[locale]
           # Fetch translations from database as those in the translation collection may be incomplete
           _translation = translations.detect{|t| t.locale.to_s == locale.to_s}
           _translation ||= translations.with_locale(locale).first
-          _translation ||= translations.build(:locale => locale)
-          @translation_caches[locale] = _translation
+          _translation ||= translations.build(:locale => locale) if build_if_missing
+          @translation_caches[locale] = _translation if _translation
         end
         @translation_caches[locale]
       end
