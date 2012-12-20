@@ -37,8 +37,6 @@ module Globalize
       end
 
       def write_attribute(name, value, options = {})
-        # raise 'y' if value.nil? # TODO.
-
         if translated?(name)
           # Deprecate old use of locale
           unless options.is_a?(Hash)
@@ -110,7 +108,7 @@ module Globalize
       end
 
       def reload(options = nil)
-        @translation_caches.clear if defined? @translation_caches
+        translation_caches.clear
         translated_attribute_names.each { |name| @attributes.delete(name.to_s) }
         globalize.reset
         super(options)
@@ -134,15 +132,18 @@ module Globalize
       end
 
       def translation_for(locale, build_if_missing = true)
-        @translation_caches ||= {}
-        unless @translation_caches[locale]
+        unless translation_caches[locale]
           # Fetch translations from database as those in the translation collection may be incomplete
           _translation = translations.detect{|t| t.locale.to_s == locale.to_s}
           _translation ||= translations.with_locale(locale).first unless translations.loaded?
           _translation ||= translations.build(:locale => locale) if build_if_missing
-          @translation_caches[locale] = _translation if _translation
+          translation_caches[locale] = _translation if _translation
         end
-        @translation_caches[locale]
+        translation_caches[locale]
+      end
+
+      def translation_caches
+        @translation_caches ||= {}
       end
 
       def globalize_fallbacks(locale)
@@ -150,7 +151,7 @@ module Globalize
       end
 
       def rollback
-        @translation_caches[::Globalize.locale] = translation.previous_version
+        translation_caches[::Globalize.locale] = translation.previous_version
       end
 
     protected
@@ -171,7 +172,7 @@ module Globalize
 
       def save_translations!
         globalize.save_translations!
-        @translation_caches = {}
+        translation_caches.clear
       end
 
       def with_given_locale(attributes, &block)
