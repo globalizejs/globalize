@@ -58,10 +58,10 @@ class AttributesTest < Test::Unit::TestCase
     post = Post.create(:title => 'title')
     assert_equal 1, post.translations.length
     I18n.locale = :de
-    
+
     post.reload
     assert_equal 1, post.translations.length
-    
+
     post.save
     assert_equal 1, post.translations.length
   end
@@ -179,4 +179,19 @@ class AttributesTest < Test::Unit::TestCase
       assert_equal data, model.meta
     end
   end
+
+  test 'modifying a translated attribute does not remove secondary unsaved translations' do
+    post = with_locale(:en) do
+      post = Post.new(:translations_attributes => {
+        "0" => { :locale => 'en', :title => 'title' },
+        "1" => { :locale => 'it', :title => 'titolo' }
+      })
+      post.title = 'changed my mind'
+      post
+    end
+    post.save!
+    saved_locales = post.translations.map(&:locale)
+    assert saved_locales.include? :it
+  end
+
 end
