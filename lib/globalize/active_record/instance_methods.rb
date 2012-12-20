@@ -65,7 +65,7 @@ module Globalize
         if self.class.translated?(name) and options[:translated]
           if (value = globalize.fetch(options[:locale] || Globalize.locale, name))
             value
-          elsif serialized_attributes.has_key?(name.to_s)
+          elsif respond_to?(:serialized_attributes) && serialized_attributes.has_key?(name.to_s)
             super(name)
           end
         else
