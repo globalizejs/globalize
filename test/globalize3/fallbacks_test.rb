@@ -191,6 +191,20 @@ class TranslatedTest < Test::Unit::TestCase
 
     Globalize.fallbacks = nil
   end
+
+  test "name_translations should not use fallbacks" do
+    I18n.fallbacks.clear
+    I18n.fallbacks.map :en => [ :de ]
+    I18n.locale = :en
+
+    user = User.create(:name => 'John', :email => 'mad@max.com')
+    with_locale(:de) { user.name = nil }
+    assert_translated user, :en, :name, 'John'
+    assert_translated user, :de, :name, 'John'
+
+    translations = {:en => 'John', :de => nil}.stringify_keys!
+    assert_equal translations, user.name_translations
+  end
 end
 # TODO should validate_presence_of take fallbacks into account? maybe we need
 #   an extra validation call, or more options for validate_presence_of.

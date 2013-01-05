@@ -150,6 +150,22 @@ module Globalize
         alias_method :"#{name}_before_type_cast", name
       end
 
+      def translations_accessor(name)
+        define_method(:"#{name}_translations") do
+          result = translations.each_with_object(HashWithIndifferentAccess.new) do |translation, result|
+            result[translation.locale] = translation.send(name)
+          end
+          globalize.stash.keys.each_with_object(result) do |locale, result|
+            result[locale] = globalize.stash.read(locale, name) if globalize.stash.contains?(locale, name)
+          end
+        end
+        define_method(:"#{name}_translations=") do |value|
+          value.each do |(locale, value)|
+            write_attribute name, value, :locale => locale
+          end
+        end
+      end
+
     end
 
   end

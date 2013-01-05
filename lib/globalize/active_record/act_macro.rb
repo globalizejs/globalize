@@ -56,7 +56,10 @@ module Globalize
         end
 
         new_attr_names = attr_names - translated_attribute_names
-        new_attr_names.each { |attr_name| translated_attr_accessor(attr_name) }
+        new_attr_names.each do |attr_name|
+          translated_attr_accessor(attr_name)
+          translations_accessor(attr_name)
+        end
         self.translated_attribute_names += new_attr_names
       end
 

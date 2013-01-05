@@ -24,15 +24,14 @@ class CloneTest < Test::Unit::TestCase
 
   private
 
-  
     def standard_post
-      p = Post.new({:title => 'title', :content => 'content'})
-      with_locale(:he) { p.title= 'שם' }
-      return p
+      post = Post.new({:title => 'title', :content => 'content'})
+      with_locale(:he) { post.title= 'שם' }
+      return post
     end
 
     def saved_post
-      standard_post.tap{|p| p.save!}
+      standard_post.tap { |post| post.save! }
     end
 
     def translations_modifications(clonned)
@@ -54,5 +53,5 @@ class CloneTest < Test::Unit::TestCase
       clonned.reload
       translations_assertions(clonned)
     end
-  
+
 end
