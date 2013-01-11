@@ -105,6 +105,7 @@ module Globalize
           end
           translation.save
         end
+        globalize.reset
       end
 
       def reload(options = nil)
@@ -153,7 +154,7 @@ module Globalize
       def rollback
         translation_caches[::Globalize.locale] = translation.previous_version
       end
-    
+
     private
 
       def update(*)
