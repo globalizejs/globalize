@@ -119,3 +119,7 @@ class SerializedHash < ActiveRecord::Base
   serialize :meta, Hash
   translates :meta
 end
+
+class Account < ActiveRecord::Base
+  translates :notes
+end

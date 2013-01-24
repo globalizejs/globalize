@@ -209,7 +209,7 @@ class AttributesTest < Test::Unit::TestCase
 
     I18n.locale = :de
     task.update_attributes :name => 'Neues Titel'
-    
+
     I18n.locale = :en
     task.update_attributes :name => 'New Title'
 
@@ -219,9 +219,9 @@ class AttributesTest < Test::Unit::TestCase
     I18n.locale = I18n.default_locale = :de
     assert_equal 'Neues Titel', task.name
     task.update_attributes :name => 'Der neueste Titel'
-    
+
     assert_equal 'Der neueste Titel', legacy_task.reload.name
-    
+
     I18n.locale = :en
     assert_equal 'New Title', task.name
   end
@@ -237,10 +237,10 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal 'unfriend',    word.term
     assert_equal 'ontvrienden', word.term(:nl)
     assert_equal 'ontvrienden', legacy_word.reload.term
-    
+
     I18n.locale = I18n.default_locale = :de
     word.update_attributes :term => 'entfreunde', :definition => 'Um jemanden als Freund in einem sozialen Netzwerk zu entfernen'
-    
+
     assert_equal 'entfreunde',  word.term
     assert_equal 'unfriend',    word.term(:en)
     assert_equal 'ontvrienden', word.term(:nl)
@@ -260,5 +260,11 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal 'ontvriend', word.term
     assert_equal 'unfriend',  word.term(:en)
     assert_equal 'ontvriend', legacy_word.term
+  end
+
+  test 'does not change a blank attribute to nil' do
+    account = Account.new
+    assert_equal '', account.business_name
+    assert_equal '', account.notes
   end
 end
