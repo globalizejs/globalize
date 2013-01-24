@@ -156,7 +156,7 @@ module Globalize
             result[translation.locale] = translation.send(name)
           end
           globalize.stash.keys.each_with_object(result) do |locale, result|
-            result[locale] = globalize.stash.read(locale, name) if globalize.stash.contains?(locale, name)
+            result[locale] = globalize.fetch_stash(locale, name) if globalize.stash_contains?(locale, name)
           end
         end
         define_method(:"#{name}_translations=") do |value|

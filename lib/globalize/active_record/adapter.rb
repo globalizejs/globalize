@@ -19,6 +19,10 @@ module Globalize
         return nil
       end
 
+      def stash_contains?(locale, name)
+        stash.contains?(locale, name)
+      end
+
       def fetch(locale, name)
         record.globalize_fallbacks(locale).each do |fallback|
           value = stash.contains?(fallback, name) ? fetch_stash(fallback, name) : fetch_attribute(fallback, name)
