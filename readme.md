@@ -1,4 +1,4 @@
-# Globalize3
+# Globalize3 [![Build Status](https://travis-ci.org/svenfuchs/globalize3.png?branch=master)](https://travis-ci.org/svenfuchs/globalize3)
 
 Globalize3 is the successor of Globalize for Rails and is targeted at
 ActiveRecord version 3.x. It is compatible with and builds on the new
