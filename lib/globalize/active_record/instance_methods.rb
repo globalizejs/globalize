@@ -44,8 +44,21 @@ module Globalize
             options = {:locale => options}
           end
           options = {:locale => Globalize.locale}.merge(options)
-          attribute_will_change! name.to_s
-
+          
+          # Dirty tracking, paraphrased from
+          # ActiveRecord::AttributeMethods::Dirty#write_attribute.
+          name_str = name.to_s
+          if attribute_changed?(name_str)
+            # If there's already a change, delete it if this undoes the change.
+            old = changed_attributes[name_str]
+            changed_attributes.delete(name_str) if value == old
+          else
+            # If there's not a change yet, record it.
+            old = globalize.fetch(options[:locale], name)
+            old = old.clone if old.duplicable?
+            changed_attributes[name_str] = old if value != old
+          end
+          
           globalize.write(options[:locale], name, value)
         else
           super(name, value)
