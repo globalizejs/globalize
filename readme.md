@@ -145,7 +145,7 @@ end
 ## Versioning with Globalize3
 
 Globalize3 nicely integrates with
-[paper_trail](https://github.com/airblade/paper_trail.)  To add versioning
+[paper_trail](https://github.com/airblade/paper_trail). To add versioning
 support to your model, you'll want to add the `:versioning => true`
 option to your call to <code>translates</code>.  An example from our test suite:
 
