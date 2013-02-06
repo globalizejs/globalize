@@ -147,21 +147,21 @@ ActiveRecord::Schema.define do
     t.string     :title
     t.string     :body
   end
-  
+
   create_table :serialized_attrs, :force => true do |t|
     t.text       :meta
   end
-  
+
   create_table :serialized_attr_translations, :force => true do |t|
     t.integer    :serialized_attr_id
     t.string     :locale
     t.text       :meta
   end
-  
+
   create_table :serialized_hashes, :force => true do |t|
     t.text       :meta
   end
-  
+
   create_table :serialized_hash_translations, :force => true do |t|
     t.integer    :serialized_hash_id
     t.string     :locale
@@ -178,5 +178,14 @@ ActiveRecord::Schema.define do
     t.string     :locale
     t.string     :business_name
     t.string     :notes
+  end
+
+  create_table :medias, :force => true do |t|
+  end
+
+  create_table :media_translations, :force => true do |t|
+    t.integer :media_id
+    t.string  :locale
+    t.string  :title
   end
 end
