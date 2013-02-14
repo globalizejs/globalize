@@ -52,7 +52,7 @@ class ValidationsTest < Test::Unit::TestCase
   end
 
   test "validates_format_of" do
-    Validatee.class_eval { validates_format_of :string, :with => /^\d+$/ }
+    Validatee.class_eval { validates_format_of :string, :with => /\A\d+\z/ }
     assert !Validatee.new(:string => 'a').valid?
     assert Validatee.new(:string => '1').valid?
   end
