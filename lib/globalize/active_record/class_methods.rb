@@ -129,7 +129,7 @@ module Globalize
           end
         else
           new(protected_attributes_for_create, options) do |r|
-            r.assign_attributes(unprotected_attributes_for_create, :without_protection => true)
+            r.assign_attributes(unprotected_attributes_for_create)
           end
         end
         yield(record) if block_given?

@@ -15,7 +15,7 @@ module Globalize
         # Maintain Rails 3.0.x compatibility while adding Rails 3.1.x compatibility
         if base.method_defined?(:assign_attributes)
           base.class_eval %{
-            def assign_attributes(attributes, options = {})
+            def assign_attributes(attributes)
               with_given_locale(attributes) { super }
             end
           }
@@ -44,7 +44,7 @@ module Globalize
             options = {:locale => options}
           end
           options = {:locale => Globalize.locale}.merge(options)
-          
+
           # Dirty tracking, paraphrased from
           # ActiveRecord::AttributeMethods::Dirty#write_attribute.
           name_str = name.to_s
@@ -58,7 +58,7 @@ module Globalize
             old = old.clone if old.duplicable?
             changed_attributes[name_str] = old if value != old
           end
-          
+
           globalize.write(options[:locale], name, value)
         else
           super(name, value)
