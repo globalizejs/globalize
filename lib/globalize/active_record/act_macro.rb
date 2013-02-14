@@ -10,9 +10,10 @@ module Globalize
         attr_names -= translated_attribute_names if defined?(translated_attribute_names)
 
         if attr_names.present?
-          translation_class.instance_eval %{
-            attr_accessible :#{attr_names.join(', :')}
-          }
+          warn "[globalize3] not currently setting any attribute security; please update globalize3 to support strong_parameters"
+          # translation_class.instance_eval %{
+          #   attr_accessible :#{attr_names.join(', :')}
+          # }
 
           attr_names.each do |attr_name|
             # Detect and apply serialization.
@@ -93,7 +94,8 @@ module Globalize
           end
         end
 
-        translation_class.instance_eval %{ attr_accessible :locale }
+        warn "[globalize3] not currently setting any attribute security; please update globalize3 to support strong_parameters"
+        #translation_class.instance_eval %{ attr_accessible :locale }
       end
     end
 

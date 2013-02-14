@@ -2,7 +2,8 @@ module Globalize
   module ActiveRecord
     class Translation < ::ActiveRecord::Base
 
-      attr_accessible :locale
+      warn "[globalize3] not currently setting any attribute security; please update globalize3 to support strong_parameters"
+      #attr_accessible :locale
       validates :locale, :presence => true
 
       class << self
