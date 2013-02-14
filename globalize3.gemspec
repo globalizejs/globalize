@@ -25,8 +25,8 @@ Gem::Specification.new do |s|
     s.add_dependency 'activemodel', '~> 3.2.0'
   else
     # normal case
-    s.add_dependency 'activerecord', '>= 3.0.0'
-    s.add_dependency 'activemodel', '>= 3.0.0'
+    s.add_dependency 'activerecord', '>= 4.0.0.beta'
+    s.add_dependency 'activemodel', '>= 4.0.0.beta'
   end
   s.add_dependency 'paper_trail',  '~> 2'
 
