@@ -28,11 +28,9 @@ Version.class_eval do
     version.locale = Globalize.locale.to_s
   end
 
-  def self.locale_conditions_to_sql
-    "locale = '#{Globalize.locale.to_s}'"
+  def self.for_this_locale
+    where :locale => Globalize.locale.to_s
   end
-
-  scope :for_this_locale, lambda{ { :conditions => locale_conditions_to_sql } }
 
   def sibling_versions_with_locales
     sibling_versions_without_locales.for_this_locale

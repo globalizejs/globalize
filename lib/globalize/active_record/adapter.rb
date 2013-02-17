@@ -9,19 +9,16 @@ module Globalize
       delegate :translation_class, :to => :'record.class'
 
       def initialize(record)
-        self.record = record
-        self.stash = Attributes.new
+        @record = record
+        @stash = Attributes.new
       end
 
       def fetch_stash(locale, name)
-        value = stash.read(locale, name)
-        return value if value
-        return nil
+        stash.read(locale, name).presence
       end
 
-      def stash_contains?(locale, name)
-        stash.contains?(locale, name)
-      end
+      delegate :contains?, :to => :stash, :prefix => :stash
+      delegate :write, :to => :stash
 
       def fetch(locale, name)
         record.globalize_fallbacks(locale).each do |fallback|
@@ -36,19 +33,16 @@ module Globalize
         return nil
       end
 
-      def write(locale, name, value)
-        stash.write(locale, name, value)
-      end
-
       def save_translations!
         existing_translations_by_locale = {}
         record.translations.each do |t|
           existing_translations_by_locale[t.locale.to_s] = t
         end
-        
+
         stash.each do |locale, attrs|
           if attrs.any?
             locale_str = locale.to_s
+
             translation = existing_translations_by_locale[locale_str] ||
               record.translations.find_or_initialize_by_locale(locale_str)
             attrs.each { |name, value| translation[name] = value }
@@ -66,13 +60,9 @@ module Globalize
     protected
 
       def type_cast(name, value)
-        if value.nil?
-          nil
-        elsif column = column_for_attribute(name)
-          column.type_cast(value)
-        else
-          value
-        end
+        return value.presence unless column = column_for_attribute(name)
+
+        column.type_cast value
       end
 
       def column_for_attribute(name)
@@ -103,9 +93,7 @@ module Globalize
         object.nil? || (fallbacks_for_empty_translations? && object.blank?)
       end
 
-      def fallbacks_for_empty_translations?
-        record.fallbacks_for_empty_translations
-      end
+      delegate :fallbacks_for_empty_translations?, :to => :record, :prefix => false
     end
   end
 end

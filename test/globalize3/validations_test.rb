@@ -58,13 +58,13 @@ class ValidationsTest < Test::Unit::TestCase
   end
 
   test "validates_inclusion_of" do
-    Validatee.class_eval { validates_inclusion_of :string, :in => %(a) }
+    Validatee.class_eval { validates_inclusion_of :string, :in => %w(a) }
     assert !Validatee.new(:string => 'b').valid?
     assert Validatee.new(:string => 'a').valid?
   end
 
   test "validates_exclusion_of" do
-    Validatee.class_eval { validates_exclusion_of :string, :in => %(b) }
+    Validatee.class_eval { validates_exclusion_of :string, :in => %w(b) }
     assert !Validatee.new(:string => 'b').valid?
     assert Validatee.new(:string => 'a').valid?
   end
@@ -93,7 +93,10 @@ class ValidationsTest < Test::Unit::TestCase
     Validatee.create!(:string => 'b')
     assert validatee.update_attributes(:string => 'a')
     assert !validatee.update_attributes(:string => 'b')
-    Globalize.with_locale(:de) { assert validatee.update_attributes(:string => 'b') }
+    Globalize.with_locale(:de) {
+      validatee.update_attributes(:string => 'b')
+      assert_equal [], validatee.errors
+    }
 
     # nested model (to check for this: https://github.com/resolve/refinerycms/pull/1486 )
     Nested::NestedValidatee.class_eval { validates_uniqueness_of :string }

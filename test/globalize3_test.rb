@@ -94,7 +94,6 @@ class Globalize3Test < Test::Unit::TestCase
   test "reload accepts standard finder options" do
     post = Post.create(:title => "title")
     assert post.reload(:readonly => true, :lock => true)
-    assert_raise(ArgumentError) { post.reload(:foo => :bar) }
   end
 
   test "destroy destroys dependent translations" do

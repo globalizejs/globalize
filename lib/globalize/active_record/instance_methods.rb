@@ -12,37 +12,32 @@ module Globalize
       end
 
       def self.included(base)
-        # Maintain Rails 3.0.x compatibility while adding Rails 3.1.x compatibility
-        if base.method_defined?(:assign_attributes)
-          base.class_eval %{
-            def assign_attributes(attributes)
-              with_given_locale(attributes) { super }
-            end
-          }
-        else
-          base.class_eval %{
-            def attributes=(attributes, *args)
-              with_given_locale(attributes) { super }
-            end
+        # Maintain Rails 3.0.x compatibility while adding Rails >= 3.1 compatibility
+        # Rails >= 3.1.x support
+        base.class_eval %{
+          def assign_attributes(attributes)
+            with_given_locale(attributes) { super }
+          end
+        }
 
-            def update_attributes!(attributes, *args)
-              with_given_locale(attributes) { super }
-            end
+        # (Mainly) Rails < 3.1 support
+        base.class_eval %{
+          def attributes=(attributes, *args)
+            with_given_locale(attributes) { super }
+          end
 
-            def update_attributes(attributes, *args)
-              with_given_locale(attributes) { super }
-            end
-          }
-        end
+          def update_attributes!(attributes, *args)
+            with_given_locale(attributes) { super }
+          end
+
+          def update_attributes(attributes, *args)
+            with_given_locale(attributes) { super }
+          end
+        }
       end
 
       def write_attribute(name, value, options = {})
         if translated?(name)
-          # Deprecate old use of locale
-          unless options.is_a?(Hash)
-            warn "[DEPRECATION] passing 'locale' as #{options.inspect} is deprecated. Please use {:locale => #{options.inspect}} instead."
-            options = {:locale => options}
-          end
           options = {:locale => Globalize.locale}.merge(options)
 
           # Dirty tracking, paraphrased from
@@ -66,12 +61,6 @@ module Globalize
       end
 
       def read_attribute(name, options = {})
-        # Deprecate old use of locale
-        unless options.is_a?(Hash)
-          warn "[DEPRECATION] passing 'locale' as #{options.inspect} is deprecated. Please use {:locale => #{options.inspect}} instead."
-          options = {:locale => options}
-        end
-
         options = {:translated => true, :locale => nil}.merge(options)
         if self.class.translated?(name) and options[:translated]
           if (value = globalize.fetch(options[:locale] || Globalize.locale, name))
@@ -88,9 +77,7 @@ module Globalize
         translated_attribute_names.map(&:to_s) + super
       end
 
-      def translated?(name)
-        self.class.translated?(name)
-      end
+      delegate :translated?, :to => :class
 
       def translated_attributes
         translated_attribute_names.inject({}) do |attributes, name|
@@ -101,11 +88,9 @@ module Globalize
       # This method is basically the method built into Rails
       # but we have to pass {:translated => false}
       def untranslated_attributes
-        attrs = {}
-        attribute_names.each do |name|
-          attrs[name] = read_attribute(name, {:translated => false})
+        attribute_names.inject({}) do |attrs, name|
+          attrs[name] = read_attribute(name, {:translated => false}); attrs
         end
-        attrs
       end
 
       def set_translations(options)
@@ -168,20 +153,10 @@ module Globalize
         translation_caches[::Globalize.locale] = translation.previous_version
       end
 
-      def column_for_attribute name
-        translated_attribute_names.include?(name) ? globalize.send(:column_for_attribute, name) : super
-      end
+      def save(*)
+        return super if new_record? && read_attribute(:locale).blank?
 
-    private
-
-      def update(*)
-        I18n.with_locale(read_attribute(:locale) || I18n.default_locale) do
-          super
-        end
-      end
-
-      def create(*)
-        I18n.with_locale(read_attribute(:locale) || I18n.default_locale) do
+        Globalize.with_locale(read_attribute(:locale) || I18n.default_locale) do
           super
         end
       end

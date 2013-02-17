@@ -4,16 +4,16 @@ module Globalize
       delegate :translated_locales, :set_translations_table_name, :to => :translation_class
 
       def with_locales(*locales)
-        scoped.merge(translation_class.with_locales(*locales))
+        all.merge translation_class.with_locales(*locales)
       end
 
       def with_translations(*locales)
         locales = translated_locales if locales.empty?
-        includes(:translations).with_locales(locales).with_required_attributes
+        includes(:translations).with_locales(locales).with_required_attributes.references(:translations)
       end
 
       def with_required_attributes
-        required_translated_attributes.inject(scoped) do |scope, name|
+        required_translated_attributes.inject(all) do |scope, name|
           scope.where("#{translated_column_name(name)} IS NOT NULL")
         end
       end
@@ -86,7 +86,7 @@ module Globalize
         match, attribute_names, translated_attributes, untranslated_attributes = supported_on_missing?(method_id)
         return super unless match
 
-        scope = scoped
+        scope = all
 
         translated_attributes.each do |attr|
           scope = scope.with_translated_attribute(attr, arguments[attribute_names.index(attr)])
