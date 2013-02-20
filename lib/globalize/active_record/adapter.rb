@@ -14,7 +14,7 @@ module Globalize
       end
 
       def fetch_stash(locale, name)
-        stash.read(locale, name).presence
+        stash.read(locale, name)
       end
 
       delegate :contains?, :to => :stash, :prefix => :stash

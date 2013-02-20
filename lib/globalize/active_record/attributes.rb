@@ -19,7 +19,6 @@ module Globalize
       end
 
       def write(locale, name, value)
-        #raise 'z' if value.nil? # TODO
         self[locale][name.to_s] = value
       end
     end
