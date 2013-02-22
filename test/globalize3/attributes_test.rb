@@ -267,4 +267,9 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal '', account.business_name
     assert_equal '', account.notes
   end
+
+  test 'delegates column_for_attribute to translations adapter' do
+    post = Post.new
+    assert_equal post.globalize.send(:column_for_attribute, :title), post.column_for_attribute(:title)
+  end
 end
