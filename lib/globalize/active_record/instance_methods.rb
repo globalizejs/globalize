@@ -168,6 +168,10 @@ module Globalize
         translation_caches[::Globalize.locale] = translation.previous_version
       end
 
+      def column_for_attribute name
+        translated_attribute_names.include?(name) ? globalize.send(:column_for_attribute, name) : super
+      end
+
     private
 
       def update(*)
