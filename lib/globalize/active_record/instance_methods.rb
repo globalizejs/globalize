@@ -161,6 +161,10 @@ module Globalize
         end
       end
 
+      def column_for_attribute name
+        translated_attribute_names.include?(name) ? globalize.send(:column_for_attribute, name) : super
+      end
+
     protected
 
       def each_locale_and_translated_attribute
