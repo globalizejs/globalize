@@ -63,7 +63,7 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal 1, post.translations.length
 
     post.save
-    assert_equal 1, post.translations.length
+    assert_equal 1, post.reload.translations.length
   end
 
   test "a translated attribute reader returns the correct translation for an unsaved record after locale switching" do
