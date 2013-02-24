@@ -1,8 +1,15 @@
 require File.expand_path('../../test_helper', __FILE__)
 
 class VersioningTest < Test::Unit::TestCase
+
+  test "create only one version for create" do
+    post = Post.create!(:title => 'title v1', :content => '')
+    assert_equal 1, post.versions.length
+  end
+
   test "versions are scoped to the current Globalize locale" do
     post = Post.create!(:title => 'title v1', :content => '')
+
     post.update_attributes!(:title => 'title v2')
     # Creates a 'created' version, and the update
     assert_equal %w[en en], post.versions.map(&:locale)
