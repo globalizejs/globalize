@@ -65,6 +65,7 @@ ActiveRecord::Schema.define do
 
   create_table :untranslateds, :force => true do |t|
     t.string :name
+    t.string :locale
   end
   create_table :two_attributes_untranslateds, :force => true do |t|
     t.string :name

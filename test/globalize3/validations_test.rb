@@ -95,7 +95,8 @@ class ValidationsTest < Test::Unit::TestCase
     assert !validatee.update_attributes(:string => 'b')
     Globalize.with_locale(:de) {
       validatee.update_attributes(:string => 'b')
-      assert_equal [], validatee.errors
+      assert_equal 0, validatee.errors.count
+      assert validatee.valid?
     }
 
     # nested model (to check for this: https://github.com/resolve/refinerycms/pull/1486 )
