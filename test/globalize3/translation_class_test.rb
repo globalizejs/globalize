@@ -13,6 +13,11 @@ class TranslationClassTest < Test::Unit::TestCase
     assert_belongs_to Post::Translation, :post
   end
 
+  test 'defines a belongs_to association for abstracted class' do
+    picture = Picture.create!(:title => "content fr", :locale => "fr")
+    assert_equal picture.translations.first.picture, picture
+  end
+
   test 'defines a reader for :locale that returns a symbol' do
     post = Post::Translation.new
     post.send(:write_attribute, 'locale', 'de')
@@ -24,7 +29,7 @@ class TranslationClassTest < Test::Unit::TestCase
     post.locale = :de
     assert_equal 'de', post.read_attribute('locale')
   end
-  
+
   test "can create a translation class for a namespaced model" do
     assert_nothing_raised do
       module Foo
@@ -60,7 +65,7 @@ class TranslationClassTest < Test::Unit::TestCase
   test "required_translated_attributes do not include non-translated attributes" do
     assert_equal [:name], User.required_translated_attributes
   end
-  
+
   test "valid translations must have an assoicated (non-empty) locale" do
     assert !Post::Translation.new.valid?
     assert !Post::Translation.new(:locale => nil).valid?

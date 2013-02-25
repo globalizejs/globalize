@@ -21,7 +21,6 @@ class Blog < ActiveRecord::Base
   has_many :posts, :order => 'id ASC'
 end
 
-
 class Validatee < ActiveRecord::Base
   translates :string
 end
@@ -32,12 +31,19 @@ module Nested
   end
 end
 
-
 class Parent < ActiveRecord::Base
   translates :content
 end
 
 class Child < Parent
+end
+
+class Media < ActiveRecord::Base
+  self.table_name = "medias"
+end
+
+class Picture < Media
+  translates :title
 end
 
 class Comment < ActiveRecord::Base

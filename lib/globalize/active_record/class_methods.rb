@@ -45,7 +45,7 @@ module Globalize
             klass = self.const_set(:Translation, Class.new(Globalize::ActiveRecord::Translation))
           end
 
-          klass.belongs_to name.underscore.gsub('/', '_').to_sym, :class_name => self.name
+          klass.belongs_to name.underscore.gsub('/', '_').to_sym, :class_name => self.name, :foreign_key => translation_options[:foreign_key]
           klass
         end
       end
