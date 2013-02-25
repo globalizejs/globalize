@@ -11,3 +11,8 @@ test("constructor sets culture", function() {
 	equal( globalizeDe.parseFloat("5.3", "en"), 5.3 );
 	equal( globalizeDe.parseFloat("5,3", "en"), 53 );
 });
+
+test("parseDate is accessible from the instance", function () {
+	var g = Globalize('de-CH');
+	equal( g.parseDate('25.02.2013').valueOf(), Globalize.parseDate('25.02.2013', null, 'de-CH').valueOf() );
+});
