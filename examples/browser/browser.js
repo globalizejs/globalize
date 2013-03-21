@@ -11,11 +11,11 @@ $(function() {
        "n", "n1", "n3", "d", "d2", "d3", "p", "p1", "p3", "c", "c0"
     ];
     window.dates = $.map([
-        "Jan 1, 1970 1:34 PM", "Dec 31, 1970 1:34 PM", "Apr 1, 1999 1:34 PM", "Dec 31, 1999 1:34 PM", "Jan 1, 2000 1:34 PM", "Nov 5, 1955 1:34 PM"
+        "Mar 21, 2013, 1:34 PM", "Mar 21, 2013 2:34 PM", "Apr 1, 1999 1:34 PM", "Dec 31, 1999 1:34 PM", "Jan 1, 2000 1:34 PM", "Nov 5, 1955 1:34 PM"
     ], function(d) { return d instanceof Date ? d : new Date(Date.parse(d)); } );
 
     window.dateFormats = [
-        "d", "D", "f", "F", "M", "S", "t", "T", "Y"
+        "d", "D", "f", "F", "M", "S", "t", "T", "Y", "X"
     ];
 
     // add template extensions to format numbers and dates declaratively
