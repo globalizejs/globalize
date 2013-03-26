@@ -278,6 +278,7 @@ See this script by Tomasz Stachewicz: http://gist.github.com/120867
 * [Traco](https://github.com/barsoom/traco) - A newer take on using multiple columns in the same model (Barsoom)
 * [localized_record](http://github.com/glennpow/localized_record) - allows records to have localized attributes without any modifications to the database (Glenn Powell)
 * [model_translations](http://github.com/janne/model_translations) - Minimal implementation of Globalize2 style model translations (Jan Andersson)
+* [hstore_translate](http://github.com/robworley/hstore_translate) - Rails I18n library for ActiveRecord model/data translation using PostgreSQL's hstore datatype (Rob Worley)
 
 ## Related solutions
 
