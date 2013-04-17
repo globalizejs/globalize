@@ -172,4 +172,9 @@ class Globalize3Test < Test::Unit::TestCase
     assert_translated page, :de, :title, 'Wilkommen'
     assert_translated page, :de, :body, 'Ein body'
   end
+
+  test "uses custom table name" do
+    m = ModelWithCustomTableName.create(:name => 'Name', :locale => :en)
+    assert_translated m, :en, :name, 'Name'
+  end
 end
