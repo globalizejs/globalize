@@ -197,4 +197,14 @@ ActiveRecord::Schema.define do
     t.string  :locale
     t.string  :title
   end
+
+  create_table :model_with_custom_table_names, :force => true do |t|
+    t.string  :name
+  end
+
+  create_table :mctn_translations, :force => true do |t|
+    t.references :model_with_custom_table_name
+    t.string  :locale
+    t.string  :name
+  end
 end
