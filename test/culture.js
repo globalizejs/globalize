@@ -6,10 +6,10 @@ test("culture setter", function() {
 	// but not exact match, so de-DE does not work as it is an exact match
 	// de-de would work but is only different by case, so we'll use de-FOO
 	var closestReturn, closestSet;
-	
+
 	// Set current culture using a close (but not exact) culture selector
 	closestReturn = Globalize.culture("de-FOO");
-	
+
 	// Get current culture testing set by previous call to culture(sel) setter
 	closestSet = Globalize.culture();
 

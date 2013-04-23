@@ -1,6 +1,6 @@
 module( "localize", lifecycle );
 
-test('set and retrieve translations', function() {
+test("set and retrieve translations", function() {
 	Globalize.addCultureInfo("fr", {
 		messages: {
 			"translate": "traduire"
@@ -10,7 +10,7 @@ test('set and retrieve translations', function() {
 	strictEqual( Globalize("fr").localize("translate"), "traduire", "translate 'translate' to french" );
 });
 
-test('retrieve translations with new culture', function() {
+test("retrieve translations with new culture", function() {
 	Globalize.addCultureInfo( "pirate", {
 		messages: {
 			"translate": "TARRRR"
@@ -20,7 +20,7 @@ test('retrieve translations with new culture', function() {
 	strictEqual( Globalize.localize("translate"), "TARRRR", "translate 'translate' to pirate language" );
 });
 
-test('Retrieve translations for the most appropriate culture', function() {
+test("Retrieve translations for the most appropriate culture", function() {
 	Globalize.addCultureInfo("default", {
 		messages: {
 			"hello": "hello",
