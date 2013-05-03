@@ -277,6 +277,28 @@ you should use the `with_locale` option with a block, as below:
 
 Your partial will now be rendered with the `:en` locale set as the current locale.
 
+## Interpolation
+
+Globalize3 supports interpolation in a similar manner to I18n.
+
+```ruby
+class Post < ActiveRecord::Base
+  translates :title
+end
+
+I18n.locale = :en
+post.title = "Globalize3 %{superlative}!"
+
+post.title
+# #=> "Globalize3 %{superlative}!"
+
+post.title(:foo => "bar")
+# SomeError: missing interpolation argument :superlative
+
+post.title(:superlative => "rocks")
+# #=> "Globalize3 rocks!"
+```
+
 ## Changes since Globalize2
 
 * `translation_table_name` was renamed to `translations_table_name`
