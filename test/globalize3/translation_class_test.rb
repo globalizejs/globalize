@@ -10,12 +10,12 @@ class TranslationClassTest < Test::Unit::TestCase
   end
 
   test 'defines a belongs_to association' do
-    assert_belongs_to Post::Translation, :post
+    assert_belongs_to Post::Translation, :globalized_model
   end
 
   test 'defines a belongs_to association for abstracted class' do
     picture = Picture.create!(:title => "content fr", :locale => "fr")
-    assert_equal picture.translations.first.picture, picture
+    assert_equal picture.translations.first.globalized_model, picture
   end
 
   test 'defines a reader for :locale that returns a symbol' do
