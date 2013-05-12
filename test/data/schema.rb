@@ -204,6 +204,8 @@ ActiveRecord::Schema.define do
 
   create_table :mctn_translations, :force => true do |t|
     t.references :model_with_custom_table_name
+    t.string :locale
+    t.string :name
   end
 
   create_table :locales, :force => true do |t|
