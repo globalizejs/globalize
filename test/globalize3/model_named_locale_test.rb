@@ -6,7 +6,7 @@ class ModelNamedLocaleTest < Test::Unit::TestCase
 
   test "Accessing a model named Locale's translated name attribute" do
     Locale.create :name => "French"
-    Locale.first.name.should == "French"
+    assert_equal Locale.first.name, "French"
   end
 
 end
