@@ -68,8 +68,8 @@ module Globalize
 
         def create_translation_table
           connection.create_table(translations_table_name) do |t|
-            t.references table_name.sub(/^#{table_name_prefix}/, '').singularize
-            t.string :locale
+            t.references table_name.sub(/^#{table_name_prefix}/, '').singularize, :null => false
+            t.string :locale, :null => false
             t.timestamps
           end
         end
