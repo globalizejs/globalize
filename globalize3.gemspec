@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'minitest'
+  s.add_development_dependency 'minitest-colorize'
 
   s.add_development_dependency 'sqlite3'
 end
