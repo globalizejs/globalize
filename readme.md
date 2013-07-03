@@ -142,6 +142,8 @@ class TranslatePosts < ActiveRecord::Migration
 end
 ```
 
+NOTE: Make sure you drop the translated columns from the parent table after all your data is safely migrated.
+
 ## Versioning with Globalize3
 
 Globalize3 nicely integrates with
