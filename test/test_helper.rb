@@ -1,7 +1,5 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'minitest/autorun'
-require 'minitest/colorize'
 require 'fileutils'
 require 'logger'
 
@@ -23,6 +21,8 @@ require File.expand_path('../data/models', __FILE__)
 
 DatabaseCleaner.strategy = :truncation
 
+require 'minitest/autorun'
+require 'minitest/colorize'
 require 'minitest/spec'
 MiniTest::Spec.class_eval do
   def setup
