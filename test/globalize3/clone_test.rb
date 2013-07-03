@@ -2,22 +2,22 @@
 
 require File.expand_path('../../test_helper', __FILE__)
 
-class CloneTest < Test::Unit::TestCase
+class CloneTest < MiniTest::Spec
 
-  test 'stores translations from clonned new record' do
+  it 'stores translations from clonned new record' do
     check_stored_translations(standard_post.clone)
   end
 
-  test 'stores translations from clonned created record' do
+  it 'stores translations from clonned created record' do
     clonned = saved_post.clone
     check_stored_translations(clonned)
   end
 
-  test 'stores translations from clonned found record' do
+  it 'stores translations from clonned found record' do
     check_stored_translations( Post.find(saved_post).clone )
   end
 
-  test 'stores translations from clonned reloaded after creation record' do
+  it 'stores translations from clonned reloaded after creation record' do
     check_stored_translations(saved_post.reload.clone)
   end
 

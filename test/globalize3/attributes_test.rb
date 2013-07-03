@@ -2,14 +2,14 @@
 
 require File.expand_path('../../test_helper', __FILE__)
 
-class AttributesTest < Test::Unit::TestCase
-  test 'defines accessors for the translated attributes' do
+class AttributesTest < MiniTest::Spec
+  it 'defines accessors for the translated attributes' do
     post = Post.new
     assert post.respond_to?(:title)
     assert post.respond_to?(:title=)
   end
 
-  test 'does not save translations unless saved' do
+  it 'does not save translations unless saved' do
     post = Post.new
     assert post.translations.all?(&:new_record?)
 
@@ -21,31 +21,31 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal 1, post.translations.length
   end
 
-  test "attribute_names returns translated and regular attribute names" do
+  it "attribute_names returns translated and regular attribute names" do
     assert_equal %w(blog_id content title), Post.new.attribute_names.sort & %w(blog_id content title)
   end
 
-  test "attributes returns translated and regular attributes" do
+  it "attributes returns translated and regular attributes" do
     post = Post.create(:title => 'foo')
     attributes = post.attributes.slice('id', 'blog_id', 'title', 'content')
     assert_equal({ 'id' => post.id, 'blog_id' => nil, 'title' => 'foo', 'content' => nil }, attributes)
   end
 
-  test "write_attribute for non-translated attributes should return the value" do
+  it "write_attribute for non-translated attributes should return the value" do
     user = User.create(:name => 'Max Mustermann', :email => 'max@mustermann.de')
     new_email = 'm.muster@mann.de'
     assert_equal new_email, user.write_attribute('email', new_email)
   end
 
-  test 'translated_attribute_names returns translated attribute names' do
+  it 'translated_attribute_names returns translated attribute names' do
     assert_equal [:title, :content], Post.translated_attribute_names & [:title, :content]
   end
 
-  test "a translated attribute writer returns its argument" do
+  it "a translated attribute writer returns its argument" do
     assert_equal 'foo', Post.new.title = 'foo'
   end
 
-  test "a translated attribute reader returns the correct translation for a saved record after locale switching" do
+  it "a translated attribute reader returns the correct translation for a saved record after locale switching" do
     post = Post.create(:title => 'title')
     post.update_attributes(:title => 'Titel', :locale => :de)
     post.reload
@@ -54,7 +54,7 @@ class AttributesTest < Test::Unit::TestCase
     assert_translated post, :de, :title, 'Titel'
   end
 
-  test "a translated attribute reader does not create empty translations when loaded in a new locale" do
+  it "a translated attribute reader does not create empty translations when loaded in a new locale" do
     post = Post.create(:title => 'title')
     assert_equal 1, post.translations.length
     I18n.locale = :de
@@ -66,7 +66,7 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal 1, post.reload.translations.length
   end
 
-  test "a translated attribute reader returns the correct translation for an unsaved record after locale switching" do
+  it "a translated attribute reader returns the correct translation for an unsaved record after locale switching" do
     post = Post.create(:title => 'title')
     with_locale(:de) { post.title = 'Titel' }
 
@@ -74,7 +74,7 @@ class AttributesTest < Test::Unit::TestCase
     assert_translated post, :de, :title, 'Titel'
   end
 
-  test "a translated attribute reader returns the correct translation for both saved/unsaved records while switching locales" do
+  it "a translated attribute reader returns the correct translation for both saved/unsaved records while switching locales" do
     post = Post.new(:title => 'title')
     with_locale(:de) { post.title = 'Titel' }
     with_locale(:he) { post.title = 'שם' }
@@ -95,20 +95,20 @@ class AttributesTest < Test::Unit::TestCase
     assert_translated post, :de, :title, 'Titel'
   end
 
-  test "a translated attribute reader returns nil if no translations are found on an unsaved record" do
+  it "a translated attribute reader returns nil if no translations are found on an unsaved record" do
     post = Post.new(:title => 'foo')
     assert_equal 'foo', post.title
     assert_nil post.content
   end
 
-  test "a translated attribute reader returns nil if no translations are found on a saved record" do
+  it "a translated attribute reader returns nil if no translations are found on a saved record" do
     post = Post.create(:title => 'foo')
     post.reload
     assert_equal 'foo', post.title
     assert_nil post.content
   end
 
-  test "before_type_cast reader works for translated attributes" do
+  it "before_type_cast reader works for translated attributes" do
     post = Post.create(:title => 'title')
     post.update_attributes(:title => "Titel", :locale => :de)
 
@@ -116,7 +116,7 @@ class AttributesTest < Test::Unit::TestCase
     with_locale(:de) { assert_equal 'Titel', post.title_before_type_cast }
   end
 
-  test "saves all translations on an sti model after locale switching" do
+  it "saves all translations on an sti model after locale switching" do
     child = Child.new(:content => 'foo')
     with_locale(:de) { child.content = 'bar' }
     with_locale(:he) { child.content = 'baz' }
@@ -128,7 +128,7 @@ class AttributesTest < Test::Unit::TestCase
     assert_translated child, :he, :content, 'baz'
   end
 
-  test 'attribute reader without arguments will use the current locale on Globalize or I18n' do
+  it 'attribute reader without arguments will use the current locale on Globalize or I18n' do
     with_locale(:de) do
       Post.create!(:title => 'Titel', :content => 'Inhalt')
     end
@@ -140,47 +140,47 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal 'Titel', Post.first.title
   end
 
-  test 'attribute reader when passed a locale will use the given locale' do
+  it 'attribute reader when passed a locale will use the given locale' do
     post = with_locale(:de) do
       Post.create!(:title => 'Titel', :content => 'Inhalt')
     end
     assert_equal 'Titel', post.title(:de)
   end
 
-  test 'modifying a translated attribute does not change the untranslated value' do
+  it 'modifying a translated attribute does not change the untranslated value' do
     post = Post.create(:title => 'title')
     before = post.untranslated_attributes['title']
     post.title = 'changed title'
     assert_equal post.untranslated_attributes['title'], before
   end
 
-  test 'serializable attribute with default marshalling, without data' do
+  it 'serializable attribute with default marshalling, without data' do
     data = nil
     model = SerializedAttr.create
     assert_equal data, model.meta
   end
 
-  test 'serializable attribute with default marshalling, with data' do
+  it 'serializable attribute with default marshalling, with data' do
     data = {:foo => "bar", :whats => "up"}
     model = SerializedAttr.create(:meta => data)
     assert_equal data, model.meta
   end
 
   if ENV['RAILS_3_0']
-    test 'serializable attribute with specified marshalling, without data, rails 3.0' do
+    it 'serializable attribute with specified marshalling, without data, rails 3.0' do
       data = nil
       model = SerializedHash.new
       assert_equal data, model.meta
     end
   else
-    test 'serializable attribute with specified marshalling, without data, rails 3.1+' do
+    it 'serializable attribute with specified marshalling, without data, rails 3.1+' do
       data = {}
       model = SerializedHash.new
       assert_equal data, model.meta
     end
   end
 
-  test 'modifying a translated attribute does not remove secondary unsaved translations' do
+  it 'modifying a translated attribute does not remove secondary unsaved translations' do
     post = with_locale(:en) do
       post = Post.new(:translations_attributes => {
         "0" => { :locale => 'en', :title => 'title' },
@@ -194,7 +194,7 @@ class AttributesTest < Test::Unit::TestCase
     assert saved_locales.include? :it
   end
 
-  test 'does not update original columns with content not in the default locale' do
+  it 'does not update original columns with content not in the default locale' do
     task = Task.create :name => 'Title'
 
     I18n.locale = :de
@@ -204,7 +204,7 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal 'Title', legacy_task.name
   end
 
-  test 'updates original columns with content in the default locale' do
+  it 'updates original columns with content in the default locale' do
     task = Task.create
 
     I18n.locale = :de
@@ -226,7 +226,7 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal 'New Title', task.name
   end
 
-  test 'does not update original columns with content in a different locale' do
+  it 'does not update original columns with content in a different locale' do
     word = Word.create :locale => 'nl', :term => 'ontvrienden', :definition => 'Iemand als vriend verwijderen op een sociaal netwerk'
     legacy_word = LegacyWord.find(word.id)
     assert_equal 'ontvrienden', legacy_word.term
@@ -247,7 +247,7 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal 'ontvrienden', legacy_word.reload.term
   end
 
-  test 'updates original columns with content in the same locale' do
+  it 'updates original columns with content in the same locale' do
     word = Word.create :locale => 'nl', :term => 'ontvrienden', :definition => 'Iemand als vriend verwijderen op een sociaal netwerk'
 
     I18n.locale = :en
@@ -262,13 +262,13 @@ class AttributesTest < Test::Unit::TestCase
     assert_equal 'ontvriend', legacy_word.term
   end
 
-  test 'does not change a blank attribute to nil' do
+  it 'does not change a blank attribute to nil' do
     account = Account.new
     assert_equal '', account.business_name
     assert_equal '', account.notes
   end
 
-  test 'delegates column_for_attribute to translations adapter' do
+  it 'delegates column_for_attribute to translations adapter' do
     post = Post.new
     assert_equal post.globalize.send(:column_for_attribute, :title), post.column_for_attribute(:title)
   end

@@ -1,12 +1,11 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'test/unit'
+require 'minitest/autorun'
 require 'fileutils'
 require 'logger'
 
 Bundler.require(:default, :test)
 require 'database_cleaner'
-require 'test_declarative'
 
 log = '/tmp/globalize3_test.log'
 FileUtils.touch(log) unless File.exists?(log)
@@ -23,7 +22,8 @@ require File.expand_path('../data/models', __FILE__)
 
 DatabaseCleaner.strategy = :truncation
 
-class Test::Unit::TestCase
+require 'minitest/spec'
+MiniTest::Spec.class_eval do
   def setup
     I18n.locale = I18n.default_locale = :en
     Globalize.locale = nil
@@ -46,12 +46,6 @@ class Test::Unit::TestCase
   ensure
     I18n.hide_fallbacks
     I18n.backend = previous
-  end
-
-  def assert_included(item, array)
-    assert_block "Item #{item.inspect} is not included in the array #{array.inspect}" do
-      array.include?(item)
-    end
   end
 
   def assert_belongs_to(model, other)

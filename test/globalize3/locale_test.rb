@@ -2,18 +2,18 @@
 
 require File.expand_path('../../test_helper', __FILE__)
 
-class LocaleTest < Test::Unit::TestCase
-  test "Globalize has locale accessors" do
+class LocaleTest < MiniTest::Spec
+  it "Globalize has locale accessors" do
     assert Globalize.respond_to?(:locale)
     assert Globalize.respond_to?(:locale=)
   end
 
-  test "Globalize.locale reader can be called before a locale was set" do
+  it "Globalize.locale reader can be called before a locale was set" do
     Globalize.locale = nil
-    assert_nothing_raised { Globalize.locale }
+    Globalize.locale # should not raise
   end
 
-  test 'Globalize locale setting' do
+  it 'Globalize locale setting' do
     assert_equal :en, I18n.locale
     assert_equal :en, Globalize.locale
 
@@ -30,7 +30,7 @@ class LocaleTest < Test::Unit::TestCase
     assert_equal :es, Globalize.locale
   end
 
-  test "Globalize locale setting with strings" do
+  it "Globalize locale setting with strings" do
     I18n.locale = 'de'
     Globalize.locale = 'de'
     assert_equal I18n.locale, Globalize.locale
@@ -44,7 +44,7 @@ class LocaleTest < Test::Unit::TestCase
     assert_equal I18n.locale, Globalize.locale
   end
 
-  test 'with_locale temporarily sets the given locale and yields the block' do
+  it 'with_locale temporarily sets the given locale and yields the block' do
     assert_equal :en, Globalize.locale
     Globalize.with_locale :de do |locale|
       assert_equal :de, Globalize.locale
@@ -64,7 +64,7 @@ class LocaleTest < Test::Unit::TestCase
     assert_equal :en, Globalize.locale
   end
 
-  test 'with_locales calls block once with each locale given temporarily set' do
+  it 'with_locales calls block once with each locale given temporarily set' do
     locales = Globalize.with_locales :en, [:de, :fr] do |locale|
       assert_equal locale, Globalize.locale
       locale
@@ -72,7 +72,7 @@ class LocaleTest < Test::Unit::TestCase
     assert_equal [:en, :de, :fr], locales
   end
 
-  test "attribute saving goes by content locale and not global locale" do
+  it "attribute saving goes by content locale and not global locale" do
     Globalize.locale = :de
     assert_equal :en, I18n.locale
     Post.create :title => 'foo'
@@ -80,7 +80,7 @@ class LocaleTest < Test::Unit::TestCase
     assert_equal :de, Post.first.translations.first.locale
   end
 
-  test "attribute loading goes by content locale and not global locale" do
+  it "attribute loading goes by content locale and not global locale" do
     post = Post.create(:title => 'title')
     assert_translated Post.first, :en, :title, 'title'
 

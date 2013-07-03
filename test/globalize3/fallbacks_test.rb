@@ -1,6 +1,6 @@
 require File.expand_path('../../test_helper', __FILE__)
 
-class TranslatedTest < Test::Unit::TestCase
+class TranslatedTest < MiniTest::Spec
   def setup
     @previous_backend = I18n.backend
     I18n.pretend_fallbacks
@@ -16,7 +16,7 @@ class TranslatedTest < Test::Unit::TestCase
     I18n.backend = @previous_backend
   end
 
-  test "keeping one field in new locale when other field is changed" do
+  it "keeping one field in new locale when other field is changed" do
     I18n.fallbacks.map('de-DE' => [ 'en-US' ])
     post = Post.create :title => 'foo'
 
@@ -26,7 +26,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal 'foo', post.title
   end
 
-  test "modifying non-required field in a new locale" do
+  it "modifying non-required field in a new locale" do
     I18n.fallbacks.map 'de-DE' => [ 'en-US' ]
     post = Post.create :title => 'foo'
     I18n.locale = 'de-DE'
@@ -34,7 +34,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert post.save
   end
 
-  test "resolves a simple fallback" do
+  it "resolves a simple fallback" do
     I18n.locale = 'de-DE'
     post = Post.create :title => 'foo'
 
@@ -48,7 +48,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal 'bar', post.content
   end
 
-  test "resolves a simple fallback without reloading" do
+  it "resolves a simple fallback without reloading" do
     I18n.locale = 'de-DE'
     post = Post.new :title => 'foo'
 
@@ -61,7 +61,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal 'bar', post.content
   end
 
-  test "resolves a complex fallback without reloading" do
+  it "resolves a complex fallback without reloading" do
     I18n.fallbacks.map 'de' => %w(en he)
     I18n.locale = 'de'
     post = Post.new
@@ -75,7 +75,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal 'bar', post.content
   end
 
-  test 'fallbacks with lots of locale switching' do
+  it 'fallbacks with lots of locale switching' do
     I18n.fallbacks.map :'de-DE' => [ :'en-US' ]
     post = Post.create :title => 'foo'
 
@@ -89,7 +89,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal 'bar', post.title
   end
 
-  test 'fallbacks with lots of locale switching 2' do
+  it 'fallbacks with lots of locale switching 2' do
     I18n.fallbacks.map :'de-DE' => [ :'en-US' ]
     child = Child.create :content => 'foo'
 
@@ -103,7 +103,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal 'bar', child.content
   end
 
-  test 'fallbacks with nil translations' do
+  it 'fallbacks with nil translations' do
     I18n.fallbacks.map :'de-DE' => [ :'en-US' ]
     post = Post.create :title => 'foo'
 
@@ -114,7 +114,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal 'foo', post.title
   end
 
-  test 'fallbacks with empty translations' do
+  it 'fallbacks with empty translations' do
     I18n.fallbacks.map :'de-DE' => [ :'en-US' ]
     task = Task.create :name => 'foo'
 
@@ -125,7 +125,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal 'foo', task.name
   end
 
-  test 'fallbacks with empty translations 2' do
+  it 'fallbacks with empty translations 2' do
     I18n.fallbacks.map :'de-DE' => [ :'en-US' ]
     task = Task.create :name => 'foo'
     post = Post.create :title => 'foo'
@@ -141,7 +141,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal '', post.title
   end
 
-  test 'creating just one translation when fallbacks set' do
+  it 'creating just one translation when fallbacks set' do
     I18n.fallbacks.clear
     I18n.fallbacks.map :de => [ :fr ]
     I18n.locale = :de
@@ -153,7 +153,7 @@ class TranslatedTest < Test::Unit::TestCase
     assert_equal [:de], task.translations.map(&:locale).sort
   end
 
-  test 'fallback overwritten in model' do
+  it 'fallback overwritten in model' do
     I18n.fallbacks.clear
     Task.fallbacks = [:en, :de]
     I18n.locale = :de
@@ -172,7 +172,7 @@ class TranslatedTest < Test::Unit::TestCase
     Task.fallbacks = nil
   end
 
-  test 'fallback to each other' do
+  it 'fallback to each other' do
     I18n.fallbacks.clear
     Globalize.fallbacks = {:en => [:en, :pl], :pl => [:pl, :en]}
     I18n.locale = :en
@@ -192,7 +192,7 @@ class TranslatedTest < Test::Unit::TestCase
     Globalize.fallbacks = nil
   end
 
-  test "name_translations should not use fallbacks" do
+  it "name_translations should not use fallbacks" do
     I18n.fallbacks.clear
     I18n.fallbacks.map :en => [ :de ]
     I18n.locale = :en

@@ -1,13 +1,13 @@
 require File.expand_path('../../test_helper', __FILE__)
 
-class VersioningTest < Test::Unit::TestCase
+class VersioningTest < MiniTest::Spec
 
-  test "create only one version for create" do
+  it "create only one version for create" do
     post = Post.create!(:title => 'title v1', :content => '')
     assert_equal 1, post.versions.length
   end
 
-  test "versions are scoped to the current Globalize locale" do
+  it "versions are scoped to the current Globalize locale" do
     post = Post.create!(:title => 'title v1', :content => '')
 
     post.update_attributes!(:title => 'title v2')
@@ -23,11 +23,11 @@ class VersioningTest < Test::Unit::TestCase
     assert_equal %w[en en], post.versions.map(&:locale)
   end
 
-  test "does not create a version for initial locale" do
+  it "does not create a version for initial locale" do
     # really ?
   end
 
-  test "reverting to an earlier version only reverts changes to the current locale" do
+  it "reverting to an earlier version only reverts changes to the current locale" do
     post = Post.create!(:title => 'title v1', :content => '')
     post.update_attributes!(:title => 'title v2')
     post.update_attributes!(:title => 'Titel v1', :locale => :de)
@@ -41,7 +41,7 @@ class VersioningTest < Test::Unit::TestCase
     assert_equal 'Titel v1', post.title(:de)
   end
 
-  test "reverting happens per locale" do
+  it "reverting happens per locale" do
     post = Post.create!(:title => 'title v1')
 
     with_locale(:en) do

@@ -2,9 +2,9 @@
 require File.expand_path('../../test_helper', __FILE__)
 
 if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
-  class DynamicFindersTest < Test::Unit::TestCase
+  class DynamicFindersTest < MiniTest::Spec
 
-    test "Does not break normal finders" do
+    it "Does not break normal finders" do
       user = User.create!(:name => "name", :email => "email@example.org")
 
       assert_equal user,   User.find_by_email(user.email)
@@ -17,7 +17,7 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
       assert_equal [user], User.find_all_by_id_and_email(user.id, user.email)
     end
 
-    test "Does not break find_or_initialize finders" do
+    it "Does not break find_or_initialize finders" do
       user = User.create!(:name => "Jim", :email => "email@example.org")
 
       new_user = User.find_or_initialize_by_name("Bob")
@@ -26,7 +26,7 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
       assert_equal user, User.find_or_initialize_by_name_and_email("Jim", "email@example.org")
     end
 
-    test "Does not break find_or_create finders" do
+    it "Does not break find_or_create finders" do
       user = User.create!(:name => "Jim", :email => "email@example.org")
 
       user_count_before = User.count
@@ -38,7 +38,7 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
       assert_equal user, User.find_or_create_by_name("Jim")
     end
 
-    test "simple dynamic finders do work" do
+    it "simple dynamic finders do work" do
       foo = Post.create!(:title => 'foo')
       bar = Post.create!(:title => 'bar')
 
@@ -51,15 +51,15 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
     end
 
     if ::ActiveRecord::VERSION::STRING >= "3.1.0"
-      test "dynamic finders do work with bangs" do
-        assert_raise ActiveRecord::RecordNotFound do
+      it "dynamic finders do work with bangs" do
+        assert_raises ActiveRecord::RecordNotFound do
           Post.find_by_title!('non existing')
         end
       end
     end
 
     # https://github.com/svenfuchs/globalize3/issues#issue/5
-    test "simple dynamic finders retruns results from current locale and fallbacks" do
+    it "simple dynamic finders retruns results from current locale and fallbacks" do
       en, de, he = 'title', 'titel', 'שם'
       post = Post.create!(:title => en)
       post.update_attributes!(:title => de, :locale => :de)
@@ -89,7 +89,7 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
       end
     end
 
-    test "simple dynamic finders do work on sti models" do
+    it "simple dynamic finders do work on sti models" do
       Child.create(:content => 'foo')
       Child.create(:content => 'bar')
 
@@ -97,30 +97,29 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
       assert_equal 'foo', Child.find_all_by_content('foo').first.content
     end
 
-    test "records returned by dynamic finders have writable attributes" do
+    it "records returned by dynamic finders have writable attributes" do
       Post.create(:title => 'original')
       post = Post.find_by_title('original')
       post.title = 'modified'
-      assert_nothing_raised(ActiveRecord::ReadOnlyRecord) do
-        post.save
-      end
+      post.save
+      post.should be_persisted
     end
 
-    test "records returned by dynamic finders have all translations" do
+    it "records returned by dynamic finders have all translations" do
       post = Post.create(:title => 'a title')
       Globalize.with_locale(:ja) { post.update_attributes(:title => 'タイトル') }
       post_by_df = Post.find_by_title('a title')
       assert_equal post.translations, post_by_df.translations
     end
 
-    test "responds to possible dynamic finders" do
+    it "responds to possible dynamic finders" do
       assert Post.respond_to?(:find_by_title)
       assert Post.respond_to?(:find_all_by_title)
       assert Post.respond_to?(:find_by_title_and_content)
       assert Post.respond_to?(:find_all_by_title_and_content)
     end
 
-    test "does not responds to impossible dynamic finders" do
+    it "does not responds to impossible dynamic finders" do
       assert ! Post.respond_to?(:find_by_foo)
       assert ! Post.respond_to?(:find_all_by_foo)
       assert ! Post.respond_to?(:find_by_title_and_foo)
@@ -129,7 +128,7 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
 
   end
 
-  class TwoTranslatedAttributesDynamicFindersTest < Test::Unit::TestCase
+  class TwoTranslatedAttributesDynamicFindersTest < MiniTest::Spec
 
     def setup
       @title1, @title2, @content = "n1", "n2", "desc"
@@ -137,12 +136,12 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
       @p2 = Post.create!(:title => @title2, :content => @content)
     end
 
-    test "find one element by two translation columns" do
+    it "find one element by two translation columns" do
       assert_equal @p1, Post.find_by_title_and_content(@title1, @content)
       assert_equal @p2, Post.find_by_content_and_title(@content, @title2)
     end
 
-    test "return nil for none existing values" do
+    it "return nil for none existing values" do
       assert_nil Post.find_by_content_and_title(@content, "not exisiting")
       assert_nil Post.find_by_content_and_title("not existing", @title2)
 
@@ -150,7 +149,7 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
       assert_nil Post.find_by_title_and_content(@title2, "not existing")
     end
 
-    test "find elements by two translation columns" do
+    it "find elements by two translation columns" do
       two_results = Post.find_all_by_title_and_content([@title1, @title2], @content)
       assert two_results.include?(@p1)
       assert two_results.include?(@p2)
@@ -158,7 +157,7 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
       assert_equal [@p2], Post.find_all_by_content_and_title(@content, @title2)
     end
 
-    test "returns empty result set for none existing values" do
+    it "returns empty result set for none existing values" do
       assert_equal [], Post.find_all_by_title_and_content([@title1, @title2], "not existing")
       assert_equal [], Post.find_all_by_title_and_content("not existing", @content)
 
@@ -168,7 +167,7 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
 
   end
 
-  class TranslatedAndNormalAttributeDynamicFindersTest < Test::Unit::TestCase
+  class TranslatedAndNormalAttributeDynamicFindersTest < MiniTest::Spec
 
     def setup
       @name1, @name2, @email = "n1", "n2", "email@example.org"
@@ -176,12 +175,12 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
       @p2 = User.create!(:name => @name2, :email => @email)
     end
 
-    test "find one element by two columns" do
+    it "find one element by two columns" do
       assert_equal @p1, User.find_by_name_and_email(@name1, @email)
       assert_equal @p2, User.find_by_email_and_name(@email, @name2)
     end
 
-    test "return nil for none existing values" do
+    it "return nil for none existing values" do
       assert_nil User.find_by_email_and_name(@email, "not exisiting")
       assert_nil User.find_by_email_and_name("not existing", @name2)
 
@@ -189,14 +188,14 @@ if ENV['RAILS_3_0'] || ENV['RAILS_3_1'] || ENV['RAILS_3_2']
       assert_nil User.find_by_name_and_email(@name2, "not existing")
     end
 
-    test "find elements by two translation columns" do
+    it "find elements by two translation columns" do
       two_results = User.find_all_by_name_and_email([@name1, @name2], @email)
       assert two_results.include?(@p1)
       assert two_results.include?(@p2)
       assert_equal [@p2], User.find_all_by_email_and_name(@email, @name2)
     end
 
-    test "returns empty result set for none existing values" do
+    it "returns empty result set for none existing values" do
       assert_equal [], User.find_all_by_name_and_email([@name1, @name2], "not existing")
       assert_equal [], User.find_all_by_name_and_email("not existing", @email)
 
