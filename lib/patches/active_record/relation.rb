@@ -8,7 +8,12 @@ module ActiveRecord
           [table_name, _translations_table_name].compact.include? node.left.relation.name
         }
 
-        Hash[equalities.map { |where| [where.left.name, where.right] }].with_indifferent_access
+        binds = Hash[bind_values.find_all(&:first).map { |column, v| [column.name, v] }]
+
+        Hash[equalities.map { |where|
+          name = where.left.name
+          [name, binds.fetch(name.to_s) { where.right } ]
+        }].with_indifferent_access
       end
     end
   end
