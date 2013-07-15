@@ -11,29 +11,12 @@ module Globalize
         super.merge(translated_attributes)
       end
 
-      def self.included(base)
-        # Maintain Rails 3.0.x compatibility while adding Rails >= 3.1 compatibility
-        # Rails >= 3.1.x support
-        base.class_eval %{
-          def assign_attributes(attributes)
-            with_given_locale(attributes) { super }
-          end
-        }
+      def attributes=(attributes, *args)
+        with_given_locale(attributes) { super }
+      end
 
-        # (Mainly) Rails < 3.1 support
-        base.class_eval %{
-          def attributes=(attributes, *args)
-            with_given_locale(attributes) { super }
-          end
-
-          def update_attributes!(attributes, *args)
-            with_given_locale(attributes) { super }
-          end
-
-          def update_attributes(attributes, *args)
-            with_given_locale(attributes) { super }
-          end
-        }
+      def assign_attributes(attributes)
+        with_given_locale(attributes) { super }
       end
 
       def write_attribute(name, value, options = {})
