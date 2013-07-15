@@ -58,18 +58,12 @@ module Globalize
         "#{translation_class.table_name}.#{name}"
       end
 
-      if RUBY_VERSION < '1.9'
-        def respond_to?(method_id, *args, &block)
-          supported_on_missing?(method_id) || super
-        end
-      else
-        def respond_to_missing?(method_id, include_private = false)
-          supported_on_missing?(method_id) || super
-        end
+      def respond_to_missing?(method_id, include_private = false)
+        supported_on_missing?(method_id) || super
       end
 
       def supported_on_missing?(method_id)
-        return super unless RUBY_VERSION < '1.9' || respond_to?(:translated_attribute_names)
+        return super unless respond_to?(:translated_attribute_names)
         match = defined?(::ActiveRecord::DynamicFinderMatch) && (::ActiveRecord::DynamicFinderMatch.match(method_id) || ::ActiveRecord::DynamicScopeMatch.match(method_id))
         return false if match.nil?
 
@@ -99,20 +93,20 @@ module Globalize
         end
 
         if defined?(::ActiveRecord::DynamicFinderMatch) && match.is_a?(::ActiveRecord::DynamicFinderMatch)
-          if match.instantiator? and scope.blank?
+          if match.instantiator? && scope.blank?
             return scope.find_or_instantiator_by_attributes match, attribute_names, *arguments, &block
           end
           match_finder_method = match.finder.to_s
-          match_finder_method << "!" if match.bang? && ::ActiveRecord::VERSION::STRING >= "3.1.0"
+          match_finder_method << "!" if match.bang?
           return scope.send(match_finder_method).tap do |found|
-            found.is_a?(Array) ? found.map { |f| f.translations.reload } : found.translations.reload unless found.nil?
+            Array(found).map { |f| f.translations.reload } unless found.nil?
           end
         end
         return scope
       end
 
       def find_or_instantiator_by_attributes(match, attributes, *args)
-        options = args.size > 1 && args.last(2).all?{ |a| a.is_a?(Hash) } ? args.extract_options! : {}
+        options = args.many? && args.last(2).all?{ |a| a.is_a?(Hash) } ? args.extract_options! : {}
         protected_attributes_for_create, unprotected_attributes_for_create = {}, {}
         args.each_with_index do |arg, i|
           if arg.is_a?(Hash)
@@ -122,15 +116,8 @@ module Globalize
           end
         end
 
-        record = if ::ActiveRecord::VERSION::STRING < "3.1.0"
-          new do |r|
-            r.send(:attributes=, protected_attributes_for_create, true) unless protected_attributes_for_create.empty?
-            r.send(:attributes=, unprotected_attributes_for_create, false) unless unprotected_attributes_for_create.empty?
-          end
-        else
-          new(protected_attributes_for_create, options) do |r|
-            r.assign_attributes(unprotected_attributes_for_create)
-          end
+        record = new(protected_attributes_for_create, options) do |r|
+          r.assign_attributes(unprotected_attributes_for_create)
         end
         yield(record) if block_given?
         record.send(match.bang? ? :save! : :save) if match.instantiator.eql?(:create)

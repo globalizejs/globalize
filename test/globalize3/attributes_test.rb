@@ -166,18 +166,10 @@ class AttributesTest < MiniTest::Spec
     assert_equal data, model.meta
   end
 
-  if ENV['RAILS_3_0']
-    it 'serializable attribute with specified marshalling, without data, rails 3.0' do
-      data = nil
-      model = SerializedHash.new
-      assert_equal data, model.meta
-    end
-  else
-    it 'serializable attribute with specified marshalling, without data, rails 3.1+' do
-      data = {}
-      model = SerializedHash.new
-      assert_equal data, model.meta
-    end
+  it 'serializable attribute with specified marshalling, without data, rails 3.1+' do
+    data = {}
+    model = SerializedHash.new
+    assert_equal data, model.meta
   end
 
   it 'modifying a translated attribute does not remove secondary unsaved translations' do
@@ -197,8 +189,7 @@ class AttributesTest < MiniTest::Spec
   it 'does not update original columns with content not in the default locale' do
     task = Task.create :name => 'Title'
 
-    I18n.locale = :de
-    task.update_attributes :name => 'Titel'
+    Globalize.with_locale(:de) { task.update_attributes :name => 'Titel' }
 
     legacy_task = LegacyTask.find(task.id)
     assert_equal 'Title', legacy_task.name

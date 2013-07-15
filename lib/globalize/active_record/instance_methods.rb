@@ -37,35 +37,34 @@ module Globalize
       end
 
       def write_attribute(name, value, options = {})
-        if translated?(name)
-          options = {:locale => Globalize.locale}.merge(options)
+        return super(name, value) unless translated?(name)
 
-          # Dirty tracking, paraphrased from
-          # ActiveRecord::AttributeMethods::Dirty#write_attribute.
-          name_str = name.to_s
-          if attribute_changed?(name_str)
-            # If there's already a change, delete it if this undoes the change.
-            old = changed_attributes[name_str]
-            changed_attributes.delete(name_str) if value == old
-          else
-            # If there's not a change yet, record it.
-            old = globalize.fetch(options[:locale], name)
-            old = old.clone if old.duplicable?
-            changed_attributes[name_str] = old if value != old
-          end
+        options = {:locale => Globalize.locale}.merge(options)
 
-          globalize.write(options[:locale], name, value)
+        # Dirty tracking, paraphrased from
+        # ActiveRecord::AttributeMethods::Dirty#write_attribute.
+        name_str = name.to_s
+        if attribute_changed?(name_str)
+          # If there's already a change, delete it if this undoes the change.
+          old = changed_attributes[name_str]
+          changed_attributes.delete(name_str) if value == old
         else
-          super(name, value)
+          # If there's not a change yet, record it.
+          old = globalize.fetch(options[:locale], name)
+          old = old.clone if old.duplicable?
+          changed_attributes[name_str] = old if value != old
         end
+
+        globalize.write(options[:locale], name, value)
       end
 
       def read_attribute(name, options = {})
         options = {:translated => true, :locale => nil}.merge(options)
+        return super(name) unless options[:translated]
 
-        if name == :locale and options[:translated]
-          self.try(:locale) ? self.locale : self.translation.locale
-        elsif self.class.translated?(name) and options[:translated]
+        if name == :locale
+          self.try(:locale).presence || self.translation.locale
+        elsif self.class.translated?(name)
           if (value = globalize.fetch(options[:locale] || Globalize.locale, name))
             value
           else
@@ -167,7 +166,9 @@ module Globalize
       end
 
       def column_for_attribute name
-        translated_attribute_names.include?(name) ? globalize.send(:column_for_attribute, name) : super
+        return super if translated_attribute_names.exclude?(name)
+
+        globalize.send(:column_for_attribute, name)
       end
 
     protected
