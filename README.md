@@ -128,7 +128,7 @@ Globalize.culture( "fr-FR" );
 console.log( Globalize.culture().name ) // "fr-FR"
 
 Globalize.culture([ "es-MX", "fr-FR" ]);
-console.log( Globalize.culture().name ) // "es-MX"
+console.log( Globalize.culture().name ) // "fr-FR"
 </pre>
 
 In any case, if no match is found, the neutral English culture "en" is selected
