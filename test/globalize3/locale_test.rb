@@ -53,6 +53,17 @@ class LocaleTest < Test::Unit::TestCase
     assert_equal :en, Globalize.locale
   end
 
+  test 'with_locale resets the locale to the previous one even if an exception occurs in the block' do
+    assert_equal :en, Globalize.locale
+    begin
+      Globalize.with_locale :de do |locale|
+        raise
+      end
+    rescue Exception
+    end
+    assert_equal :en, Globalize.locale
+  end
+
   test 'with_locales calls block once with each locale given temporarily set' do
     locales = Globalize.with_locales :en, [:de, :fr] do |locale|
       assert_equal locale, Globalize.locale
