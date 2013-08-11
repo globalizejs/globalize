@@ -36,12 +36,12 @@ module Globalize
       def save_translations!
         existing_translations_by_locale = Hash[record.translations.map { |t| [ t.locale, t ] }]
 
-        stash.each do |locale, attrs|
-          if attrs.any?
-            translation = existing_translations_by_locale[locale] || record.translations.build(locale: locale.to_s)
-            attrs.each { |name, value| translation[name] = value }
-            translation.save!
-          end
+        stash.reject {|locale, attrs| attrs.empty?}.each do |locale, attrs|
+          translation = existing_translations_by_locale[locale] ||
+                          record.translations.build(locale: locale.to_s)
+          attrs.each { |name, value| translation[name] = value }
+          ensure_foreign_key_for(translation)
+          translation.save!
         end
 
         reset
@@ -51,7 +51,12 @@ module Globalize
         stash.clear
       end
 
-    protected
+      protected
+
+      def ensure_foreign_key_for(translation)
+        # Sometimes the translation is initialised before a foreign key can be set.
+        translation[translation.reflections[:globalized_model].foreign_key] = record.id
+      end
 
       def type_cast(name, value)
         return value.presence unless column = column_for_attribute(name)
