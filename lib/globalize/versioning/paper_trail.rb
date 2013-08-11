@@ -22,7 +22,7 @@ ActiveRecord::Base.class_eval do
   end
 end
 
-Version.class_eval do
+PaperTrail::Version.class_eval do
 
   before_save do |version|
     version.locale = Globalize.locale.to_s

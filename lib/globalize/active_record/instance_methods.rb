@@ -15,7 +15,7 @@ module Globalize
         with_given_locale(attributes) { super }
       end
 
-      def assign_attributes(attributes)
+      def assign_attributes(attributes, *args)
         with_given_locale(attributes) { super }
       end
 

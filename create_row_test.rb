@@ -29,7 +29,7 @@ class CreateRowTest < Test::Unit::TestCase
     ActiveSupport::Notifications.unsubscribe('sql.active_record')
   end
 
-  test "does not perform update when saving with cached translation" do
+  it "does not perform update when saving with cached translation" do
     p = Page.new(:title => 'title v1')
     p.translation.title
     p.save!

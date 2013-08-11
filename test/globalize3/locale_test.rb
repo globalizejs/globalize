@@ -53,7 +53,7 @@ class LocaleTest < MiniTest::Spec
     assert_equal :en, Globalize.locale
   end
 
-  test 'with_locale resets the locale to the previous one even if an exception occurs in the block' do
+  it 'with_locale resets the locale to the previous one even if an exception occurs in the block' do
     assert_equal :en, Globalize.locale
     begin
       Globalize.with_locale :de do |locale|
