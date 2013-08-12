@@ -34,7 +34,7 @@ module Globalize
         else
           # If there's not a change yet, record it.
           old = globalize.fetch(options[:locale], name)
-          old = old.clone if old.duplicable?
+          old = old.dup if old.duplicable?
           changed_attributes[name_str] = old if value != old
         end
 
