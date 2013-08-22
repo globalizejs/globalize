@@ -19,8 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'paper_trail',  '~> 3.0.0.beta'
 
-  # Per https://github.com/bmabey/database_cleaner/issues/224
-  s.add_development_dependency 'database_cleaner', ['>= 1.0.1', '< 1.1.0']
+  s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'minitest-colorize'
 
