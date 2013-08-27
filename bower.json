@@ -1,0 +1,15 @@
+{
+  "name": "globalize",
+  "version": "1.0.0-pre",
+  "ignore": [
+    "**/.*",
+    "test",
+    "CONTRIBUTING.md",
+    "bower.json"
+  ],
+  "devDependencies": {
+    "chai": "1.7.x",
+    "mocha": "1.12.x",
+    "requirejs": "2.1.x"
+  }
+}

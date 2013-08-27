@@ -2,11 +2,31 @@ module.exports = function(grunt) {
 
 	"use strict";
 
+	var mountFolder = function ( connect, path ) {
+		return connect.static( require( "path" ).resolve( path ) );
+	};
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON( "package.json" ),
+		connect: {
+			options: {
+				port: 9001,
+				hostname: "localhost"
+			},
+			test: {
+				options: {
+					middleware: function ( connect ) {
+						return [
+							mountFolder( connect, "." ),
+							mountFolder( connect, "test" )
+						];
+					}
+				}
+			}
+		},
 		jshint: {
 			source: {
-				src: [ "src/*.js" ],
+				src: [ "src/**/*.js" ],
 				options: {
 					jshintrc: "src/.jshintrc"
 				}
@@ -45,12 +65,16 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		qunit: {
-			files: [ "test/*.html" ]
+		mocha: {
+			all: {
+				options: {
+					urls: [ "http://localhost:<%= connect.options.port %>/index.html" ]
+				}
+			}
 		},
 		watch: {
-			files: [ "lib/globalize.js", "lib/cultures/*.js", "test/*.js", "test/*.html" ],
-			tasks: [ "jshint", "qunit" ]
+			files: [ "src/*.js", "test/spec/*.js", "test/*.html" ],
+			tasks: [ "jshint", "test" ]
 		},
 		clean: {
 			dist: [
@@ -59,14 +83,14 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.loadNpmTasks( "grunt-contrib-jshint" );
-	grunt.loadNpmTasks( "grunt-contrib-uglify" );
-	grunt.loadNpmTasks( "grunt-contrib-watch" );
-	grunt.loadNpmTasks( "grunt-contrib-qunit" );
-	grunt.loadNpmTasks( "grunt-contrib-clean" );
+	require( "matchdep" ).filterDev( "grunt-*" ).forEach( grunt.loadNpmTasks );
+
+	grunt.registerTask( "test", [
+		"connect:test",
+		"mocha"
+	]);
 
 	// Default task.
 	grunt.registerTask( "default", [ "jshint", "clean", "uglify", "qunit" ] );
 
 };
-
