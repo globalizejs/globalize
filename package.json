@@ -56,5 +56,8 @@
       "type": "MIT",
       "url": "http://jquery.org/license"
     }
-  ]
+  ],
+  "scripts": {
+    "test": "grunt -v"
+  }
 }
