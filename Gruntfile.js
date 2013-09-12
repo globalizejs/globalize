@@ -36,8 +36,12 @@ module.exports = function(grunt) {
 						"* Copyright <%= grunt.template.today('yyyy') %> <%= pkg.author.name %>;" +
 						" Licensed <%= _.pluck(pkg.licenses, 'type').join(', ') %> */\n"
 				},
-				files: {
-					"dist/globalize.min.js": [ "lib/globalize.js" ]
+				expand: true,
+				cwd: "lib",
+				src: [ "**/*.js" ],
+				dest: "dist/",
+				rename: function( destBase, destPath ) {
+					return destBase + destPath.replace( /\.js$/, ".min.js" );
 				}
 			}
 		},
@@ -47,6 +51,11 @@ module.exports = function(grunt) {
 		watch: {
 			files: [ "lib/globalize.js", "lib/cultures/*.js", "test/*.js", "test/*.html" ],
 			tasks: [ "jshint", "qunit" ]
+		},
+		clean: {
+			dist: [
+				"dist"
+			]
 		}
 	});
 
@@ -54,9 +63,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( "grunt-contrib-uglify" );
 	grunt.loadNpmTasks( "grunt-contrib-watch" );
 	grunt.loadNpmTasks( "grunt-contrib-qunit" );
+	grunt.loadNpmTasks( "grunt-contrib-clean" );
 
 	// Default task.
-	grunt.registerTask( "default", [ "jshint", "uglify", "qunit" ] );
+	grunt.registerTask( "default", [ "jshint", "clean", "uglify", "qunit" ] );
 
 };
 
