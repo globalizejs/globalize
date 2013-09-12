@@ -36,8 +36,12 @@ module.exports = function(grunt) {
 						"* Copyright <%= grunt.template.today('yyyy') %> <%= pkg.author.name %>;" +
 						" Licensed <%= _.pluck(pkg.licenses, 'type').join(', ') %> */\n"
 				},
-				files: {
-					"dist/globalize.min.js": [ "lib/globalize.js" ]
+				expand: true,
+				cwd: "lib",
+				src: [ "**/*.js" ],
+				dest: "dist/",
+				rename: function( destBase, destPath ) {
+					return destBase + destPath.replace( /\.js$/, ".min.js" );
 				}
 			}
 		},
