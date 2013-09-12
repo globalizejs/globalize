@@ -1,6 +1,7 @@
 # Globalize
 
-[![Build Status](https://secure.travis-ci.org/jquery/globalize.png)](http://travis-ci.org/jquery/globalize)
+[![Build Status](https://secure.travis-ci.org/jquery/globalize.png)](http://travis-ci.org/jquery/globalize) 
+[![devDependency Status](https://david-dm.org/jquery/globalize/dev-status.png)](https://david-dm.org/jquery/globalize#info=devDependencies)
 
 A JavaScript library for globalization and localization. Enables complex
 culture-aware number and date parsing and formatting, including the raw
