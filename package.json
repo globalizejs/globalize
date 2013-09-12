@@ -58,6 +58,6 @@
     }
   ],
   "scripts": {
-    "test": "grunt -v"
+    "test": "grunt"
   }
 }
