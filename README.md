@@ -1,12 +1,17 @@
 # Globalize
 
-[![Build Status](https://secure.travis-ci.org/jquery/globalize.png)](http://travis-ci.org/jquery/globalize) 
+[![Build Status](https://secure.travis-ci.org/jquery/globalize.png)](http://travis-ci.org/jquery/globalize)
 [![devDependency Status](https://david-dm.org/jquery/globalize/dev-status.png)](https://david-dm.org/jquery/globalize#info=devDependencies)
+
 
 A JavaScript library for globalization and localization. Enables complex
 culture-aware number and date parsing and formatting, including the raw
 culture information for hundreds of different languages and countries, as well
 as an extensible system for localization.
+
+## We're [working the migration to CLDR](https://github.com/jquery/globalize/pull/172)
+
+While that is in progress, patches to the existing codebase probably can't be landed. If you have a problem, please create an issue first before trying to patch it.
 
 ____
 
