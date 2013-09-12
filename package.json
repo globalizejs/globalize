@@ -42,7 +42,7 @@
     "url": "git://github.com/jquery/globalize.git"
   },
   "bugs": {
-    "web": "http://github.com/jquery/globalize/issues"
+    "url": "http://github.com/jquery/globalize/issues"
   },
   "devDependencies": {
     "grunt": "0.4.1",
