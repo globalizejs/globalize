@@ -262,6 +262,18 @@ Post.with_translations('de')
 # => []
 ```
 
+## Show different languages on one page
+
+In the views, if there is content from different locales on the same page, you have to use the blocks below :
+```ruby
+<% # specify the locale
+   # you can have several blocks like this in the same page with different locale %>
+
+<% Globalize.with_locale(:en) do %>
+  <% render :partial => "my_translated_partial" %>
+<% end %>
+```
+credits to: http://www.synbioz.com/blog/internationalization_with_globalize
 ## Changes since Globalize2
 
 * `translation_table_name` was renamed to `translations_table_name`
