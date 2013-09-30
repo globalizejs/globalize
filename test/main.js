@@ -1,6 +1,6 @@
 require.config({
 	paths: {
-		globalize: "./src"
+		globalize: "../src"
 	}
 });
 
