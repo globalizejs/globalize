@@ -7,8 +7,7 @@ define([
 	 * getFirstDayOfWeek
 	 */
 	return function( cldr ) {
-		// FIXME cldr
-		return arrayIndexOf( datetimeWeekDays, cldr.firstDay );
+		return arrayIndexOf( datetimeWeekDays, cldr.supplemental.firstDay() );
 	};
 
 });
