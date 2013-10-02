@@ -200,7 +200,10 @@ define([
 		 *  Period
 		 */
 
-		// TODO all
+		it( "should format period (a)", function() {
+			expect( Globalize.format( date1, "a" ) ).to.equal( "AM" );
+			expect( Globalize.format( date2, "a" ) ).to.equal( "PM" );
+		});
 
 		/**
 		 *  Hour

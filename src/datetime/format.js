@@ -122,7 +122,6 @@ define([
 
 				case "E":
 					ret = datetimeWeekDays[ date.getDay() ];
-					// FIXME cldr
 					if ( length === 6 ) {
 						// If short day names are not explicitly specified, abbreviated day names are used instead.
 						// http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
@@ -150,11 +149,10 @@ define([
 
 				// Period (AM or PM)
 				case "a":
-					// TODO Anything related with this http://www.unicode.org/reports/tr35/tr35-dates.html#Day_Period_Rules ?
-					// TODO What about the other calendar types?
-					// FIXME cldr
-					// -> On CLDR, make cldr.dates.calendar point to cldr.dates.calendars[default calendar for that territory]
-					ret = cldr.dates.calendars.gregorian.dayPeriods.format.wide[ date.getHours() < 12 ? "am" : "pm" ];
+					ret = cldr.main([
+						"dates/calendars/gregorian/dayPeriods/format/wide",
+						date.getHours() < 12 ? "am" : "pm"
+					]);
 					break;
 
 				// Hour
