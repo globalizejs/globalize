@@ -28,6 +28,11 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       assert_equal User.all.where(:email => 'foo@example.com').where(:name => 'foo').load, [user]
     end
 
+    it 'does not join translations table if query contains no translated attributes' do
+      assert_equal User.where(:name => 'foo').includes_values, [:translations]
+      assert_equal User.where(:email => 'foo@example.com').includes_values, []
+    end
+
     it 'can be called with no argument' do
       user = User.create(:email => 'foo@example.com', :name => 'foo')
       assert_equal User.where.not(:email => 'foo@example.com').load, []
@@ -53,6 +58,11 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       Post.create(:title => 'title 1')
       post = Post.create(:title => 'title 2')
       assert_equal Post.where.not(:title => 'title 1').first, post
+    end
+
+    it 'does not join translations table if query contains no translated attributes' do
+      assert_equal User.where.not(:name => 'foo').includes_values, [:translations]
+      assert_equal User.where.not(:email => 'foo@example.com').includes_values, []
     end
   end
 
