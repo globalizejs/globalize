@@ -15,15 +15,17 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
     end
 
     it 'returns chainable relation' do
-      post = Post.create(:title => 'a title', :published => true)
-      Post.create(:title => 'another title', :published => false)
-      assert_equal Post.where(:title => 'a title').where(:published => true).load, [post]
+      user = User.create(:email => 'foo@example.com', :name => 'foo')
+      User.create(:email => 'bar@example.com', :name => 'foo')
+      User.create(:email => 'foo@example.com', :name => 'baz')
+      assert_equal User.where(:name => 'foo').where(:email => 'foo@example.com').load, [user]
     end
 
     it 'parses translated attributes in chained relations' do
-      post = Post.create(:title => 'a title', :published => true)
-      Post.create(:title => 'another title', :published => false)
-      assert_equal Post.all.where(:published => true).where(:title => 'a title').load, [post]
+      user = User.create(:email => 'foo@example.com', :name => 'foo')
+      User.create(:email => 'bar@example.com', :name => 'foo')
+      User.create(:email => 'foo@example.com', :name => 'baz')
+      assert_equal User.all.where(:email => 'foo@example.com').where(:name => 'foo').load, [user]
     end
 
     it 'can be called with no argument' do
