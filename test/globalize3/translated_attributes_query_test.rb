@@ -80,22 +80,6 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
     end
   end
 
-  describe '.select' do
-    it 'selects records with matching names in translations table' do
-      User.create(:name => 'foo', :email => "foo@example.com")
-      assert_equal ['user_translations.name'], User.select(:name).select_values
-      assert_equal 'foo', User.select(:name).first.name
-    end
-
-    it 'includes translations if selected attributes include translated attributes' do
-      assert_equal [:translations], User.select(:name).includes_values
-    end
-
-    it 'does not include translations if selected attributes do not include translated attributes' do
-      assert_equal [], User.select(:email).includes_values
-    end
-  end
-
   describe 'finder methods' do
     before do
       @posts = [
