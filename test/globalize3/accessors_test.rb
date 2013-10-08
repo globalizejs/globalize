@@ -69,6 +69,8 @@ class AccessorsTest < Test::Unit::TestCase
     assert AccessorsPost.new.respond_to?(:title_fr)
     assert AccessorsPost.new.respond_to?(:title_en=)
     assert AccessorsPost.new.respond_to?(:title_fr=)
+    assert !AccessorsPost.new.respond_to?(:title_pt)
+    assert !AccessorsPost.new.respond_to?(:title_pt=)
   end
 
   test "post title_* getter" do
