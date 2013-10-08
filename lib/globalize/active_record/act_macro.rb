@@ -39,8 +39,8 @@ module Globalize
         # define accessor methods to get and set translated attributes
         accessor_locales.each do |locale|
           translated_attribute_names.each do |name|
-            define_method("#{name}_#{locale}") { read_attribute(name, locale: locale) }
-            define_method("#{name}_#{locale}=") { |val| write_attribute(name, val, locale: locale) }
+            define_method("#{name}_#{locale}") { read_attribute(name, :locale => locale) }
+            define_method("#{name}_#{locale}=") { |val| write_attribute(name, val, :locale => locale) }
           end
         end
       end
