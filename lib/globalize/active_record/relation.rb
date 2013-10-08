@@ -20,7 +20,7 @@ module Globalize
           WhereChain.new(spawn)
         elsif parse_translated_conditions!(opts, *rest)
           self.translations_reload_needed = true
-          with_translations_in_this_locale.where(opts, *rest)
+          super.with_translations_in_this_locale
         else
           super
         end
@@ -62,7 +62,9 @@ module Globalize
 
       def parse_translated_conditions!(opts, *rest)
         if opts.is_a?(Hash) && (keys = opts.symbolize_keys.keys & translated_attribute_names).present?
-          keys.each { |key| opts[translated_column_name(key)] = opts.delete(key) }
+          keys.each do |key|
+            opts[translated_column_name(key)] = opts.delete(key) || opts.delete(key.to_s)
+          end
         end
       end
     end

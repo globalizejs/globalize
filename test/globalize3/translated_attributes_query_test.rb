@@ -9,6 +9,12 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       assert_equal [post], Post.where(:title => 'title 1').load
     end
 
+    it 'handles string-valued attributes' do
+      post = Post.create(:title => 'title 1')
+      Post.create(:title => 'title 2')
+      assert_equal [post], Post.where('title' => 'title 1').load
+    end
+
     it 'only returns translations in this locale' do
       Globalize.with_locale(:ja) { Post.create(:title => 'タイトル') }
       assert Post.where(:title => 'タイトル').empty?
