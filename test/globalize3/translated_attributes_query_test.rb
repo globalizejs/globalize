@@ -6,7 +6,7 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
     it 'finds records with matching attribute value in translations table' do
       post = Post.create(:title => 'title 1')
       Post.create(:title => 'title 2')
-      assert_equal Post.where(:title => 'title 1').load, [post]
+      assert_equal [post], Post.where(:title => 'title 1').load
     end
 
     it 'only returns translations in this locale' do
@@ -18,30 +18,30 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       user = User.create(:email => 'foo@example.com', :name => 'foo')
       User.create(:email => 'bar@example.com', :name => 'foo')
       User.create(:email => 'foo@example.com', :name => 'baz')
-      assert_equal User.where(:name => 'foo').where(:email => 'foo@example.com').load, [user]
+      assert_equal [user], User.where(:name => 'foo').where(:email => 'foo@example.com').load
     end
 
     it 'parses translated attributes in chained relations' do
       user = User.create(:email => 'foo@example.com', :name => 'foo')
       User.create(:email => 'bar@example.com', :name => 'foo')
       User.create(:email => 'foo@example.com', :name => 'baz')
-      assert_equal User.all.where(:email => 'foo@example.com').where(:name => 'foo').load, [user]
+      assert_equal [user], User.all.where(:email => 'foo@example.com').where(:name => 'foo').load
     end
 
     it 'does not join translations table if query contains no translated attributes' do
       assert_equal User.where(:name => 'foo').includes_values, [:translations]
-      assert_equal User.where(:email => 'foo@example.com').includes_values, []
+      assert_equal [], User.where(:email => 'foo@example.com').includes_values
     end
 
     it 'can be called with no argument' do
       user = User.create(:email => 'foo@example.com', :name => 'foo')
-      assert_equal User.where.not(:email => 'foo@example.com').load, []
-      assert_equal User.where.not(:email => 'bar@example.com').load, [user]
+      assert_equal [], User.where.not(:email => 'foo@example.com').load
+      assert_equal [user], User.where.not(:email => 'bar@example.com').load
     end
 
     it 'can be called with multiple arguments' do
       user = User.create(:email => 'foo@example.com', :name => 'foo')
-      assert_equal User.where("email = :email", { :email => 'foo@example.com' }).first, user
+      assert_equal user, User.where("email = :email", { :email => 'foo@example.com' }).first
     end
   end
 
@@ -49,7 +49,7 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
     it 'finds first record with matching attribute value in translations table' do
       Post.create(:title => 'title 1')
       post = Post.create(:title => 'title 2')
-      assert_equal Post.find_by(:title => 'title 2'), post
+      assert_equal post, Post.find_by(:title => 'title 2')
     end
   end
 
@@ -57,12 +57,12 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
     it 'finds records with attribute not matching condition in translations table' do
       Post.create(:title => 'title 1')
       post = Post.create(:title => 'title 2')
-      assert_equal Post.where.not(:title => 'title 1').first, post
+      assert_equal post, Post.where.not(:title => 'title 1').first
     end
 
     it 'does not join translations table if query contains no translated attributes' do
-      assert_equal User.where.not(:name => 'foo').includes_values, [:translations]
-      assert_equal User.where.not(:email => 'foo@example.com').includes_values, []
+      assert_equal [:translations], User.where.not(:name => 'foo').includes_values
+      assert_equal [], User.where.not(:email => 'foo@example.com').includes_values
     end
   end
 
@@ -106,21 +106,21 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
     describe '.first' do
       it 'returns record with all translations' do
         @first = Post.where(:title => 'title').first
-        assert_equal @posts[0].translations, @first.translations
+        assert_equal @first.translations, @posts[0].translations
       end
     end
 
     describe '.last' do
       it 'returns record with all translations' do
         @last = Post.where(:title => 'title').last
-        assert_equal @posts[2].translations, @last.translations
+        assert_equal @last.translations, @posts[2].translations
       end
     end
 
     describe '.take' do
       it 'returns record with all translations' do
         Globalize.with_locale(:ja) { @take = Post.where(:title => 'タイトル2').take }
-        assert_equal @posts[1].translations, @take.translations
+        assert_equal @take.translations, @posts[1].translations
       end
     end
   end
