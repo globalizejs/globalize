@@ -63,4 +63,25 @@ class AccessorsTest < Test::Unit::TestCase
     translations = {:en => 'John', :de => 'Jan', :ru => 'Иван'}.stringify_keys!
     assert_equal translations, user.name_translations
   end
+
+  test "*_<locale> accessors are generated" do
+    assert AccessorsPost.new.respond_to?(:title_en)
+    assert AccessorsPost.new.respond_to?(:title_fr)
+    assert AccessorsPost.new.respond_to?(:title_en=)
+    assert AccessorsPost.new.respond_to?(:title_fr=)
+  end
+
+  test "post title_* getter" do
+    post = AccessorsPost.new(:title => 'title')
+    Globalize.with_locale(:fr) { post.title = 'titre' }
+    assert_equal post.title_en, 'title'
+    assert_equal post.title_fr, 'titre'
+  end
+
+  test "post title_* setter" do
+    post = AccessorsPost.new(:title => 'title')
+    post.title_fr = 'titre'
+    assert_equal 'title', post.title
+    assert_equal 'titre', Globalize.with_locale(:fr) { post.title }
+  end
 end
