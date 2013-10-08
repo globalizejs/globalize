@@ -34,6 +34,15 @@ module Globalize
         end
       end
 
+      def select(*fields)
+        if (fields_to_replace = fields & translated_attribute_names).present?
+          (fields_to_replace).each { |field| fields << translated_column_name(fields.delete(field)) }
+          with_translations_in_this_locale.select(fields)
+        else
+          super
+        end
+      end
+
       %w[ first last take ].each do |method_name|
         eval <<-END_RUBY
           def #{method_name}
