@@ -35,6 +35,14 @@ module Globalize
             self.translated_attribute_names << attr_name
           end
         end
+
+        # define accessor methods to get and set translated attributes
+        accessor_locales.each do |locale|
+          translated_attribute_names.each do |name|
+            define_method("#{name}_#{locale}") { read_attribute(name, :locale => locale) }
+            define_method("#{name}_#{locale}=") { |val| write_attribute(name, val, :locale => locale) }
+          end
+        end
       end
 
       def class_name
@@ -52,11 +60,13 @@ module Globalize
       def setup_translates!(options)
         options[:table_name] ||= "#{table_name.singularize}_translations"
         options[:foreign_key] ||= class_name.foreign_key
+        options[:accessor_locales] ||= []
 
-        class_attribute :translated_attribute_names, :translation_options, :fallbacks_for_empty_translations
+        class_attribute :translated_attribute_names, :translation_options, :fallbacks_for_empty_translations, :accessor_locales
         self.translated_attribute_names = []
         self.translation_options        = options
         self.fallbacks_for_empty_translations = options[:fallbacks_for_empty_translations]
+        self.accessor_locales = options[:accessor_locales].is_a?(Array) ? options[:accessor_locales] : []
 
         include InstanceMethods
         extend  ClassMethods, Migration
