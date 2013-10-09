@@ -1,12 +1,12 @@
-# Globalize3 [![Build Status](https://travis-ci.org/svenfuchs/globalize3.png?branch=master)](https://travis-ci.org/svenfuchs/globalize3)
+# Globalize [![Build Status](https://travis-ci.org/svenfuchs/globalize3.png?branch=master)](https://travis-ci.org/svenfuchs/globalize3)
 
-Globalize3 is the successor of Globalize for Rails and is targeted at
+Globalize is the successor of Globalize for Rails and is targeted at
 ActiveRecord version 3.x. It is compatible with and builds on the new
 [I18n API in Ruby on Rails](http://guides.rubyonrails.org/i18n.html) and adds
 model translations to ActiveRecord.
 
-Globalize3 is much more lightweight and compatible than its predecessor.
-Model translations in Globalize3 use default ActiveRecord features and no longer
+Globalize is much more lightweight and compatible than its predecessor.
+Model translations in Globalize use default ActiveRecord features and no longer
 limit any ActiveRecord functionality.
 
 ## Requirements
@@ -16,7 +16,7 @@ limit any ActiveRecord functionality.
 
 ## Installation
 
-To install Globalize3 with its default setup just use:
+To install Globalize with its default setup just use:
 
 gem install globalize3
 
@@ -43,14 +43,14 @@ Allows you to translate the attributes :title and :text per locale:
 
 ```ruby
 I18n.locale = :en
-post.title # => Globalize3 rocks!
+post.title # => Globalize rocks!
 
 I18n.locale = :he
 post.title # => גלובאלייז2 שולט!
 ```
 
 In order to make this work, you'll need to add the appropriate translation tables.
-Globalize3 comes with a handy helper method to help you do this.
+Globalize comes with a handy helper method to help you do this.
 It's called `create_translation_table!`. Here's an example:
 
 _Note that your migrations can use `create_translation_table!` and `drop_translation_table!`
@@ -145,9 +145,9 @@ end
 
 NOTE: Make sure you drop the translated columns from the parent table after all your data is safely migrated.
 
-## Versioning with Globalize3
+## Versioning with Globalize
 
-Globalize3 nicely integrates with
+Globalize nicely integrates with
 [paper_trail](https://github.com/airblade/paper_trail). To add versioning
 support to your model, you'll want to add the `:versioning => true`
 option to your call to <code>translates</code>.  An example from our test suite:
@@ -188,16 +188,16 @@ class Post < ActiveRecord::Base
 end
 
 puts post.translations.inspect
-# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
+# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize rocks!", name: "Globalize">,
       #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
 
 I18n.locale = :en
-post.title # => 'Globalize3 rocks!'
-post.name  # => 'Globalize3'
+post.title # => 'Globalize rocks!'
+post.name  # => 'Globalize'
 
 I18n.locale = :nl
 post.title # => ''
-post.name  # => 'Globalize3'
+post.name  # => 'Globalize'
 ```
 
 ```ruby
@@ -206,16 +206,16 @@ class Post < ActiveRecord::Base
 end
 
 puts post.translations.inspect
-# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
+# => [#<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize rocks!", name: "Globalize">,
       #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>]
 
 I18n.locale = :en
-post.title # => 'Globalize3 rocks!'
-post.name  # => 'Globalize3'
+post.title # => 'Globalize rocks!'
+post.name  # => 'Globalize'
 
 I18n.locale = :nl
-post.title # => 'Globalize3 rocks!'
-post.name  # => 'Globalize3'
+post.title # => 'Globalize rocks!'
+post.name  # => 'Globalize'
 ```
 
 ## Accessors for translations
@@ -279,13 +279,13 @@ translations for the passed in locale.
 ```ruby
 Post.with_translations('en')
 # => [
-  #<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
+  #<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize rocks!", name: "Globalize">,
   #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>
 ]
 
 Post.with_translations(I18n.locale)
 # => [
-  #<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize3 rocks!", name: "Globalize3">,
+  #<Post::Translation id: 1, post_id: 1, locale: "en", title: "Globalize rocks!", name: "Globalize">,
   #<Post::Translation id: 2, post_id: 1, locale: "nl", title: '', name: nil>
 ]
 
@@ -308,7 +308,7 @@ Your partial will now be rendered with the `:en` locale set as the current local
 
 ## Interpolation
 
-Globalize3 supports interpolation in a similar manner to I18n.
+Globalize supports interpolation in a similar manner to I18n.
 
 ```ruby
 class Post < ActiveRecord::Base
@@ -316,16 +316,16 @@ class Post < ActiveRecord::Base
 end
 
 I18n.locale = :en
-post.title = "Globalize3 %{superlative}!"
+post.title = "Globalize %{superlative}!"
 
 post.title
-# #=> "Globalize3 %{superlative}!"
+# #=> "Globalize %{superlative}!"
 
 post.title(:foo => "bar")
 # SomeError: missing interpolation argument :superlative
 
 post.title(:superlative => "rocks")
-# #=> "Globalize3 rocks!"
+# #=> "Globalize rocks!"
 ```
 
 ## Changes since Globalize2
