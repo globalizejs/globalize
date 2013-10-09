@@ -62,8 +62,11 @@ define([
 		});
 
 		it( "should format year (yyy+) with padding", function() {
-			expect( Globalize.format( date2, "yyyyy" ) ).to.equal( "02010" );
+			expect( Globalize.format( date1, "yyy" ) ).to.equal( "1982" );
+			expect( Globalize.format( date2, "yyy" ) ).to.equal( "2010" );
 			expect( Globalize.format( year0, "yyyy" ) ).to.equal( "0000" );
+			expect( Globalize.format( date1, "yyyyy" ) ).to.equal( "01982" );
+			expect( Globalize.format( date2, "yyyyy" ) ).to.equal( "02010" );
 		});
 
 		/**

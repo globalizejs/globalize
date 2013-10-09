@@ -41,7 +41,6 @@ define([
 
 				// Year (the length specifies the padding, but for two letters it also specifies the maximum length)
 				case "y":
-					// TODO handle era
 					ret = String( date.getFullYear() );
 					pad = true;
 					if ( length === 2 ) {
