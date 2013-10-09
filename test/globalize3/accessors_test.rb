@@ -64,6 +64,18 @@ class AccessorsTest < Test::Unit::TestCase
     assert_equal translations, user.name_translations
   end
 
+  test "sets accessor locales from options" do
+    myClass = Class.new(ActiveRecord::Base)
+    myClass.translates :title, :accessor_locales => [:en, :fr]
+    assert_equal [:en, :fr], myClass.accessor_locales
+  end
+
+  test "ignores accessor locales in options if not an array" do
+    myClass = Class.new(ActiveRecord::Base)
+    myClass.translates :title, :accessor_locales => true
+    assert_equal [], myClass.accessor_locales
+  end
+
   test "*_<locale> accessors are generated" do
     assert AccessorsPost.new.respond_to?(:title_en)
     assert AccessorsPost.new.respond_to?(:title_fr)

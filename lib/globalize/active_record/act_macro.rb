@@ -60,15 +60,13 @@ module Globalize
       def setup_translates!(options)
         options[:table_name] ||= "#{table_name.singularize}_translations"
         options[:foreign_key] ||= class_name.foreign_key
-        if options[:accessor_locales] == true
-          options[:accessor_locales] = I18n.available_locales
-        end
+        options[:accessor_locales] ||= []
 
         class_attribute :translated_attribute_names, :translation_options, :fallbacks_for_empty_translations, :accessor_locales
         self.translated_attribute_names = []
         self.translation_options        = options
         self.fallbacks_for_empty_translations = options[:fallbacks_for_empty_translations]
-        self.accessor_locales = options[:accessor_locales] || []
+        self.accessor_locales = options[:accessor_locales].is_a?(Array) ? options[:accessor_locales] : []
 
         include InstanceMethods
         extend  ClassMethods, Migration
