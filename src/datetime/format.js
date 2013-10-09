@@ -32,14 +32,11 @@ define([
 
 				// Era
 				case "G":
-					if ( length <= 3 ) {
-						// abbreviated form
-					} else if ( length === 4 ) {
-						// long form
-					} else {
-						// narrow form
-					}
-					// TODO
+					ret = cldr.main([
+						"dates/calendars/gregorian/eras",
+						length <= 3 ? "eraAbbr" : ( length === 4 ? "eraNames" : "eraNarrow" ),
+						date.getFullYear() < 0 ? 0 : 1
+					]);
 					break;
 
 				// Year (the length specifies the padding, but for two letters it also specifies the maximum length)

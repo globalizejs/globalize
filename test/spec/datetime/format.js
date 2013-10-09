@@ -6,6 +6,7 @@ define([
 ], function( Globalize, enCaGregorian, likelySubtags, weekData ) {
 
 	var year0 = new Date( -62167190400000 ),
+			yearBc = new Date( -62482053600000 ),
 		date1 = new Date( 1982, 0, 2, 9, 5, 59 );
 		date2 = new Date( 2010, 8, 15, 17, 35, 7, 369 );
 
@@ -20,7 +21,29 @@ define([
 		 *  Era
 		 */
 
-		// TODO G (all)
+		it( "should format era (G|GG|GGG)", function() {
+			expect( Globalize.format( date1, "G" ) ).to.equal( "AD" );
+			expect( Globalize.format( year0, "G" ) ).to.equal( "AD" );
+			expect( Globalize.format( yearBc, "G" ) ).to.equal( "BC" );
+			expect( Globalize.format( date1, "GG" ) ).to.equal( "AD" );
+			expect( Globalize.format( year0, "GG" ) ).to.equal( "AD" );
+			expect( Globalize.format( yearBc, "GG" ) ).to.equal( "BC" );
+			expect( Globalize.format( date1, "GGG" ) ).to.equal( "AD" );
+			expect( Globalize.format( year0, "GGG" ) ).to.equal( "AD" );
+			expect( Globalize.format( yearBc, "GGG" ) ).to.equal( "BC" );
+		});
+
+		it( "should format era (GGGG)", function() {
+			expect( Globalize.format( date1, "GGGG" ) ).to.equal( "Anno Domini" );
+			expect( Globalize.format( year0, "GGGG" ) ).to.equal( "Anno Domini" );
+			expect( Globalize.format( yearBc, "GGGG" ) ).to.equal( "Before Christ" );
+		});
+
+		it( "should format era (GGGGG)", function() {
+			expect( Globalize.format( date1, "GGGGG" ) ).to.equal( "A" );
+			expect( Globalize.format( year0, "GGGGG" ) ).to.equal( "A" );
+			expect( Globalize.format( yearBc, "GGGGG" ) ).to.equal( "B" );
+		});
 
 		/**
 		 *  Year
