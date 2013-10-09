@@ -217,6 +217,34 @@ post.title # => 'Globalize3 rocks!'
 post.name  # => 'Globalize3'
 ```
 
+## Accessors for translations
+
+Accessor methods to directly get and set attribute translations in another locale can be added to a model
+using the `:accessor_locales` option:
+
+```ruby
+class Post < ActiveRecord::Base
+  translates :title, :accessor_locales => [:en, :ja]
+end
+```
+
+Once set, they can be used by appending an underscore and the locale to the end of the attribute method name:
+
+```ruby
+I18n.locale = :en
+post = Post.new(:title => 'Globalize3 rocks!')
+post.title    #=> 'Globalize3 rocks!'
+post.title_en #=> 'Globalize3 rocks!'
+post.title_ja #=> nil
+
+post.title_ja = 'Globalize3はすごいね！'
+
+I18n.locale = :ja
+post.title    #=> 'Globalize3はすごいね！'
+post.title_ja #=> 'Globalize3はすごいね！'
+post.title_en #=> 'Globalize3 rocks!'
+```
+
 ## Fallback locales to each other
 
 It is possible to setup locales to fallback to each other.
