@@ -3,9 +3,10 @@ define([
 	"./get-first-day-of-week",
 	"./get-milliseconds-in-day",
 	"./pattern-re",
+	"./week-day",
 	"./week-days",
 	"../util/string/pad"
-], function( datetimeGetDayOfYear, datetimeGetFirstDayOfWeek, datetimeGetMillisecondsInDay, datetimePatternRe, datetimeWeekDays, stringPad ) {
+], function( datetimeGetDayOfYear, datetimeGetFirstDayOfWeek, datetimeGetMillisecondsInDay, datetimePatternRe, datetimeWeekDay, datetimeWeekDays, stringPad ) {
 
 	/**
 	 * format( date, pattern, cldr )
@@ -39,8 +40,10 @@ define([
 					]);
 					break;
 
-				// Year (the length specifies the padding, but for two letters it also specifies the maximum length)
+				// Year
 				case "y":
+					// Plain year.
+					// The length specifies the padding, but for two letters it also specifies the maximum length.
 					ret = String( date.getFullYear() );
 					pad = true;
 					if ( length === 2 ) {
@@ -48,7 +51,18 @@ define([
 					}
 					break;
 
-				case "Y": // Need to be implemented. See http://www.unicode.org/reports/tr35/tr35-dates.html#Week_Data
+				case "Y":
+					// Year in "Week of Year"
+					// The length specifies the padding, but for two letters it also specifies the maximum length.
+					// yearInWeekofYear = date + DaysInAWeek - (dayOfWeek - firstDay) - minDays
+					ret = new Date( date.getTime() );
+					ret.setDate( ret.getDate() + 7 - ( datetimeWeekDay( date, cldr ) - datetimeGetFirstDayOfWeek( cldr ) ) - cldr.supplemental.minDays() );
+					ret = String( ret.getFullYear() );
+					pad = true;
+					if ( length === 2 ) {
+						ret = ret.substr( ret.length - 2 );
+					}
+					break;
 
 				case "u": // Extended year. Need to be implemented.
 				case "U": // Cyclic year name. Need to be implemented.
@@ -110,8 +124,8 @@ define([
 				case "c":
 					if ( length <= 2 ) {
 						// Range is [1-7] (deduced by example provided on documentation)
-						// FIXME Should pad with zeros (not specified in the docs)?
-						ret = ( date.getDay() - datetimeGetFirstDayOfWeek( cldr ) + 7 ) % 7 + 1;
+						// TODO Should pad with zeros (not specified in the docs)?
+						ret = datetimeWeekDay( date, cldr ) + 1;
 						pad = true;
 						break;
 					}

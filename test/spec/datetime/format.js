@@ -8,7 +8,9 @@ define([
 	var year0 = new Date( -62167190400000 ),
 			yearBc = new Date( -62482053600000 ),
 		date1 = new Date( 1982, 0, 2, 9, 5, 59 );
-		date2 = new Date( 2010, 8, 15, 17, 35, 7, 369 );
+		date2 = new Date( 2010, 8, 15, 17, 35, 7, 369 ),
+		date3 = new Date( 1981, 11, 31, 12 ), // thu
+		date4 = new Date( 1994, 11, 31, 12 ); // sat
 
 	Globalize.load( enCaGregorian );
 	Globalize.load( likelySubtags );
@@ -67,6 +69,23 @@ define([
 			expect( Globalize.format( year0, "yyyy" ) ).to.equal( "0000" );
 			expect( Globalize.format( date1, "yyyyy" ) ).to.equal( "01982" );
 			expect( Globalize.format( date2, "yyyyy" ) ).to.equal( "02010" );
+		});
+
+		it( "should format year in \"week of year\" (Y) with no padding", function() {
+			expect( Globalize.format( date3, "Y" ) ).to.equal( "1982" );
+			expect( Globalize.format( date4, "Y" ) ).to.equal( "1994" );
+		});
+
+		it( "should format year in \"week of year\" (YY) with padding, and limit 2 digits", function() {
+			expect( Globalize.format( date3, "YY" ) ).to.equal( "82" );
+			expect( Globalize.format( date4, "YY" ) ).to.equal( "94" );
+		});
+
+		it( "should format year in \"week of year\" (YYY+) with padding", function() {
+			expect( Globalize.format( date3, "YYY" ) ).to.equal( "1982" );
+			expect( Globalize.format( date4, "YYY" ) ).to.equal( "1994" );
+			expect( Globalize.format( date3, "YYYYY" ) ).to.equal( "01982" );
+			expect( Globalize.format( date4, "YYYYY" ) ).to.equal( "01994" );
 		});
 
 		/**
