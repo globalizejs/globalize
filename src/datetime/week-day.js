@@ -1,6 +1,6 @@
 define([
-	"./get-first-day-of-week"
-], function( datetimeGetFirstDayOfWeek ) {
+	"./first-day-of-week"
+], function( datetimeFirstDayOfWeek ) {
 
 	/**
 	 * weekDay
@@ -12,7 +12,7 @@ define([
 	 * - returns 2 if territory is EG (week starts on "sat");
 	 */
 	return function( date, cldr ) {
-		return ( date.getDay() - datetimeGetFirstDayOfWeek( cldr ) + 7 ) % 7;
+		return ( date.getDay() - datetimeFirstDayOfWeek( cldr ) + 7 ) % 7;
 	};
 
 });

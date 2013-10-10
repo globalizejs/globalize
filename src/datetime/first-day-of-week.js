@@ -4,7 +4,7 @@ define([
 ], function( datetimeWeekDays, arrayIndexOf ) {
 
 	/**
-	 * getFirstDayOfWeek
+	 * firstDayOfWeek
 	 */
 	return function( cldr ) {
 		return arrayIndexOf( datetimeWeekDays, cldr.supplemental.firstDay() );

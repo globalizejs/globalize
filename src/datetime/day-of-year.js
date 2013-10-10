@@ -1,7 +1,7 @@
 define(function() {
 
 	/**
-	 * getDayOfYear
+	 * dayOfYear
 	 */
 	return function() {};
 

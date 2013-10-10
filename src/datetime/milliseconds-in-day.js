@@ -1,7 +1,7 @@
 define(function() {
 
 	/**
-	 * getMillisecondsInDay
+	 * millisecondsInDay
 	 */
 	return function( date ) {
 		// TODO Handle daylight savings discontinuities
