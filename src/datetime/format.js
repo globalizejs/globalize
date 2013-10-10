@@ -1,12 +1,12 @@
 define([
+	"./day-of-week",
 	"./day-of-year",
 	"./first-day-of-week",
 	"./milliseconds-in-day",
 	"./pattern-re",
-	"./week-day",
 	"./week-days",
 	"../util/string/pad"
-], function( datetimeDayOfYear, datetimeFirstDayOfWeek, datetimeMillisecondsInDay, datetimePatternRe, datetimeWeekDay, datetimeWeekDays, stringPad ) {
+], function( datetimeDayOfWeek, datetimeDayOfYear, datetimeFirstDayOfWeek, datetimeMillisecondsInDay, datetimePatternRe, datetimeWeekDays, stringPad ) {
 
 	/**
 	 * format( date, pattern, cldr )
@@ -56,7 +56,7 @@ define([
 					// The length specifies the padding, but for two letters it also specifies the maximum length.
 					// yearInWeekofYear = date + DaysInAWeek - (dayOfWeek - firstDay) - minDays
 					ret = new Date( date.getTime() );
-					ret.setDate( ret.getDate() + 7 - ( datetimeWeekDay( date, cldr ) - datetimeFirstDayOfWeek( cldr ) ) - cldr.supplemental.minDays() );
+					ret.setDate( ret.getDate() + 7 - ( datetimeDayOfWeek( date, cldr ) - datetimeFirstDayOfWeek( cldr ) ) - cldr.supplemental.minDays() );
 					ret = String( ret.getFullYear() );
 					pad = true;
 					if ( length === 2 ) {
@@ -125,7 +125,7 @@ define([
 					if ( length <= 2 ) {
 						// Range is [1-7] (deduced by example provided on documentation)
 						// TODO Should pad with zeros (not specified in the docs)?
-						ret = datetimeWeekDay( date, cldr ) + 1;
+						ret = datetimeDayOfWeek( date, cldr ) + 1;
 						pad = true;
 						break;
 					}
