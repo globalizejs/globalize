@@ -130,8 +130,14 @@ define([
 					pad = true;
 					break;
 
-				case "F": // Day of Week in month. eg. 2nd Wed in July. Need to be implemented.
-				case "g+": // Modified Julian day. Need to be implemented.
+				case "F":
+					// Day of Week in month. eg. 2nd Wed in July.
+					ret = Math.floor( date.getDate() / 7 ) + 1;
+					break;
+
+				case "g+":
+					// Modified Julian day. Need to be implemented.
+					throw new Error( "Not implemented" );
 
 				// Week day
 				case "e":

@@ -204,6 +204,10 @@ define([
 			expect( Globalize.format( date2, "DD" ) ).to.equal( "258" );
 		});
 
+		it( "should format day of week in month (F)", function() {
+			expect( Globalize.format( date1, "F" ) ).to.equal( "1" );
+			expect( Globalize.format( date2, "F" ) ).to.equal( "3" );
+		});
 
 		/**
 		 *  Week day
