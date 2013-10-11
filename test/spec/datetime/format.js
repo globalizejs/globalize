@@ -173,8 +173,11 @@ define([
 			expect( Globalize.format( date2, "ww" ) ).to.equal( "38" );
 		});
 
-		// TODO and W (all)
-
+		it( "should format week of month (W)", function() {
+			expect( Globalize.format( date1, "W" ) ).to.equal( "1" );
+			expect( Globalize.format( date2, "W" ) ).to.equal( "3" );
+			expect( Globalize.format( date3, "W" ) ).to.equal( "5" );
+		});
 
 		/**
 		 *  Day

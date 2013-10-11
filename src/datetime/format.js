@@ -112,7 +112,12 @@ define([
 					pad = true;
 					break;
 
-				case "W": // Week of Month. Need to be implemented.
+				case "W":
+					// Week of Month.
+					// wom = ceil( ( dom + dow of `1/month` ) / 7 ) - minDaysStuff ? 1 : 0.
+					ret = datetimeDayOfWeek( datetimeStartOf( date, "month" ), cldr );
+					ret = Math.ceil( ( date.getDate() + ret ) / 7 ) - ( 7 - ret >= cldr.supplemental.minDays() ? 0 : 1 );
+					break;
 
 				// Day
 				case "d":
