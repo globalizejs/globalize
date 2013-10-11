@@ -163,7 +163,18 @@ define([
 		 *  Week
 		 */
 
-		// TODO w (all), and W (all)
+		it( "should format week of year (w) with no padding", function() {
+			expect( Globalize.format( date1, "w" ) ).to.equal( "1" );
+			expect( Globalize.format( date2, "w" ) ).to.equal( "38" );
+		});
+
+		it( "should format week of year (ww) with padding", function() {
+			expect( Globalize.format( date1, "ww" ) ).to.equal( "01" );
+			expect( Globalize.format( date2, "ww" ) ).to.equal( "38" );
+		});
+
+		// TODO and W (all)
+
 
 		/**
 		 *  Day
@@ -179,7 +190,17 @@ define([
 			expect( Globalize.format( date2, "dd" ) ).to.equal( "15" );
 		});
 
-		// TODO D, F, g (all)
+		it( "should format day of year (D) with no padding", function() {
+			expect( Globalize.format( date1, "D" ) ).to.equal( "2" );
+			expect( Globalize.format( date2, "D" ) ).to.equal( "258" );
+		});
+
+		it( "should format day of year (DD|DDD) with padding", function() {
+			expect( Globalize.format( date1, "DD" ) ).to.equal( "02" );
+			expect( Globalize.format( date1, "DDD" ) ).to.equal( "002" );
+			expect( Globalize.format( date2, "DD" ) ).to.equal( "258" );
+		});
+
 
 		/**
 		 *  Week day

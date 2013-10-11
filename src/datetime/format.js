@@ -4,9 +4,10 @@ define([
 	"./first-day-of-week",
 	"./milliseconds-in-day",
 	"./pattern-re",
+	"./start-of",
 	"./week-days",
 	"../util/string/pad"
-], function( datetimeDayOfWeek, datetimeDayOfYear, datetimeFirstDayOfWeek, datetimeMillisecondsInDay, datetimePatternRe, datetimeWeekDays, stringPad ) {
+], function( datetimeDayOfWeek, datetimeDayOfYear, datetimeFirstDayOfWeek, datetimeMillisecondsInDay, datetimePatternRe, datetimeStartOf, datetimeWeekDays, stringPad ) {
 
 	/**
 	 * format( date, pattern, cldr )
@@ -101,7 +102,15 @@ define([
 					break;
 
 				// Week
-				case "w": // Week of Year. Need to be implemented.
+				case "w":
+					// Week of Year.
+					// woy = ceil( ( doy + dow of 1/1 ) / 7 ) - minDaysStuff ? 1 : 0.
+					// TODO should pad on ww? Not documented, but I guess so.
+					ret = datetimeDayOfWeek( datetimeStartOf( date, "year" ), cldr );
+					ret = Math.ceil( ( datetimeDayOfYear( date ) + ret ) / 7 ) - ( 7 - ret >= cldr.supplemental.minDays() ? 0 : 1 );
+					pad = true;
+					break;
+
 				case "W": // Week of Month. Need to be implemented.
 
 				// Day
@@ -111,8 +120,7 @@ define([
 					break;
 
 				case "D":
-					// FIXME getDayOfYear
-					ret = datetimeDayOfYear( date );
+					ret = datetimeDayOfYear( date ) + 1;
 					pad = true;
 					break;
 
@@ -130,6 +138,7 @@ define([
 						break;
 					}
 
+				/* falls through */
 				case "E":
 					ret = datetimeWeekDays[ date.getDay() ];
 					if ( length === 6 ) {
@@ -222,6 +231,7 @@ define([
 				case "V":
 				case "X":
 				case "x":
+					throw new Error( "Not implemented" );
 
 				default:
 					throw new Error( "Invalid date format pattern \"" + chr + "\"." );
