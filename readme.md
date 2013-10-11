@@ -1,33 +1,26 @@
-# Globalize [![Build Status](https://travis-ci.org/svenfuchs/globalize3.png?branch=master)](https://travis-ci.org/svenfuchs/globalize3)
+# Globalize [![Build Status](https://travis-ci.org/globalize/globalize.png?branch=rails4)](https://travis-ci.org/globalize/globalize)
 
-Globalize is the successor of Globalize for Rails and is targeted at
-ActiveRecord version 3.x. It is compatible with and builds on the new
-[I18n API in Ruby on Rails](http://guides.rubyonrails.org/i18n.html) and adds
-model translations to ActiveRecord.
-
-Globalize is much more lightweight and compatible than its predecessor.
-Model translations in Globalize use default ActiveRecord features and no longer
-limit any ActiveRecord functionality.
+Globalize builds on the [I18n API in Ruby on Rails](http://guides.rubyonrails.org/i18n.html)
+to add model translations to ActiveRecord models.
 
 ## Requirements
 
-* ActiveRecord > 3.0.0
+* ActiveRecord > 4.0.0
 * I18n
 
 ## Installation
 
 To install Globalize with its default setup just use:
 
-gem install globalize3
+gem install globalize
 
 When using bundler put it in your Gemfile:
 
 ```ruby
-source 'https://rubygems.org'
-
-gem 'globalize3', github: 'svenfuchs/globalize3', branch: 'rails4'
-gem 'paper_trail', github: 'airblade/paper_trail', branch: 'master'
+gem 'globalize'
 ```
+
+(To use the ActiveRecord 3.x version of globalize, replace `globalize` with `globalize3` in the Gemfile.)
 
 ## Model translations
 
@@ -55,26 +48,9 @@ It's called `create_translation_table!`. Here's an example:
 
 _Note that your migrations can use `create_translation_table!` and `drop_translation_table!`
 only inside the `up` and `down` instance methods, respectively. You cannot use `create_translation_table!`
-and `drop_translation_table!` inside the `change` instance method in Rails >= 3.1.0._
+and `drop_translation_table!` inside the `change` instance method.
 
-### Rails 3.0
-
-```ruby
-class CreatePosts < ActiveRecord::Migration
-  def self.up
-    create_table :posts do |t|
-      t.timestamps
-    end
-    Post.create_translation_table! :title => :string, :text => :text
-  end
-  def self.down
-    drop_table :posts
-    Post.drop_translation_table!
-  end
-end
-```
-
-### Rails >= 3.1.0
+### Creating translation tables
 
 ***Do not use the `change` method, use `up` and `down`!***
 
@@ -159,7 +135,7 @@ translates :title, :content, :published, :published_at, :versioning => true
 You will also need to have already generated the versions table that paper_trail
 expects.  See the paper_trail README for more details.
 
-If you are adding globalize3 to any previously versioned models, please note
+If you are adding globalize to any previously versioned models, please note
 that you will need to add a new `locale` column to your versioning table.
 
 Also, please see the tests in `test/globalize3/versioning_test.rb` for some
@@ -177,7 +153,7 @@ You can enable them by adding the next line to `config/application.rb` (or only
 config.i18n.fallbacks = true
 ```
 
-By default, globalize3 will only use fallbacks when your translation model does
+By default, globalize will only use fallbacks when your translation model does
 not exist or the translation value for the item you've requested is `nil`.
 However it is possible to also use fallbacks for `blank` translations by adding
 `:fallbacks_for_empty_translations => true` to the `translates` method.
@@ -327,15 +303,6 @@ post.title(:foo => "bar")
 post.title(:superlative => "rocks")
 # #=> "Globalize rocks!"
 ```
-
-## Changes since Globalize2
-
-* `translation_table_name` was renamed to `translations_table_name`
-* `available_locales` has been removed. please use `translated_locales`
-
-## Migration from Globalize for Rails (version 1)
-
-See this script by Tomasz Stachewicz: http://gist.github.com/120867
 
 ## Alternative Solutions
 
