@@ -1,4 +1,4 @@
-# Globalize [![Build Status](https://travis-ci.org/globalize/globalize.png?branch=rails4)](https://travis-ci.org/globalize/globalize)
+# Globalize [![Build Status](https://travis-ci.org/globalize/globalize.png)](https://travis-ci.org/globalize/globalize)
 
 Globalize builds on the [I18n API in Ruby on Rails](http://guides.rubyonrails.org/i18n.html)
 to add model translations to ActiveRecord models.
@@ -20,7 +20,7 @@ When using bundler put it in your Gemfile:
 gem 'globalize'
 ```
 
-(To use the ActiveRecord 3.x version of globalize, replace `globalize` with `globalize3` in the Gemfile.)
+(To use the ActiveRecord 3.x version of globalize, replace `globalize` with `globalize3` in the Gemfile and see the `3-0-stable` branch of [the repository on GitHub](https://github.com/globalize/globalize/tree/3-0-stable).)
 
 ## Model translations
 
