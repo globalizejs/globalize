@@ -2,8 +2,8 @@
 
 require File.expand_path('../../test_helper', __FILE__)
 
-class TranslationForTest < Test::Unit::TestCase
-  test "translation_for returns the translation for the locale passed in as an argument" do
+class TranslationForTest < MiniTest::Spec
+  it "translation_for returns the translation for the locale passed in as an argument" do
     post = Post.create(:title => 'title', :content => 'content', :locale => :en)
     post.update_attributes(:title => 'Titel', :content => 'Inhalt', :locale => :de)
 
@@ -14,7 +14,7 @@ class TranslationForTest < Test::Unit::TestCase
     assert_equal 'Inhalt', post.translation_for(:de).content
   end
 
-  test "translation returns the translation for the current locale" do
+  it "translation returns the translation for the current locale" do
     post = Post.create(:title => 'title', :content => 'content', :locale => :en)
     post.update_attributes(:title => 'Titel', :content => 'Inhalt', :locale => :de)
 

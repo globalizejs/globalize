@@ -64,19 +64,19 @@ class AccessorsTest < MiniTest::Spec
     assert_equal translations, user.name_translations
   end
 
-  test "sets accessor locales from options" do
+  it "sets accessor locales from options" do
     myClass = Class.new(ActiveRecord::Base)
     myClass.translates :title, :accessor_locales => [:en, :fr]
     assert_equal [:en, :fr], myClass.accessor_locales
   end
 
-  test "ignores accessor locales in options if not an array" do
+  it "ignores accessor locales in options if not an array" do
     myClass = Class.new(ActiveRecord::Base)
     myClass.translates :title, :accessor_locales => true
     assert_equal [], myClass.accessor_locales
   end
 
-  test "*_<locale> accessors are generated" do
+  it "*_<locale> accessors are generated" do
     assert AccessorsPost.new.respond_to?(:title_en)
     assert AccessorsPost.new.respond_to?(:title_fr)
     assert AccessorsPost.new.respond_to?(:title_en=)
@@ -85,14 +85,14 @@ class AccessorsTest < MiniTest::Spec
     assert !AccessorsPost.new.respond_to?(:title_pt=)
   end
 
-  test "post title_* getter" do
+  it "post title_* getter" do
     post = AccessorsPost.new(:title => 'title')
     Globalize.with_locale(:fr) { post.title = 'titre' }
     assert_equal post.title_en, 'title'
     assert_equal post.title_fr, 'titre'
   end
 
-  test "post title_* setter" do
+  it "post title_* setter" do
     post = AccessorsPost.new(:title => 'title')
     post.title_fr = 'titre'
     assert_equal 'title', post.title
