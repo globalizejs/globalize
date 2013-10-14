@@ -5,7 +5,7 @@ to add model translations to ActiveRecord models.
 
 ## Requirements
 
-* ActiveRecord > 4.0.0
+* ActiveRecord > 4.0.0 (see below for installation with ActiveRecord 3.x)
 * I18n
 
 ## Installation
