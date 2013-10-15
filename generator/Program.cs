@@ -394,14 +394,14 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
             bool first = true;
             foreach (var pair in dictionary) {
                 if (!first) {
-                    sb.Append(",\n");
+                    sb.Append(",\r\n");
                 }
                 first = false;
                 if (pair.Value is Dictionary<String, Object>) {
-                    sb.AppendFormat("{0}{1}: {{\n{2}\n{0}}}", padding, pair.Key, ToJavaScript(extend, culture, (Dictionary<String, Object>)pair.Value, level + 1, pair.Key.Equals("calendars")));
+                    sb.AppendFormat("{0}{1}: {{\r\n{2}\r\n{0}}}", padding, pair.Key, ToJavaScript(extend, culture, (Dictionary<String, Object>)pair.Value, level + 1, pair.Key.Equals("calendars")));
                 }
                 else if (pair.Key.Equals("convert")) {
-                    sb.AppendFormat("{0}convert: {{\n{1}\n{0}}}", padding, pair.Value);
+                    sb.AppendFormat("{0}convert: {{\r\n{1}\r\n{0}}}", padding, pair.Value);
                 }
                 else if (pair.Key.Equals("groupSeparator")) {
                     sb.AppendFormat("{0}\",\": {1}", padding, Serialize(pair.Value));
@@ -452,11 +452,11 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
                     if (pair.Value is Dictionary<String, Object>) {
                         var subdiff = glob1.ContainsKey(pair.Key) ? DiffGlobInfos((Dictionary<String, Object>)glob1[pair.Key], (Dictionary<String, Object>)pair.Value) : (Dictionary<String, Object>)pair.Value;
                         if (subdiff.Count > 0) {
-                            //Debug.WriteLine("Replacing\n    {0}\nwith\n    {1}", _jss.Serialize(diff[pair.Key]), _jss.Serialize(subdiff));
+                            //Debug.WriteLine("Replacing\r\n    {0}\r\nwith\r\n    {1}", _jss.Serialize(diff[pair.Key]), _jss.Serialize(subdiff));
                             diff[pair.Key] = subdiff;
                         }
                         else {
-                            //Debug.WriteLine("\nRemoving {0}\n", _jss.Serialize(pair.Key));
+                            //Debug.WriteLine("\r\nRemoving {0}\r\n", _jss.Serialize(pair.Key));
                             diff.Remove(pair.Key);
                         }
                     }
@@ -489,7 +489,7 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
                             return true;
                         }
                         //else {
-                        //    Debug.WriteLine("    Dictionaries diff:\n        {0}\n        {1}", _jss.Serialize(x.Value), _jss.Serialize(y.Value));
+                        //    Debug.WriteLine("    Dictionaries diff:\r\n        {0}\r\n        {1}", _jss.Serialize(x.Value), _jss.Serialize(y.Value));
                         //}
                     }
                 }
