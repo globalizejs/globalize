@@ -350,13 +350,13 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
 var Globalize;
 
 if ( typeof require !== ""undefined"" &&
-    typeof exports !== ""undefined"" &&
-    typeof module !== ""undefined"" ) {{
-    // Assume CommonJS
-    Globalize = require( ""globalize"" );
+	typeof exports !== ""undefined"" &&
+	typeof module !== ""undefined"" ) {{
+	// Assume CommonJS
+	Globalize = require( ""globalize"" );
 }} else {{
-    // Global variable
-    Globalize = window.Globalize;
+	// Global variable
+	Globalize = window.Globalize;
 }}
 
 Globalize.addCultureInfo( ""{0}"", ""default"", {{
@@ -634,13 +634,13 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
 var Globalize;
 
 if ( typeof require !== ""undefined"" &&
-    typeof exports !== ""undefined"" &&
-    typeof module !== ""undefined"" ) {
-    // Assume CommonJS
-    Globalize = require( ""globalize"" );
+	typeof exports !== ""undefined"" &&
+	typeof module !== ""undefined"" ) {
+	// Assume CommonJS
+	Globalize = require( ""globalize"" );
 } else {
-    // Global variable
-    Globalize = window.Globalize;
+	// Global variable
+	Globalize = window.Globalize;
 }
 ");
 
