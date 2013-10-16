@@ -8,9 +8,9 @@
     "bower.json"
   ],
   "devDependencies": {
-    "chai": "1.7.x",
     "cldr": "rxaviers/cldr#0.0.1",
-    "mocha": "1.12.x",
+    "jquery": "*",
+    "qunit": "1.12.x",
     "requirejs": "2.1.x",
     "requirejs-plugins": "1.0.x",
     "requirejs-text": "2.0.x"

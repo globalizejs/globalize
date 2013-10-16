@@ -52,7 +52,6 @@
     "grunt-contrib-qunit": "0.2.x",
     "grunt-contrib-uglify": "0.2.x",
     "grunt-contrib-watch": "0.5.x",
-    "grunt-mocha": "0.3.x",
     "matchdep": "*"
   },
   "licenses": [

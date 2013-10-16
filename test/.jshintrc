@@ -15,10 +15,10 @@
 
 	"globals": {
 		"define": false,
-		"describe": false,
-		"expect": false,
-		"it": false,
-		"mocha": false,
-		"require": false
+		"equal": false,
+		"module": false,
+		"QUnit": false,
+		"require": false,
+		"test": false
 	}
 }

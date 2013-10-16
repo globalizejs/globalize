@@ -14,6 +14,6 @@ require([
 	"./spec/datetime/format"
 
 ], function() {
-	mocha.run();
+	QUnit.start();
 });
 

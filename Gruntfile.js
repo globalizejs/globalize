@@ -37,12 +37,12 @@ module.exports = function(grunt) {
 					jshintrc: ".jshintrc"
 				}
 			},
-			src: [
-				"lib/globalize.js",
-				"lib/cultures/*.js",
-				"Gruntfile.js",
-				"test/*.js"
-			]
+			test: {
+				src: [ "test/*.js", "test/spec/**/*.js" ],
+				options: {
+					jshintrc: "test/.jshintrc"
+				}
+			}
 		},
 		uglify: {
 			dist: {
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		mocha: {
+		qunit: {
 			all: {
 				options: {
 					urls: [ "http://localhost:<%= connect.options.port %>/index.html" ]
@@ -73,7 +73,7 @@ module.exports = function(grunt) {
 			}
 		},
 		watch: {
-			files: [ "src/*.js", "test/spec/*.js", "test/*.html" ],
+			files: [ "src/*.js", "test/spec/**/*.js", "test/*.html" ],
 			tasks: [ "jshint", "test" ]
 		},
 		clean: {
@@ -87,10 +87,10 @@ module.exports = function(grunt) {
 
 	grunt.registerTask( "test", [
 		"connect:test",
-		"mocha"
+		"qunit"
 	]);
 
 	// Default task.
-	grunt.registerTask( "default", [ "jshint", "clean", "uglify", "qunit" ] );
+	grunt.registerTask( "default", [ "jshint", "test" ] );
 
 };
