@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Globalization;
-using System.Web.Script.Serialization;
-using System.Collections.Specialized;
 using System.Collections;
-using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Reflection;
-using System.Diagnostics;
-using Globalization;
+using System.Text;
+using System.Web.Script.Serialization;
 
 namespace Globalization {
     public class GlobalizationInfo {
@@ -21,20 +17,18 @@ namespace Globalization {
         public bool isRTL;
         public NumberFormatInfo numberFormat;
         public Dictionary<String, DateFormatInfo> calendars;
-        private CultureInfo culture;
         public static Dictionary<String, Object> BasisGlobInfo;
 
 
-        private static string[] _numberNegativePatterns = "(n)|-n|- n|n-|n -".Split('|');
-        private static string[] _currencyNegativePatterns = "($n)|-$n|$-n|$n-|(n$)|-n$|n-$|n$-|-n $|-$ n|n $-|$ n-|$ -n|n- $|($ n)|(n $)".Split('|');
-        private static string[] _percentNegativePatterns = "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %".Split('|');
-        private static string[] _currencyPositivePatterns = "$n|n$|$ n|n $".Split('|');
-        private static string[] _percentPositivePatterns = "n %|n%|%n|% n".Split('|');
+        private static readonly string[] _numberNegativePatterns = "(n)|-n|- n|n-|n -".Split('|');
+        private static readonly string[] _currencyNegativePatterns = "($n)|-$n|$-n|$n-|(n$)|-n$|n-$|n$-|-n $|-$ n|n $-|$ n-|$ -n|n- $|($ n)|(n $)".Split('|');
+        private static readonly string[] _percentNegativePatterns = "-n %|-n%|-%n|%-n|%n-|n-%|n%-|-% n|n %-|% n-|% -n|n- %".Split('|');
+        private static readonly string[] _currencyPositivePatterns = "$n|n$|$ n|n $".Split('|');
+        private static readonly string[] _percentPositivePatterns = "n %|n%|%n|% n".Split('|');
 
         public static GlobalizationInfo GetGlobInfo(CultureInfo culture) {
             var info = new GlobalizationInfo {
-                culture = culture,
-                language = (culture == CultureInfo.InvariantCulture || culture.IsNeutralCulture) ? culture.Name : culture.Parent.Name,
+                language = (culture.Equals(CultureInfo.InvariantCulture) || culture.IsNeutralCulture) ? culture.Name : culture.Parent.Name,
                 name = String.IsNullOrEmpty(culture.Name) ? "invariant" : culture.Name,
                 englishName = String.IsNullOrEmpty(culture.Name) ? "invariant" : culture.EnglishName,
                 nativeName = String.IsNullOrEmpty(culture.Name) ? "invariant" : culture.NativeName,
@@ -64,11 +58,11 @@ namespace Globalization {
                     var calendarType = ((GregorianCalendar)calendar).CalendarType;
                     if (calendarType == GregorianCalendarTypes.USEnglish) {
                         // we include the Gregorian_USEnglish culture as part of the built-in 'en' culture
-                        // because it is so common -- it is an optional calendar of every single english
+                        // because it is so common -- it is an optional calendar of every single English
                         // speaking culture. So, skip it when found for any other culture.
                         continue;
                     }
-                    else if (culture == CultureInfo.InvariantCulture) {
+                    if (culture.Equals(CultureInfo.InvariantCulture)) {
                         // invariant has one calendar, Gregorian_Localized, which is identical
                         // to Gregorian_USEnglish.
                         name = " Gregorian_USEnglish";
@@ -92,7 +86,7 @@ namespace Globalization {
                 if (isStandard) {
                     key = "standard";
                 }
-                if (culture != CultureInfo.InvariantCulture) {
+                if (!culture.Equals(CultureInfo.InvariantCulture)) {
                     culture.DateTimeFormat.Calendar = calendar;
                 }
                 var calendarInfo = GetDateTimeFormatInfo(culture, name);
@@ -166,7 +160,7 @@ namespace Globalization {
                 var type = df.Calendar.GetType();
                 if (type == typeof(HijriCalendar)) {
                     string convert;
-                    using (var sr = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Generator.HijriCalendar.js"))) {
+                    using (var sr = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Globalization.HijriCalendar.js"))) {
                         convert = sr.ReadToEnd();
                     }
                     int adjustment = ((HijriCalendar)df.Calendar).HijriAdjustment;
@@ -174,7 +168,7 @@ namespace Globalization {
                     info.convertScriptBlock = convert;
                 }
                 else if (type == typeof(UmAlQuraCalendar)) {
-                    using (var sr = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Generator.UmAlQuraCalendar.js"))) {
+                    using (var sr = new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("Globalization.UmAlQuraCalendar.js"))) {
                         info.convertScriptBlock = sr.ReadToEnd();
                     }
                 }
@@ -302,9 +296,8 @@ namespace Globalization {
             var str = jss.Serialize(this);
             var dictionary = jss.Deserialize<Dictionary<String, Object>>(str);
             var cals = (Dictionary<String, Object>) dictionary["calendars"];
-            Dictionary<String, Object> basisStandardCal = null;
             if (GlobalizationInfo.BasisGlobInfo != null) {
-                basisStandardCal = (Dictionary<String, Object>)((Dictionary<String, Object>)GlobalizationInfo.BasisGlobInfo["calendars"])["standard"];
+                var basisStandardCal = (Dictionary<String, Object>)((Dictionary<String, Object>)GlobalizationInfo.BasisGlobInfo["calendars"])["standard"];
                 foreach (var pair in this.calendars) {
                     var cal = (Dictionary<String, Object>)cals[pair.Key];
                     if (diffCalendars) {
@@ -329,14 +322,14 @@ namespace Globalization {
         }
 
         public static string GenerateJavaScript(string extend, string global, CultureInfo culture, string name, Dictionary<String, Object> dictionary, StringBuilder aggregateScript) {
-            string cultureFragment = ToJavaScript(extend, culture, dictionary, 1, false);
+            string cultureFragment = ToJavaScript(dictionary, 1);
 
             if (aggregateScript != null) {
                 aggregateScript.AppendFormat(CultureInfo.InvariantCulture, @"
 Globalize.addCultureInfo( ""{0}"", ""default"", {{
 {1}
 }});
-", name, cultureFragment, extend);
+", name, cultureFragment);
             }
 
                 return string.Format(CultureInfo.InvariantCulture, @"/*
@@ -388,20 +381,20 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
                 .Replace("\u202f", "\\u202f");
         }
 
-        private static string ToJavaScript(string extend, CultureInfo culture, Dictionary<String, Object> dictionary, int level, bool isCalendars) {
+        private static string ToJavaScript(Dictionary<String, Object> dictionary, int level) {
             StringBuilder sb = new StringBuilder();
             string padding = _padding.Substring(0, level);
             bool first = true;
             foreach (var pair in dictionary) {
                 if (!first) {
-                    sb.Append(",\n");
+                    sb.Append(",\r\n");
                 }
                 first = false;
                 if (pair.Value is Dictionary<String, Object>) {
-                    sb.AppendFormat("{0}{1}: {{\n{2}\n{0}}}", padding, pair.Key, ToJavaScript(extend, culture, (Dictionary<String, Object>)pair.Value, level + 1, pair.Key.Equals("calendars")));
+                    sb.AppendFormat("{0}{1}: {{\r\n{2}\r\n{0}}}", padding, pair.Key, ToJavaScript((Dictionary<String, Object>)pair.Value, level + 1));
                 }
                 else if (pair.Key.Equals("convert")) {
-                    sb.AppendFormat("{0}convert: {{\n{1}\n{0}}}", padding, pair.Value);
+                    sb.AppendFormat("{0}convert: {{\r\n{1}\r\n{0}}}", padding, pair.Value);
                 }
                 else if (pair.Key.Equals("groupSeparator")) {
                     sb.AppendFormat("{0}\",\": {1}", padding, Serialize(pair.Value));
@@ -431,8 +424,8 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
             return sb.ToString();
         }
 
-        private static JavaScriptSerializer _jss = new JavaScriptSerializer();
-        private static string _padding = "																	";
+        private static readonly JavaScriptSerializer _jss = new JavaScriptSerializer();
+        private const string _padding = "																	";
 
         private static Dictionary<String, Object> ToDictionary(IEnumerable<KeyValuePair<String, Object>> pairs) {
             var d = new Dictionary<String, Object>();
@@ -443,7 +436,6 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
         }
 
         public static Dictionary<String, Object> DiffGlobInfos(Dictionary<String, Object> glob1, Dictionary<String, Object> glob2) {
-            var unique = new Dictionary<String, Object>();
             var comparer = new KeyValueComparer();
 
             var diff = ToDictionary(glob2.Except(glob1, comparer));
@@ -452,11 +444,11 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
                     if (pair.Value is Dictionary<String, Object>) {
                         var subdiff = glob1.ContainsKey(pair.Key) ? DiffGlobInfos((Dictionary<String, Object>)glob1[pair.Key], (Dictionary<String, Object>)pair.Value) : (Dictionary<String, Object>)pair.Value;
                         if (subdiff.Count > 0) {
-                            //Debug.WriteLine("Replacing\n    {0}\nwith\n    {1}", _jss.Serialize(diff[pair.Key]), _jss.Serialize(subdiff));
+                            //Debug.WriteLine("Replacing\r\n    {0}\r\nwith\r\n    {1}", _jss.Serialize(diff[pair.Key]), _jss.Serialize(subdiff));
                             diff[pair.Key] = subdiff;
                         }
                         else {
-                            //Debug.WriteLine("\nRemoving {0}\n", _jss.Serialize(pair.Key));
+                            //Debug.WriteLine("\r\nRemoving {0}\r\n", _jss.Serialize(pair.Key));
                             diff.Remove(pair.Key);
                         }
                     }
@@ -477,19 +469,19 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
                     if ((x.Value == null && y.Value == null) || (x.Value != null && x.Value.Equals(y.Value))) {
                         return true;
                     }
-                    else if (x.Value is ArrayList && y.Value is ArrayList) {
+                    if (x.Value is ArrayList && y.Value is ArrayList) {
                         return ListEquality((IList)x.Value, (IList)y.Value);
                     }
-                    else if (x.Value is Array && y.Value is Array) {
+                    if (x.Value is Array && y.Value is Array) {
                         return ArrayEquality(x.Value as Array, y.Value as Array);
                     }
-                    else if (x.Value is Dictionary<String, Object> && y.Value is Dictionary<String, Object>) {
+                    if (x.Value is Dictionary<String, Object> && y.Value is Dictionary<String, Object>) {
                         var diff = DiffGlobInfos((Dictionary<String, Object>)x.Value, (Dictionary<String, Object>)y.Value);
                         if (diff.Count == 0) {
                             return true;
                         }
                         //else {
-                        //    Debug.WriteLine("    Dictionaries diff:\n        {0}\n        {1}", _jss.Serialize(x.Value), _jss.Serialize(y.Value));
+                        //    Debug.WriteLine("    Dictionaries diff:\r\n        {0}\r\n        {1}", _jss.Serialize(x.Value), _jss.Serialize(y.Value));
                         //}
                     }
                 }
@@ -565,7 +557,7 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
 
         private static void WriteCulture(string outputdir, string fileName, string extend, string global, CultureInfo culture, StringBuilder aggregateScript) {
             var globInfo = GlobalizationInfo.GetGlobInfo(culture);
-            var diff = (String.IsNullOrEmpty(extend) || culture == CultureInfo.InvariantCulture || culture.Name.Equals("en")) ? globInfo.ToDictionary(false) : GlobalizationInfo.DiffGlobInfos(GlobalizationInfo.BasisGlobInfo, globInfo.ToDictionary(true));
+            var diff = (String.IsNullOrEmpty(extend) || culture.Equals(CultureInfo.InvariantCulture) || culture.Name.Equals("en")) ? globInfo.ToDictionary(false) : GlobalizationInfo.DiffGlobInfos(GlobalizationInfo.BasisGlobInfo, globInfo.ToDictionary(true));
 
             // Fix for Issue #31 - en-US 'englishName' is wrong
             // Special case diff of englishName for en-US. The generator diff seemingly finds both "en" and "en-US" to
@@ -585,10 +577,10 @@ Globalize.addCultureInfo( ""{0}"", ""default"", {{
         [STAThread]
         static void Main(string[] args) {
             string outputdir = "lib\\cultures";
-            string extend = "extend";
-            string global = "Globalization";
-            string fileName = "globalize.culture.{0}.js";
-            string aggregateFileName = "globalize.cultures.js";
+            const string extend = "extend";
+            const string global = "Globalization";
+            const string fileName = "globalize.culture.{0}.js";
+            const string aggregateFileName = "globalize.cultures.js";
             foreach (string param in string.Join(" ", args).SplitCommandLine()) {
                 if (param.StartsWith("/o:")) {
                     outputdir = param.Substring("/o:".Length);
@@ -654,7 +646,7 @@ if ( typeof require !== ""undefined"" &&
 
             int count = 0;
             foreach (var culture in CultureInfo.GetCultures(CultureTypes.AllCultures)) {
-                if (!String.IsNullOrEmpty(culture.Name) && culture != CultureInfo.InvariantCulture && culture.Name != "en") {
+                if (!String.IsNullOrEmpty(culture.Name) && !culture.Equals(CultureInfo.InvariantCulture) && culture.Name != "en") {
                     WriteCulture(outputdir, fileName, extend, global, culture, aggregateScript);
                     count++;
                 }
