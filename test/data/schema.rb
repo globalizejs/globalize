@@ -28,7 +28,7 @@ ActiveRecord::Schema.define do
 
   create_table :accessors_post_translations, :force => true do |t|
     t.string     :locale
-    t.references :accessors_post
+    t.references :post
     t.string     :title
   end
 
