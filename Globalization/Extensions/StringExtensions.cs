@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Globalization;
 
-namespace Globalization {
+namespace Globalization.Extensions {
     public static class StringExtensions {
         public static IEnumerable<string> Split(this string str, Func<char, bool> controller) {
             int nextPiece = 0;
