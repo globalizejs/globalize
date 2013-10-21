@@ -93,6 +93,12 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       end
     end
 
+    it 'handles nil case' do
+      assert_equal nil, Post.where(:title => 'foo').first
+      assert_equal nil, Post.where(:title => 'foo').last
+      assert_equal nil, Post.where(:title => 'foo').take
+    end
+
     describe '.first' do
       it 'returns record with all translations' do
         @first = Post.where(:title => 'title').first

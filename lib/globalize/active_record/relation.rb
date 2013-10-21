@@ -38,7 +38,7 @@ module Globalize
         eval <<-END_RUBY
           def #{method_name}
             super.tap do |f|
-              if translations_reload_needed
+              if f && translations_reload_needed
                 f.translations.reload
                 translations_reload_needed = false
               end
