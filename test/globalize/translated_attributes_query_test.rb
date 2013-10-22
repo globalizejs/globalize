@@ -69,6 +69,21 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
     end
   end
 
+  describe '.find_or_create_by' do
+    it 'returns first record with matching attribute value if one exists in translations table' do
+      Post.create(:title => 'title 1')
+      post = Post.create(:title => 'title 2')
+      assert_equal post, Post.find_or_create_by(:title => 'title 2')
+    end
+
+    it 'creates record with translated attribute if no matching record exists' do
+      post = Post.find_or_create_by(:title => 'title 1')
+      post.reload
+      assert_equal Post.first, post
+      assert_equal post.title, 'title 1'
+    end
+  end
+
   describe '.not' do
     it 'finds records with attribute not matching condition in translations table' do
       Post.create(:title => 'title 1')
