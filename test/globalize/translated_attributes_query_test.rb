@@ -49,6 +49,11 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       user = User.create(:email => 'foo@example.com', :name => 'foo')
       assert_equal user, User.where("email = :email", { :email => 'foo@example.com' }).first
     end
+
+    it 'duplicates arguments before modifying them' do
+      User.where(args = { :name => 'foo' })
+      assert_equal args, { :name => 'foo' }
+    end
   end
 
   describe '.find_by' do
@@ -56,6 +61,11 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       Post.create(:title => 'title 1')
       post = Post.create(:title => 'title 2')
       assert_equal post, Post.find_by(:title => 'title 2')
+    end
+
+    it 'duplicates arguments before modifying them' do
+      User.find_by(args = { :name => 'foo' })
+      assert_equal args, { :name => 'foo' }
     end
   end
 
@@ -70,6 +80,11 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       assert_equal [:translations], User.where.not(:name => 'foo').includes_values
       assert_equal [], User.where.not(:email => 'foo@example.com').includes_values
     end
+
+    it 'duplicates arguments before modifying them' do
+      User.where.not(args = { :name => 'foo' })
+      assert_equal args, { :name => 'foo' }
+    end
   end
 
   describe '.exists?' do
@@ -77,6 +92,11 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       Post.create(:title => 'title 1')
       assert Post.exists?(:title => 'title 1')
       assert !Post.exists?(:title => 'title 2')
+    end
+
+    it 'duplicates arguments before modifying them' do
+      User.exists?(args = { :name => 'foo' })
+      assert_equal args, { :name => 'foo' }
     end
   end
 

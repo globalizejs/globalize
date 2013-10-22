@@ -5,10 +5,10 @@ module Globalize
       attr_accessor :translations_reload_needed
 
       class WhereChain < ::ActiveRecord::QueryMethods::WhereChain
-        def not(*args)
-          if @scope.parse_translated_conditions!(*args)
+        def not(opts, *rest)
+          if parsed = @scope.parse_translated_conditions(opts)
             @scope.translations_reload_needed = true
-            @scope.with_translations_in_this_locale.where.not(*args)
+            @scope.with_translations_in_this_locale.where.not(parsed, *rest)
           else
             super
           end
@@ -18,17 +18,17 @@ module Globalize
       def where(opts = :chain, *rest)
         if opts == :chain
           WhereChain.new(spawn)
-        elsif parse_translated_conditions!(opts, *rest)
+        elsif parsed = parse_translated_conditions(opts)
           self.translations_reload_needed = true
-          super.with_translations_in_this_locale
+          super(parsed, *rest).with_translations_in_this_locale
         else
           super
         end
       end
 
       def exists?(conditions = :none)
-        if parse_translated_conditions!(conditions)
-          with_translations_in_this_locale.exists?(conditions)
+        if parsed = parse_translated_conditions(conditions)
+          with_translations_in_this_locale.exists?(parsed)
         else
           super
         end
@@ -51,11 +51,11 @@ module Globalize
         with_translations(Globalize.locale)
       end
 
-      def parse_translated_conditions!(opts, *rest)
+      def parse_translated_conditions(opts)
         if opts.is_a?(Hash) && (keys = opts.symbolize_keys.keys & translated_attribute_names).present?
-          keys.each do |key|
-            opts[translated_column_name(key)] = opts.delete(key) || opts.delete(key.to_s)
-          end
+          opts = opts.dup
+          keys.each { |key| opts[translated_column_name(key)] = opts.delete(key) || opts.delete(key.to_s) }
+          opts
         end
       end
     end
