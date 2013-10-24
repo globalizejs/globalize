@@ -10,17 +10,25 @@ to add model translations to ActiveRecord models.
 
 ## Installation
 
-To install Globalize with its default setup just use:
+To install the ActiveRecord 4.x compatible version of Globalize with its default setup, just use:
 
+```ruby
 gem install globalize
+```
 
-When using bundler put it in your Gemfile:
+When using bundler put this in your Gemfile:
 
 ```ruby
 gem 'globalize'
 ```
 
-(To use the ActiveRecord 3.x version of globalize, replace `globalize` with `globalize3` in the Gemfile and see the `3-0-stable` branch of [the repository on GitHub](https://github.com/globalize/globalize/tree/3-0-stable).)
+To use the ActiveRecord 3.x version of globalize, specify the version number `3.0.0`:
+
+````ruby
+gem 'globalize', '~> 3.0.0'
+````
+
+The [`3-0-stable` branch](https://github.com/globalize/globalize/tree/3-0-stable) of this repository is the ActiveRecord 3.x version of globalize. Note that `globalize3` has been deprecated and you are encouraged to update your Gemfile accordingly.
 
 ## Model translations
 
@@ -138,7 +146,7 @@ expects.  See the paper_trail README for more details.
 If you are adding globalize to any previously versioned models, please note
 that you will need to add a new `locale` column to your versioning table.
 
-Also, please see the tests in `test/globalize3/versioning_test.rb` for some
+Also, please see the tests in `test/globalize/versioning_test.rb` for some
 current gotchas.
 
 ## I18n fallbacks for empty translations
