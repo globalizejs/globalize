@@ -8,7 +8,6 @@ class VersioningTest < MiniTest::Spec
   end
 
   it "versions are scoped to the current Globalize locale" do
-    I18n.default_locale = :de # this should make no difference, but does
     post = Post.create!(:title => 'title v1', :content => '')
 
     post.update_attributes!(:title => 'title v2')
@@ -22,6 +21,12 @@ class VersioningTest < MiniTest::Spec
 
     post.versions.reset # hrmmm.
     assert_equal %w[en en], post.versions.map(&:locale)
+  end
+
+  it "stores object changes of the localized attributes only" do
+    post = Post.create!(:title => 'title v1')
+    post.update_attributes!(:title => 'title v2')
+    assert_equal({'title' => ['title v1', 'title v2']}, post.versions.last.changeset)
   end
 
   it "does not create a version for initial locale" do
