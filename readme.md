@@ -13,13 +13,13 @@ to add model translations to ActiveRecord models.
 To install the ActiveRecord 4.x compatible version of Globalize with its default setup, just use:
 
 ```ruby
-gem install globalize
+gem install globalize --pre
 ```
 
 When using bundler put this in your Gemfile:
 
 ```ruby
-gem 'globalize'
+gem 'globalize', '~> 4.0.0.alpha.2'
 ```
 
 To use the ActiveRecord 3.x version of globalize, specify the version number `3.0.0`:
