@@ -8,6 +8,7 @@ class VersioningTest < MiniTest::Spec
   end
 
   it "versions are scoped to the current Globalize locale" do
+    I18n.default_locale = :de # this should make no difference, but does
     post = Post.create!(:title => 'title v1', :content => '')
 
     post.update_attributes!(:title => 'title v2')
