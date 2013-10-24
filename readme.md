@@ -1,4 +1,4 @@
-# Globalize [![Build Status](https://travis-ci.org/globalize/globalize.png)](https://travis-ci.org/globalize/globalize)
+# Globalize [![Build Status](https://travis-ci.org/globalize/globalize.png?branch=master)](https://travis-ci.org/globalize/globalize)
 
 Globalize builds on the [I18n API in Ruby on Rails](http://guides.rubyonrails.org/i18n.html)
 to add model translations to ActiveRecord models.
