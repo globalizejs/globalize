@@ -58,6 +58,19 @@ module Globalize
           opts
         end
       end
+
+      def where_values_hash
+        equalities = with_default_scope.where_values.grep(Arel::Nodes::Equality).find_all { |node|
+          node.left.relation.name == translations_table_name
+        }
+
+        binds = Hash[bind_values.find_all(&:first).map { |column, v| [column.name, v] }]
+
+        super.merge(Hash[equalities.map { |where|
+          name = where.left.name
+          [name, binds.fetch(name.to_s) { where.right }]
+        }])
+      end
     end
   end
 end

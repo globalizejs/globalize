@@ -155,4 +155,16 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       end
     end
   end
+
+  describe '.where_values_hash' do
+    it 'includes translated attributes' do
+      # when translated attribute query passed in as attribute on association
+      wheres = User.with_translations(:en).where(:email => 'foo@example.com', :user_translations => {'name' => 'test_name'}).where_values_hash
+      assert_equal({ 'email' => 'foo@example.com', 'locale' => 'en', 'name' => 'test_name' }, wheres)
+
+      # when translated attribute query passed in as attribute on parent model
+      wheres = User.with_translations(:en).where(:email => 'foo@example.com', :name => 'test_name').where_values_hash
+      assert_equal({ 'email' => 'foo@example.com', 'locale' => 'en', 'name' => 'test_name' }, wheres)
+    end
+  end
 end
