@@ -3,13 +3,7 @@ require File.expand_path('../test_helper', __FILE__)
 
 module ActiveRecord
   class Updater
-    cattr_accessor :query_count do
-      0
-    end
-
-    cattr_accessor :queries do
-      []
-    end
+    cattr_accessor :query_count, :queries
 
     FILTER = [/UPDATE/]
 
@@ -25,10 +19,20 @@ module ActiveRecord
 end
 
 class CreateRowTest < MiniTest::Spec
-  it "no update queries for creating row" do
+  def setup
     ActiveSupport::Notifications.subscribe('sql.active_record', ActiveRecord::Updater.new)
-    account = Page.create!(:title => 'title v1')
+    ActiveRecord::Updater.query_count = 0
+    ActiveRecord::Updater.queries = []
+  end
+
+  def teardown
     ActiveSupport::Notifications.unsubscribe('sql.active_record')
+  end
+
+  it "does not perform update when saving with cached translation" do
+    p = Page.new(:title => 'title v1')
+    p.translation.title
+    p.save!
     assert_equal 0, ActiveRecord::Updater.query_count
   end
 end
