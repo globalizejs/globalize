@@ -1,5 +1,5 @@
 define([
-	"./first-day-of-week"
+	"./first_day_of_week"
 ], function( datetimeFirstDayOfWeek ) {
 
 	/**
