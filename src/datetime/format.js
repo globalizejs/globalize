@@ -30,6 +30,12 @@ define([
 				chr = current.charAt( 0 ),
 				length = current.length;
 
+			if ( chr === "j" ) {
+				// Locale preferred hHKk.
+				// http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Data
+				chr = cldr.supplemental.timeData.preferred();
+			}
+
 			switch ( chr ) {
 
 				// Era
@@ -188,13 +194,11 @@ define([
 
 				// Hour
 				case "h": // 1-12
-					// TODO When used in skeleton data or in a skeleton passed in an API for flexible date pattern generation, it should match the 12-hour-cycle format preferred by the cldr
 					ret = ( date.getHours() % 12 ) || 12;
 					pad = true;
 					break;
 
 				case "H": // 0-23
-					// TODO When used in skeleton data or in a skeleton passed in an API for flexible date pattern generation, it should match the 12-hour-cycle format preferred by the cldr
 					ret = date.getHours();
 					pad = true;
 					break;
@@ -208,8 +212,6 @@ define([
 					ret = date.getHours() || 24;
 					pad = true;
 					break;
-
-				case "j": // Locale preferred hHKk. Need to be implemented. See http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Data
 
 				// Minute
 				case "m":

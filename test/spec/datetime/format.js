@@ -2,8 +2,9 @@ define([
 	"globalize/main",
 	"json!fixtures/cldr/main/en/ca-gregorian.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
+	"json!fixtures/cldr/supplemental/timeData.json",
 	"json!fixtures/cldr/supplemental/weekData.json"
-], function( Globalize, enCaGregorian, likelySubtags, weekData ) {
+], function( Globalize, enCaGregorian, likelySubtags, timeData, weekData ) {
 
 	var year0 = new Date( -62167190400000 ),
 		yearBc = new Date( -62482053600000 ),
@@ -14,10 +15,11 @@ define([
 
 	Globalize.load( enCaGregorian );
 	Globalize.load( likelySubtags );
+	Globalize.load( timeData );
 	Globalize.load( weekData );
 	Globalize.locale( "en" );
 
-	module("Datetime");
+	module( "Datetime Format" );
 
 	/**
 	 *  Era
@@ -330,7 +332,20 @@ define([
 		equal( Globalize.format( new Date( 0, 0, 0, 0 ), "kk" ), "24", "" );
 	});
 
-	// TODO ([HhKk)]\1{2}, j (all)
+	test( "should format hour (j) using preferred hour format for the locale (h, H, K, or k) with no padding", function() {
+		equal( Globalize.format( date2, "j" ), "5", "" );
+		equal( Globalize.format( date2, "j", "pt-BR" ), "17", "" );
+		equal( Globalize.format( date2, "j", "de" ), "17", "" );
+		equal( Globalize.format( date2, "j", "en-IN" ), "5", "" );
+		equal( Globalize.format( date2, "j", "en-GB" ), "17", "" );
+		equal( Globalize.format( date2, "j", "ru" ), "17", "" );
+	});
+
+	test( "should format hour (jj) using preferred hour format for the locale (h, H, K, or k) with padding", function() {
+		equal( Globalize.format( date1, "jj" ), "09", "" );
+		equal( Globalize.format( date2, "jj" ), "05", "" );
+		equal( Globalize.format( new Date( 0, 0, 0, 0 ), "jj" ), "12", "" );
+	});
 
 	/**
 	 *  Minute
