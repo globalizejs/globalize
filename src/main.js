@@ -16,23 +16,11 @@ define([
 	 *
 	 * @json [JSON]
 	 *
-	 * Load resolved cldr data.
+	 * Load resolved or unresolved cldr data.
 	 * Somewhat equivalent to previous Globalize.addCultureInfo(...).
 	 */
 	Globalize.load = function( json ) {
 		Cldr.load( json );
-	};
-
-	/**
-	 * Globalize.loadUnresolved( json )
-	 *
-	 * @json [JSON]
-	 *
-	 * Load unresolved cldr data.
-	 * Somewhat equivalent to previous Globalize.addCultureInfo(...).
-	 */
-	Globalize.loadUnresolved = function( json ) {
-		Cldr.loadUnresolved( json );
 	};
 
 	/**

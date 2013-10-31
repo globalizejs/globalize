@@ -63,7 +63,7 @@ define([
 					// The length specifies the padding, but for two letters it also specifies the maximum length.
 					// yearInWeekofYear = date + DaysInAWeek - (dayOfWeek - firstDay) - minDays
 					ret = new Date( date.getTime() );
-					ret.setDate( ret.getDate() + 7 - ( datetimeDayOfWeek( date, cldr ) - datetimeFirstDayOfWeek( cldr ) ) - cldr.supplemental.minDays() );
+					ret.setDate( ret.getDate() + 7 - ( datetimeDayOfWeek( date, cldr ) - datetimeFirstDayOfWeek( cldr ) ) - cldr.supplemental.weekData.minDays() );
 					ret = String( ret.getFullYear() );
 					pad = true;
 					if ( length === 2 ) {
@@ -114,7 +114,7 @@ define([
 					// woy = ceil( ( doy + dow of 1/1 ) / 7 ) - minDaysStuff ? 1 : 0.
 					// TODO should pad on ww? Not documented, but I guess so.
 					ret = datetimeDayOfWeek( datetimeStartOf( date, "year" ), cldr );
-					ret = Math.ceil( ( datetimeDayOfYear( date ) + ret ) / 7 ) - ( 7 - ret >= cldr.supplemental.minDays() ? 0 : 1 );
+					ret = Math.ceil( ( datetimeDayOfYear( date ) + ret ) / 7 ) - ( 7 - ret >= cldr.supplemental.weekData.minDays() ? 0 : 1 );
 					pad = true;
 					break;
 
@@ -122,7 +122,7 @@ define([
 					// Week of Month.
 					// wom = ceil( ( dom + dow of `1/month` ) / 7 ) - minDaysStuff ? 1 : 0.
 					ret = datetimeDayOfWeek( datetimeStartOf( date, "month" ), cldr );
-					ret = Math.ceil( ( date.getDate() + ret ) / 7 ) - ( 7 - ret >= cldr.supplemental.minDays() ? 0 : 1 );
+					ret = Math.ceil( ( date.getDate() + ret ) / 7 ) - ( 7 - ret >= cldr.supplemental.weekData.minDays() ? 0 : 1 );
 					break;
 
 				// Day
