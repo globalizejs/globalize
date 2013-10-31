@@ -247,8 +247,9 @@ define([
 				case "x":
 					throw new Error( "Not implemented" );
 
+				// Anything else is considered a literal, including [ ,:/.'@#], chinese, japonese, and arabic characters.
 				default:
-					throw new Error( "Invalid date format pattern \"" + chr + "\"." );
+					return current;
 			}
 			if ( pad ) {
 				ret = stringPad( ret, length );

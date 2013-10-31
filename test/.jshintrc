@@ -14,6 +14,7 @@
 	"unused": true,
 
 	"globals": {
+		"deepEqual": false,
 		"define": false,
 		"equal": false,
 		"module": false,

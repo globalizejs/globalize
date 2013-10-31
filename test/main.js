@@ -11,7 +11,9 @@ require.config({
 require([
 
 	/* datetime */
-	"./spec/datetime/format"
+	"./spec/datetime/format",
+	"./spec/datetime/tokenizer",
+	"./spec/datetime/parse"
 
 ], function() {
 	QUnit.start();
