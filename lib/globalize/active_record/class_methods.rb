@@ -142,7 +142,7 @@ module Globalize
 
       # Use pattern defined in FriendlyId (4.x) to avoid conflict.
       def relation_class
-        Relation
+        @relation_class ||= Class.new(Relation)
       end
 
       protected
