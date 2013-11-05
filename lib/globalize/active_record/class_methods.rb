@@ -58,16 +58,6 @@ module Globalize
         "#{translation_class.table_name}.#{name}"
       end
 
-      def relation
-        relation = Relation.new(self, arel_table)
-
-        if finder_needs_type_condition?
-          relation.where(type_condition).create_with(inheritance_column.to_sym => sti_name)
-        else
-          relation
-        end
-      end
-
       def respond_to_missing?(method_id, include_private = false)
         supported_on_missing?(method_id) || super
       end
@@ -135,7 +125,27 @@ module Globalize
         record
       end
 
-    protected
+      private
+
+      # Override the default relation method in order to return a subclass
+      # of ActiveRecord::Relation with custom finder methods for translated
+      # attributes.
+      def relation
+        relation = relation_class.new(self, arel_table)
+
+        if finder_needs_type_condition?
+          relation.where(type_condition).create_with(inheritance_column.to_sym => sti_name)
+        else
+          relation
+        end
+      end
+
+      # Use pattern defined in FriendlyId (4.x) to avoid conflict.
+      def relation_class
+        Relation
+      end
+
+      protected
 
       def translated_attr_accessor(name)
         define_method(:"#{name}=") do |value|
