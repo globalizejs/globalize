@@ -142,7 +142,9 @@ module Globalize
 
       # Use pattern defined in FriendlyId (4.x) to avoid conflict.
       def relation_class
-        @relation_class ||= Class.new(Relation)
+        @relation_class ||= Class.new(Relation).tap do |klass|
+          const_set('GlobalizeActiveRecordRelation', klass)
+        end
       end
 
       protected
