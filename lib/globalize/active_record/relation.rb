@@ -48,7 +48,7 @@ module Globalize
       end
 
       def with_translations_in_this_locale
-        with_translations(Globalize.locale)
+        with_translations(Globalize.fallbacks)
       end
 
       def parse_translated_conditions(opts)
