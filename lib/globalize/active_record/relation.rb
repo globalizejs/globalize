@@ -8,7 +8,7 @@ module Globalize
         def not(opts, *rest)
           if parsed = @scope.parse_translated_conditions(opts)
             @scope.translations_reload_needed = true
-            @scope.with_translations_in_this_locale.where.not(parsed, *rest)
+            @scope.with_translations_in_fallbacks.where.not(parsed, *rest)
           else
             super
           end
@@ -20,7 +20,7 @@ module Globalize
           WhereChain.new(spawn)
         elsif parsed = parse_translated_conditions(opts)
           self.translations_reload_needed = true
-          super(parsed, *rest).with_translations_in_this_locale
+          super(parsed, *rest).with_translations_in_fallbacks
         else
           super
         end
@@ -28,7 +28,7 @@ module Globalize
 
       def exists?(conditions = :none)
         if parsed = parse_translated_conditions(conditions)
-          with_translations_in_this_locale.exists?(parsed)
+          with_translations_in_fallbacks.exists?(parsed)
         else
           super
         end
@@ -47,7 +47,7 @@ module Globalize
         END_RUBY
       end
 
-      def with_translations_in_this_locale
+      def with_translations_in_fallbacks
         with_translations(Globalize.fallbacks)
       end
 

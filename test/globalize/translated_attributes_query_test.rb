@@ -15,7 +15,7 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       assert_equal [post], Post.where('title' => 'title 1').load
     end
 
-    it 'only returns translations in this locale' do
+    it 'returns translations in this locale by default' do
       Globalize.with_locale(:ja) { Post.create(:title => 'タイトル') }
       assert Post.where(:title => 'タイトル').empty?
     end
@@ -165,6 +165,42 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       # when translated attribute query passed in as attribute on parent model
       wheres = User.with_translations(:en).where(:email => 'foo@example.com', :name => 'test_name').where_values_hash
       assert_equal({ 'email' => 'foo@example.com', 'locale' => 'en', 'name' => 'test_name' }, wheres)
+    end
+  end
+
+  describe 'fallbacks' do
+    def setup
+      @previous_backend = I18n.backend
+      I18n.pretend_fallbacks
+      I18n.backend = BackendWithFallbacks.new
+
+      I18n.locale = :en
+      I18n.fallbacks = ::I18n::Locale::Fallbacks.new
+      I18n.fallbacks.map('en' => [ 'ja' ])
+    end
+
+    def teardown
+      I18n.fallbacks.clear
+      I18n.hide_fallbacks
+      I18n.backend = @previous_backend
+    end
+
+    it 'returns translations in fallback locales' do
+      post = Post.create(:title => 'a title')
+      Globalize.with_locale(:ja) { post.update_attributes :title => 'タイトル' }
+      Globalize.with_locale(:fr) { post.update_attributes :title => 'titre' }
+
+      # where
+      assert_equal post, Post.where(:title => 'タイトル').first
+      assert Post.where(:title => 'titre').empty?
+
+      # find_by
+      assert_equal post, Post.find_by(:title  => 'タイトル')
+      assert_equal nil, Post.find_by(:title => 'titre')
+
+      # exists
+      assert Post.exists?(:title => 'タイトル')
+      assert !Post.exists?(:title => 'titre')
     end
   end
 end
