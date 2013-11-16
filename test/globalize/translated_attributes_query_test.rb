@@ -203,4 +203,12 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       assert !Post.exists?(:title => 'titre')
     end
   end
+
+  describe 'associations' do
+    it 'finds records with matching attribute value in translations table' do
+      blog = Blog.create
+      post = blog.posts.create(:title => 'a title')
+      assert_equal post, blog.posts.where(:title => 'a title').first
+    end
+  end
 end
