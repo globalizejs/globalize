@@ -1,6 +1,6 @@
 module Globalize
   module ActiveRecord
-    class Relation < ::ActiveRecord::Relation
+    module QueryMethods
 
       attr_accessor :translations_reload_needed
 
