@@ -20,7 +20,7 @@ module Globalize
           WhereChain.new(spawn)
         elsif parsed = parse_translated_conditions(opts)
           self.translations_reload_needed = true
-          super(parsed, *rest).with_translations(Globalize.fallbacks)
+          super(parsed, *rest).with_translations_in_fallbacks
         else
           super
         end
