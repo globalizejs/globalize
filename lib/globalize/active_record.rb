@@ -8,6 +8,6 @@ module Globalize
     autoload :InstanceMethods, 'globalize/active_record/instance_methods'
     autoload :Migration,       'globalize/active_record/migration'
     autoload :Translation,     'globalize/active_record/translation'
-    autoload :Relation,        'globalize/active_record/relation'
+    autoload :QueryMethods,    'globalize/active_record/query_methods'
   end
 end

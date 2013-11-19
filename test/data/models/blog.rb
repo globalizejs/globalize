@@ -1,3 +1,3 @@
 class Blog < ActiveRecord::Base
-  has_many :posts, proc { order('id ASC') }
+  has_many :posts, proc { order('posts.id ASC') }
 end

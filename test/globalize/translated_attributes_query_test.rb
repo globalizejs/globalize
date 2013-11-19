@@ -203,4 +203,21 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       assert !Post.exists?(:title => 'titre')
     end
   end
+
+  describe 'associations' do
+    it 'finds records with matching attribute value in translations table' do
+      blog = Blog.create
+      post = blog.posts.create(:title => 'a title')
+      blog.posts.create(:title => 'another title')
+      assert_equal [post], blog.posts.where(:title => 'a title').load
+    end
+
+    it 'parses translated attributes in chained relations' do
+      blog = Blog.create
+      post = blog.posts.create(:title => 'a title', :content => 'foo')
+      blog.posts.create(:title => 'a title', :content => 'bar')
+      result = blog.posts.where(:content => 'foo').where(:title => 'a title').load
+      assert_equal [post], result
+    end
+  end
 end

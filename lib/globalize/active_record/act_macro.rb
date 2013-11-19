@@ -57,6 +57,8 @@ module Globalize
         include InstanceMethods
         extend  ClassMethods, Migration
 
+        setup_translated_relations!
+
         translation_class.table_name = options[:table_name]
 
         has_many :translations, :class_name  => translation_class.name,
@@ -78,6 +80,26 @@ module Globalize
             delegate :version, :versions, :to => :translation
           end
         end
+      end
+
+      # In order to allow queries on translated attributes in associations, we have to
+      # include QueryMethods in CollectionProxy and AssociationRelation. So as not to
+      # pollute the original classes, we use delegated classes specific to this model.
+      def setup_translated_relations!
+        delegated_relation_classes.each do |klass|
+          (klass.send :relation_class_for, self).send :include, QueryMethods if klass.respond_to?(:relation_class_for, true)
+        end
+      end
+
+      def delegated_relation_classes
+        klasses = []
+        if ::ActiveRecord.const_defined?('Associations') && ::ActiveRecord::Associations.const_defined?('CollectionProxy')
+          klasses << ::ActiveRecord::Associations::CollectionProxy
+        end
+        if ::ActiveRecord.const_defined?('AssociationRelation')
+          klasses << ::ActiveRecord::AssociationRelation
+        end
+        klasses
       end
     end
 

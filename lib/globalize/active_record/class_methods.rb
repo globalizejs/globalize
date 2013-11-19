@@ -142,7 +142,8 @@ module Globalize
 
       # Use pattern defined in FriendlyId (4.x) to avoid conflict.
       def relation_class
-        @relation_class ||= Class.new(Relation).tap do |klass|
+        @relation_class ||= Class.new(::ActiveRecord::Relation).tap do |klass|
+          klass.send :include, QueryMethods
           const_set('GlobalizeActiveRecordRelation', klass)
         end
       end
