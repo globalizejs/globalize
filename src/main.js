@@ -1,7 +1,8 @@
 define([
 	"cldr",
+	"./datetime/expand_pattern",
 	"./datetime/format"
-], function( Cldr, datetimeFormat ) {
+], function( Cldr, datetimeExpandPattern, datetimeFormat ) {
 
 	var defaultLocale;
 
@@ -39,7 +40,9 @@ define([
 	 * Globalize.format( value, pattern, locale )
 	 *
 	 * @value [Date or Number]
-	 * @pattern [String] For more info see datetime/format.js
+	 *
+	 * @pattern [String or Object] see datetime/expand_pattern for more info.
+	 *
 	 * @locale [String]
 	 *
 	 * Formats a date or number according to the given pattern string and the given locale (or the default locale if not specified).
@@ -48,7 +51,14 @@ define([
 		locale = getLocale( locale );
 
 		if ( value instanceof Date ) {
+
+			if ( !pattern ) {
+				throw new Error( "Missing pattern" );
+			}
+			pattern = datetimeExpandPattern( pattern, locale );
+
 			value = datetimeFormat( value, pattern, locale );
+
 		} else if ( typeof value === "number" ) {
 			// TODO value = numberFormat( value, pattern, locale );
 			throw new Error( "Number Format not implemented yet" );
