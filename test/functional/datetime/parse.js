@@ -77,4 +77,10 @@ define([
 		deepEqual( Globalize.parseDate( "Wed, Sep 15, 2010 AD", { pattern: "E, MMM d, y G" } ), date, "{ pattern: \"E, MMM d, y G\" }" );
 	});
 
+	test( "should parse a formatted date (reverse operation test)", function() {
+		date = new Date();
+		date = startOf( date, "minute" );
+		deepEqual( Globalize.parseDate( Globalize.format( date, { datetime: "short" } ), { datetime: "short" } ), date, "" );
+	});
+
 });
