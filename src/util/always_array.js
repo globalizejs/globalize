@@ -1,7 +1,9 @@
-define(function() {
+define([
+	"./array/is_array"
+], function( arrayIsArray ) {
 
 	return function( stringOrArray ) {
-		return typeof stringOrArray === "string" ?  [ stringOrArray ] : stringOrArray;
+		return arrayIsArray( stringOrArray ) ?  stringOrArray : [ stringOrArray ];
 	};
 
 });
