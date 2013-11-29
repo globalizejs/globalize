@@ -37,7 +37,10 @@ define([
 	 * Somewhat equivalent to previous culture( selector ).
 	 */
 	Globalize.locale = function( locale ) {
-		defaultLocale = new Cldr( locale );
+		if ( arguments.length ) {
+			defaultLocale = new Cldr( locale );
+		}
+		return defaultLocale;
 	};
 
 	/**
