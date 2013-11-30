@@ -29,6 +29,24 @@ define([
 	};
 
 	/**
+	 * Globalize.loadTranslations( locale, json )
+	 *
+	 * @locale [String]
+	 *
+	 * @json [JSON]
+	 *
+	 * Load translation data per locale.
+	 */
+	Globalize.loadTranslations = function( locale, json ) {
+		var customData = {
+			"globalize-translation": {}
+		};
+		locale = new Cldr( locale );
+		customData[ "globalize-translation" ][ locale.attributes.languageId ] = json;
+		Cldr.load( customData );
+	};
+
+	/**
 	 * Globalize.locale( locale )
 	 *
 	 * @locale [String]
@@ -106,6 +124,21 @@ define([
 		});
 
 		return date || null;
+	};
+
+	/**
+	 * Globalize.translate( path, locale )
+	 *
+	 * @path [String or Array]
+	 *
+	 * @locale [String]
+	 *
+	 * Translate item given its path.
+	 */
+	Globalize.translate = function( path , locale ) {
+		locale = getLocale( locale );
+		path = alwaysArray( path );
+		return locale.get( [ "globalize-translation/{languageId}" ].concat( path ) );
 	};
 
 	return Globalize;
