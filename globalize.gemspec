@@ -24,8 +24,6 @@ Gem::Specification.new do |s|
     s.add_dependency 'activemodel', '>= 4.0.0'
   end
 
-  s.add_dependency 'paper_trail',  '~> 3.0.0.beta'
-
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'minitest-reporters'
