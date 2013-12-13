@@ -23,5 +23,4 @@
 		// Global
 		factory( Cldr, Globalize );
 	}
-
 }( this, function( Cldr, Globalize ) {

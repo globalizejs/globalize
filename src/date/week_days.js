@@ -1,3 +1,5 @@
 define(function() {
-	return [ "sun", "mon", "tue", "wed", "thu", "fri", "sat" ];
+
+return [ "sun", "mon", "tue", "wed", "thu", "fri", "sat" ];
+
 });

@@ -23,5 +23,4 @@
 		// Global
 		root.Globalize = factory( Cldr );
 	}
-
 }( this, function( Cldr ) {
