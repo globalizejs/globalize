@@ -1,7 +1,7 @@
 define([
 	"cldr",
-	"globalize/datetime/parse",
-	"globalize/datetime/start_of",
+	"globalize/date/parse",
+	"globalize/date/start_of",
 	"json!fixtures/cldr/main/en/ca-gregorian.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"json!fixtures/cldr/supplemental/timeData.json",

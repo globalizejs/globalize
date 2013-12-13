@@ -3,7 +3,7 @@ define([
 	"./start_of",
 	"./tokenizer",
 	"../util/array/every"
-], function( datetimePatternRe, datetimeStartOf, datetimeTokenizer, arrayEvery ) {
+], function( datePatternRe, dateStartOf, dateTokenizer, arrayEvery ) {
 
 	function outOfRange( value, low, high ) {
 		return value < low || value > high;
@@ -24,7 +24,7 @@ define([
 			SECOND = 5,
 			MILLISECONDS = 6,
 			date = new Date(),
-			tokens = datetimeTokenizer( value, pattern, cldr ),
+			tokens = dateTokenizer( value, pattern, cldr ),
 			truncateAt = [],
 			units = [ "year", "month", "day", "hour", "minute", "second", "milliseconds" ];
 
@@ -139,7 +139,7 @@ define([
 				case "c":
 				case "E":
 					// Skip.
-					// value = arrayIndexOf( datetimeWeekDays, token.value );
+					// value = arrayIndexOf( dateWeekDays, token.value );
 					break;
 
 				// Period (AM or PM)
@@ -240,7 +240,7 @@ define([
 		// If value is "12/31", and pattern is "MM/dd":
 		// => new Date( <current Year>, 12, 31, 0, 0, 0, 0 );
 		truncateAt = Math.max.apply( null, truncateAt );
-		date = datetimeStartOf( date, units[ truncateAt ] );
+		date = dateStartOf( date, units[ truncateAt ] );
 
 		return date;
 	};

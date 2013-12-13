@@ -1,13 +1,13 @@
 define([
 	"./start_of"
-], function( datetimeStartOf ) {
+], function( dateStartOf ) {
 
 	/**
 	 * millisecondsInDay
 	 */
 	return function( date ) {
 		// TODO Handle daylight savings discontinuities
-		return date - datetimeStartOf( date, "day" );
+		return date - dateStartOf( date, "day" );
 	};
 
 });

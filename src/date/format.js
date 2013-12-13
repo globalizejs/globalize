@@ -7,7 +7,7 @@ define([
 	"./start_of",
 	"./week_days",
 	"../util/string/pad"
-], function( datetimeDayOfWeek, datetimeDayOfYear, datetimeFirstDayOfWeek, datetimeMillisecondsInDay, datetimePatternRe, datetimeStartOf, datetimeWeekDays, stringPad ) {
+], function( dateDayOfWeek, dateDayOfYear, dateFirstDayOfWeek, dateMillisecondsInDay, datePatternRe, dateStartOf, dateWeekDays, stringPad ) {
 
 	/**
 	 * format( date, pattern, cldr )
@@ -25,7 +25,7 @@ define([
 	 */
 	return function( date, pattern, cldr ) {
 		var widths = [ "abbreviated", "wide", "narrow" ];
-		return pattern.replace( datetimePatternRe, function( current ) {
+		return pattern.replace( datePatternRe, function( current ) {
 			var pad, ret,
 				chr = current.charAt( 0 ),
 				length = current.length;
@@ -63,7 +63,7 @@ define([
 					// The length specifies the padding, but for two letters it also specifies the maximum length.
 					// yearInWeekofYear = date + DaysInAWeek - (dayOfWeek - firstDay) - minDays
 					ret = new Date( date.getTime() );
-					ret.setDate( ret.getDate() + 7 - ( datetimeDayOfWeek( date, cldr ) - datetimeFirstDayOfWeek( cldr ) ) - cldr.supplemental.weekData.minDays() );
+					ret.setDate( ret.getDate() + 7 - ( dateDayOfWeek( date, cldr ) - dateFirstDayOfWeek( cldr ) ) - cldr.supplemental.weekData.minDays() );
 					ret = String( ret.getFullYear() );
 					pad = true;
 					if ( length === 2 ) {
@@ -113,15 +113,15 @@ define([
 					// Week of Year.
 					// woy = ceil( ( doy + dow of 1/1 ) / 7 ) - minDaysStuff ? 1 : 0.
 					// TODO should pad on ww? Not documented, but I guess so.
-					ret = datetimeDayOfWeek( datetimeStartOf( date, "year" ), cldr );
-					ret = Math.ceil( ( datetimeDayOfYear( date ) + ret ) / 7 ) - ( 7 - ret >= cldr.supplemental.weekData.minDays() ? 0 : 1 );
+					ret = dateDayOfWeek( dateStartOf( date, "year" ), cldr );
+					ret = Math.ceil( ( dateDayOfYear( date ) + ret ) / 7 ) - ( 7 - ret >= cldr.supplemental.weekData.minDays() ? 0 : 1 );
 					pad = true;
 					break;
 
 				case "W":
 					// Week of Month.
 					// wom = ceil( ( dom + dow of `1/month` ) / 7 ) - minDaysStuff ? 1 : 0.
-					ret = datetimeDayOfWeek( datetimeStartOf( date, "month" ), cldr );
+					ret = dateDayOfWeek( dateStartOf( date, "month" ), cldr );
 					ret = Math.ceil( ( date.getDate() + ret ) / 7 ) - ( 7 - ret >= cldr.supplemental.weekData.minDays() ? 0 : 1 );
 					break;
 
@@ -132,7 +132,7 @@ define([
 					break;
 
 				case "D":
-					ret = datetimeDayOfYear( date ) + 1;
+					ret = dateDayOfYear( date ) + 1;
 					pad = true;
 					break;
 
@@ -151,14 +151,14 @@ define([
 					if ( length <= 2 ) {
 						// Range is [1-7] (deduced by example provided on documentation)
 						// TODO Should pad with zeros (not specified in the docs)?
-						ret = datetimeDayOfWeek( date, cldr ) + 1;
+						ret = dateDayOfWeek( date, cldr ) + 1;
 						pad = true;
 						break;
 					}
 
 				/* falls through */
 				case "E":
-					ret = datetimeWeekDays[ date.getDay() ];
+					ret = dateWeekDays[ date.getDay() ];
 					if ( length === 6 ) {
 						// If short day names are not explicitly specified, abbreviated day names are used instead.
 						// http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
@@ -231,7 +231,7 @@ define([
 					break;
 
 				case "A":
-					ret = Math.round( datetimeMillisecondsInDay( date ) * Math.pow( 10, length - 3 ) );
+					ret = Math.round( dateMillisecondsInDay( date ) * Math.pow( 10, length - 3 ) );
 					pad = true;
 					break;
 

@@ -10,9 +10,9 @@ require.config({
 
 require([
 
-	/* datetime */
-	"./functional/datetime/format",
-	"./functional/datetime/parse"
+	/* date */
+	"./functional/date/format",
+	"./functional/date/parse"
 
 ], function() {
 	QUnit.start();

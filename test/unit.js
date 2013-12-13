@@ -10,11 +10,11 @@ require.config({
 
 require([
 
-	/* datetime */
-	"./unit/datetime/expand_pattern",
-	"./unit/datetime/format",
-	"./unit/datetime/tokenizer",
-	"./unit/datetime/parse"
+	/* date */
+	"./unit/date/expand_pattern",
+	"./unit/date/format",
+	"./unit/date/tokenizer",
+	"./unit/date/parse"
 
 ], function() {
 	QUnit.start();

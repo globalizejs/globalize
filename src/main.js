@@ -1,12 +1,12 @@
 define([
 	"cldr",
-	"./datetime/all_presets",
-	"./datetime/expand_pattern",
-	"./datetime/format",
-	"./datetime/parse",
+	"./date/all_presets",
+	"./date/expand_pattern",
+	"./date/format",
+	"./date/parse",
 	"./util/always_array",
 	"./util/array/some"
-], function( Cldr, datetimeAllPresets, datetimeExpandPattern, datetimeFormat, datetimeParse, alwaysArray, arraySome ) {
+], function( Cldr, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray, arraySome ) {
 
 	var defaultLocale;
 
@@ -66,7 +66,7 @@ define([
 	 *
 	 * @value [Date or Number]
 	 *
-	 * @pattern [String or Object] see datetime/expand_pattern for more info.
+	 * @pattern [String or Object] see date/expand_pattern for more info.
 	 *
 	 * @locale [String]
 	 *
@@ -80,9 +80,9 @@ define([
 			if ( !pattern ) {
 				throw new Error( "Missing pattern" );
 			}
-			pattern = datetimeExpandPattern( pattern, locale );
+			pattern = dateExpandPattern( pattern, locale );
 
-			value = datetimeFormat( value, pattern, locale );
+			value = dateFormat( value, pattern, locale );
 
 		} else if ( typeof value === "number" ) {
 			// TODO value = numberFormat( value, pattern, locale );
@@ -97,7 +97,7 @@ define([
 	 *
 	 * @value [Date]
 	 *
-	 * @patterns [Array] Optional. See datetime/expand_pattern for more info about each pattern. Defaults to the list of all presets defined in the locale (see datetime/all_presets for more info).
+	 * @patterns [Array] Optional. See date/expand_pattern for more info about each pattern. Defaults to the list of all presets defined in the locale (see date/all_presets for more info).
 	 *
 	 * @locale [String]
 	 *
@@ -112,14 +112,14 @@ define([
 		}
 
 		if ( !patterns ) {
-			patterns = datetimeAllPresets( locale );
+			patterns = dateAllPresets( locale );
 		} else {
 			patterns = alwaysArray( patterns );
 		}
 
 		arraySome( patterns, function( pattern ) {
-			pattern = datetimeExpandPattern( pattern, locale );
-			date = datetimeParse( value, pattern, locale );
+			pattern = dateExpandPattern( pattern, locale );
+			date = dateParse( value, pattern, locale );
 			return !!date;
 		});
 
