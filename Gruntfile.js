@@ -64,7 +64,7 @@ module.exports = function(grunt) {
 				}
 			},
 			dist: {
-				src: [ "dist/globalize.js" ],
+				src: [ "dist/globalize*.js", "!dist/*.min.*js" ],
 				options: {
 					jshintrc: "src/.dist-jshintrc"
 				}
@@ -94,7 +94,7 @@ module.exports = function(grunt) {
 				skipSemiColonInsertion: true,
 				skipModuleInsertion: true,
 				wrap: {
-					startFile: "src/build/intro.js",
+					startFile: "src/build/intro.core.js",
 					endFile: "src/build/outro.js"
 				},
 
@@ -102,7 +102,7 @@ module.exports = function(grunt) {
 				// Convert content as follows:
 				// a) "Single return" means the module only contains a return statement that is converted to a var declaration.
 				// b) "Not as simple as a single return" means the define wrappers are replaced by a function wrapper call and the returned value is assigned to a var.
-				// c) "Main" means the define wrappers are removed, but content is untouched. Only for main.
+				// c) "Module" means the define wrappers are removed, but content is untouched. Only for root id's (the ones in src, not in src's subpaths).
 				// d) "cldr" have its UMD wrapper replaced by a var declaration.
 				onBuildWrite: function ( id, path, contents ) {
 					var name = camelCase( id.replace(/util\//, "") );
@@ -129,7 +129,7 @@ module.exports = function(grunt) {
 							contents + "}());";
 					}
 					// Type a (single return)
-					else if ( !(/^main$/).test( id ) ) {
+					else if ( (/\//).test( id ) ) {
 						contents = contents
 							.replace( /	return/, "	var " + name + " =" );
 					}
@@ -141,8 +141,31 @@ module.exports = function(grunt) {
 				options: {
 					modules: [{
 						name: "globalize",
-						include: [ "main" ],
+						include: [ "core" ],
+						exclude: [ "cldr" ],
 						create: true
+					}, {
+						name: "globalize.date",
+						include: [ "date" ],
+						exclude: [ "cldr", "./core" ],
+						create: true,
+						override: {
+							wrap: {
+								startFile: "src/build/intro.extend.js",
+								endFile: "src/build/outro.js"
+							}
+						}
+					}, {
+						name: "globalize.translate",
+						include: [ "translate" ],
+						exclude: [ "cldr", "./core" ],
+						create: true,
+						override: {
+							wrap: {
+								startFile: "src/build/intro.extend.js",
+								endFile: "src/build/outro.js"
+							}
+						}
 					}]
 				}
 			}
@@ -165,7 +188,7 @@ module.exports = function(grunt) {
 			dist: {
 				expand: true,
 				cwd: "dist/.build/",
-				src: [ "globalize.js" ],
+				src: [ "globalize*.js" ],
 				dest: "dist/"
 			}
 		},
@@ -174,9 +197,13 @@ module.exports = function(grunt) {
 				banner: replaceConsts( grunt.file.read( "src/build/intro.min.js" ) )
 			},
 			dist: {
-				files: {
+				files: [{
 					"dist/globalize.min.js": [ "dist/globalize.js" ]
-				}
+				}, {
+					"dist/globalize.date.min.js": [ "dist/globalize.date.js" ]
+				}, {
+					"dist/globalize.translate.min.js": [ "dist/globalize.translate.js" ]
+				}]
 			}
 		},
 		clean: {

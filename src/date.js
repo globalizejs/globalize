@@ -1,65 +1,14 @@
 define([
 	"cldr",
+	"./common/get_locale",
+	"./core",
 	"./date/all_presets",
 	"./date/expand_pattern",
 	"./date/format",
 	"./date/parse",
 	"./util/always_array",
 	"./util/array/some"
-], function( Cldr, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray, arraySome ) {
-
-	var defaultLocale;
-
-	function getLocale( locale ) {
-		return locale ? new Cldr( locale ) : defaultLocale;
-	}
-
-	var Globalize = {};
-
-	/**
-	 * Globalize.load( json )
-	 *
-	 * @json [JSON]
-	 *
-	 * Load resolved or unresolved cldr data.
-	 * Somewhat equivalent to previous Globalize.addCultureInfo(...).
-	 */
-	Globalize.load = function( json ) {
-		Cldr.load( json );
-	};
-
-	/**
-	 * Globalize.loadTranslations( locale, json )
-	 *
-	 * @locale [String]
-	 *
-	 * @json [JSON]
-	 *
-	 * Load translation data per locale.
-	 */
-	Globalize.loadTranslations = function( locale, json ) {
-		var customData = {
-			"globalize-translation": {}
-		};
-		locale = new Cldr( locale );
-		customData[ "globalize-translation" ][ locale.attributes.languageId ] = json;
-		Cldr.load( customData );
-	};
-
-	/**
-	 * Globalize.locale( locale )
-	 *
-	 * @locale [String]
-	 *
-	 * Set default locale.
-	 * Somewhat equivalent to previous culture( selector ).
-	 */
-	Globalize.locale = function( locale ) {
-		if ( arguments.length ) {
-			defaultLocale = new Cldr( locale );
-		}
-		return defaultLocale;
-	};
+], function( Cldr, commonGetLocale, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray, arraySome ) {
 
 	/**
 	 * Globalize.format( value, pattern, locale )
@@ -73,7 +22,7 @@ define([
 	 * Formats a date or number according to the given pattern string and the given locale (or the default locale if not specified).
 	 */
 	Globalize.format = function( value, pattern, locale ) {
-		locale = getLocale( locale );
+		locale = commonGetLocale( locale );
 
 		if ( value instanceof Date ) {
 
@@ -105,7 +54,7 @@ define([
 	 */
 	Globalize.parseDate = function( value, patterns, locale ) {
 		var date;
-		locale = getLocale( locale );
+		locale = commonGetLocale( locale );
 
 		if ( typeof value !== "string" ) {
 			throw new Error( "invalid value (" + value + "), string expected" );
@@ -124,21 +73,6 @@ define([
 		});
 
 		return date || null;
-	};
-
-	/**
-	 * Globalize.translate( path, locale )
-	 *
-	 * @path [String or Array]
-	 *
-	 * @locale [String]
-	 *
-	 * Translate item given its path.
-	 */
-	Globalize.translate = function( path , locale ) {
-		locale = getLocale( locale );
-		path = alwaysArray( path );
-		return locale.get( [ "globalize-translation/{languageId}" ].concat( path ) );
 	};
 
 	return Globalize;
