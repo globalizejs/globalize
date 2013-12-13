@@ -284,6 +284,10 @@ post.title(:superlative => "rocks")
 # #=> "Globalize rocks!"
 ```
 
+## Globalize extensions
+
+* [globalize-accessors](https://github.com/globalize/globalize-accessors) - Replacement for [easy_globalize_3_accessors](https://github.com/paneq/easy_globalize3_accessors) compatible with Globalize 3.x and 4.x.
+
 ## Alternative Solutions
 
 * [Veger's fork](http://github.com/veger/globalize2) - uses default AR schema for the default locale, delegates to the translations table for other locales only
