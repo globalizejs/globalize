@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function( grunt ) {
 
 	"use strict";
 
@@ -139,34 +139,38 @@ module.exports = function(grunt) {
 			},
 			bundle: {
 				options: {
-					modules: [{
-						name: "globalize",
-						include: [ "core" ],
-						exclude: [ "cldr" ],
-						create: true
-					}, {
-						name: "globalize.date",
-						include: [ "date" ],
-						exclude: [ "cldr", "./core" ],
-						create: true,
-						override: {
-							wrap: {
-								startFile: "src/build/intro.extend.js",
-								endFile: "src/build/outro.js"
+					modules: [
+						{
+							name: "globalize",
+							include: [ "core" ],
+							exclude: [ "cldr" ],
+							create: true
+						},
+						{
+							name: "globalize.date",
+							include: [ "date" ],
+							exclude: [ "cldr", "./core" ],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro.extend.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
+							name: "globalize.translate",
+							include: [ "translate" ],
+							exclude: [ "cldr", "./core" ],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro.extend.js",
+									endFile: "src/build/outro.js"
+								}
 							}
 						}
-					}, {
-						name: "globalize.translate",
-						include: [ "translate" ],
-						exclude: [ "cldr", "./core" ],
-						create: true,
-						override: {
-							wrap: {
-								startFile: "src/build/intro.extend.js",
-								endFile: "src/build/outro.js"
-							}
-						}
-					}]
+					]
 				}
 			}
 		},
@@ -197,13 +201,17 @@ module.exports = function(grunt) {
 				banner: replaceConsts( grunt.file.read( "src/build/intro.min.js" ) )
 			},
 			dist: {
-				files: [{
-					"dist/globalize.min.js": [ "dist/globalize.js" ]
-				}, {
-					"dist/globalize.date.min.js": [ "dist/globalize.date.js" ]
-				}, {
-					"dist/globalize.translate.min.js": [ "dist/globalize.translate.js" ]
-				}]
+				files: [
+					{
+						"dist/globalize.min.js": [ "dist/globalize.js" ]
+					},
+					{
+						"dist/globalize.date.min.js": [ "dist/globalize.date.js" ]
+					},
+					{
+						"dist/globalize.translate.min.js": [ "dist/globalize.translate.js" ]
+					}
+				]
 			}
 		},
 		clean: {

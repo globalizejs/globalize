@@ -59,14 +59,14 @@
   },
   "devDependencies": {
     "grunt": "0.4.x",
-    "grunt-contrib-clean": "0.5.x",
-    "grunt-contrib-connect": "0.3.x",
-    "grunt-contrib-copy": "0.4.x",
-    "grunt-contrib-jshint": "0.7.x",
-    "grunt-contrib-qunit": "0.3.x",
-    "grunt-contrib-requirejs": "0.4.x",
-    "grunt-contrib-uglify": "0.2.x",
-    "grunt-contrib-watch": "0.5.x",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-connect": "0.3.0",
+    "grunt-contrib-copy": "0.4.1",
+    "grunt-contrib-jshint": "0.7.2",
+    "grunt-contrib-qunit": "0.3.0",
+    "grunt-contrib-requirejs": "0.4.1",
+    "grunt-contrib-uglify": "0.2.7",
+    "grunt-contrib-watch": "0.5.3",
     "matchdep": "*"
   },
   "licenses": [

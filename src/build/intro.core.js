@@ -10,14 +10,16 @@
  * Date: @DATE
  */
 (function( root, factory ) {
-
 	if ( typeof define === "function" && define.amd ) {
-		// AMD.
+
+		// AMD
 		define( [ "cldr" ], factory );
 	} else if ( typeof module === "object" && typeof module.exports === "object" ) {
-		// Node. CommonJS.
+
+		// Node, CommonJS
 		module.exports = factory( require( "cldr" ) );
 	} else {
+
 		// Global
 		root.Globalize = factory( Cldr );
 	}
