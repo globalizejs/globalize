@@ -1,10 +1,10 @@
 define([
-	"dist/globalize",
+	"globalize",
 	"json!fixtures/cldr/main/en/ca-gregorian.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"json!fixtures/cldr/supplemental/timeData.json",
 	"json!fixtures/cldr/supplemental/weekData.json",
-	"dist/globalize.date"
+	"globalize/date"
 ], function( Globalize, enCaGregorian, likelySubtags, timeData, weekData ) {
 
 var date = new Date( 2010, 8, 15, 17, 35, 7, 369 );

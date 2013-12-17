@@ -49,13 +49,16 @@
     "Tobie Langel <tobie.langel@gmail.com> (http://tobielangel.com)",
     "Boris Moore <borismoore@gmail.com> (http://www.borismoore.com)"
   ],
-  "main": "./lib/globalize.js",
+  "main": "./dist/globalize_allinone_node.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/jquery/globalize.git"
   },
   "bugs": {
     "url": "http://github.com/jquery/globalize/issues"
+  },
+  "dependencies": {
+    "cldr": "rxaviers/cldr"
   },
   "devDependencies": {
     "grunt": "0.4.x",

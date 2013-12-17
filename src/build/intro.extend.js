@@ -13,11 +13,11 @@
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD
-		define( [ "cldr", "./globalize" ], factory );
+		define( [ "cldr", "../globalize" ], factory );
 	} else if ( typeof module === "object" && typeof module.exports === "object" ) {
 
 		// Node, CommonJS
-		module.exports = factory( require( "cldr" ), require( "globalize" ) );
+		module.exports = factory( require( "cldr.js" ), require( "globalize" ) );
 	} else {
 
 		// Global
