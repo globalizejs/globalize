@@ -1,5 +1,5 @@
 define([
-	"./array/is_array"
+	"./array/is-array"
 ], function( arrayIsArray ) {
 
 return function( stringOrArray ) {

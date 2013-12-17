@@ -1,11 +1,11 @@
 define([
-	"./day_of_week",
-	"./day_of_year",
-	"./first_day_of_week",
-	"./milliseconds_in_day",
-	"./pattern_re",
-	"./start_of",
-	"./week_days",
+	"./day-of-week",
+	"./day-of-year",
+	"./first-day-of-week",
+	"./milliseconds-in-day",
+	"./pattern-re",
+	"./start-of",
+	"./week-days",
 	"../util/string/pad"
 ], function( dateDayOfWeek, dateDayOfYear, dateFirstDayOfWeek, dateMillisecondsInDay, datePatternRe, dateStartOf, dateWeekDays, stringPad ) {
 

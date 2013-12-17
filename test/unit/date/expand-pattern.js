@@ -1,6 +1,6 @@
 define([
 	"cldr",
-	"globalize/date/expand_pattern",
+	"globalize/date/expand-pattern",
 	"json!fixtures/cldr/main/en/ca-gregorian.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json"
 ], function( Cldr, expandPattern, enCaGregorian, likelySubtags ) {

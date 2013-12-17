@@ -1,6 +1,6 @@
 define([
 	"globalize",
-	"src/date/start_of",
+	"src/date/start-of",
 	"json!fixtures/cldr/main/en/ca-gregorian.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"json!fixtures/cldr/supplemental/timeData.json",

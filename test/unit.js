@@ -11,7 +11,7 @@ require.config({
 require([
 
 	/* date */
-	"./unit/date/expand_pattern",
+	"./unit/date/expand-pattern",
 	"./unit/date/format",
 	"./unit/date/tokenizer",
 	"./unit/date/parse"

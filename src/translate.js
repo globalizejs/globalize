@@ -1,8 +1,8 @@
 define([
 	"cldr",
-	"./common/get_locale",
+	"./common/get-locale",
 	"./core",
-	"./util/always_array"
+	"./util/always-array"
 ], function( Cldr, commonGetLocale, Globalize, alwaysArray ) {
 
 /**

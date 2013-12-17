@@ -1,12 +1,12 @@
 define([
 	"cldr",
-	"./common/get_locale",
+	"./common/get-locale",
 	"./core",
-	"./date/all_presets",
-	"./date/expand_pattern",
+	"./date/all-presets",
+	"./date/expand-pattern",
 	"./date/format",
 	"./date/parse",
-	"./util/always_array",
+	"./util/always-array",
 	"./util/array/some"
 ], function( Cldr, commonGetLocale, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray, arraySome ) {
 

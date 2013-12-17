@@ -1,5 +1,5 @@
 define([
-	"./start_of"
+	"./start-of"
 ], function( dateStartOf ) {
 
 /**

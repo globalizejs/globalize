@@ -1,6 +1,6 @@
 define([
-	"./pattern_re",
-	"./start_of",
+	"./pattern-re",
+	"./start-of",
 	"./tokenizer",
 	"../util/array/every"
 ], function( datePatternRe, dateStartOf, dateTokenizer, arrayEvery ) {

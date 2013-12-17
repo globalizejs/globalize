@@ -1,6 +1,6 @@
 define([
-	"./distance_in_days",
-	"./start_of"
+	"./distance-in-days",
+	"./start-of"
 ], function( dateDistanceInDays, dateStartOf ) {
 
 /**

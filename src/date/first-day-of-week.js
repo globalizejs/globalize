@@ -1,6 +1,6 @@
 define([
-	"./week_days",
-	"../util/array/index_of"
+	"./week-days",
+	"../util/array/index-of"
 ], function( dateWeekDays, arrayIndexOf ) {
 
 /**

@@ -1,5 +1,5 @@
 define([
-	"./pattern_re",
+	"./pattern-re",
 	"../util/array/every"
 ], function( datePatternRe, arrayEvery ) {
 

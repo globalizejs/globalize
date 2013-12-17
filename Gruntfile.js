@@ -7,7 +7,7 @@ module.exports = function( grunt ) {
 		pkg = grunt.file.readJSON( "package.json" );
 
 	function camelCase( input ) {
-		return input.toLowerCase().replace( /[_/](.)/g, function( match, group1 ) {
+		return input.toLowerCase().replace( /[-/](.)/g, function( match, group1 ) {
 			return group1.toUpperCase();
 		});
 	}
@@ -205,8 +205,8 @@ module.exports = function( grunt ) {
 				}
 			},
 			dist_allinone_node: {
-				src: "src/build/allinone_node.js",
-				dest: "dist/globalize_allinone_node.js"
+				src: "src/build/allinone-node.js",
+				dest: "dist/globalize-allinone-node.js"
 			}
 		},
 		uglify: {
