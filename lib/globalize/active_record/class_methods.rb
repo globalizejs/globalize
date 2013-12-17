@@ -131,20 +131,7 @@ module Globalize
       # of ActiveRecord::Relation with custom finder methods for translated
       # attributes.
       def relation
-        relation = globalize_relation_class.new(self, arel_table)
-
-        if finder_needs_type_condition?
-          relation.where(type_condition).create_with(inheritance_column.to_sym => sti_name)
-        else
-          relation
-        end
-      end
-
-      def globalize_relation_class
-        @relation_class ||= Class.new(::ActiveRecord::Relation).tap do |klass|
-          klass.send :include, QueryMethods
-          const_set('GlobalizeActiveRecordRelation', klass)
-        end
+        super.extending!(QueryMethods)
       end
 
       protected
