@@ -7,19 +7,16 @@
 	"immed": true,
 	"noarg": true,
 	"onevar": false,
-	"quotmark": "double",
 	"smarttabs": true,
 	"trailing": true,
 	"undef": true,
 	"unused": true,
 
 	"globals": {
-		"deepEqual": false,
+		"Cldr": false,
 		"define": false,
-		"equal": false,
+		"Globalize": false,
 		"module": false,
-		"QUnit": false,
-		"require": false,
-		"test": false
+		"require": false
 	}
 }

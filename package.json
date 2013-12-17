@@ -1,6 +1,6 @@
 {
   "name": "globalize",
-  "version": "0.1.1",
+  "version": "1.0.0-pre",
   "description": "New age globalization and localization. Formats and parses strings, dates and numbers in over 350 cultures.",
   "keywords": [
     "utility",
@@ -27,16 +27,29 @@
   ],
   "homepage": "https://github.com/jquery/globalize",
   "author": "The jQuery Project",
+  "maintainers": [
+    {
+      "name": "Jörn Zaefferer",
+      "email": "joern.zaefferer@gmail.com",
+      "url": "http://bassistance.de"
+    },
+    {
+      "name": "Rafael Xavier de Souza",
+      "email": "rxaviers@gmail.com",
+      "url": "http://rafael.xavier.blog.br"
+    }
+  ],
   "contributors": [
     "Dave Reed <dareed@microsoft.com> (http://weblogs.asp.net/infinitiesloop)",
     "Richard D. Worth <rdworth@gmail.com> (http://rdworth.org)",
     "Jörn Zaefferer <joern.zaefferer@gmail.com> (http://bassistance.de)",
+    "Rafael Xavier de Souza <rxaviers@gmail.com> (http://rafael.xavier.blog.br)",
     "Legal-Box <legalbox@eric.brechemier.name> (http://www.legal-box.com)",
     "Nikolaus Graf (http://www.nikgraf.com)",
     "Tobie Langel <tobie.langel@gmail.com> (http://tobielangel.com)",
     "Boris Moore <borismoore@gmail.com> (http://www.borismoore.com)"
   ],
-  "main": "./lib/globalize.js",
+  "main": "./dist/globalize-allinone-node.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/jquery/globalize.git"
@@ -44,13 +57,20 @@
   "bugs": {
     "url": "http://github.com/jquery/globalize/issues"
   },
+  "dependencies": {
+    "cldr": "rxaviers/cldr"
+  },
   "devDependencies": {
-    "grunt": "0.4.1",
-    "grunt-contrib-jshint": "0.7.1",
-    "grunt-contrib-uglify": "0.2.5",
-    "grunt-contrib-qunit": "0.2.2",
+    "grunt": "0.4.x",
+    "grunt-contrib-clean": "0.5.0",
+    "grunt-contrib-connect": "0.3.0",
+    "grunt-contrib-copy": "0.4.1",
+    "grunt-contrib-jshint": "0.7.2",
+    "grunt-contrib-qunit": "0.3.0",
+    "grunt-contrib-requirejs": "0.4.1",
+    "grunt-contrib-uglify": "0.2.7",
     "grunt-contrib-watch": "0.5.3",
-    "grunt-contrib-clean": "0.5.0"
+    "matchdep": "*"
   },
   "licenses": [
     {
@@ -59,6 +79,7 @@
     }
   ],
   "scripts": {
+    "install": "bower install",
     "test": "grunt"
   }
 }

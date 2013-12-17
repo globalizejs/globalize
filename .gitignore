@@ -1,9 +1,2 @@
-.project
-*~
-*.diff
-*.patch
-.DS_Store
-generator/bin
-generator/obj
+external
 node_modules
-dist
