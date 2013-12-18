@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name         = 'globalize'
-  s.version      = '4.0.0.alpha.2'
+  s.version      = '4.0.0.alpha.3'
   s.authors      = ['Sven Fuchs', 'Joshua Harvey', 'Clemens Kofler', 'John-Paul Bader', 'Tomasz Stachewicz', 'Philip Arndt', 'Chris Salzberg']
   s.email        = 'nobody@globalize-rails.org'
   s.homepage     = 'http://github.com/globalize/globalize'
