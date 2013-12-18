@@ -66,11 +66,7 @@ module Globalize
 
       def translated_attributes
         translated_attribute_names.inject({}) do |attributes, name|
-          if self.respond_to?(name) && Globalize.locale == I18n.default_locale
-            attributes.merge(name.to_s => self.send(name))
-          else
-            attributes.merge(name.to_s => translation.send(name))
-          end
+          attributes.merge(name.to_s => self.send(name))
         end
       end
 
