@@ -58,53 +58,6 @@ module Globalize
         "#{translation_class.table_name}.#{name}"
       end
 
-      def respond_to_missing?(method_id, include_private = false)
-        supported_on_missing?(method_id) || super
-      end
-
-      def supported_on_missing?(method_id)
-        return super unless respond_to?(:translated_attribute_names)
-        match = defined?(::ActiveRecord::DynamicFinderMatch) && (::ActiveRecord::DynamicFinderMatch.match(method_id) || ::ActiveRecord::DynamicScopeMatch.match(method_id))
-        return false if match.nil?
-
-        attribute_names = match.attribute_names.map(&:to_sym)
-        translated_attributes = attribute_names & translated_attribute_names
-        return false if translated_attributes.empty?
-
-        untranslated_attributes = attribute_names - translated_attributes
-        return false if untranslated_attributes.any?{|unt| ! respond_to?(:"scoped_by_#{unt}")}
-        return [match, attribute_names, translated_attributes, untranslated_attributes]
-      end
-
-      def method_missing(method_id, *arguments, &block)
-        match, attribute_names, translated_attributes, untranslated_attributes = supported_on_missing?(method_id)
-        return super unless match
-
-        scope = all
-
-        translated_attributes.each do |attr|
-          scope = scope.with_translated_attribute(attr, arguments[attribute_names.index(attr)])
-        end
-
-        untranslated_attributes.each do |unt|
-          index = attribute_names.index(unt)
-          raise StandarError unless index
-          scope = scope.send(:"scoped_by_#{unt}", arguments[index])
-        end
-
-        if defined?(::ActiveRecord::DynamicFinderMatch) && match.is_a?(::ActiveRecord::DynamicFinderMatch)
-          if match.instantiator? && scope.blank?
-            return scope.find_or_instantiator_by_attributes match, attribute_names, *arguments, &block
-          end
-          match_finder_method = match.finder.to_s
-          match_finder_method << "!" if match.bang?
-          return scope.send(match_finder_method).tap do |found|
-            Array(found).map { |f| f.translations.reload } unless found.nil?
-          end
-        end
-        return scope
-      end
-
       def find_or_instantiator_by_attributes(match, attributes, *args)
         options = args.many? && args.last(2).all?{ |a| a.is_a?(Hash) } ? args.extract_options! : {}
         protected_attributes_for_create, unprotected_attributes_for_create = {}, {}
