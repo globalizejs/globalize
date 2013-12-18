@@ -8,7 +8,7 @@
     "bower.json"
   ],
   "devDependencies": {
-    "cldr": "rxaviers/cldr#0.2.3",
+    "cldr.js": "0.2.3",
     "jquery": "2.0.3",
     "qunit": "1.12.0",
     "requirejs": "2.1.9",

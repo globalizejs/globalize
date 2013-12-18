@@ -58,7 +58,7 @@
     "url": "http://github.com/jquery/globalize/issues"
   },
   "dependencies": {
-    "cldr": "rxaviers/cldr"
+    "cldr.js": "0.2.3"
   },
   "devDependencies": {
     "grunt": "0.4.x",

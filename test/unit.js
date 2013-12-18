@@ -1,6 +1,6 @@
 require.config({
 	paths: {
-		cldr: "../external/cldr/dist/cldr.runtime",
+		cldr: "../external/cldr.js/dist/cldr.runtime",
 		fixtures: "./fixtures",
 		globalize: "../src",
 		json: "../external/requirejs-plugins/src/json",

@@ -137,7 +137,7 @@ variables (in case neither AMD nor CommonJS have been detected).
 Example of usage with script tags:
 
 ```html
-<script src="./external/cldr/dist/cldr.js"></script>
+<script src="./external/cldr.js/dist/cldr.js"></script>
 <script src="./dist/globalize.js"></script>
 <script src="./dist/globalize/date.js"></script>
 ```
