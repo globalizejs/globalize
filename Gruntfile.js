@@ -214,17 +214,11 @@ module.exports = function( grunt ) {
 				banner: replaceConsts( grunt.file.read( "src/build/intro.min.js" ) )
 			},
 			dist: {
-				files: [
-					{
-						"dist/globalize.min.js": [ "dist/globalize.js" ]
-					},
-					{
-						"dist/globalize/date.min.js": [ "dist/globalize/date.js" ]
-					},
-					{
+				files: {
+						"dist/globalize.min.js": [ "dist/globalize.js" ],
+						"dist/globalize/date.min.js": [ "dist/globalize/date.js" ],
 						"dist/globalize/translate.min.js": [ "dist/globalize/translate.js" ]
-					}
-				]
+				}
 			}
 		},
 		clean: {

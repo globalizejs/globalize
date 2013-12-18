@@ -125,8 +125,8 @@ Dry tests show Globalize also works on the following browsers:
 
 If you find any bugs, please just [let us
 know](https://github.com/jquery/globalize/issues). We'll be glad to fix them for
-the officially supported browsers, or at least update the documentation for the
-unsupported ones.
+the officially supported browsers, or at least to update the documentation for
+the unsupported ones.
 
 <a name="usage"></a>
 ## Usage
@@ -139,7 +139,7 @@ Example of usage with script tags:
 ```html
 <script src="./external/cldr/dist/cldr.js"></script>
 <script src="./dist/globalize.js"></script>
-<script src="./dist/globalize.date.js"></script>
+<script src="./dist/globalize/date.js"></script>
 ```
 
 Example of usage on AMD:
@@ -252,10 +252,10 @@ Example using Node.js:
 
 ```javascript
 var Globalize = require( "globalize" );
-Globalize.load( require("./cldr/supplemental/likelySubtags.json") );
-Globalize.load( require("./cldr/supplemental/timeData.json") );
-Globalize.load( require("./cldr/supplemental/weekData.json") );
-Globalize.load( require("./cldr/en/ca-gregorian.json") );
+Globalize.load( require( "./cldr/supplemental/likelySubtags.json" ) );
+Globalize.load( require( "./cldr/supplemental/timeData.json" ) );
+Globalize.load( require( "./cldr/supplemental/weekData.json" ) );
+Globalize.load( require( "./cldr/en/ca-gregorian.json" ) );
 ```
 
 <a name="api"></a>
@@ -345,7 +345,7 @@ Globalize.format( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" }, "de" 
 
 Comparison between different locales.
 
-| locale | `Globalize.format( new Date( 2010, 10, 1, 17, 55 ), { datetime: "short" }` |
+| locale | `Globalize.format( new Date( 2010, 10, 1, 17, 55 ), { datetime: "short" } )` |
 | --- | --- |
 | **en** | `"11/1/10, 5:55 PM"` |
 | **en_GB** | `"01/11/2010 17:55"` |

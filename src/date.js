@@ -13,7 +13,7 @@ define([
 /**
  * Globalize.format( value, pattern, locale )
  *
- * @value [Date or Number]
+ * @value [Date]
  *
  * @pattern [String or Object] see date/expand_pattern for more info.
  *
@@ -32,10 +32,6 @@ Globalize.format = function( value, pattern, locale ) {
 		pattern = dateExpandPattern( pattern, locale );
 
 		value = dateFormat( value, pattern, locale );
-
-	} else if ( typeof value === "number" ) {
-		// TODO value = numberFormat( value, pattern, locale );
-		throw new Error( "Number Format not implemented yet" );
 	}
 
 	return value;
@@ -44,7 +40,7 @@ Globalize.format = function( value, pattern, locale ) {
 /**
  * Globalize.parseDate( value, patterns, locale )
  *
- * @value [Date]
+ * @value [String]
  *
  * @patterns [Array] Optional. See date/expand_pattern for more info about each pattern. Defaults to the list of all presets defined in the locale (see date/all_presets for more info).
  *

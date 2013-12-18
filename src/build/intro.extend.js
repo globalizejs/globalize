@@ -9,7 +9,7 @@
  *
  * Date: @DATE
  */
-(function( root, factory ) {
+(function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD
@@ -23,4 +23,4 @@
 		// Global
 		factory( Cldr, Globalize );
 	}
-}( this, function( Cldr, Globalize ) {
+}(function( Cldr, Globalize ) {

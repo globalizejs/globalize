@@ -19,4 +19,3 @@ require([
 ], function() {
 	QUnit.start();
 });
-
