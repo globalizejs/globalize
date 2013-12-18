@@ -34,11 +34,9 @@ module Globalize
       end
 
       def save_translations!
-        existing_translations_by_locale = Hash[record.translations.map { |t| [ t.locale, t ] }]
-
         stash.reject {|locale, attrs| attrs.empty?}.each do |locale, attrs|
-          translation = existing_translations_by_locale[locale] ||
-                          record.translations.build(locale: locale.to_s)
+          translation = record.translations_by_locale[locale] ||
+                        record.translations.build(locale: locale.to_s)
           attrs.each { |name, value| translation[name] = value }
           ensure_foreign_key_for(translation)
           translation.save!

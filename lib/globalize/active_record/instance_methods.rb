@@ -130,6 +130,16 @@ module Globalize
         @translation_caches ||= {}
       end
 
+      def translations_by_locale(&block)
+        translations.each_with_object(HashWithIndifferentAccess.new) do |t, hash|
+          hash[t.locale] = block_given? ? block.call(t) : t
+        end
+      end
+
+      def translated_attribute_by_locale(name)
+        translations_by_locale(&:"#{name}")
+      end
+
       def globalize_fallbacks(locale)
         Globalize.fallbacks(locale)
       end

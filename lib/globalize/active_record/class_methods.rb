@@ -101,10 +101,8 @@ module Globalize
 
       def translations_accessor(name)
         define_method(:"#{name}_translations") do
-          result = translations.each_with_object(HashWithIndifferentAccess.new) do |translation, result|
-            result[translation.locale] = translation.send(name)
-          end
-          globalize.stash.keys.each_with_object(result) do |locale, result|
+          hash = translated_attribute_by_locale(name)
+          globalize.stash.keys.each_with_object(hash) do |locale, result|
             result[locale] = globalize.fetch_stash(locale, name) if globalize.stash_contains?(locale, name)
           end
         end
