@@ -79,7 +79,6 @@
     }
   ],
   "scripts": {
-    "install": "bower install",
     "test": "grunt"
   }
 }

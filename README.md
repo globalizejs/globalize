@@ -471,7 +471,11 @@ Install grunt and tests external dependencies. First, install the
 as global installs. Then:
 
 ```bash
-npm install
+npm install && bower install
+```
+
+Build distribution files.
+```bash
 grunt
 ```
 
