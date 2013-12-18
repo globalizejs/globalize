@@ -24,14 +24,15 @@ module Globalize
       end
 
       protected
+
       def allow_translation_of_attributes(attr_names)
         attr_names.each do |attr_name|
           # Detect and apply serialization.
           enable_serializable_attribute(attr_name)
 
           # Create accessors for the attribute.
-          translated_attr_accessor(attr_name)
-          translations_accessor(attr_name)
+          define_translated_attr_accessor(attr_name)
+          define_translations_accessor(attr_name)
 
           # Add attribute to the list.
           self.translated_attribute_names << attr_name

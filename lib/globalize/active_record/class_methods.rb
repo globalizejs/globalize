@@ -61,6 +61,7 @@ module Globalize
       def find_or_instantiator_by_attributes(match, attributes, *args)
         options = args.many? && args.last(2).all?{ |a| a.is_a?(Hash) } ? args.extract_options! : {}
         protected_attributes_for_create, unprotected_attributes_for_create = {}, {}
+
         args.each_with_index do |arg, i|
           if arg.is_a?(Hash)
             protected_attributes_for_create = args[i].with_indifferent_access
@@ -72,9 +73,10 @@ module Globalize
         record = new(protected_attributes_for_create, options) do |r|
           r.assign_attributes(unprotected_attributes_for_create)
         end
-        yield(record) if block_given?
-        record.send(match.bang? ? :save! : :save) if match.instantiator.eql?(:create)
 
+        yield(record) if block_given?
+
+        record.send(match.bang? ? :save! : :save) if match.instantiator.eql?(:create)
         record
       end
 
@@ -89,23 +91,34 @@ module Globalize
 
       protected
 
-      def translated_attr_accessor(name)
-        define_method(:"#{name}=") do |value|
-          write_attribute(name, value)
-        end
+      def define_translated_attr_reader(name)
         define_method(name) do |*args|
           Globalize::Interpolation.interpolate(name, self, args)
         end
         alias_method :"#{name}_before_type_cast", name
       end
 
-      def translations_accessor(name)
+      def define_translated_attr_writer(name)
+        define_method(:"#{name}=") do |value|
+          write_attribute(name, value)
+        end
+      end
+
+      def define_translated_attr_accessor(name)
+        define_translated_attr_reader(name)
+        define_translated_attr_writer(name)
+      end
+
+      def define_translations_reader(name)
         define_method(:"#{name}_translations") do
           hash = translated_attribute_by_locale(name)
           globalize.stash.keys.each_with_object(hash) do |locale, result|
             result[locale] = globalize.fetch_stash(locale, name) if globalize.stash_contains?(locale, name)
           end
         end
+      end
+
+      def define_translations_writer(name)
         define_method(:"#{name}_translations=") do |value|
           value.each do |(locale, value)|
             write_attribute name, value, :locale => locale
@@ -113,8 +126,10 @@ module Globalize
         end
       end
 
+      def define_translations_accessor(name)
+        define_translations_reader(name)
+        define_translations_writer(name)
+      end
     end
-
   end
-
 end
