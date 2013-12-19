@@ -58,28 +58,6 @@ module Globalize
         "#{translation_class.table_name}.#{name}"
       end
 
-      def find_or_instantiator_by_attributes(match, attributes, *args)
-        options = args.many? && args.last(2).all?{ |a| a.is_a?(Hash) } ? args.extract_options! : {}
-        protected_attributes_for_create, unprotected_attributes_for_create = {}, {}
-
-        args.each_with_index do |arg, i|
-          if arg.is_a?(Hash)
-            protected_attributes_for_create = args[i].with_indifferent_access
-          else
-            unprotected_attributes_for_create[attributes[i]] = args[i]
-          end
-        end
-
-        record = new(protected_attributes_for_create, options) do |r|
-          r.assign_attributes(unprotected_attributes_for_create)
-        end
-
-        yield(record) if block_given?
-
-        record.send(match.bang? ? :save! : :save) if match.instantiator.eql?(:create)
-        record
-      end
-
       private
 
       # Override the default relation method in order to return a subclass
