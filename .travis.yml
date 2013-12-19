@@ -4,6 +4,9 @@ env:
   - DB=sqlite3
   - DB=postgres
   - DB=mysql
+  - RAILS_4_0=true DB=sqlite3
+  - RAILS_4_0=true DB=postgres
+  - RAILS_4_0=true DB=mysql
 rvm:
   - 2.0.0
   - 1.9.3
