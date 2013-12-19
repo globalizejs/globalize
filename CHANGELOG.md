@@ -1,5 +1,13 @@
 # Globalize Changelog
 
+## 4.0.0.alpha.3 (2013-12-18)
+
+* Move ActiveRecord::Relation#where_values_hash patch into globalize relation class to avoid monkeypatching.
+* Add Code Climate Score (thanks [BrandonMathis](https://github.com/BrandonMathis)).
+* Query using Globalize.fallbacks rather than locale only when fetching a record (thanks [@huoxito](https://github.com/huoxito)).
+* Use a module (QueryMethods) rather than a class for overriding functionality of ActiveRecord::Relation.
+* Use ActiveRecord::Relation#extending! to extend ActiveRecord::Core#relation with QueryMethods, works with associations as well.
+
 ## 4.0.0.alpha.2 (2013-10-24)
 
 * Add license to gemspec.
