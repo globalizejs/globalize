@@ -15,176 +15,186 @@ class MigrationTest < MiniTest::Spec
     reset_schema(Migrated, MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters, TwoAttributesMigrated)
   end
 
-  it 'create_translation_table!(:name => :text) adds the translations table' do
-    Migrated.create_translation_table!(:name => :text)
-    assert_migration_table(:name => :text)
+  describe 'create_translation_table!' do
+    it 'adds the translations table with name and type' do
+      Migrated.create_translation_table!(:name => :text)
+      assert_migration_table(:name => :text)
+    end
+
+    it 'uses the column type from the translated model if no options passed in' do
+      Migrated.create_translation_table!
+      assert_migration_table(:name => :string)
+    end
+
+    it 'can not be called on non-translated models' do
+      assert_raises NoMethodError do
+        Blog.create_translation_table!(:name => :string)
+      end
+    end
+
+    it 'adds the translations table with options' do
+      Migrated.create_translation_table!(:name => {:type => :text, :default => '123'})
+      assert_migration_table(:name => :text)
+      assert_equal '123', column_default(:name)
+    end
+
+    it 'raises BadFieldName if passed non-translated field name' do
+      assert_raises BadFieldName do
+        Migrated.create_translation_table!(:content => :text)
+      end
+    end
+
+    it 'raises BadFieldName if passed translated field with wrong type' do
+      assert_raises BadFieldType do
+        Migrated.create_translation_table!(:name => :integer)
+      end
+    end
+
+    it 'avoids creating all translated attributes if translated attributes specified' do
+      TwoAttributesMigrated.create_translation_table!(:name => :string)
+      assert_migration_table({:name => :string}, TwoAttributesMigrated)
+      assert_nil column_type(:body, TwoAttributesMigrated)
+    end
+
+    it 'handles ultra-long table names' do
+      model = MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters
+      model.create_translation_table!(:name => :string)
+
+      assert model.translation_class.table_exists?
+      assert model.translation_class.index_exists?(model.send(:translation_index_name))
+      assert model.translation_class.index_exists?(model.send(:translation_locale_index_name))
+    end
+
+    # This test is relatively exhaustive in that it tests the full stack of
+    # create_translation_table! and its ability to use migrate_data to migrate
+    # non translated data into the default Globalize locale.
+    # We are then testing the ability of drop_translation_table! to migrate the
+    # translated data from the default Globalize locale back as untranslated data.
+    it 'migrates existing data and correctly rolls back when called with :migrate_data => true' do
+      # Ensure we have a "Fresh" version. Can't use reset_schema because it's not a translated model, yet.
+      model = Untranslated
+      model.drop_translation_table! if model.respond_to?(:drop_translation_table!)
+      model.reset_column_information
+
+      # First create an untranslated record
+      untranslated = model.create! :name => 'Untranslated'
+
+      # Now add translation support and migrate (also tests .untranslated_attributes)
+      model.instance_eval %{ translates :name }
+      model.create_translation_table!({:name => :string}, {:migrate_data => true})
+      assert model.translation_class.table_exists?
+
+      # Reload the untranslated record
+      untranslated.reload
+
+      # Was it migrated?
+      assert_translated untranslated, :en, :name, 'Untranslated'
+
+      # Cool, now we need to get rid of the non-translated value for the next test
+      model.where(:id => untranslated.id).update_all(:name => 'No longer translated')
+      untranslated.reload
+
+      # Make sure we didn't harm the translation and that it's been set. (also tests .untranslated_attributes)
+      assert_equal 'No longer translated', untranslated.untranslated_attributes['name']
+      assert_translated untranslated, :en, :name, 'Untranslated'
+
+      # Now we need to rollback then undo
+      model.drop_translation_table! :migrate_data => true
+      model.reset_column_information
+      assert !model.translation_class.table_exists?
+      untranslated.reload
+
+      # Was it restored? (also tests .untranslated_attributes)
+      assert_equal 'Untranslated', untranslated.untranslated_attributes['name']
+    end
+
   end
 
-  it 'create_translation_table! adds the translations table using the column type from the translated model' do
-    Migrated.create_translation_table!
-    assert_migration_table(:name => :string)
-  end
+  describe 'add_translation_fields!' do
+    it 'adds fields to translate after creating the translation table' do
+      TwoAttributesMigrated.create_translation_table!(:name => :string)
+      TwoAttributesMigrated.add_translation_fields!(:body => :text)
+      assert_migration_table({:name => :string, :body => :text}, TwoAttributesMigrated)
+    end
 
-  it 'create_translation_table! can not be called on non-translated models' do
-    assert_raises NoMethodError do
-      Blog.create_translation_table!(:name => :string)
+    # Here we test that adding translation fields we can use the migrate data and remouve source column options.
+    # * First, we get a model with no translation and create a record,
+    # * Then, we translate both fields and create translation table just for one of them migrating data
+    # * Then we add the other field to the translation table, migrate data and remove the source column
+    # * Finally we check that data has been migrated, we haven't overwritten the old migrated data and there's no source column
+    it 'migrates existing data but does not remove old migrated data when called with :migrate_data => true' do
+      model = TwoAttributesUntranslated
+      model.drop_translation_table! if model.respond_to?(:drop_translation_table!)
+      model.reset_column_information
+
+      untranslated_record = model.create! :name => 'Untranslated', :body => "Untranslated body"
+
+      model.instance_eval %{ translates :name, :body }
+
+      model.create_translation_table!({:name => :string}, {:migrate_data => true})
+
+      untranslated_record.reload
+
+      # We change the unstralated value so we make sure we don't overwrite the translated one when we add new fields
+      model.where(:id => untranslated_record.id).update_all(:name => 'No longer translated')
+      untranslated_record.reload
+
+      model.add_translation_fields!({:body => :text}, {:migrate_data => true, :remove_source_columns => true})
+      untranslated_record.reload
+
+      assert_translated untranslated_record, :en, :name, 'Untranslated'
+      assert_translated untranslated_record, :en, :body, 'Untranslated body'
+      assert_nil model.columns.detect { |c| c.name == "body" }
     end
   end
 
-  it "create_translation_table!(:name => {:type => :test, :default => '123'}) adds the translations table with options" do
-    Migrated.create_translation_table!(:name => {:type => :text, :default => '123'})
-    assert_migration_table(:name => :text)
-    assert_equal column_default(:name), '123'
-  end
+  describe 'drop_translation_table!' do
+    it 'drops the translations table' do
+      Migrated.create_translation_table!(:name => :string)
+      assert Migrated.translation_class.table_exists?
+      assert Migrated.translation_class.index_exists_on?(:migrated_id)
+      assert Migrated.translation_class.index_exists_on?(:locale)
 
-  it 'passing a non-translated field name raises BadFieldName' do
-    assert_raises BadFieldName do
-      Migrated.create_translation_table!(:content => :text)
+      Migrated.drop_translation_table!
+      assert !Migrated.translation_class.table_exists?
+      assert !Migrated.translation_class.index_exists_on?(:migrated_id)
+      assert !Migrated.translation_class.index_exists_on?(:locale)
+    end
+
+    it 'cannot be called on non-translated models' do
+      assert_raises NoMethodError do
+        Blog.drop_translation_table!
+      end
+    end
+
+    it 'handles ultra-long table names' do
+      model = MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters
+      model.create_translation_table!(:name => :string)
+      model.drop_translation_table!
+
+      assert !model.translation_class.table_exists?
+      assert !model.translation_class.index_exists?(:ultra_long_model_name_without_proper_id)
     end
   end
 
-  it 'passing a translated field with a wrong type raises BadFieldType' do
-    assert_raises BadFieldType do
-      Migrated.create_translation_table!(:name => :integer)
+  describe 'translation_index_name' do
+    it "translation_index_name returns a readable index name if it's not longer than 64 characters" do
+      assert_equal 'index_migrated_translations_on_migrated_id', Migrated.send(:translation_index_name)
+    end
+
+    it "returns a hashed index name if it's longer than 64 characters" do
+      assert_match /^index_[a-z0-9]{40}$/, MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters.send(:translation_index_name)
     end
   end
 
-  it 'setting the fields to translate we avoid creating all the translated attributes' do
-    TwoAttributesMigrated.create_translation_table!(:name => :string)
-    assert_migration_table({:name => :string}, TwoAttributesMigrated)
-    assert_nil column_type(:body, TwoAttributesMigrated)
-  end
-
-  it 'adding fields to translate after creating the translation table' do
-    TwoAttributesMigrated.create_translation_table!(:name => :string)
-    TwoAttributesMigrated.add_translation_fields!(:body => :text)
-    assert_migration_table({:name => :string, :body => :text}, TwoAttributesMigrated)
-  end
-
-  it 'drop_translation_table! drops the translations table' do
-    Migrated.create_translation_table!(:name => :string)
-    assert Migrated.translation_class.table_exists?
-    assert Migrated.translation_class.index_exists_on?(:migrated_id)
-    assert Migrated.translation_class.index_exists_on?(:locale)
-
-    Migrated.drop_translation_table!
-    assert !Migrated.translation_class.table_exists?
-    assert !Migrated.translation_class.index_exists_on?(:migrated_id)
-    assert !Migrated.translation_class.index_exists_on?(:locale)
-  end
-
-  it 'drop_translation_table! can not be called on non-translated models' do
-    assert_raises NoMethodError do
-      Blog.drop_translation_table!
+  describe 'translation_locale_index_name' do
+    it "returns a readable index name if class name is no longer than 64 characters" do
+      assert_equal 'index_migrated_translations_on_locale', Migrated.send(:translation_locale_index_name)
     end
-  end
 
-  it "translation_index_name returns a readable index name if it's not longer than 64 characters" do
-    assert_equal 'index_migrated_translations_on_migrated_id', Migrated.send(:translation_index_name)
-  end
-
-  it "translation_index_name returns a hashed index name if it's longer than 64 characters" do
-    assert_match /^index_[a-z0-9]{40}$/, MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters.send(:translation_index_name)
-  end
-
-  it "translation_locale_index_name returns a readable index name if it's not longer than 64 characters" do
-    assert_equal 'index_migrated_translations_on_locale', Migrated.send(:translation_locale_index_name)
-  end
-
-  it "translation_locale_index_name returns a hashed index name if it's longer than 64 characters" do
-    assert_match /^index_[a-z0-9]{40}$/, MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters.send(:translation_locale_index_name)
-  end
-
-  it 'create_translation_table! can deal with ultra long table names' do
-    model = MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters
-    model.create_translation_table!(:name => :string)
-
-    assert model.translation_class.table_exists?
-    assert model.translation_class.index_exists?(model.send(:translation_index_name))
-    assert model.translation_class.index_exists?(model.send(:translation_locale_index_name))
-  end
-
-  it 'drop_translation_table! can deal with ultra long table names' do
-    model = MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters
-    model.create_translation_table!(:name => :string)
-    model.drop_translation_table!
-
-    assert !model.translation_class.table_exists?
-    assert !model.translation_class.index_exists?(:ultra_long_model_name_without_proper_id)
-  end
-
-  # This test is relatively exhaustive in that it tests the full stack of
-  # create_translation_table! and its ability to use migrate_data to migrate
-  # non translated data into the default Globalize locale.
-  # We are then testing the ability of drop_translation_table! to migrate the
-  # translated data from the default Globalize locale back as untranslated data.
-  it 'create_translation_table! with option migrate_data set to true DOES migrate existing data AND rolls back' do
-    # Ensure we have a "Fresh" version. Can't use reset_schema because it's not a translated model, yet.
-    model = Untranslated
-    model.drop_translation_table! if model.respond_to?(:drop_translation_table!)
-    model.reset_column_information
-
-    # First create an untranslated record
-    untranslated = model.create! :name => 'Untranslated'
-
-    # Now add translation support and migrate (also tests .untranslated_attributes)
-    model.instance_eval %{ translates :name }
-    model.create_translation_table!({:name => :string}, {:migrate_data => true})
-    assert model.translation_class.table_exists?
-
-    # Reload the untranslated record
-    untranslated.reload
-
-    # Was it migrated?
-    assert_translated untranslated, :en, :name, 'Untranslated'
-
-    # Cool, now we need to get rid of the non-translated value for the next test
-    model.where(:id => untranslated.id).update_all(:name => 'No longer translated')
-    untranslated.reload
-
-    # Make sure we didn't harm the translation and that it's been set. (also tests .untranslated_attributes)
-    assert_equal 'No longer translated', untranslated.untranslated_attributes['name']
-    assert_translated untranslated, :en, :name, 'Untranslated'
-
-    # Now we need to rollback then undo
-    model.drop_translation_table! :migrate_data => true
-    model.reset_column_information
-    assert !model.translation_class.table_exists?
-    untranslated.reload
-
-    # Was it restored? (also tests .untranslated_attributes)
-    assert_equal 'Untranslated', untranslated.untranslated_attributes['name']
-  end
-
-  # Here we test that adding translation fields we can use the migrate data and remouve source column options.
-  # * First, we get a model with no translation and create a record,
-  # * Then, we translate both fields and create translation table just for one of them migrating data
-  # * Then we add the other field to the translation table, migrate data and remove the source column
-  # * Finally we check that data has been migrated, we haven't overwritten the old migrated data and there's no source column
-  it 'add_translation_fields! with option migrate_data set to true DOES migrate existing data but doesn\'t remove the old migrated data' do
-
-    model = TwoAttributesUntranslated
-    model.drop_translation_table! if model.respond_to?(:drop_translation_table!)
-    model.reset_column_information
-
-    untranslated_record = model.create! :name => 'Untranslated', :body => "Untranslated body"
-
-    model.instance_eval %{ translates :name, :body }
-
-    model.create_translation_table!({:name => :string}, {:migrate_data => true})
-
-    untranslated_record.reload
-
-    # We change the unstralated value so we make sure we don't overwrite the translated one when we add new fields
-    model.where(:id => untranslated_record.id).update_all(:name => 'No longer translated')
-    untranslated_record.reload
-
-    model.add_translation_fields!({:body => :text}, {:migrate_data => true, :remove_source_columns => true})
-    untranslated_record.reload
-
-    assert_translated untranslated_record, :en, :name, 'Untranslated'
-    assert_translated untranslated_record, :en, :body, 'Untranslated body'
-    assert_nil model.columns.detect { |c| c.name == "body" }
+    it "returns a hashed index name if class name is longer than 64 characters" do
+      assert_match /^index_[a-z0-9]{40}$/, MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters.send(:translation_locale_index_name)
+    end
   end
 
 protected
