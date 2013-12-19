@@ -26,6 +26,10 @@ require 'minitest/reporters'
 Minitest::Reporters.use!
 
 require 'minitest/spec'
+
+I18n.enforce_available_locales = true
+I18n.available_locales = [ :en, :'en-US', :fr, :de, :'de-DE', :he, :nl, :pl]
+
 MiniTest::Spec.class_eval do
   def setup
     I18n.locale = I18n.default_locale = :en
