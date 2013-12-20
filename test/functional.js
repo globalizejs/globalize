@@ -13,7 +13,10 @@ require([
 
 	/* date */
 	"./functional/date/format",
-	"./functional/date/parse"
+	"./functional/date/parse",
+
+	/* number */
+	"./functional/number/format"
 
 ], function() {
 	QUnit.start();

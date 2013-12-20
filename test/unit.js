@@ -14,7 +14,10 @@ require([
 	"./unit/date/expand-pattern",
 	"./unit/date/format",
 	"./unit/date/tokenizer",
-	"./unit/date/parse"
+	"./unit/date/parse",
+
+	/* number */
+	"./unit/number/format"
 
 ], function() {
 	QUnit.start();
