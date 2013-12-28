@@ -66,11 +66,7 @@ module Globalize
 
       def translated_attributes
         translated_attribute_names.inject({}) do |attributes, name|
-          if self.respond_to?(name) && Globalize.locale == I18n.default_locale
-            attributes.merge(name.to_s => self.send(name))
-          else
-            attributes.merge(name.to_s => translation.send(name))
-          end
+          attributes.merge(name.to_s => self.send(name))
         end
       end
 
@@ -132,6 +128,16 @@ module Globalize
 
       def translation_caches
         @translation_caches ||= {}
+      end
+
+      def translations_by_locale(&block)
+        translations.each_with_object(HashWithIndifferentAccess.new) do |t, hash|
+          hash[t.locale] = block_given? ? block.call(t) : t
+        end
+      end
+
+      def translated_attribute_by_locale(name)
+        translations_by_locale(&:"#{name}")
       end
 
       def globalize_fallbacks(locale)

@@ -4,21 +4,23 @@ require File.expand_path('../../test_helper', __FILE__)
 
 class CloneTest < MiniTest::Spec
 
-  it 'stores translations from clonned new record' do
-    check_stored_translations(standard_post.clone)
-  end
+  describe 'cloned translated model' do
+    it 'stores translations of new record' do
+      check_stored_translations(standard_post.clone)
+    end
 
-  it 'stores translations from clonned created record' do
-    clonned = saved_post.clone
-    check_stored_translations(clonned)
-  end
+    it 'stores translations of created record' do
+      cloned = saved_post.clone
+      check_stored_translations(cloned)
+    end
 
-  it 'stores translations from clonned found record' do
-    check_stored_translations( Post.find(saved_post).clone )
-  end
+    it 'stores translations of found record' do
+      check_stored_translations( Post.find(saved_post).clone )
+    end
 
-  it 'stores translations from clonned reloaded after creation record' do
-    check_stored_translations(saved_post.reload.clone)
+    it 'stores translations of record reloaded after creation' do
+      check_stored_translations(saved_post.reload.clone)
+    end
   end
 
 
@@ -34,24 +36,24 @@ class CloneTest < MiniTest::Spec
       standard_post.tap { |post| post.save! }
     end
 
-    def translations_modifications(clonned)
-      clonned.content = 'another content'
-      with_locale(:de) { clonned.title = 'Titel' }
+    def translations_modifications(cloned)
+      cloned.content = 'another content'
+      with_locale(:de) { cloned.title = 'Titel' }
     end
 
-    def translations_assertions(clonned)
-      assert_translated clonned, :en, :title,   'title'               # original
-      assert_translated clonned, :en, :content, 'another content'     # changed
-      assert_translated clonned, :de, :title,   'Titel'               # new
-      assert_translated clonned, :he, :title,    'שם'                 # untouched language
+    def translations_assertions(cloned)
+      assert_translated cloned, :en, :title,   'title'               # original
+      assert_translated cloned, :en, :content, 'another content'     # changed
+      assert_translated cloned, :de, :title,   'Titel'               # new
+      assert_translated cloned, :he, :title,    'שם'                 # untouched language
     end
 
-    def check_stored_translations(clonned)
-      translations_modifications(clonned)
-      translations_assertions(clonned)
-      clonned.save!
-      clonned.reload
-      translations_assertions(clonned)
+    def check_stored_translations(cloned)
+      translations_modifications(cloned)
+      translations_assertions(cloned)
+      cloned.save!
+      cloned.reload
+      translations_assertions(cloned)
     end
 
 end

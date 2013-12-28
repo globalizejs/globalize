@@ -62,7 +62,7 @@ module Globalize
         # It's a problem because in early migrations would add all the translated attributes
         def complete_translated_fields
           translated_attribute_names.each do |name|
-            fields[name] = column_type(name) unless fields[name]
+            fields[name] ||= column_type(name)
           end
         end
 
@@ -137,11 +137,8 @@ module Globalize
         def validate_translated_fields
           fields.each do |name, options|
             raise BadFieldName.new(name) unless valid_field_name?(name)
-            if options.is_a? Hash
-              raise BadFieldType.new(name, options[:type]) unless valid_field_type?(name, options[:type])
-            else
-              raise BadFieldType.new(name, options) unless valid_field_type?(name, options)
-            end
+            type = (options.is_a? Hash) ? options[:type] : options
+            raise BadFieldType.new(name, type) unless valid_field_type?(name, type)
           end
         end
 

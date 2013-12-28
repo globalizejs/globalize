@@ -13,14 +13,22 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.rubyforge_project = '[none]'
 
-  s.add_dependency 'activerecord', '>= 4.0.0'
-  s.add_dependency 'activemodel', '>= 4.0.0'
+  if ENV['RAILS_4_0']
+    s.add_dependency 'activerecord', '~> 4.0.0'
+    s.add_dependency 'activemodel', '~> 4.0.0'
+  elsif ENV['RAILS_4_1']
+    s.add_dependency 'activerecord', '~> 4.1.0.beta1'
+    s.add_dependency 'activemodel', '~> 4.1.0.beta1'
+  else
+    s.add_dependency 'activerecord', '>= 4.0.0'
+    s.add_dependency 'activemodel', '>= 4.0.0'
+  end
 
   s.add_dependency 'paper_trail',  '~> 3.0.0.beta'
 
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'minitest'
-  s.add_development_dependency 'minitest-colorize'
+  s.add_development_dependency 'minitest-reporters'
 
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'rdoc'
