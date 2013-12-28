@@ -18,8 +18,7 @@ module Globalize
         end
       end
 
-      def with_translated_attribute(name, value, locales = nil)
-        locales ||= Globalize.fallbacks
+      def with_translated_attribute(name, value, locales = Globalize.fallbacks)
         with_translations.where(
           translated_column_name(name)    => value,
           translated_column_name(:locale) => Array(locales).map(&:to_s)
