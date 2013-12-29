@@ -24,6 +24,13 @@
 
 * Initial release of Rails 4-compatible gem.
 
+## 3.0.3 (2013-12-26)
+
+* Ensure that foreign key is always set when saving translations (thanks [Andrew Feng](https://github.com/mingliangfeng)).
+* Patch I18n to add back I18n.interpolate after it was removed (accidentally?) in v0.5.2 (see [svenfuchs/i18n#232](https://github.com/svenfuchs/i18n/issues/232). Hopefully this patch will be temporary.
+* Explicitly test compatibility with FriendlyId to avoid issues like [#306](https://github.com/globalize/globalize/issues/306).
+* Only override ActiveRecord::Base#relation to patch where_values_hash if using AR >= 3.2.1.
+
 ## 3.0.2 (2013-12-07)
 
 * Alias `ActiveRecord::Base#relation` and include query method overrides as module, fixes [#306](https://github.com/globalize/globalize/issues/306) and [norman/friendly_id#485](https://github.com/norman/friendly_id/issues/485).
