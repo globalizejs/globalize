@@ -1,5 +1,18 @@
 # Globalize Changelog
 
+## 4.0.0.alpha.4 (2013-12-30)
+* Add this changelog.
+* Add contributing guidelines.
+* Group options into more structured methods in act_macro.rb.
+* Remove dynamic finder code from globalize3, no longer used in AR4.
+* Get hash of translated attributes by calling attribute on model, not translation.
+* Define translation readers/writers in separate methods.
+* Test against AR 4.1 and AR 4.0.
+* Switch to minitest-reporters for colouring output from minitest.
+* Remove find_or_instantiator_by_attributes which is no longer used in AR4.
+* Set I18n.available_locales in tests to avoid deprecation message.
+* Reorganize specs into describe blocks to clarify object of specs.
+
 ## 4.0.0.alpha.3 (2013-12-18)
 
 * Move ActiveRecord::Relation#where_values_hash patch into globalize relation class to avoid monkeypatching.
