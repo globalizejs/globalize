@@ -228,4 +228,9 @@ ActiveRecord::Schema.define do
     t.string  :locale
     t.string  :name
   end
+
+  create_table "attachments" do |t|
+    t.references :post
+    t.string :file_type
+  end
 end

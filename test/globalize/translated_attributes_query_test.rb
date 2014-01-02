@@ -210,6 +210,11 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       post = blog.posts.create(:title => 'a title')
       blog.posts.create(:title => 'another title')
       assert_equal [post], blog.posts.where(:title => 'a title').load
+
+      comment = post.translated_comments.create(content: "something")
+      post.translated_comments.create(content: "something else")
+      assert_equal [comment], post.translated_comments.where(content: "something").load
+      assert_equal [comment], blog.translated_comments.where(content: "something").load
     end
 
     it 'parses translated attributes in chained relations' do
@@ -218,6 +223,14 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       blog.posts.create(:title => 'a title', :content => 'bar')
       result = blog.posts.where(:content => 'foo').where(:title => 'a title').load
       assert_equal [post], result
+    end
+
+    it 'finds records that is not translated' do
+      blog = Blog.create
+      post = blog.posts.create(:title => 'a title')
+      attachment = post.attachments.create(file_type: "image")
+      assert_equal attachment, post.attachments.where(file_type: "image").first
+      assert_equal attachment, blog.attachments.where(file_type: "image").first
     end
   end
 end
