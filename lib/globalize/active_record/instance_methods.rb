@@ -111,6 +111,13 @@ module Globalize
         return obj
       end
 
+      def initialize_dup(other)
+        super
+        other.each_locale_and_translated_attribute do |locale, name|
+          globalize.write(locale, name, other.globalize.fetch(locale, name) )
+        end
+      end
+
       def translation
         translation_for(::Globalize.locale)
       end
