@@ -1,6 +1,8 @@
+require File.expand_path('../lib/globalize/version', __FILE__)
+
 Gem::Specification.new do |s|
   s.name         = 'globalize'
-  s.version      = '4.0.0.alpha.5'
+  s.version      = Globalize::Version
   s.authors      = ['Sven Fuchs', 'Joshua Harvey', 'Clemens Kofler', 'John-Paul Bader', 'Tomasz Stachewicz', 'Philip Arndt', 'Chris Salzberg']
   s.email        = 'nobody@globalize-rails.org'
   s.homepage     = 'http://github.com/globalize/globalize'
@@ -20,8 +22,8 @@ Gem::Specification.new do |s|
     s.add_dependency 'activerecord', '~> 4.1.0.beta1'
     s.add_dependency 'activemodel', '~> 4.1.0.beta1'
   else
-    s.add_dependency 'activerecord', '>= 4.0.0'
-    s.add_dependency 'activemodel', '>= 4.0.0'
+    s.add_dependency 'activerecord', '>= 4.0.0', '< 5'
+    s.add_dependency 'activemodel', '>= 4.0.0', '< 5'
   end
 
   s.add_development_dependency 'database_cleaner'
