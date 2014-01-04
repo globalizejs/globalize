@@ -268,9 +268,10 @@ post.title(:superlative => "rocks")
 # #=> "Globalize rocks!"
 ```
 
-## Globalize extensions
+## Official Globalize extensions
 
 * [globalize-accessors](https://github.com/globalize/globalize-accessors) - Replacement for [easy_globalize_3_accessors](https://github.com/paneq/easy_globalize3_accessors) compatible with Globalize 3.x and 4.x.
+* [globalize-versioning](https://github.com/globalize/globalize-versioning) - Versioning support for using Globalize with [`paper_trail`](https://github.com/airblade/paper_trail).
 
 ## Alternative Solutions
 
