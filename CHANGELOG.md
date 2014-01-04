@@ -1,5 +1,9 @@
 # Globalize Changelog
 
+## 4.0.0.alpha.5 (2014-1-4)
+* Fix issue where globalize breaks has_many through when model called with `where` (thanks [Paul McMahon](https://github.com/pwim)).
+* Modify dup so that translations are copied, and remove custom clone code to conform to Rails/AR semantics (thanks [Paul McMahon](https://github.com/pwim)).
+
 ## 4.0.0.alpha.4 (2013-12-30)
 * Add this changelog.
 * Add contributing guidelines.

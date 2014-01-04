@@ -19,13 +19,13 @@ gem install globalize --pre
 When using bundler put this in your Gemfile:
 
 ```ruby
-gem 'globalize', '~> 4.0.0.alpha.3'
+gem 'globalize', '~> 4.0.0.alpha.5'
 ```
 
 To use the ActiveRecord 3.x version of globalize, specify the version number `3.0.0`:
 
 ````ruby
-gem 'globalize', '~> 3.0.2'
+gem 'globalize', '~> 3.0.3'
 ````
 
 The [`3-0-stable` branch](https://github.com/globalize/globalize/tree/3-0-stable) of this repository is the ActiveRecord 3.x version of globalize. Note that `globalize3` has been deprecated and you are encouraged to update your Gemfile accordingly.
