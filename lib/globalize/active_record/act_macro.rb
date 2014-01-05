@@ -2,8 +2,9 @@ module Globalize
   module ActiveRecord
     module ActMacro
       def translates(*attr_names)
+        options = attr_names.extract_options!
         # Bypass setup_translates! if the initial bootstrapping is done already.
-        setup_translates!(attr_names.extract_options!) unless translates?
+        setup_translates!(options) unless translates?
 
         # Add any extra translatable attributes.
         attr_names = attr_names.map(&:to_sym)
