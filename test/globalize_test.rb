@@ -216,6 +216,11 @@ class GlobalizeTest < MiniTest::Spec
           assert_translated page, :de, :title, 'Wilkommen'
           assert_translated page, :de, :body, 'Ein body'
         end
+
+        it 'does not extract options from attr_names a second time' do
+          # should not raise
+          NewsItem.instance_eval %{ translates :title, :foreign_key => :news_id }
+        end
       end
 
       describe ':table_name option' do
