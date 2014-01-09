@@ -44,6 +44,9 @@
 
 * Initial release of Rails 4-compatible gem.
 
+## 3.0.4 (2014-1-8)
+* Extract all versioning-related code to separate [globalize-versioning](https://github.com/globalize/globalize-versioning) gem.
+
 ## 3.0.3 (2013-12-26)
 
 * Ensure that foreign key is always set when saving translations (thanks [Andrew Feng](https://github.com/mingliangfeng)).
