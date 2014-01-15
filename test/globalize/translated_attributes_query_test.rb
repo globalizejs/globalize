@@ -137,14 +137,24 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
     describe '.first' do
       it 'returns record with all translations' do
         @first = Post.where(:title => 'title').first
-        assert_equal @first.translations, @posts[0].translations
+        assert_equal @posts[0].translations, @first.translations
+      end
+
+      it 'accepts limit argument' do
+        @first = Post.where(:title => 'title').first(2)
+        assert_equal [@posts[0], @posts[1]], @first
       end
     end
 
     describe '.last' do
       it 'returns record with all translations' do
         @last = Post.where(:title => 'title').last
-        assert_equal @last.translations, @posts[2].translations
+        assert_equal @posts[2].translations, @last.translations
+      end
+
+      it 'accepts limit argument' do
+        @last = Post.where(:title => 'title').last(2)
+        assert_equal [@posts[1], @posts[2]], @last
       end
     end
 
@@ -152,6 +162,11 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       it 'returns record with all translations' do
         Globalize.with_locale(:ja) { @take = Post.where(:title => 'タイトル2').take }
         assert_equal @take.translations, @posts[1].translations
+      end
+
+      it 'accepts limit argument' do
+        @take = Post.where(:title => 'title').take(2)
+        assert_equal 2, @take.size
       end
     end
   end
@@ -225,7 +240,7 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       assert_equal [post], result
     end
 
-    it 'finds records that is not translated' do
+    it 'finds records that are not translated' do
       blog = Blog.create
       post = blog.posts.create(:title => 'a title')
       attachment = post.attachments.create(file_type: "image")

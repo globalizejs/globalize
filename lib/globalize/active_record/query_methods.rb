@@ -37,14 +37,10 @@ module Globalize
       %w[ first last take ].each do |method_name|
         eval <<-END_RUBY
           def #{method_name}(limit=nil)
-            if limit
-              super
-            else
-              find_#{method_name}.tap do |f|
-                if f && translations_reload_needed
-                  f.translations.reload
-                  translations_reload_needed = false
-                end
+            (limit ? super : super()).tap do |found|
+              if found && translations_reload_needed
+                Array(found).each { |record| record.translations.reload }
+                translations_reload_needed = false
               end
             end
           end
