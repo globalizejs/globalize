@@ -407,9 +407,6 @@ QUnit.test( "should format various milliseconds (A+)", function( assert ) {
 
 /**
  *  Zone
- *  TODO: Use a custom Date class to precisely test timezone.
- *        one different alternative would be setting the TZ on testing environment. For example:
- *        `TZ=:/usr/share/zoneinfo/Japan node`.
  */
 
 QUnit.test( "should format timezone (z)", function( assert ) {
