@@ -64,7 +64,7 @@ module.exports = function( grunt ) {
 				}
 			},
 			dist: {
-				src: [ "dist/globalize*.js", "dist/globalize/*.js", "!dist/*.min.*js" ],
+				src: [ "dist/globalize*.js", "dist/globalize/*.js", "!dist/**/*.min.*js" ],
 				options: {
 					jshintrc: "src/.dist-jshintrc"
 				}
