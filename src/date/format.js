@@ -5,10 +5,11 @@ define([
 	"./milliseconds-in-day",
 	"./pattern-re",
 	"./start-of",
+	"./timezone-hour-format",
 	"./week-days",
 	"../util/string/pad"
 ], function( dateDayOfWeek, dateDayOfYear, dateFirstDayOfWeek, dateMillisecondsInDay,
-	datePatternRe, dateStartOf, dateWeekDays, stringPad ) {
+	datePatternRe, dateStartOf, dateTimezoneHourFormat, dateWeekDays, stringPad ) {
 
 /**
  * format( date, properties )
@@ -31,6 +32,24 @@ return function( date, properties ) {
 			// Locale preferred hHKk.
 			// http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Data
 			chr = properties.preferredTime;
+		}
+
+		if ( chr === "Z" ) {
+			// Z..ZZZ: same as "xxxx".
+			if ( length < 4 ) {
+				chr = "x";
+				length = 4;
+
+			// ZZZZ: same as "OOOO".
+			} else if ( length < 5 ) {
+				chr = "O";
+				length = 4;
+
+			// ZZZZZ: same as "XXXXX"
+			} else {
+				chr = "X";
+				length = 5;
+			}
 		}
 
 		switch ( chr ) {
@@ -202,16 +221,36 @@ return function( date, properties ) {
 				break;
 
 			// Zone
-			// see http://www.unicode.org/reports/tr35/tr35-dates.html#Using_Time_Zone_Names ?
-			// Need to be implemented.
 			case "z":
-			case "Z":
 			case "O":
-			case "v":
-			case "V":
+				// O: "{gmtFormat}+H;{gmtFormat}-H" or "{gmtZeroFormat}", eg. "GMT-8" or "GMT".
+				// OOOO: "{gmtFormat}{hourFormat}" or "{gmtZeroFormat}", eg. "GMT-08:00" or "GMT".
+				if ( date.getTimezoneOffset() === 0 ) {
+					ret = properties.gmtZeroFormat;
+				} else {
+					ret = dateTimezoneHourFormat(
+						date,
+						length < 4 ? "+H;-H" : properties.tzLongHourFormat
+					);
+					ret = properties.gmtFormat.replace( /\{0\}/, ret );
+				}
+				break;
+
 			case "X":
+				// Same as x*, except it uses "Z" for zero offset.
+				if ( date.getTimezoneOffset() === 0 ) {
+					ret = "Z";
+					break;
+				}
+
+			/* falls through */
 			case "x":
-				throw new Error( "Not implemented" );
+				// x: hourFormat("+HH;-HH")
+				// xx or xxxx: hourFormat("+HHmm;-HHmm")
+				// xxx or xxxxx: hourFormat("+HH:mm;-HH:mm")
+				ret = length === 1 ? "+HH;-HH" : ( length % 2 ? "+HH:mm;-HH:mm" : "+HHmm;-HHmm" );
+				ret = dateTimezoneHourFormat( date, ret );
+				break;
 
 			// Anything else is considered a literal, including [ ,:/.'@#], chinese, japonese, and
 			// arabic characters.

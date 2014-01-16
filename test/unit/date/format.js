@@ -3,11 +3,13 @@ define([
 	"src/date/format",
 	"src/date/format-properties",
 	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/main/en/timeZoneNames.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"cldr/supplemental"
-], function( Cldr, format, properties, enCaGregorian, likelySubtags, timeData, weekData ) {
+], function( Cldr, format, properties, enCaGregorian, timeZoneNames, likelySubtags, timeData,
+	weekData ) {
 
 var cldr,
 	year0 = new Date( -62167190400000 ),
@@ -17,9 +19,18 @@ var cldr,
 	date3 = new Date( 1981, 11, 31, 12 ), // thu
 	date4 = new Date( 1994, 11, 31, 12 ); // sat
 
+function FakeDate( timezoneOffset ) {
+	this.timezoneOffset = timezoneOffset;
+}
+
+FakeDate.prototype.getTimezoneOffset = function() {
+	return this.timezoneOffset * -60;
+};
+
 Cldr.load( enCaGregorian );
 Cldr.load( likelySubtags );
 Cldr.load( timeData );
+Cldr.load( timeZoneNames );
 Cldr.load( weekData );
 
 cldr = new Cldr( "en" );
@@ -398,6 +409,141 @@ QUnit.test( "should format various milliseconds (A+)", function( assert ) {
  *  Zone
  */
 
-// TODO all
+QUnit.test( "should format timezone (z)", function( assert ) {
+	var date = new FakeDate( 0 );
+	assert.equal( format( date, properties( "z", cldr ) ), "GMT" );
+	assert.equal( format( date, properties( "zz", cldr ) ), "GMT" );
+	assert.equal( format( date, properties( "zzz", cldr ) ), "GMT" );
+	assert.equal( format( date, properties( "zzzz", cldr ) ), "GMT" );
+
+	date = new FakeDate( -3 );
+	assert.equal( format( date, properties( "z", cldr ) ), "GMT-3" );
+	assert.equal( format( date, properties( "zz", cldr ) ), "GMT-3" );
+	assert.equal( format( date, properties( "zzz", cldr ) ), "GMT-3" );
+	assert.equal( format( date, properties( "zzzz", cldr ) ), "GMT-03:00" );
+
+	date = new FakeDate( 11 );
+	assert.equal( format( date, properties( "z", cldr ) ), "GMT+11" );
+	assert.equal( format( date, properties( "zz", cldr ) ), "GMT+11" );
+	assert.equal( format( date, properties( "zzz", cldr ) ), "GMT+11" );
+	assert.equal( format( date, properties( "zzzz", cldr ) ), "GMT+11:00" );
+});
+
+QUnit.test( "should format timezone (Z)", function( assert ) {
+	var date = new FakeDate( 0 );
+	assert.equal( format( date, properties( "Z", cldr ) ), "+0000" );
+	assert.equal( format( date, properties( "ZZ", cldr ) ), "+0000" );
+	assert.equal( format( date, properties( "ZZZ", cldr ) ), "+0000" );
+	assert.equal( format( date, properties( "ZZZZ", cldr ) ), "GMT" );
+	assert.equal( format( date, properties( "ZZZZZ", cldr ) ), "Z" );
+
+	date = new FakeDate( -3 );
+	assert.equal( format( date, properties( "Z", cldr ) ), "-0300" );
+	assert.equal( format( date, properties( "ZZ", cldr ) ), "-0300" );
+	assert.equal( format( date, properties( "ZZZ", cldr ) ), "-0300" );
+	assert.equal( format( date, properties( "ZZZZ", cldr ) ), "GMT-03:00" );
+	assert.equal( format( date, properties( "ZZZZZ", cldr ) ), "-03:00" );
+
+	date = new FakeDate( 11 );
+	assert.equal( format( date, properties( "Z", cldr ) ), "+1100" );
+	assert.equal( format( date, properties( "ZZ", cldr ) ), "+1100" );
+	assert.equal( format( date, properties( "ZZZ", cldr ) ), "+1100" );
+	assert.equal( format( date, properties( "ZZZZ", cldr ) ), "GMT+11:00" );
+	assert.equal( format( date, properties( "ZZZZZ", cldr ) ), "+11:00" );
+});
+
+QUnit.test( "should format timezone (O)", function( assert ) {
+	var date = new FakeDate( 0 );
+	assert.equal( format( date, properties( "O", cldr ) ), "GMT" );
+	assert.equal( format( date, properties( "OOOO", cldr ) ), "GMT" );
+
+	date = new FakeDate( -3 );
+	assert.equal( format( date, properties( "O", cldr ) ), "GMT-3" );
+	assert.equal( format( date, properties( "OOOO", cldr ) ), "GMT-03:00" );
+
+	date = new FakeDate( 11 );
+	assert.equal( format( date, properties( "O", cldr ) ), "GMT+11" );
+	assert.equal( format( date, properties( "OOOO", cldr ) ), "GMT+11:00" );
+});
+
+QUnit.test( "should format timezone (X)", function( assert ) {
+	var date = new FakeDate( 0 );
+	assert.equal( format( date, properties( "X", cldr ) ), "Z" );
+	assert.equal( format( date, properties( "XX", cldr ) ), "Z" );
+	assert.equal( format( date, properties( "XXX", cldr ) ), "Z" );
+	assert.equal( format( date, properties( "XXXX", cldr ) ), "Z" );
+	assert.equal( format( date, properties( "XXXXX", cldr ) ), "Z" );
+
+	date = new FakeDate( -3 );
+	assert.equal( format( date, properties( "X", cldr ) ), "-03" );
+	assert.equal( format( date, properties( "XX", cldr ) ), "-0300" );
+	assert.equal( format( date, properties( "XXX", cldr ) ), "-03:00" );
+	assert.equal( format( date, properties( "XXXX", cldr ) ), "-0300" );
+	assert.equal( format( date, properties( "XXXXX", cldr ) ), "-03:00" );
+
+	// TODO (see https://github.com/jquery/globalize/issues/339)
+	// date = new FakeDate( -7.883 );
+	// assert.equal( format( date, properties( "X", cldr ) ), "-0752" );
+	// assert.equal( format( date, properties( "XX", cldr ) ), "-0752" );
+	// assert.equal( format( date, properties( "XXX", cldr ) ), "-07:52" );
+	// assert.equal( format( date, properties( "XXXX", cldr ) ), "-075258" );
+	// assert.equal( format( date, properties( "XXXXX", cldr ) ), "-07:52:58" );
+
+	date = new FakeDate( 5.5 );
+
+	// TODO (see https://github.com/jquery/globalize/issues/339)
+	// assert.equal( format( date, properties( "X", cldr ) ), "+0530" );
+	assert.equal( format( date, properties( "XX", cldr ) ), "+0530" );
+	assert.equal( format( date, properties( "XXX", cldr ) ), "+05:30" );
+	assert.equal( format( date, properties( "XXXX", cldr ) ), "+0530" );
+	assert.equal( format( date, properties( "XXXXX", cldr ) ), "+05:30" );
+
+	date = new FakeDate( 11 );
+	assert.equal( format( date, properties( "X", cldr ) ), "+11" );
+	assert.equal( format( date, properties( "XX", cldr ) ), "+1100" );
+	assert.equal( format( date, properties( "XXX", cldr ) ), "+11:00" );
+	assert.equal( format( date, properties( "XXXX", cldr ) ), "+1100" );
+	assert.equal( format( date, properties( "XXXXX", cldr ) ), "+11:00" );
+});
+
+QUnit.test( "should format timezone (x)", function( assert ) {
+	var date = new FakeDate( 0 );
+	assert.equal( format( date, properties( "x", cldr ) ), "+00" );
+	assert.equal( format( date, properties( "xx", cldr ) ), "+0000" );
+	assert.equal( format( date, properties( "xxx", cldr ) ), "+00:00" );
+	assert.equal( format( date, properties( "xxxx", cldr ) ), "+0000" );
+	assert.equal( format( date, properties( "xxxxx", cldr ) ), "+00:00" );
+
+	date = new FakeDate( -3 );
+	assert.equal( format( date, properties( "x", cldr ) ), "-03" );
+	assert.equal( format( date, properties( "xx", cldr ) ), "-0300" );
+	assert.equal( format( date, properties( "xxx", cldr ) ), "-03:00" );
+	assert.equal( format( date, properties( "xxxx", cldr ) ), "-0300" );
+	assert.equal( format( date, properties( "xxxxx", cldr ) ), "-03:00" );
+
+	// TODO (see https://github.com/jquery/globalize/issues/339)
+	// date = new FakeDate( -7.883 );
+	// assert.equal( format( date, properties( "x", cldr ) ), "-0752" );
+	// assert.equal( format( date, properties( "xx", cldr ) ), "-0752" );
+	// assert.equal( format( date, properties( "xxx", cldr ) ), "-07:52" );
+	// assert.equal( format( date, properties( "xxxx", cldr ) ), "-075258" );
+	// assert.equal( format( date, properties( "xxxxx", cldr ) ), "-07:52:58" );
+
+	date = new FakeDate( 5.5 );
+
+	// TODO (see https://github.com/jquery/globalize/issues/339)
+	// assert.equal( format( date, properties( "x", cldr ) ), "+0530" );
+	assert.equal( format( date, properties( "xx", cldr ) ), "+0530" );
+	assert.equal( format( date, properties( "xxx", cldr ) ), "+05:30" );
+	assert.equal( format( date, properties( "xxxx", cldr ) ), "+0530" );
+	assert.equal( format( date, properties( "xxxxx", cldr ) ), "+05:30" );
+
+	date = new FakeDate( 11 );
+	assert.equal( format( date, properties( "x", cldr ) ), "+11" );
+	assert.equal( format( date, properties( "xx", cldr ) ), "+1100" );
+	assert.equal( format( date, properties( "xxx", cldr ) ), "+11:00" );
+	assert.equal( format( date, properties( "xxxx", cldr ) ), "+1100" );
+	assert.equal( format( date, properties( "xxxxx", cldr ) ), "+11:00" );
+});
 
 });

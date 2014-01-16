@@ -167,7 +167,7 @@ requirements. See table below.
 | Module | Required CLDR JSON files |
 |---|---|
 | Core module | cldr/supplemental/likelySubtags.json |
-| Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json |
+| Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/main/`locale`/timeZoneNames.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json |
 | Number module | cldr/main/`locale`/numbers.json |
 | Plural module | cldr/supplemental/plurals.json |
 
@@ -385,6 +385,11 @@ to you in different flavors):
  Thrown when any static method, eg. `Globalize.formatNumber()` is used prior to
 setting the Global locale with `Globalize.locale( <locale> )`.
  [Read more...](doc/error/e-default-locale-not-defined.md)
+
+- **`E_UNSUPPORTED`**
+
+ Thrown for unsupported features, eg. to format unsupported date patterns.
+ [Read more...](doc/error/e-unsupported.md)
 
 
 <a name="development"></a>
