@@ -20,7 +20,7 @@ problem, please create an issue first before trying to patch it.
 
 - [Getting started](#getting_started)
   - [Why globalization?](#why)
-  - [About Globalize?](#about)
+  - [About Globalize](#about)
     - [Where to use it?](#where)
     - [Where does the data come from?](#cldr)
     - [Only load and use what you need](#modules)
@@ -62,8 +62,8 @@ those characters differ as well.
 
 A user using an application should be able to read and write dates and numbers
 in the format they are accustomed to. This library makes this possible,
-providing an API to convert user-entered number and date strings – in their
-own format – into actual numbers and dates, and conversely, to format numbers
+providing an API to convert user-entered number and date strings - in their
+own format - into actual numbers and dates, and conversely, to format numbers
 and dates into that string format.
 
 
@@ -103,7 +103,7 @@ The translate module extends core Globalize, and adds
 [`Globalize.loadTranslations( locale, json )`](#load_translations), and
 [`Globalize.translate( path , locale )`](#translate).
 
-More to come…
+More to come...
 
 <a name="browser_support"></a>
 #### Browser Support
@@ -230,7 +230,7 @@ $.get( "cldr/supplemental/weekData.json", Globalize.load );
 </script>
 ```
 
-Example on AMD (also see our [functional tests](test/functional.js)):
+Example using AMD (also see our [functional tests](test/functional.js)):
 ```javascript
 define([
   "globalize",
@@ -249,7 +249,7 @@ define([
 });
 ```
 
-Example on node.js:
+Example using Node.js:
 
 ```javascript
 var Globalize = require( "globalize" );
@@ -269,9 +269,9 @@ Globalize.load( require("./cldr/en/ca-gregorian.json") );
 <a name="load"></a>
 #### `Globalize.load( cldrJSONData )`
 
-This method allows you to load CLDR JSON locale data. `Globalize.load()` is a proxy to `Cldr.load()`. For more information, see https://github.com/rxaviers/cldr.
+This method allows you to load CLDR JSON locale data. `Globalize.load()` is a proxy to `Cldr.load()`. For more information, see https://github.com/rxaviers/cldr#readme.
 
-Parameters: 
+Parameters:
 
 - **cldrJSONData** A JSON object with CLDR data. See ["How to get and load CLDR
   JSON data" above](#cldr_usage) for more information and examples;
@@ -427,7 +427,7 @@ Globalize.translate( "greetings/bye" );
 ├── bower.json (metadata file)
 ├── CONTRIBUTING.md (doc file)
 ├── dist/ (output of built bundles)
-├── external/ (external dependencies, eg. CLDR, QUnit, RequireJS)
+├── external/ (external dependencies, eg. cldr.js, QUnit, RequireJS)
 ├── Gruntfile.js (Grunt tasks)
 ├── LICENSE (license file)
 ├── package.json (metadata file)
@@ -455,7 +455,7 @@ Globalize.translate( "greetings/bye" );
 
 The source files are as granular as possible. When combined to generate the
 build file, all the excessive/overhead wrappers are cut off. It's following
-the same build model of jQuery, and Modernizr.
+the same build model of jQuery and Modernizr.
 
 Core, and all modules' public APIs are located in the `src/` directory. For
 example: `core.js`, `date.js`, and `translate.js`.
@@ -466,7 +466,7 @@ example: `core.js`, `date.js`, and `translate.js`.
 Install Grunt and external dependencies. First, install the
 [grunt-cli](http://gruntjs.com/getting-started#installing-the-cli) and
 [bower](http://bower.io/) packages if you haven't before. These should be installed
-globally (using the `--global` flag). Then:
+globally (like this: `npm install -g grunt-cli bower`). Then:
 
 ```bash
 npm install && bower install
