@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
     s.add_dependency 'activemodel', '>= 4.0.0', '< 5'
   end
 
-  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'database_cleaner', '~> 1.2.0'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'minitest-reporters'
 
