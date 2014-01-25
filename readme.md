@@ -22,13 +22,15 @@ When using bundler put this in your Gemfile:
 gem 'globalize', '~> 4.0.0'
 ```
 
-To use the ActiveRecord 3.x version of globalize, specify the version number `3.0.0`:
+To use the version of globalize for ActiveRecord 3.1 or 3.2, specify:
 
 ````ruby
-gem 'globalize', '~> 3.0.4'
+gem 'globalize', '~> 3.1.0'
 ````
 
-The [`3-0-stable` branch](https://github.com/globalize/globalize/tree/3-0-stable) of this repository is the ActiveRecord 3.x version of globalize. Note that `globalize3` has been deprecated and you are encouraged to update your Gemfile accordingly.
+(If you are using ActiveRecord 3.0, use version 3.0: `gem 'globalize', '3.0.4'`.)
+
+The [`3-1-stable` branch](https://github.com/globalize/globalize/tree/3-1-stable) of this repository corresponds to the latest ActiveRecord 3 version of globalize. Note that `globalize3` has been deprecated and you are encouraged to update your Gemfile accordingly.
 
 ## Model translations
 
