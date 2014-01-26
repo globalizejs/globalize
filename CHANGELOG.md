@@ -46,7 +46,7 @@
 
 ## 3.1.0 (2014-1-25)
 
-* Backport scope support on uniqueness validation from 4.0, drop support for ActiveRecord < 3.1, fixes ([https://github.com/globalize/globalize/issues/324](#324)).
+* Backport scope support on uniqueness validation from 4.0, drop support for ActiveRecord < 3.1, fixes [#324](https://github.com/globalize/globalize/issues/324).
 
 ## 3.0.4 (2014-1-8)
 * Extract all versioning-related code to separate [globalize-versioning](https://github.com/globalize/globalize-versioning) gem.
