@@ -75,10 +75,10 @@ module Globalize
                                 :foreign_key => options[:foreign_key],
                                 :dependent   => :destroy,
                                 :extend      => HasManyExtensions,
-                                :autosave    => false
+                                :autosave    => true
 
-        after_create :save_translations!
-        after_update :save_translations!
+        before_create :save_translations!
+        before_update :save_translations!
       end
     end
 
