@@ -289,4 +289,48 @@ class AttributesTest < MiniTest::Spec
       assert_equal post.globalize.send(:column_for_attribute, :title), post.column_for_attribute(:title)
     end
   end
+
+  describe 'translation table with null:false fields without default value ' do
+    it 'does not save a record with an empty required field' do
+      err = assert_raises ActiveRecord::StatementInvalid do
+        Artwork.create
+      end
+      assert_match /SQLite3::ConstraintException/, err.message
+    end
+
+    it 'saves a record with a filled required field' do
+      artwork = Artwork.new
+      artwork.title = "foo"
+      artwork.save!
+      artwork.reload
+
+      assert_equal 1, artwork.translations.length
+      assert_equal 'foo', artwork.title
+    end
+
+
+    it 'does not save a record with an empty required field using nested attributes' do
+      err = assert_raises ActiveRecord::StatementInvalid do
+        Artwork.create(:translations_attributes => {
+          "0" => { :locale => 'en', :title => 'title' },
+          "1" => { :locale => 'it' }
+        })
+      end
+      assert_match /SQLite3::ConstraintException/, err.message
+    end
+
+    it 'saves a record with a filled required field using nested attributes' do
+      artwork = Artwork.new(:translations_attributes => {
+        "0" => { :locale => 'en', :title => 'title' },
+        "1" => { :locale => 'it', :title => 'titolo' }
+      })
+      artwork.save!
+      artwork.reload
+
+      assert_equal 2, artwork.translations.length
+      assert_equal 'title', artwork.title
+      assert_equal 'titolo', artwork.title(:it)
+    end
+  end
+
 end
