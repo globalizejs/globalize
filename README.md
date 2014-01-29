@@ -4,7 +4,7 @@
 [![devDependency Status](https://david-dm.org/jquery/globalize/dev-status.png)](https://david-dm.org/jquery/globalize#info=devDependencies)
 
 
-A JavaScript library for globalization and localization that leverage the
+A JavaScript library for internationalization and localization that leverage the
 official [Unicode CLDR](http://cldr.unicode.org/) JSON data. Run in browsers and
 node.js.
 
