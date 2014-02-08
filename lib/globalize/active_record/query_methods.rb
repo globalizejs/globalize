@@ -47,21 +47,12 @@ module Globalize
         END_RUBY
       end
 
-      # Reload translations of a globalized record before
-      # destroying it, otherwise some may be left behind.
-      def destroy_all(conditions = {})
-        if (parsed = parse_translated_conditions(conditions))
-          relation = where(parsed).with_translations_in_fallbacks
-        elsif translations_reload_needed
-          relation = where(conditions)
+      def to_a
+        if translations_reload_needed
+          super.each { |object| object.translations.reload }
+        else
+          super
         end
-
-        return super(conditions) unless relation
-
-        relation.to_a.each { |object|
-          object.translations.reload
-          object.destroy
-        }.tap { reset }
       end
 
       def with_translations_in_fallbacks
