@@ -172,11 +172,10 @@ var Globalize = require( "globalize" );
 <a name="cldr_usage"></a>
 ### How to get and load CLDR JSON data
 
-The Unicode CLDR is available for download as JSON:
-[`json.zip`](http://www.unicode.org/Public/cldr/latest/json.zip)
-
-This file contains the complete data of what the Unicode CLDR Project considers
-the top 20 languages (at the time of this writing).
+The Unicode CLDR is available for download as JSON
+([`json.zip`](http://www.unicode.org/Public/cldr/latest/json.zip)). This file
+contains the complete data of what the Unicode CLDR Project considers the top
+20 languages (at the time of this writing).
 
 You can generate the JSON representation of the languages not available in the
 ZIP file by using the official conversion tool
