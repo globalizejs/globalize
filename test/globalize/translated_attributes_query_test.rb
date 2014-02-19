@@ -35,8 +35,8 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
     end
 
     it 'does not join translations table if query contains no translated attributes' do
-      assert_equal User.where(:name => 'foo').includes_values, [:translations]
-      assert_equal [], User.where(:email => 'foo@example.com').includes_values
+      assert_equal User.where(:name => 'foo').joins_values, [:translations]
+      assert_equal [], User.where(:email => 'foo@example.com').joins_values
     end
 
     it 'can be called with no argument' do
@@ -92,8 +92,8 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
     end
 
     it 'does not join translations table if query contains no translated attributes' do
-      assert_equal [:translations], User.where.not(:name => 'foo').includes_values
-      assert_equal [], User.where.not(:email => 'foo@example.com').includes_values
+      assert_equal [:translations], User.where.not(:name => 'foo').joins_values
+      assert_equal [], User.where.not(:email => 'foo@example.com').joins_values
     end
 
     it 'duplicates arguments before modifying them' do
