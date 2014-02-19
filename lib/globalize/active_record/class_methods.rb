@@ -9,7 +9,7 @@ module Globalize
 
       def with_translations(*locales)
         locales = translated_locales if locales.empty?
-        preload(:translations).joins(:translations).with_locales(locales).with_required_attributes
+        preload(:translations).joins(:translations).readonly(false).with_locales(locales).with_required_attributes
       end
 
       def with_required_attributes
