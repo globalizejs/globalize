@@ -56,7 +56,7 @@ In order to make this work, you'll need to add the appropriate translation table
 Globalize comes with a handy helper method to help you do this.
 It's called `create_translation_table!`. Here's an example:
 
-_Note that your migrations can use `create_translation_table!` and `drop_translation_table!`
+Note that your migrations can use `create_translation_table!` and `drop_translation_table!`
 only inside the `up` and `down` instance methods, respectively. You cannot use `create_translation_table!`
 and `drop_translation_table!` inside the `change` instance method.
 
