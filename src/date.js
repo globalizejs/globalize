@@ -7,7 +7,8 @@ define([
 	"./date/format",
 	"./date/parse",
 	"./util/always-array",
-	"./util/array/some"
+	"./util/array/some",
+	"cldr/supplemental"
 ], function( Cldr, commonGetLocale, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray, arraySome ) {
 
 /**

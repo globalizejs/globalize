@@ -5,7 +5,8 @@ define([
 	"json!fixtures/cldr/main/en/ca-gregorian.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"json!fixtures/cldr/supplemental/timeData.json",
-	"json!fixtures/cldr/supplemental/weekData.json"
+	"json!fixtures/cldr/supplemental/weekData.json",
+	"cldr/supplemental"
 ], function( Cldr, parse, startOf, enCaGregorian, likelySubtags, timeData, weekData ) {
 
 var cldr, date1, date2;
