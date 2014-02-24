@@ -2,12 +2,9 @@ module Globalize
   module ActiveRecord
     module QueryMethods
 
-      attr_accessor :translations_reload_needed
-
       class WhereChain < ::ActiveRecord::QueryMethods::WhereChain
         def not(opts, *rest)
           if parsed = @scope.parse_translated_conditions(opts)
-            @scope.translations_reload_needed = true
             @scope.with_translations_in_fallbacks.where.not(parsed, *rest)
           else
             super
@@ -19,7 +16,6 @@ module Globalize
         if opts == :chain
           WhereChain.new(spawn)
         elsif parsed = parse_translated_conditions(opts)
-          self.translations_reload_needed = true
           super(parsed, *rest).with_translations_in_fallbacks
         else
           super
@@ -29,27 +25,6 @@ module Globalize
       def exists?(conditions = :none)
         if parsed = parse_translated_conditions(conditions)
           with_translations_in_fallbacks.exists?(parsed)
-        else
-          super
-        end
-      end
-
-      %w[ first last take ].each do |method_name|
-        eval <<-END_RUBY
-          def #{method_name}(limit=nil)
-            (limit ? super : super()).tap do |found|
-              if found && translations_reload_needed
-                Array(found).each { |record| record.translations.reload }
-                translations_reload_needed = false
-              end
-            end
-          end
-        END_RUBY
-      end
-
-      def to_a
-        if translations_reload_needed
-          super.each { |object| object.translations.reload }
         else
           super
         end
