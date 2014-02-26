@@ -21,11 +21,32 @@ test( "should format decimal style", function() {
 	equal( Globalize.formatNumber( pi ), "3.142", "" );
 	equal( Globalize.formatNumber( pi, {}, "es" ), "3,142", "" );
 	equal( Globalize.formatNumber( pi, {}, "ar" ), "3٫142", "" );
+
 	equal( Globalize.formatNumber( pi, {
 		minimumIntegerDigits: 2,
 		minimumFractionDigits: 2,
 		maximumFractionDigits: 2
 	}), "03.14", "" );
+
+	equal( Globalize.formatNumber( pi, {
+		minimumSignificantDigits: 1,
+		maximumSignificantDigits: 3
+	}), "3.14", "" );
+
+	equal( Globalize.formatNumber( 12345, {
+		minimumSignificantDigits: 1,
+		maximumSignificantDigits: 3
+	}), "12300", "" );
+
+	equal( Globalize.formatNumber( 0.00012345, {
+		minimumSignificantDigits: 1,
+		maximumSignificantDigits: 3
+	}), "0.000123", "" );
+
+	equal( Globalize.formatNumber( 0.00010001, {
+		minimumSignificantDigits: 1,
+		maximumSignificantDigits: 3
+	}), "0.0001", "" );
 });
 
 test( "should format percent style", function() {

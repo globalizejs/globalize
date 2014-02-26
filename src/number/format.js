@@ -1,9 +1,10 @@
 define([
 	"./format/integer-fraction-digits",
 	"./format/properties",
+	"./format/significant-digits",
 	"./symbol",
 	"../util/number/round"
-], function( numberFormatIntegerFractionDigits, numberFormatProperties, numberSymbol, numberRound ) {
+], function( numberFormatIntegerFractionDigits, numberFormatProperties, numberFormatSignificantDigits, numberSymbol, numberRound ) {
 
 /**
  * format( number, pattern, cldr [, options] )
@@ -17,13 +18,14 @@ define([
  * @options [Object]:
  * - minimumIntegerDigits [Number] 
  * - minimumFractionDigits, maximumFractionDigits [Number] 
+ * - minimumSignificantDigits, maximumSignificantDigits [Number] 
  * - round [String] "ceil", "floor", "round" (default), or "truncate".
  *
  * Return the formatted number.
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
 return function( number, pattern, cldr, options ) {
-	var maximumFractionDigits, minimumFractionDigits, minimumIntegerDigits, padding, prefix, properties, ret, round, roundIncrement, suffix;
+	var maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits, minimumIntegerDigits, minimumSignificantDigits, padding, prefix, properties, ret, round, roundIncrement, suffix;
 
 	// NaN
 	if ( isNaN( number ) ) {
@@ -39,7 +41,9 @@ return function( number, pattern, cldr, options ) {
 	minimumIntegerDigits = options.minimumIntegerDigits || properties[ 2 ];
 	minimumFractionDigits = options.minimumFractionDigits || properties[ 3 ];
 	maximumFractionDigits = options.maximumFractionDigits || properties[ 4 ];
-	roundIncrement = properties[ 5 ];
+	minimumSignificantDigits = options.minimumSignificantDigits || properties[ 5 ];
+	maximumSignificantDigits = options.maximumSignificantDigits || properties[ 6 ];
+	roundIncrement = properties[ 7 ];
 
 	// Negative pattern
 	// "If there is an explicit negative subpattern, it serves only to specify the negative prefix and suffix" UTS#35
@@ -53,7 +57,7 @@ return function( number, pattern, cldr, options ) {
 	}
 
 	prefix = properties[ 0 ];
-	suffix = properties[ 6 ];
+	suffix = properties[ 8 ];
 
 	// Infinity (observe that isNaN() has been checked above)
 	if ( !isFinite( number ) ) {
@@ -72,8 +76,10 @@ return function( number, pattern, cldr, options ) {
 	}
 
 	// Significant digit format
-	if ( false ) {
-		throw new Error( "Significant digit format not implemented" );
+	if ( minimumSignificantDigits && maximumSignificantDigits ) {
+		number = numberFormatSignificantDigits( number, minimumSignificantDigits, maximumSignificantDigits, round );
+	} else if ( minimumSignificantDigits || maximumSignificantDigits ) {
+		throw new Error( "None or both the minimum and maximum significant digits must be present" );
 
 	// Integer and fractional format
 	} else {

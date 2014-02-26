@@ -18,6 +18,7 @@ require([
 
 	/* number */
 	"./unit/number/format/integer-fraction-digits",
+	"./unit/number/format/significant-digits",
 	"./unit/number/format"
 
 ], function() {

@@ -118,12 +118,30 @@ test( "should allow different rounding options", function() {
 	equal( format( -pi, "0.####", en, { round: "truncate"} ), "-3.1415", "" );
 });
 
+test( "should format significant digits", function() {
+	equal( format( 123, "@@@", en ), "123", "" );
+	equal( format( 12345, "@@@", en ), "12300", "" );
+	equal( format( 12345, "@@#", en ), "12300", "" );
+	equal( format( 12345, "@##", en ), "12300", "" );
+	equal( format( pi, "@@", en ), "3.1", "" );
+	equal( format( pi, "@@#", en ), "3.14", "" );
+	equal( format( pi, "@@##", en ), "3.142", "" );
+	equal( format( pi, "@####", en ), "3.1416", "" );
+	equal( format( 0.10004, "@@", en ), "0.10", "" );
+	equal( format( 0.10004, "@##", en ), "0.1", "" );
+	equal( format( 0.12345, "@@@", en ), "0.123", "" );
+	equal( format( 1.23004, "@@##", en ), "1.23", "" );
+});
+
 test( "should format negative decimal", function() {
 	equal( format( -pi, "0.##", en ), "-3.14", "" );
 	equal( format( -pi, "0.##;(0.##)", en ), "(3.14)", "" );
+	equal( format( -pi, "@@#", en ), "-3.14", "" );
+	equal( format( -pi, "@@#;(@@#)", en ), "(3.14)", "" );
 
 	// The number of digits, minimal digits, and other characteristics shall be ignored in the negative subpattern.
 	equal( format( -pi, "0.##;(0)", en ), "(3.14)", "" );
+	equal( format( -pi, "@@#;(0)", en ), "(3.14)", "" );
 });
 
 /**

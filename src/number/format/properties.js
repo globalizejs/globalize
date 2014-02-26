@@ -13,7 +13,7 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
 return function( pattern ) {
-	var fractionPattern, integerPattern, maximumFractionDigits, minimumFractionDigits, minimumIntegerDigits, padding, prefix, roundIncrement, scientificNotation, significantPattern, suffix;
+	var fractionPattern, integerPattern, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits, minimumIntegerDigits, minimumSignificantDigits, padding, prefix, roundIncrement, scientificNotation, significantPattern, suffix;
 
 	pattern = pattern.match( numberPatternRe );
 	if ( !pattern ) {
@@ -28,7 +28,10 @@ return function( pattern ) {
 
 	// Significant digit format
 	if ( significantPattern ) {
-		throw new Error( "Significant digit format not implemented" );
+		significantPattern.replace( /(@+)(#*)/, function( match, minimumSignificantDigitsMatch, maximumSignificantDigitsMatch ) {
+			minimumSignificantDigits = minimumSignificantDigitsMatch.length;
+			maximumSignificantDigits = minimumSignificantDigits + maximumSignificantDigitsMatch.length;
+		});
 
 	// Integer and fractional format
 	} else {
@@ -73,14 +76,18 @@ return function( pattern ) {
 	// 2: @minimumIntegerDigits non-negative integer Number value indicating the minimum integer digits to be used. Numbers will be padded with leading zeroes if necessary.
 	// 3: @minimumFractionDigits and
 	// 4: @maximumFractionDigits are non-negative integer Number values indicating the minimum and maximum fraction digits to be used. Numbers will be rounded or padded with trailing zeroes if necessary.
-	// 5: @roundIncrement Decimal round increment or null
-	// 6: @suffix String
+	// 5: @minimumSignificantDigits and
+	// 6: @maximumSignificantDigits are positive integer Number values indicating the minimum and maximum fraction digits to be shown. Either none or both of these properties are present; if they are, they override minimum and maximum integer and fraction digits – the formatter uses however many integer and fraction digits are required to display the specified number of significant digits.
+	// 7: @roundIncrement Decimal round increment or null
+	// 8: @suffix String
 	return [
 		prefix,
 		padding,
 		minimumIntegerDigits,
 		minimumFractionDigits,
 		maximumFractionDigits,
+		minimumSignificantDigits,
+		maximumSignificantDigits,
 		roundIncrement,
 		suffix
 	];
