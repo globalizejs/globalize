@@ -99,18 +99,8 @@ module.exports = function( grunt ) {
 				// a) "Single return" means the module only contains a return statement that is converted to a var declaration.
 				// b) "Not as simple as a single return" means the define wrappers are replaced by a function wrapper call and the returned value is assigned to a var.
 				// c) "Module" means the define wrappers are removed, but content is untouched. Only for root id's (the ones in src, not in src's subpaths).
-				// d) "cldr" have its UMD wrapper replaced by a var declaration.
 				onBuildWrite: function ( id, path, contents ) {
 					var name = camelCase( id.replace(/util\//, "") );
-
-					// Cldr
-					if ( (/^cldr$/).test( id ) ) {
-						// 1: UMD intro
-						// 2: UMD outro
-						return contents
-							.replace( /\(function\( root, factory \)[\s\S]*?}\( this, function\(\) {/, "var Cldr = (function() {" ) /* 1 */
-							.replace( /}\)\);\s+$/, "}());" ); /* 2 */
-					}
 
 					// 1, and 2: Remove define() wrap.
 					// 3: Remove empty define()'s.
