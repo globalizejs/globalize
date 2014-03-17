@@ -17,6 +17,7 @@ require([
 	"./unit/date/parse",
 
 	/* number */
+	"./unit/number/format/integer-fraction-digits",
 	"./unit/number/format"
 
 ], function() {
