@@ -13,7 +13,7 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
 return function( pattern ) {
-	var fractionPattern, integerPattern, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits, minimumIntegerDigits, minimumSignificantDigits, padding, prefix, roundIncrement, scientificNotation, significantPattern, suffix;
+	var aux1, aux2, fractionPattern, integerFractionOrSignificantPattern, integerPattern, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits, minimumIntegerDigits, minimumSignificantDigits, padding, prefix, primaryGroupingSize, roundIncrement, scientificNotation, secondaryGroupingSize, significantPattern, suffix;
 
 	pattern = pattern.match( numberPatternRe );
 	if ( !pattern ) {
@@ -22,6 +22,7 @@ return function( pattern ) {
 
 	prefix = pattern[ 1 ];
 	padding = pattern[ 3 ];
+	integerFractionOrSignificantPattern = pattern[ 4 ];
 	significantPattern = pattern[ 8 ];
 	scientificNotation = pattern[ 9 ];
 	suffix = pattern[ 10 ];
@@ -70,16 +71,31 @@ return function( pattern ) {
 		throw new Error( "Padding not implemented" );
 	}
 
+	// Grouping
+	if ( ( aux1 = integerFractionOrSignificantPattern.lastIndexOf( "," ) ) !== -1 ) {
+
+		// Primary grouping size is the interval between the last group separator and the end of the integer (or the end of the significant pattern).
+		aux2 = integerFractionOrSignificantPattern.split( "." )[ 0 ];
+		primaryGroupingSize = aux2.length - aux1 - 1;
+
+		// Secondary grouping size is the interval between the last two group separators.
+		if ( ( aux2 = integerFractionOrSignificantPattern.lastIndexOf( ",", aux1 - 1 ) ) !== -1 ) {
+			secondaryGroupingSize = aux1 - 1 - aux2;
+		}
+	}
+
 	// Return:
-	// 0: @prefix String
-	// 1: @padding Array [ <character>, <count> ] TODO
-	// 2: @minimumIntegerDigits non-negative integer Number value indicating the minimum integer digits to be used. Numbers will be padded with leading zeroes if necessary.
-	// 3: @minimumFractionDigits and
-	// 4: @maximumFractionDigits are non-negative integer Number values indicating the minimum and maximum fraction digits to be used. Numbers will be rounded or padded with trailing zeroes if necessary.
-	// 5: @minimumSignificantDigits and
-	// 6: @maximumSignificantDigits are positive integer Number values indicating the minimum and maximum fraction digits to be shown. Either none or both of these properties are present; if they are, they override minimum and maximum integer and fraction digits – the formatter uses however many integer and fraction digits are required to display the specified number of significant digits.
-	// 7: @roundIncrement Decimal round increment or null
-	// 8: @suffix String
+	//  0: @prefix String
+	//  1: @padding Array [ <character>, <count> ] TODO
+	//  2: @minimumIntegerDigits non-negative integer Number value indicating the minimum integer digits to be used. Numbers will be padded with leading zeroes if necessary.
+	//  3: @minimumFractionDigits and
+	//  4: @maximumFractionDigits are non-negative integer Number values indicating the minimum and maximum fraction digits to be used. Numbers will be rounded or padded with trailing zeroes if necessary.
+	//  5: @minimumSignificantDigits and
+	//  6: @maximumSignificantDigits are positive integer Number values indicating the minimum and maximum fraction digits to be shown. Either none or both of these properties are present; if they are, they override minimum and maximum integer and fraction digits – the formatter uses however many integer and fraction digits are required to display the specified number of significant digits.
+	//  7: @roundIncrement Decimal round increment or null
+	//  8: @primaryGroupingSize
+	//  9: @secondaryGroupingSize
+	// 10: @suffix String
 	return [
 		prefix,
 		padding,
@@ -89,6 +105,8 @@ return function( pattern ) {
 		minimumSignificantDigits,
 		maximumSignificantDigits,
 		roundIncrement,
+		primaryGroupingSize,
+		secondaryGroupingSize,
 		suffix
 	];
 };

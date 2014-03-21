@@ -145,6 +145,18 @@ test( "should format negative decimal", function() {
 });
 
 /**
+ *  Grouping separators
+ */
+
+test( "should format grouping separators", function() {
+	equal( format( earthDiameter, "#,##0.#", en ), "12,735", "" );
+	equal( format( earthDiameter, "#,#,#0.#", en ), "1,2,7,35", "" );
+	equal( format( 123456789, "#,##,###,###0", en ), "12,345,6789", "" );
+	equal( format( 123456789, "###,###,###0", en ), "12,345,6789", "" );
+	equal( format( 123456789, "##,#,###,###0", en ), "12,345,6789", "" );
+});
+
+/**
  *  Percent
  */
 

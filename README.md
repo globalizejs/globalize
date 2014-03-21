@@ -343,6 +343,8 @@ Parameters:
     specified number of significant digits;
   - round: Optional String with rounding method `ceil`, `floor`, `round`
     (default), or `truncate`;
+  - useGrouping: Optional boolean (default is true) value indicating whether a
+    grouping separator should be used;
 - **locale** Optional locale string that overrides default;
 
 ```javascript
@@ -375,7 +377,7 @@ Globalize.formatNumber( 12345, {
   minimumSignificantDigits: 1,
   maximumSignificantDigits: 3
 });
-// "12300"
+// "12,300"
 
 equal( Globalize.formatNumber( 0.00012345, {
     minimumSignificantDigits: 1,
