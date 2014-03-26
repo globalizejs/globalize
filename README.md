@@ -31,6 +31,9 @@ problem, please create an issue first before trying to patch it.
   - [Core](#core)
     - [Globalize.load](#load)
     - [Globalize.locale](#locale)
+  - [Number module](#number)
+    - [Globalize.formatNumber](#format_number)
+    - [Globalize.parseNumber](#parse_number)
   - [Date module](#date)
     - [Globalize.formatDate](#format_date)
     - [Globalize.parseDate](#parse_date)
@@ -311,15 +314,61 @@ console.log( Globalize.locale().attributes );
 LanguageMatching TBD (CLDR's spec http://www.unicode.org/reports/tr35/#LanguageMatching).
 
 
+<a name="number"></a>
+### Number module
+
+<a name="format_number"></a>
+#### `Globalize.formatNumber( value [, attributes] [, locale] )`
+
+Format a number according to the given attributes and the given locale (or the
+default locale if not specified).
+
+Parameters:
+
+- **value** Number to be formatted, eg. `3.14`;
+- **attributes** Optional
+  - style: Optional String `decimal` (default), or `percent`;
+  - minimumIntegerDigits: Optional non-negative integer Number value indicating
+    the minimum integer digits to be used. Numbers will be padded with leading
+    zeroes if necessary;
+  - minimumFractionDigits and maximumFractionDigits: Optional non-negative
+    integer Number values indicating the minimum and maximum fraction digits to
+    be used. Numbers will be rounded or padded with trailing zeroes if
+    necessary;
+  - round: Optional String with rounding method `ceil`, `floor`, `round`
+    (default), or `truncate`;
+- **locale** Optional locale string that overrides default;
+
+```javascript
+Globalize.locale( "en" );
+
+Globalize.formatNumber( 3.141592 );           // "3.142"
+Globalize.formatNumber( 3.141592, {}, "es" ); // "3,142"
+Globalize.formatNumber( 3.141592, {}, "ar" ); // "3٫142"
+
+Globalize.formatNumber( 3.141592, { maximumFractionDigits: 2 } );
+// "3.14"
+
+Globalize.formatNumber( 3.141592, { maximumFractionDigits: 2, round: "ceil" } );
+// "3.15"
+
+Globalize.formatNumber( 1.5, { minimumFractionDigits: 2 } );
+// "1.50"
+```
+
+<a name="parse_number"></a>
+#### `Globalize.parseNumber( value, [formats], [locale] )`
+
+TBD
+
+
+<a name="date"></a>
 ### Date module
 
 <a name="format_date"></a>
-#### `Globalize.formatDate( value, format, [locale] )`
+#### `Globalize.formatDate( value, format [, locale] )`
 
-Format a date according to the given format string and locale (or the
-current locale if not specified). See the section <a href="#dates">Date
-formatting</a> below for details on the available formats. See other modules,
-eg. number module, for different overloads of `Globalize.formatDate()`.
+Format a date according to the given format and locale (or the current locale if not specified).
 
 Parameters:
 
@@ -356,7 +405,7 @@ Comparison between different locales.
 | **es** | `"1/11/10 17:55"` |
 
 <a name="parse_date"></a>
-#### `Globalize.parseDate( value, [formats], [locale] )`
+#### `Globalize.parseDate( value [, formats] [, locale] )`
 
 Parse a string representing a date into a JavaScript Date object, taking into
 account the given possible formats (or the given locale's set of preset
@@ -402,7 +451,7 @@ Globalize.loadTranslation( "pt_BR", {
 ```
 
 <a name="translate"></a>
-#### `Globalize.translate( path, [locale] )`
+#### `Globalize.translate( path [, locale] )`
 
 Translate item given its path.
 

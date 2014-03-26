@@ -7,7 +7,7 @@ define([
 ], function( numberFormatProperties, numberSymbol, numberRound, numberTruncate, stringPad ) {
 
 /**
- * format( number, pattern, cldr )
+ * format( number, pattern, cldr [, options] )
  *
  * @number [Number].
  *
