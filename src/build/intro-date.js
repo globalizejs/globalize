@@ -9,7 +9,7 @@
  *
  * Date: @DATE
  */
-(function( factory ) {
+(function( root, factory ) {
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD
@@ -18,13 +18,13 @@
 			"../globalize",
 			"cldr/supplemental"
 		], factory );
-	} else if ( typeof module === "object" && typeof module.exports === "object" ) {
+	} else if ( typeof exports === "object" ) {
 
 		// Node, CommonJS
 		module.exports = factory( require( "cldr.js" ), require( "globalize" ) );
 	} else {
 
-		// Global
-		factory( Cldr, Globalize );
+		// Extend global
+		factory( root.Cldr, root.Globalize );
 	}
-}(function( Cldr, Globalize ) {
+}(this, function( Cldr, Globalize ) {
