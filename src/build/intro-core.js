@@ -14,13 +14,13 @@
 
 		// AMD
 		define( [ "cldr" ], factory );
-	} else if ( typeof module === "object" && typeof module.exports === "object" ) {
+	} else if ( typeof exports === "object" ) {
 
 		// Node, CommonJS
 		module.exports = factory( require( "cldr.js" ) );
 	} else {
 
 		// Global
-		root.Globalize = factory( Cldr );
+		root.Globalize = factory( root.Cldr );
 	}
 }( this, function( Cldr ) {
