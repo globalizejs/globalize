@@ -12,7 +12,7 @@ define([
 ], function( Cldr, commonGetLocale, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray, arraySome ) {
 
 /**
- * Globalize.format( value, pattern, locale )
+ * Globalize.formatDate( value, pattern, locale )
  *
  * @value [Date]
  *
@@ -22,20 +22,18 @@ define([
  *
  * Formats a date or number according to the given pattern string and the given locale (or the default locale if not specified).
  */
-Globalize.format = function( value, pattern, locale ) {
-	locale = commonGetLocale( locale );
-
-	if ( value instanceof Date ) {
-
-		if ( !pattern ) {
-			throw new Error( "Missing pattern" );
-		}
-		pattern = dateExpandPattern( pattern, locale );
-
-		value = dateFormat( value, pattern, locale );
+Globalize.formatDate = function( value, pattern, locale ) {
+	if ( !( value instanceof Date ) ) {
+		throw new Error( "Value is not date" );
 	}
 
-	return value;
+	if ( !pattern ) {
+		throw new Error( "Missing pattern" );
+	}
+
+	locale = commonGetLocale( locale );
+	pattern = dateExpandPattern( pattern, locale );
+	return dateFormat( value, pattern, locale );
 };
 
 /**

@@ -32,7 +32,7 @@ problem, please create an issue first before trying to patch it.
     - [Globalize.load](#load)
     - [Globalize.locale](#locale)
   - [Date module](#date)
-    - [Globalize.format](#format)
+    - [Globalize.formatDate](#format_date)
     - [Globalize.parseDate](#parse_date)
   - [Translate module](#translate_module)
     - [Globalize.loadTranslation](#load_translations)
@@ -95,8 +95,8 @@ We're evaluating other modules, eg. plural, ordinals, etc.
 The core implements [`Globalize.load( cldrData )`](#load), and
 [`Globalize.locale( locale )`](#locale).
 
-The date module extends core Globalize, and adds [`Globalize.format( value,
-pattern, locale )`](#format), and [`Globalize.parseDate( value, patterns, locale
+The date module extends core Globalize, and adds [`Globalize.formatDate( value,
+pattern, locale )`](#format_date), and [`Globalize.parseDate( value, patterns, locale
 )`](#parse_date).
 
 The translate module extends core Globalize, and adds
@@ -313,13 +313,13 @@ LanguageMatching TBD (CLDR's spec http://www.unicode.org/reports/tr35/#LanguageM
 
 ### Date module
 
-<a name="format"></a>
-#### `Globalize.format( value, format, [locale] )`
+<a name="format_date"></a>
+#### `Globalize.formatDate( value, format, [locale] )`
 
 Format a date according to the given format string and locale (or the
 current locale if not specified). See the section <a href="#dates">Date
 formatting</a> below for details on the available formats. See other modules,
-eg. number module, for different overloads of `Globalize.format()`.
+eg. number module, for different overloads of `Globalize.formatDate()`.
 
 Parameters:
 
@@ -336,16 +336,16 @@ Parameters:
 - **locale** Optional locale string that overrides default;
 
 ```javascript
-Globalize.format( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" } );
+Globalize.formatDate( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" } );
 // "11/30/10, 5:55 PM"
 
-Globalize.format( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" }, "de" );
+Globalize.formatDate( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" }, "de" );
 // "30.11.10 17:55"
 ```
 
 Comparison between different locales.
 
-| locale | `Globalize.format( new Date( 2010, 10, 1, 17, 55 ), { datetime: "short" } )` |
+| locale | `Globalize.formatDate( new Date( 2010, 10, 1, 17, 55 ), { datetime: "short" } )` |
 | --- | --- |
 | **en** | `"11/1/10, 5:55 PM"` |
 | **en_GB** | `"01/11/2010 17:55"` |
