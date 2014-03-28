@@ -1,45 +1,31 @@
 # Globalize
 
 [![Build Status](https://secure.travis-ci.org/jquery/globalize.png)](http://travis-ci.org/jquery/globalize)
+[![devDependency Status](https://david-dm.org/jquery/globalize/status.png)](https://david-dm.org/jquery/globalize#info=dependencies)
 [![devDependency Status](https://david-dm.org/jquery/globalize/dev-status.png)](https://david-dm.org/jquery/globalize#info=devDependencies)
 
 A JavaScript library for internationalization and localization that leverage the
 official [Unicode CLDR](http://cldr.unicode.org/) JSON data. The library works both for the browser and as a
 Node.js module.
 
-----
-
-## Heads up!
-
-We're working on the migration to using the Unicode CLDR. This is an alpha version of Globalize: 1.0.0-pre.
-
-Patches to the previous stable codebase probably can't be used. If you have a
-problem, please create an issue first before trying to patch it.
-
-----
-
-- [Getting started](#getting_started)
+- [Heads up!](#heads_up)
+  - [This is an alpha 1.x version](#alpha)
+  - [Not accepting 0.x fixes anymore](#0.x-fixes)
+- [About Globalize](#about)
   - [Why globalization?](#why)
-  - [About Globalize](#about)
-    - [Where to use it?](#where)
-    - [Where does the data come from?](#cldr)
-    - [Only load and use what you need](#modules)
-    - [Browser support](#where)
-- [Usage](#usage)
-  - [How to get and load CLDR JSON data](#cldr_usage)
+  - [Where to use it?](#where_to_use)
+  - [Where does the data come from?](#where_does_data_come_from)
+  - [Only load and use what you need](#modules)
+  - [Browser support](#browser_support)
+- [Getting started](#getting_started)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+  - [Usage](#usage)
 - [API](#api)
   - [Core](#core)
-    - [Globalize.load](#load)
-    - [Globalize.locale](#locale)
-  - [Number module](#number)
-    - [Globalize.formatNumber](#format_number)
-    - [Globalize.parseNumber](#parse_number)
-  - [Date module](#date)
-    - [Globalize.formatDate](#format_date)
-    - [Globalize.parseDate](#parse_date)
-  - [Translate module](#translate_module)
-    - [Globalize.loadTranslation](#load_translations)
-    - [Globalize.translate](#translate)
+  - [Number module](#number_module)
+  - [Date module](#date_module)
+  - [Message module](#message_module)
   - more to come...
 - [Development](#development)
   - [File structure](#file_structure)
@@ -48,8 +34,26 @@ problem, please create an issue first before trying to patch it.
   - [Tests](#tests)
 
 
-<a name="getting_started"></a>
-## Getting Started
+<a name="heads_up"></a>
+## Heads up!
+
+<a name="alpha"></a>
+### This is an alpha 1.x version
+We're working on the migration to using the Unicode CLDR. This is an alpha
+version of Globalize. In other words, this is not a software for production
+environment (yet).
+
+<a name="0.x-fixes"></a>
+### Not accepting 0.x fixes anymore
+
+Patches to the previous 0.x codebase probably can't be used. If you have a
+problem, please create an issue first before trying to patch it.
+
+Are you looking for 0.x docs? Find them [here](https://github.com/jquery/globalize/tree/79ae658b842f75f58199d6e9074e01f7ce207468).
+
+
+<a name="about"></a>
+## About Globalize
 
 <a name="why"></a>
 ### Why globalization?
@@ -69,440 +73,186 @@ providing an API to convert user-entered number and date strings - in their
 own format - into actual numbers and dates, and conversely, to format numbers
 and dates into that string format.
 
-
-<a name="about"></a>
-### About Globalize
-
-<a name="where"></a>
-#### Where to use it?
+<a name="where_to_use"></a>
+### Where to use it?
 
 It's designed to work both in the [browser](#browser_support), or in
 [Node.js](#usage). It supports both [AMD](#usage) and [CommonJS](#usage).
 
-<a name="cldr"></a>
-#### Where does the data come from?
+<a name="where_does_data_come_from"></a>
+### Where does the data come from?
 
 Globalize uses the [Unicode CLDR](http://cldr.unicode.org/), the largest and
 most extensive standard repository of locale data.
 
 We do NOT embed any i18n data within our library. However, we make it really
-easy to use. Read the section [How to get and load CLDR JSON data](#cldr_usage) for
-more information on its usage.
+easy to use. Read [How to get and load CLDR JSON data](#cldr) for more
+information on its usage.
 
 <a name="modules"></a>
-#### Load and use only what you need
+### Pick the modules you need
 
-Globalize is split in modules: core, number (coming soon), date, and translate.
-We're evaluating other modules, eg. plural, ordinals, etc.
-
-The core implements [`Globalize.load( cldrData )`](#load), and
-[`Globalize.locale( locale )`](#locale).
-
-The date module extends core Globalize, and adds [`Globalize.formatDate( value,
-pattern, locale )`](#format_date), and [`Globalize.parseDate( value, patterns, locale
-)`](#parse_date).
-
-The translate module extends core Globalize, and adds
-[`Globalize.loadTranslations( locale, json )`](#load_translations), and
-[`Globalize.translate( path , locale )`](#translate).
-
-More to come...
+| File | Minified size | Summary |
+|---|--:|---|
+| globalize.js | 0.4KB | [Core library](#core) |
+| globalize/date.js | +9.2KB | [Date module](#date_module) provides date formatting and parsing |
+| globalize/number.js | +3.7KB | [Number module](#number_module) provides number formatting and parsing |
+| globalize/translate.js | +0.7KB | [Message module](#message_module) provides message translation |
+<!--- By updating this table, also update its clone in #usage -->
 
 <a name="browser_support"></a>
-#### Browser Support
+### Browser Support
 
-We officially support:
- - Firefox (latest - 1)+
- - Chrome (latest - 1)+
- - Safari 5.1+
- - IE 8+
- - Opera (latest - 1)+
+We officially support http://jquery.com/browser-support/. If you find any bugs,
+please just [let us know](https://github.com/jquery/globalize/issues).
 
-Dry tests show Globalize also works on the following browsers:
 
-- Firefox 4+
-- Safari 5+
-- Chrome 14+
-- IE 6+
-- Opera 11.1+
+<a name="getting_started"></a>
+## Getting Started
 
-If you find any bugs, please just [let us
-know](https://github.com/jquery/globalize/issues). We'll be glad to fix them for
-the officially supported browsers, or at least to update the documentation for
-the unsupported ones.
+<a name="requirements"></a>
+### Requirements
+
+<a name="dependencies"></a>
+#### 1. Dependencies
+
+You need to satisfy Globalize dependencies prior to using it. The good news
+is, there is only one. It's the [cldr.js](https://github.com/rxaviers/cldrjs),
+which is a CLDR low level manipulation tool.
+
+If you use a package manager like bower or npm, you don't need to worry about
+it. If this isn't the case, then you need to manually download cldr.js
+yourself. Check the [Hello World examples](#usage) for more information.
+
+<a name="cldr"></a>
+#### 2. CLDR content
+
+Globalize is the i18n software (the engine). Unicode CLDR is the i18n content
+(the fuel). You need to feed Globalize on the appropriate portions of CLDR prior
+to using it.
+
+*(a) How do I figure out which CLDR portions are appropriate for my needs?*
+
+Each Globalize function requires a special set of CLDR portions. Once you know
+which Globalize functionalities you need, you can deduce its respective CLDR
+requirements. See table below.
+
+| Module | Required CLDR JSON files |
+|---|---|
+| Core module | cldr/supplemental/likelySubtags.json |
+| Number module | cldr/main/`locale`/numbers.json |
+| Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json |
+
+*(b) How am I supposed to get and load CLDR content?*
+
+Learn [how to get and load CLDR content...](doc/cldr.md).
+
+<a name="installation"></a>
+### Installation
+
+*By downloading a ZIP or a TAR.GZ...*
+
+Click the github [releases tab](https://github.com/jquery/globalize/releases)
+and download the latest available Globalize package.
+
+*By using a package manager...*
+
+Use bower `bower install globalize`, or npm `npm install globalize`.
+
+*By using source files...*
+
+1. `git clone https://github.com/jquery/globalize.git`.
+1. [Build the distribution files](https://github.com/jquery/globalize/#build).
 
 <a name="usage"></a>
-## Usage
+### Usage
 
-All distributables are UMD wrapped. So, it supports AMD, CommonJS, or global
-variables (in case neither AMD nor CommonJS have been detected).
+Globalize's consumable-files are located in the `./dist` directory. If you
+don't find it, it's because you are using a development branch. You should
+either use a tagged version or [build the distribution files yourself](#build).
+Read [installation](#installation) above if you need more information on how to
+download.
 
-Example of usage with script tags:
+Globalize can be used for a variety of different i18n tasks, eg. formatting or
+parsing dates, formatting or parsing numbers, formatting messages, etc. You may
+NOT need Globalize in its entirety. For that reason, we made it modular. So, you
+can cherry-pick the pieces you need, eg. load `dist/globalize.js` to get
+Globalize core, load `dist/globalize/date.js` to extend Globalize with Date
+functionalities, etc.
 
-```html
-<script src="./external/cldrjs/dist/cldr.js"></script>
-<script src="./dist/globalize.js"></script>
-<script src="./dist/globalize/date.js"></script>
-```
+An example is worth a thousand words. Check out our Hello World demo (available
+to you in different flavors):
+- [Hello World (AMD + bower)](doc/hello-world/amd-bower/).
+- [Hello World (Node.js + npm)](doc/hello-world/node-npm/).
+- [Hello World (plain JavaScript)](doc/hello-world/plain-javascript/).
 
-Example of usage on AMD:
-
-```bash
-bower install cldrjs globalize
-```
-```javascript
-require.config({
-  paths: {
-    cldr: "bower_components/cldrjs/dist/cldr.runtime",
-    globalize: "bower_components/globalize/dist/globalize"
-  }
-});
-require( [ "globalize", "globalize/date" ], function( Globalize ) {
-  ...
-});
-```
-
-Example of usage with Node.js:
-
-```bash
-npm install cldrjs globalize
-```
-```javascript
-var Globalize = require( "globalize" );
-...
-```
-
-<a name="cldr_usage"></a>
-### How to get and load CLDR JSON data
-
-The Unicode CLDR is available for download as JSON
-([`json.zip`](http://www.unicode.org/Public/cldr/latest/json.zip)). This file
-contains the complete data of what the Unicode CLDR Project considers the top
-20 languages (at the time of this writing).
-
-You can generate the JSON representation of the languages not available in the
-ZIP file by using the official conversion tool
-([`tools.zip`](http://www.unicode.org/Public/cldr/latest/)). This ZIP contains a
-README with instructions on how to build the data.
-
-You can choose to generate unresolved data to save space or bandwidth (`-r false`
-option of the conversion tool), and instead have it resolve at runtime.
-
-For the examples below, first fetch CLDR JSON data:
-
-```bash
-wget http://www.unicode.org/Public/cldr/latest/json.zip
-unzip json.zip -d cldr
-```
-
-Example of embedding CLDR JSON data:
-
-```html
-<script>
-Globalize.load({
-  main: {
-    en: {
-      ...
-    }
-  },
-  supplemental: {
-    likelySubtags: {
-      ...
-    },
-    timeDate: {
-      ...
-    },
-    weekData: {
-      ...
-    }
-  }
-});
-</script>
-```
-
-Example of loading it dynamically:
-
-```html
-<script src="jquery.js"></script>
-<script>
-$.get( "cldr/en/ca-gregorian.json", Globalize.load );
-$.get( "cldr/supplemental/likelySubtags.json", Globalize.load );
-$.get( "cldr/supplemental/timeData.json", Globalize.load );
-$.get( "cldr/supplemental/weekData.json", Globalize.load );
-</script>
-```
-
-Example using AMD (also see our [functional tests](test/functional.js)):
-```javascript
-define([
-  "globalize",
-  "json!fixtures/cldr/main/en/ca-gregorian.json",
-  "json!fixtures/cldr/supplemental/likelySubtags.json",
-  "json!fixtures/cldr/supplemental/timeData.json",
-  "json!fixtures/cldr/supplemental/weekData.json",
-  "globalize/date"
-], function( Globalize, enCaGregorian, likelySubtags, timeData, weekData ) {
-
-  Globalize.load( enCaGregorian );
-  Globalize.load( likelySubtags );
-  Globalize.load( timeData );
-  Globalize.load( weekData );
-
-});
-```
-
-Example using Node.js:
-
-```javascript
-var Globalize = require( "globalize" );
-Globalize.load( require( "./cldr/supplemental/likelySubtags.json" ) );
-Globalize.load( require( "./cldr/supplemental/timeData.json" ) );
-Globalize.load( require( "./cldr/supplemental/weekData.json" ) );
-Globalize.load( require( "./cldr/en/ca-gregorian.json" ) );
-```
 
 <a name="api"></a>
 ## API
 
-
 <a name="core"></a>
 ### Core module
 
-<a name="load"></a>
-#### `Globalize.load( cldrJSONData )`
+- **`Globalize.load( cldrJSONData )`**
 
-This method allows you to load CLDR JSON locale data. `Globalize.load()` is a
-proxy to `Cldr.load()`. For more information, see
-https://github.com/rxaviers/cldrjs#readme.
+ This method allows you to load CLDR JSON locale data. `Globalize.load()` is a
+ proxy to `Cldr.load()`.
 
-Parameters:
+ [Read more...](doc/api/core/load.md)
 
-- **cldrJSONData** A JSON object with CLDR data. See ["How to get and load CLDR
-  JSON data" above](#cldr_usage) for more information and examples;
+- **`Globalize.locale( [locale] )`**
 
-<a name="locale"></a>
-#### `Globalize.locale( [locale] )`
+ Set default locale, or get it if locale argument is omitted.
 
-Set default locale, or get it if locale argument is omitted.
+ [Read more...](doc/api/core/locale.md)
 
-Parameters:
-
-- **locale** The locale string, eg. "en", "pt_BR", or "zh_Hant_TW".
-
-An application that supports globalization and/or localization will need to
-have a way to determine the user's preference. Attempting to automatically
-determine the appropriate culture is useful, but it is good practice to always
-offer the user a choice, by whatever means.
-
-Whatever your mechanism, it is likely that you will have to correlate the
-user's preferences with the list of locale data supported in the app. This
-method allows you to select the best match given the locale data that you
-have included and to set the Globalize locale to the one which the user
-prefers.
-
-```javascript
-Globalize.locale( "pt" );
-console.log( Globalize.locale().attributes );
-// {
-//    "languageId": "pt",
-//    "maxLanguageId": "pt_Latn_BR",
-//    "language": "pt",
-//    "script": "Latn",
-//    "territory": "BR",
-//    "region": "BR"
-// }
-```
-
-LanguageMatching TBD (CLDR's spec http://www.unicode.org/reports/tr35/#LanguageMatching).
-
-
-<a name="number"></a>
+<a name="number_module"></a>
 ### Number module
 
-<a name="format_number"></a>
-#### `Globalize.formatNumber( value [, attributes] [, locale] )`
+- **`Globalize.formatNumber( value [, attributes] [, locale] )`**
 
-Format a number according to the given attributes and the given locale (or the
-default locale if not specified).
+  Format a number according to the given attributes and the given locale (or the
+  default locale if not specified).
 
-Parameters:
+ [Read more...](doc/api/number/format.md)
 
-- **value** Number to be formatted, eg. `3.14`;
-- **attributes** Optional
-  - style: Optional String `decimal` (default), or `percent`;
-  - minimumIntegerDigits: Optional non-negative integer Number value indicating
-    the minimum integer digits to be used. Numbers will be padded with leading
-    zeroes if necessary;
-  - minimumFractionDigits and maximumFractionDigits: Optional non-negative
-    integer Number values indicating the minimum and maximum fraction digits to
-    be used. Numbers will be rounded or padded with trailing zeroes if
-    necessary;
-  - minimumSignificantDigits and maximumSignificantDigits: Optional positive
-    integer Number values indicating the minimum and maximum fraction digits to
-    be shown. Either none or both of these properties are present; if they are,
-    they override minimum and maximum integer and fraction digits. The formatter
-    uses however many integer and fraction digits are required to display the
-    specified number of significant digits;
-  - round: Optional String with rounding method `ceil`, `floor`, `round`
-    (default), or `truncate`;
-  - useGrouping: Optional boolean (default is true) value indicating whether a
-    grouping separator should be used;
-- **locale** Optional locale string that overrides default;
+- **`Globalize.parseNumber( value [, formats], [locale] )`**
 
-```javascript
-Globalize.locale( "en" );
-Globalize.formatNumber( 3.141592 );           // "3.142"
-Globalize.formatNumber( 3.141592, {}, "es" ); // "3,142"
-Globalize.formatNumber( 3.141592, {}, "ar" ); // "3٫142"
-```
+ TBD
 
-Controlling digits by specifying integer and fraction digits counts:
-
-```
-Globalize.formatNumber( 3.141592, { maximumFractionDigits: 2 } );
-// "3.14"
-
-Globalize.formatNumber( 1.5, { minimumFractionDigits: 2 } );
-// "1.50"
-```
-
-Controlling digits by specifying significant digits counts:
-
-```
-Globalize.formatNumber( 3.141592, {
-  minimumSignificantDigits: 1,
-  maximumSignificantDigits: 3
-});
-// "3.14"
-
-Globalize.formatNumber( 12345, {
-  minimumSignificantDigits: 1,
-  maximumSignificantDigits: 3
-});
-// "12,300"
-
-equal( Globalize.formatNumber( 0.00012345, {
-    minimumSignificantDigits: 1,
-    maximumSignificantDigits: 3
-});
-// "0.000123"
-```
-
-Using different rounding functions example:
-
-```
-Globalize.formatNumber( 3.141592, { maximumFractionDigits: 2, round: "ceil" } );
-// "3.15"
-```
-
-<a name="parse_number"></a>
-#### `Globalize.parseNumber( value, [formats], [locale] )`
-
-TBD
-
-
-<a name="date"></a>
+<a name="date_module"></a>
 ### Date module
 
-<a name="format_date"></a>
-#### `Globalize.formatDate( value, format [, locale] )`
+- **`Globalize.formatDate( value, format [, locale] )`**
 
-Format a date according to the given format and locale (or the current locale if not specified).
+  Format a date according to the given format and locale (or the current locale
+  if not specified).
 
-Parameters:
+ [Read more...](doc/api/date/format.md)
 
-- **value** Date instance to be formatted, eg. `new Date()`;
-- **format**
-  - String, skeleton. Eg "GyMMMd";
-  - Object, accepts either one:
-    - Skeleton, eg. `{ skeleton: "GyMMMd" }`. List of all skeletons [TODO];
-    - Date, eg. `{ date: "full" }`. Possible values are full, long, medium, short;
-    - Time, eg. `{ time: "full" }`. Possible values are full, long, medium, short;
-    - Datetime, eg. `{ datetime: "full" }`. Possible values are full, long, medium, short;
-    - Raw pattern, eg. `{ pattern: "dd/mm" }`. [List of all date
-      patterns](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table);
-- **locale** Optional locale string that overrides default;
+- **`Globalize.parseDate( value [, formats] [, locale] )`**
 
-```javascript
-Globalize.formatDate( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" } );
-// "11/30/10, 5:55 PM"
+ Parse a string representing a date into a JavaScript Date object, taking into
+ account the given possible formats (or the given locale's set of preset formats
+ if not provided). As before, the current locale is used if one is not
+ specified.
 
-Globalize.formatDate( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" }, "de" );
-// "30.11.10 17:55"
-```
+ [Read more...](doc/api/date/parse.md)
 
-Comparison between different locales.
+<a name="message_module"></a>
+### Message module
 
-| locale | `Globalize.formatDate( new Date( 2010, 10, 1, 17, 55 ), { datetime: "short" } )` |
-| --- | --- |
-| **en** | `"11/1/10, 5:55 PM"` |
-| **en_GB** | `"01/11/2010 17:55"` |
-| **de** | `"01.11.10 17:55"` |
-| **zh** | `"10/11/1 下午5:55"` |
-| **ar** | `"1‏/11‏/2010 5:55 م"` |
-| **pt** | `"01/11/10 17:55"` |
-| **es** | `"1/11/10 17:55"` |
+- **`Globalize.loadMessages( locale, messageData )`**
 
-<a name="parse_date"></a>
-#### `Globalize.parseDate( value [, formats] [, locale] )`
+ Load message data per locale.
 
-Parse a string representing a date into a JavaScript Date object, taking into
-account the given possible formats (or the given locale's set of preset
-formats if not provided). As before, the current locale is used if one is not
-specified.
+ [Read more...](doc/api/message/load.md)
 
-Parameters:
+- **`Globalize.translate( path [, locale] )`**
 
-- **value** String with date to be parsed, eg. `"11/1/10, 5:55 PM"`;
-- **formats** Optional array of formats;
-- **locale** Optional locale string that overrides default
+ Translate item given its path.
 
-```javascript
-Globalize.locale( "en" );
-Globalize.parseDate( "1/2/13" );
-// Wed Jan 02 2013 00:00:00
-
-Globalize.locale( "es" );
-Globalize.parseDate( "1/2/13" );
-// Fri Feb 01 2013 00:00:00
-```
-
-
-<a name="translate_module"></a>
-### Translate module
-
-<a name="load_translations"></a>
-#### `Globalize.loadTranslation( locale, translationData )`
-
-Load translation data per locale.
-
-Parameters:
-- **locale** Locale string;
-- **translationData** A JSON object with translation mappings;
-
-```javascript
-Globalize.loadTranslation( "pt_BR", {
-  greetings: {
-    hello: "Olá",
-    bye: "Tchau"
-  }
-});
-```
-
-<a name="translate"></a>
-#### `Globalize.translate( path [, locale] )`
-
-Translate item given its path.
-
-Parameters:
-- **path** Translation item path;
-- **locale** Optional locale string that overrides default
-
-```javascript
-Globalize.locale( "pt_BR" );
-Globalize.translate( "greetings/bye" );
-// ➡ "Tchau"
-```
+ [Read more...](doc/api/message/translate.md)
 
 
 <a name="development"></a>
@@ -513,7 +263,7 @@ Globalize.translate( "greetings/bye" );
 ```
 ├── bower.json (metadata file)
 ├── CONTRIBUTING.md (doc file)
-├── dist/ (output of built bundles)
+├── dist/ (consumable files, the built files)
 ├── external/ (external dependencies, eg. cldr.js, QUnit, RequireJS)
 ├── Gruntfile.js (Grunt tasks)
 ├── LICENSE (license file)
@@ -586,3 +336,8 @@ automatically run unit and functional tests for you to ensure the built files
 are safe.
 
 The goal of the functional tests is to ensure that everything works as expected when it is combined.
+
+
+## License
+
+MIT © [jQuery Foundation](http://jquery.com/) and other contributors.
