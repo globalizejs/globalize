@@ -1,0 +1,131 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Globalize Hello World (plain javascript)</title>
+</head>
+<body>
+    <h1>Globalize Hello World (plain javascript)</h1>
+    <h2>Requirements</h2>
+    <ul>
+        <li>You need to download the `cldr.js` dependency yourself. Read README.md for instructions.
+        </li>
+    </ul>
+    <h2>Demo output</h2>
+    <p>Open your JavaScript console to see the output.</p>
+
+    <!--
+    First, we load Globalize's dependencies (`cldr.js` and its supplemental
+    module).
+    -->
+    <script src="cldr.js"></script>
+    <script src="cldr/supplemental.js"></script>
+
+    <!--
+    Next, we load Globalize and its modules. Note they are already available on
+    this repository. If it's not, read Usage on Getting Started on the root's
+    README.md.
+    -->
+    <script src="../../../dist/globalize.js"></script>
+    <script src="../../../dist/globalize/date.js"></script>
+    <script src="../../../dist/globalize/number.js"></script>
+
+    <script>
+
+    // At this point, we have Globalize loaded. But, before we can use it, we
+    // need to feed it on the appropriate I18n content (Unicode CLDR). In order
+    // to do so, we use `Globalize.load()` and pass the content. On this demo,
+    // we made the things a little easier for you: we've embedded static JSON
+    // into the demo. So, you don't need to actually fetch it elsewhere.
+    Globalize.load({
+      "main": {
+        "en": {
+          "identity": {
+            "version": {
+              "_cldrVersion": "25",
+              "_number": "$Revision: 91 $"
+            },
+            "generation": {
+              "_date": "$Date: 2014-03-13 22:27:12 -0500 (Thu, 13 Mar 2014) $"
+            },
+            "language": "en"
+          },
+          "dates": {
+            "calendars": {
+              "gregorian": {
+                "months": {
+                  "format": {
+                    "abbreviated": {
+                      "1": "Jan",
+                      "2": "Feb",
+                      "3": "Mar",
+                      "4": "Apr",
+                      "5": "May",
+                      "6": "Jun",
+                      "7": "Jul",
+                      "8": "Aug",
+                      "9": "Sep",
+                      "10": "Oct",
+                      "11": "Nov",
+                      "12": "Dec"
+                    }
+                  }
+                },
+                "dayPeriods": {
+                  "format": {
+                    "wide": {
+                      "am": "AM",
+                      "am-alt-variant": "am",
+                      "noon": "noon",
+                      "pm": "PM",
+                      "pm-alt-variant": "pm"
+                    }
+                  }
+                },
+                "dateFormats": {
+                  "medium": "MMM d, y"
+                },
+                "timeFormats": {
+                  "medium": "h:mm:ss a",
+                },
+                "dateTimeFormats": {
+                  "medium": "{1}, {0}"
+                }
+              }
+            }
+          },
+          "numbers": {
+            "defaultNumberingSystem": "latn",
+            "symbols-numberSystem-latn": {
+              "group": ","
+            },
+            "decimalFormats-numberSystem-latn": {
+              "standard": "#,##0.###"
+            }
+          }
+        }
+      },
+      "supplemental": {
+        "version": {
+          "_cldrVersion": "25",
+          "_number": "$Revision: 91 $"
+        },
+        "likelySubtags": {
+          "en": "en-Latn-US",
+        }
+      }
+    });
+
+    // Set "en" as our default locale.
+    Globalize.locale( "en" );
+
+    // Use Globalize to format dates.
+    console.log( Globalize.formatDate( new Date(), { datetime: "medium" } ) );
+
+    // Use Globalize to format numbers.
+    console.log( Globalize.formatNumber( 12345 ) );
+
+    </script>
+
+</body>
+</html>
