@@ -335,25 +335,60 @@ Parameters:
     integer Number values indicating the minimum and maximum fraction digits to
     be used. Numbers will be rounded or padded with trailing zeroes if
     necessary;
+  - minimumSignificantDigits and maximumSignificantDigits: Optional positive
+    integer Number values indicating the minimum and maximum fraction digits to
+    be shown. Either none or both of these properties are present; if they are,
+    they override minimum and maximum integer and fraction digits. The formatter
+    uses however many integer and fraction digits are required to display the
+    specified number of significant digits;
   - round: Optional String with rounding method `ceil`, `floor`, `round`
     (default), or `truncate`;
 - **locale** Optional locale string that overrides default;
 
 ```javascript
 Globalize.locale( "en" );
-
 Globalize.formatNumber( 3.141592 );           // "3.142"
 Globalize.formatNumber( 3.141592, {}, "es" ); // "3,142"
 Globalize.formatNumber( 3.141592, {}, "ar" ); // "3٫142"
+```
 
+Controlling digits by specifying integer and fraction digits counts:
+
+```
 Globalize.formatNumber( 3.141592, { maximumFractionDigits: 2 } );
 // "3.14"
 
-Globalize.formatNumber( 3.141592, { maximumFractionDigits: 2, round: "ceil" } );
-// "3.15"
-
 Globalize.formatNumber( 1.5, { minimumFractionDigits: 2 } );
 // "1.50"
+```
+
+Controlling digits by specifying significant digits counts:
+
+```
+Globalize.formatNumber( 3.141592, {
+  minimumSignificantDigits: 1,
+  maximumSignificantDigits: 3
+});
+// "3.14"
+
+Globalize.formatNumber( 12345, {
+  minimumSignificantDigits: 1,
+  maximumSignificantDigits: 3
+});
+// "12300"
+
+equal( Globalize.formatNumber( 0.00012345, {
+    minimumSignificantDigits: 1,
+    maximumSignificantDigits: 3
+});
+// "0.000123"
+```
+
+Using different rounding functions example:
+
+```
+Globalize.formatNumber( 3.141592, { maximumFractionDigits: 2, round: "ceil" } );
+// "3.15"
 ```
 
 <a name="parse_number"></a>
