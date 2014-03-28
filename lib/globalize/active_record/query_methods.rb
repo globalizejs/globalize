@@ -5,7 +5,7 @@ module Globalize
       class WhereChain < ::ActiveRecord::QueryMethods::WhereChain
         def not(opts, *rest)
           if parsed = @scope.parse_translated_conditions(opts)
-            @scope.with_translations_in_fallbacks.where.not(parsed, *rest)
+            @scope.join_translations.where.not(parsed, *rest)
           else
             super
           end
@@ -16,7 +16,7 @@ module Globalize
         if opts == :chain
           WhereChain.new(spawn)
         elsif parsed = parse_translated_conditions(opts)
-          super(parsed, *rest).with_translations_in_fallbacks
+          join_translations(super(parsed, *rest))
         else
           super
         end
@@ -54,6 +54,14 @@ module Globalize
           name = where.left.name
           [name, binds.fetch(name.to_s) { where.right }]
         }])
+      end
+
+      def join_translations(relation = self)
+        if relation.joins_values.include?(:translations)
+          relation
+        else
+          relation.with_translations_in_fallbacks
+        end
       end
     end
   end

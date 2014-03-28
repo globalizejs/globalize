@@ -39,6 +39,11 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       assert_equal [], User.where(:email => 'foo@example.com').joins_values
     end
 
+    it 'does not join translation table if already joined with with_translations' do
+      user = Globalize.with_locale(:ja) { User.create(:email => 'foo@example.com', :name => 'foo') }
+      assert_equal [user], User.with_translations('ja').where(:name => 'foo').to_a
+    end
+
     it 'can be called with no argument' do
       user = User.create(:email => 'foo@example.com', :name => 'foo')
       assert_equal [], User.where.not(:email => 'foo@example.com').load
@@ -94,6 +99,11 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
     it 'does not join translations table if query contains no translated attributes' do
       assert_equal [:translations], User.where.not(:name => 'foo').joins_values
       assert_equal [], User.where.not(:email => 'foo@example.com').joins_values
+    end
+
+    it 'does not join translation table if already joined with with_translations' do
+      user = Globalize.with_locale(:ja) { User.create(:email => 'foo@example.com', :name => 'bar') }
+      assert_equal [user], User.with_translations('ja').where.not(:name => 'foo').to_a
     end
 
     it 'duplicates arguments before modifying them' do
