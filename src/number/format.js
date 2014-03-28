@@ -1,10 +1,11 @@
 define([
+	"./format/grouping-separator",
 	"./format/integer-fraction-digits",
 	"./format/properties",
 	"./format/significant-digits",
 	"./symbol",
 	"../util/number/round"
-], function( numberFormatIntegerFractionDigits, numberFormatProperties, numberFormatSignificantDigits, numberSymbol, numberRound ) {
+], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatProperties, numberFormatSignificantDigits, numberSymbol, numberRound ) {
 
 /**
  * format( number, pattern, cldr [, options] )
@@ -20,12 +21,13 @@ define([
  * - minimumFractionDigits, maximumFractionDigits [Number] 
  * - minimumSignificantDigits, maximumSignificantDigits [Number] 
  * - round [String] "ceil", "floor", "round" (default), or "truncate".
+ * - useGrouping [Boolean] default true.
  *
  * Return the formatted number.
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
 return function( number, pattern, cldr, options ) {
-	var maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits, minimumIntegerDigits, minimumSignificantDigits, padding, prefix, properties, ret, round, roundIncrement, suffix;
+	var maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits, minimumIntegerDigits, minimumSignificantDigits, padding, prefix, primaryGroupingSize, properties, ret, round, roundIncrement, secondaryGroupingSize, suffix;
 
 	// NaN
 	if ( isNaN( number ) ) {
@@ -44,6 +46,8 @@ return function( number, pattern, cldr, options ) {
 	minimumSignificantDigits = options.minimumSignificantDigits || properties[ 5 ];
 	maximumSignificantDigits = options.maximumSignificantDigits || properties[ 6 ];
 	roundIncrement = properties[ 7 ];
+	primaryGroupingSize = properties[ 8 ];
+	secondaryGroupingSize = properties[ 9 ];
 
 	// Negative pattern
 	// "If there is an explicit negative subpattern, it serves only to specify the negative prefix and suffix" UTS#35
@@ -57,7 +61,7 @@ return function( number, pattern, cldr, options ) {
 	}
 
 	prefix = properties[ 0 ];
-	suffix = properties[ 8 ];
+	suffix = properties[ 10 ];
 
 	// Infinity (observe that isNaN() has been checked above)
 	if ( !isFinite( number ) ) {
@@ -87,7 +91,14 @@ return function( number, pattern, cldr, options ) {
 	}
 
 	// Remove the possible number minus sign
-	ret += number.replace( /^-/, "" );
+	number = number.replace( /^-/, "" );
+
+	// Grouping separators
+	if ( primaryGroupingSize && !( "useGrouping" in options && !options.useGrouping ) ) {
+		number = numberFormatGroupingSeparator( number, primaryGroupingSize, secondaryGroupingSize );
+	}
+
+	ret += number;
 
 	// Scientific notation
 	if ( false ) {

@@ -21,6 +21,7 @@ test( "should format decimal style", function() {
 	equal( Globalize.formatNumber( pi ), "3.142", "" );
 	equal( Globalize.formatNumber( pi, {}, "es" ), "3,142", "" );
 	equal( Globalize.formatNumber( pi, {}, "ar" ), "3٫142", "" );
+	equal( Globalize.formatNumber( 99999999.99 ), "99,999,999.99", "" );
 
 	equal( Globalize.formatNumber( pi, {
 		minimumIntegerDigits: 2,
@@ -36,7 +37,7 @@ test( "should format decimal style", function() {
 	equal( Globalize.formatNumber( 12345, {
 		minimumSignificantDigits: 1,
 		maximumSignificantDigits: 3
-	}), "12300", "" );
+	}), "12,300", "" );
 
 	equal( Globalize.formatNumber( 0.00012345, {
 		minimumSignificantDigits: 1,
@@ -47,6 +48,8 @@ test( "should format decimal style", function() {
 		minimumSignificantDigits: 1,
 		maximumSignificantDigits: 3
 	}), "0.0001", "" );
+
+	equal( Globalize.formatNumber( 99999999.99, { useGrouping: false } ), "99999999.99", "" );
 });
 
 test( "should format percent style", function() {
