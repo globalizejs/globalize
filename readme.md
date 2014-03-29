@@ -7,7 +7,7 @@ to add model translations to ActiveRecord models.
 
 ## Requirements
 
-* ActiveRecord > 4.0.0 (see below for installation with ActiveRecord 3.x)
+* ActiveRecord >= 4.0.0 (see below for installation with ActiveRecord 3.x)
 * I18n
 
 ## Installation
@@ -21,7 +21,7 @@ gem install globalize
 When using bundler put this in your Gemfile:
 
 ```ruby
-gem 'globalize', '~> 4.0.0'
+gem 'globalize', '~> 4.0.1'
 ```
 
 To use the version of globalize for ActiveRecord 3.1 or 3.2, specify:

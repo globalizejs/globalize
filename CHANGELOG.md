@@ -1,5 +1,12 @@
 # Globalize Changelog
 
+## 4.0.1 (2014-3-29)
+* Fix bug where `with_translations` only works if called after `where` in relation chain, fixes [#343](https://github.com/globalize/globalize/issues/343).
+* Use `preload` and `joins` instead of `includes` in `with_translations`, fixes [#329](https://github.com/globalize/globalize/issues/329) (thanks [Andrew Volozhanin](https://github.com/scarfacedeb)).
+* Update `database_cleaner` dependency to 1.2.0.
+* Support use of `first`/`take`/`last` with limit on queries with translated attributes, fixes [#322](https://github.com/globalize/globalize/issues/322) (thanks [prusswan](https://github.com/prusswan)).
+* Ensure that options are always extracted from `attr_names` in `Globalize::ActiveRecord::ActMacro#translates`, PR [#319](https://github.com/globalize/globalize/pull/319) (thanks [Marek](https://github.com/keram)).
+
 ## 4.0.0 (2014-1-4)
 * Extract all versioning-related code to separate [globalize-versioning](https://github.com/globalize/globalize-versioning) gem.
 
