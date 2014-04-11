@@ -140,7 +140,7 @@ variables (in case neither AMD nor CommonJS have been detected).
 Example of usage with script tags:
 
 ```html
-<script src="./external/cldr.js/dist/cldr.js"></script>
+<script src="./external/cldrjs/dist/cldr.js"></script>
 <script src="./dist/globalize.js"></script>
 <script src="./dist/globalize/date.js"></script>
 ```
@@ -148,12 +148,12 @@ Example of usage with script tags:
 Example of usage on AMD:
 
 ```bash
-bower install cldr.js globalize
+bower install cldrjs globalize
 ```
 ```javascript
 require.config({
   paths: {
-    cldr: "bower_components/cldr.js/dist/cldr.runtime",
+    cldr: "bower_components/cldrjs/dist/cldr.runtime",
     globalize: "bower_components/globalize/dist/globalize"
   }
 });
@@ -165,7 +165,7 @@ require( [ "globalize", "globalize/date" ], function( Globalize ) {
 Example of usage with Node.js:
 
 ```bash
-npm install cldr.js globalize
+npm install cldrjs globalize
 ```
 ```javascript
 var Globalize = require( "globalize" );
@@ -271,7 +271,9 @@ Globalize.load( require( "./cldr/en/ca-gregorian.json" ) );
 <a name="load"></a>
 #### `Globalize.load( cldrJSONData )`
 
-This method allows you to load CLDR JSON locale data. `Globalize.load()` is a proxy to `Cldr.load()`. For more information, see https://github.com/rxaviers/cldr#readme.
+This method allows you to load CLDR JSON locale data. `Globalize.load()` is a
+proxy to `Cldr.load()`. For more information, see
+https://github.com/rxaviers/cldrjs#readme.
 
 Parameters:
 

@@ -89,7 +89,7 @@ module.exports = function( grunt ) {
 				baseUrl: ".",
 				optimize: "none",
 				paths: {
-					cldr: "../external/cldr.js/dist/cldr"
+					cldr: "../external/cldrjs/dist/cldr"
 				},
 				skipSemiColonInsertion: true,
 				skipModuleInsertion: true,
