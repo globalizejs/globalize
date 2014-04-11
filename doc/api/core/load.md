@@ -8,10 +8,6 @@ deeply merged internally.
 
 For more information, see https://github.com/rxaviers/cldrjs#readme.
 
-### CLDR content
-
-None.
-
 ### Parameters
 
 **cldrJSONData**

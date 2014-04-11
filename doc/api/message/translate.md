@@ -2,10 +2,6 @@
 
 Translate item given its path.
 
-### CLDR content
-
-No requirement.
-
 ### Parameters
 **path**
 

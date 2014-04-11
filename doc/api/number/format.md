@@ -3,13 +3,6 @@
 Format a number according to the given attributes and the given locale (or the
 default locale if not specified).
 
-### CLDR content
-
-The following CLDR JSON files are required. Load them in advance prior to using
-this function.
-
-- cldr/main/`locale`/numbers.json
-
 ### Parameters
 
 **value**

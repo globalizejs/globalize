@@ -5,15 +5,6 @@ account the given possible formats (or the given locale's set of preset
 formats if not provided). As before, the current locale is used if one is not
 specified.
 
-### CLDR content
-
-The following CLDR JSON files are required. Load them in advance prior to using
-this function.
-
-- cldr/main/`locale`/ca-gregorian.json
-- cldr/supplemental/timeData.json
-- cldr/supplemental/weekData.json
-
 ### Parameters
 
 **value**

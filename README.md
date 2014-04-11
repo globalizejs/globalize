@@ -133,9 +133,15 @@ to using it.
 
 *(a) How do I figure out which CLDR portions are appropriate for my needs?*
 
-On the [API](#api) documentation, each Globalize function specifies the CLDR
-portions they require. Once you know which Globalize functionalities you need,
-you can deduce its respective CLDR requirements.
+Each Globalize function requires a special set of CLDR portions. Once you know
+which Globalize functionalities you need, you can deduce its respective CLDR
+requirements. See table below.
+
+| Module | Required CLDR JSON files |
+|---|---|
+| Core module | cldr/supplemental/likelySubtags.json |
+| Number module | cldr/main/`locale`/numbers.json |
+| Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json |
 
 *(b) How am I supposed to get and load CLDR content?*
 

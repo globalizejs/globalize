@@ -15,13 +15,6 @@ prefers.
 
 LanguageMatching TBD (CLDR's spec http://www.unicode.org/reports/tr35/#LanguageMatching).
 
-### CLDR content
-
-The following CLDR JSON files are required. Load them in advance prior to using
-this function.
-
-- cldr/supplemental/likelySubtags.json
-
 ### Parameters
 
 **locale**

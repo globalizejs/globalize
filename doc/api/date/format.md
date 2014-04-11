@@ -2,15 +2,6 @@
 
 Format a date according to the given format and locale (or the current locale if not specified).
 
-### CLDR content
-
-The following CLDR JSON files are required. Load them in advance prior to using
-this function.
-
-- cldr/main/`locale`/ca-gregorian.json
-- cldr/supplemental/timeData.json
-- cldr/supplemental/weekData.json
-
 ### Parameters
 
 **value**
