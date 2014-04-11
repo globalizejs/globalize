@@ -163,13 +163,13 @@ module.exports = function( grunt ) {
 							}
 						},
 						{
-							name: "globalize.translate",
-							include: [ "translate" ],
+							name: "globalize.message",
+							include: [ "message" ],
 							exclude: [ "cldr", "./core" ],
 							create: true,
 							override: {
 								wrap: {
-									startFile: "src/build/intro-translate.js",
+									startFile: "src/build/intro-message.js",
 									endFile: "src/build/outro.js"
 								}
 							}
@@ -222,7 +222,7 @@ module.exports = function( grunt ) {
 						"dist/globalize.min.js": [ "dist/globalize.js" ],
 						"dist/globalize/date.min.js": [ "dist/globalize/date.js" ],
 						"dist/globalize/number.min.js": [ "dist/globalize/number.js" ],
-						"dist/globalize/translate.min.js": [ "dist/globalize/translate.js" ]
+						"dist/globalize/message.min.js": [ "dist/globalize/message.js" ]
 				}
 			}
 		},
