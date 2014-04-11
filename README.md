@@ -145,7 +145,7 @@ requirements. See table below.
 
 *(b) How am I supposed to get and load CLDR content?*
 
-Learn [how to get and load CLDR content...](doc/usage/cldr.md).
+Learn [how to get and load CLDR content...](doc/cldr.md).
 
 <a name="installation"></a>
 ### Installation
