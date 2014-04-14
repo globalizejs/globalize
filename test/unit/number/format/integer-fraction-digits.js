@@ -64,4 +64,10 @@ test( "should allow different rounding options", function() {
 	equal( formatIntegerFractionDigits( -pi, 1, 0, 4, truncate, null ), "-3.1415", "" );
 });
 
+// Fix #227
+test( "should ignore decimal error", function() {
+	equal( formatIntegerFractionDigits( 12341234.233, 1, 1, 3, round, null ), "12341234.233", "" );
+	equal( formatIntegerFractionDigits( 1234 * 0.0001, 1, 1, 4, round, null ), "0.1234", "" );
+});
+
 });

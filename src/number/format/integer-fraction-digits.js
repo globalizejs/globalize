@@ -39,6 +39,9 @@ return function( number, minimumIntegerDigits, minimumFractionDigits, maximumFra
 			number = round( number, Math.pow( 10, -maximumFractionDigits ) );
 		}
 
+		// Ignore decimal error, eg. `1234 * 0.0001 = 0.12340000000000001`.
+		number = +number.toFixed( maximumFractionDigits );
+
 		// Minimum fraction digits
 		if ( minimumFractionDigits ) {
 			number = String( number ).split( "." );
