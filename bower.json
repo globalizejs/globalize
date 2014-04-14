@@ -8,7 +8,7 @@
     "bower.json"
   ],
   "dependencies": {
-    "cldrjs": "0.3.3"
+    "cldrjs": "0.3.4"
   },
   "devDependencies": {
     "jquery": "2.0.3",

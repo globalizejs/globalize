@@ -1,11 +1,11 @@
 {
   "supplemental": {
     "version": {
-      "_cldrVersion": "24",
-      "_number": "$Revision: 9270 $"
+      "_cldrVersion": "25",
+      "_number": "$Revision: 91 $"
     },
     "generation": {
-      "_date": "$Date: 2013-08-25 16:44:03 -0500 (Sun, 25 Aug 2013) $"
+      "_date": "$Date: 2014-03-13 22:27:12 -0500 (Thu, 13 Mar 2014) $"
     },
     "timeData": {
       "001": {
@@ -253,6 +253,10 @@
         "_preferred": "h"
       },
       "HR": {
+        "_allowed": "H",
+        "_preferred": "H"
+      },
+      "ID": {
         "_allowed": "H",
         "_preferred": "H"
       },

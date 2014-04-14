@@ -3,11 +3,11 @@
     "ar": {
       "identity": {
         "version": {
-          "_cldrVersion": "24",
-          "_number": "$Revision: 9287 $"
+          "_cldrVersion": "25",
+          "_number": "$Revision: 91 $"
         },
         "generation": {
-          "_date": "$Date: 2013-08-28 21:32:04 -0500 (Wed, 28 Aug 2013) $"
+          "_date": "$Date: 2014-03-13 22:27:12 -0500 (Thu, 13 Mar 2014) $"
         },
         "language": "ar"
       },
@@ -377,8 +377,8 @@
               "insertBetween": " "
             }
           },
-          "standard": "¤ #,##0.00",
           "accounting": "¤#,##0.00;(¤#,##0.00)",
+          "standard": "¤ #,##0.00",
           "unitPattern-count-zero": "{0} {1}",
           "unitPattern-count-one": "{0} {1}",
           "unitPattern-count-two": "{0} {1}",
@@ -399,8 +399,8 @@
               "insertBetween": " "
             }
           },
-          "standard": "¤ #,##0.00",
           "accounting": "¤#,##0.00;(¤#,##0.00)",
+          "standard": "¤ #,##0.00",
           "unitPattern-count-zero": "{0} {1}",
           "unitPattern-count-one": "{0} {1}",
           "unitPattern-count-two": "{0} {1}",
