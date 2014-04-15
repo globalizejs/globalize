@@ -152,8 +152,8 @@ Learn [how to get and load CLDR content...](doc/cldr.md).
 
 *By downloading a ZIP or a TAR.GZ...*
 
-Click at the github [releases tab](https://github.com/jquery/globalize/releases)
-and download the package.
+Click the github [releases tab](https://github.com/jquery/globalize/releases)
+and download the latest available Globalize package.
 
 *By using a package manager...*
 
