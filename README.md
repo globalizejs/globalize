@@ -103,7 +103,7 @@ information on its usage.
 <a name="browser_support"></a>
 ### Browser Support
 
-We officialy support http://jquery.com/browser-support/. If you find any bugs,
+We officially support http://jquery.com/browser-support/. If you find any bugs,
 please just [let us know](https://github.com/jquery/globalize/issues).
 
 
@@ -120,8 +120,8 @@ You need to satisfy Globalize dependencies prior to using it. The good news
 is, there is only one. It's the [cldr.js](https://github.com/rxaviers/cldrjs),
 which is a CLDR low level manipulation tool.
 
-If you use a package manager like bower or npm, you don't need to worry at all
-about it. If this isn't the case, so yes you need to manually download it
+If you use a package manager like bower or npm, you don't need to worry about
+it. If this isn't the case, then you need to manually download cldr.js
 yourself. Check the [Hello World examples](#usage) for more information.
 
 <a name="cldr"></a>
@@ -162,22 +162,23 @@ Use bower `bower install globalize`, or npm `npm install globalize`.
 *By using source files...*
 
 1. `git clone https://github.com/jquery/globalize.git`.
-1. [Build the distrubution files](https://github.com/jquery/globalize/#build).
+1. [Build the distribution files](https://github.com/jquery/globalize/#build).
 
 <a name="usage"></a>
 ### Usage
 
 Globalize's consumable-files are located in the `./dist` directory. If you
 don't find it, it's because you are using a development branch. You should
-either use a tagged version or [build the distrubution files yourself](#build).
+either use a tagged version or [build the distribution files yourself](#build).
 Read [installation](#installation) above if you need more information on how to
 download.
 
-Globalize can be used for a variety of different i18n tasks, eg. format or parse
-dates, format or parse numbers, format messages, etc. You may NOT need Globalize
-in its entirety. For that reason, we made it modular. So, you can cherry-pick
-the pieces you need, eg. load `dist/globalize.js` to get Globalize core, load
-`dist/globalize/date.js` to extend Globalize with Date functionalities, etc.
+Globalize can be used for a variety of different i18n tasks, eg. formatting or
+parsing dates, formatting or parsing numbers, formatting messages, etc. You may
+NOT need Globalize in its entirety. For that reason, we made it modular. So, you
+can cherry-pick the pieces you need, eg. load `dist/globalize.js` to get
+Globalize core, load `dist/globalize/date.js` to extend Globalize with Date
+functionalities, etc.
 
 An example is worth a thousand words. Check out our Hello World demo (available
 to you in different flavors):
