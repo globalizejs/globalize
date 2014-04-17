@@ -11,6 +11,7 @@
     "cldrjs": "0.3.4"
   },
   "devDependencies": {
+    "CLDRPluralRuleParser": "santhoshtr/CLDRPluralRuleParser#7450feb2de7ecdd531f3b5d13ae5b5502b5b238b",
     "jquery": "2.0.3",
     "qunit": "1.12.0",
     "requirejs": "2.1.9",
