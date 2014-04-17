@@ -2,18 +2,11 @@
 
 ## How do I get CLDR data?
 
-The Unicode CLDR is available for download as JSON
-([`json.zip`](http://www.unicode.org/Public/cldr/latest/json.zip)). This file
-contains the complete data of what the Unicode CLDR Project considers the top
-20 languages (at the time of this writing).
-
-You can generate the JSON representation of the languages not available in the
-ZIP file by using the official conversion tool
-([`tools.zip`](http://www.unicode.org/Public/cldr/latest/)). This ZIP contains a
-README with instructions on how to build the data.
-
-You can choose to generate unresolved data to save space or bandwidth (`-r false`
-option of the conversion tool), and instead have it resolve at runtime.
+The Unicode CLDR is available for download as JSON:
+- [`json.zip`](http://www.unicode.org/Public/cldr/latest/json.zip) for the
+  most used languages.
+- [`json_full.zip`](http://www.unicode.org/Public/cldr/latest/json_full.zip)
+  for all the available CLDR languages.
 
 For the examples below, first fetch CLDR JSON data:
 
