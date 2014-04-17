@@ -94,6 +94,14 @@ return {
 		assertParameterType( assert, "number", name, fn );
 	},
 
+	assertParameterMissingKey: function( assert, name, key, fn ) {
+		assert.throws( fn, function E_PAR_MISSING_KEY( error ) {
+			return error.code === "E_PAR_MISSING_KEY" &&
+				error.name === name && error.key === key;
+		}, "Expected \"E_PAR_MISSING_KEY: Parameter `" + name + "` misses key `" +
+			key + "`\" to be thrown" );
+	},
+
 	assertParameterPresence: function( assert, name, fn ) {
 		assert.throws( fn, function E_MISSING_PARAMETER( error ) {
 			return error.code === "E_MISSING_PARAMETER" &&
@@ -117,6 +125,10 @@ return {
 
 	assertPlainObjectParameter: function( assert, name, fn ) {
 		assertParameterType( assert, [ "cldr", "plainObject" ], name, fn );
+	},
+
+	assertPluralFormatValueParameter: function( assert, name, fn ) {
+		assertParameterType( assert, [ "string", "number" ], name, fn );
 	},
 
 	assertStringParameter: function( assert, name, fn ) {
