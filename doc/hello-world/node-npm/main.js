@@ -7,6 +7,7 @@ var Globalize = require( "globalize" );
 Globalize.load( require( "./cldr/main/en/ca-gregorian.json" ) );
 Globalize.load( require( "./cldr/main/en/numbers.json" ) );
 Globalize.load( require( "./cldr/supplemental/likelySubtags.json" ) );
+Globalize.load( require( "./cldr/supplemental/plurals.json" ) );
 Globalize.load( require( "./cldr/supplemental/timeData.json" ) );
 Globalize.load( require( "./cldr/supplemental/weekData.json" ) );
 
@@ -18,3 +19,9 @@ console.log( Globalize.formatDate( new Date(), { datetime: "medium" } ) );
 
 // Use Globalize to format numbers.
 console.log( Globalize.formatNumber( 12345 ) );
+
+// Use Globalize to format a message with plural inflection.
+console.log( Globalize.formatPlural( 12345, {
+	one: "{0} result",
+	other: "{0} results"
+}));

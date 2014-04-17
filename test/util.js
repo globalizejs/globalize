@@ -112,6 +112,10 @@ return {
 		assertParameterType( assert, [ "cldr", "plainObject" ], name, fn );
 	},
 
+	assertPluralFormatValueParameter: function( assert, name, fn ) {
+		assertParameterType( assert, [ "string", "number" ], name, fn );
+	},
+
 	assertStringParameter: function( assert, name, fn ) {
 		assertParameterType( assert, "string", name, fn );
 	},

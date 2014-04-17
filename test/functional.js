@@ -23,7 +23,11 @@ require([
 
 	// number
 	"./functional/number/format-number",
-	"./functional/number/parse-number"
+	"./functional/number/parse-number",
+
+	// plural
+	"./functional/plural/format-plural",
+	"./functional/plural/plural"
 
 ], function() {
 	QUnit.start();
