@@ -226,6 +226,12 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
+		compare_size: {
+			files: [
+				"dist/globalize.min.js",
+				"dist/globalize/*min.js"
+			]
+		},
 		clean: {
 			dist: [
 				"dist"
@@ -255,7 +261,8 @@ module.exports = function( grunt ) {
 		"copy",
 		"jshint:dist",
 		"test:functional",
-		"uglify"
+		"uglify",
+		"compare_size"
 	] );
 
 };

@@ -62,6 +62,7 @@
   },
   "devDependencies": {
     "grunt": "0.4.x",
+    "grunt-compare-size": "0.4.0",
     "grunt-contrib-clean": "0.5.0",
     "grunt-contrib-connect": "0.3.0",
     "grunt-contrib-copy": "0.4.1",
