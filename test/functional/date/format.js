@@ -1,15 +1,17 @@
 define([
 	"globalize",
 	"json!fixtures/cldr/main/en/ca-gregorian.json",
+	"json!fixtures/cldr/main/pt/ca-gregorian.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"json!fixtures/cldr/supplemental/timeData.json",
 	"json!fixtures/cldr/supplemental/weekData.json",
 	"globalize/date"
-], function( Globalize, enCaGregorian, likelySubtags, timeData, weekData ) {
+], function( Globalize, enCaGregorian, ptCaGregorian, likelySubtags, timeData, weekData ) {
 
 var date = new Date( 2010, 8, 15, 17, 35, 7, 369 );
 
 Globalize.load( enCaGregorian );
+Globalize.load( ptCaGregorian );
 Globalize.load( likelySubtags );
 Globalize.load( timeData );
 Globalize.load( weekData );
@@ -27,6 +29,10 @@ test( "should format skeleton", function() {
 
 	// Passed as string
 	equal( Globalize.formatDate( date, "GyMMMEd" ), "Wed, Sep 15, 2010 AD", "" );
+
+	// Via instance globalize.formatDate().
+	equal( Globalize( "pt" ).formatDate( date, { skeleton: "Ehms" } ), "qua, 5:35:07 PM", "" );
+	equal( Globalize( "pt" ).formatDate( date, { skeleton: "GyMMMEd" } ), "qua, 15 'de' set 'de' 2010 d.C.", "" );
 });
 
 test( "should format time presets", function() {

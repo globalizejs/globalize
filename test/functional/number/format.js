@@ -19,8 +19,8 @@ module( "Number Format" );
 
 test( "should format decimal style", function() {
 	equal( Globalize.formatNumber( pi ), "3.142", "" );
-	equal( Globalize.formatNumber( pi, {}, "es" ), "3,142", "" );
-	equal( Globalize.formatNumber( pi, {}, "ar" ), "3٫142", "" );
+	equal( Globalize( "es" ).formatNumber( pi ), "3,142", "" );
+	equal( Globalize( "ar" ).formatNumber( pi ), "3٫142", "" );
 	equal( Globalize.formatNumber( 99999999.99 ), "99,999,999.99", "" );
 
 	equal( Globalize.formatNumber( pi, {
@@ -54,7 +54,7 @@ test( "should format decimal style", function() {
 
 test( "should format percent style", function() {
 	equal( Globalize.formatNumber( pi, { style: "percent" } ), "314%", "" );
-	equal( Globalize.formatNumber( pi, { style: "percent" }, "ar" ), "314٪", "" );
+	equal( Globalize( "ar" ).formatNumber( pi, { style: "percent" } ), "314٪", "" );
 });
 
 });
