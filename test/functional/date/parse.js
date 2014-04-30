@@ -2,15 +2,17 @@ define([
 	"globalize",
 	"src/date/start-of",
 	"json!fixtures/cldr/main/en/ca-gregorian.json",
+	"json!fixtures/cldr/main/pt/ca-gregorian.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"json!fixtures/cldr/supplemental/timeData.json",
 	"json!fixtures/cldr/supplemental/weekData.json",
 	"globalize/date"
-], function( Globalize, startOf, enCaGregorian, likelySubtags, timeData, weekData ) {
+], function( Globalize, startOf, enCaGregorian, ptCaGregorian, likelySubtags, timeData, weekData ) {
 
 var date;
 
 Globalize.load( enCaGregorian );
+Globalize.load( ptCaGregorian );
 Globalize.load( likelySubtags );
 Globalize.load( timeData );
 Globalize.load( weekData );
@@ -40,6 +42,9 @@ test( "should parse skeleton", function() {
 	date = new Date( 2010, 0 );
 	date = startOf( date, "year" );
 	deepEqual( Globalize.parseDate( "Q3 2010", { skeleton: "yQQQ" } ), date, "{ skeleton: \"yQQQ\" }" );
+
+	// Via instance globalize.parseDate().
+	deepEqual( Globalize( "pt" ).parseDate( "2010 T3", { skeleton: "yQQQ" } ), date, "{ skeleton: \"yQQQ\" }" );
 });
 
 test( "should parse time presets", function() {
