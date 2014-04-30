@@ -1,6 +1,6 @@
 define([
 	"cldr",
-	"./common/get-locale",
+	"./common/get-cldr",
 	"./core",
 	"./date/all-presets",
 	"./date/expand-pattern",
@@ -9,7 +9,7 @@ define([
 	"./util/always-array",
 	"./util/array/some",
 	"cldr/supplemental"
-], function( Cldr, commonGetLocale, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray, arraySome ) {
+], function( Cldr, commonGetCldr, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray, arraySome ) {
 
 /**
  * Globalize.formatDate( value, pattern, locale )
@@ -23,6 +23,8 @@ define([
  * Formats a date or number according to the given pattern string and the given locale (or the default locale if not specified).
  */
 Globalize.formatDate = function( value, pattern, locale ) {
+	var cldr;
+
 	if ( !( value instanceof Date ) ) {
 		throw new Error( "Value is not date" );
 	}
@@ -31,9 +33,9 @@ Globalize.formatDate = function( value, pattern, locale ) {
 		throw new Error( "Missing pattern" );
 	}
 
-	locale = commonGetLocale( locale );
-	pattern = dateExpandPattern( pattern, locale );
-	return dateFormat( value, pattern, locale );
+	cldr = commonGetCldr( locale );
+	pattern = dateExpandPattern( pattern, cldr );
+	return dateFormat( value, pattern, cldr );
 };
 
 /**
@@ -48,22 +50,22 @@ Globalize.formatDate = function( value, pattern, locale ) {
  * Return a Date instance or null.
  */
 Globalize.parseDate = function( value, patterns, locale ) {
-	var date;
-	locale = commonGetLocale( locale );
+	var date,
+		cldr = commonGetCldr( locale );
 
 	if ( typeof value !== "string" ) {
 		throw new Error( "invalid value (" + value + "), string expected" );
 	}
 
 	if ( !patterns ) {
-		patterns = dateAllPresets( locale );
+		patterns = dateAllPresets( cldr );
 	} else {
 		patterns = alwaysArray( patterns );
 	}
 
 	arraySome( patterns, function( pattern ) {
-		pattern = dateExpandPattern( pattern, locale );
-		date = dateParse( value, pattern, locale );
+		pattern = dateExpandPattern( pattern, cldr );
+		date = dateParse( value, pattern, cldr );
 		return !!date;
 	});
 

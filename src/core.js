@@ -2,7 +2,7 @@ define([
 	"cldr"
 ], function( Cldr ) {
 
-var defaultLocale,
+var defaultCldr,
 	Globalize = {};
 
 /**
@@ -18,19 +18,21 @@ Globalize.load = function( json ) {
 };
 
 /**
- * Globalize.locale( [locale] )
+ * Globalize.locale( [locale|cldr] )
  *
  * @locale [String]
  *
- * Set default locale.
- * Get default locale if locale argument is undefined.
- * Somewhat equivalent to previous culture( selector ).
+ * @cldr [Cldr instance]
+ *
+ * Set default Cldr instance if locale or cldr argument is passed.
+ *
+ * Return the default Cldr instance.
  */
 Globalize.locale = function( locale ) {
 	if ( arguments.length ) {
-		defaultLocale = new Cldr( locale );
+		defaultCldr = locale instanceof Cldr ? locale : new Cldr( locale );
 	}
-	return defaultLocale;
+	return defaultCldr;
 };
 
 return Globalize;

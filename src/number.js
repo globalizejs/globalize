@@ -1,9 +1,9 @@
 define([
-	"./common/get-locale",
+	"./common/get-cldr",
 	"./core",
 	"./number/format",
 	"./number/pattern"
-], function( commonGetLocale, Globalize, numberFormat, numberPattern ) {
+], function( commonGetCldr, Globalize, numberFormat, numberPattern ) {
 
 /**
  * Globalize.formatNumber( value, pattern, locale )
@@ -26,7 +26,7 @@ Globalize.formatNumber = function( value, attributes, locale ) {
 	}
 
 	attributes = attributes || {};
-	locale = commonGetLocale( locale );
+	locale = commonGetCldr( locale );
 
 	if ( !attributes.pattern ) {
 		pattern = numberPattern( attributes.style || "decimal", locale );

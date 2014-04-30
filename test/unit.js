@@ -10,6 +10,9 @@ require.config({
 
 require([
 
+	/* core */
+	"./unit/core/locale",
+
 	/* date */
 	"./unit/date/expand-pattern",
 	"./unit/date/format",
