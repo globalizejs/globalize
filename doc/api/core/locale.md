@@ -1,10 +1,12 @@
-## Globalize.locale( [locale] )
+## Globalize.locale( [locale|cldr] )
 
 Set default locale, or get it if locale argument is omitted.
 
+Return the default [Cldr instance](https://github.com/rxaviers/cldrjs).
+
 An application that supports globalization and/or localization will need to
 have a way to determine the user's preference. Attempting to automatically
-determine the appropriate culture is useful, but it is good practice to always
+determine the appropriate locale is useful, but it is good practice to always
 offer the user a choice, by whatever means.
 
 Whatever your mechanism, it is likely that you will have to correlate the
@@ -17,9 +19,12 @@ LanguageMatching TBD (CLDR's spec http://www.unicode.org/reports/tr35/#LanguageM
 
 ### Parameters
 
-**locale**
+**locale|cldr**
 
-The locale string, eg. `en`, `pt-BR`, or `zh-Hant-TW`.
+The locale string, eg. `en`, `pt-BR`, or `zh-Hant-TW`. Or,
+
+The [Cldr instance](https://github.com/rxaviers/cldrjs), eg. new
+`Cldr( "en" )`.
 
 ### Example
 

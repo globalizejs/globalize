@@ -1,4 +1,4 @@
-## Globalize.translate( path [, locale] )
+## Globalize.translate( path [, locale|cldr] )
 
 Translate item given its path.
 
@@ -7,9 +7,10 @@ Translate item given its path.
 
 Translation item path.
 
-**locale** Optional
+**locale|cldr** Optional
 
-Locale string that overrides default.
+Locale string or [Cldr instance](https://github.com/rxaviers/cldrjs) that
+overrides default.
 
 ### Example
 

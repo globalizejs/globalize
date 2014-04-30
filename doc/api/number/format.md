@@ -1,6 +1,7 @@
-## Globalize.formatNumber( value [, attributes] [, locale] )
+## Globalize.formatNumber( value [, attributes] [, locale|cldr] )
 
-Format a number according to the given attributes and the given locale (or the
+Format a number `value` according to the given `attributes` and `[locale|cldr]` 
+(locale string or [Cldr instance](https://github.com/rxaviers/cldrjs), or the
 default locale if not specified).
 
 ### Parameters
@@ -45,10 +46,10 @@ A JSON object including none or any of the following attributes.
 > Boolean (default is true) value indicating whether a grouping separator should
 > be used.
 
-**locale** Optional
+**locale|cldr** Optional
 
-Locale string that overrides default.
-
+Locale string or [Cldr instance](https://github.com/rxaviers/cldrjs) that
+overrides default.
 
 ### Example
 

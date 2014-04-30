@@ -200,7 +200,7 @@ to you in different flavors):
 
  [Read more...](doc/api/core/load.md)
 
-- **`Globalize.locale( [locale] )`**
+- **`Globalize.locale( [locale|cldr] )`**
 
  Set default locale, or get it if locale argument is omitted.
 
@@ -209,18 +209,18 @@ to you in different flavors):
 <a name="date_module"></a>
 ### Date module
 
-- **`Globalize.formatDate( value, format [, locale] )`**
+- **`Globalize.formatDate( value, format [, locale|cldr] )`**
 
-  Format a date according to the given format and locale (or the current locale
-  if not specified).
+  Format a date according to the given format and locale. The default locale is
+  used if none is specified.
 
  [Read more...](doc/api/date/format.md)
 
-- **`Globalize.parseDate( value [, formats] [, locale] )`**
+- **`Globalize.parseDate( value [, formats] [, locale|cldr] )`**
 
  Parse a string representing a date into a JavaScript Date object, taking into
  account the given possible formats (or the given locale's set of preset formats
- if not provided). As before, the current locale is used if one is not
+ if not provided). As before, the default locale is used if one is not
  specified.
 
  [Read more...](doc/api/date/parse.md)
@@ -234,7 +234,7 @@ to you in different flavors):
 
  [Read more...](doc/api/message/load.md)
 
-- **`Globalize.translate( path [, locale] )`**
+- **`Globalize.translate( path [, locale|cldr] )`**
 
  Translate item given its path.
 
@@ -243,14 +243,14 @@ to you in different flavors):
 <a name="number_module"></a>
 ### Number module
 
-- **`Globalize.formatNumber( value [, attributes] [, locale] )`**
+- **`Globalize.formatNumber( value [, attributes] [, locale|cldr] )`**
 
   Format a number according to the given attributes and the given locale (or the
   default locale if not specified).
 
  [Read more...](doc/api/number/format.md)
 
-- **`Globalize.parseNumber( value [, formats], [locale] )`**
+- **`Globalize.parseNumber( value [, formats], [locale|cldr] )`**
 
  TBD
 

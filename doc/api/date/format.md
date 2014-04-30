@@ -1,6 +1,8 @@
-## Globalize.formatDate( value, format [, locale] )
+## Globalize.formatDate( value, format [, locale|cldr] )
 
-Format a date according to the given format and locale (or the current locale if not specified).
+Format a date `value` according to the given `format` and `[locale|cldr]`
+(locale string or [Cldr instance](https://github.com/rxaviers/cldrjs), or the
+default locale if not specified).
 
 ### Parameters
 
@@ -59,9 +61,10 @@ Or, a JSON object including one of the following.
 >
 > Use skeletons for i18n purposes.
 
-**locale** Optional
+**locale|cldr** Optional
 
-Locale string that overrides default;
+Locale string or [Cldr instance](https://github.com/rxaviers/cldrjs) that
+overrides default.
 
 ### Example
 
