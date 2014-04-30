@@ -1,4 +1,4 @@
-## Globalize.translate( path [, locale|cldr] )
+## .translate( path )
 
 Translate item given its path.
 
@@ -7,15 +7,21 @@ Translate item given its path.
 
 Translation item path.
 
-**locale|cldr** Optional
-
-Locale string or [Cldr instance](https://github.com/rxaviers/cldrjs) that
-overrides default.
-
 ### Example
+
+You can use the static method `Globalize.translate()`, which uses the default
+locale.
 
 ```javascript
 Globalize.locale( "pt_BR" );
 Globalize.translate( "greetings/bye" );
+// ➡ "Tchau"
+```
+
+You can use the instance method `.translate()`, which uses the instance locale.
+
+```javascript
+var ptBr = new Globalize( "pt-BR" );
+ptBr.translate( "greetings/bye" );
 // ➡ "Tchau"
 ```

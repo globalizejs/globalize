@@ -206,35 +206,39 @@ to you in different flavors):
 
  [Read more...](doc/api/core/locale.md)
 
+- **`[new] Globalize( locale|cldr )`**
+
+ Create a Globalize instance.
+
+ [Read more...](doc/api/core/constructor.md)
+
 <a name="date_module"></a>
 ### Date module
 
-- **`Globalize.formatDate( value, format [, locale|cldr] )`**
+- **`.formatDate( value, format )`**
 
-  Format a date according to the given format and locale. The default locale is
-  used if none is specified.
+  Format a date `value` according to the given `format`.
 
  [Read more...](doc/api/date/format.md)
 
-- **`Globalize.parseDate( value [, formats] [, locale|cldr] )`**
+- **`.parseDate( value [, formats] )`**
 
- Parse a string representing a date into a JavaScript Date object, taking into
- account the given possible formats (or the given locale's set of preset formats
- if not provided). As before, the default locale is used if one is not
- specified.
+  Parse a string representing a date into a JavaScript Date object, taking into
+  account the given possible formats (or the given locale's set of preset
+  formats if not provided).
 
  [Read more...](doc/api/date/parse.md)
 
 <a name="message_module"></a>
 ### Message module
 
-- **`Globalize.loadMessages( locale, messageData )`**
+- **`.loadMessages( messageData )`**
 
- Load message data per locale.
+ Load message data.
 
  [Read more...](doc/api/message/load.md)
 
-- **`Globalize.translate( path [, locale|cldr] )`**
+- **`.translate( path )`**
 
  Translate item given its path.
 
@@ -243,14 +247,13 @@ to you in different flavors):
 <a name="number_module"></a>
 ### Number module
 
-- **`Globalize.formatNumber( value [, attributes] [, locale|cldr] )`**
+- **`.formatNumber( value [, attributes] )`**
 
-  Format a number according to the given attributes and the given locale (or the
-  default locale if not specified).
+  Format a number according to the given attributes.
 
  [Read more...](doc/api/number/format.md)
 
-- **`Globalize.parseNumber( value [, formats], [locale|cldr] )`**
+- **`.parseNumber( value [, formats] )`**
 
  TBD
 
