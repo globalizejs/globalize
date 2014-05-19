@@ -86,7 +86,7 @@ test( "should parse raw patterns", function() {
 test( "should parse a formatted date (reverse operation test)", function() {
 	date = new Date();
 	date = startOf( date, "minute" );
-	deepEqual( Globalize.parseDate( Globalize.formatDate( date, { datetime: "short" } ), { datetime: "short" } ), date, "" );
+	deepEqual( Globalize.parseDate( Globalize.formatDate( date, { datetime: "short" } ), { datetime: "short" } ), date );
 });
 
 });
