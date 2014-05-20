@@ -21,11 +21,11 @@ module( "Number Integer and Fraction Format" );
  */
 
 test( "should zero-pad minimum integer digits", function() {
-	equal( formatIntegerFractionDigits( pi, 2, null, null, round, null ), "03", "" );
+	equal( formatIntegerFractionDigits( pi, 2, null, null, round, null ), "03" );
 });
 
 test( "should not limit the maximum number of digits of integers", function() {
-	equal( formatIntegerFractionDigits( earthDiameter, 1, null, null, round, null ), "12735", "" );
+	equal( formatIntegerFractionDigits( earthDiameter, 1, null, null, round, null ), "12735" );
 });
 
 /**
@@ -33,41 +33,41 @@ test( "should not limit the maximum number of digits of integers", function() {
  */
 
 test( "should limit maximum fraction digits", function() {
-	equal( formatIntegerFractionDigits( pi, 1, 0, 2, round, null ), "3.14", "" );
-	equal( formatIntegerFractionDigits( pi, 1, 4, 4, round, null ), "3.1416", "" );
+	equal( formatIntegerFractionDigits( pi, 1, 0, 2, round, null ), "3.14" );
+	equal( formatIntegerFractionDigits( pi, 1, 4, 4, round, null ), "3.1416" );
 });
 
 test( "should zero-pad minimum fraction digits", function() {
-	equal( formatIntegerFractionDigits( deci, 1, 2, 2, round, null ), "0.10", "" );
+	equal( formatIntegerFractionDigits( deci, 1, 2, 2, round, null ), "0.10" );
 });
 
 test( "should allow rounding", function() {
-	equal( formatIntegerFractionDigits( pi, 1, 2, 2, round, 0.10 ), "3.10", "" );
+	equal( formatIntegerFractionDigits( pi, 1, 2, 2, round, 0.10 ), "3.10" );
 });
 
 test( "should allow different rounding options", function() {
-	equal( formatIntegerFractionDigits( pi, 1, 0, 2, ceil, null ), "3.15", "" );
-	equal( formatIntegerFractionDigits( pi, 1, 0, 2, floor, null ), "3.14", "" );
-	equal( formatIntegerFractionDigits( pi, 1, 0, 2, round, null ), "3.14", "" );
-	equal( formatIntegerFractionDigits( pi, 1, 0, 2, truncate, null ), "3.14", "" );
-	equal( formatIntegerFractionDigits( pi, 1, 0, 4, ceil, null ), "3.1416", "" );
-	equal( formatIntegerFractionDigits( pi, 1, 0, 4, floor, null), "3.1415", "" );
-	equal( formatIntegerFractionDigits( pi, 1, 0, 4, round, null ), "3.1416", "" );
-	equal( formatIntegerFractionDigits( pi, 1, 0, 4, truncate, null ), "3.1415", "" );
-	equal( formatIntegerFractionDigits( -pi, 1, 0, 2, ceil, null ), "-3.14", "" );
-	equal( formatIntegerFractionDigits( -pi, 1, 0, 2, floor, null ), "-3.15", "" );
-	equal( formatIntegerFractionDigits( -pi, 1, 0, 2, round, null ), "-3.14", "" );
-	equal( formatIntegerFractionDigits( -pi, 1, 0, 2, truncate, null ), "-3.14", "" );
-	equal( formatIntegerFractionDigits( -pi, 1, 0, 4, ceil, null ), "-3.1415", "" );
-	equal( formatIntegerFractionDigits( -pi, 1, 0, 4, floor, null ), "-3.1416", "" );
-	equal( formatIntegerFractionDigits( -pi, 1, 0, 4, round, null ), "-3.1416", "" );
-	equal( formatIntegerFractionDigits( -pi, 1, 0, 4, truncate, null ), "-3.1415", "" );
+	equal( formatIntegerFractionDigits( pi, 1, 0, 2, ceil, null ), "3.15" );
+	equal( formatIntegerFractionDigits( pi, 1, 0, 2, floor, null ), "3.14" );
+	equal( formatIntegerFractionDigits( pi, 1, 0, 2, round, null ), "3.14" );
+	equal( formatIntegerFractionDigits( pi, 1, 0, 2, truncate, null ), "3.14" );
+	equal( formatIntegerFractionDigits( pi, 1, 0, 4, ceil, null ), "3.1416" );
+	equal( formatIntegerFractionDigits( pi, 1, 0, 4, floor, null), "3.1415" );
+	equal( formatIntegerFractionDigits( pi, 1, 0, 4, round, null ), "3.1416" );
+	equal( formatIntegerFractionDigits( pi, 1, 0, 4, truncate, null ), "3.1415" );
+	equal( formatIntegerFractionDigits( -pi, 1, 0, 2, ceil, null ), "-3.14" );
+	equal( formatIntegerFractionDigits( -pi, 1, 0, 2, floor, null ), "-3.15" );
+	equal( formatIntegerFractionDigits( -pi, 1, 0, 2, round, null ), "-3.14" );
+	equal( formatIntegerFractionDigits( -pi, 1, 0, 2, truncate, null ), "-3.14" );
+	equal( formatIntegerFractionDigits( -pi, 1, 0, 4, ceil, null ), "-3.1415" );
+	equal( formatIntegerFractionDigits( -pi, 1, 0, 4, floor, null ), "-3.1416" );
+	equal( formatIntegerFractionDigits( -pi, 1, 0, 4, round, null ), "-3.1416" );
+	equal( formatIntegerFractionDigits( -pi, 1, 0, 4, truncate, null ), "-3.1415" );
 });
 
 // Fix #227
 test( "should ignore decimal error", function() {
-	equal( formatIntegerFractionDigits( 12341234.233, 1, 1, 3, round, null ), "12341234.233", "" );
-	equal( formatIntegerFractionDigits( 1234 * 0.0001, 1, 1, 4, round, null ), "0.1234", "" );
+	equal( formatIntegerFractionDigits( 12341234.233, 1, 1, 3, round, null ), "12341234.233" );
+	equal( formatIntegerFractionDigits( 1234 * 0.0001, 1, 1, 4, round, null ), "0.1234" );
 });
 
 });
