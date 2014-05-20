@@ -1,9 +1,28 @@
 define([
-	"cldr"
-], function( Cldr ) {
+	"cldr",
+	"./util/always-cldr"
+], function( Cldr, alwaysCldr ) {
 
-var defaultCldr,
-	Globalize = {};
+/**
+ * [new] Globalize( locale )
+ *
+ * @locale [String]
+ *
+ * @cldr [Cldr instance]
+ *
+ * Create a Globalize instance.
+ */
+function Globalize( locale ) {
+	if ( !( this instanceof Globalize ) ) {
+		return new Globalize( locale );
+	}
+
+	if ( !locale ) {
+		throw new Error( "Missing locale" );
+	}
+
+	this.cldr = alwaysCldr( locale );
+}
 
 /**
  * Globalize.load( json )
@@ -30,9 +49,9 @@ Globalize.load = function( json ) {
  */
 Globalize.locale = function( locale ) {
 	if ( arguments.length ) {
-		defaultCldr = locale instanceof Cldr ? locale : new Cldr( locale );
+		this.cldr = alwaysCldr( locale );
 	}
-	return defaultCldr;
+	return this.cldr;
 };
 
 return Globalize;

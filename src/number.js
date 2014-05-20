@@ -1,12 +1,11 @@
 define([
-	"./common/get-cldr",
 	"./core",
 	"./number/format",
 	"./number/pattern"
-], function( commonGetCldr, Globalize, numberFormat, numberPattern ) {
+], function( Globalize, numberFormat, numberPattern ) {
 
 /**
- * Globalize.formatNumber( value, pattern, locale )
+ * .formatNumber( value, pattern )
  *
  * @value [Number]
  *
@@ -14,39 +13,37 @@ define([
  * - style: [String] "decimal" (default) or "percent".
  * - see also number/format options.
  *
- * @locale [String]
- *
- * Format a number according to the given attributes and the given locale (or the default locale if not specified).
+ * Format a number according to the given attributes and default/instance locale.
  */
-Globalize.formatNumber = function( value, attributes, locale ) {
-	var pattern;
+Globalize.formatNumber =
+Globalize.prototype.formatNumber = function( value, attributes ) {
+	var cldr, pattern;
 
 	if ( typeof value !== "number" ) {
 		throw new Error( "Value is not a number" );
 	}
 
 	attributes = attributes || {};
-	locale = commonGetCldr( locale );
+	cldr = this.cldr;
 
 	if ( !attributes.pattern ) {
-		pattern = numberPattern( attributes.style || "decimal", locale );
+		pattern = numberPattern( attributes.style || "decimal", cldr );
 	}
 
-	return numberFormat( value, pattern, locale, attributes );
+	return numberFormat( value, pattern, cldr, attributes );
 };
 
 /**
- * Globalize.parseNumber( value, patterns, locale )
+ * .parseNumber( value, patterns )
  *
  * @value [String]
  *
  * @patterns [TBD]
  *
- * @locale [String]
- *
  * Return a Number or null.
  */
-Globalize.parseNumber = function( /*value, patterns, locale*/ ) {
+Globalize.parseNumber =
+Globalize.prototype.parseNumber = function( /*value, patterns*/ ) {
 	return null;
 };
 

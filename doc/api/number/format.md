@@ -1,8 +1,6 @@
-## Globalize.formatNumber( value [, attributes] [, locale|cldr] )
+## .formatNumber( value [, attributes] )
 
-Format a number `value` according to the given `attributes` and `[locale|cldr]` 
-(locale string or [Cldr instance](https://github.com/rxaviers/cldrjs), or the
-default locale if not specified).
+Format a number `value` according to the given `attributes`.
 
 ### Parameters
 
@@ -46,23 +44,30 @@ A JSON object including none or any of the following attributes.
 > Boolean (default is true) value indicating whether a grouping separator should
 > be used.
 
-**locale|cldr** Optional
-
-Locale string or [Cldr instance](https://github.com/rxaviers/cldrjs) that
-overrides default.
-
 ### Example
+
+You can use the static method `Globalize.formatNumber()`, which uses the default
+locale.
 
 ```javascript
 Globalize.locale( "en" );
 Globalize.formatNumber( 3.141592 );           // "3.142"
-Globalize.formatNumber( 3.141592, {}, "es" ); // "3,142"
-Globalize.formatNumber( 3.141592, {}, "ar" ); // "3٫142"
+```
+
+You can use the instance method `.formatNumber()`, which uses the instance
+locale.
+
+```javascript
+var ar = new Globalize( "ar" ),
+  es = new Globalize( "es" );
+
+ar.formatNumber( 3.141592 ); // "3٫142"
+es.formatNumber( 3.141592 ); // "3,142"
 ```
 
 Controlling digits by specifying integer and fraction digits counts:
 
-```
+```javascript
 Globalize.formatNumber( 3.141592, { maximumFractionDigits: 2 } );
 // "3.14"
 
@@ -72,7 +77,7 @@ Globalize.formatNumber( 1.5, { minimumFractionDigits: 2 } );
 
 Controlling digits by specifying significant digits counts:
 
-```
+```javascript
 Globalize.formatNumber( 3.141592, {
   minimumSignificantDigits: 1,
   maximumSignificantDigits: 3
@@ -85,7 +90,7 @@ Globalize.formatNumber( 12345, {
 });
 // "12,300"
 
-equal( Globalize.formatNumber( 0.00012345, {
+Globalize.formatNumber( 0.00012345, {
     minimumSignificantDigits: 1,
     maximumSignificantDigits: 3
 });
@@ -94,7 +99,7 @@ equal( Globalize.formatNumber( 0.00012345, {
 
 Using different rounding functions example:
 
-```
+```javascript
 Globalize.formatNumber( 3.141592, { maximumFractionDigits: 2, round: "ceil" } );
 // "3.15"
 ```

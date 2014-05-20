@@ -1,8 +1,6 @@
-## Globalize.formatDate( value, format [, locale|cldr] )
+## .formatDate( value, format )
 
-Format a date `value` according to the given `format` and `[locale|cldr]`
-(locale string or [Cldr instance](https://github.com/rxaviers/cldrjs), or the
-default locale if not specified).
+Format a date `value` according to the given `format`.
 
 ### Parameters
 
@@ -61,18 +59,22 @@ Or, a JSON object including one of the following.
 >
 > Use skeletons for i18n purposes.
 
-**locale|cldr** Optional
-
-Locale string or [Cldr instance](https://github.com/rxaviers/cldrjs) that
-overrides default.
-
 ### Example
 
+You can use the static method `Globalize.formatDate()`, which uses the default
+locale.
+
 ```javascript
+Globalize.locale( "en" );
 Globalize.formatDate( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" } );
 // "11/30/10, 5:55 PM"
+```
 
-Globalize.formatDate( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" }, "de" );
+You can use the instance method `.formatDate()`, which uses the instance locale.
+
+```javascript
+var de = new Globalize( "de" );
+de.formatDate( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" } );
 // "30.11.10 17:55"
 ```
 

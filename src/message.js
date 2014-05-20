@@ -1,41 +1,36 @@
 define([
 	"cldr",
-	"./common/get-cldr",
 	"./core",
 	"./util/always-array"
-], function( Cldr, commonGetCldr, Globalize, alwaysArray ) {
+], function( Cldr, Globalize, alwaysArray ) {
 
 /**
- * Globalize.loadMessages( locale, json )
- *
- * @locale [String]
+ * .loadMessages( json )
  *
  * @json [JSON]
  *
- * Load messages (translation) data per locale.
+ * Load messages (translation) data for default/instance locale.
  */
-Globalize.loadMessages = function( locale, json ) {
-	var cldr = new Cldr( locale ),
-		customData = {
-			"globalize-messages": {}
-		};
-	customData[ "globalize-messages" ][ cldr.attributes.languageId ] = json;
+Globalize.loadMessages =
+Globalize.prototype.loadMessages = function( json ) {
+	var customData = {
+		"globalize-messages": {}
+	};
+	customData[ "globalize-messages" ][ this.cldr.attributes.languageId ] = json;
 	Cldr.load( customData );
 };
 
 /**
- * Globalize.translate( path, locale )
+ * .translate( path )
  *
  * @path [String or Array]
  *
- * @locale [String]
- *
  * Translate item given its path.
  */
-Globalize.translate = function( path , locale ) {
-	var cldr = commonGetCldr( locale );
+Globalize.translate =
+Globalize.prototype.translate = function( path ) {
 	path = alwaysArray( path );
-	return cldr.get( [ "globalize-messages/{languageId}" ].concat( path ) );
+	return this.cldr.get( [ "globalize-messages/{languageId}" ].concat( path ) );
 };
 
 return Globalize;

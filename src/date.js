@@ -1,6 +1,5 @@
 define([
 	"cldr",
-	"./common/get-cldr",
 	"./core",
 	"./date/all-presets",
 	"./date/expand-pattern",
@@ -9,20 +8,19 @@ define([
 	"./util/always-array",
 	"./util/array/some",
 	"cldr/supplemental"
-], function( Cldr, commonGetCldr, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray, arraySome ) {
+], function( Cldr, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray, arraySome ) {
 
 /**
- * Globalize.formatDate( value, pattern, locale )
+ * .formatDate( value, pattern )
  *
  * @value [Date]
  *
  * @pattern [String or Object] see date/expand_pattern for more info.
  *
- * @locale [String]
- *
- * Formats a date or number according to the given pattern string and the given locale (or the default locale if not specified).
+ * Formats a date or number according to the given pattern string and the default/instance locale.
  */
-Globalize.formatDate = function( value, pattern, locale ) {
+Globalize.formatDate =
+Globalize.prototype.formatDate = function( value, pattern ) {
 	var cldr;
 
 	if ( !( value instanceof Date ) ) {
@@ -33,29 +31,29 @@ Globalize.formatDate = function( value, pattern, locale ) {
 		throw new Error( "Missing pattern" );
 	}
 
-	cldr = commonGetCldr( locale );
+	cldr = this.cldr;
 	pattern = dateExpandPattern( pattern, cldr );
 	return dateFormat( value, pattern, cldr );
 };
 
 /**
- * Globalize.parseDate( value, patterns, locale )
+ * .parseDate( value, patterns )
  *
  * @value [String]
  *
  * @patterns [Array] Optional. See date/expand_pattern for more info about each pattern. Defaults to the list of all presets defined in the locale (see date/all_presets for more info).
  *
- * @locale [String]
- *
  * Return a Date instance or null.
  */
-Globalize.parseDate = function( value, patterns, locale ) {
-	var date,
-		cldr = commonGetCldr( locale );
+Globalize.parseDate =
+Globalize.prototype.parseDate = function( value, patterns ) {
+	var cldr, date;
 
 	if ( typeof value !== "string" ) {
 		throw new Error( "invalid value (" + value + "), string expected" );
 	}
+
+	cldr = this.cldr;
 
 	if ( !patterns ) {
 		patterns = dateAllPresets( cldr );
