@@ -120,7 +120,7 @@ module.exports = function( grunt ) {
 						.replace( /define\(\[[^\]]+\]\)[\W\n]+$/, "" ); /* 3 */
 
 					// Type b (not as simple as a single return)
-					if ( [ "date/parse" ].indexOf( id ) !== -1 ) {
+					if ( [ "date/parse", "unit/get" ].indexOf( id ) !== -1 ) {
 						contents = "var " + name + " = (function() {" +
 							contents + "}());";
 					}
