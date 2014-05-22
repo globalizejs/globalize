@@ -1,5 +1,5 @@
 define([
-	"../pattern-re",
+	"./pattern-re",
 ], function( numberPatternRe ) {
 
 /**

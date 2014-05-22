@@ -23,7 +23,8 @@ require([
 	"./unit/number/format/integer-fraction-digits",
 	"./unit/number/format/significant-digits",
 	"./unit/number/format/grouping-separator",
-	"./unit/number/format"
+	"./unit/number/format",
+	"./unit/number/parse"
 
 ], function() {
 	QUnit.start();

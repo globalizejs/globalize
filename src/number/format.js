@@ -1,12 +1,12 @@
 define([
 	"./format/grouping-separator",
 	"./format/integer-fraction-digits",
-	"./format/properties",
 	"./format/significant-digits",
+	"./pattern-properties",
 	"./symbol",
 	"./symbol/name",
 	"../util/number/round"
-], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatProperties, numberFormatSignificantDigits, numberSymbol, numberSymbolName, numberRound ) {
+], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName, numberRound ) {
 
 /**
  * format( number, pattern, cldr [, options] )
@@ -39,7 +39,7 @@ return function( number, pattern, cldr, options ) {
 
 	options = options || {};
 	round = numberRound( options.round );
-	properties = numberFormatProperties( pattern[ 0 ] );
+	properties = numberPatternProperties( pattern[ 0 ] );
 	padding = properties[ 1 ];
 	minimumIntegerDigits = options.minimumIntegerDigits || properties[ 2 ];
 	minimumFractionDigits = options.minimumFractionDigits || properties[ 3 ];
@@ -56,7 +56,7 @@ return function( number, pattern, cldr, options ) {
 
 		// "If there is no explicit negative subpattern, the negative subpattern is the localized minus sign prefixed to the positive subpattern" UTS#35
 		pattern = pattern[ 1 ] || "-" + pattern[ 0 ];
-		properties = numberFormatProperties( pattern );
+		properties = numberPatternProperties( pattern );
 	} else {
 		pattern = pattern[ 0 ];
 	}

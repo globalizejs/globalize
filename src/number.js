@@ -1,8 +1,9 @@
 define([
 	"./core",
 	"./number/format",
+	"./number/parse",
 	"./number/pattern"
-], function( Globalize, numberFormat, numberPattern ) {
+], function( Globalize, numberFormat, numberParse, numberPattern ) {
 
 /**
  * .formatNumber( value, pattern )
@@ -34,17 +35,26 @@ Globalize.prototype.formatNumber = function( value, attributes ) {
 };
 
 /**
- * .parseNumber( value, patterns )
+ * .parseNumber( value )
  *
  * @value [String]
  *
- * @patterns [TBD]
- *
- * Return a Number or null.
+ * Return the parsed Number (including Infinity) or NaN when value is invalid.
  */
 Globalize.parseNumber =
-Globalize.prototype.parseNumber = function( /*value, patterns*/ ) {
-	return null;
+Globalize.prototype.parseNumber = function( value ) {
+	var cldr, pattern;
+
+	if ( typeof value !== "string" ) {
+		throw new Error( "Value is not a string" );
+	}
+
+	cldr = this.cldr;
+
+	// TODO: What about per mille? Which "style" does it belong to?
+	pattern = numberPattern( value.indexOf( "%" ) !== -1 ? "percent" : "decimal", cldr );
+
+	return numberParse( value, pattern, cldr );
 };
 
 return Globalize;
