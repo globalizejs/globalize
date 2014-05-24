@@ -207,4 +207,21 @@ test( "should format negative mille", function() {
 	equal( format( -0.001, "0\u2030;(0)\u2030", en ), "(1)\u2030" );
 });
 
+/**
+ *  Infinity
+ */
+
+test( "should format infinite numbers", function() {
+	equal( format( Math.pow(2, 2000), "0", en ), "∞" );
+	equal( format( Math.pow(-2, 2001), "0", en ), "-∞" );
+});
+
+/**
+ *  NaN
+ */
+
+test( "should format infinite numbers", function() {
+	equal( format( NaN, "0", en ), "NaN" );
+});
+
 });

@@ -1,17 +1,20 @@
 define([
-	"./numbering-system",
-	"./symbol/name"
-], function( numberNumberingSystem, numberSymbolName ) {
+	"./numbering-system"
+], function( numberNumberingSystem ) {
 
 /**
- * MinusSign( symbol, cldr )
+ * Symbol( name, cldr )
  *
- * Return the localized minus sign.
+ * @name [String] Symbol name.
+ *
+ * @cldr [Cldr instance].
+ *
+ * Return the localized symbol given its name.
  */
-return function( symbol, cldr ) {
+return function( name, cldr ) {
 	return cldr.main([
 		"numbers/symbols-numberSystem-" + numberNumberingSystem( cldr ),
-		numberSymbolName[ symbol ]
+		name
 	]);
 };
 

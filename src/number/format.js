@@ -4,8 +4,9 @@ define([
 	"./format/properties",
 	"./format/significant-digits",
 	"./symbol",
+	"./symbol/name",
 	"../util/number/round"
-], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatProperties, numberFormatSignificantDigits, numberSymbol, numberRound ) {
+], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatProperties, numberFormatSignificantDigits, numberSymbol, numberSymbolName, numberRound ) {
 
 /**
  * format( number, pattern, cldr [, options] )
@@ -117,7 +118,7 @@ return function( number, pattern, cldr, options ) {
 		if ( symbol.charAt( 0 ) === "'" ) {
 			return symbol;
 		}
-		return numberSymbol( symbol, cldr );
+		return numberSymbol( numberSymbolName[ symbol ], cldr );
 	});
 };
 
