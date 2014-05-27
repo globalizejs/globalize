@@ -77,7 +77,7 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://jquery.org/license"
+      "url": "https://github.com/jquery/globalize/blob/master/LICENSE.txt"
     }
   ],
   "scripts": {
