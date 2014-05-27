@@ -296,7 +296,7 @@ to you in different flavors):
 ├── dist/ (consumable files, the built files)
 ├── external/ (external dependencies, eg. cldr.js, QUnit, RequireJS)
 ├── Gruntfile.js (Grunt tasks)
-├── LICENSE (license file)
+├── LICENSE.txt (license file)
 ├── package.json (metadata file)
 ├── README.md (doc file)
 ├── src/ (source code)
@@ -366,8 +366,3 @@ automatically run unit and functional tests for you to ensure the built files
 are safe.
 
 The goal of the functional tests is to ensure that everything works as expected when it is combined.
-
-
-## License
-
-MIT © [jQuery Foundation](http://jquery.com/) and other contributors.
