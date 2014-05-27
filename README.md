@@ -253,9 +253,9 @@ to you in different flavors):
 
  [Read more...](doc/api/number/format.md)
 
-- **`.parseNumber( value [, formats] )`**
+- **`.parseNumber( value )`**
 
- TBD
+  Parse a string representing a number.
 
 
 <a name="development"></a>
