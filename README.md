@@ -253,9 +253,12 @@ to you in different flavors):
 
  [Read more...](doc/api/number/format.md)
 
-- **`.parseNumber( value [, formats] )`**
+- **`.parseNumber( value )`**
 
- TBD
+  Parse a string representing a number taking into account the localized
+  symbols. If value is invalid, `NaN` is returned.
+
+ [Read more...](doc/api/number/parse.md)
 
 
 <a name="development"></a>
