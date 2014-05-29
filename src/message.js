@@ -5,18 +5,16 @@ define([
 ], function( Cldr, Globalize, alwaysArray ) {
 
 /**
- * .loadMessages( json )
+ * .loadTranslations( json )
  *
  * @json [JSON]
  *
- * Load messages (translation) data for default/instance locale.
+ * Load translation data.
  */
-Globalize.loadMessages =
-Globalize.prototype.loadMessages = function( json ) {
+Globalize.loadTranslations = function( json ) {
 	var customData = {
-		"globalize-messages": {}
+		"globalize-translations": json
 	};
-	customData[ "globalize-messages" ][ this.cldr.attributes.languageId ] = json;
 	Cldr.load( customData );
 };
 
@@ -30,7 +28,7 @@ Globalize.prototype.loadMessages = function( json ) {
 Globalize.translate =
 Globalize.prototype.translate = function( path ) {
 	path = alwaysArray( path );
-	return this.cldr.get( [ "globalize-messages/{languageId}" ].concat( path ) );
+	return this.cldr.get( [ "globalize-translations/{languageId}" ].concat( path ) );
 };
 
 return Globalize;
