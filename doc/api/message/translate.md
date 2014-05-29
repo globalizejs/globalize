@@ -2,10 +2,14 @@
 
 Translate item given its path.
 
+For translation inheritance, see the [Example section of
+.loadTranslations()](./load-translation.md#example).
+
 ### Parameters
 **path**
 
-Translation item path.
+String or Array containing the translation item path, eg. `"greetings/bye"`, or
+`[ "greetings", "bye" ]`.
 
 ### Example
 
@@ -13,7 +17,13 @@ You can use the static method `Globalize.translate()`, which uses the default
 locale.
 
 ```javascript
-Globalize.locale( "pt_BR" );
+Globalize.loadTranslations({
+  greetings: {
+    bye: "Tchau"
+  }
+});
+
+Globalize.locale( "pt-BR" );
 Globalize.translate( "greetings/bye" );
 // ➡ "Tchau"
 ```

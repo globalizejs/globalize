@@ -19,6 +19,9 @@ require([
 	"./unit/date/tokenizer",
 	"./unit/date/parse",
 
+	/* message */
+	"./unit/message/translate",
+
 	/* number */
 	"./unit/number/format/integer-fraction-digits",
 	"./unit/number/format/significant-digits",

@@ -15,6 +15,9 @@ require([
 	"./functional/date/format",
 	"./functional/date/parse",
 
+	/* message */
+	"./functional/message/translate",
+
 	/* number */
 	"./functional/number/format",
 	"./functional/number/parse"

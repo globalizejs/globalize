@@ -232,11 +232,11 @@ to you in different flavors):
 <a name="message_module"></a>
 ### Message module
 
-- **`.loadMessages( messageData )`**
+- **`Globalize.loadTranslations( json )`**
 
- Load message data.
+ Load translation data.
 
- [Read more...](doc/api/message/load.md)
+ [Read more...](doc/api/message/load-translation.md)
 
 - **`.translate( path )`**
 
