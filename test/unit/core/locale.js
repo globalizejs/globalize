@@ -6,17 +6,17 @@ define([
 
 Cldr.load( likelySubtags );
 
-module( "Globalize.locale" );
+QUnit.module( "Globalize.locale" );
 
-test( "should allow String locale", function() {
+QUnit.test( "should allow String locale", function( assert ) {
 	var en = Globalize.locale( "en" );
-	equal( en.locale, "en" );
-	equal( en instanceof Cldr, true );
+	assert.equal( en.locale, "en" );
+	assert.equal( en instanceof Cldr, true );
 });
 
-test( "should allow Cldr instance to be passed as locale", function() {
+QUnit.test( "should allow Cldr instance to be passed as locale", function( assert ) {
 	var en = new Cldr( "en" );
-	equal( Globalize.locale( en ).locale, "en" );
+	assert.equal( Globalize.locale( en ).locale, "en" );
 });
 
 });

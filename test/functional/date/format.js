@@ -17,42 +17,42 @@ Globalize.load( timeData );
 Globalize.load( weekData );
 Globalize.locale( "en" );
 
-module( "Datetime Format" );
+QUnit.module( "Datetime Format" );
 
-test( "should format skeleton", function() {
-	equal( Globalize.formatDate( date, { skeleton: "d" } ), "15" );
-	equal( Globalize.formatDate( date, { skeleton: "Ed" } ), "15 Wed" );
-	equal( Globalize.formatDate( date, { skeleton: "Ehms" } ), "Wed 5:35:07 PM" );
-	equal( Globalize.formatDate( date, { skeleton: "GyMMMEd" } ), "Wed, Sep 15, 2010 AD" );
-	equal( Globalize.formatDate( date, { skeleton: "yMd" } ), "9/15/2010" );
-	equal( Globalize.formatDate( date, { skeleton: "yQQQ" } ), "Q3 2010" );
+QUnit.test( "should format skeleton", function( assert ) {
+	assert.equal( Globalize.formatDate( date, { skeleton: "d" } ), "15" );
+	assert.equal( Globalize.formatDate( date, { skeleton: "Ed" } ), "15 Wed" );
+	assert.equal( Globalize.formatDate( date, { skeleton: "Ehms" } ), "Wed 5:35:07 PM" );
+	assert.equal( Globalize.formatDate( date, { skeleton: "GyMMMEd" } ), "Wed, Sep 15, 2010 AD" );
+	assert.equal( Globalize.formatDate( date, { skeleton: "yMd" } ), "9/15/2010" );
+	assert.equal( Globalize.formatDate( date, { skeleton: "yQQQ" } ), "Q3 2010" );
 
 	// Passed as string
-	equal( Globalize.formatDate( date, "GyMMMEd" ), "Wed, Sep 15, 2010 AD" );
+	assert.equal( Globalize.formatDate( date, "GyMMMEd" ), "Wed, Sep 15, 2010 AD" );
 
 	// Via instance .formatDate().
-	equal( Globalize( "pt" ).formatDate( date, { skeleton: "Ehms" } ), "qua, 5:35:07 PM" );
-	equal( Globalize( "pt" ).formatDate( date, { skeleton: "GyMMMEd" } ), "qua, 15 'de' set 'de' 2010 d.C." );
+	assert.equal( Globalize( "pt" ).formatDate( date, { skeleton: "Ehms" } ), "qua, 5:35:07 PM" );
+	assert.equal( Globalize( "pt" ).formatDate( date, { skeleton: "GyMMMEd" } ), "qua, 15 'de' set 'de' 2010 d.C." );
 });
 
-test( "should format time presets", function() {
-	equal( Globalize.formatDate( date, { time: "medium" } ), "5:35:07 PM" );
-	equal( Globalize.formatDate( date, { time: "short" } ), "5:35 PM" );
+QUnit.test( "should format time presets", function( assert ) {
+	assert.equal( Globalize.formatDate( date, { time: "medium" } ), "5:35:07 PM" );
+	assert.equal( Globalize.formatDate( date, { time: "short" } ), "5:35 PM" );
 });
 
-test( "should format date presets", function() {
-	equal( Globalize.formatDate( date, { date: "full" } ), "Wednesday, September 15, 2010" );
-	equal( Globalize.formatDate( date, { date: "long" } ), "September 15, 2010" );
-	equal( Globalize.formatDate( date, { date: "medium" } ), "Sep 15, 2010" );
-	equal( Globalize.formatDate( date, { date: "short" } ), "9/15/10" );
+QUnit.test( "should format date presets", function( assert ) {
+	assert.equal( Globalize.formatDate( date, { date: "full" } ), "Wednesday, September 15, 2010" );
+	assert.equal( Globalize.formatDate( date, { date: "long" } ), "September 15, 2010" );
+	assert.equal( Globalize.formatDate( date, { date: "medium" } ), "Sep 15, 2010" );
+	assert.equal( Globalize.formatDate( date, { date: "short" } ), "9/15/10" );
 });
 
-test( "should format datetime presets", function() {
-	equal( Globalize.formatDate( date, { datetime: "medium" } ), "Sep 15, 2010, 5:35:07 PM" );
+QUnit.test( "should format datetime presets", function( assert ) {
+	assert.equal( Globalize.formatDate( date, { datetime: "medium" } ), "Sep 15, 2010, 5:35:07 PM" );
 });
 
-test( "should format raw patterns", function() {
-	equal( Globalize.formatDate( date, { pattern: "E, MMM d, y G" } ), "Wed, Sep 15, 2010 AD" );
+QUnit.test( "should format raw patterns", function( assert ) {
+	assert.equal( Globalize.formatDate( date, { pattern: "E, MMM d, y G" } ), "Wed, Sep 15, 2010 AD" );
 });
 
 });

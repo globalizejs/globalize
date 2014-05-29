@@ -14,12 +14,8 @@
 	"unused": true,
 
 	"globals": {
-		"deepEqual": false,
 		"define": false,
-		"equal": false,
-		"module": false,
-		"QUnit": false,
 		"require": false,
-		"test": false
+		"QUnit": false
 	}
 }
