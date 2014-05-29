@@ -1,4 +1,6 @@
-define(function() {
+define([
+	"../common/format-message"
+], function( formatMessage ) {
 
 /**
  * expandPattern( pattern, cldr )
@@ -53,15 +55,16 @@ return function( pattern, cldr ) {
 					pattern.datetime
 				]);
 				if ( result ) {
-					result = result
-						.replace( /\{0\}/, cldr.main([
+					result = formatMessage( result, [
+						cldr.main([
 							"dates/calendars/gregorian/timeFormats",
 							pattern.datetime
-						]))
-						.replace( /\{1\}/, cldr.main([
+						]),
+						cldr.main([
 							"dates/calendars/gregorian/dateFormats",
 							pattern.datetime
-						]));
+						])
+					]);
 				}
 				break;
 

@@ -100,7 +100,7 @@ module.exports = function( grunt ) {
 				// b) "Not as simple as a single return" means the define wrappers are replaced by a function wrapper call and the returned value is assigned to a var.
 				// c) "Module" means the define wrappers are removed, but content is untouched. Only for root id's (the ones in src, not in src's subpaths).
 				onBuildWrite: function ( id, path, contents ) {
-					var name = camelCase( id.replace(/util\//, "") );
+					var name = camelCase( id.replace( /util\/|common\//, "" ) );
 
 					// 1, and 2: Remove define() wrap.
 					// 3: Remove empty define()'s.

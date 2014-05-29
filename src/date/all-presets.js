@@ -1,6 +1,7 @@
 define([
+	"../common/format-message"
 	"../util/object/values"
-], function( objectValues ) {
+], function( formatMessage, objectValues ) {
 
 /**
  * allPreset()
@@ -26,15 +27,16 @@ return function( cldr ) {
 		if ( typeof datetimeFormat !== "string" ) {
 			return datetimeFormat;
 		}
-		return datetimeFormat
-			.replace( /\{0\}/, cldr.main([
+		return formatMessage( datetimeFormat, [
+			cldr.main([
 				"dates/calendars/gregorian/timeFormats",
 				key
-			]))
-			.replace( /\{1\}/, cldr.main([
+			]),
+			cldr.main([
 				"dates/calendars/gregorian/dateFormats",
 				key
-			]));
+			])
+		]);
 	}));
 
 	return result.map(function( pattern ) {
