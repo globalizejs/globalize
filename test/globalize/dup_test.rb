@@ -23,6 +23,27 @@ class DupTest < MiniTest::Spec
     end
   end
 
+  describe 'dup leaves original model alone' do
+
+    it 'should not update the existing model' do
+      original = saved_post
+      original_title = original.title
+
+      dupd = original.dup.tap do |new_model|
+        new_model.title = "Foo New Model"
+      end
+      original.translations.each do |translation|
+        dupd.translations << translation.dup
+      end
+      dupd.save!
+
+      original.reload
+      assert_equal "Foo New Model", dupd.title
+      assert_equal original_title, original.title
+    end
+
+  end
+
 
   private
 

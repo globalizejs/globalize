@@ -99,6 +99,8 @@ module Globalize
       end
 
       def initialize_dup(other)
+        @globalize = nil
+        @translation_caches = nil
         super
         other.each_locale_and_translated_attribute do |locale, name|
           globalize.write(locale, name, other.globalize.fetch(locale, name) )
