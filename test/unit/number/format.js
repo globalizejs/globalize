@@ -1,6 +1,6 @@
 define([
 	"cldr",
-	"globalize/number/format",
+	"src/number/format",
 	"json!fixtures/cldr/main/ar/numbers.json",
 	"json!fixtures/cldr/main/en/numbers.json",
 	"json!fixtures/cldr/main/es/numbers.json",

@@ -1,6 +1,6 @@
 define([
 	"cldr",
-	"globalize/date/tokenizer",
+	"src/date/tokenizer",
 	"json!fixtures/cldr/main/en/ca-gregorian.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"json!fixtures/cldr/supplemental/timeData.json",

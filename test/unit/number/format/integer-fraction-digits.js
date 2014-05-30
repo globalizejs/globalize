@@ -1,6 +1,6 @@
 define([
-	"globalize/number/format/integer-fraction-digits",
-	"globalize/util/number/round"
+	"src/number/format/integer-fraction-digits",
+	"src/util/number/round"
 ], function( formatIntegerFractionDigits, round ) {
 
 // 1: Earth average diameter according to:

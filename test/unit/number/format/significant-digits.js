@@ -1,6 +1,6 @@
 define([
-	"globalize/number/format/significant-digits",
-	"globalize/util/number/round"
+	"src/number/format/significant-digits",
+	"src/util/number/round"
 ], function( formatSignificantDigits, round ) {
 
 var ceil = round( "ceil" ),

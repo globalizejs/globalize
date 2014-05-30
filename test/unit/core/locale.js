@@ -1,6 +1,6 @@
 define([
 	"cldr",
-	"globalize/core",
+	"src/core",
 	"json!fixtures/cldr/supplemental/likelySubtags.json"
 ], function( Cldr, Globalize, likelySubtags ) {
 

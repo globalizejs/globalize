@@ -1,8 +1,8 @@
 define([
-	"globalize/core",
+	"src/core",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"cldr/unresolved",
-	"globalize/message"
+	"src/message"
 ], function( Globalize, likelySubtags ) {
 
 Globalize.load( likelySubtags );
