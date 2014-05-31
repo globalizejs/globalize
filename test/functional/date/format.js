@@ -5,8 +5,9 @@ define([
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"json!fixtures/cldr/supplemental/timeData.json",
 	"json!fixtures/cldr/supplemental/weekData.json",
+	"../../util",
 	"globalize/date"
-], function( Globalize, enCaGregorian, ptCaGregorian, likelySubtags, timeData, weekData ) {
+], function( Globalize, enCaGregorian, ptCaGregorian, likelySubtags, timeData, weekData, util ) {
 
 var date = new Date( 2010, 8, 15, 17, 35, 7, 369 );
 
@@ -18,6 +19,28 @@ Globalize.load( weekData );
 Globalize.locale( "en" );
 
 QUnit.module( "Datetime Format" );
+
+QUnit.test( "should validate parameters", function( assert ) {
+	util.assertParameterPresence( assert, "value", function() {
+		Globalize.formatDate();
+	});
+
+	util.assertDateParameter( assert, "value", function( invalidValue ) {
+		return function() {
+			Globalize.formatDate( invalidValue, "GyMMMEd" );
+		};
+	});
+
+	util.assertParameterPresence( assert, "pattern", function() {
+		Globalize.formatDate( date );
+	});
+
+	util.assertDatePatternParameter( assert, "pattern", function( invalidPattern ) {
+		return function() {
+			Globalize.formatDate( date, invalidPattern );
+		};
+	});
+});
 
 QUnit.test( "should format skeleton", function( assert ) {
 	assert.equal( Globalize.formatDate( date, { skeleton: "d" } ), "15" );

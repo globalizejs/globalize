@@ -6,8 +6,9 @@ define([
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"json!fixtures/cldr/supplemental/timeData.json",
 	"json!fixtures/cldr/supplemental/weekData.json",
+	"../../util",
 	"globalize/date"
-], function( Globalize, startOf, enCaGregorian, ptCaGregorian, likelySubtags, timeData, weekData ) {
+], function( Globalize, startOf, enCaGregorian, ptCaGregorian, likelySubtags, timeData, weekData, util ) {
 
 var date;
 
@@ -23,6 +24,24 @@ QUnit.module( "Datetime Parse" );
 function assertParseDate( assert, input, options, output ) {
 	assert.deepEqual( Globalize.parseDate( input, options ), output, JSON.stringify( options ) );
 }
+
+QUnit.test( "should validate parameters", function( assert ) {
+	util.assertParameterPresence( assert, "value", function() {
+		Globalize.parseDate();
+	});
+
+	util.assertStringParameter( assert, "value", function( invalidValue ) {
+		return function() {
+			Globalize.parseDate( invalidValue );
+		};
+	});
+
+	util.assertDatePatternParameter( assert, "patterns", function( invalidValue ) {
+		return function() {
+			Globalize.parseDate( "15 Wed", [ invalidValue ] );
+		};
+	});
+});
 
 QUnit.test( "should parse skeleton", function( assert ) {
 	date = new Date();

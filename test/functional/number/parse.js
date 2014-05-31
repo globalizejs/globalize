@@ -6,8 +6,9 @@ define([
 	"json!fixtures/cldr/main/es/numbers.json",
 	"json!fixtures/cldr/main/sv/numbers.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
+	"../../util",
 	"globalize/number"
-], function( Globalize, arNumbers, dzNumbers, enNumbers, esNumbers, svNumbers, likelySubtags ) {
+], function( Globalize, arNumbers, dzNumbers, enNumbers, esNumbers, svNumbers, likelySubtags, util ) {
 
 var ar, dz, es, sv;
 
@@ -25,6 +26,18 @@ sv = new Globalize( "sv" );
 Globalize.locale( "en" );
 
 QUnit.module( "Number Parse" );
+
+QUnit.test( "should validate parameters", function( assert ) {
+	util.assertParameterPresence( assert, "value", function() {
+		Globalize.parseNumber();
+	});
+
+	util.assertStringParameter( assert, "value", function( invalidValue ) {
+		return function() {
+			Globalize.parseNumber( invalidValue );
+		};
+	});
+});
 
 /**
  *  Integers

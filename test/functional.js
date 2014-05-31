@@ -11,6 +11,9 @@ require.config({
 
 require([
 
+	// core
+	"./functional/core",
+
 	// date
 	"./functional/date/format",
 	"./functional/date/parse",

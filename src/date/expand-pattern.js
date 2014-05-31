@@ -1,6 +1,7 @@
 define([
-	"../common/format-message"
-], function( formatMessage ) {
+	"../common/format-message",
+	"../common/create-error/invalid-parameter-value"
+], function( formatMessage, createErrorInvalidParameterValue ) {
 
 /**
  * expandPattern( pattern, cldr )
@@ -30,58 +31,51 @@ return function( pattern, cldr ) {
 		pattern = { skeleton: pattern };
 	}
 
-	if ( typeof pattern === "object" ) {
+	switch ( true ) {
+		case "skeleton" in pattern:
+			result = cldr.main([
+				"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+				pattern.skeleton
+			]);
+			break;
 
-		switch ( true ) {
-			case "skeleton" in pattern:
-				result = cldr.main([
-					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
-					pattern.skeleton
+		case "date" in pattern:
+		case "time" in pattern:
+			result = cldr.main([
+				"dates/calendars/gregorian",
+				"date" in pattern ? "dateFormats" : "timeFormats",
+				( pattern.date || pattern.time )
+			]);
+			break;
+
+		case "datetime" in pattern:
+			result = cldr.main([
+				"dates/calendars/gregorian/dateTimeFormats",
+				pattern.datetime
+			]);
+			if ( result ) {
+				result = formatMessage( result, [
+					cldr.main([
+						"dates/calendars/gregorian/timeFormats",
+						pattern.datetime
+					]),
+					cldr.main([
+						"dates/calendars/gregorian/dateFormats",
+						pattern.datetime
+					])
 				]);
-				break;
+			}
+			break;
 
-			case "date" in pattern:
-			case "time" in pattern:
-				result = cldr.main([
-					"dates/calendars/gregorian",
-					"date" in pattern ? "dateFormats" : "timeFormats",
-					( pattern.date || pattern.time )
-				]);
-				break;
+		case "pattern" in pattern:
+			result = pattern.pattern;
+			break;
 
-			case "datetime" in pattern:
-				result = cldr.main([
-					"dates/calendars/gregorian/dateTimeFormats",
-					pattern.datetime
-				]);
-				if ( result ) {
-					result = formatMessage( result, [
-						cldr.main([
-							"dates/calendars/gregorian/timeFormats",
-							pattern.datetime
-						]),
-						cldr.main([
-							"dates/calendars/gregorian/dateFormats",
-							pattern.datetime
-						])
-					]);
-				}
-				break;
-
-			case "pattern" in pattern:
-				result = pattern.pattern;
-				break;
-
-			default:
-				throw new Error( "Invalid pattern" );
-		}
-
-	} else {
-		throw new Error( "Invalid pattern" );
-	}
-
-	if ( !result ) {
-		throw new Error( "Pattern not found" );
+		default:
+			throw createErrorInvalidParameterValue({
+				name: "pattern",
+				value: pattern
+			});
 	}
 
 	return result;
