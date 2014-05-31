@@ -26,3 +26,7 @@
 		factory( root.Cldr, root.Globalize );
 	}
 }(this, function( Cldr, Globalize ) {
+
+var validatePresence = Globalize._validatePresence,
+	validateType = Globalize._validateType,
+	validateTypePlainObject = Globalize._validateTypePlainObject;

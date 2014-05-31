@@ -30,3 +30,9 @@
 		factory( root.Cldr, root.Globalize );
 	}
 }(this, function( Cldr, Globalize ) {
+
+var createError = Globalize._createError,
+	formatMessage = Globalize._formatMessage,
+	isPlainObject = Globalize._isPlainObject,
+	validatePresence = Globalize._validatePresence,
+	validateType = Globalize._validateType;

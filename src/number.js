@@ -1,9 +1,13 @@
 define([
 	"./core",
+	"./common/validate/presence",
+	"./common/validate/type/number",
+	"./common/validate/type/plain-object",
+	"./common/validate/type/string",
 	"./number/format",
 	"./number/parse",
 	"./number/pattern"
-], function( Globalize, numberFormat, numberParse, numberPattern ) {
+], function( Globalize, validatePresence, validateTypeNumber, validateTypePlainObject, validateTypeString, numberFormat, numberParse, numberPattern ) {
 
 /**
  * .formatNumber( value, pattern )
@@ -20,9 +24,9 @@ Globalize.formatNumber =
 Globalize.prototype.formatNumber = function( value, attributes ) {
 	var cldr, pattern;
 
-	if ( typeof value !== "number" ) {
-		throw new Error( "Value is not a number" );
-	}
+	validatePresence( value, "value" );
+	validateTypeNumber( value, "value" );
+	validateTypePlainObject( attributes, "attributes" );
 
 	attributes = attributes || {};
 	cldr = this.cldr;
@@ -45,9 +49,8 @@ Globalize.parseNumber =
 Globalize.prototype.parseNumber = function( value ) {
 	var cldr, pattern;
 
-	if ( typeof value !== "string" ) {
-		throw new Error( "Value is not a string" );
-	}
+	validatePresence( value, "value" );
+	validateTypeString( value, "value" );
 
 	cldr = this.cldr;
 

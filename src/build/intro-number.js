@@ -29,3 +29,8 @@
 		factory( root.Cldr, root.Globalize );
 	}
 }(this, function( Cldr, Globalize ) {
+
+var objectKeys = Globalize._objectKeys,
+	validatePresence = Globalize._validatePresence,
+	validateType = Globalize._validateType,
+	validateTypePlainObject = Globalize._validateTypePlainObject;

@@ -1,9 +1,10 @@
 define([
 	"globalize",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
+	"../../util",
 	"cldr/unresolved",
 	"globalize/message"
-], function( Globalize, likelySubtags ) {
+], function( Globalize, likelySubtags, util ) {
 
 Globalize.load( likelySubtags );
 Globalize.loadTranslations({
@@ -24,6 +25,18 @@ Globalize.loadTranslations({
 });
 
 QUnit.module( "Translate" );
+
+QUnit.test( "should validate parameters", function( assert ) {
+	util.assertParameterPresence( assert, "path", function() {
+		Globalize.translate();
+	});
+
+	util.assertPathParameter( assert, "path", function( invalidValue ) {
+		return function() {
+			Globalize.translate( invalidValue );
+		};
+	});
+});
 
 QUnit.test( "should return the loaded translation", function( assert ) {
 	assert.equal( Globalize( "pt" ).translate( "amen" ), "Amém" );

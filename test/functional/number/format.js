@@ -4,8 +4,9 @@ define([
 	"json!fixtures/cldr/main/en/numbers.json",
 	"json!fixtures/cldr/main/es/numbers.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
+	"../../util",
 	"globalize/number"
-], function( Globalize, arNumbers, enNumbers, esNumbers, likelySubtags ) {
+], function( Globalize, arNumbers, enNumbers, esNumbers, likelySubtags, util ) {
 
 var pi = 3.14159265359;
 
@@ -16,6 +17,24 @@ Globalize.load( likelySubtags );
 Globalize.locale( "en" );
 
 QUnit.module( "Number Format" );
+
+QUnit.test( "should validate parameters", function( assert ) {
+	util.assertParameterPresence( assert, "value", function() {
+		Globalize.formatNumber();
+	});
+
+	util.assertNumberParameter( assert, "value", function( invalidValue ) {
+		return function() {
+			Globalize.formatNumber( invalidValue );
+		};
+	});
+
+	util.assertPlainObjectParameter( assert, "attributes", function( invalidValue ) {
+		return function() {
+			Globalize.formatNumber( 7, invalidValue );
+		};
+	});
+});
 
 QUnit.test( "should format decimal style", function( assert ) {
 	assert.equal( Globalize.formatNumber( pi ), "3.142" );
