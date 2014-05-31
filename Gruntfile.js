@@ -230,7 +230,14 @@ module.exports = function( grunt ) {
 			files: [
 				"dist/globalize.min.js",
 				"dist/globalize/*min.js"
-			]
+			],
+			options: {
+				compress: {
+					gz: function( fileContents ) {
+						return require( "gzip-js" ).zip( fileContents, {} ).length;
+					}
+				}
+			}
 		},
 		clean: {
 			dist: [
