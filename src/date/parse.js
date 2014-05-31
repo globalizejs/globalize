@@ -2,8 +2,10 @@ define([
 	"./pattern-re",
 	"./start-of",
 	"./tokenizer",
-	"../util/array/every"
-], function( datePatternRe, dateStartOf, dateTokenizer, arrayEvery ) {
+	"../util/array/every",
+	"../util/date/set-date",
+	"../util/date/set-month"
+], function( datePatternRe, dateStartOf, dateTokenizer, arrayEvery, dateSetDate, dateSetMonth ) {
 
 function outOfRange( value, low, high ) {
 	return value < low || value > high;
@@ -96,7 +98,7 @@ return function( value, pattern, cldr ) {
 				if( outOfRange( value, 1, 12 ) ) {
 					return false;
 				}
-				date.setMonth( value - 1 );
+				dateSetMonth( date, value - 1 );
 				truncateAt.push( MONTH );
 				break;
 
@@ -111,7 +113,7 @@ return function( value, pattern, cldr ) {
 				if( outOfRange( value, 1, 31 ) ) {
 					return false;
 				}
-				date.setDate( value );
+				dateSetDate( date, value );
 				truncateAt.push( DAY );
 				break;
 
