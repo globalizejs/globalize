@@ -42,7 +42,7 @@ module Globalize
         end
       end
 
-      def where_values_hash
+      def where_values_hash(*args)
         equalities = respond_to?(:with_default_scope) ? with_default_scope.where_values : where_values
         equalities = equalities.grep(Arel::Nodes::Equality).find_all { |node|
           node.left.relation.name == translations_table_name
