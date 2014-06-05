@@ -6,25 +6,28 @@ define([
 	"globalize/message"
 ], function( Globalize, likelySubtags, util ) {
 
-Globalize.load( likelySubtags );
-Globalize.loadTranslations({
-	root: {
-		amen: "Amen"
+QUnit.module( "Translate", {
+	setup: function() {
+		Globalize.load( likelySubtags );
+		Globalize.loadTranslations({
+			root: {
+				amen: "Amen"
+			},
+			pt: {
+				amen: "Amém"
+			},
+			zh: {
+				amen: "阿门"
+			},
+			en: {
+				greetings: {
+					hello: "Hello"
+				}
+			}
+		});
 	},
-	pt: {
-		amen: "Amém"
-	},
-	zh: {
-		amen: "阿门"
-	},
-	en: {
-		greetings: {
-			hello: "Hello"
-		}
-	}
+	teardown: util.resetCldrContent
 });
-
-QUnit.module( "Translate" );
 
 QUnit.test( "should validate parameters", function( assert ) {
 	util.assertParameterPresence( assert, "path", function() {

@@ -17,7 +17,8 @@
 		// AMD
 		define([
 			"cldr",
-			"../globalize"
+			"../globalize",
+			"cldr/event",
 		], factory );
 	} else if ( typeof exports === "object" ) {
 
@@ -30,7 +31,8 @@
 	}
 }(this, function( Cldr, Globalize ) {
 
-var objectKeys = Globalize._objectKeys,
+var validateCldr = Globalize._validateCldr,
+	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validatePresence = Globalize._validatePresence,
 	validateType = Globalize._validateType,
 	validateTypePlainObject = Globalize._validateTypePlainObject;

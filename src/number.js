@@ -1,13 +1,16 @@
 define([
 	"./core",
+	"./common/validate/cldr",
+	"./common/validate/default-locale",
 	"./common/validate/presence",
 	"./common/validate/type/number",
 	"./common/validate/type/plain-object",
 	"./common/validate/type/string",
 	"./number/format",
 	"./number/parse",
-	"./number/pattern"
-], function( Globalize, validatePresence, validateTypeNumber, validateTypePlainObject, validateTypeString, numberFormat, numberParse, numberPattern ) {
+	"./number/pattern",
+	"cldr/event"
+], function( Globalize, validateCldr, validateDefaultLocale, validatePresence, validateTypeNumber, validateTypePlainObject, validateTypeString, numberFormat, numberParse, numberPattern ) {
 
 /**
  * .formatNumber( value, pattern )
@@ -22,7 +25,7 @@ define([
  */
 Globalize.formatNumber =
 Globalize.prototype.formatNumber = function( value, attributes ) {
-	var cldr, pattern;
+	var cldr, pattern, ret;
 
 	validatePresence( value, "value" );
 	validateTypeNumber( value, "value" );
@@ -31,11 +34,19 @@ Globalize.prototype.formatNumber = function( value, attributes ) {
 	attributes = attributes || {};
 	cldr = this.cldr;
 
+	validateDefaultLocale( cldr );
+
+	cldr.on( "get", validateCldr );
+
 	if ( !attributes.pattern ) {
 		pattern = numberPattern( attributes.style || "decimal", cldr );
 	}
 
-	return numberFormat( value, pattern, cldr, attributes );
+	ret = numberFormat( value, pattern, cldr, attributes );
+
+	cldr.off( "get", validateCldr );
+
+	return ret;
 };
 
 /**
@@ -47,17 +58,25 @@ Globalize.prototype.formatNumber = function( value, attributes ) {
  */
 Globalize.parseNumber =
 Globalize.prototype.parseNumber = function( value ) {
-	var cldr, pattern;
+	var cldr, pattern, ret;
 
 	validatePresence( value, "value" );
 	validateTypeString( value, "value" );
 
 	cldr = this.cldr;
 
+	validateDefaultLocale( cldr );
+
+	cldr.on( "get", validateCldr );
+
 	// TODO: What about per mille? Which "style" does it belong to?
 	pattern = numberPattern( value.indexOf( "%" ) !== -1 ? "percent" : "decimal", cldr );
 
-	return numberParse( value, pattern, cldr );
+	ret = numberParse( value, pattern, cldr );
+
+	cldr.off( "get", validateCldr );
+
+	return ret;
 };
 
 return Globalize;

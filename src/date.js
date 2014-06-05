@@ -1,5 +1,7 @@
 define([
 	"cldr",
+	"./common/validate/cldr",
+	"./common/validate/default-locale",
 	"./common/validate/presence",
 	"./common/validate/type",
 	"./common/validate/type/date",
@@ -11,8 +13,19 @@ define([
 	"./date/format",
 	"./date/parse",
 	"./util/always-array",
+	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, validatePresence, validateTypeDataType, validateTypeDate, validateTypeDatePattern, validateTypeString, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray ) {
+], function( Cldr, validateCldr, validateDefaultLocale, validatePresence, validateTypeDataType, validateTypeDate, validateTypeDatePattern, validateTypeString, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray ) {
+
+function validateRequiredCldr( path, value ) {
+	validateCldr( path, value, {
+		skip: [
+			/dates\/calendars\/gregorian\/days\/.*\/short/,
+			/supplemental\/timeData\/(?!001)/,
+			/supplemental\/weekData\/(?!001)/
+		]
+	});
+}
 
 /**
  * .formatDate( value, pattern )
@@ -25,7 +38,7 @@ define([
  */
 Globalize.formatDate =
 Globalize.prototype.formatDate = function( value, pattern ) {
-	var cldr;
+	var cldr, ret;
 
 	validatePresence( value, "value" );
 	validatePresence( pattern, "pattern" );
@@ -34,8 +47,14 @@ Globalize.prototype.formatDate = function( value, pattern ) {
 
 	cldr = this.cldr;
 
+	validateDefaultLocale( cldr );
+
+	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( pattern, cldr );
-	return dateFormat( value, pattern, cldr );
+	ret = dateFormat( value, pattern, cldr );
+	cldr.off( "get", validateRequiredCldr );
+
+	return ret;
 };
 
 /**
@@ -56,6 +75,10 @@ Globalize.prototype.parseDate = function( value, patterns ) {
 
 	cldr = this.cldr;
 
+	validateDefaultLocale( cldr );
+
+	cldr.on( "get", validateRequiredCldr );
+
 	if ( !patterns ) {
 		patterns = dateAllPresets( cldr );
 	} else {
@@ -68,6 +91,8 @@ Globalize.prototype.parseDate = function( value, patterns ) {
 		date = dateParse( value, pattern, cldr );
 		return !!date;
 	});
+
+	cldr.off( "get", validateRequiredCldr );
 
 	return date || null;
 };

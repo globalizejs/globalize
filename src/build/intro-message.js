@@ -15,7 +15,10 @@
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD
-		define( [ "cldr", "../globalize" ], factory );
+		define([
+			"cldr",
+			"../globalize"
+		], factory );
 	} else if ( typeof exports === "object" ) {
 
 		// Node, CommonJS
@@ -27,6 +30,8 @@
 	}
 }(this, function( Cldr, Globalize ) {
 
-var validatePresence = Globalize._validatePresence,
+var alwaysArray = Globalize._alwaysArray,
+	validateDefaultLocale = Globalize._validateDefaultLocale,
+	validatePresence = Globalize._validatePresence,
 	validateType = Globalize._validateType,
 	validateTypePlainObject = Globalize._validateTypePlainObject;

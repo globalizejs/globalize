@@ -15,7 +15,10 @@
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD
-		define( [ "cldr" ], factory );
+		define([
+			"cldr",
+			"cldr/event"
+		], factory );
 	} else if ( typeof exports === "object" ) {
 
 		// Node, CommonJS

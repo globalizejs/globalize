@@ -1,5 +1,5 @@
 define([
-	"../common/format-message"
+	"../common/format-message",
 	"../util/object/values"
 ], function( formatMessage, objectValues ) {
 

@@ -1,10 +1,9 @@
 define([
-	"../type",
-	"../../../util/array/is-array"
-], function( validateType, arrayIsArray ) {
+	"../type"
+], function( validateType ) {
 
 return function( value, name ) {
-	validateType( value, name, typeof value === "undefined" || arrayIsArray( value ), "Array" );
+	validateType( value, name, typeof value === "undefined" || Array.isArray( value ), "Array" );
 };
 
 });
