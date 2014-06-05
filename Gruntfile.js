@@ -129,7 +129,7 @@ module.exports = function( grunt ) {
 						{
 							name: "globalize",
 							include: [ "core" ],
-							exclude: [ "cldr" ],
+							exclude: [ "cldr", "cldr/event" ],
 							create: true,
 							override: {
 								wrap: {
@@ -153,7 +153,7 @@ module.exports = function( grunt ) {
 						{
 							name: "globalize.number",
 							include: [ "number" ],
-							exclude: [ "cldr", "./core" ],
+							exclude: [ "cldr", "cldr/event", "./core" ],
 							create: true,
 							override: {
 								wrap: {
@@ -165,7 +165,7 @@ module.exports = function( grunt ) {
 						{
 							name: "globalize.message",
 							include: [ "message" ],
-							exclude: [ "cldr", "./core" ],
+							exclude: [ "cldr", "cldr/event", "./core" ],
 							create: true,
 							override: {
 								wrap: {

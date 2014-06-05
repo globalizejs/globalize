@@ -12,14 +12,20 @@ define([
 
 var date;
 
-Globalize.load( enCaGregorian );
-Globalize.load( ptCaGregorian );
-Globalize.load( likelySubtags );
-Globalize.load( timeData );
-Globalize.load( weekData );
-Globalize.locale( "en" );
+function extraSetup() {
+	Globalize.load( enCaGregorian );
+	Globalize.load( ptCaGregorian );
+	Globalize.load( timeData );
+	Globalize.load( weekData );
+}
 
-QUnit.module( "Datetime Parse" );
+QUnit.module( "Datetime Parse", {
+	setup: function() {
+		Globalize.load( likelySubtags );
+		Globalize.locale( "en" );
+	},
+	teardown: util.resetCldrContent
+});
 
 function assertParseDate( assert, input, options, output ) {
 	assert.deepEqual( Globalize.parseDate( input, options ), output, JSON.stringify( options ) );
@@ -43,7 +49,15 @@ QUnit.test( "should validate parameters", function( assert ) {
 	});
 });
 
+QUnit.test( "should validate CLDR content", function( assert ) {
+	util.assertCldrContent( assert, function() {
+		Globalize.parseDate( "15", "d" );
+	});
+});
+
 QUnit.test( "should parse skeleton", function( assert ) {
+	extraSetup();
+
 	date = new Date();
 	date.setDate( 15 );
 	date = startOf( date, "day" );
@@ -71,6 +85,8 @@ QUnit.test( "should parse skeleton", function( assert ) {
 });
 
 QUnit.test( "should parse time presets", function( assert ) {
+	extraSetup();
+
 	date = new Date();
 	date.setHours( 17 );
 	date.setMinutes( 35 );
@@ -82,6 +98,8 @@ QUnit.test( "should parse time presets", function( assert ) {
 });
 
 QUnit.test( "should parse date presets", function( assert ) {
+	extraSetup();
+
 	date = new Date( 2010, 8, 15 );
 	date = startOf( date, "day" );
 	assertParseDate( assert, "Wednesday, September 15, 2010", { date: "full" }, date );
@@ -91,6 +109,8 @@ QUnit.test( "should parse date presets", function( assert ) {
 });
 
 QUnit.test( "should parse datetime presets", function( assert ) {
+	extraSetup();
+
 	date = new Date( 2010, 8, 15 );
 	date = startOf( date, "day" );
 	assertParseDate( assert, "Wednesday, September 15, 2010", { date: "full" }, date );
@@ -101,12 +121,16 @@ QUnit.test( "should parse datetime presets", function( assert ) {
 });
 
 QUnit.test( "should parse raw patterns", function( assert ) {
+	extraSetup();
+
 	date = new Date( 2010, 8, 15 );
 	date = startOf( date, "day" );
 	assertParseDate( assert, "Wed, Sep 15, 2010 AD", { pattern: "E, MMM d, y G" }, date );
 });
 
 QUnit.test( "should parse a formatted date (reverse operation test)", function( assert ) {
+	extraSetup();
+
 	date = new Date();
 	date = startOf( date, "minute" );
 	assert.deepEqual( Globalize.parseDate( Globalize.formatDate( date, { datetime: "short" } ), { datetime: "short" } ), date );

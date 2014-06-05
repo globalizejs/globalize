@@ -1,8 +1,6 @@
 define([
-	"./format-message",
-	"../util/array/for-each",
-	"../util/object/keys"
-], function( formatMessage, arrayForEach, objectKeys ) {
+	"./format-message"
+], function( formatMessage ) {
 
 return function( code, message, attributes ) {
 	var error;
@@ -12,7 +10,7 @@ return function( code, message, attributes ) {
 	error.code = code;
 
 	// extend( error, attributes );
-	arrayForEach( objectKeys( attributes ), function( attribute ) {
+	Object.keys( attributes ).forEach(function( attribute ) {
 		error[ attribute ] = attributes[ attribute ];
 	});
 

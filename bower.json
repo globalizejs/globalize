@@ -8,7 +8,7 @@
     "bower.json"
   ],
   "dependencies": {
-    "cldrjs": "0.3.6"
+    "cldrjs": "0.3.8"
   },
   "devDependencies": {
     "es5-shim": "3.4.0",

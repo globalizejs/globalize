@@ -9,7 +9,6 @@ var allTypes = {
 	"function": Foo,
 	"null": null,
 	number: 7,
-	object: new Foo(),
 	plainObject: {},
 	string: "foo"
 };
@@ -48,6 +47,25 @@ function not( a ) {
 }
 
 return {
+
+	/**
+	 * CLDR content assertion
+	 */
+	assertCldrContent: function( assert, fn ) {
+		assert.throws( fn, function E_MISSING_CLDR( error ) {
+			return error.code === "E_MISSING_CLDR" &&
+				"path" in error;
+		}, "Expected \"E_MISSING_CLDR\" to be thrown" );
+	},
+
+	/**
+	 * Default locale assertion
+	 */
+	assertDefaultLocalePresence: function( assert, fn) {
+		assert.throws( fn, function E_DEFAULT_LOCALE_NOT_DEFINED( error ) {
+			return error.code === "E_DEFAULT_LOCALE_NOT_DEFINED";
+		}, "Expected \"E_DEFAULT_LOCALE_NOT_DEFINED\" to be thrown" );
+	},
 
 	/**
 	 * Parameter Presence assertion
@@ -96,6 +114,11 @@ return {
 
 	assertStringParameter: function( assert, name, fn ) {
 		assertParameterType( assert, "string", name, fn );
+	},
+
+	resetCldrContent: function() {
+		Cldr._resolved = {};
+		Cldr._raw = {};
 	}
 };
 
