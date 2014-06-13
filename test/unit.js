@@ -10,19 +10,19 @@ require.config({
 
 require([
 
-	/* core */
+	// core
 	"./unit/core/locale",
 
-	/* date */
+	// date
 	"./unit/date/expand-pattern",
 	"./unit/date/format",
 	"./unit/date/tokenizer",
 	"./unit/date/parse",
 
-	/* message */
+	// message
 	"./unit/message/translate",
 
-	/* number */
+	// number
 	"./unit/number/format/integer-fraction-digits",
 	"./unit/number/format/significant-digits",
 	"./unit/number/format/grouping-separator",

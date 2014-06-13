@@ -11,14 +11,14 @@ require.config({
 
 require([
 
-	/* date */
+	// date
 	"./functional/date/format",
 	"./functional/date/parse",
 
-	/* message */
+	// message
 	"./functional/message/translate",
 
-	/* number */
+	// number
 	"./functional/number/format",
 	"./functional/number/parse"
 
