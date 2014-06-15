@@ -2,6 +2,10 @@
 
 [![Build Status](https://travis-ci.org/globalize/globalize.png?branch=master)](https://travis-ci.org/globalize/globalize) [![Code Climate](https://codeclimate.com/github/globalize/globalize.png)](https://codeclimate.com/github/globalize/globalize)
 
+You can chat with us using Gitter:
+
+[![Gitter chat](https://badges.gitter.im/globalize/globalize.png)](https://gitter.im/globalize/globalize)
+
 Globalize builds on the [I18n API in Ruby on Rails](http://guides.rubyonrails.org/i18n.html)
 to add model translations to ActiveRecord models.
 
