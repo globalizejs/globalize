@@ -1,9 +1,7 @@
-define([
-	"./array/is-array"
-], function( arrayIsArray ) {
+define(function() {
 
 return function( stringOrArray ) {
-	return arrayIsArray( stringOrArray ) ?  stringOrArray : [ stringOrArray ];
+	return Array.isArray( stringOrArray ) ? stringOrArray : [ stringOrArray ];
 };
 
 });

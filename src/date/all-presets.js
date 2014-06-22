@@ -1,7 +1,6 @@
 define([
-	"../util/array/map",
 	"../util/object/values"
-], function( arrayMap, objectValues ) {
+], function( objectValues ) {
 
 /**
  * allPreset()
@@ -23,7 +22,7 @@ return function( cldr ) {
 	result = result.concat( objectValues( cldr.main( "dates/calendars/gregorian/dateFormats" ) ) );
 
 	// Datetime
-	result = result.concat( arrayMap( objectValues( cldr.main( "dates/calendars/gregorian/dateTimeFormats" ) ), function( datetimeFormat, key ) {
+	result = result.concat( objectValues( cldr.main( "dates/calendars/gregorian/dateTimeFormats" ) ).map(function( datetimeFormat, key ) {
 		if ( typeof datetimeFormat !== "string" ) {
 			return datetimeFormat;
 		}
@@ -38,7 +37,7 @@ return function( cldr ) {
 			]));
 	}));
 
-	return arrayMap( result, function( pattern ) {
+	return result.map(function( pattern ) {
 		return { pattern: pattern };
 	});
 };

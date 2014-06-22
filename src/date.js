@@ -6,9 +6,8 @@ define([
 	"./date/format",
 	"./date/parse",
 	"./util/always-array",
-	"./util/array/some",
 	"cldr/supplemental"
-], function( Cldr, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray, arraySome ) {
+], function( Cldr, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray ) {
 
 /**
  * .formatDate( value, pattern )
@@ -61,7 +60,7 @@ Globalize.prototype.parseDate = function( value, patterns ) {
 		patterns = alwaysArray( patterns );
 	}
 
-	arraySome( patterns, function( pattern ) {
+	patterns.some(function( pattern ) {
 		pattern = dateExpandPattern( pattern, cldr );
 		date = dateParse( value, pattern, cldr );
 		return !!date;

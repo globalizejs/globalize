@@ -1,7 +1,6 @@
 define([
-	"./pattern-re",
-	"../util/array/every"
-], function( datePatternRe, arrayEvery ) {
+	"./pattern-re"
+], function( datePatternRe ) {
 
 /**
  * tokenizer( value, pattern )
@@ -34,7 +33,7 @@ return function( value, pattern, cldr ) {
 		tokens = [],
 		widths = [ "abbreviated", "wide", "narrow" ];
 
-	valid = arrayEvery( pattern.match( datePatternRe ), function( current ) {
+	valid = pattern.match( datePatternRe ).every(function( current ) {
 		var chr, length, tokenRe,
 			token = {};
 

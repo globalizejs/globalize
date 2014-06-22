@@ -2,10 +2,9 @@ define([
 	"./pattern-re",
 	"./start-of",
 	"./tokenizer",
-	"../util/array/every",
 	"../util/date/set-date",
 	"../util/date/set-month"
-], function( datePatternRe, dateStartOf, dateTokenizer, arrayEvery, dateSetDate, dateSetMonth ) {
+], function( datePatternRe, dateStartOf, dateTokenizer, dateSetDate, dateSetMonth ) {
 
 function outOfRange( value, low, high ) {
 	return value < low || value > high;
@@ -34,7 +33,7 @@ return function( value, pattern, cldr ) {
 		return null;
 	}
 
-	valid = arrayEvery( tokens, function( token ) {
+	valid = tokens.every(function( token ) {
 		var century, chr, value, length;
 
 		if ( token.type === "literal" ) {

@@ -103,8 +103,32 @@ information on its usage.
 <a name="browser_support"></a>
 ### Browser Support
 
-We officially support http://jquery.com/browser-support/. If you find any bugs,
-please just [let us know](https://github.com/jquery/globalize/issues).
+Globalize 1.x supports the following browsers:
+
+- Chrome: (Current - 1) or Current
+- Firefox: (Current - 1) or Current
+- Safari: 5.1+
+- Opera: 12.1x, (Current - 1) or Current
+- IE 8 (needs ES5 polyfill), IE9+
+
+*(Current - 1)* or *Current* denotes that we support the current stable version
+of the browser and the version that preceded it. For example, if the current
+version of a browser is 24.x, we support the 24.x and 23.x versions.
+
+*IE 8* is supported, but it depends on the polyfill of the ES5
+methods below, for which we suggest using
+[es5-shim](https://github.com/es-shims/es5-shim). Alternatives or more
+information can be found at
+[Modernizr's polyfills list](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills#ecmascript-5).
+
+- Array.isArray()
+- Array.prototype.every()
+- Array.prototype.forEach()
+- Array.prototype.indexOf()
+- Array.prototype.isArray()
+- Array.prototype.map()
+- Array.prototype.some()
+- Object.keys()
 
 
 <a name="getting_started"></a>
