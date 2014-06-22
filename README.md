@@ -117,7 +117,8 @@ version of a browser is 24.x, we support the 24.x and 23.x versions.
 
 *IE 8* is supported, but it depends on the polyfill of the ES5
 methods below, for which we suggest using
-[es5-shim](https://github.com/es-shims/es5-shim), more info can be found at
+[es5-shim](https://github.com/es-shims/es5-shim). Alternatives or more
+information can be found at
 [Modernizr's polyfills list](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills#ecmascript-5).
 
 - Array.isArray()
