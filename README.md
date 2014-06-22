@@ -116,8 +116,8 @@ of the browser and the version that preceded it. For example, if the current
 version of a browser is 24.x, we support the 24.x and 23.x versions.
 
 *IE 8* is supported, but it depends on the polyfill of the following ES5
-methods: (we suggest using [es5-shim](https://github.com/es-shims/es5-shim), more
-info can be found at [Modernizr's polyfills list](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills#ecmascript-5))
+methods:
+
 - Array.isArray()
 - Array.prototype.every()
 - Array.prototype.forEach()
@@ -126,6 +126,9 @@ info can be found at [Modernizr's polyfills list](https://github.com/Modernizr/M
 - Array.prototype.map()
 - Array.prototype.some()
 - Object.keys()
+
+We suggest using [es5-shim](https://github.com/es-shims/es5-shim), more
+info can be found at [Modernizr's polyfills list](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills#ecmascript-5).
 
 
 <a name="getting_started"></a>
