@@ -109,7 +109,7 @@ Globalize 1.x supports the following browsers:
 - Firefox: (Current - 1) or Current
 - Safari: 5.1+
 - Opera: 12.1x, (Current - 1) or Current
-- IE 8 (\*), IE9+
+- IE 8 (needs ES5 polyfill), IE9+
 
 *(Current - 1)* or *Current* denotes that we support the current stable version
 of the browser and the version that preceded it. For example, if the current
