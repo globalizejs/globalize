@@ -3,10 +3,8 @@ define([
 	"./pattern-properties",
 	"./symbol",
 	"./symbol/map",
-	"../util/array/map",
-	"../util/object/keys",
 	"../util/regexp/escape"
-], function( numberNumberRe, numberPatternProperties, numberSymbol, numberSymbolMap, arrayMap, objectKeys, regexpEscape ) {
+], function( numberNumberRe, numberPatternProperties, numberSymbol, numberSymbolMap, regexpEscape ) {
 
 /**
  * parse( value, cldr )
@@ -32,7 +30,7 @@ return function( value, pattern, cldr ) {
 	} else {
 
 		symbolMap = numberSymbolMap( cldr );
-		localizedSymbolsRe = new RegExp( arrayMap( objectKeys( symbolMap ), function( localizedSymbol ) {
+		localizedSymbolsRe = new RegExp( Object.keys( symbolMap ).map(function( localizedSymbol ) {
 			return regexpEscape( localizedSymbol );
 		}).join( "|" ), "g" );
 
