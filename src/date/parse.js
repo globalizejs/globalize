@@ -16,7 +16,7 @@ function outOfRange( value, low, high ) {
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, pattern, cldr ) {
-	var amPm, era, hour24, valid,
+	var amPm, era, hour, hour12, valid,
 		YEAR = 0,
 		MONTH = 1,
 		DAY = 2,
@@ -149,29 +149,42 @@ return function( value, pattern, cldr ) {
 				break;
 
 			// Hour
-			case "K": // 0-11
-				value = +token.lexeme + 1;
-
-			/* falls through */
 			case "h": // 1-12
-				value = value || +token.lexeme;
+				value = +token.lexeme;
 				if( outOfRange( value, 1, 12 ) ) {
 					return false;
 				}
+				hour = hour12 = true;
+				date.setHours( value === 12 ? 0 : value );
+				truncateAt.push( HOUR );
+				break;
+
+			case "K": // 0-11
+				value = +token.lexeme;
+				if( outOfRange( value, 0, 11 ) ) {
+					return false;
+				}
+				hour = hour12 = true;
 				date.setHours( value );
 				truncateAt.push( HOUR );
 				break;
 
-			case "H": // 0-23
-				value = +token.lexeme + 1;
-
-			/* falls through */
 			case "k": // 1-24
-				hour24 = true;
-				value = value || +token.lexeme;
+				value = +token.lexeme;
 				if( outOfRange( value, 1, 24 ) ) {
 					return false;
 				}
+				hour = true;
+				date.setHours( value === 24 ? 0 : value );
+				truncateAt.push( HOUR );
+				break;
+
+			case "H": // 0-23
+				value = +token.lexeme;
+				if( outOfRange( value, 0, 23 ) ) {
+					return false;
+				}
+				hour = true;
 				date.setHours( value );
 				truncateAt.push( HOUR );
 				break;
@@ -224,7 +237,12 @@ return function( value, pattern, cldr ) {
 		return true;
 	});
 
-	if ( !valid || amPm && hour24 ) {
+	if ( !valid ) {
+		return null;
+	}
+
+	// 12-hour format needs AM or PM, 24-hour format doesn't, ie. return null if amPm && !hour12 || !amPm && hour12.
+	if ( hour && !( !amPm ^ hour12 ) ) {
 		return null;
 	}
 
@@ -233,7 +251,7 @@ return function( value, pattern, cldr ) {
 		date.setFullYear( date.getFullYear() * -1 + 1 );
 	}
 
-	if ( amPm === "pm" && date.getHours() !== 12 ) {
+	if ( hour12 && amPm === "pm" ) {
 		date.setHours( date.getHours() + 12 );
 	}
 

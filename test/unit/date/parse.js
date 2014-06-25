@@ -172,58 +172,115 @@ QUnit.test( "should parse period (a)", function( assert ) {
  */
 
 QUnit.test( "should parse hour (h) using 12-hour-cycle [1-12] with no padding", function( assert ) {
+	assert.equal( parse( "1", "h", cldr ), null, "12-hour time without period should return null" );
+	assert.equal( parse( "0 AM", "h a", cldr ), null, "Out of range should return null" );
+	assert.equal( parse( "13 AM", "h a", cldr ), null, "Out of range should return null" );
+
 	date1 = new Date();
 	date1.setHours( 9 );
 	date1 = startOf( date1, "hour" );
-	assert.deepEqual( parse( "9", "h", cldr ), date1 );
+	assert.deepEqual( parse( "9 AM", "h a", cldr ), date1 );
+
+	date1.setHours( 0 );
+	assert.deepEqual( parse( "12 AM", "h a", cldr ), date1 );
+
+	date1.setHours( 1 );
+	assert.deepEqual( parse( "1 AM", "h a", cldr ), date1 );
+
+	date1.setHours( 12 );
+	assert.deepEqual( parse( "12 PM", "h a", cldr ), date1 );
+
+	date1.setHours( 13 );
+	assert.deepEqual( parse( "1 PM", "h a", cldr ), date1 );
 });
 
 QUnit.test( "should parse hour (hh) using 12-hour-cycle [1-12] with padding", function( assert ) {
 	date1 = new Date();
 	date1.setHours( 9 );
 	date1 = startOf( date1, "hour" );
-	assert.deepEqual( parse( "09", "hh", cldr ), date1 );
+	assert.deepEqual( parse( "09 AM", "hh a", cldr ), date1 );
 });
 
 QUnit.test( "should parse hour (H) using 24-hour-cycle [0-23] with no padding", function( assert ) {
+	assert.equal( parse( "24", "H", cldr ), null, "Out of range should return null" );
+
 	date1 = new Date();
-	date1.setHours( 17 );
+	date1.setHours( 0 );
 	date1 = startOf( date1, "hour" );
+	assert.deepEqual( parse( "0", "H", cldr ), date1 );
+
+	date1.setHours( 1 );
+	assert.deepEqual( parse( "1", "H", cldr ), date1 );
+
+	date1.setHours( 12 );
+	assert.deepEqual( parse( "12", "H", cldr ), date1 );
+
+	date1.setHours( 16 );
 	assert.deepEqual( parse( "16", "H", cldr ), date1 );
 });
 
 QUnit.test( "should parse hour (HH) using 24-hour-cycle [0-23] with padding", function( assert ) {
 	date1 = new Date();
-	date1.setHours( 17 );
+	date1.setHours( 9 );
 	date1 = startOf( date1, "hour" );
+	assert.deepEqual( parse( "09", "HH", cldr ), date1 );
+
+	date1.setHours( 16 );
 	assert.deepEqual( parse( "16", "HH", cldr ), date1 );
 });
 
 QUnit.test( "should parse hour (K) using 12-hour-cycle [0-11] with no padding", function( assert ) {
+	assert.equal( parse( "1", "K", cldr ), null, "12-hour time without period should return null" );
+	assert.equal( parse( "12 AM", "K a", cldr ), null, "Out of range should return null" );
+	assert.equal( parse( "13 AM", "K a", cldr ), null, "Out of range should return null" );
+
 	date1 = new Date();
-	date1.setHours( 9 );
+	date1.setHours( 0 );
 	date1 = startOf( date1, "hour" );
-	assert.deepEqual( parse( "8", "K", cldr ), date1 );
+	assert.deepEqual( parse( "0 AM", "K a", cldr ), date1 );
+
+	date1.setHours( 8 );
+	assert.deepEqual( parse( "8 AM", "K a", cldr ), date1 );
+
+	date1.setHours( 12 );
+	assert.deepEqual( parse( "0 PM", "K a", cldr ), date1 );
+
+	date1.setHours( 20 );
+	assert.deepEqual( parse( "8 PM", "K a", cldr ), date1 );
 });
 
 QUnit.test( "should parse hour (KK) using 12-hour-cycle [0-11] with padding", function( assert ) {
 	date1 = new Date();
-	date1.setHours( 9 );
+	date1.setHours( 8 );
 	date1 = startOf( date1, "hour" );
-	assert.deepEqual( parse( "08", "KK", cldr ), date1 );
+	assert.deepEqual( parse( "08 AM", "KK a", cldr ), date1 );
 });
 
 QUnit.test( "should parse hour (k) using 24-hour-cycle [1-24] with no padding", function( assert ) {
+	assert.equal( parse( "0", "k", cldr ), null, "Out of range should return null" );
+
 	date1 = new Date();
-	date1.setHours( 17 );
+	date1.setHours( 0 );
 	date1 = startOf( date1, "hour" );
-	assert.deepEqual( parse( "17", "k", cldr ), date1 );
+	assert.deepEqual( parse( "24", "k", cldr ), date1 );
+
+	date1.setHours( 8 );
+	assert.deepEqual( parse( "8", "k", cldr ), date1 );
+
+	date1.setHours( 12 );
+	assert.deepEqual( parse( "12", "k", cldr ), date1 );
+
+	date1.setHours( 20 );
+	assert.deepEqual( parse( "20", "k", cldr ), date1 );
 });
 
 QUnit.test( "should parse hour (kk) using 24-hour-cycle [1-24] with padding", function( assert ) {
 	date1 = new Date();
-	date1.setHours( 17 );
+	date1.setHours( 5 );
 	date1 = startOf( date1, "hour" );
+	assert.deepEqual( parse( "05", "kk", cldr ), date1 );
+
+	date1.setHours( 17 );
 	assert.deepEqual( parse( "17", "kk", cldr ), date1 );
 });
 
@@ -231,14 +288,14 @@ QUnit.test( "should parse hour (j) using preferred hour format for the locale (h
 	date1 = new Date();
 	date1.setHours( 9 );
 	date1 = startOf( date1, "hour" );
-	assert.deepEqual( parse( "9", "j", cldr ), date1 );
+	assert.deepEqual( parse( "9 AM", "j a", cldr ), date1 );
 });
 
 QUnit.test( "should parse hour (jj) using preferred hour format for the locale (h, H, K, or k) with padding", function( assert ) {
 	date1 = new Date();
 	date1.setHours( 9 );
 	date1 = startOf( date1, "hour" );
-	assert.deepEqual( parse( "09", "jj", cldr ), date1 );
+	assert.deepEqual( parse( "09 AM", "jj a", cldr ), date1 );
 });
 
 /**
