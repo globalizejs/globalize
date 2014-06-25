@@ -12,7 +12,6 @@
   },
   "devDependencies": {
     "es5-shim": "3.4.0",
-    "jquery": "2.0.3",
     "qunit": "1.12.0",
     "requirejs": "2.1.9",
     "requirejs-plugins": "1.0.2",
