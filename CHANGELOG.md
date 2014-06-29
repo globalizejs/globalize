@@ -1,5 +1,10 @@
 # Globalize Changelog
 
+## 4.0.2 (2014-6-29)
+* Use `reflections` class method so `ensure_foreign_key_for` works in AR >= 4.1.2, fixes [#353](https://github.com/globalize/globalize/pull/353).
+* Set `touch:true` on `belongs_to` for the globalized model, fixes [#330](https://github.com/globalize/globalize/pull/330) (thanks [shlensky](https://github.com/shlensky)).
+* Accept optional arguments passed to `where_values_hash`, fixes [#354](https://github.com/globalize/globalize/pull/354) (thanks [felixbuenemann](https://github.com/felixbuenemann)).
+
 ## 4.0.1 (2014-3-29)
 * Fix bug where `with_translations` only works if called after `where` in relation chain, fixes [#343](https://github.com/globalize/globalize/issues/343).
 * Use `preload` and `joins` instead of `includes` in `with_translations`, fixes [#329](https://github.com/globalize/globalize/issues/329) (thanks [Andrew Volozhanin](https://github.com/scarfacedeb)).
