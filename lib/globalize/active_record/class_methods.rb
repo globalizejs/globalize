@@ -13,6 +13,7 @@ module Globalize
       end
 
       def with_required_attributes
+        warn 'with_required_attributes is deprecated and will be removed in the next release of Globalize.'
         required_translated_attributes.inject(all) do |scope, name|
           scope.where("#{translated_column_name(name)} IS NOT NULL")
         end
@@ -30,10 +31,12 @@ module Globalize
       end
 
       def required_attributes
+        warn 'required_attributes is deprecated and will be removed in the next release of Globalize.'
         validators.map { |v| v.attributes if v.is_a?(ActiveModel::Validations::PresenceValidator) }.flatten
       end
 
       def required_translated_attributes
+        warn 'required_translated_attributes is deprecated and will be removed in the next release of Globalize.'
         translated_attribute_names & required_attributes
       end
 

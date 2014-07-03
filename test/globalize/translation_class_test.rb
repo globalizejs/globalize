@@ -62,18 +62,6 @@ class TranslationClassTest < MiniTest::Spec
       assert Post::Translation.new(:locale => 'de').valid?
     end
   end
-
-  describe '.required_attributes' do
-    it 'returns required attributes (i.e. validates_presence_of)' do
-      assert_equal [:name, :email], User.required_attributes
-    end
-  end
-
-  describe '.required_translated_attributes' do
-    it 'returns only translated required attributes' do
-      assert_equal [:name], User.required_translated_attributes
-    end
-  end
 end
 
 
