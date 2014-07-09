@@ -243,6 +243,18 @@ module.exports = function( grunt ) {
 			dist: [
 				"dist"
 			]
+		},
+		checkDependencies: {
+			bower: {
+				options: {
+					packageManager: "bower"
+				}
+			},
+			npm: {
+				options: {
+					packageManager: "npm"
+				}
+			}
 		}
 	});
 
@@ -251,6 +263,7 @@ module.exports = function( grunt ) {
 	grunt.registerTask( "test", function() {
 		var args = [].slice.call( arguments );
 		if ( !isConnectTestRunning ) {
+			grunt.task.run( "checkDependencies" );
 			grunt.task.run( "connect:test" );
 			isConnectTestRunning = true;
 		}
