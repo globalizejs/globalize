@@ -273,8 +273,6 @@ QUnit.test( "should format local day of week (EEEEEE|eeeeee|cccccc)", function( 
 	assert.equal( format( date2, "cccccc", cldr ), "We" );
 });
 
-// TODO all
-
 /**
  *  Period
  */
