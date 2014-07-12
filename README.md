@@ -26,6 +26,7 @@ Node.js module.
   - [Date module](#date_module)
   - [Message module](#message_module)
   - [Number module](#number_module)
+  - [Plural module](#plural_module)
   - more to come...
 - [Development](#development)
   - [File structure](#file_structure)
@@ -98,6 +99,7 @@ information on its usage.
 | globalize/date.js | +9.2KB | [Date module](#date_module) provides date formatting and parsing |
 | globalize/message.js | +0.7KB | [Message module](#message_module) provides message translation |
 | globalize/number.js | +3.7KB | [Number module](#number_module) provides number formatting and parsing |
+| globalize/plural.js | +4.8KB | [Plural module](#plural_module) provides pluralization support |
 <!--- By updating this table, also update its clone in #usage -->
 
 <a name="browser_support"></a>
@@ -164,8 +166,9 @@ requirements. See table below.
 | Module | Required CLDR JSON files |
 |---|---|
 | Core module | cldr/supplemental/likelySubtags.json |
-| Number module | cldr/main/`locale`/numbers.json |
 | Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json |
+| Number module | cldr/main/`locale`/numbers.json |
+| Plural module | cldr/supplemental/plurals.json |
 
 *(b) How am I supposed to get and load CLDR content?*
 
@@ -284,6 +287,16 @@ to you in different flavors):
 
  [Read more...](doc/api/number/parse.md)
 
+<a name="plural_module"></a>
+### Plural module
+
+- **`Globalize.formatPlural( value, messageData )`**
+
+ Return the appropriate message based on value's plural group: `zero`, `one`,
+ `two`, `few`, `many`, or `other`.
+
+ [Read more...](doc/api/plural/format.md)
+
 
 <a name="development"></a>
 ## Development
@@ -306,6 +319,10 @@ to you in different flavors):
 │   ├── date/ (date source code)
 │   ├── date.js (date module)
 │   ├── message.js (message module)
+│   ├── number.js (number module)
+│   ├── number/ (number source code)
+│   ├── plural.js (plural module)
+│   ├── plural/ (plural source code)
 │   └── util/ (basic JavaScript helpers polyfills, eg array.map)
 └── test/ (unit and functional test files)
     ├── fixtures/ (CLDR fixture data)
@@ -324,8 +341,8 @@ The source files are as granular as possible. When combined to generate the
 build file, all the excessive/overhead wrappers are cut off. It's following
 the same build model of jQuery and Modernizr.
 
-Core, and all modules' public APIs are located in the `src/` directory. For
-example: `core.js`, `date.js`, and `message.js`.
+Core, and all modules' public APIs are located in the `src/` directory, ie.
+`core.js`, `date.js`, `message.js`, `number.js`, and `plural.js`.
 
 <a name="build"></a>
 ### Build

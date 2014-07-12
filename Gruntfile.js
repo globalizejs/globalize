@@ -89,7 +89,8 @@ module.exports = function( grunt ) {
 				baseUrl: ".",
 				optimize: "none",
 				paths: {
-					cldr: "../external/cldrjs/dist/cldr"
+					cldr: "../external/cldrjs/dist/cldr",
+					CLDRPluralRuleParser: "../external/CLDRPluralRuleParser/src/CLDRPluralRuleParser"
 				},
 				skipSemiColonInsertion: true,
 				skipModuleInsertion: true,
@@ -100,7 +101,16 @@ module.exports = function( grunt ) {
 				// b) "Not as simple as a single return" means the define wrappers are replaced by a function wrapper call and the returned value is assigned to a var.
 				// c) "Module" means the define wrappers are removed, but content is untouched. Only for root id's (the ones in src, not in src's subpaths).
 				onBuildWrite: function ( id, path, contents ) {
-					var name = camelCase( id.replace(/util\//, "") );
+					var name = camelCase( id.replace(/util\/|common\//, "") );
+
+					// CLDRPluralRuleParser
+					if ( (/CLDRPluralRuleParser/).test( id ) ) {
+						return contents
+
+							// Replace UMD wrapper into var assignment.
+							.replace( /\(function\(root, factory\)[\s\S]*?}\(this, function\(\) {/, "var CLDRPluralRuleParser = (function() {" )
+							.replace( /}\)\);\s+$/, "}());" );
+					}
 
 					// 1, and 2: Remove define() wrap.
 					// 3: Remove empty define()'s.
@@ -110,7 +120,7 @@ module.exports = function( grunt ) {
 						.replace( /define\(\[[^\]]+\]\)[\W\n]+$/, "" ); /* 3 */
 
 					// Type b (not as simple as a single return)
-					if ( [ "date/parse" ].indexOf( id ) !== -1 ) {
+					if ( [ "date/parse", "unit/get" ].indexOf( id ) !== -1 ) {
 						contents = "var " + name + " = (function() {" +
 							contents + "}());";
 					}
@@ -158,6 +168,18 @@ module.exports = function( grunt ) {
 							override: {
 								wrap: {
 									startFile: "src/build/intro-number.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
+							name: "globalize.plural",
+							include: [ "plural" ],
+							exclude: [ "cldr", "./core" ],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-plural.js",
 									endFile: "src/build/outro.js"
 								}
 							}
@@ -222,6 +244,7 @@ module.exports = function( grunt ) {
 						"dist/globalize.min.js": [ "dist/globalize.js" ],
 						"dist/globalize/date.min.js": [ "dist/globalize/date.js" ],
 						"dist/globalize/number.min.js": [ "dist/globalize/number.js" ],
+						"dist/globalize/plural.min.js": [ "dist/globalize/plural.js" ],
 						"dist/globalize/message.min.js": [ "dist/globalize/message.js" ]
 				}
 			}
