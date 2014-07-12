@@ -165,19 +165,19 @@ return function( date, pattern, cldr ) {
 					// http://unicode.org/cldr/trac/ticket/6790
 					ret = cldr.main([
 							"dates/calendars/gregorian/days",
-							[ chr === "c" ? "stand-alone" : "format" ],
+							chr === "c" ? "stand-alone" : "format",
 							"short",
 							ret
 						]) || cldr.main([
 							"dates/calendars/gregorian/days",
-							[ chr === "c" ? "stand-alone" : "format" ],
+							chr === "c" ? "stand-alone" : "format",
 							"abbreviated",
 							ret
 						]);
 				} else {
 					ret = cldr.main([
 						"dates/calendars/gregorian/days",
-						[ chr === "c" ? "stand-alone" : "format" ],
+						chr === "c" ? "stand-alone" : "format",
 						widths[ length < 3 ? 0 : length - 3 ],
 						ret
 					]);
