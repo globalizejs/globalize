@@ -33,6 +33,7 @@ QUnit.test( "should not limit the maximum number of digits of integers", functio
  */
 
 QUnit.test( "should limit maximum fraction digits", function( assert ) {
+	assert.equal( formatIntegerFractionDigits( pi, 1, 0, 0, round, null ), "3" );
 	assert.equal( formatIntegerFractionDigits( pi, 1, 0, 2, round, null ), "3.14" );
 	assert.equal( formatIntegerFractionDigits( pi, 1, 4, 4, round, null ), "3.1416" );
 });

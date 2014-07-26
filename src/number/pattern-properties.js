@@ -48,6 +48,8 @@ return function( pattern ) {
 			if ( minimumFractionDigits ) {
 				roundIncrement = +( "0." + minimumFractionDigits );
 				minimumFractionDigits = minimumFractionDigits.length;
+			} else {
+				minimumFractionDigits = 0;
 			}
 
 			// Maximum fraction digits
