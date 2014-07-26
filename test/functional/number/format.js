@@ -68,7 +68,7 @@ QUnit.test( "should format decimal style", function( assert ) {
 	}), "3.14" );
 
 	assert.equal( Globalize.formatNumber( pi, {
-		maximumSignificantDigits: 0
+		maximumFractionDigits: 0
 	}), "3" );
 
 	assert.equal( Globalize.formatNumber( 12345, {
