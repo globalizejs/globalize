@@ -43,7 +43,8 @@ return function( number, pattern, cldr, options ) {
 	padding = properties[ 1 ];
 	minimumIntegerDigits = options.minimumIntegerDigits || properties[ 2 ];
 	minimumFractionDigits = options.minimumFractionDigits || properties[ 3 ];
-	maximumFractionDigits = options.maximumFractionDigits || properties[ 4 ];
+	// In case options.maximumFractionDigits is passed in with value of 0, which truncates the fractional portion
+	maximumFractionDigits = typeof options.maximumFractionDigits === "number" ? options.maximumFractionDigits : properties[ 4 ];
 	minimumSignificantDigits = options.minimumSignificantDigits || properties[ 5 ];
 	maximumSignificantDigits = options.maximumSignificantDigits || properties[ 6 ];
 	roundIncrement = properties[ 7 ];

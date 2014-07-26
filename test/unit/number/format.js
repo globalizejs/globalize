@@ -81,6 +81,7 @@ QUnit.test( "should localize decimal separator symbol (.)", function( assert ) {
 
 QUnit.test( "should allow integer and fraction options override", function( assert ) {
 	assert.equal( format( pi, "0.##", en, { minimumIntegerDigits: 2 } ), "03.14" );
+	assert.equal( format( pi, "0.##", en, { maximumFractionDigits: 0 } ), "3" );
 	assert.equal( format( pi, "0.##", en, { maximumFractionDigits: 1 } ), "3.1" );
 	assert.equal( format( 0.1, "0.##", en, { minimumFractionDigits: 2 } ), "0.10" );
 	assert.equal( format( 1.1, "0.##", en, {
