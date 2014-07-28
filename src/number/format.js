@@ -41,7 +41,7 @@ return function( number, pattern, cldr, options ) {
 	round = numberRound( options.round );
 	properties = numberPatternProperties( pattern[ 0 ] );
 	padding = properties[ 1 ];
-	minimumIntegerDigits = options.hasOwnProperty("minimumFractionDigits") ? options.minimumIntegerDigits : properties[ 2 ];
+	minimumIntegerDigits = options.hasOwnProperty("minimumIntegerDigits") ? options.minimumIntegerDigits : properties[ 2 ];
 	minimumFractionDigits = options.hasOwnProperty("minimumFractionDigits") ? options.minimumFractionDigits : properties[ 3 ];
 	maximumFractionDigits = options.hasOwnProperty("maximumFractionDigits") ? options.maximumFractionDigits : properties[ 4 ];
 	minimumSignificantDigits = options.hasOwnProperty("minimumSignificantDigits") ? options.minimumSignificantDigits : properties[ 5 ];
