@@ -63,16 +63,12 @@ return function( number, pattern, cldr, options ) {
 		if ( minimumFractionDigits < 0 || minimumFractionDigits > 20 ) {
 			throw new Error( "Minimum fraction digits is out of range" );
 		}
-	} else {
-		throw new Error( "Minimum fraction digits not a valid integer" );
 	}
 
 	if ( isFinite(maximumFractionDigits) ) {
 		if ( maximumFractionDigits < 0 || minimumFractionDigits > 20 ) {
 			throw new Error( "Maximum fraction digits is out of range" );
 		}
-	} else {
-		throw new Error( "Maximum fraction digits not a valid integer" );
 	}
 
 	if ( minimumFractionDigits > maximumFractionDigits ) {
