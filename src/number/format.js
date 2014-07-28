@@ -55,8 +55,6 @@ return function( number, pattern, cldr, options ) {
 		if ( minimumIntegerDigits < 1 || minimumIntegerDigits > 21 ) {
 			throw new Error( "Minimum integer digits is out of range" );
 		}
-	} else {
-		throw new Error( "Minimum integer digits not a valid integer" );
 	}
 
 	if ( isFinite(minimumFractionDigits) ) {
