@@ -5,8 +5,11 @@ define([
 	"./pattern-properties",
 	"./symbol",
 	"./symbol/name",
+	"../common/validate/range",
+	"../util/number/is-percent",
+	"../util/number/is-per-mille",
 	"../util/number/round"
-], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName, numberRound ) {
+], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName, validateRange, numberIsPercent, numberIsPerMille, numberRound ) {
 
 /**
  * format( number, pattern, cldr [, options] )
@@ -18,9 +21,9 @@ define([
  * @cldr [Cldr instance].
  *
  * @options [Object]:
- * - minimumIntegerDigits [Number] 
- * - minimumFractionDigits, maximumFractionDigits [Number] 
- * - minimumSignificantDigits, maximumSignificantDigits [Number] 
+ * - minimumIntegerDigits [Number]
+ * - minimumFractionDigits, maximumFractionDigits [Number]
+ * - minimumSignificantDigits, maximumSignificantDigits [Number]
  * - round [String] "ceil", "floor", "round" (default), or "truncate".
  * - useGrouping [Boolean] default true.
  *
@@ -41,83 +44,25 @@ return function( number, pattern, cldr, options ) {
 	round = numberRound( options.round );
 	properties = numberPatternProperties( pattern[ 0 ] );
 	padding = properties[ 1 ];
-	minimumIntegerDigits = options.hasOwnProperty("minimumIntegerDigits") ? options.minimumIntegerDigits : properties[ 2 ];
-	minimumFractionDigits = options.hasOwnProperty("minimumFractionDigits") ? options.minimumFractionDigits : properties[ 3 ];
-	maximumFractionDigits = options.hasOwnProperty("maximumFractionDigits") ? options.maximumFractionDigits : properties[ 4 ];
-	minimumSignificantDigits = options.hasOwnProperty("minimumSignificantDigits") ? options.minimumSignificantDigits : properties[ 5 ];
-	maximumSignificantDigits = options.hasOwnProperty("maximumSignificantDigits") ? options.maximumSignificantDigits : properties[ 6 ];
+	minimumIntegerDigits = options.minimumIntegerDigits || properties[ 2 ];
+	minimumFractionDigits = "minimumFractionDigits" in options ? options.minimumFractionDigits :
+		pattern ? properties[ 3 ] : 0;
+
+	if ( "maximumFractionDigits" in options ) {
+		maximumFractionDigits = options.maximumFractionDigits;
+	} else if ( pattern ) {
+		maximumFractionDigits = properties[ 4 ];
+	} else if ( numberIsPercent( pattern ) || numberIsPerMille( pattern ) ) {
+		maximumFractionDigits = Math.max( minimumFractionDigits, 0 );
+	} else {
+		maximumFractionDigits = Math.max( minimumFractionDigits, 3 );
+	}
+
+	minimumSignificantDigits = options.minimumSignificantDigits || pattern ? properties[ 5 ] : 1;
+	maximumSignificantDigits = options.maximumSignificantDigits || pattern ? properties[ 6 ] : 21;
 	roundIncrement = properties[ 7 ];
 	primaryGroupingSize = properties[ 8 ];
 	secondaryGroupingSize = properties[ 9 ];
-
-	// Validate and/or normalize number of digits
-	if ( isFinite(minimumIntegerDigits) ) {
-		if ( minimumIntegerDigits < 1 || minimumIntegerDigits > 21 ) {
-			throw new Error( "Minimum integer digits is out of range" );
-		}
-	}
-
-	if ( isFinite(minimumFractionDigits) ) {
-		if ( minimumFractionDigits < 0 || minimumFractionDigits > 20 ) {
-			throw new Error( "Minimum fraction digits is out of range" );
-		}
-	}
-
-	if ( isFinite(maximumFractionDigits) ) {
-		if ( maximumFractionDigits < 0 || minimumFractionDigits > 20 ) {
-			throw new Error( "Maximum fraction digits is out of range" );
-		}
-	}
-
-	if ( minimumFractionDigits > maximumFractionDigits ) {
-
-		// Cases where minimum and maximum fraction digits options are provided
-		if ( options.hasOwnProperty("minimumFractionDigits") && options.hasOwnProperty("maximumFractionDigits") ) {
-			throw new Error( "Minimum fraction digits cannot be greater than its maximum" );
-
-		// Minimum fraction digits option provided but maximum omitted
-		} else if ( options.hasOwnProperty("minimumFractionDigits") ) {
-
-			// e.g. For 3.14159 where minimumFractionDigits=5, a pattern-provided maximumFractionDigits=3 would have to be normalized to 5
-			maximumFractionDigits = minimumFractionDigits;
-
-		// Maximum fraction digits option provided but minimum omitted
-		} else if ( options.hasOwnProperty("maximumFractionDigits") ) {
-
-			// e.g. For 3.1 where maximumFractionDigits=1, a pattern-provided minimumFractionDigits=3 would have to be normalized to 1
-			minimumFractionDigits = maximumFractionDigits;
-		}
-
-	}
-
-	if ( isFinite(minimumSignificantDigits) && isFinite(maximumSignificantDigits) ) {
-
-		if ( minimumSignificantDigits < 1 || minimumSignificantDigits > 21 ) {
-			throw new Error( "Minimum significant digits is out of range" );
-		}
-		if ( minimumSignificantDigits < 1 || maximumSignificantDigits > 21 ) {
-			throw new Error( "Maximum significant digits is out of range" );
-		}
-
-		if ( minimumSignificantDigits > maximumSignificantDigits ) {
-
-			// Cases where minimum and maximum significant digits options are provided
-			if ( options.hasOwnProperty("minimumSignificantDigits") && options.hasOwnProperty("maximumSignificantDigits") ) {
-				throw new Error( "Minimum significant digits cannot be greater than its maximum" );
-
-			// e.g. For 123.00 where minimumSignificantDigits=6, a pattern-provided maximumSignificantDigits=3 would have to be normalized to 5
-			} else if ( options.hasOwnProperty("minimumSignificantDigits") ) {
-				maximumSignificantDigits = minimumSignificantDigits;
-
-			// e.g. For 120 where maximumSignificantDigits=2, a pattern-provided minimumSignificantDigits=3 would have to be normalized to 2
-			} else if ( options.hasOwnProperty("maximumSignificantDigits") ) {
-				minimumSignificantDigits = maximumSignificantDigits;
-			}
-		}
-
-	} else if ( isFinite(minimumSignificantDigits) || isFinite(maximumSignificantDigits) ) {
-		throw new Error( "None or both the minimum and maximum significant digits must be present" );
-	}
 
 	// Negative pattern
 	// "If there is an explicit negative subpattern, it serves only to specify the negative prefix and suffix" UTS#35
@@ -141,20 +86,58 @@ return function( number, pattern, cldr, options ) {
 	ret = prefix;
 
 	// Percent
-	if ( pattern.indexOf( "%" ) !== -1 ) {
+	if ( numberIsPercent( pattern ) ) {
 		number *= 100;
 
 	// Per mille
-	} else if ( pattern.indexOf( "\u2030" ) !== -1 ) {
+	} else if ( numberIsPerMille( pattern ) ) {
 		number *= 1000;
 	}
 
 	// Significant digit format
 	if ( minimumSignificantDigits && maximumSignificantDigits ) {
+
+		// Normalize number of digits
+		if ( "minimumSignificantDigits" in options && "maximumSignificantDigits" in options ) {
+			if ( minimumSignificantDigits > maximumSignificantDigits ) {
+				throw new Error( "Minimum significant digits cannot be greater than maximum" );
+			}
+		} else if ( "minimumSignificantDigits" in options ) {
+			maximumSignificantDigits = Math.max( minimumSignificantDigits, maximumSignificantDigits );
+		} else if ( "maximumSignificantDigits" in options ) {
+			minimumSignificantDigits = Math.min( minimumSignificantDigits, maximumSignificantDigits );
+		}
+
+		validateRange( minimumSignificantDigits, "minimumSignificantDigits", 1, 21 );
+		validateRange( maximumSignificantDigits, "maximumSignificantDigits", minimumSignificantDigits, 21 );
+
 		number = numberFormatSignificantDigits( number, minimumSignificantDigits, maximumSignificantDigits, round );
+
+	} else if ( minimumSignificantDigits || maximumSignificantDigits ) {
+		throw new Error( "None or both the minimum and maximum significant digits must be present" );
 
 	// Integer and fractional format
 	} else {
+
+		validateRange( minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
+
+		if ( minimumFractionDigits ) {
+
+			// Normalize number of digits
+			if ( "minimumFractionDigits" in options && "maximumFractionDigits" in options ) {
+				if ( minimumFractionDigits > maximumFractionDigits ) {
+					throw new Error( "Minimum fraction digits cannot be greater than maximum" );
+				}
+			} else if ( "minimumFractionDigits" in options ) {
+				maximumFractionDigits = Math.max( minimumFractionDigits, maximumFractionDigits );
+			} else if ( "maximumFractionDigits" in options ) {
+				minimumFractionDigits = Math.min( minimumFractionDigits, maximumFractionDigits );
+			}
+
+			validateRange( minimumFractionDigits, "minimumFractionDigits", 0, 20 );
+			validateRange( maximumFractionDigits, "maximumFractionDigits", minimumFractionDigits, 20 );
+		}
+
 		number = numberFormatIntegerFractionDigits( number, minimumIntegerDigits, minimumFractionDigits, maximumFractionDigits, round, roundIncrement );
 	}
 

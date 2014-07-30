@@ -88,9 +88,22 @@ QUnit.test( "should allow integer and fraction options override", function( asse
 		minimumIntegerDigits: 2,
 		minimumFractionDigits: 3
 	}), "01.100" );
+	assert.equal( format( 1.1, "0.##", en, {
+		minimumIntegerDigits: 2,
+		maximumFractionDigits: 3
+	}), "01.1" );
 
 	// Use minimumFractionDigits, but no maximumFractionDigits. Sanity check.
 	assert.equal( format( pi, "0.##", en, { minimumFractionDigits: 4 }), "3.1416" );
+	assert.equal( format( pi, "0.##", en, { maximumFractionDigits: 4 }), "3.1416" );
+	assert.equal( format( pi, "0.##", en, {
+		minimumFractionDigits: 1,
+		maximumFractionDigits: 4
+	}), "3.1416" );
+	assert.equal( format( pi, "0.##", en, {
+		minimumIntegerDigits: 2,
+		maximumFractionDigits: 3
+	}), "03.142" );
 });
 
 QUnit.test( "should allow rounding", function( assert ) {
