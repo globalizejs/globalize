@@ -51,9 +51,8 @@ return function( number, pattern, cldr, options ) {
 	if ( "maximumFractionDigits" in options ) {
 		maximumFractionDigits = options.maximumFractionDigits;
 	} else if ( pattern ) {
-		maximumFractionDigits = properties[ 4 ];
-	} else if ( numberIsPercent( pattern ) || numberIsPerMille( pattern ) ) {
-		maximumFractionDigits = Math.max( minimumFractionDigits, 0 );
+		maximumFractionDigits = ( numberIsPercent( pattern ) || numberIsPerMille( pattern ) ) ?
+			Math.max( minimumFractionDigits, 0 ) : properties[ 4 ];
 	} else {
 		maximumFractionDigits = Math.max( minimumFractionDigits, 3 );
 	}
@@ -96,18 +95,6 @@ return function( number, pattern, cldr, options ) {
 
 	// Significant digit format
 	if ( minimumSignificantDigits && maximumSignificantDigits ) {
-
-		// Normalize number of digits
-		if ( "minimumSignificantDigits" in options && "maximumSignificantDigits" in options ) {
-			if ( minimumSignificantDigits > maximumSignificantDigits ) {
-				throw new Error( "Minimum significant digits cannot be greater than maximum" );
-			}
-		} else if ( "minimumSignificantDigits" in options ) {
-			maximumSignificantDigits = Math.max( minimumSignificantDigits, maximumSignificantDigits );
-		} else if ( "maximumSignificantDigits" in options ) {
-			minimumSignificantDigits = Math.min( minimumSignificantDigits, maximumSignificantDigits );
-		}
-
 		validateRange( minimumSignificantDigits, "minimumSignificantDigits", 1, 21 );
 		validateRange( maximumSignificantDigits, "maximumSignificantDigits", minimumSignificantDigits, 21 );
 
@@ -121,16 +108,13 @@ return function( number, pattern, cldr, options ) {
 
 		validateRange( minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
 
-		if ( minimumFractionDigits ) {
+		if ( isFinite( minimumFractionDigits ) ) {
 
-			// Normalize number of digits
-			if ( "minimumFractionDigits" in options && "maximumFractionDigits" in options ) {
-				if ( minimumFractionDigits > maximumFractionDigits ) {
-					throw new Error( "Minimum fraction digits cannot be greater than maximum" );
-				}
-			} else if ( "minimumFractionDigits" in options ) {
+			// Normalize number of digits if only one of either minimumFractionDigits or maximumFractionDigits
+			// is passed in as an option
+			if ( "minimumFractionDigits" in options && !( "maximumFractionDigits" in options ) ) {
 				maximumFractionDigits = Math.max( minimumFractionDigits, maximumFractionDigits );
-			} else if ( "maximumFractionDigits" in options ) {
+			} else if ( !( "minimumFractionDigits" in options ) && "maximumFractionDigits" in options ) {
 				minimumFractionDigits = Math.min( minimumFractionDigits, maximumFractionDigits );
 			}
 
