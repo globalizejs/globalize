@@ -57,8 +57,8 @@ return function( number, pattern, cldr, options ) {
 		maximumFractionDigits = Math.max( minimumFractionDigits, 3 );
 	}
 
-	minimumSignificantDigits = options.minimumSignificantDigits || pattern ? properties[ 5 ] : 1;
-	maximumSignificantDigits = options.maximumSignificantDigits || pattern ? properties[ 6 ] : 21;
+	minimumSignificantDigits = options.minimumSignificantDigits || ( pattern ? properties[ 5 ] : 1 );
+	maximumSignificantDigits = options.maximumSignificantDigits || ( pattern ? properties[ 6 ] : 21 );
 	roundIncrement = properties[ 7 ];
 	primaryGroupingSize = properties[ 8 ];
 	secondaryGroupingSize = properties[ 9 ];
