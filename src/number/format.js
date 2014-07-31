@@ -45,20 +45,10 @@ return function( number, pattern, cldr, options ) {
 	properties = numberPatternProperties( pattern[ 0 ] );
 	padding = properties[ 1 ];
 	minimumIntegerDigits = options.minimumIntegerDigits || properties[ 2 ];
-	minimumFractionDigits = "minimumFractionDigits" in options ? options.minimumFractionDigits :
-		pattern ? properties[ 3 ] : 0;
-
-	if ( "maximumFractionDigits" in options ) {
-		maximumFractionDigits = options.maximumFractionDigits;
-	} else if ( pattern ) {
-		maximumFractionDigits = ( numberIsPercent( pattern ) || numberIsPerMille( pattern ) ) ?
-			Math.max( minimumFractionDigits, 0 ) : properties[ 4 ];
-	} else {
-		maximumFractionDigits = Math.max( minimumFractionDigits, 3 );
-	}
-
-	minimumSignificantDigits = options.minimumSignificantDigits || ( pattern ? properties[ 5 ] : 1 );
-	maximumSignificantDigits = options.maximumSignificantDigits || ( pattern ? properties[ 6 ] : 21 );
+	minimumFractionDigits = "minimumFractionDigits" in options ? options.minimumFractionDigits : properties[ 3 ];
+	maximumFractionDigits = "maximumFractionDigits" in options ? options.maximumFractionDigits : properties[ 4 ];
+	minimumSignificantDigits = options.minimumSignificantDigits || properties[ 5 ];
+	maximumSignificantDigits = options.maximumSignificantDigits || properties[ 6 ];
 	roundIncrement = properties[ 7 ];
 	primaryGroupingSize = properties[ 8 ];
 	secondaryGroupingSize = properties[ 9 ];
