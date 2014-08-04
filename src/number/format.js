@@ -96,22 +96,16 @@ return function( number, pattern, cldr, options ) {
 	// Integer and fractional format
 	} else {
 
-		validateRange( minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
-
-		if ( isFinite( minimumFractionDigits ) ) {
-
-			// Normalize number of digits if only one of either minimumFractionDigits or maximumFractionDigits
-			// is passed in as an option
-			if ( "minimumFractionDigits" in options && !( "maximumFractionDigits" in options ) ) {
-				maximumFractionDigits = Math.max( minimumFractionDigits, maximumFractionDigits );
-			} else if ( !( "minimumFractionDigits" in options ) && "maximumFractionDigits" in options ) {
-				minimumFractionDigits = Math.min( minimumFractionDigits, maximumFractionDigits );
-			}
-
-			validateRange( minimumFractionDigits, "minimumFractionDigits", 0, 20 );
-			validateRange( maximumFractionDigits, "maximumFractionDigits", minimumFractionDigits, 20 );
+		// Normalize number of digits if only one of either minimumFractionDigits or maximumFractionDigits
+		// is passed in as an option
+		if ( "minimumFractionDigits" in options && !( "maximumFractionDigits" in options ) ) {
+			maximumFractionDigits = Math.max( minimumFractionDigits, maximumFractionDigits );
+		} else if ( !( "minimumFractionDigits" in options ) && "maximumFractionDigits" in options ) {
+			minimumFractionDigits = Math.min( minimumFractionDigits, maximumFractionDigits );
 		}
-
+		validateRange( minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
+		validateRange( minimumFractionDigits, "minimumFractionDigits", 0, 20 );
+		validateRange( maximumFractionDigits, "maximumFractionDigits", minimumFractionDigits, 20 );
 		number = numberFormatIntegerFractionDigits( number, minimumIntegerDigits, minimumFractionDigits, maximumFractionDigits, round, roundIncrement );
 	}
 

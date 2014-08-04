@@ -39,6 +39,8 @@ return function( pattern ) {
 		fractionPattern = pattern[ 7 ];
 		integerPattern = pattern[ 6 ];
 
+		minimumFractionDigits = maximumFractionDigits = 0;
+
 		if ( fractionPattern ) {
 
 			// Minimum fraction digits, and rounding.
