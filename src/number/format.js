@@ -6,10 +6,8 @@ define([
 	"./symbol",
 	"./symbol/name",
 	"../common/validate/range",
-	"../util/number/is-percent",
-	"../util/number/is-per-mille",
 	"../util/number/round"
-], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName, validateRange, numberIsPercent, numberIsPerMille, numberRound ) {
+], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName, validateRange, numberRound ) {
 
 /**
  * format( number, pattern, cldr [, options] )
@@ -75,11 +73,11 @@ return function( number, pattern, cldr, options ) {
 	ret = prefix;
 
 	// Percent
-	if ( numberIsPercent( pattern ) ) {
+	if ( pattern.indexOf( "%" ) !== -1 ) {
 		number *= 100;
 
 	// Per mille
-	} else if ( numberIsPerMille( pattern ) ) {
+	} else if ( pattern.indexOf( "\u2030" ) !== -1 ) {
 		number *= 1000;
 	}
 
