@@ -25,7 +25,7 @@ A JSON object including none or any of the following attributes.
 >
 > Non-negative integer Number values indicating the minimum and maximum fraction
 > digits to be used. Numbers will be rounded or padded with trailing zeroes if
-> necessary. Either or both of these properties are present; if they are,
+> necessary. Either or both of these properties are present. If they are,
 > they will override minimum and maximum fraction digits derived from the
 > CLDR patterns or default values.
 >
