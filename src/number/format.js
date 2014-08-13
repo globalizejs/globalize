@@ -43,8 +43,8 @@ return function( number, pattern, cldr, options ) {
 	properties = numberPatternProperties( pattern[ 0 ] );
 	padding = properties[ 1 ];
 	minimumIntegerDigits = options.minimumIntegerDigits || properties[ 2 ];
-	minimumFractionDigits = "minimumFractionDigits" in options ? options.minimumFractionDigits : properties[ 3 ];
-	maximumFractionDigits = "maximumFractionDigits" in options ? options.maximumFractionDigits : properties[ 4 ];
+	minimumFractionDigits = "minimumFractionDigits" in options ? options.minimumFractionDigits : properties[ 3 ] || 0;
+	maximumFractionDigits = "maximumFractionDigits" in options ? options.maximumFractionDigits : properties[ 4 ] || 0;
 	minimumSignificantDigits = options.minimumSignificantDigits || properties[ 5 ];
 	maximumSignificantDigits = options.maximumSignificantDigits || properties[ 6 ];
 	roundIncrement = properties[ 7 ];
