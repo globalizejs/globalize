@@ -5,8 +5,9 @@ define([
 	"./pattern-properties",
 	"./symbol",
 	"./symbol/name",
+	"../common/validate/range",
 	"../util/number/round"
-], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName, numberRound ) {
+], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName, validateRange, numberRound ) {
 
 /**
  * format( number, pattern, cldr [, options] )
@@ -18,9 +19,9 @@ define([
  * @cldr [Cldr instance].
  *
  * @options [Object]:
- * - minimumIntegerDigits [Number] 
- * - minimumFractionDigits, maximumFractionDigits [Number] 
- * - minimumSignificantDigits, maximumSignificantDigits [Number] 
+ * - minimumIntegerDigits [Number]
+ * - minimumFractionDigits, maximumFractionDigits [Number]
+ * - minimumSignificantDigits, maximumSignificantDigits [Number]
  * - round [String] "ceil", "floor", "round" (default), or "truncate".
  * - useGrouping [Boolean] default true.
  *
@@ -42,8 +43,8 @@ return function( number, pattern, cldr, options ) {
 	properties = numberPatternProperties( pattern[ 0 ] );
 	padding = properties[ 1 ];
 	minimumIntegerDigits = options.minimumIntegerDigits || properties[ 2 ];
-	minimumFractionDigits = options.minimumFractionDigits || properties[ 3 ];
-	maximumFractionDigits = options.maximumFractionDigits || properties[ 4 ];
+	minimumFractionDigits = "minimumFractionDigits" in options ? options.minimumFractionDigits : properties[ 3 ] || 0;
+	maximumFractionDigits = "maximumFractionDigits" in options ? options.maximumFractionDigits : properties[ 4 ] || 0;
 	minimumSignificantDigits = options.minimumSignificantDigits || properties[ 5 ];
 	maximumSignificantDigits = options.maximumSignificantDigits || properties[ 6 ];
 	roundIncrement = properties[ 7 ];
@@ -82,12 +83,27 @@ return function( number, pattern, cldr, options ) {
 
 	// Significant digit format
 	if ( minimumSignificantDigits && maximumSignificantDigits ) {
+		validateRange( minimumSignificantDigits, "minimumSignificantDigits", 1, 21 );
+		validateRange( maximumSignificantDigits, "maximumSignificantDigits", minimumSignificantDigits, 21 );
+
 		number = numberFormatSignificantDigits( number, minimumSignificantDigits, maximumSignificantDigits, round );
+
 	} else if ( minimumSignificantDigits || maximumSignificantDigits ) {
 		throw new Error( "None or both the minimum and maximum significant digits must be present" );
 
 	// Integer and fractional format
 	} else {
+
+		// Normalize number of digits if only one of either minimumFractionDigits or maximumFractionDigits
+		// is passed in as an option
+		if ( "minimumFractionDigits" in options && !( "maximumFractionDigits" in options ) ) {
+			maximumFractionDigits = Math.max( minimumFractionDigits, maximumFractionDigits );
+		} else if ( !( "minimumFractionDigits" in options ) && "maximumFractionDigits" in options ) {
+			minimumFractionDigits = Math.min( minimumFractionDigits, maximumFractionDigits );
+		}
+		validateRange( minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
+		validateRange( minimumFractionDigits, "minimumFractionDigits", 0, 20 );
+		validateRange( maximumFractionDigits, "maximumFractionDigits", minimumFractionDigits, 20 );
 		number = numberFormatIntegerFractionDigits( number, minimumIntegerDigits, minimumFractionDigits, maximumFractionDigits, round, roundIncrement );
 	}
 

@@ -5,6 +5,7 @@ define([
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
 	"./common/validate/presence",
+	"./common/validate/range",
 	"./common/validate/type",
 	"./common/validate/type/locale",
 	"./common/validate/type/plain-object",
@@ -12,7 +13,7 @@ define([
 	"./util/always-cldr",
 	"./util/is-plain-object",
 	"cldr/event"
-], function( Cldr, createError, formatMessage, validateCldr, validateDefaultLocale, validatePresence, validateType, validateTypeLocale, validateTypePlainObject, alwaysArray, alwaysCldr, isPlainObject ) {
+], function( Cldr, createError, formatMessage, validateCldr, validateDefaultLocale, validatePresence, validateRange, validateType, validateTypeLocale, validateTypePlainObject, alwaysArray, alwaysCldr, isPlainObject ) {
 
 function validateLikelySubtags( cldr ) {
 	cldr.once( "get", validateCldr );
@@ -87,6 +88,7 @@ Globalize._isPlainObject = isPlainObject;
 Globalize._validateCldr = validateCldr;
 Globalize._validateDefaultLocale = validateDefaultLocale;
 Globalize._validatePresence = validatePresence;
+Globalize._validateRange = validateRange;
 Globalize._validateTypePlainObject = validateTypePlainObject;
 Globalize._validateType = validateType;
 

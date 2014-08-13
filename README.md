@@ -313,6 +313,21 @@ Error object:
 | code | `E_MISSING_PARAMETER` |
 | name | Name of the missing parameter |
 
+<a name="E_OUT_OF_RANGE"></a>
+#### `E_OUT_OF_RANGE`
+
+Thrown when a parameter is not within a valid range of values.
+
+Error object:
+
+| Attribute | Value |
+| --- | --- |
+| code | `E_OUT_OF_RANGE` |
+| name | Name of the invalid parameter |
+| value | Invalid value |
+| minimum | Minimum value of the valid range |
+| maximum | Maximum value of the valid range |
+
 <a name="E_INVALID_PAR_TYPE"></a>
 #### `E_INVALID_PAR_TYPE`
 

@@ -8,24 +8,19 @@ define([
  *
  * @number [Number]
  *
- * @minimumIntegerDigits [Number] 
+ * @minimumIntegerDigits [Number]
  *
- * @minimumFractionDigits [Number] 
+ * @minimumFractionDigits [Number]
  *
- * @maximumFractionDigits [Number] 
+ * @maximumFractionDigits [Number]
  *
- * @round [Function] 
+ * @round [Function]
  *
- * @roundIncrement [Function] 
+ * @roundIncrement [Function]
  *
  * Return the formatted integer and fraction digits.
  */
 return function( number, minimumIntegerDigits, minimumFractionDigits, maximumFractionDigits, round, roundIncrement ) {
-
-	// Sanity check.
-	if ( minimumFractionDigits > maximumFractionDigits ) {
-		maximumFractionDigits = minimumFractionDigits;
-	}
 
 	// Fraction
 	if ( maximumFractionDigits ) {
