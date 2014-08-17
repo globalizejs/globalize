@@ -1,8 +1,8 @@
 # Globalize
 
-[![Build Status](https://secure.travis-ci.org/jquery/globalize.png)](http://travis-ci.org/jquery/globalize)
-[![devDependency Status](https://david-dm.org/jquery/globalize/status.png)](https://david-dm.org/jquery/globalize#info=dependencies)
-[![devDependency Status](https://david-dm.org/jquery/globalize/dev-status.png)](https://david-dm.org/jquery/globalize#info=devDependencies)
+[![Build Status](https://secure.travis-ci.org/jquery/globalize.svg)](http://travis-ci.org/jquery/globalize)
+[![devDependency Status](https://david-dm.org/jquery/globalize/status.svg)](https://david-dm.org/jquery/globalize#info=dependencies)
+[![devDependency Status](https://david-dm.org/jquery/globalize/dev-status.svg)](https://david-dm.org/jquery/globalize#info=devDependencies)
 
 A JavaScript library for internationalization and localization that leverage the
 official [Unicode CLDR](http://cldr.unicode.org/) JSON data. The library works both for the browser and as a
