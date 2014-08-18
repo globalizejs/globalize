@@ -80,22 +80,39 @@ QUnit.test( "should localize decimal separator symbol (.)", function( assert ) {
 });
 
 QUnit.test( "should allow integer and fraction options override", function( assert ) {
-	assert.equal( format( pi, "0.##", en, { minimumIntegerDigits: 2 } ), "03.14" );
+	// Overriding minimum integer digits only.
+	assert.equal( format( pi, "0", en, { minimumIntegerDigits: 2 } ), "03" );
+
+	// Overriding both fraction options.
+	assert.equal( format( pi, "0.##", en, {
+		maximumFractionDigits: 5,
+		minimumFractionDigits: 3
+	} ), "3.14159" );
+	assert.equal( format( 0.1, "0.##", en, {
+		maximumFractionDigits: 5,
+		minimumFractionDigits: 3
+	} ), "0.100" );
+
+	// Overriding maximum fraction digits only.
 	assert.equal( format( pi, "0.##", en, { maximumFractionDigits: 0 } ), "3" );
 	assert.equal( format( pi, "0.##", en, { maximumFractionDigits: 1 } ), "3.1" );
-	assert.equal( format( 0.1, "0.##", en, { minimumFractionDigits: 2 } ), "0.10" );
-	assert.equal( format( 1.1, "0.##", en, {
-		minimumIntegerDigits: 2,
-		minimumFractionDigits: 3
-	}), "01.100" );
-	assert.equal( format( 1.1, "0.##", en, {
-		minimumIntegerDigits: 2,
-		maximumFractionDigits: 3
-	}), "01.1" );
+	assert.equal( format( pi, "0.##", en, { maximumFractionDigits: 3 } ), "3.142" );
+	assert.equal( format( 0.01, "0.##", en, { maximumFractionDigits: 1 } ), "0" );
+	assert.equal( format( 0.01, "0.0#", en, { maximumFractionDigits: 1 } ), "0.0" );
 
-	// Use minimumFractionDigits, but no maximumFractionDigits. Sanity check.
-	assert.equal( format( pi, "0.##", en, { minimumFractionDigits: 4 } ), "3.1416" );
-	assert.equal( format( pi, "0.##", en, { maximumFractionDigits: 4 } ), "3.1416" );
+	// Sanity normalization: minimumFractionDigits = min( minimumFractionDigits, maximumFractionDigits )
+	assert.equal( format( 0.1, "0.0000", en, { maximumFractionDigits: 2 } ), "0.10" );
+
+	// Overriding minimum fraction digits only.
+	assert.equal( format( 1, "0.00", en, { minimumFractionDigits: 0 } ), "1" );
+	assert.equal( format( 0.1, "0.00", en, { minimumFractionDigits: 0 } ), "0.1" );
+	assert.equal( format( 0.001, "0.00", en, { minimumFractionDigits: 0 } ), "0" );
+	assert.equal( format( 0.1, "0.##", en, { minimumFractionDigits: 2 } ), "0.10" );
+
+	// Sanity normalization: maximumFractionDigits = max( minimumFractionDigits, maximumFractionDigits ).
+	assert.equal( format( pi, "0.##", en, { minimumFractionDigits: 5 } ), "3.14159" );
+
+	// Overriding both minimum and maximum fraction digits.
 	assert.equal( format( pi, "0.##", en, {
 		minimumFractionDigits: 1,
 		maximumFractionDigits: 4
@@ -104,6 +121,16 @@ QUnit.test( "should allow integer and fraction options override", function( asse
 		minimumIntegerDigits: 2,
 		maximumFractionDigits: 3
 	}), "03.142" );
+
+	// Overriding both integer and fraction options.
+	assert.equal( format( 1.1, "0.##", en, {
+		minimumIntegerDigits: 2,
+		minimumFractionDigits: 3
+	}), "01.100" );
+	assert.equal( format( 1.1, "0.##", en, {
+		minimumIntegerDigits: 2,
+		maximumFractionDigits: 3
+	}), "01.1" );
 });
 
 QUnit.test( "should allow rounding", function( assert ) {

@@ -25,14 +25,14 @@ A JSON object including none or any of the following attributes.
 >
 > Non-negative integer Number values indicating the minimum and maximum fraction
 > digits to be used. Numbers will be rounded or padded with trailing zeroes if
-> necessary. Either or both of these properties are present. If they are,
-> they will override minimum and maximum fraction digits derived from the
-> CLDR patterns or default values.
+> necessary. Either one or both of these properties must be present. If they
+> are, they will override minimum and maximum fraction digits derived from the
+> CLDR patterns.
 >
 > **minimumSignificantDigits** and **maximumSignificantDigits** Optional
 >
 > Positive integer Number values indicating the minimum and maximum fraction
-> digits to be shown. Either none or both of these properties are present; if
+> digits to be shown. Either none or both of these properties are present. If
 > they are, they override minimum and maximum integer and fraction digits. The
 > formatter uses however many integer and fraction digits are required to
 > display the specified number of significant digits.
