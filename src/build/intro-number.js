@@ -18,7 +18,7 @@
 		define([
 			"cldr",
 			"../globalize",
-			"cldr/event",
+			"cldr/event"
 		], factory );
 	} else if ( typeof exports === "object" ) {
 
