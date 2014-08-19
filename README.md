@@ -93,12 +93,12 @@ information on its usage.
 <a name="modules"></a>
 ### Pick the modules you need
 
-| File | Minified size | Summary |
+| File | Minified + gzipped size | Summary |
 |---|--:|---|
-| globalize.js | 2.0KB | [Core library](#core) |
-| globalize/date.js | +9.4KB | [Date module](#date_module) provides date formatting and parsing |
-| globalize/message.js | +0.7KB | [Message module](#message_module) provides message translation |
-| globalize/number.js | +4.8KB | [Number module](#number_module) provides number formatting and parsing |
+| globalize.js | 1.1KB | [Core library](#core) |
+| globalize/date.js | +3.0KB | [Date module](#date_module) provides date formatting and parsing |
+| globalize/message.js | +0.5KB | [Message module](#message_module) provides message translation |
+| globalize/number.js | +2.4KB | [Number module](#number_module) provides number formatting and parsing |
 <!--- By updating this table, also update its clone in #usage -->
 
 <a name="browser_support"></a>
