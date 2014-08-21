@@ -29,6 +29,7 @@ Then, you'll get this:
 ```
 .
 ├── cldr
+│   ├── event.js
 │   └── supplemental.js
 ├── cldr.js
 └── index.html

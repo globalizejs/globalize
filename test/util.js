@@ -116,6 +116,20 @@ return {
 		assertParameterType( assert, "string", name, fn );
 	},
 
+	/**
+	 * Range assertion
+	 */
+	assertRange: function( assert, min, max, fn ) {
+		[ min - 1, max + 1 ].forEach(function( num ) {
+			assert.throws(function() {
+				fn( num );
+			}, function E_OUT_OF_RANGE( error ) {
+				return error.code === "E_OUT_OF_RANGE";
+			}, "Expected \"E_OUT_OF_RANGE error to be thrown testing " + num );
+		});
+	},
+
+
 	resetCldrContent: function() {
 		Cldr._resolved = {};
 		Cldr._raw = {};

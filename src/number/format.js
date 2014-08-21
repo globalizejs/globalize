@@ -5,8 +5,9 @@ define([
 	"./pattern-properties",
 	"./symbol",
 	"./symbol/name",
+	"../common/validate/range",
 	"../util/number/round"
-], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName, numberRound ) {
+], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName, validateRange, numberRound ) {
 
 /**
  * format( number, pattern, cldr [, options] )
@@ -18,9 +19,9 @@ define([
  * @cldr [Cldr instance].
  *
  * @options [Object]:
- * - minimumIntegerDigits [Number] 
- * - minimumFractionDigits, maximumFractionDigits [Number] 
- * - minimumSignificantDigits, maximumSignificantDigits [Number] 
+ * - minimumIntegerDigits [Number]
+ * - minimumFractionDigits, maximumFractionDigits [Number]
+ * - minimumSignificantDigits, maximumSignificantDigits [Number]
  * - round [String] "ceil", "floor", "round" (default), or "truncate".
  * - useGrouping [Boolean] default true.
  *
@@ -37,15 +38,20 @@ return function( number, pattern, cldr, options ) {
 
 	pattern = pattern.split( ";" );
 
+	function getOptions( property, defaultValue ) {
+		return property in options ? options[ property ] : defaultValue;
+	}
+
 	options = options || {};
 	round = numberRound( options.round );
 	properties = numberPatternProperties( pattern[ 0 ] );
 	padding = properties[ 1 ];
-	minimumIntegerDigits = options.minimumIntegerDigits || properties[ 2 ];
-	minimumFractionDigits = options.minimumFractionDigits || properties[ 3 ];
-	maximumFractionDigits = options.maximumFractionDigits || properties[ 4 ];
-	minimumSignificantDigits = options.minimumSignificantDigits || properties[ 5 ];
-	maximumSignificantDigits = options.maximumSignificantDigits || properties[ 6 ];
+	minimumIntegerDigits = getOptions( "minimumIntegerDigits", properties[ 2 ] );
+	minimumIntegerDigits = getOptions( "minimumIntegerDigits", properties[ 2 ] );
+	minimumFractionDigits = getOptions( "minimumFractionDigits", properties[ 3 ] );
+	maximumFractionDigits = getOptions( "maximumFractionDigits", properties[ 4 ] );
+	minimumSignificantDigits = getOptions( "minimumSignificantDigits", properties[ 5 ] );
+	maximumSignificantDigits = getOptions( "maximumSignificantDigits", properties[ 6 ] );
 	roundIncrement = properties[ 7 ];
 	primaryGroupingSize = properties[ 8 ];
 	secondaryGroupingSize = properties[ 9 ];
@@ -81,13 +87,28 @@ return function( number, pattern, cldr, options ) {
 	}
 
 	// Significant digit format
-	if ( minimumSignificantDigits && maximumSignificantDigits ) {
+	if ( !isNaN( minimumSignificantDigits * maximumSignificantDigits ) ) {
+		validateRange( minimumSignificantDigits, "minimumSignificantDigits", 1, 21 );
+		validateRange( maximumSignificantDigits, "maximumSignificantDigits", minimumSignificantDigits, 21 );
+
 		number = numberFormatSignificantDigits( number, minimumSignificantDigits, maximumSignificantDigits, round );
-	} else if ( minimumSignificantDigits || maximumSignificantDigits ) {
+
+	} else if ( !isNaN( minimumSignificantDigits ) || !isNaN( maximumSignificantDigits ) ) {
 		throw new Error( "None or both the minimum and maximum significant digits must be present" );
 
 	// Integer and fractional format
 	} else {
+
+		// Normalize number of digits if only one of either minimumFractionDigits or maximumFractionDigits
+		// is passed in as an option
+		if ( "minimumFractionDigits" in options && !( "maximumFractionDigits" in options ) ) {
+			maximumFractionDigits = Math.max( minimumFractionDigits, maximumFractionDigits );
+		} else if ( !( "minimumFractionDigits" in options ) && "maximumFractionDigits" in options ) {
+			minimumFractionDigits = Math.min( minimumFractionDigits, maximumFractionDigits );
+		}
+		validateRange( minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
+		validateRange( minimumFractionDigits, "minimumFractionDigits", 0, 20 );
+		validateRange( maximumFractionDigits, "maximumFractionDigits", minimumFractionDigits, 20 );
 		number = numberFormatIntegerFractionDigits( number, minimumIntegerDigits, minimumFractionDigits, maximumFractionDigits, round, roundIncrement );
 	}
 

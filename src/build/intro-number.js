@@ -18,7 +18,7 @@
 		define([
 			"cldr",
 			"../globalize",
-			"cldr/event",
+			"cldr/event"
 		], factory );
 	} else if ( typeof exports === "object" ) {
 
@@ -34,5 +34,6 @@
 var validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validatePresence = Globalize._validatePresence,
+	validateRange = Globalize._validateRange,
 	validateType = Globalize._validateType,
 	validateTypePlainObject = Globalize._validateTypePlainObject;

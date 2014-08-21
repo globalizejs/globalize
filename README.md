@@ -1,8 +1,8 @@
 # Globalize
 
-[![Build Status](https://secure.travis-ci.org/jquery/globalize.png)](http://travis-ci.org/jquery/globalize)
-[![devDependency Status](https://david-dm.org/jquery/globalize/status.png)](https://david-dm.org/jquery/globalize#info=dependencies)
-[![devDependency Status](https://david-dm.org/jquery/globalize/dev-status.png)](https://david-dm.org/jquery/globalize#info=devDependencies)
+[![Build Status](https://secure.travis-ci.org/jquery/globalize.svg)](http://travis-ci.org/jquery/globalize)
+[![devDependency Status](https://david-dm.org/jquery/globalize/status.svg)](https://david-dm.org/jquery/globalize#info=dependencies)
+[![devDependency Status](https://david-dm.org/jquery/globalize/dev-status.svg)](https://david-dm.org/jquery/globalize#info=devDependencies)
 
 A JavaScript library for internationalization and localization that leverage the
 official [Unicode CLDR](http://cldr.unicode.org/) JSON data. The library works both for the browser and as a
@@ -93,12 +93,12 @@ information on its usage.
 <a name="modules"></a>
 ### Pick the modules you need
 
-| File | Minified size | Summary |
+| File | Minified + gzipped size | Summary |
 |---|--:|---|
-| globalize.js | 2.0KB | [Core library](#core) |
-| globalize/date.js | +9.4KB | [Date module](#date_module) provides date formatting and parsing |
-| globalize/message.js | +0.7KB | [Message module](#message_module) provides message translation |
-| globalize/number.js | +4.8KB | [Number module](#number_module) provides number formatting and parsing |
+| globalize.js | 1.1KB | [Core library](#core) |
+| globalize/date.js | +3.0KB | [Date module](#date_module) provides date formatting and parsing |
+| globalize/message.js | +0.5KB | [Message module](#message_module) provides message translation |
+| globalize/number.js | +2.4KB | [Number module](#number_module) provides number formatting and parsing |
 <!--- By updating this table, also update its clone in #usage -->
 
 <a name="browser_support"></a>
@@ -301,18 +301,6 @@ Error object:
 | --- | --- |
 | code | `E_DEFAULT_LOCALE_NOT_DEFINED` |
 
-<a name="E_MISSING_PARAMETER"></a>
-#### `E_MISSING_PARAMETER`
-
-Thrown when a required parameter is missing on any static or instance methods.
-
-Error object:
-
-| Attribute | Value |
-| --- | --- |
-| code | `E_MISSING_PARAMETER` |
-| name | Name of the missing parameter |
-
 <a name="E_INVALID_PAR_TYPE"></a>
 #### `E_INVALID_PAR_TYPE`
 
@@ -355,6 +343,33 @@ Error object:
 | --- | --- |
 | code | `E_MISSING_CLDR` |
 | path | Missing CLDR item path |
+
+<a name="E_MISSING_PARAMETER"></a>
+#### `E_MISSING_PARAMETER`
+
+Thrown when a required parameter is missing on any static or instance methods.
+
+Error object:
+
+| Attribute | Value |
+| --- | --- |
+| code | `E_MISSING_PARAMETER` |
+| name | Name of the missing parameter |
+
+<a name="E_OUT_OF_RANGE"></a>
+#### `E_OUT_OF_RANGE`
+
+Thrown when a parameter is not within a valid range of values.
+
+Error object:
+
+| Attribute | Value |
+| --- | --- |
+| code | `E_OUT_OF_RANGE` |
+| name | Name of the invalid parameter |
+| value | Invalid value |
+| minimum | Minimum value of the valid range |
+| maximum | Maximum value of the valid range |
 
 
 <a name="development"></a>
