@@ -6,13 +6,13 @@ define([
 /**
  * toPrecision( number, minimumSignificantDigits, maximumSignificantDigits, round )
  *
- * @number [Number] 
+ * @number [Number]
  *
- * @minimumSignificantDigits [Number] 
+ * @minimumSignificantDigits [Number]
  *
- * @maximumSignificantDigits [Number] 
+ * @maximumSignificantDigits [Number]
  *
- * @round [Function] 
+ * @round [Function]
  *
  * Return the formatted significant digits number.
  */

@@ -24,7 +24,8 @@ define([
  *   value: "pm"
  * }]
  *
- * OBS: lexeme's are always String and may return invalid ranges depending of the token type. Eg. "99" for month number.
+ * OBS: lexeme's are always String and may return invalid ranges depending of the token type.
+ * Eg. "99" for month number.
  *
  * Return an empty Array when not successfully parsed.
  */
@@ -148,7 +149,7 @@ return function( value, pattern, cldr ) {
 			case "c":
 				// number l=1:{1}, l=2:{2}.
 				// lookup for length >=3.
-				if( length <= 2 ) {
+				if ( length <= 2 ) {
 					oneDigitIfLengthOne() || twoDigitsIfLengthTwo();
 					break;
 				}
@@ -156,7 +157,8 @@ return function( value, pattern, cldr ) {
 			/* falls through */
 			case "E":
 				if ( length === 6 ) {
-					// Note: if short day names are not explicitly specified, abbreviated day names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
+					// Note: if short day names are not explicitly specified, abbreviated day
+					// names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					lookup([
 						"dates/calendars/gregorian/days",
 						[ chr === "c" ? "stand-alone" : "format" ],

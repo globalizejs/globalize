@@ -22,7 +22,8 @@ return function( number, primaryGroupingSize, secondaryGroupingSize ) {
 	index = number[ 0 ].length;
 
 	while ( index > currentGroupingSize ) {
-		ret = number[ 0 ].slice( index - currentGroupingSize, index ) + ( ret.length ? sep : "" ) + ret;
+		ret = number[ 0 ].slice( index - currentGroupingSize, index ) +
+			( ret.length ? sep : "" ) + ret;
 		index -= currentGroupingSize;
 		if ( switchToSecondary ) {
 			currentGroupingSize = secondaryGroupingSize;

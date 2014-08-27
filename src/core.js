@@ -13,7 +13,9 @@ define([
 	"./util/always-cldr",
 	"./util/is-plain-object",
 	"cldr/event"
-], function( Cldr, createError, formatMessage, validateCldr, validateDefaultLocale, validatePresence, validateRange, validateType, validateTypeLocale, validateTypePlainObject, alwaysArray, alwaysCldr, isPlainObject ) {
+], function( Cldr, createError, formatMessage, validateCldr, validateDefaultLocale,
+	validatePresence, validateRange, validateType, validateTypeLocale, validateTypePlainObject,
+	alwaysArray, alwaysCldr, isPlainObject ) {
 
 function validateLikelySubtags( cldr ) {
 	cldr.once( "get", validateCldr );

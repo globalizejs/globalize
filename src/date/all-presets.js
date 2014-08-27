@@ -14,7 +14,8 @@ return function( cldr ) {
 	var result = [];
 
 	// Skeleton
-	result = objectValues( cldr.main( "dates/calendars/gregorian/dateTimeFormats/availableFormats" ) );
+	result = objectValues( cldr.main(
+		"dates/calendars/gregorian/dateTimeFormats/availableFormats") );
 
 	// Time
 	result = result.concat( objectValues( cldr.main( "dates/calendars/gregorian/timeFormats" ) ) );
@@ -23,7 +24,8 @@ return function( cldr ) {
 	result = result.concat( objectValues( cldr.main( "dates/calendars/gregorian/dateFormats" ) ) );
 
 	// Datetime
-	result = result.concat( objectValues( cldr.main( "dates/calendars/gregorian/dateTimeFormats" ) ).map(function( datetimeFormat, key ) {
+	result = result.concat( objectValues( cldr.main(
+		"dates/calendars/gregorian/dateTimeFormats" ) ).map(function( datetimeFormat, key ) {
 		if ( typeof datetimeFormat !== "string" ) {
 			return datetimeFormat;
 		}

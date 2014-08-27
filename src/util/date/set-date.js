@@ -8,8 +8,8 @@ define(function() {
  * setDate( SepDate, 31 ): a "Sep 30" date.
  */
 return function( date, day ) {
-	var lastDay = new Date( date.getFullYear(), date.getMonth() + 1 , 0 ).getDate();
-	
+	var lastDay = new Date( date.getFullYear(), date.getMonth() + 1, 0 ).getDate();
+
 	date.setDate( day < 1 ? 1 : day < lastDay ? day : lastDay );
 };
 

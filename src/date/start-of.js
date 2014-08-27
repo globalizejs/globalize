@@ -1,13 +1,17 @@
 define(function() {
 
 /**
- * startOf
+ * startOf changes the input to the beginning of the given unit.
  *
- * Return the 
+ * For example, starting at the start of a day, resets hours, minutes
+ * seconds and milliseconds to 0. Starting at the month does the same, but
+ * also sets the date to 1.
+ *
+ * Returns the modified date
  */
 return function( date, unit ) {
 	date = new Date( date.getTime() );
-	switch( unit ) {
+	switch ( unit ) {
 		case "year":
 			date.setMonth( 0 );
 		/* falls through */

@@ -4,7 +4,8 @@ define([
 ], function( numberTruncate, stringPad ) {
 
 /**
- * integerFractionDigits( number, minimumIntegerDigits, minimumFractionDigits, maximumFractionDigits, round, roundIncrement )
+ * integerFractionDigits( number, minimumIntegerDigits, minimumFractionDigits,
+ * maximumFractionDigits, round, roundIncrement )
  *
  * @number [Number]
  *
@@ -20,7 +21,8 @@ define([
  *
  * Return the formatted integer and fraction digits.
  */
-return function( number, minimumIntegerDigits, minimumFractionDigits, maximumFractionDigits, round, roundIncrement ) {
+return function( number, minimumIntegerDigits, minimumFractionDigits, maximumFractionDigits, round,
+	roundIncrement ) {
 
 	// Fraction
 	if ( maximumFractionDigits ) {

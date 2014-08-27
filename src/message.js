@@ -6,7 +6,8 @@ define([
 	"./common/validate/type",
 	"./common/validate/type/plain-object",
 	"./util/always-array"
-], function( Cldr, Globalize, validateDefaultLocale, validatePresence, validateType, validateTypePlainObject, alwaysArray ) {
+], function( Cldr, Globalize, validateDefaultLocale, validatePresence, validateType,
+	validateTypePlainObject, alwaysArray ) {
 
 /**
  * .loadTranslations( json )
@@ -38,7 +39,8 @@ Globalize.prototype.translate = function( path ) {
 	var cldr;
 
 	validatePresence( path, "path" );
-	validateType( path, "path", typeof path === "string" || Array.isArray( path ), "a String nor an Array");
+	validateType( path, "path", typeof path === "string" || Array.isArray( path ),
+		"a String nor an Array" );
 
 	path = alwaysArray( path );
 	cldr = this.cldr;
