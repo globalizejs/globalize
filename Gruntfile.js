@@ -70,6 +70,12 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
+		jscs: {
+			src: [ "src/**/*.js", "!src/build/**" ],
+			grunt: "Gruntfile.js",
+			test: [ "test/*.js", "test/functional/**/*.js", "test/unit/**/*.js" ],
+			dist: [ "dist/globalize*.js", "dist/globalize/*.js", "!dist/**/*.min.*js" ]
+		},
 		qunit: {
 			functional: {
 				options: {
@@ -275,11 +281,15 @@ module.exports = function( grunt ) {
 		"jshint:grunt",
 		"jshint:source",
 		"jshint:test",
+		"jscs:grunt",
+		"jscs:source",
+		"jscs:test",
 		"test:unit",
 		"clean",
 		"requirejs",
 		"copy",
 		"jshint:dist",
+		"jscs:dist",
 		"test:functional",
 		"uglify",
 		"compare_size"
