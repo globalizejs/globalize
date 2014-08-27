@@ -7,7 +7,9 @@ define([
 	"./symbol/name",
 	"../common/validate/range",
 	"../util/number/round"
-], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName, validateRange, numberRound ) {
+], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits,
+	numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName,
+	validateRange, numberRound ) {
 
 /**
  * format( number, pattern, cldr [, options] )
@@ -29,7 +31,9 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
 return function( number, pattern, cldr, options ) {
-	var maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits, minimumIntegerDigits, minimumSignificantDigits, padding, prefix, primaryGroupingSize, properties, ret, round, roundIncrement, secondaryGroupingSize, suffix;
+	var maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
+		minimumIntegerDigits, minimumSignificantDigits, padding, prefix, primaryGroupingSize,
+		properties, ret, round, roundIncrement, secondaryGroupingSize, suffix;
 
 	// NaN
 	if ( isNaN( number ) ) {
@@ -57,10 +61,12 @@ return function( number, pattern, cldr, options ) {
 	secondaryGroupingSize = properties[ 9 ];
 
 	// Negative pattern
-	// "If there is an explicit negative subpattern, it serves only to specify the negative prefix and suffix" UTS#35
+	// "If there is an explicit negative subpattern, it serves only to specify the negative prefix
+	// and suffix" UTS#35
 	if ( number < 0 ) {
 
-		// "If there is no explicit negative subpattern, the negative subpattern is the localized minus sign prefixed to the positive subpattern" UTS#35
+		// "If there is no explicit negative subpattern, the negative subpattern is the localized
+		// minus sign prefixed to the positive subpattern" UTS#35
 		pattern = pattern[ 1 ] || "-" + pattern[ 0 ];
 		properties = numberPatternProperties( pattern );
 	} else {
@@ -89,27 +95,32 @@ return function( number, pattern, cldr, options ) {
 	// Significant digit format
 	if ( !isNaN( minimumSignificantDigits * maximumSignificantDigits ) ) {
 		validateRange( minimumSignificantDigits, "minimumSignificantDigits", 1, 21 );
-		validateRange( maximumSignificantDigits, "maximumSignificantDigits", minimumSignificantDigits, 21 );
+		validateRange( maximumSignificantDigits, "maximumSignificantDigits",
+			minimumSignificantDigits, 21 );
 
-		number = numberFormatSignificantDigits( number, minimumSignificantDigits, maximumSignificantDigits, round );
+		number = numberFormatSignificantDigits( number, minimumSignificantDigits,
+			maximumSignificantDigits, round );
 
 	} else if ( !isNaN( minimumSignificantDigits ) || !isNaN( maximumSignificantDigits ) ) {
-		throw new Error( "None or both the minimum and maximum significant digits must be present" );
+		throw new Error( "Neither or both the minimum and maximum significant digits must be " +
+			"present" );
 
 	// Integer and fractional format
 	} else {
 
-		// Normalize number of digits if only one of either minimumFractionDigits or maximumFractionDigits
-		// is passed in as an option
+		// Normalize number of digits if only one of either minimumFractionDigits or
+		// maximumFractionDigits is passed in as an option
 		if ( "minimumFractionDigits" in options && !( "maximumFractionDigits" in options ) ) {
 			maximumFractionDigits = Math.max( minimumFractionDigits, maximumFractionDigits );
-		} else if ( !( "minimumFractionDigits" in options ) && "maximumFractionDigits" in options ) {
+		} else if ( !( "minimumFractionDigits" in options ) &&
+				"maximumFractionDigits" in options ) {
 			minimumFractionDigits = Math.min( minimumFractionDigits, maximumFractionDigits );
 		}
 		validateRange( minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
 		validateRange( minimumFractionDigits, "minimumFractionDigits", 0, 20 );
 		validateRange( maximumFractionDigits, "maximumFractionDigits", minimumFractionDigits, 20 );
-		number = numberFormatIntegerFractionDigits( number, minimumIntegerDigits, minimumFractionDigits, maximumFractionDigits, round, roundIncrement );
+		number = numberFormatIntegerFractionDigits( number, minimumIntegerDigits,
+			minimumFractionDigits, maximumFractionDigits, round, roundIncrement );
 	}
 
 	// Remove the possible number minus sign
@@ -117,7 +128,8 @@ return function( number, pattern, cldr, options ) {
 
 	// Grouping separators
 	if ( primaryGroupingSize && !( "useGrouping" in options && !options.useGrouping ) ) {
-		number = numberFormatGroupingSeparator( number, primaryGroupingSize, secondaryGroupingSize );
+		number = numberFormatGroupingSeparator( number, primaryGroupingSize,
+			secondaryGroupingSize );
 	}
 
 	ret += number;

@@ -2,7 +2,7 @@ define(function() {
 
 /**
  * EBNF representation:
- * 
+ *
  * number_pattern_re =        prefix_including_padding?
  *                            number
  *                            scientific_notation?

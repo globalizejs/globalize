@@ -11,7 +11,7 @@ define([
  */
 return function( date, month ) {
 	var originalDate = date.getDate();
-	
+
 	date.setDate( 1 );
 	date.setMonth( month );
 	dateSetDate( date, originalDate );

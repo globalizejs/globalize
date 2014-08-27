@@ -15,7 +15,9 @@ define([
 	"./util/always-array",
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, validateCldr, validateDefaultLocale, validatePresence, validateTypeDataType, validateTypeDate, validateTypeDatePattern, validateTypeString, Globalize, dateAllPresets, dateExpandPattern, dateFormat, dateParse, alwaysArray ) {
+], function( Cldr, validateCldr, validateDefaultLocale, validatePresence, validateTypeDataType,
+	validateTypeDate, validateTypeDatePattern, validateTypeString, Globalize, dateAllPresets,
+	dateExpandPattern, dateFormat, dateParse, alwaysArray ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -62,7 +64,8 @@ Globalize.prototype.formatDate = function( value, pattern ) {
  *
  * @value [String]
  *
- * @patterns [Array] Optional. See date/expand_pattern for more info about each pattern. Defaults to the list of all presets defined in the locale (see date/all_presets for more info).
+ * @patterns [Array] Optional. See date/expand_pattern for more info about each pattern. Defaults
+ * to the list of all presets defined in the locale (see date/all_presets for more info).
  *
  * Return a Date instance or null.
  */

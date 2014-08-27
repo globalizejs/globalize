@@ -65,7 +65,8 @@ return function( value, pattern, cldr ) {
 					if ( outOfRange( value, 0, 99 ) ) {
 						return false;
 					}
-					// mimic dojo/date/locale: choose century to apply, according to a sliding window of 80 years before and 20 years after present year.
+					// mimic dojo/date/locale: choose century to apply, according to a sliding
+					// window of 80 years before and 20 years after present year.
 					century = Math.floor( date.getFullYear() / 100 ) * 100;
 					value += century;
 					if ( value > date.getFullYear() + 20 ) {
@@ -94,7 +95,7 @@ return function( value, pattern, cldr ) {
 				} else {
 					value = +token.value;
 				}
-				if( outOfRange( value, 1, 12 ) ) {
+				if ( outOfRange( value, 1, 12 ) ) {
 					return false;
 				}
 				dateSetMonth( date, value - 1 );
@@ -109,7 +110,7 @@ return function( value, pattern, cldr ) {
 			// Day
 			case "d":
 				value = +token.lexeme;
-				if( outOfRange( value, 1, 31 ) ) {
+				if ( outOfRange( value, 1, 31 ) ) {
 					return false;
 				}
 				dateSetDate( date, value );
@@ -118,7 +119,7 @@ return function( value, pattern, cldr ) {
 
 			case "D":
 				value = +token.lexeme;
-				if( outOfRange( value, 1, 366 ) ) {
+				if ( outOfRange( value, 1, 366 ) ) {
 					return false;
 				}
 				date.setMonth(0);
@@ -151,7 +152,7 @@ return function( value, pattern, cldr ) {
 			// Hour
 			case "h": // 1-12
 				value = +token.lexeme;
-				if( outOfRange( value, 1, 12 ) ) {
+				if ( outOfRange( value, 1, 12 ) ) {
 					return false;
 				}
 				hour = hour12 = true;
@@ -161,7 +162,7 @@ return function( value, pattern, cldr ) {
 
 			case "K": // 0-11
 				value = +token.lexeme;
-				if( outOfRange( value, 0, 11 ) ) {
+				if ( outOfRange( value, 0, 11 ) ) {
 					return false;
 				}
 				hour = hour12 = true;
@@ -171,7 +172,7 @@ return function( value, pattern, cldr ) {
 
 			case "k": // 1-24
 				value = +token.lexeme;
-				if( outOfRange( value, 1, 24 ) ) {
+				if ( outOfRange( value, 1, 24 ) ) {
 					return false;
 				}
 				hour = true;
@@ -181,7 +182,7 @@ return function( value, pattern, cldr ) {
 
 			case "H": // 0-23
 				value = +token.lexeme;
-				if( outOfRange( value, 0, 23 ) ) {
+				if ( outOfRange( value, 0, 23 ) ) {
 					return false;
 				}
 				hour = true;
@@ -192,7 +193,7 @@ return function( value, pattern, cldr ) {
 			// Minute
 			case "m":
 				value = +token.lexeme;
-				if( outOfRange( value, 0, 59 ) ) {
+				if ( outOfRange( value, 0, 59 ) ) {
 					return false;
 				}
 				date.setMinutes( value );
@@ -202,7 +203,7 @@ return function( value, pattern, cldr ) {
 			// Second
 			case "s":
 				value = +token.lexeme;
-				if( outOfRange( value, 0, 59 ) ) {
+				if ( outOfRange( value, 0, 59 ) ) {
 					return false;
 				}
 				date.setSeconds( value );
@@ -241,7 +242,8 @@ return function( value, pattern, cldr ) {
 		return null;
 	}
 
-	// 12-hour format needs AM or PM, 24-hour format doesn't, ie. return null if amPm && !hour12 || !amPm && hour12.
+	// 12-hour format needs AM or PM, 24-hour format doesn't, ie. return null
+	// if amPm && !hour12 || !amPm && hour12.
 	if ( hour && !( !amPm ^ hour12 ) ) {
 		return null;
 	}

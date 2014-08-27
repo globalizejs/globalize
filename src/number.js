@@ -10,7 +10,8 @@ define([
 	"./number/parse",
 	"./number/pattern",
 	"cldr/event"
-], function( Globalize, validateCldr, validateDefaultLocale, validatePresence, validateTypeNumber, validateTypePlainObject, validateTypeString, numberFormat, numberParse, numberPattern ) {
+], function( Globalize, validateCldr, validateDefaultLocale, validatePresence, validateTypeNumber,
+	validateTypePlainObject, validateTypeString, numberFormat, numberParse, numberPattern ) {
 
 /**
  * .formatNumber( value, pattern )

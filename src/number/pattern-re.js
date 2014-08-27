@@ -2,7 +2,7 @@ define(function() {
 
 /**
  * EBNF representation:
- * 
+ *
  * number_pattern_re =        prefix?
  *                            padding?
  *                            (integer_fraction_pattern | significant_pattern)

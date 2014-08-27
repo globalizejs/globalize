@@ -4,7 +4,8 @@ define([
 	"./symbol",
 	"./symbol/map",
 	"../util/regexp/escape"
-], function( numberNumberRe, numberPatternProperties, numberSymbol, numberSymbolMap, regexpEscape ) {
+], function( numberNumberRe, numberPatternProperties, numberSymbol, numberSymbolMap,
+	regexpEscape ) {
 
 /**
  * parse( value, cldr )
@@ -78,7 +79,9 @@ return function( value, pattern, cldr ) {
 	}
 
 	// Negative number
-	// "If there is an explicit negative subpattern, it serves only to specify the negative prefix and suffix. If there is no explicit negative subpattern, the negative subpattern is the localized minus sign prefixed to the positive subpattern" UTS#35
+	// "If there is an explicit negative subpattern, it serves only to specify the negative prefix
+	// and suffix. If there is no explicit negative subpattern, the negative subpattern is the
+	// localized minus sign prefixed to the positive subpattern" UTS#35
 	pattern = pattern.split( ";" );
 	properties = numberPatternProperties( pattern[ 1 ] || pattern[ 0 ] );
 	if ( prefix === ( pattern[ 1 ] ? "" : "-" ) + properties[ 0 ] && suffix === properties[ 10 ] ) {
