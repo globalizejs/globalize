@@ -123,7 +123,7 @@ module.exports = function( grunt ) {
 						contents = "var " + name + " = (function() {" +
 							contents + "}());";
 					// Type a (single return)
-					} else if ( (/\//).test( id ) ) {
+					} else if ( ( /\// ).test( id ) ) {
 						contents = contents
 							.replace( /\nreturn/, "\nvar " + name + " =" );
 					}
@@ -227,10 +227,10 @@ module.exports = function( grunt ) {
 			},
 			dist: {
 				files: {
-						"dist/globalize.min.js": [ "dist/globalize.js" ],
-						"dist/globalize/date.min.js": [ "dist/globalize/date.js" ],
-						"dist/globalize/number.min.js": [ "dist/globalize/number.js" ],
-						"dist/globalize/message.min.js": [ "dist/globalize/message.js" ]
+					"dist/globalize.min.js": [ "dist/globalize.js" ],
+					"dist/globalize/date.min.js": [ "dist/globalize/date.js" ],
+					"dist/globalize/number.min.js": [ "dist/globalize/number.js" ],
+					"dist/globalize/message.min.js": [ "dist/globalize/message.js" ]
 				}
 			}
 		},
@@ -244,7 +244,7 @@ module.exports = function( grunt ) {
 			options: {
 				compress: {
 					gz: function( fileContents ) {
-						return require( "gzip-js" ).zip( fileContents, {} ).length;
+						return require( "gzip-js" ).zip( fileContents, {}).length;
 					}
 				}
 			}
@@ -301,6 +301,6 @@ module.exports = function( grunt ) {
 		"test:functional",
 		"uglify",
 		"compare_size"
-	] );
+	]);
 
 };
