@@ -24,22 +24,25 @@ return function( cldr ) {
 	result = result.concat( objectValues( cldr.main( "dates/calendars/gregorian/dateFormats" ) ) );
 
 	// Datetime
-	result = result.concat( objectValues( cldr.main(
-		"dates/calendars/gregorian/dateTimeFormats" ) ).map(function( datetimeFormat, key ) {
-		if ( typeof datetimeFormat !== "string" ) {
-			return datetimeFormat;
-		}
-		return formatMessage( datetimeFormat, [
-			cldr.main([
-				"dates/calendars/gregorian/timeFormats",
-				key
-			]),
-			cldr.main([
-				"dates/calendars/gregorian/dateFormats",
-				key
-			])
-		]);
-	}));
+	result = result.concat(
+		objectValues( cldr.main(
+			"dates/calendars/gregorian/dateTimeFormats"
+		)).map(function( datetimeFormat, key ) {
+			if ( typeof datetimeFormat !== "string" ) {
+				return datetimeFormat;
+			}
+			return formatMessage( datetimeFormat, [
+				cldr.main([
+					"dates/calendars/gregorian/timeFormats",
+					key
+				]),
+				cldr.main([
+					"dates/calendars/gregorian/dateFormats",
+					key
+				])
+			]);
+		})
+	);
 
 	return result.map(function( pattern ) {
 		return { pattern: pattern };

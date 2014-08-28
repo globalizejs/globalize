@@ -1,3 +1,5 @@
 {
-	"preset": "jquery"
+	"preset": "jquery",
+
+	"requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"
 }

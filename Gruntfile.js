@@ -234,8 +234,7 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
-		// not a valid identifier in our style guide :/
-		"compare_size": {
+		compare_size: {
 			files: [
 				"dist/globalize.min.js",
 				"dist/globalize/*min.js"

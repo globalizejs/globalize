@@ -66,8 +66,12 @@ return function( date, pattern, cldr ) {
 				// maximum length.
 				// yearInWeekofYear = date + DaysInAWeek - (dayOfWeek - firstDay) - minDays
 				ret = new Date( date.getTime() );
-				ret.setDate( ret.getDate() + 7 - ( dateDayOfWeek( date, cldr ) -
-					dateFirstDayOfWeek( cldr ) ) - cldr.supplemental.weekData.minDays() );
+				ret.setDate(
+					ret.getDate() + 7 -
+					dateDayOfWeek( date, cldr ) -
+					dateFirstDayOfWeek( cldr ) -
+					cldr.supplemental.weekData.minDays()
+				);
 				ret = String( ret.getFullYear() );
 				pad = true;
 				if ( length === 2 ) {
@@ -118,8 +122,8 @@ return function( date, pattern, cldr ) {
 				// woy = ceil( ( doy + dow of 1/1 ) / 7 ) - minDaysStuff ? 1 : 0.
 				// TODO should pad on ww? Not documented, but I guess so.
 				ret = dateDayOfWeek( dateStartOf( date, "year" ), cldr );
-				ret = Math.ceil( ( dateDayOfYear( date ) + ret ) / 7 ) - ( 7 - ret >=
-					cldr.supplemental.weekData.minDays() ? 0 : 1 );
+				ret = Math.ceil( ( dateDayOfYear( date ) + ret ) / 7 ) -
+					( 7 - ret >= cldr.supplemental.weekData.minDays() ? 0 : 1 );
 				pad = true;
 				break;
 
@@ -127,8 +131,8 @@ return function( date, pattern, cldr ) {
 				// Week of Month.
 				// wom = ceil( ( dom + dow of `1/month` ) / 7 ) - minDaysStuff ? 1 : 0.
 				ret = dateDayOfWeek( dateStartOf( date, "month" ), cldr );
-				ret = Math.ceil( ( date.getDate() + ret ) / 7 ) - ( 7 - ret >=
-					cldr.supplemental.weekData.minDays() ? 0 : 1 );
+				ret = Math.ceil( ( date.getDate() + ret ) / 7 ) -
+					( 7 - ret >= cldr.supplemental.weekData.minDays() ? 0 : 1 );
 				break;
 
 			// Day

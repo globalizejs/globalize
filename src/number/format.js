@@ -113,7 +113,7 @@ return function( number, pattern, cldr, options ) {
 		if ( "minimumFractionDigits" in options && !( "maximumFractionDigits" in options ) ) {
 			maximumFractionDigits = Math.max( minimumFractionDigits, maximumFractionDigits );
 		} else if ( !( "minimumFractionDigits" in options ) &&
-			"maximumFractionDigits" in options ) {
+				"maximumFractionDigits" in options ) {
 			minimumFractionDigits = Math.min( minimumFractionDigits, maximumFractionDigits );
 		}
 		validateRange( minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
