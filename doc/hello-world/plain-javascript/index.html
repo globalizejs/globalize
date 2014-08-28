@@ -30,6 +30,7 @@
     <script src="../../../dist/globalize.js"></script>
     <script src="../../../dist/globalize/date.js"></script>
     <script src="../../../dist/globalize/number.js"></script>
+    <script src="../../../dist/globalize/plural.js"></script>
 
     <script>
 
@@ -113,6 +114,12 @@
         },
         "likelySubtags": {
           "en": "en-Latn-US",
+        },
+        "plurals-type-cardinal": {
+          "en": {
+            "pluralRule-count-one": "i = 1 and v = 0 @integer 1",
+            "pluralRule-count-other": " @integer 0, 2~16, 100, 1000, 10000, 100000, 1000000, … @decimal 0.0~1.5, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, …"
+          }
         }
       }
     });
@@ -126,6 +133,11 @@
     // Use Globalize to format numbers.
     console.log( Globalize.formatNumber( 12345 ) );
 
+    // Use Globalize to format a message with plural inflection.
+    console.log( Globalize.formatPlural( 12345, {
+      one: "{0} result",
+      other: "{0} results"
+    }));
     </script>
 
 </body>

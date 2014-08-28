@@ -27,18 +27,21 @@ require([
 	"json!cldrdata/main/en/ca-gregorian.json",
 	"json!cldrdata/main/en/numbers.json",
 	"json!cldrdata/supplemental/likelySubtags.json",
+	"json!cldrdata/supplemental/plurals.json",
 	"json!cldrdata/supplemental/timeData.json",
 	"json!cldrdata/supplemental/weekData.json",
 
 	// Extend Globalize with Date and Number modules.
 	"globalize/date",
-	"globalize/number"
-], function( Globalize, enGregorian, enNumbers, likelySubtags, timeData, weekData ) {
+	"globalize/number",
+	"globalize/plural"
+], function( Globalize, enGregorian, enNumbers, likelySubtags, pluralsData, timeData, weekData ) {
 
 	// At this point, we have Globalize loaded. But, before we can use it, we need to feed it on the appropriate I18n content (Unicode CLDR). Read Requirements on Getting Started on the root's README.md for more information.
 	Globalize.load( enGregorian );
 	Globalize.load( enNumbers );
 	Globalize.load( likelySubtags );
+	Globalize.load( pluralsData );
 	Globalize.load( timeData );
 	Globalize.load( weekData );
 
@@ -50,5 +53,11 @@ require([
 
 	// Use Globalize to format numbers.
 	console.log( Globalize.formatNumber( 12345 ) );
+
+	// Use Globalize to format a message with plural inflection.
+	console.log( Globalize.formatPlural( 12345, {
+		one: "{0} result",
+		other: "{0} results"
+	}));
 
 });

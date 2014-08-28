@@ -2,6 +2,7 @@ define([
 	"cldr",
 	"./common/create-error",
 	"./common/format-message",
+	"./common/validate",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
 	"./common/validate/presence",
@@ -13,7 +14,7 @@ define([
 	"./util/always-cldr",
 	"./util/is-plain-object",
 	"cldr/event"
-], function( Cldr, createError, formatMessage, validateCldr, validateDefaultLocale,
+], function( Cldr, createError, formatMessage, validate, validateCldr, validateDefaultLocale,
 	validatePresence, validateRange, validateType, validateTypeLocale, validateTypePlainObject,
 	alwaysArray, alwaysCldr, isPlainObject ) {
 
@@ -87,6 +88,7 @@ Globalize._alwaysArray = alwaysArray;
 Globalize._createError = createError;
 Globalize._formatMessage = formatMessage;
 Globalize._isPlainObject = isPlainObject;
+Globalize._validate = validate;
 Globalize._validateCldr = validateCldr;
 Globalize._validateDefaultLocale = validateDefaultLocale;
 Globalize._validatePresence = validatePresence;
