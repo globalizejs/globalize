@@ -234,7 +234,9 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
-		compare_size: {
+
+		// TODO figure out how to specify exceptions for externals
+		"compare_size": {
 			files: [
 				"dist/globalize.min.js",
 				"dist/globalize/*min.js"
@@ -285,6 +287,7 @@ module.exports = function( grunt ) {
 		"jshint:test",
 		"jscs:grunt",
 		"jscs:source",
+
 		// TODO fix issues, enable
 		// "jscs:test",
 		"test:unit",
@@ -292,6 +295,7 @@ module.exports = function( grunt ) {
 		"requirejs",
 		"copy",
 		"jshint:dist",
+
 		// TODO fix issues, enable
 		// "jscs:dist",
 		"test:functional",
