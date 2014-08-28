@@ -15,15 +15,15 @@ require([
 	"./functional/core",
 
 	// date
-	"./functional/date/format",
-	"./functional/date/parse",
+	"./functional/date/format-date",
+	"./functional/date/parse-date",
 
 	// message
 	"./functional/message/translate",
 
 	// number
-	"./functional/number/format",
-	"./functional/number/parse"
+	"./functional/number/format-number",
+	"./functional/number/parse-number"
 
 ], function() {
 	QUnit.start();

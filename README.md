@@ -244,7 +244,7 @@ to you in different flavors):
 
   Format a date `value` according to the given `format`.
 
- [Read more...](doc/api/date/format.md)
+ [Read more...](doc/api/date/format-date.md)
 
 - **`.parseDate( value [, formats] )`**
 
@@ -252,7 +252,7 @@ to you in different flavors):
   account the given possible formats (or the given locale's set of preset
   formats if not provided).
 
- [Read more...](doc/api/date/parse.md)
+ [Read more...](doc/api/date/parse-date.md)
 
 <a name="message_module"></a>
 ### Message module
@@ -276,14 +276,14 @@ to you in different flavors):
 
   Format a number according to the given attributes.
 
- [Read more...](doc/api/number/format.md)
+ [Read more...](doc/api/number/format-number.md)
 
 - **`.parseNumber( value )`**
 
   Parse a string representing a number taking into account the localized
   symbols. If value is invalid, `NaN` is returned.
 
- [Read more...](doc/api/number/parse.md)
+ [Read more...](doc/api/number/parse-number.md)
 
 
 <a name="error"></a>
