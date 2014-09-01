@@ -17,7 +17,7 @@ return function( value, name, minimum, maximum ) {
 	validate(
 		"E_OUT_OF_RANGE",
 		"Parameter `{name}` has value `{value}` out of range [{minimum}, {maximum}].",
-		typeof( value ) === "undefined" || value >= minimum && value <= maximum,
+		value === undefined || value >= minimum && value <= maximum,
 		{
 			maximum: maximum,
 			minimum: minimum,

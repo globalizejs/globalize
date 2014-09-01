@@ -3,7 +3,7 @@ define([
 ], function( validateType ) {
 
 return function( value, name ) {
-	validateType( value, name, typeof value === "undefined" ||
+	validateType( value, name, value === undefined ||
 		typeof value === "number", "Number" );
 };
 

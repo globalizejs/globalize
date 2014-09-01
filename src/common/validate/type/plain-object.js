@@ -4,7 +4,7 @@ define([
 ], function( validateType, isPlainObject ) {
 
 return function( value, name ) {
-	validateType( value, name, typeof value === "undefined" ||
+	validateType( value, name, value === undefined ||
 		isPlainObject( value ), "Plain Object" );
 };
 
