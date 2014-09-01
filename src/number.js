@@ -2,16 +2,17 @@ define([
 	"./core",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
-	"./common/validate/presence",
-	"./common/validate/type/number",
-	"./common/validate/type/plain-object",
-	"./common/validate/type/string",
+	"./common/validate/parameter-presence",
+	"./common/validate/parameter-type/number",
+	"./common/validate/parameter-type/plain-object",
+	"./common/validate/parameter-type/string",
 	"./number/format",
 	"./number/parse",
 	"./number/pattern",
 	"cldr/event"
-], function( Globalize, validateCldr, validateDefaultLocale, validatePresence, validateTypeNumber,
-	validateTypePlainObject, validateTypeString, numberFormat, numberParse, numberPattern ) {
+], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
+	validateParameterTypeNumber, validateParameterTypePlainObject, validateParameterTypeString,
+	numberFormat, numberParse, numberPattern ) {
 
 /**
  * .formatNumber( value, pattern )
@@ -28,9 +29,9 @@ Globalize.formatNumber =
 Globalize.prototype.formatNumber = function( value, attributes ) {
 	var cldr, pattern, ret;
 
-	validatePresence( value, "value" );
-	validateTypeNumber( value, "value" );
-	validateTypePlainObject( attributes, "attributes" );
+	validateParameterPresence( value, "value" );
+	validateParameterTypeNumber( value, "value" );
+	validateParameterTypePlainObject( attributes, "attributes" );
 
 	attributes = attributes || {};
 	cldr = this.cldr;
@@ -61,8 +62,8 @@ Globalize.parseNumber =
 Globalize.prototype.parseNumber = function( value ) {
 	var cldr, pattern, ret;
 
-	validatePresence( value, "value" );
-	validateTypeString( value, "value" );
+	validateParameterPresence( value, "value" );
+	validateParameterTypeString( value, "value" );
 
 	cldr = this.cldr;
 

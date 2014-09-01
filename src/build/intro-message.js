@@ -32,6 +32,6 @@
 
 var alwaysArray = Globalize._alwaysArray,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
-	validatePresence = Globalize._validatePresence,
-	validateType = Globalize._validateType,
-	validateTypePlainObject = Globalize._validateTypePlainObject;
+	validateParameterPresence = Globalize._validateParameterPresence,
+	validateParameterType = Globalize._validateParameterType,
+	validateParameterTypePlainObject = Globalize._validateParameterTypePlainObject;

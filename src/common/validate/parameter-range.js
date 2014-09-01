@@ -15,7 +15,7 @@ define([
  */
 return function( value, name, minimum, maximum ) {
 	validate(
-		"E_OUT_OF_RANGE",
+		"E_PAR_OUT_OF_RANGE",
 		"Parameter `{name}` has value `{value}` out of range [{minimum}, {maximum}].",
 		value === undefined || value >= minimum && value <= maximum,
 		{

@@ -2,11 +2,11 @@ define([
 	"cldr",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
-	"./common/validate/presence",
-	"./common/validate/type",
-	"./common/validate/type/date",
-	"./common/validate/type/date-pattern",
-	"./common/validate/type/string",
+	"./common/validate/parameter-presence",
+	"./common/validate/parameter-type",
+	"./common/validate/parameter-type/date",
+	"./common/validate/parameter-type/date-pattern",
+	"./common/validate/parameter-type/string",
 	"./core",
 	"./date/all-presets",
 	"./date/expand-pattern",
@@ -15,9 +15,10 @@ define([
 	"./util/always-array",
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, validateCldr, validateDefaultLocale, validatePresence, validateTypeDataType,
-	validateTypeDate, validateTypeDatePattern, validateTypeString, Globalize, dateAllPresets,
-	dateExpandPattern, dateFormat, dateParse, alwaysArray ) {
+], function( Cldr, validateCldr, validateDefaultLocale, validateParameterPresence,
+	validateParameterTypeDataType, validateParameterTypeDate, validateParameterTypeDatePattern,
+	validateParameterTypeString, Globalize, dateAllPresets, dateExpandPattern, dateFormat,
+	dateParse, alwaysArray ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -42,10 +43,10 @@ Globalize.formatDate =
 Globalize.prototype.formatDate = function( value, pattern ) {
 	var cldr, ret;
 
-	validatePresence( value, "value" );
-	validatePresence( pattern, "pattern" );
-	validateTypeDate( value, "value" );
-	validateTypeDatePattern( pattern, "pattern" );
+	validateParameterPresence( value, "value" );
+	validateParameterPresence( pattern, "pattern" );
+	validateParameterTypeDate( value, "value" );
+	validateParameterTypeDatePattern( pattern, "pattern" );
 
 	cldr = this.cldr;
 
@@ -73,8 +74,8 @@ Globalize.parseDate =
 Globalize.prototype.parseDate = function( value, patterns ) {
 	var cldr, date;
 
-	validatePresence( value, "value" );
-	validateTypeString( value, "value" );
+	validateParameterPresence( value, "value" );
+	validateParameterTypeString( value, "value" );
 
 	cldr = this.cldr;
 
@@ -89,7 +90,7 @@ Globalize.prototype.parseDate = function( value, patterns ) {
 	}
 
 	patterns.some(function( pattern ) {
-		validateTypeDatePattern( pattern, "patterns" );
+		validateParameterTypeDatePattern( pattern, "patterns" );
 		pattern = dateExpandPattern( pattern, cldr );
 		date = dateParse( value, pattern, cldr );
 		return !!date;

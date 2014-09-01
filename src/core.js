@@ -4,18 +4,19 @@ define([
 	"./common/format-message",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
-	"./common/validate/presence",
-	"./common/validate/range",
-	"./common/validate/type",
-	"./common/validate/type/locale",
-	"./common/validate/type/plain-object",
+	"./common/validate/parameter-presence",
+	"./common/validate/parameter-range",
+	"./common/validate/parameter-type",
+	"./common/validate/parameter-type/locale",
+	"./common/validate/parameter-type/plain-object",
 	"./util/always-array",
 	"./util/always-cldr",
 	"./util/is-plain-object",
 	"cldr/event"
 ], function( Cldr, createError, formatMessage, validateCldr, validateDefaultLocale,
-	validatePresence, validateRange, validateType, validateTypeLocale, validateTypePlainObject,
-	alwaysArray, alwaysCldr, isPlainObject ) {
+	validateParameterPresence, validateParameterRange, validateParameterType,
+	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
+	isPlainObject ) {
 
 function validateLikelySubtags( cldr ) {
 	cldr.once( "get", validateCldr );
@@ -36,8 +37,8 @@ function Globalize( locale ) {
 		return new Globalize( locale );
 	}
 
-	validatePresence( locale, "locale" );
-	validateTypeLocale( locale, "locale" );
+	validateParameterPresence( locale, "locale" );
+	validateParameterTypeLocale( locale, "locale" );
 
 	this.cldr = alwaysCldr( locale );
 
@@ -53,8 +54,8 @@ function Globalize( locale ) {
  * Somewhat equivalent to previous Globalize.addCultureInfo(...).
  */
 Globalize.load = function( json ) {
-	validatePresence( json, "json" );
-	validateTypePlainObject( json, "json" );
+	validateParameterPresence( json, "json" );
+	validateParameterTypePlainObject( json, "json" );
 
 	Cldr.load( json );
 };
@@ -71,7 +72,7 @@ Globalize.load = function( json ) {
  * Return the default Cldr instance.
  */
 Globalize.locale = function( locale ) {
-	validateTypeLocale( locale, "locale" );
+	validateParameterTypeLocale( locale, "locale" );
 
 	if ( arguments.length ) {
 		this.cldr = alwaysCldr( locale );
@@ -89,10 +90,10 @@ Globalize._formatMessage = formatMessage;
 Globalize._isPlainObject = isPlainObject;
 Globalize._validateCldr = validateCldr;
 Globalize._validateDefaultLocale = validateDefaultLocale;
-Globalize._validatePresence = validatePresence;
-Globalize._validateRange = validateRange;
-Globalize._validateTypePlainObject = validateTypePlainObject;
-Globalize._validateType = validateType;
+Globalize._validateParameterPresence = validateParameterPresence;
+Globalize._validateParameterRange = validateParameterRange;
+Globalize._validateParameterTypePlainObject = validateParameterTypePlainObject;
+Globalize._validateParameterType = validateParameterType;
 
 return Globalize;
 

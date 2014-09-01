@@ -5,11 +5,11 @@ define([
 	"./pattern-properties",
 	"./symbol",
 	"./symbol/name",
-	"../common/validate/range",
+	"../common/validate/parameter-range",
 	"../util/number/round"
 ], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits,
 	numberFormatSignificantDigits, numberPatternProperties, numberSymbol, numberSymbolName,
-	validateRange, numberRound ) {
+	validateParameterRange, numberRound ) {
 
 /**
  * format( number, pattern, cldr [, options] )
@@ -94,8 +94,8 @@ return function( number, pattern, cldr, options ) {
 
 	// Significant digit format
 	if ( !isNaN( minimumSignificantDigits * maximumSignificantDigits ) ) {
-		validateRange( minimumSignificantDigits, "minimumSignificantDigits", 1, 21 );
-		validateRange( maximumSignificantDigits, "maximumSignificantDigits",
+		validateParameterRange( minimumSignificantDigits, "minimumSignificantDigits", 1, 21 );
+		validateParameterRange( maximumSignificantDigits, "maximumSignificantDigits",
 			minimumSignificantDigits, 21 );
 
 		number = numberFormatSignificantDigits( number, minimumSignificantDigits,
@@ -116,9 +116,10 @@ return function( number, pattern, cldr, options ) {
 				"maximumFractionDigits" in options ) {
 			minimumFractionDigits = Math.min( minimumFractionDigits, maximumFractionDigits );
 		}
-		validateRange( minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
-		validateRange( minimumFractionDigits, "minimumFractionDigits", 0, 20 );
-		validateRange( maximumFractionDigits, "maximumFractionDigits", minimumFractionDigits, 20 );
+		validateParameterRange( minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
+		validateParameterRange( minimumFractionDigits, "minimumFractionDigits", 0, 20 );
+		validateParameterRange( maximumFractionDigits, "maximumFractionDigits",
+			minimumFractionDigits, 20 );
 		number = numberFormatIntegerFractionDigits( number, minimumIntegerDigits,
 			minimumFractionDigits, maximumFractionDigits, round, roundIncrement );
 	}

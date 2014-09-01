@@ -68,17 +68,7 @@ return {
 	},
 
 	/**
-	 * Parameter Presence assertion
-	 */
-	assertParameterPresence: function( assert, name, fn ) {
-		assert.throws( fn, function E_MISSING_PARAMETER( error ) {
-			return error.code === "E_MISSING_PARAMETER" &&
-				error.name === name;
-		}, "Expected \"E_MISSING_PARAMETER: Missing `" + name + "` parameter\" to be thrown" );
-	},
-
-	/**
-	 * Parameter Type assertions
+	 * Parameter assertions
 	 */
 	assertArrayParameter: function( assert, name, fn ) {
 		assertParameterType( assert, "array", name, fn );
@@ -104,6 +94,23 @@ return {
 		assertParameterType( assert, "number", name, fn );
 	},
 
+	assertParameterPresence: function( assert, name, fn ) {
+		assert.throws( fn, function E_MISSING_PARAMETER( error ) {
+			return error.code === "E_MISSING_PARAMETER" &&
+				error.name === name;
+		}, "Expected \"E_MISSING_PARAMETER: Missing `" + name + "` parameter\" to be thrown" );
+	},
+
+	assertParameterRange: function( assert, min, max, fn ) {
+		[ min - 1, max + 1 ].forEach(function( num ) {
+			assert.throws(function() {
+				fn( num );
+			}, function E_OUT_OF_RANGE( error ) {
+				return error.code === "E_PAR_OUT_OF_RANGE";
+			}, "Expected \"E_PAR_OUT_OF_RANGE error to be thrown testing " + num );
+		});
+	},
+
 	assertPathParameter: function( assert, name, fn ) {
 		assertParameterType( assert, [ "array", "string" ], name, fn );
 	},
@@ -117,19 +124,8 @@ return {
 	},
 
 	/**
-	 * Range assertion
+	 * Etc
 	 */
-	assertRange: function( assert, min, max, fn ) {
-		[ min - 1, max + 1 ].forEach(function( num ) {
-			assert.throws(function() {
-				fn( num );
-			}, function E_OUT_OF_RANGE( error ) {
-				return error.code === "E_OUT_OF_RANGE";
-			}, "Expected \"E_OUT_OF_RANGE error to be thrown testing " + num );
-		});
-	},
-
-
 	resetCldrContent: function() {
 		Cldr._resolved = {};
 		Cldr._raw = {};

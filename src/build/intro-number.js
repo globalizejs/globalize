@@ -33,7 +33,7 @@
 
 var validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
-	validatePresence = Globalize._validatePresence,
-	validateRange = Globalize._validateRange,
-	validateType = Globalize._validateType,
-	validateTypePlainObject = Globalize._validateTypePlainObject;
+	validateParameterPresence = Globalize._validateParameterPresence,
+	validateParameterRange = Globalize._validateParameterRange,
+	validateParameterType = Globalize._validateParameterType,
+	validateParameterTypePlainObject = Globalize._validateParameterTypePlainObject;

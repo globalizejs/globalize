@@ -356,8 +356,8 @@ Error object:
 | code | `E_MISSING_PARAMETER` |
 | name | Name of the missing parameter |
 
-<a name="E_OUT_OF_RANGE"></a>
-#### `E_OUT_OF_RANGE`
+<a name="E_PAR_OUT_OF_RANGE"></a>
+#### `E_PAR_OUT_OF_RANGE`
 
 Thrown when a parameter is not within a valid range of values.
 
@@ -365,7 +365,7 @@ Error object:
 
 | Attribute | Value |
 | --- | --- |
-| code | `E_OUT_OF_RANGE` |
+| code | `E_PAR_OUT_OF_RANGE` |
 | name | Name of the invalid parameter |
 | value | Invalid value |
 | minimum | Minimum value of the valid range |
