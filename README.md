@@ -289,87 +289,48 @@ to you in different flavors):
 <a name="error"></a>
 ## Error reference
 
-<a name="E_DEFAULT_LOCALE_NOT_DEFINED"></a>
-#### `E_DEFAULT_LOCALE_NOT_DEFINED`
+### CLDR Errors
 
-Thrown when any static method, eg. `Globalize.formatNumber()` is used prior to
+- **`E_MISSING_CLDR`**
+
+ Thrown when any required CLDR item is NOT found.
+
+ [Read more...](doc/error/e-missing-cldr.md)
+
+### Parameter Errors
+
+- **`E_INVALID_PAR_TYPE`**
+
+ Thrown when a parameter has an invalid type on any static or instance methods.
+
+ [Read more...](doc/error/e-invalid-par-type.md)
+
+- **`E_INVALID_PAR_VALUE`**
+
+ Thrown for certain parameters when the type is correct, but the value is
+ invalid.
+
+ [Read more...](doc/error/e-invalid-par-value.md)
+
+- **`E_MISSING_PARAMETER`**
+
+ Thrown when a required parameter is missing on any static or instance methods.
+
+ [Read more...](doc/error/e-missing-parameter.md)
+
+- **`E_PAR_OUT_OF_RANGE`**
+
+ Thrown when a parameter is not within a valid range of values.
+
+ [Read more...](doc/error/e-par-out-of-range.md)
+
+### Other Errors
+
+- **`E_DEFAULT_LOCALE_NOT_DEFINED`**
+
+ Thrown when any static method, eg. `Globalize.formatNumber()` is used prior to
 setting the Global locale with `Globalize.locale( <locale> )`.
-
-Error object:
-
-| Attribute | Value |
-| --- | --- |
-| code | `E_DEFAULT_LOCALE_NOT_DEFINED` |
-
-<a name="E_INVALID_PAR_TYPE"></a>
-#### `E_INVALID_PAR_TYPE`
-
-Thrown when a parameter has an invalid type on any static or instance methods.
-
-Error object:
-
-| Attribute | Value |
-| --- | --- |
-| code | `E_INVALID_PAR_TYPE` |
-| name | Name of the invalid parameter |
-| value | Invalid value |
-| expected | Expected type |
-
-<a name="E_INVALID_PAR_VALUE"></a>
-#### `E_INVALID_PAR_VALUE`
-
-Thrown for certain parameters when the type is correct, but the value is
-invalid. Currently, the only parameter with such validation is the date format
-(for either format and parse). Format allows [certain
-variants](https://github.com/jquery/globalize/blob/master/doc/api/date/format.md#parameters),
-if it's none of them, error is thrown.
-
-Error object:
-
-| Attribute | Value |
-| --- | --- |
-| code | `E_INVALID_PAR_VALUE` |
-| name | Name of the invalid parameter |
-| value | Invalid value |
-
-<a name="E_MISSING_CLDR"></a>
-#### `E_MISSING_CLDR`
-
-Thrown when any required CLDR item is NOT found.
-
-Error object:
-
-| Attribute | Value |
-| --- | --- |
-| code | `E_MISSING_CLDR` |
-| path | Missing CLDR item path |
-
-<a name="E_MISSING_PARAMETER"></a>
-#### `E_MISSING_PARAMETER`
-
-Thrown when a required parameter is missing on any static or instance methods.
-
-Error object:
-
-| Attribute | Value |
-| --- | --- |
-| code | `E_MISSING_PARAMETER` |
-| name | Name of the missing parameter |
-
-<a name="E_PAR_OUT_OF_RANGE"></a>
-#### `E_PAR_OUT_OF_RANGE`
-
-Thrown when a parameter is not within a valid range of values.
-
-Error object:
-
-| Attribute | Value |
-| --- | --- |
-| code | `E_PAR_OUT_OF_RANGE` |
-| name | Name of the invalid parameter |
-| value | Invalid value |
-| minimum | Minimum value of the valid range |
-| maximum | Maximum value of the valid range |
+ [Read more...](doc/error/e-default-locale-not-defined.md)
 
 
 <a name="development"></a>
