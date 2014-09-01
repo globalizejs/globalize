@@ -4,8 +4,12 @@ define([
 ], function( validateParameterType, isPlainObject ) {
 
 return function( value, name ) {
-	validateParameterType( value, name, value === undefined ||
-		isPlainObject( value ), "Plain Object" );
+	validateParameterType(
+		value,
+		name,
+		value === undefined || isPlainObject( value ),
+		"Plain Object"
+	);
 };
 
 });
