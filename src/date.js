@@ -43,7 +43,8 @@ function validateRequiredCldr( path, value ) {
  *
  * @value [Date]
  *
- * Formats a date according to the given pattern string and the default/instance locale.
+ * Return a function that formats a date according to the given `format` and the default/instance
+ * locale.
  */
 Globalize.dateFormatter =
 Globalize.prototype.dateFormatter = function( pattern ) {
