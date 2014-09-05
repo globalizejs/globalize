@@ -22,17 +22,13 @@ Let's use bower to download Globalize. For more information on regard of
 installation, please read [Getting Started](../../../README.md#installation).
 
 ```
-bower install globalize#1.x
+bower install
 ```
 
-Ah! Let's also use bower to fetch some other dependencies of this demo, eg.
-require.js and its json plugin.
+Note bower will also fetch some other dependencies of this demo, eg. require.js
+and its json plugin.
 
-```
-bower install requirejs requirejs-plugins requirejs-text
-```
-
-Then, you'll get this:
+You'll get this:
 
 ```
 .

@@ -21,7 +21,7 @@ Let's use npm to download Globalize. For more information on regard of
 installation, please read [Getting Started](../../../README.md#installation).
 
 ```
-npm install globalize
+npm install
 ```
 
 Then, you'll get this:
