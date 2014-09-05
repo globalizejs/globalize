@@ -2,8 +2,8 @@
 
 Format a date `value` according to the given `pattern`.
 
-*Important:* Favor [`.dateFormatter( pattern )`](./date-formatter.md) if
-repeating the same format over a series of dates for improved performance.
+*Important:* Use [`.dateFormatter( pattern )`](./date-formatter.md) instead when
+formatting more then one date, for improved performance.
 
 ### Parameters
 
