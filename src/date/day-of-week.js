@@ -1,7 +1,5 @@
 define(function() {
 
-// FIXME update all occurrencies of dayOfWeek( date, cldr ) -> dayOfWeek( date,
-// dateFirstDayOfWeek(cldr))
 /**
  * dayOfWeek( date, firstDay )
  *
