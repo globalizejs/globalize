@@ -243,6 +243,12 @@ to you in different flavors):
 <a name="date_module"></a>
 ### Date module
 
+- **`.dateFormatter( format )`**
+
+  Return a function that formats a date according to the given `format`.
+
+ [Read more...](doc/api/date/date-formatter.md)
+
 - **`.formatDate( value, format )`**
 
   Format a date `value` according to the given `format`.
