@@ -251,7 +251,7 @@ to you in different flavors):
 
 - **`.dateParser( [patterns] )`**
 
-  Return a function that parses a string date according to the given `formats`.
+  Return a function that parses a string date according to the given `patterns`.
 
  [Read more...](doc/api/date/date-parser.md)
 
@@ -263,7 +263,7 @@ to you in different flavors):
 
 - **`.parseDate( value [, patterns] )`**
 
-  Parse a string representing a date into a JavaScript Date object, according to
+  Parse a string representing a date into a JavaScript Date object according to
   the given patterns (defaults to the locale's available preset patterns).
 
  [Read more...](doc/api/date/parse-date.md)

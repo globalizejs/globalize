@@ -1,6 +1,6 @@
 ## .parseDate( value [, patterns] )
 
-Parse a string representing a date into a JavaScript Date object, according to
+Parse a string representing a date into a JavaScript Date object according to
 the given patterns (defaults to the locale's available preset patterns).
 
 ### Parameters
