@@ -1,19 +1,17 @@
 define([
 	"globalize",
 	"json!fixtures/cldr/main/en/ca-gregorian.json",
-	"json!fixtures/cldr/main/pt/ca-gregorian.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"json!fixtures/cldr/supplemental/timeData.json",
 	"json!fixtures/cldr/supplemental/weekData.json",
 	"../../util",
 	"globalize/date"
-], function( Globalize, enCaGregorian, ptCaGregorian, likelySubtags, timeData, weekData, util ) {
+], function( Globalize, enCaGregorian, likelySubtags, timeData, weekData, util ) {
 
 var date = new Date( 2010, 8, 15, 17, 35, 7, 369 );
 
 function extraSetup() {
 	Globalize.load( enCaGregorian );
-	Globalize.load( ptCaGregorian );
 	Globalize.load( timeData );
 	Globalize.load( weekData );
 }
