@@ -1,9 +1,13 @@
-define([
-	"./first-day-of-week"
-], function( dateFirstDayOfWeek ) {
+define(function() {
 
+// FIXME update all occurrencies of dayOfWeek( date, cldr ) -> dayOfWeek( date,
+// dateFirstDayOfWeek(cldr))
 /**
- * dayOfWeek
+ * dayOfWeek( date, firstDay )
+ *
+ * @date
+ *
+ * @firstDay the result of `dateFirstDayOfWeek( cldr )`
  *
  * Return the day of the week normalized by the territory's firstDay [0-6].
  * Eg for "mon":
@@ -11,8 +15,8 @@ define([
  * - return 1 if territory is US (week starts on "sun");
  * - return 2 if territory is EG (week starts on "sat");
  */
-return function( date, cldr ) {
-	return ( date.getDay() - dateFirstDayOfWeek( cldr ) + 7 ) % 7;
+return function( date, firstDay ) {
+	return ( date.getDay() - firstDay + 7 ) % 7;
 };
 
 });
