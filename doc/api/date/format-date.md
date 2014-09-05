@@ -1,8 +1,8 @@
-## .formatDate( value, format )
+## .formatDate( value, pattern )
 
-Format a date `value` according to the given `format`.
+Format a date `value` according to the given `pattern`.
 
-*Important:* Favor [`.dateFormatter( format )`](./date-formatter.md) if
+*Important:* Favor [`.dateFormatter( pattern )`](./date-formatter.md) if
 repeating the same format over a series of dates for improved performance.
 
 ### Parameters
@@ -11,9 +11,9 @@ repeating the same format over a series of dates for improved performance.
 
 Date instance to be formatted, eg. `new Date()`;
 
-**format**
+**pattern**
 
-See [.dateFormatter( format )](./date-formatter.md).
+See [.dateFormatter( pattern )](./date-formatter.md).
 
 ### Example
 

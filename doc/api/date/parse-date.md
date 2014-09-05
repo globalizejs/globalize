@@ -1,8 +1,7 @@
-## Globalize.parseDate( value [, formats] )
+## Globalize.parseDate( value [, patterns] )
 
-Parse a string representing a date into a JavaScript Date object, taking into
-account the given possible formats (or the given locale's set of preset formats
-if not provided).
+Parse a string representing a date into a JavaScript Date object, according to
+the given patterns (defaults to the locale's available preset patterns).
 
 ### Parameters
 
@@ -10,9 +9,9 @@ if not provided).
 
 String with date to be parsed, eg. `"11/1/10, 5:55 PM"`.
 
-**formats** Optional
+**patterns** Optional
 
-Array of formats.
+Array of patterns.
 
 ### Example
 

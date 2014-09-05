@@ -1,10 +1,10 @@
-## .dateFormatter( format )
+## .dateFormatter( pattern )
 
-Return a function that formats a date according to the given `format`.
+Return a function that formats a date according to the given `pattern`.
 
 ### Parameters
 
-**format**
+**pattern**
 
 String value indicating a skeleton, eg. `"GyMMMd"`.
 
