@@ -11,22 +11,18 @@ define([
 	datePatternRe, dateStartOf, dateWeekDays, stringPad ) {
 
 /**
- * format( date, pattern, cldr )
+ * format( date, properties )
  *
  * @date [Date instance].
  *
- * @pattern [String] raw pattern.
- * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
- *
- * @cldr [Cldr instance].
+ * @properties
  *
  * TODO Support other calendar types.
  *
  * Disclosure: this function borrows excerpts of dojo/date/locale.
  */
-return function( date, pattern, cldr ) {
-	var widths = [ "abbreviated", "wide", "narrow" ];
-	return pattern.replace( datePatternRe, function( current ) {
+return function( date, properties ) {
+	return properties.pattern.replace( datePatternRe, function( current ) {
 		var pad, ret,
 			chr = current.charAt( 0 ),
 			length = current.length;
@@ -34,18 +30,14 @@ return function( date, pattern, cldr ) {
 		if ( chr === "j" ) {
 			// Locale preferred hHKk.
 			// http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Data
-			chr = cldr.supplemental.timeData.preferred();
+			chr = properties.preferredTime;
 		}
 
 		switch ( chr ) {
 
 			// Era
 			case "G":
-				ret = cldr.main([
-					"dates/calendars/gregorian/eras",
-					length <= 3 ? "eraAbbr" : ( length === 4 ? "eraNames" : "eraNarrow" ),
-					date.getFullYear() < 0 ? 0 : 1
-				]);
+				ret = properties.eras[ date.getFullYear() < 0 ? 0 : 1 ];
 				break;
 
 			// Year
@@ -68,9 +60,9 @@ return function( date, pattern, cldr ) {
 				ret = new Date( date.getTime() );
 				ret.setDate(
 					ret.getDate() + 7 -
-					dateDayOfWeek( date, cldr ) -
-					dateFirstDayOfWeek( cldr ) -
-					cldr.supplemental.weekData.minDays()
+					dateDayOfWeek( date, properties.firstDay ) -
+					properties.firstDay -
+					properties.minDays
 				);
 				ret = String( ret.getFullYear() );
 				pad = true;
@@ -90,13 +82,7 @@ return function( date, pattern, cldr ) {
 				if ( length <= 2 ) {
 					pad = true;
 				} else {
-					// http://unicode.org/cldr/trac/ticket/6788
-					ret = cldr.main([
-						"dates/calendars/gregorian/quarters",
-						chr === "Q" ? "format" : "stand-alone",
-						widths[ length - 3 ],
-						ret
-					]);
+					ret = properties.quarters[ chr ][ length ][ ret ];
 				}
 				break;
 
@@ -107,12 +93,7 @@ return function( date, pattern, cldr ) {
 				if ( length <= 2 ) {
 					pad = true;
 				} else {
-					ret = cldr.main([
-						"dates/calendars/gregorian/months",
-						chr === "M" ? "format" : "stand-alone",
-						widths[ length - 3 ],
-						ret
-					]);
+					ret = properties.months[ chr ][ length ][ ret ];
 				}
 				break;
 
@@ -121,18 +102,18 @@ return function( date, pattern, cldr ) {
 				// Week of Year.
 				// woy = ceil( ( doy + dow of 1/1 ) / 7 ) - minDaysStuff ? 1 : 0.
 				// TODO should pad on ww? Not documented, but I guess so.
-				ret = dateDayOfWeek( dateStartOf( date, "year" ), cldr );
+				ret = dateDayOfWeek( dateStartOf( date, "year" ), properties.firstDay );
 				ret = Math.ceil( ( dateDayOfYear( date ) + ret ) / 7 ) -
-					( 7 - ret >= cldr.supplemental.weekData.minDays() ? 0 : 1 );
+					( 7 - ret >= properties.minDays ? 0 : 1 );
 				pad = true;
 				break;
 
 			case "W":
 				// Week of Month.
 				// wom = ceil( ( dom + dow of `1/month` ) / 7 ) - minDaysStuff ? 1 : 0.
-				ret = dateDayOfWeek( dateStartOf( date, "month" ), cldr );
+				ret = dateDayOfWeek( dateStartOf( date, "month" ), properties.firstDay );
 				ret = Math.ceil( ( date.getDate() + ret ) / 7 ) -
-					( 7 - ret >= cldr.supplemental.weekData.minDays() ? 0 : 1 );
+					( 7 - ret >= properties.minDays ? 0 : 1 );
 				break;
 
 			// Day
@@ -161,7 +142,7 @@ return function( date, pattern, cldr ) {
 				if ( length <= 2 ) {
 					// Range is [1-7] (deduced by example provided on documentation)
 					// TODO Should pad with zeros (not specified in the docs)?
-					ret = dateDayOfWeek( date, cldr ) + 1;
+					ret = dateDayOfWeek( date, properties.firstDay ) + 1;
 					pad = true;
 					break;
 				}
@@ -169,38 +150,12 @@ return function( date, pattern, cldr ) {
 			/* falls through */
 			case "E":
 				ret = dateWeekDays[ date.getDay() ];
-				if ( length === 6 ) {
-					// If short day names are not explicitly specified, abbreviated day names are
-					// used instead.
-					// http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
-					// http://unicode.org/cldr/trac/ticket/6790
-					ret = cldr.main([
-							"dates/calendars/gregorian/days",
-							chr === "c" ? "stand-alone" : "format",
-							"short",
-							ret
-						]) || cldr.main([
-							"dates/calendars/gregorian/days",
-							chr === "c" ? "stand-alone" : "format",
-							"abbreviated",
-							ret
-						]);
-				} else {
-					ret = cldr.main([
-						"dates/calendars/gregorian/days",
-						chr === "c" ? "stand-alone" : "format",
-						widths[ length < 3 ? 0 : length - 3 ],
-						ret
-					]);
-				}
+				ret = properties.days[ chr ][ length ][ ret ];
 				break;
 
 			// Period (AM or PM)
 			case "a":
-				ret = cldr.main([
-					"dates/calendars/gregorian/dayPeriods/format/wide",
-					date.getHours() < 12 ? "am" : "pm"
-				]);
+				ret = properties.dayPeriods[ date.getHours() < 12 ? "am" : "pm" ];
 				break;
 
 			// Hour

@@ -16,7 +16,7 @@ Cldr.load( weekData );
 
 cldr = new Cldr( "en" );
 
-QUnit.module( "Datetime Tokenizer" );
+QUnit.module( "Date Tokenizer" );
 
 /**
  *  Era

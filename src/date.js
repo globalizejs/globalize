@@ -11,6 +11,7 @@ define([
 	"./date/all-presets",
 	"./date/expand-pattern",
 	"./date/format",
+	"./date/format-properties",
 	"./date/parse",
 	"./util/always-array",
 	"cldr/event",
@@ -18,7 +19,7 @@ define([
 ], function( Cldr, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterTypeDataType, validateParameterTypeDate, validateParameterTypeDatePattern,
 	validateParameterTypeString, Globalize, dateAllPresets, dateExpandPattern, dateFormat,
-	dateParse, alwaysArray ) {
+	dateFormatProperties, dateParse, alwaysArray ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -31,6 +32,44 @@ function validateRequiredCldr( path, value ) {
 }
 
 /**
+ * .dateFormatter( pattern )
+ *
+ * @pattern [String or Object] see date/expand_pattern for more info.
+ *
+ * Return a date formatter function (of the form below) according to the given pattern and the
+ * default/instance locale.
+ *
+ * fn( value )
+ *
+ * @value [Date]
+ *
+ * Return a function that formats a date according to the given `format` and the default/instance
+ * locale.
+ */
+Globalize.dateFormatter =
+Globalize.prototype.dateFormatter = function( pattern ) {
+	var cldr, properties;
+
+	validateParameterPresence( pattern, "pattern" );
+	validateParameterTypeDatePattern( pattern, "pattern" );
+
+	cldr = this.cldr;
+
+	validateDefaultLocale( cldr );
+
+	cldr.on( "get", validateRequiredCldr );
+	pattern = dateExpandPattern( pattern, cldr );
+	properties = dateFormatProperties( pattern, cldr );
+	cldr.off( "get", validateRequiredCldr );
+
+	return function( value ) {
+		validateParameterPresence( value, "value" );
+		validateParameterTypeDate( value, "value" );
+		return dateFormat( value, properties );
+	};
+};
+
+/**
  * .formatDate( value, pattern )
  *
  * @value [Date]
@@ -41,23 +80,10 @@ function validateRequiredCldr( path, value ) {
  */
 Globalize.formatDate =
 Globalize.prototype.formatDate = function( value, pattern ) {
-	var cldr, ret;
-
 	validateParameterPresence( value, "value" );
-	validateParameterPresence( pattern, "pattern" );
 	validateParameterTypeDate( value, "value" );
-	validateParameterTypeDatePattern( pattern, "pattern" );
 
-	cldr = this.cldr;
-
-	validateDefaultLocale( cldr );
-
-	cldr.on( "get", validateRequiredCldr );
-	pattern = dateExpandPattern( pattern, cldr );
-	ret = dateFormat( value, pattern, cldr );
-	cldr.off( "get", validateRequiredCldr );
-
-	return ret;
+	return this.dateFormatter( pattern )( value );
 };
 
 /**

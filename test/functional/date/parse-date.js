@@ -19,7 +19,7 @@ function extraSetup() {
 	Globalize.load( weekData );
 }
 
-QUnit.module( ".parseDate( value [, formats] )", {
+QUnit.module( ".parseDate( value [, patterns] )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		Globalize.locale( "en" );

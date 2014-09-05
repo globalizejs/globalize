@@ -243,17 +243,22 @@ to you in different flavors):
 <a name="date_module"></a>
 ### Date module
 
-- **`.formatDate( value, format )`**
+- **`.dateFormatter( pattern )`**
 
-  Format a date `value` according to the given `format`.
+  Return a function that formats a date according to the given `pattern`.
+
+ [Read more...](doc/api/date/date-formatter.md)
+
+- **`.formatDate( value, pattern )`**
+
+  Format a date `value` according to the given `pattern`.
 
  [Read more...](doc/api/date/format-date.md)
 
-- **`.parseDate( value [, formats] )`**
+- **`.parseDate( value [, patterns] )`**
 
-  Parse a string representing a date into a JavaScript Date object, taking into
-  account the given possible formats (or the given locale's set of preset
-  formats if not provided).
+  Parse a string representing a date into a JavaScript Date object, according to
+  the given patterns (defaults to the locale's available preset patterns).
 
  [Read more...](doc/api/date/parse-date.md)
 
