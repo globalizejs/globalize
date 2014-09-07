@@ -16,43 +16,32 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
 return function( number, properties ) {
-	var infinitySymbol, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
-	minimumIntegerDigits, minimumSignificantDigits, nanSymbol, padding, prefix,
-	primaryGroupingSize, pattern, ret, round, roundIncrement, secondaryGroupingSize, suffix,
-	symbolMap;
+	var maximumSignificantDigits, minimumSignificantDigits, prefix, primaryGroupingSize, pattern,
+		ret, round, suffix;
 
-	padding = properties[ 1 ];
-	minimumIntegerDigits = properties[ 2 ];
-	minimumFractionDigits = properties[ 3 ];
-	maximumFractionDigits = properties[ 4 ];
-	minimumSignificantDigits = properties[ 5 ];
-	maximumSignificantDigits = properties[ 6 ];
-	roundIncrement = properties[ 7 ];
-	primaryGroupingSize = properties[ 8 ];
-	secondaryGroupingSize = properties[ 9 ];
-	round = properties[ 15 ];
-	infinitySymbol = properties[ 16 ];
-	nanSymbol = properties[ 17 ];
-	symbolMap = properties[ 18 ];
+	minimumSignificantDigits = properties.minimumSignificantDigits;
+	maximumSignificantDigits = properties.maximumSignificantDigits;
+	primaryGroupingSize = properties.primaryGroupingSize;
+	round = properties.round;
 
 	// NaN
 	if ( isNaN( number ) ) {
-		return nanSymbol;
+		return properties.nanSymbol;
 	}
 
 	if ( number < 0 ) {
-		pattern = properties[ 12 ];
-		prefix = properties[ 13 ];
-		suffix = properties[ 14 ];
+		pattern = properties.negativePattern;
+		prefix = properties.negativePrefix;
+		suffix = properties.negativeSuffix;
 	} else {
-		pattern = properties[ 11 ];
-		prefix = properties[ 0 ];
-		suffix = properties[ 10 ];
+		pattern = properties.positivePattern;
+		prefix = properties.positivePrefix;
+		suffix = properties.positiveSuffix;
 	}
 
 	// Infinity
 	if ( !isFinite( number ) ) {
-		return prefix + infinitySymbol + suffix;
+		return prefix + properties.infinitySymbol + suffix;
 	}
 
 	ret = prefix;
@@ -73,8 +62,9 @@ return function( number, properties ) {
 
 	// Integer and fractional format
 	} else {
-		number = numberFormatIntegerFractionDigits( number, minimumIntegerDigits,
-			minimumFractionDigits, maximumFractionDigits, round, roundIncrement );
+		number = numberFormatIntegerFractionDigits( number, properties.minimumIntegerDigits,
+			properties.minimumFractionDigits, properties.maximumFractionDigits, round,
+			properties.roundIncrement );
 	}
 
 	// Remove the possible number minus sign
@@ -83,7 +73,7 @@ return function( number, properties ) {
 	// Grouping separators
 	if ( primaryGroupingSize ) {
 		number = numberFormatGroupingSeparator( number, primaryGroupingSize,
-			secondaryGroupingSize );
+			properties.secondaryGroupingSize );
 	}
 
 	ret += number;
@@ -105,7 +95,7 @@ return function( number, properties ) {
 		if ( symbol.charAt( 0 ) === "'" ) {
 			return symbol;
 		}
-		return symbolMap[ symbol ];
+		return properties.symbolMap[ symbol ];
 	});
 };
 

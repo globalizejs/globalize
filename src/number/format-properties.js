@@ -27,9 +27,9 @@ define([
 return function( pattern, cldr, options ) {
 	var negativePattern, negativeProperties, properties;
 
-	function getOptions( attribute, propertyIndex ) {
+	function getOptions( attribute ) {
 		if ( attribute in options ) {
-			properties[ propertyIndex ] = options[ attribute ];
+			properties[ attribute ] = options[ attribute ];
 		}
 	}
 
@@ -38,47 +38,55 @@ return function( pattern, cldr, options ) {
 
 	negativePattern = pattern[ 1 ] || "-" + pattern[ 0 ];
 	negativeProperties = numberPatternProperties( negativePattern );
+	properties = numberPatternProperties( pattern[ 0 ] );
 
-	// 0-10: see numberPatternProperties.
-	// 11: @positivePattern [String] Positive pattern.
-	// 12: @negativePattern [String] Negative pattern.
-	// 13: @negativePrefix [String] Negative prefix.
-	// 14: @negativeSuffix [String] Negative suffix.
-	// 15: @round [Function] Round function.
-	// 16: @infinitySymbol [String] Infinity symbol.
-	// 17: @nanSymbol [String] NaN symbol.
-	// 18: @symbolMap [Object] A bunch of other symbols.
-	properties = numberPatternProperties( pattern[ 0 ] ).concat([
-		pattern[ 0 ],
-		negativePattern,
-		negativeProperties[ 0 ],
-		negativeProperties[ 10 ],
-		numberRound( options.round ),
-		numberSymbol( "infinity", cldr ),
-		numberSymbol( "nan", cldr ),
-		numberSymbolMap( cldr )
-	]);
+	// Extends numberPatternProperties with:
+	// @infinitySymbol [String] Infinity symbol.
+	// @nanSymbol [String] NaN symbol.
+	// @negativePattern [String] Negative pattern.
+	// @negativePrefix [String] Negative prefix.
+	// @negativeSuffix [String] Negative suffix.
+	// @positivePattern [String] Positive pattern.
+	// @positivePrefix [String] Negative prefix.
+	// @positiveSuffix [String] Negative suffix.
+	// @round [Function] Round function.
+	// @symbolMap [Object] A bunch of other symbols.
+	properties.infinitySymbol = numberSymbol( "infinity", cldr );
+	properties.nanSymbol = numberSymbol( "nan", cldr );
+	properties.negativePattern = negativePattern;
+	properties.negativePrefix = negativeProperties.prefix;
+	properties.negativeSuffix = negativeProperties.suffix;
+	properties.positivePattern = pattern[ 0 ];
+	properties.positivePrefix = properties.prefix;
+	properties.positiveSuffix = properties.suffix;
+	properties.round = numberRound( options.round );
+	properties.symbolMap = numberSymbolMap( cldr );
 
-	getOptions( "minimumIntegerDigits", 2 );
-	getOptions( "minimumFractionDigits", 3 );
-	getOptions( "maximumFractionDigits", 4 );
-	getOptions( "minimumSignificantDigits", 5 );
-	getOptions( "maximumSignificantDigits", 6 );
+	getOptions( "minimumIntegerDigits" );
+	getOptions( "minimumFractionDigits" );
+	getOptions( "maximumFractionDigits" );
+
+	getOptions( "minimumSignificantDigits" );
+	getOptions( "maximumSignificantDigits" );
 
 	// Grouping separators
 	if ( options.useGrouping === false ) {
-		properties[ 8 ] = null;
+		properties.primaryGroupingSize = null;
 	}
 
 	// Normalize number of digits if only one of either minimumFractionDigits or
 	// maximumFractionDigits is passed in as an option
 	if ( "minimumFractionDigits" in options && !( "maximumFractionDigits" in options ) ) {
-		// maximumFractionDigits = Math.max( minimumFractionDigits, maximumFractionDigits );
-		properties[ 4 ] = Math.max( properties[ 3 ], properties[ 4 ] );
+		properties.maximumFractionDigits = Math.max(
+			properties.minimumFractionDigits,
+			properties.maximumFractionDigits
+		);
 	} else if ( !( "minimumFractionDigits" in options ) &&
 			"maximumFractionDigits" in options ) {
-		// minimumFractionDigits = Math.min( minimumFractionDigits, maximumFractionDigits );
-		properties[ 3 ] = Math.min( properties[ 3 ], properties[ 4 ] );
+		properties.minimumFractionDigits = Math.min(
+			properties.minimumFractionDigits,
+			properties.maximumFractionDigits
+		);
 	}
 
 	return properties;

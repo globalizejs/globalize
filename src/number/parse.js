@@ -84,7 +84,8 @@ return function( value, pattern, cldr ) {
 	// localized minus sign prefixed to the positive subpattern" UTS#35
 	pattern = pattern.split( ";" );
 	properties = numberPatternProperties( pattern[ 1 ] || pattern[ 0 ] );
-	if ( prefix === ( pattern[ 1 ] ? "" : "-" ) + properties[ 0 ] && suffix === properties[ 10 ] ) {
+	if ( prefix === ( pattern[ 1 ] ? "" : "-" ) + properties.prefix &&
+			suffix === properties.suffix ) {
 		number *= -1;
 	}
 
