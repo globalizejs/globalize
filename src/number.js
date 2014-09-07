@@ -41,7 +41,8 @@ Globalize.prototype.formatNumber = function( value, attributes ) {
  * - style: [String] "decimal" (default) or "percent".
  * - see also number/format options.
  *
- * Return the number formatter according to the given attributes and default/instance locale.
+ * Return a function that formats a number according to the given attribute and default/instance
+ * locale.
  */
 Globalize.numberFormatter =
 Globalize.prototype.numberFormatter = function( attributes ) {
