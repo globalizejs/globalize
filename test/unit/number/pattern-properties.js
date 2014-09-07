@@ -1,22 +1,16 @@
 define([
 	"cldr",
 	"src/number/format-properties",
-	"json!fixtures/cldr/main/ar/numbers.json",
 	"json!fixtures/cldr/main/en/numbers.json",
-	"json!fixtures/cldr/main/es/numbers.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json"
-], function( Cldr, properties, arNumbers, enNumbers, esNumbers, likelySubtags ) {
+], function( Cldr, properties, enNumbers, likelySubtags ) {
 
-var ar, en, es;
+var en;
 
-Cldr.load( arNumbers );
 Cldr.load( enNumbers );
-Cldr.load( esNumbers );
 Cldr.load( likelySubtags );
 
-ar = new Cldr( "ar" );
 en = new Cldr( "en" );
-es = new Cldr( "es" );
 
 QUnit.module( "Number Pattern Properties" );
 
