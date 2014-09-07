@@ -10,7 +10,7 @@ define([
  *
  * @number [Number].
  *
- * @properties FIXME
+ * @properties [Object] Output of number/format-properties.
  *
  * Return the formatted number.
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html

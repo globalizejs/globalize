@@ -21,7 +21,7 @@ define([
  * - round [String] "ceil", "floor", "round" (default), or "truncate".
  * - useGrouping [Boolean] default true.
  *
- * Return the formatted number. FIXME
+ * Return the processed properties that will be used in number/format.
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
 return function( pattern, cldr, options ) {
@@ -39,15 +39,6 @@ return function( pattern, cldr, options ) {
 	negativePattern = pattern[ 1 ] || "-" + pattern[ 0 ];
 	negativeProperties = numberPatternProperties( negativePattern );
 
-	// 0-10: see numberPatternProperties.
-	// 11: @positivePattern [String] Positive pattern.
-	// 12: @negativePattern [String] Negative pattern.
-	// 13: @negativePrefix [String] Negative prefix.
-	// 14: @negativeSuffix [String] Negative suffix.
-	// 15: @round [Function] Round function.
-	// 16: @infinitySymbol [String] Infinity symbol.
-	// 17: @nanSymbol [String] NaN symbol.
-	// 18: @symbolMap [Object] A bunch of other symbols.
 	properties = numberPatternProperties( pattern[ 0 ] ).concat([
 		pattern[ 0 ],
 		negativePattern,
@@ -81,6 +72,16 @@ return function( pattern, cldr, options ) {
 		properties[ 3 ] = Math.min( properties[ 3 ], properties[ 4 ] );
 	}
 
+	// Return:
+	// 0-10: see number/pattern-properties.
+	// 11: @positivePattern [String] Positive pattern.
+	// 12: @negativePattern [String] Negative pattern.
+	// 13: @negativePrefix [String] Negative prefix.
+	// 14: @negativeSuffix [String] Negative suffix.
+	// 15: @round [Function] Round function.
+	// 16: @infinitySymbol [String] Infinity symbol.
+	// 17: @nanSymbol [String] NaN symbol.
+	// 18: @symbolMap [Object] A bunch of other symbols.
 	return properties;
 };
 
