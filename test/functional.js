@@ -22,6 +22,7 @@ require([
 	"./functional/message/translate",
 
 	// number
+	"./functional/number/number-formatter",
 	"./functional/number/format-number",
 	"./functional/number/parse-number",
 

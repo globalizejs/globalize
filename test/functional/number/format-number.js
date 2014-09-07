@@ -48,32 +48,6 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 	});
 });
 
-QUnit.test( "should validate options", function( assert ) {
-	extraSetup();
-
-	util.assertParameterRange( assert, 1, 21, function( num ) {
-		Globalize.formatNumber( pi, {
-			maximumSignificantDigits: 1,
-			minimumSignificantDigits: num
-		});
-	});
-	util.assertParameterRange( assert, 1, 21, function( num ) {
-		Globalize.formatNumber( pi, {
-			maximumSignificantDigits: num,
-			minimumSignificantDigits: 1
-		});
-	});
-	util.assertParameterRange( assert, 1, 21, function( num ) {
-		Globalize.formatNumber( pi, { minimumIntegerDigits: num } );
-	});
-	util.assertParameterRange( assert, 0, 20, function( num ) {
-		Globalize.formatNumber( pi, { minimumFractionDigits: num } );
-	});
-	util.assertParameterRange( assert, 0, 20, function( num ) {
-		Globalize.formatNumber( pi, { maximumFractionDigits: num } );
-	});
-});
-
 QUnit.test( "should format decimal style", function( assert ) {
 	extraSetup();
 

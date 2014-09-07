@@ -275,6 +275,12 @@ to you in different flavors):
 <a name="number_module"></a>
 ### Number module
 
+- **`.numberFormatter( attributes )`**
+
+  Return a function that formats a number according to the given attributes.
+
+ [Read more...](doc/api/number/number-formatter.md)
+
 - **`.formatNumber( value [, attributes] )`**
 
   Format a number according to the given attributes.
