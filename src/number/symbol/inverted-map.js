@@ -9,9 +9,9 @@ define([
  * @cldr [Cldr instance].
  *
  * Return the (localized symbol, pattern symbol) key value pair, eg. {
- *   ".": "٫",
- *   ",": "٬",
- *   "%": "٪",
+ *   "٫": ".",
+ *   "٬": ",",
+ *   "٪": "%",
  *   ...
  * };
  */
@@ -20,7 +20,7 @@ return function( cldr ) {
 		symbolMap = {};
 
 	for ( symbol in numberSymbolName ) {
-		symbolMap[ symbol ] = numberSymbol( numberSymbolName[ symbol ], cldr );
+		symbolMap[ numberSymbol( numberSymbolName[ symbol ], cldr ) ] = symbol;
 	}
 
 	return symbolMap;
