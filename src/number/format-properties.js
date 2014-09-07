@@ -25,7 +25,8 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
 return function( pattern, cldr, options ) {
-	var negativePattern, negativeProperties, properties;
+	var negativePattern, negativePrefix, negativeProperties, negativeSuffix, positivePattern,
+		properties;
 
 	function getOptions( attribute, propertyIndex ) {
 		if ( attribute in options ) {
@@ -36,14 +37,18 @@ return function( pattern, cldr, options ) {
 	options = options || {};
 	pattern = pattern.split( ";" );
 
-	negativePattern = pattern[ 1 ] || "-" + pattern[ 0 ];
-	negativeProperties = numberPatternProperties( negativePattern );
+	positivePattern = pattern[ 0 ];
 
-	properties = numberPatternProperties( pattern[ 0 ] ).concat([
-		pattern[ 0 ],
-		negativePattern,
-		negativeProperties[ 0 ],
-		negativeProperties[ 10 ],
+	negativePattern = pattern[ 1 ] || "-" + positivePattern;
+	negativeProperties = numberPatternProperties( negativePattern );
+	negativePrefix = negativeProperties[ 0 ];
+	negativeSuffix = negativeProperties[ 10 ];
+
+	properties = numberPatternProperties( positivePattern ).concat([
+		positivePattern,
+		negativePrefix + positivePattern + negativeSuffix,
+		negativePrefix,
+		negativeSuffix,
 		numberRound( options.round ),
 		numberSymbol( "infinity", cldr ),
 		numberSymbol( "nan", cldr ),
