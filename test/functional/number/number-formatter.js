@@ -16,7 +16,7 @@ function extraSetup() {
 	Globalize.load( esNumbers );
 }
 
-QUnit.module( "Number Format", {
+QUnit.module( ".numberFormatter( [attributes] )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		Globalize.locale( "en" );

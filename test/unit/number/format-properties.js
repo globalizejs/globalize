@@ -35,10 +35,6 @@ QUnit.test( "should return negativeSuffix", function( assert ) {
 	assert.equal( properties( "#,##0.0#;(0)", en )[ 14 ], ")" );
 });
 
-QUnit.test( "should return negativeSuffix", function( assert ) {
-	assert.equal( properties( "#,##0.0#;(0)", en )[ 14 ], ")" );
-});
-
 QUnit.test( "should return round function", function( assert ) {
 	assert.equal( properties( "0", en )[ 15 ]( 123.45 ), "123" );
 	assert.equal( properties( "0", en, {

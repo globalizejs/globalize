@@ -18,7 +18,7 @@ define([
 	numberPattern ) {
 
 /**
- * .formatNumber( value, attributes )
+ * .formatNumber( value [, attributes] )
  *
  * @value [Number] number to be formatted.
  *
@@ -35,7 +35,7 @@ Globalize.prototype.formatNumber = function( value, attributes ) {
 };
 
 /**
- * .numberFormatter( attributes )
+ * .numberFormatter( [attributes] )
  *
  * @attributes [Object]:
  * - style: [String] "decimal" (default) or "percent".
