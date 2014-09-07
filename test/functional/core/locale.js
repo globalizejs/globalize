@@ -6,7 +6,7 @@ define([
 	"globalize/number"
 ], function( Globalize, util ) {
 
-QUnit.module( "Globalize.locale()" );
+QUnit.module( "Globalize.locale( [locale|cldr] )" );
 
 QUnit.test( "should validate parameters", function( assert ) {
 	util.assertLocaleOrNullParameter( assert, "locale", function( invalidValue ) {

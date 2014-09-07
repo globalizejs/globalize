@@ -10,7 +10,7 @@ function extraSetup() {
 	Globalize.load( plurals );
 }
 
-QUnit.module( ".formatPlural()", {
+QUnit.module( ".formatPlural( value, messageData [, formatValue ] )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		Globalize.locale( "en" );

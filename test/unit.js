@@ -24,9 +24,11 @@ require([
 	"./unit/message/translate",
 
 	// number
+	"./unit/number/pattern-properties",
 	"./unit/number/format/integer-fraction-digits",
 	"./unit/number/format/significant-digits",
 	"./unit/number/format/grouping-separator",
+	"./unit/number/format-properties",
 	"./unit/number/format",
 	"./unit/number/parse",
 
