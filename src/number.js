@@ -45,8 +45,8 @@ Globalize.prototype.formatNumber = function( value, attributes ) {
  */
 Globalize.numberFormatter =
 Globalize.prototype.numberFormatter = function( attributes ) {
-	var cldr, maximumSignificantDigits, minimumFractionDigits,
-		minimumSignificantDigits, pattern, properties;
+	var cldr, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
+		minimumIntegerDigits, minimumSignificantDigits, pattern, properties;
 
 	validateParameterTypePlainObject( attributes, "attributes" );
 
@@ -65,8 +65,12 @@ Globalize.prototype.numberFormatter = function( attributes ) {
 
 	cldr.off( "get", validateCldr );
 
-	minimumSignificantDigits = properties.minimumSignificantDigits;
-	maximumSignificantDigits = properties.maximumSignificantDigits;
+	minimumIntegerDigits = properties[ 2 ];
+	minimumFractionDigits = properties[ 3 ];
+	maximumFractionDigits = properties[ 4 ];
+
+	minimumSignificantDigits = properties[ 5 ];
+	maximumSignificantDigits = properties[ 6 ];
 
 	// Validate significant digit format properties
 	if ( !isNaN( minimumSignificantDigits * maximumSignificantDigits ) ) {
@@ -80,10 +84,9 @@ Globalize.prototype.numberFormatter = function( attributes ) {
 
 	// Validate integer and fractional format
 	} else {
-		minimumFractionDigits = properties.minimumFractionDigits;
-		validateParameterRange( properties.minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
+		validateParameterRange( minimumIntegerDigits, "minimumIntegerDigits", 1, 21 );
 		validateParameterRange( minimumFractionDigits, "minimumFractionDigits", 0, 20 );
-		validateParameterRange( properties.maximumFractionDigits, "maximumFractionDigits",
+		validateParameterRange( maximumFractionDigits, "maximumFractionDigits",
 			minimumFractionDigits, 20 );
 	}
 

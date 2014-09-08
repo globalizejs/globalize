@@ -15,18 +15,20 @@ define([
 return function( pattern ) {
 	var aux1, aux2, fractionPattern, integerFractionOrSignificantPattern, integerPattern,
 		maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
-		minimumIntegerDigits, minimumSignificantDigits, padding, primaryGroupingSize,
-		roundIncrement, scientificNotation, secondaryGroupingSize, significantPattern;
+		minimumIntegerDigits, minimumSignificantDigits, padding, prefix, primaryGroupingSize,
+		roundIncrement, scientificNotation, secondaryGroupingSize, significantPattern, suffix;
 
 	pattern = pattern.match( numberPatternRe );
 	if ( !pattern ) {
 		throw new Error( "Invalid pattern: " + pattern );
 	}
 
+	prefix = pattern[ 1 ];
 	padding = pattern[ 3 ];
 	integerFractionOrSignificantPattern = pattern[ 4 ];
 	significantPattern = pattern[ 8 ];
 	scientificNotation = pattern[ 9 ];
+	suffix = pattern[ 10 ];
 
 	// Significant digit format
 	if ( significantPattern ) {
@@ -90,37 +92,37 @@ return function( pattern ) {
 	}
 
 	// Return:
-	// @prefix String
-	// @padding Array [ <character>, <count> ] TODO
-	// @minimumIntegerDigits non-negative integer Number value indicating the minimum integer
-	//    digits to be used. Numbers will be padded with leading zeroes if necessary.
-	// @minimumFractionDigits and
-	// @maximumFractionDigits are non-negative integer Number values indicating the minimum and
-	//    maximum fraction digits to be used. Numbers will be rounded or padded with trailing
-	//    zeroes if necessary.
-	// @minimumSignificantDigits and
-	// @maximumSignificantDigits are positive integer Number values indicating the minimum and
-	//    maximum fraction digits to be shown. Either none or both of these properties are
-	//    present; if they are, they override minimum and maximum integer and fraction digits
-	//    – the formatter uses however many integer and fraction digits are required to display
-	//    the specified number of significant digits.
-	// @roundIncrement Decimal round increment or null
-	// @primaryGroupingSize
-	// @secondaryGroupingSize
-	// @suffix String
-	return {
-		prefix: pattern[ 1 ],
-		padding: padding,
-		minimumIntegerDigits: minimumIntegerDigits,
-		minimumFractionDigits: minimumFractionDigits,
-		maximumFractionDigits: maximumFractionDigits,
-		minimumSignificantDigits: minimumSignificantDigits,
-		maximumSignificantDigits: maximumSignificantDigits,
-		roundIncrement: roundIncrement,
-		primaryGroupingSize: primaryGroupingSize,
-		secondaryGroupingSize: secondaryGroupingSize,
-		suffix: pattern[ 10 ]
-	};
+	//  0: @prefix String
+	//  1: @padding Array [ <character>, <count> ] TODO
+	//  2: @minimumIntegerDigits non-negative integer Number value indicating the minimum integer
+	//        digits to be used. Numbers will be padded with leading zeroes if necessary.
+	//  3: @minimumFractionDigits and
+	//  4: @maximumFractionDigits are non-negative integer Number values indicating the minimum and
+	//        maximum fraction digits to be used. Numbers will be rounded or padded with trailing
+	//        zeroes if necessary.
+	//  5: @minimumSignificantDigits and
+	//  6: @maximumSignificantDigits are positive integer Number values indicating the minimum and
+	//        maximum fraction digits to be shown. Either none or both of these properties are
+	//        present; if they are, they override minimum and maximum integer and fraction digits
+	//        – the formatter uses however many integer and fraction digits are required to display
+	//        the specified number of significant digits.
+	//  7: @roundIncrement Decimal round increment or null
+	//  8: @primaryGroupingSize
+	//  9: @secondaryGroupingSize
+	// 10: @suffix String
+	return [
+		prefix,
+		padding,
+		minimumIntegerDigits,
+		minimumFractionDigits,
+		maximumFractionDigits,
+		minimumSignificantDigits,
+		maximumSignificantDigits,
+		roundIncrement,
+		primaryGroupingSize,
+		secondaryGroupingSize,
+		suffix
+	];
 };
 
 });
