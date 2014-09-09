@@ -10,12 +10,13 @@ define([
 	"./number/format",
 	"./number/format-properties",
 	"./number/parse",
+	"./number/parse-properties",
 	"./number/pattern",
 	"cldr/event"
 ], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterRange, validateParameterTypeNumber, validateParameterTypePlainObject,
 	validateParameterTypeString, numberFormat, numberFormatProperties, numberParse,
-	numberPattern ) {
+	numberParseProperties, numberPattern ) {
 
 /**
  * .numberFormatter( [options] )
@@ -82,6 +83,42 @@ Globalize.prototype.numberFormatter = function( options ) {
 };
 
 /**
+ * .numberParser( [options] )
+ *
+ * @options [Object]:
+ * - style: [String] "decimal" (default) or "percent".
+ *
+ * Return the number parser according to the default/instance locale.
+ */
+Globalize.numberParser =
+Globalize.prototype.numberParser = function( options ) {
+	var cldr, pattern, properties;
+
+	validateParameterTypePlainObject( options, "options" );
+
+	options = options || {};
+	cldr = this.cldr;
+
+	validateDefaultLocale( cldr );
+
+	cldr.on( "get", validateCldr );
+
+	if ( !options.pattern ) {
+		pattern = numberPattern( options.style || "decimal", cldr );
+	}
+
+	properties = numberParseProperties( pattern, cldr );
+
+	cldr.off( "get", validateCldr );
+
+	return function( value ) {
+		validateParameterPresence( value, "value" );
+		validateParameterTypeString( value, "value" );
+		return numberParse( value, properties );
+	};
+};
+
+/**
  * .formatNumber( value [, options] )
  *
  * @value [Number] number to be formatted.
@@ -99,33 +136,20 @@ Globalize.prototype.formatNumber = function( value, options ) {
 };
 
 /**
- * .parseNumber( value )
+ * .parseNumber( value [, options] )
  *
  * @value [String]
+ *
+ * @options [Object]: See numberParser().
  *
  * Return the parsed Number (including Infinity) or NaN when value is invalid.
  */
 Globalize.parseNumber =
-Globalize.prototype.parseNumber = function( value ) {
-	var cldr, pattern, ret;
-
+Globalize.prototype.parseNumber = function( value, options ) {
 	validateParameterPresence( value, "value" );
 	validateParameterTypeString( value, "value" );
 
-	cldr = this.cldr;
-
-	validateDefaultLocale( cldr );
-
-	cldr.on( "get", validateCldr );
-
-	// TODO: What about per mille? Which "style" does it belong to?
-	pattern = numberPattern( value.indexOf( "%" ) !== -1 ? "percent" : "decimal", cldr );
-
-	ret = numberParse( value, pattern, cldr );
-
-	cldr.off( "get", validateCldr );
-
-	return ret;
+	return this.numberParser( options )( value );
 };
 
 return Globalize;

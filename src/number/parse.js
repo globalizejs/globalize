@@ -1,27 +1,30 @@
 define([
 	"./number-re",
-	"./pattern-properties",
-	"./symbol",
-	"./symbol/inverted-map",
 	"../util/regexp/escape"
-], function( numberNumberRe, numberPatternProperties, numberSymbol, numberSymbolInvertedMap,
-	regexpEscape ) {
+], function( numberNumberRe, regexpEscape ) {
 
 /**
- * parse( value, cldr )
+ * parse( value, properties )
  *
  * @value [String].
  *
- * @cldr [Cldr instance].
+ * @properties [Object] Parser properties is a reduced pre-processed cldr
+ * data set returned by numberParserProperties().
  *
  * Return the parsed Number (including Infinity) or NaN when value is invalid.
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
-return function( value, pattern, cldr ) {
-	var aux, localizedSymbolsRe, number, prefix, properties, suffix, symbolMap;
+return function( value, properties ) {
+	var aux, infinitySymbol, invertedSymbolMap, localizedSymbolsRe, negativePrefix, negativeSuffix,
+		number, prefix, suffix;
+
+	infinitySymbol = properties[ 0 ];
+	invertedSymbolMap = properties[ 1 ];
+	negativePrefix = properties[ 2 ];
+	negativeSuffix = properties[ 3 ];
 
 	// Infinite number.
-	if ( aux = value.match( numberSymbol( "infinity", cldr ) ) ) {
+	if ( aux = value.match( infinitySymbol ) ) {
 
 		number = Infinity;
 		prefix = value.slice( 0, aux.length );
@@ -30,14 +33,16 @@ return function( value, pattern, cldr ) {
 	// Finite number.
 	} else {
 
-		symbolMap = numberSymbolInvertedMap( cldr );
-		localizedSymbolsRe = new RegExp( Object.keys( symbolMap ).map(function( localizedSymbol ) {
-			return regexpEscape( localizedSymbol );
-		}).join( "|" ), "g" );
+		localizedSymbolsRe = new RegExp(
+			Object.keys( invertedSymbolMap ).map(function( localizedSymbol ) {
+				return regexpEscape( localizedSymbol );
+			}).join( "|" ),
+			"g"
+		);
 
 		// Reverse localized symbols.
 		value = value.replace( localizedSymbolsRe, function( localizedSymbol ) {
-			return symbolMap[ localizedSymbol ];
+			return invertedSymbolMap[ localizedSymbol ];
 		});
 
 		// Is it a valid number?
@@ -71,10 +76,12 @@ return function( value, pattern, cldr ) {
 		// Percent
 		if ( value[ 0 ].indexOf( "%" ) !== -1 ) {
 			number /= 100;
+			suffix = suffix.replace( "%", "" );
 
 		// Per mille
 		} else if ( value[ 0 ].indexOf( "\u2030" ) !== -1 ) {
 			number /= 1000;
+			suffix = suffix.replace( "\u2030", "" );
 		}
 	}
 
@@ -82,9 +89,7 @@ return function( value, pattern, cldr ) {
 	// "If there is an explicit negative subpattern, it serves only to specify the negative prefix
 	// and suffix. If there is no explicit negative subpattern, the negative subpattern is the
 	// localized minus sign prefixed to the positive subpattern" UTS#35
-	pattern = pattern.split( ";" );
-	properties = numberPatternProperties( pattern[ 1 ] || pattern[ 0 ] );
-	if ( prefix === ( pattern[ 1 ] ? "" : "-" ) + properties[ 0 ] && suffix === properties[ 10 ] ) {
+	if ( prefix === negativePrefix && suffix === negativeSuffix ) {
 		number *= -1;
 	}
 

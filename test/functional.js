@@ -23,6 +23,7 @@ require([
 
 	// number
 	"./functional/number/number-formatter",
+	"./functional/number/number-parser",
 	"./functional/number/format-number",
 	"./functional/number/parse-number",
 

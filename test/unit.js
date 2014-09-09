@@ -30,6 +30,7 @@ require([
 	"./unit/number/format/grouping-separator",
 	"./unit/number/format-properties",
 	"./unit/number/format",
+	"./unit/number/parse-properties",
 	"./unit/number/parse",
 
 	/* plural */
