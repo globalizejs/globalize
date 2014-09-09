@@ -20,7 +20,7 @@ function extraSetup() {
 	Globalize.load( svNumbers );
 }
 
-QUnit.module( ".parseNumber( value )", {
+QUnit.module( ".parseNumber( value [, options] )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		ar = new Globalize( "ar" );
@@ -40,6 +40,12 @@ QUnit.test( "should validate parameters", function( assert ) {
 	util.assertStringParameter( assert, "value", function( invalidValue ) {
 		return function() {
 			Globalize.parseNumber( invalidValue );
+		};
+	});
+
+	util.assertPlainObjectParameter( assert, "options", function( invalidValue ) {
+		return function() {
+			Globalize.parseNumber( "3", invalidValue );
 		};
 	});
 });

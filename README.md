@@ -287,10 +287,16 @@ to you in different flavors):
 
  [Read more...](doc/api/number/format-number.md)
 
-- **`.parseNumber( value )`**
+- **`.numberParser( [options] )`**
 
-  Parse a string representing a number taking into account the localized
-  symbols. If value is invalid, `NaN` is returned.
+  Return a function that parses a string representing a number according to the given options or
+  locale's defaults.
+
+ [Read more...](doc/api/number/number-parser.md)
+
+- **`.parseNumber( value [, options] )`**
+
+  Parse a string representing a number according to the given options or locale's defaults. If value is invalid, `NaN` is returned.
 
  [Read more...](doc/api/number/parse-number.md)
 
