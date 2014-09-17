@@ -10,7 +10,7 @@ function extraSetup() {
 	Globalize.load( plurals );
 }
 
-QUnit.module( ".plural()", {
+QUnit.module( ".plural( value )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		Globalize.locale( "en" );

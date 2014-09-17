@@ -6,7 +6,7 @@ define([
 	"globalize/message"
 ], function( Globalize, likelySubtags, util ) {
 
-QUnit.module( "Translate", {
+QUnit.module( ".translate( path )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		Globalize.loadTranslations({
