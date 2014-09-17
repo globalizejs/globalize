@@ -1,4 +1,4 @@
-## Globalize.parseNumber( value )
+## Globalize.parseNumber( value [, options] )
 
 Parse a string representing a number taking into account the localized symbols.
 If value is invalid, `NaN` is returned.
@@ -8,6 +8,10 @@ If value is invalid, `NaN` is returned.
 **value**
 
 String with number to be parsed, eg. `"3.14"`.
+
+**options** Optional
+
+See [`.numberParser( [options] )`](./number-parser.md).
 
 ### Example
 
