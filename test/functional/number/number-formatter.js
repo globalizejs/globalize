@@ -16,7 +16,7 @@ function extraSetup() {
 	Globalize.load( esNumbers );
 }
 
-QUnit.module( ".numberFormatter( [attributes] )", {
+QUnit.module( ".numberFormatter( [options] )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		Globalize.locale( "en" );
@@ -25,7 +25,7 @@ QUnit.module( ".numberFormatter( [attributes] )", {
 });
 
 QUnit.test( "should validate parameters", function( assert ) {
-	util.assertPlainObjectParameter( assert, "attributes", function( invalidValue ) {
+	util.assertPlainObjectParameter( assert, "options", function( invalidValue ) {
 		return function() {
 			Globalize.numberFormatter( invalidValue );
 		};

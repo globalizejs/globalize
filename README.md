@@ -275,15 +275,15 @@ to you in different flavors):
 <a name="number_module"></a>
 ### Number module
 
-- **`.numberFormatter( attributes )`**
+- **`.numberFormatter( [options] )`**
 
-  Return a function that formats a number according to the given attributes.
+  Return a function that formats a number according to the given options.
 
  [Read more...](doc/api/number/number-formatter.md)
 
-- **`.formatNumber( value [, attributes] )`**
+- **`.formatNumber( value [, options] )`**
 
-  Format a number according to the given attributes.
+  Format a number according to the given options.
 
  [Read more...](doc/api/number/format-number.md)
 

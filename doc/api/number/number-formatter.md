@@ -1,12 +1,12 @@
-## .numberFormatter( attributes )
+## .numberFormatter( [options] )
 
-Return a function that formats a number according to the given attributes.
+Return a function that formats a number according to the given options.
 
 ### Parameters
 
-**attributes**
+**options** Optional
 
-A JSON object including none or any of the following attributes.
+A JSON object including none or any of the following options.
 
 > **style** Optional
 >
@@ -53,7 +53,7 @@ var formatter;
 Globalize.locale( "en" );
 formatter = Globalize.numberFormatter();
 
-formatter( 3.141592 );           // "3.142"
+formatter( 3.141592 ); // "3.142"
 ```
 
 You can use the instance method `.numberFormatter()`, which uses the instance

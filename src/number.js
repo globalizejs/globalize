@@ -18,26 +18,9 @@ define([
 	numberPattern ) {
 
 /**
- * .formatNumber( value [, attributes] )
+ * .numberFormatter( [options] )
  *
- * @value [Number] number to be formatted.
- *
- * @attributes [Object]: see .numberFormatter().
- *
- * Format a number according to the given attributes and default/instance locale.
- */
-Globalize.formatNumber =
-Globalize.prototype.formatNumber = function( value, attributes ) {
-	validateParameterPresence( value, "value" );
-	validateParameterTypeNumber( value, "value" );
-
-	return this.numberFormatter( attributes )( value );
-};
-
-/**
- * .numberFormatter( [attributes] )
- *
- * @attributes [Object]:
+ * @options [Object]:
  * - style: [String] "decimal" (default) or "percent".
  * - see also number/format options.
  *
@@ -45,24 +28,24 @@ Globalize.prototype.formatNumber = function( value, attributes ) {
  * locale.
  */
 Globalize.numberFormatter =
-Globalize.prototype.numberFormatter = function( attributes ) {
+Globalize.prototype.numberFormatter = function( options ) {
 	var cldr, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
 		minimumIntegerDigits, minimumSignificantDigits, pattern, properties;
 
-	validateParameterTypePlainObject( attributes, "attributes" );
+	validateParameterTypePlainObject( options, "options" );
 
-	attributes = attributes || {};
+	options = options || {};
 	cldr = this.cldr;
 
 	validateDefaultLocale( cldr );
 
 	cldr.on( "get", validateCldr );
 
-	if ( !attributes.pattern ) {
-		pattern = numberPattern( attributes.style || "decimal", cldr );
+	if ( !options.pattern ) {
+		pattern = numberPattern( options.style || "decimal", cldr );
 	}
 
-	properties = numberFormatProperties( pattern, cldr, attributes );
+	properties = numberFormatProperties( pattern, cldr, options );
 
 	cldr.off( "get", validateCldr );
 
@@ -96,6 +79,23 @@ Globalize.prototype.numberFormatter = function( attributes ) {
 		validateParameterTypeNumber( value, "value" );
 		return numberFormat( value, properties );
 	};
+};
+
+/**
+ * .formatNumber( value [, options] )
+ *
+ * @value [Number] number to be formatted.
+ *
+ * @options [Object]: see number/format-properties.
+ *
+ * Format a number according to the given options and default/instance locale.
+ */
+Globalize.formatNumber =
+Globalize.prototype.formatNumber = function( value, options ) {
+	validateParameterPresence( value, "value" );
+	validateParameterTypeNumber( value, "value" );
+
+	return this.numberFormatter( options )( value );
 };
 
 /**

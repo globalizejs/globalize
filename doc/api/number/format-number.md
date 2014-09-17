@@ -1,8 +1,8 @@
-## .formatNumber( value [, attributes] )
+## .formatNumber( value [, options] )
 
-Format a number `value` according to the given `attributes`.
+Format a number `value` according to the given `options`.
 
-*Important*: Favor [`.numberFormatter( attributes )`](./number-formatter.md) if
+*Important*: Favor [`.numberFormatter( [options] )`](./number-formatter.md) if
 repeating the same format over a series of numbers for improved performance.
 
 ### Parameters
@@ -11,9 +11,9 @@ repeating the same format over a series of numbers for improved performance.
 
 Number to be formatted, eg. `3.14`.
 
-**attributes** Optional
+**options** Optional
 
-See [`.numberFormatter( attributes )`](./number-formatter.md).
+See [`.numberFormatter( [options] )`](./number-formatter.md).
 
 ### Example
 
