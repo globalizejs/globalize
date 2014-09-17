@@ -277,13 +277,13 @@ to you in different flavors):
 
 - **`.numberFormatter( [options] )`**
 
-  Return a function that formats a number according to the given options.
+  Return a function that formats a number according to the given options or locale's defaults.
 
  [Read more...](doc/api/number/number-formatter.md)
 
 - **`.formatNumber( value [, options] )`**
 
-  Format a number according to the given options.
+  Format a number according to the given options or locale's defaults.
 
  [Read more...](doc/api/number/format-number.md)
 
