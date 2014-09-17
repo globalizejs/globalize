@@ -2,8 +2,8 @@
 
 Format a number `value` according to the given `options`.
 
-*Important*: Favor [`.numberFormatter( [options] )`](./number-formatter.md) if
-repeating the same format over a series of numbers for improved performance.
+*Important*: Use [`.numberFormatter( [options] )`](./number-formatter.md)
+instead when formatting more then one number, for improved performance.
 
 ### Parameters
 
