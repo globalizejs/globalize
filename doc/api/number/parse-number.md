@@ -3,8 +3,8 @@
 Parse a string representing a number taking into account the localized symbols.
 If value is invalid, `NaN` is returned.
 
-*Important*: Use [`.numberParser( [options] )`](./number-parser.md)
-instead when parsing more then one number, for improved performance.
+*Important*: Use [`.numberParser( [options] )`](./number-parser.md) instead when
+parsing more then one number, for improved performance.
 
 ### Parameters
 
