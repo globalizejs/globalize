@@ -24,7 +24,7 @@ define([
  * - style: [String] "decimal" (default) or "percent".
  * - see also number/format options.
  *
- * Return a function that formats a number according to the given attribute and default/instance
+ * Return a function that formats a number according to the given options and default/instance
  * locale.
  */
 Globalize.numberFormatter =
