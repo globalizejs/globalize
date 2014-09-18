@@ -16,6 +16,7 @@ require([
 
 	// date
 	"./functional/date/date-formatter",
+	"./functional/date/date-parser",
 	"./functional/date/format-date",
 	"./functional/date/parse-date",
 
