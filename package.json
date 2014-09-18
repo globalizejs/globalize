@@ -84,9 +84,5 @@
   ],
   "scripts": {
     "test": "grunt"
-  },
-  "directories": {
-    "doc": "doc",
-    "test": "test"
   }
 }
