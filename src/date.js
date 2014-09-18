@@ -13,13 +13,17 @@ define([
 	"./date/format",
 	"./date/format-properties",
 	"./date/parse",
+	"./date/parse-properties",
+	"./date/tokenizer",
+	"./date/tokenizer-properties",
 	"./util/always-array",
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterTypeDataType, validateParameterTypeDate, validateParameterTypeDatePattern,
 	validateParameterTypeString, Globalize, dateAllPresets, dateExpandPattern, dateFormat,
-	dateFormatProperties, dateParse, alwaysArray ) {
+	dateFormatProperties, dateParse, dateParseProperties, dateTokenizer, dateTokenizerProperties,
+	alwaysArray ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -70,6 +74,60 @@ Globalize.prototype.dateFormatter = function( pattern ) {
 };
 
 /**
+ * .dateParser( [patterns] )
+ *
+ * @patterns [Array] Optional. See date/expand_pattern for more info about each pattern. Defaults
+ * to the list of all presets defined in the locale (see date/all_presets for more info).
+ *
+ * Return a function that parses a string date according to the given `formats` and the
+ * default/instance locale.
+ */
+Globalize.dateParser =
+Globalize.prototype.dateParser = function( patterns ) {
+	var cldr, parseProperties,
+		expandedPattern = {},
+		tokenizerProperties = {};
+
+	cldr = this.cldr;
+
+	validateDefaultLocale( cldr );
+
+	cldr.on( "get", validateRequiredCldr );
+
+	if ( !patterns ) {
+		patterns = dateAllPresets( cldr );
+	} else {
+		patterns = alwaysArray( patterns );
+	}
+
+	patterns.forEach(function( pattern ) {
+		validateParameterTypeDatePattern( pattern, "patterns" );
+		pattern = expandedPattern[ pattern ] = dateExpandPattern( pattern, cldr );
+		tokenizerProperties[ pattern ] = dateTokenizerProperties( pattern, cldr );
+	});
+
+	parseProperties = dateParseProperties( cldr );
+
+	cldr.off( "get", validateRequiredCldr );
+
+	return function( value ) {
+		var date, tokens;
+
+		validateParameterPresence( value, "value" );
+		validateParameterTypeString( value, "value" );
+
+		patterns.some(function( pattern ) {
+			pattern = expandedPattern[ pattern ];
+			tokens = dateTokenizer( value, pattern, null, tokenizerProperties[ pattern ] );
+			date = dateParse( value, tokens, null, parseProperties );
+			return !!date;
+		});
+
+		return date || null;
+	};
+};
+
+/**
  * .formatDate( value, pattern )
  *
  * @value [Date]
@@ -87,7 +145,7 @@ Globalize.prototype.formatDate = function( value, pattern ) {
 };
 
 /**
- * .parseDate( value, patterns )
+ * .parseDate( value [, patterns] )
  *
  * @value [String]
  *
@@ -98,7 +156,7 @@ Globalize.prototype.formatDate = function( value, pattern ) {
  */
 Globalize.parseDate =
 Globalize.prototype.parseDate = function( value, patterns ) {
-	var cldr, date;
+	var cldr, date, tokens;
 
 	validateParameterPresence( value, "value" );
 	validateParameterTypeString( value, "value" );
@@ -118,7 +176,8 @@ Globalize.prototype.parseDate = function( value, patterns ) {
 	patterns.some(function( pattern ) {
 		validateParameterTypeDatePattern( pattern, "patterns" );
 		pattern = dateExpandPattern( pattern, cldr );
-		date = dateParse( value, pattern, cldr );
+		tokens = dateTokenizer( value, pattern, cldr );
+		date = dateParse( value, tokens, cldr );
 		return !!date;
 	});
 

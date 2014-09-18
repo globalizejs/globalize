@@ -249,6 +249,12 @@ to you in different flavors):
 
  [Read more...](doc/api/date/date-formatter.md)
 
+- **`.dateParser( [patterns] )`**
+
+  Return a function that parses a string date according to the given `formats`.
+
+ [Read more...](doc/api/date/date-parser.md)
+
 - **`.formatDate( value, pattern )`**
 
   Format a date `value` according to the given `pattern`.
