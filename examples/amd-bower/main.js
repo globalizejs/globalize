@@ -12,7 +12,7 @@ require.config({
 		text: "./bower_components/requirejs-text/text",
 
 		// Globalize path. Note it's already available on this repository. If it's not, read Usage on Getting Started on the root's README.md.
-		globalize: "../../dist/globalize"
+		globalize: "./bower_components/globalize/dist/globalize"
 	}
 });
 
