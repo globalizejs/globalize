@@ -3,6 +3,9 @@
 Parse a string representing a date into a JavaScript Date object according to
 the given pattern.
 
+*Important:* Use [`.dateParser( pattern )`](./date-parser.md) instead when
+parsing more then one date, for improved performance.
+
 ### Parameters
 
 **value**
