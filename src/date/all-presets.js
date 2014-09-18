@@ -27,12 +27,10 @@ return function( cldr ) {
 
 	// Datetime
 	result = result.concat(
-		Object.keys( datetimeFormats ).map(function( key ) {
-			var datetimeFormat = datetimeFormats[ key ];
-			if ( typeof datetimeFormat !== "string" ) {
-				return datetimeFormat;
-			}
-			return formatMessage( datetimeFormat, [
+		Object.keys( datetimeFormats ).filter(function( key ) {
+			return typeof datetimeFormats[ key ] === "string";
+		}).map(function( key ) {
+			return formatMessage( datetimeFormats[ key ], [
 				cldr.main([
 					"dates/calendars/gregorian/timeFormats",
 					key
