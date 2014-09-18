@@ -70,7 +70,7 @@ return function( value, pattern, cldr, properties ) {
 		function lookup( path ) {
 			var i, re,
 				data = properties ?
-					properties[ path.replace( /^.*calendars\//, "" ) ] :
+					properties[ path.join( "/" ).replace( /^.*calendars\//, "" ) ] :
 					cldr.main( path );
 
 			for ( i in data ) {

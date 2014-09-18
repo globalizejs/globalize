@@ -85,7 +85,7 @@ Globalize.prototype.dateFormatter = function( pattern ) {
 Globalize.dateParser =
 Globalize.prototype.dateParser = function( patterns ) {
 	var cldr, parseProperties,
-		expandedPattern = {},
+		expandedPatterns = [],
 		tokenizerProperties = {};
 
 	cldr = this.cldr;
@@ -102,7 +102,8 @@ Globalize.prototype.dateParser = function( patterns ) {
 
 	patterns.forEach(function( pattern ) {
 		validateParameterTypeDatePattern( pattern, "patterns" );
-		pattern = expandedPattern[ pattern ] = dateExpandPattern( pattern, cldr );
+		pattern = dateExpandPattern( pattern, cldr );
+		expandedPatterns.push( pattern );
 		tokenizerProperties[ pattern ] = dateTokenizerProperties( pattern, cldr );
 	});
 
@@ -116,8 +117,7 @@ Globalize.prototype.dateParser = function( patterns ) {
 		validateParameterPresence( value, "value" );
 		validateParameterTypeString( value, "value" );
 
-		patterns.some(function( pattern ) {
-			pattern = expandedPattern[ pattern ];
+		expandedPatterns.some(function( pattern ) {
 			tokens = dateTokenizer( value, pattern, null, tokenizerProperties[ pattern ] );
 			date = dateParse( value, tokens, null, parseProperties );
 			return !!date;
