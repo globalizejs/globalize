@@ -1,6 +1,7 @@
 {
   "name": "globalize",
   "version": "1.0.0-alpha.6",
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "test",
