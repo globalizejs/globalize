@@ -24,7 +24,7 @@ Cldr.load( weekData );
 
 cldr = new Cldr( "en" );
 
-QUnit.module( "Datetime Format" );
+QUnit.module( "Date Format" );
 
 /**
  *  Era
