@@ -1,6 +1,7 @@
 # Globalize
 
-[![Build Status](https://secure.travis-ci.org/jquery/globalize.svg)](http://travis-ci.org/jquery/globalize)
+https://travis-ci.org/jquery/globalize.svg
+[![Build Status](https://secure.travis-ci.org/jquery/globalize.sv?branch=masterg)](http://travis-ci.org/jquery/globalize)
 [![devDependency Status](https://david-dm.org/jquery/globalize/status.svg)](https://david-dm.org/jquery/globalize#info=dependencies)
 [![devDependency Status](https://david-dm.org/jquery/globalize/dev-status.svg)](https://david-dm.org/jquery/globalize#info=devDependencies)
 
