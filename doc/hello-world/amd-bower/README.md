@@ -85,7 +85,7 @@ Then, you'll get this:
 
 Once you've completed the requirements above:
 
-1. Point your browser at `./index.html`.
-1. Open your JavaScript console to see the demo output.
-1. Understand the demo by reading the source code (both index.html and main.js).
+1. Start a server by running `python -m SimpleHTTPServer` or other alternatives servers such as [http-server](https://github.com/nodeapps/http-server), [nginx](http://nginx.org/en/docs/), [apache](http://httpd.apache.org/docs/trunk/).
+2. Open your JavaScript console to see the demo output.
+3. Understand the demo by reading the source code (both index.html and main.js).
 We have comments there for you.
