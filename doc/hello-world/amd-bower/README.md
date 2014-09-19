@@ -85,8 +85,7 @@ Then, you'll get this:
 
 Once you've completed the requirements above:
 
-1. Run `python -m SimpleHTTPServer` to start a server
-1. Visit `localhost:8000/index.html`.
+1. Start a server by running `python -m SimpleHTTPServer` or other alternative servers such as [http-server](https://github.com/nodeapps/http-server), [nginx](http://nginx.org/en/docs/), [apache](http://httpd.apache.org/docs/trunk/).
 1. Open your JavaScript console to see the demo output.
 1. Understand the demo by reading the source code (both index.html and main.js).
 We have comments there for you.
