@@ -19,7 +19,7 @@ Before running it, execute the requirements below.
 **1. Install Globalize**
 
 Let's use bower to download Globalize. For more information on regard of
-installation, please read [Getting Started](../../../README.md#installation).
+installation, please read [Getting Started](../../README.md#installation).
 
 ```
 bower install
@@ -52,7 +52,7 @@ No action needed, because bower has already handled that for us.
 
 Download the [latest Unicode CLDR JSON
 ZIP](http://www.unicode.org/Public/cldr/latest/json.zip) and unzip it into
-`cldr/`. For more information read [Getting Started](../../../README.md#cldr).
+`cldr/`. For more information read [Getting Started](../../README.md#cldr).
 
 ```
 wget http://www.unicode.org/Public/cldr/latest/json.zip

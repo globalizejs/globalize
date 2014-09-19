@@ -15,7 +15,7 @@ Before running it, execute the requirements below.
 **1. Dependencies**
 
 Globalize's dependencies are listed on [Getting
-Started](../../../README.md#dependencies), and the only one is
+Started](../../README.md#dependencies), and the only one is
 [cldr.js](https://github.com/rxaviers/cldrjs). You are free to fetch it the way
 you want. But, as an exercise of this demo, we'll download it ourselves. So:
 
