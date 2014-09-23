@@ -50,7 +50,7 @@ ZIP](http://www.unicode.org/Public/cldr/latest/json.zip) and unzip it into
 `cldr/`. For more information read [Getting Started](../../README.md#cldr).
 
 ```
-wget http://www.unicode.org/Public/cldr/latest/json.zip
+curl -LOk http://www.unicode.org/Public/cldr/latest/json.zip
 unzip json.zip -d cldr
 ```
 
