@@ -128,6 +128,14 @@ QUnit.test( "should parse raw patterns", function( assert ) {
 	assertParseDate( assert, "Wed, Sep 15, 2010 AD", { pattern: "E, MMM d, y G" }, date );
 });
 
+QUnit.test( "should parse given no patterns", function( assert ) {
+	extraSetup();
+
+	date = new Date( 2010, 8, 15 );
+	date = startOf( date, "day" );
+	assertParseDate( assert, "Wed, Sep 15, 2010 AD", null, date );
+});
+
 QUnit.test( "should parse a formatted date (reverse operation test)", function( assert ) {
 	extraSetup();
 

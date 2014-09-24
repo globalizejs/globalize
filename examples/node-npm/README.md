@@ -1,13 +1,12 @@
-# Hello World (AMD + bower)
+# Hello World (Node.js + npm)
 
-We assume you know what [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) and
-[bower](http://bower.io/) is.
+We assume you know what [Node.js](http://nodejs.org/) and
+[npm](https://www.npmjs.org/) is.
 
-The demo is composed of the following files:
+The demo contains one single file:
 
 ```
 .
-├── index.html
 └── main.js
 ```
 
@@ -18,21 +17,18 @@ Before running it, execute the requirements below.
 
 **1. Install Globalize**
 
-Let's use bower to download Globalize. For more information on regard of
-installation, please read [Getting Started](../../../README.md#installation).
+Let's use npm to download Globalize. For more information on regard of
+installation, please read [Getting Started](../../README.md#installation).
 
 ```
-bower install
+npm install
 ```
 
-Note bower will also fetch some other dependencies of this demo, eg. require.js
-and its json plugin.
-
-You'll get this:
+Then, you'll get this:
 
 ```
 .
-├── bower_components/
+├── node_modules/
 │   ├── globalize/ 
 │   │   └── dist/
 │   │       ├── globalize
@@ -40,19 +36,18 @@ You'll get this:
 │   │       │   └── ...
 │   │       └── globalize.js
 │   └── ...
-├── index.html
 └── main.js
 ```
 
-**2. Install Dependencies**
+**2. Dependencies**
 
-No action needed, because bower has already handled that for us.
+No action needed, because npm has already handled that for us.
 
 **3. CLDR content**
 
 Download the [latest Unicode CLDR JSON
 ZIP](http://www.unicode.org/Public/cldr/latest/json.zip) and unzip it into
-`cldr/`. For more information read [Getting Started](../../../README.md#cldr).
+`cldr/`. For more information read [Getting Started](../../README.md#cldr).
 
 ```
 wget http://www.unicode.org/Public/cldr/latest/json.zip
@@ -63,7 +58,7 @@ Then, you'll get this:
 
 ```
 .
-├── bower_components/
+├── node_modules/
 │   ├── globalize/ 
 │   │   └── dist/
 │   │       ├── globalize
@@ -76,7 +71,6 @@ Then, you'll get this:
 │   │   └── ...
 │   └── supplemental/
 │       └── ...
-├── index.html
 └── main.js
 ```
 
@@ -85,7 +79,6 @@ Then, you'll get this:
 
 Once you've completed the requirements above:
 
-1. Start a server by running `python -m SimpleHTTPServer` or other alternative servers such as [http-server](https://github.com/nodeapps/http-server), [nginx](http://nginx.org/en/docs/), [apache](http://httpd.apache.org/docs/trunk/).
-1. Open your JavaScript console to see the demo output.
+1. Run `node main.js`.
 1. Understand the demo by reading the source code (both index.html and main.js).
 We have comments there for you.

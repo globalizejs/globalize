@@ -1,6 +1,6 @@
 # Globalize
 
-[![Build Status](https://secure.travis-ci.org/jquery/globalize.svg)](http://travis-ci.org/jquery/globalize)
+[![Build Status](https://secure.travis-ci.org/jquery/globalize.svg?branch=master)](http://travis-ci.org/jquery/globalize)
 [![devDependency Status](https://david-dm.org/jquery/globalize/status.svg)](https://david-dm.org/jquery/globalize#info=dependencies)
 [![devDependency Status](https://david-dm.org/jquery/globalize/dev-status.svg)](https://david-dm.org/jquery/globalize#info=devDependencies)
 
@@ -210,9 +210,9 @@ functionalities, etc.
 
 An example is worth a thousand words. Check out our Hello World demo (available
 to you in different flavors):
-- [Hello World (AMD + bower)](doc/hello-world/amd-bower/).
-- [Hello World (Node.js + npm)](doc/hello-world/node-npm/).
-- [Hello World (plain JavaScript)](doc/hello-world/plain-javascript/).
+- [Hello World (AMD + bower)](examples/amd-bower/).
+- [Hello World (Node.js + npm)](examples/node-npm/).
+- [Hello World (plain JavaScript)](examples/plain-javascript/).
 
 
 <a name="api"></a>
