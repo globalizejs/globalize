@@ -1,3 +1,4 @@
 .sizecache.json
+bower_components/
 external
 node_modules

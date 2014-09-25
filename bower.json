@@ -9,7 +9,8 @@
     "bower.json"
   ],
   "dependencies": {
-    "cldrjs": "0.3.8"
+    "cldrjs": "0.3.8",
+    "cldr-data": ">=25"
   },
   "devDependencies": {
     "CLDRPluralRuleParser": "santhoshtr/CLDRPluralRuleParser#v1.1.3",

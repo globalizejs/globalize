@@ -1,0 +1,10 @@
+{
+  "name": "globalize-hello-world-amd-bower",
+  "comment": [
+    "You don't need this file. The only reasone this example does have a",
+    "package.json is to fool npm, so cldr-data-downloader doesn't get",
+    "installed on Globalize's root.",
+    "",
+    "It's analogous to `chroot .` for npm. [:P]"
+  ]
+}

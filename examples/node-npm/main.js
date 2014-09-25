@@ -1,15 +1,15 @@
 #! /usr/bin/node
 
-// First, load Globalize.
+var cldrData = require( "cldr-data" );
 var Globalize = require( "globalize" );
 
 // Before we can use Globalize, we need to feed it on the appropriate I18n content (Unicode CLDR). Read Requirements on Getting Started on the root's README.md for more information.
-Globalize.load( require( "./cldr/main/en/ca-gregorian.json" ) );
-Globalize.load( require( "./cldr/main/en/numbers.json" ) );
-Globalize.load( require( "./cldr/supplemental/likelySubtags.json" ) );
-Globalize.load( require( "./cldr/supplemental/plurals.json" ) );
-Globalize.load( require( "./cldr/supplemental/timeData.json" ) );
-Globalize.load( require( "./cldr/supplemental/weekData.json" ) );
+Globalize.load( cldrData( "main/en/ca-gregorian" ) );
+Globalize.load( cldrData( "main/en/numbers" ) );
+Globalize.load( cldrData( "supplemental/likelySubtags" ) );
+Globalize.load( cldrData( "supplemental/plurals" ) );
+Globalize.load( cldrData( "supplemental/timeData" ) );
+Globalize.load( cldrData( "supplemental/weekData" ) );
 
 // Set "en" as our default locale.
 Globalize.locale( "en" );

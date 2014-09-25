@@ -42,7 +42,9 @@ installation](https://github.com/rxaviers/cldrjs#usage-and-installation) docs.
 
 Another tipical Globalize requirement is to fetch CLDR content yourself. But, on
 this demo we made the things a little easier for you: we've embedded static JSON
-into the demo. So, you don't need to actually fetch it anywhere.
+into the demo. So, you don't need to actually fetch it anywhere. For more
+information about fetching Unicode CLDR JSON data, see [How do I get CLDR
+data?](../../doc/cldr.md).
 
 No action needed here.
 

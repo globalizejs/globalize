@@ -45,34 +45,8 @@ No action needed, because npm has already handled that for us.
 
 **3. CLDR content**
 
-Download the [latest Unicode CLDR JSON
-ZIP](http://www.unicode.org/Public/cldr/latest/json.zip) and unzip it into
-`cldr/`. For more information read [Getting Started](../../README.md#cldr).
-
-```
-wget http://www.unicode.org/Public/cldr/latest/json.zip
-unzip json.zip -d cldr
-```
-
-Then, you'll get this:
-
-```
-.
-├── node_modules/
-│   ├── globalize/ 
-│   │   └── dist/
-│   │       ├── globalize
-│   │       │   ├── date.js
-│   │       │   └── ...
-│   │       └── globalize.js
-│   └── ...
-├── cldr/
-│   ├── main/
-│   │   └── ...
-│   └── supplemental/
-│       └── ...
-└── main.js
-```
+No action needed, because npm has already handled that for us. For more
+information, see [npm's cldr-data](https://github.com/rxaviers/cldr-data-npm).
 
 
 ## Running the demo

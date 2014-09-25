@@ -50,35 +50,9 @@ No action needed, because bower has already handled that for us.
 
 **3. CLDR content**
 
-Download the [latest Unicode CLDR JSON
-ZIP](http://www.unicode.org/Public/cldr/latest/json.zip) and unzip it into
-`cldr/`. For more information read [Getting Started](../../README.md#cldr).
-
-```
-wget http://www.unicode.org/Public/cldr/latest/json.zip
-unzip json.zip -d cldr
-```
-
-Then, you'll get this:
-
-```
-.
-├── bower_components/
-│   ├── globalize/ 
-│   │   └── dist/
-│   │       ├── globalize
-│   │       │   ├── date.js
-│   │       │   └── ...
-│   │       └── globalize.js
-│   └── ...
-├── cldr/
-│   ├── main/
-│   │   └── ...
-│   └── supplemental/
-│       └── ...
-├── index.html
-└── main.js
-```
+No action needed, because bower has already handled that for us. Note `.bowerrc`
+has postinstall hook that populates bower's cldr-data skeleton. For more
+information, see [bower's cldr-data](https://github.com/rxaviers/cldr-data-bower).
 
 
 ## Running the demo

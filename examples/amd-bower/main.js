@@ -6,12 +6,16 @@ require.config({
 		// Globalize dependencies paths.
 		cldr: "./bower_components/cldrjs/dist/cldr",
 
-		// CLDR JSON content paths. (a) cldr is the JSON content itself, (b) json is the require.js plugin we'll use to fetch CLDR JSON content, (c) text is json's dependency.
-		cldrdata: "./cldr",
+		// Unicode CLDR JSON data.
+		"cldr-data": "./bower_components/cldr-data",
+
+		// require.js plugin we'll use to fetch CLDR JSON content.
 		json: "./bower_components/requirejs-plugins/src/json",
+
+		// text is json's dependency.
 		text: "./bower_components/requirejs-text/text",
 
-		// Globalize path. Note it's already available on this repository. If it's not, read Usage on Getting Started on the root's README.md.
+		// Globalize.
 		globalize: "./bower_components/globalize/dist/globalize"
 	}
 });
@@ -24,12 +28,12 @@ require([
 	"globalize",
 
 	// CLDR content.
-	"json!cldrdata/main/en/ca-gregorian.json",
-	"json!cldrdata/main/en/numbers.json",
-	"json!cldrdata/supplemental/likelySubtags.json",
-	"json!cldrdata/supplemental/plurals.json",
-	"json!cldrdata/supplemental/timeData.json",
-	"json!cldrdata/supplemental/weekData.json",
+	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/plurals.json",
+	"json!cldr-data/supplemental/timeData.json",
+	"json!cldr-data/supplemental/weekData.json",
 
 	// Extend Globalize with Date and Number modules.
 	"globalize/date",
