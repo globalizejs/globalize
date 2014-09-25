@@ -60,6 +60,6 @@ information, see [bower's cldr-data](https://github.com/rxaviers/cldr-data-bower
 Once you've completed the requirements above:
 
 1. Start a server by running `python -m SimpleHTTPServer` or other alternative servers such as [http-server](https://github.com/nodeapps/http-server), [nginx](http://nginx.org/en/docs/), [apache](http://httpd.apache.org/docs/trunk/).
-1. Open your JavaScript console to see the demo output.
+1. Point your browser at `http://localhost:8000/`.
 1. Understand the demo by reading the source code (both index.html and main.js).
 We have comments there for you.

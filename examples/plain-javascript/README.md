@@ -16,10 +16,10 @@ Before running it, execute the requirements below.
 
 Globalize's dependencies are listed on [Getting
 Started](../../README.md#dependencies), and the only one is
-[cldr.js](https://github.com/rxaviers/cldrjs). You are free to fetch it the way
+[cldrjs](https://github.com/rxaviers/cldrjs). You are free to fetch it the way
 you want. But, as an exercise of this demo, we'll download it ourselves. So:
 
-1. Click at [cldr.js releases tab](https://github.com/rxaviers/cldrjs/releases).
+1. Click at [cldrjs releases tab](https://github.com/rxaviers/cldrjs/releases).
 1. Download the latest package.
 1. Unzip it.
 1. Move its `dist/` files into `cldrjs` of this directory.
@@ -36,7 +36,7 @@ Then, you'll get this:
 └── index.html
 ```
 
-For more information read [cldr.js' usage and
+For more information read [cldrjs' usage and
 installation](https://github.com/rxaviers/cldrjs#usage-and-installation) docs.
 
 **2. CLDR content**
