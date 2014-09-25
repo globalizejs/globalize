@@ -6,21 +6,34 @@
 </head>
 <body>
     <h1>Globalize Hello World (plain javascript)</h1>
-    <h2>Requirements</h2>
-    <ul>
-        <li>You need to download the `cldr.js` dependency yourself. Read README.md for instructions.
-        </li>
-    </ul>
-    <h2>Demo output</h2>
-    <p>Open your JavaScript console to see the output.</p>
+
+    <div id="requirements">
+        <h2>Requirements</h2>
+        <ul>
+            <li>You need to download the `cldr.js` dependency yourself. Read README.md for instructions.
+            </li>
+        </ul>
+    </div>
+
+    <div id="demo" style="display: none">
+        <h2>Demo output</h2>
+        <p>Now: <span id="date"></span></p>
+        <p>A number: <span id="number"></span></p>
+        <p>Plurals:</p>
+        <ul>
+            <li><span id="plural-0"></li>
+            <li><span id="plural-1"></li>
+            <li><span id="plural-2"></li>
+        </ul></span>
+    </div>
 
     <!--
     First, we load Globalize's dependencies (`cldr.js` and its supplemental
     module).
     -->
-    <script src="cldr.js"></script>
-    <script src="cldr/event.js"></script>
-    <script src="cldr/supplemental.js"></script>
+    <script src="cldrjs/cldr.js"></script>
+    <script src="cldrjs/cldr/event.js"></script>
+    <script src="cldrjs/cldr/supplemental.js"></script>
 
     <!--
     Next, we load Globalize and its modules. Note they are already available on
@@ -99,6 +112,7 @@
           "numbers": {
             "defaultNumberingSystem": "latn",
             "symbols-numberSystem-latn": {
+              "decimal": ".",
               "group": ","
             },
             "decimalFormats-numberSystem-latn": {
@@ -124,20 +138,29 @@
       }
     });
 
-    // Set "en" as our default locale.
-    Globalize.locale( "en" );
+    // Instantiate "en".
+    var en = Globalize( "en" );
 
     // Use Globalize to format dates.
-    console.log( Globalize.formatDate( new Date(), { datetime: "medium" } ) );
+    document.getElementById( "date" ).innerHTML = en.formatDate( new Date(), {
+      datetime: "medium"
+    });
 
     // Use Globalize to format numbers.
-    console.log( Globalize.formatNumber( 12345 ) );
+    document.getElementById( "number" ).innerHTML = en.formatNumber( 12345.6789 );
 
     // Use Globalize to format a message with plural inflection.
-    console.log( Globalize.formatPlural( 12345, {
+    var pluralData = {
       one: "{0} result",
       other: "{0} results"
-    }));
+    };
+    document.getElementById( "plural-0" ).innerHTML = en.formatPlural( 0, pluralData );
+    document.getElementById( "plural-1" ).innerHTML = en.formatPlural( 1, pluralData );
+    document.getElementById( "plural-2" ).innerHTML = en.formatPlural( 2, pluralData );
+
+    document.getElementById( "requirements" ).style.display = "none";
+    document.getElementById( "demo" ).style.display = "block";
+
     </script>
 
 </body>

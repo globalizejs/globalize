@@ -6,13 +6,26 @@
 </head>
 <body>
     <h1>Globalize Hello World (AMD + bower)</h1>
-    <h2>Requirements</h2>
-    <ul>
-        <li>You need to download dependencies and CLDR content yourself. Read README.md for instructions.
-        </li>
-    </ul>
-    <h2>Demo output</h2>
-    <p>Open your JavaScript console to see the output.</p>
+
+    <div id="requirements">
+        <h2>Requirements</h2>
+        <ul>
+            <li>You need to download dependencies and CLDR content yourself. Read README.md for instructions.
+            </li>
+        </ul>
+    </div>
+
+    <div id="demo" style="display: none">
+        <h2>Demo output</h2>
+        <p>Now: <span id="date"></span></p>
+        <p>A number: <span id="number"></span></p>
+        <p>Plurals:</p>
+        <ul>
+            <li><span id="plural-0"></li>
+            <li><span id="plural-1"></li>
+            <li><span id="plural-2"></li>
+        </ul></span>
+    </div>
 
     <!--
     Load require.js and let it execute main.js

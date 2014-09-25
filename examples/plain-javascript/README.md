@@ -22,16 +22,17 @@ you want. But, as an exercise of this demo, we'll download it ourselves. So:
 1. Click at [cldr.js releases tab](https://github.com/rxaviers/cldrjs/releases).
 1. Download the latest package.
 1. Unzip it.
-1. Copy its `dist/` files into this directory.
+1. Move its `dist/` files into `cldrjs` of this directory.
 
 Then, you'll get this:
 
 ```
 .
-├── cldr
-│   ├── event.js
-│   └── supplemental.js
-├── cldr.js
+├── cldrjs
+│   ├── cldr.js
+│   └── cldr
+│       ├── event.js
+│       └── supplemental.js
 └── index.html
 ```
 

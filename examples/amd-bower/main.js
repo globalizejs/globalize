@@ -40,6 +40,7 @@ require([
 	"globalize/number",
 	"globalize/plural"
 ], function( Globalize, enGregorian, enNumbers, likelySubtags, pluralsData, timeData, weekData ) {
+	var en, pluralData;
 
 	// At this point, we have Globalize loaded. But, before we can use it, we need to feed it on the appropriate I18n content (Unicode CLDR). Read Requirements on Getting Started on the root's README.md for more information.
 	Globalize.load( enGregorian );
@@ -49,19 +50,27 @@ require([
 	Globalize.load( timeData );
 	Globalize.load( weekData );
 
-	// Set "en" as our default locale.
-	Globalize.locale( "en" );
+	// Instantiate "en".
+	en = Globalize( "en" );
 
 	// Use Globalize to format dates.
-	console.log( Globalize.formatDate( new Date(), { datetime: "medium" } ) );
+	document.getElementById( "date" ).innerHTML = en.formatDate( new Date(), {
+		datetime: "medium"
+	})
 
 	// Use Globalize to format numbers.
-	console.log( Globalize.formatNumber( 12345 ) );
+	document.getElementById( "number" ).innerHTML = en.formatNumber( 12345.6789 );
 
 	// Use Globalize to format a message with plural inflection.
-	console.log( Globalize.formatPlural( 12345, {
+	pluralData = {
 		one: "{0} result",
 		other: "{0} results"
-	}));
+	};
+	document.getElementById( "plural-0" ).innerHTML = en.formatPlural( 0, pluralData );
+	document.getElementById( "plural-1" ).innerHTML = en.formatPlural( 1, pluralData );
+	document.getElementById( "plural-2" ).innerHTML = en.formatPlural( 2, pluralData );
+
+	document.getElementById( "requirements" ).style.display = "none";
+	document.getElementById( "demo" ).style.display = "block";
 
 });
