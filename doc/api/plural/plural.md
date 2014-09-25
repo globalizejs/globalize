@@ -12,8 +12,8 @@ returning the value's plural group: `zero`, `one`, `two`, `few`, `many`, or
 | `.plural( 3 )` | `other` | `few` | `few` |
 | `.plural( 5 )` | `other` | `many` | `few` |
 
-See also its sibling method [`.formatPlural( value, messageData [, formatValue ])`
-](./format-plural.md).
+*Important*: Use [`.pluralGenerator()`](./plural-generator.md) instead when
+using this function two or more times, for improved performance.
 
 ### Parameters
 
@@ -45,5 +45,5 @@ You can use the instance method `.plural()`, which uses the instance locale.
 ```javascript
 var zh = Globalize( "zh" );
 
-zh.formatPlural( 1 ); // "other"
+zh.plural( 1 ); // "other"
 ```

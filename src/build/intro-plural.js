@@ -18,7 +18,8 @@
 		define([
 			"cldr",
 			"../globalize",
-			"cldr/event"
+			"cldr/event",
+			"cldr/supplemental"
 		], factory );
 	} else if ( typeof exports === "object" ) {
 
@@ -31,10 +32,7 @@
 	}
 }(this, function( Cldr, Globalize ) {
 
-var formatMessage = Globalize._formatMessage,
-	validate = Globalize._validate,
-	validateCldr = Globalize._validateCldr,
+var validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validateParameterPresence = Globalize._validateParameterPresence,
-	validateParameterType = Globalize._validateParameterType,
-	validateParameterTypePlainObject = Globalize._validateParameterTypePlainObject;
+	validateParameterType = Globalize._validateParameterType;
