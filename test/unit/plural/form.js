@@ -45,7 +45,7 @@ QUnit.test( "should return plural form of different locales", function( assert )
 	assert.equal( pluralForm( 103, ar ), "few" );
 	assert.equal( pluralForm( 111, ar ), "many" );
 	assert.equal( pluralForm( 199, ar ), "many" );
-	assert.equal( pluralForm( 3.14, ar ), "few" );
+	assert.equal( pluralForm( 3.14, ar ), "other" );
 
 	assert.equal( pluralForm( 0, ja ), "other" );
 	assert.equal( pluralForm( 1, ja ), "other" );

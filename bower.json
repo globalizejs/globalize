@@ -13,7 +13,7 @@
     "cldr-data": ">=25"
   },
   "devDependencies": {
-    "CLDRPluralRuleParser": "santhoshtr/CLDRPluralRuleParser#v1.1.3",
+    "CLDRPluralRuleParser": "santhoshtr/CLDRPluralRuleParser#6b17882b834b1ab8bb3a593fd66529c9822dd6d7",
     "es5-shim": "3.4.0",
     "qunit": "1.12.0",
     "requirejs": "2.1.9",
