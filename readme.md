@@ -137,6 +137,28 @@ end
 
 NOTE: Make sure you drop the translated columns from the parent table after all your data is safely migrated.
 
+## Adding additional fields to the translation table
+
+In order to add a new field to an existing translation table, you can use `add_translation_fields!`:
+
+```ruby
+class AddAuthorToPost < ActiveRecord::Migration
+  def up
+    Post.add_translation_fields! author: :text
+  end
+
+  def down
+    remove_column :post_translations, :author
+  end
+end
+```
+
+NOTE: Remember to add the new field to the model:
+
+```ruby
+translates :title, :author
+```     
+
 ## Versioning with Globalize
 
 See the [globalize-versioning](https://github.com/globalize/globalize-versioning) gem.
