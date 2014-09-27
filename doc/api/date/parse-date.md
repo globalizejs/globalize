@@ -1,7 +1,7 @@
-## .parseDate( value [, patterns] )
+## .parseDate( value, pattern )
 
 Parse a string representing a date into a JavaScript Date object according to
-the given patterns (defaults to the locale's available preset patterns).
+the given pattern.
 
 *Important:* Use [`.dateParser( pattern )`](./date-parser.md) instead when
 parsing more then one date, for improved performance.
@@ -12,10 +12,9 @@ parsing more then one date, for improved performance.
 
 String with date to be parsed, eg. `"11/1/10, 5:55 PM"`.
 
-**patterns** Optional
+**pattern**
 
-Array of patterns. See [`.dateFormatter( pattern )`](./date-formatter.md) for
-details.
+See [.dateFormatter( pattern )](./date-formatter.md).
 
 ### Example
 
@@ -24,11 +23,11 @@ locale.
 
 ```javascript
 Globalize.locale( "en" );
-Globalize.parseDate( "1/2/13" );
+Globalize.parseDate( "1/2/13", { date: "short" } );
 // Wed Jan 02 2013 00:00:00
 
 Globalize.locale( "es" );
-Globalize.parseDate( "1/2/13" );
+Globalize.parseDate( "1/2/13", { date: "short" } );
 // Fri Feb 01 2013 00:00:00
 ```
 
@@ -36,6 +35,6 @@ You can use the instance method `.parseDate()`, which uses the instance locale.
 
 ```javascript
 var es = new Globalize( "es" );
-es.parseDate( "1/2/13" );
+es.parseDate( "1/2/13", { date: "short" } );
 // Fri Feb 01 2013 00:00:00
 ```
