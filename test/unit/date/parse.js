@@ -1,20 +1,23 @@
 define([
 	"cldr",
 	"src/date/parse",
+	"src/date/parse-properties",
 	"src/date/start-of",
 	"src/date/tokenizer",
+	"src/date/tokenizer-properties",
 	"json!fixtures/cldr/main/en/ca-gregorian.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json",
 	"json!fixtures/cldr/supplemental/timeData.json",
 	"json!fixtures/cldr/supplemental/weekData.json",
 	"cldr/supplemental"
-], function( Cldr, parse, startOf, tokenizer, enCaGregorian, likelySubtags, timeData, weekData ) {
+], function( Cldr, parse, parseProperties, startOf, tokenizer, tokenizerProperties, enCaGregorian,
+	likelySubtags, timeData, weekData ) {
 
 var cldr, date1, date2;
 
 function assertParse( assert, stringDate, pattern, cldr, date ) {
-	var tokens = tokenizer( stringDate, pattern, cldr );
-	assert.deepEqual( parse( stringDate, tokens, cldr ), date );
+	var tokens = tokenizer( stringDate, tokenizerProperties( pattern, cldr ) );
+	assert.deepEqual( parse( stringDate, tokens, parseProperties( cldr ) ), date );
 }
 
 Cldr.load( enCaGregorian );

@@ -21,7 +21,7 @@ function extraSetup() {
 	Globalize.load( weekData );
 }
 
-QUnit.module( ".dateParser( [patterns] )", {
+QUnit.module( ".dateParser( pattern )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		Globalize.locale( "en" );
@@ -30,9 +30,13 @@ QUnit.module( ".dateParser( [patterns] )", {
 });
 
 QUnit.test( "should validate parameters", function( assert ) {
-	util.assertDatePatternParameter( assert, "patterns", function( invalidValue ) {
+	util.assertParameterPresence( assert, "pattern", function() {
+		Globalize.dateParser();
+	});
+
+	util.assertDatePatternParameter( assert, "pattern", function( invalidValue ) {
 		return function() {
-			Globalize.dateParser( [ invalidValue ] );
+			Globalize.dateParser( invalidValue );
 		};
 	});
 });

@@ -10,20 +10,17 @@ function outOfRange( value, low, high ) {
 }
 
 /**
- * parse( value, tokens, cldr, properties )
+ * parse( value, tokens, properties )
  *
  * @value [String] string date.
  *
  * @tokens [Object] tokens returned by date/tokenizer.
  *
- * @cldr [Cldr instance] cldr instance. Note either cldr or properties must be passed.
- *
- * @properties [Object] output returned by date/tokenizer-properties. Note either cldr or properties
- * must be passed.
+ * @properties [Object] output returned by date/tokenizer-properties.
  *
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
-return function( value, tokens, cldr, properties ) {
+return function( value, tokens, properties ) {
 	var amPm, era, hour, hour12, valid,
 		YEAR = 0,
 		MONTH = 1,
@@ -54,9 +51,7 @@ return function( value, tokens, cldr, properties ) {
 		if ( chr === "j" ) {
 			// Locale preferred hHKk.
 			// http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Data
-			chr = properties ?
-				properties.preferredTimeData :
-				cldr.supplemental.timeData.preferred();
+			chr = properties.preferredTimeData;
 		}
 
 		switch ( chr ) {

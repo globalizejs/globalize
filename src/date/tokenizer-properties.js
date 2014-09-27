@@ -12,7 +12,9 @@ define([
  * Return Object with data that will be used by tokenizer.
  */
 return function( pattern, cldr ) {
-	var properties = {},
+	var properties = {
+			pattern: pattern
+		},
 		widths = [ "abbreviated", "wide", "narrow" ];
 
 	function populateProperties( path, value ) {
