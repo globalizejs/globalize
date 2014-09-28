@@ -3,7 +3,11 @@ define([
 ], function( datePatternRe ) {
 
 /**
- * tokenizer( value, pattern )
+ * tokenizer( value, pattern, properties )
+ *
+ * @value [String] string date.
+ *
+ * @properties [Object] output returned by date/tokenizer-properties.
  *
  * Returns an Array of tokens, eg. value "5 o'clock PM", pattern "h 'o''clock' a":
  * [{
@@ -29,12 +33,12 @@ define([
  *
  * Return an empty Array when not successfully parsed.
  */
-return function( value, pattern, cldr ) {
+return function( value, properties ) {
 	var valid,
 		tokens = [],
 		widths = [ "abbreviated", "wide", "narrow" ];
 
-	valid = pattern.match( datePatternRe ).every(function( current ) {
+	valid = properties.pattern.match( datePatternRe ).every(function( current ) {
 		var chr, length, tokenRe,
 			token = {};
 
@@ -60,7 +64,8 @@ return function( value, pattern, cldr ) {
 		// Return the first found one (and set token accordingly), or null.
 		function lookup( path ) {
 			var i, re,
-				data = cldr.main( path );
+				data = properties[ path.join( "/" ).replace( /^.*calendars\//, "" ) ];
+
 			for ( i in data ) {
 				re = new RegExp( "^" + data[ i ] );
 				if ( re.test( value ) ) {

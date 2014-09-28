@@ -1,15 +1,13 @@
-## .dateParser( [formats] )
+## .dateParser( pattern )
 
 Return a function that parses a string representing a date into a JavaScript
-Date object according to the given `formats` (or the given locale's set of
-preset formats if not provided).
+Date object according to the given `pattern`.
 
 ### Parameters
 
-**formats** Optional
+**pattern**
 
-Array of formats. See [`.dateFormatter( format )`](./date-formatter.md) for
-details.
+See [.dateFormatter( pattern )](./date-formatter.md).
 
 ### Example
 

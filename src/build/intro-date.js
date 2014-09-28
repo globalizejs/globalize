@@ -32,8 +32,7 @@
 	}
 }(this, function( Cldr, Globalize ) {
 
-var alwaysArray = Globalize._alwaysArray,
-	createError = Globalize._createError,
+var createError = Globalize._createError,
 	formatMessage = Globalize._formatMessage,
 	isPlainObject = Globalize._isPlainObject,
 	validateCldr = Globalize._validateCldr,

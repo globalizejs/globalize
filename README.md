@@ -249,16 +249,22 @@ to you in different flavors):
 
  [Read more...](doc/api/date/date-formatter.md)
 
+- **`.dateParser( pattern )`**
+
+  Return a function that parses a string date according to the given `pattern`.
+
+ [Read more...](doc/api/date/date-parser.md)
+
 - **`.formatDate( value, pattern )`**
 
   Format a date `value` according to the given `pattern`.
 
  [Read more...](doc/api/date/format-date.md)
 
-- **`.parseDate( value [, patterns] )`**
+- **`.parseDate( value, pattern )`**
 
-  Parse a string representing a date into a JavaScript Date object, according to
-  the given patterns (defaults to the locale's available preset patterns).
+  Parse a string representing a date into a JavaScript Date object according to
+  the given pattern.
 
  [Read more...](doc/api/date/parse-date.md)
 

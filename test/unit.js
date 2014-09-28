@@ -18,7 +18,9 @@ require([
 	"./unit/date/expand-pattern",
 	"./unit/date/format-properties",
 	"./unit/date/format",
+	"./unit/date/tokenizer-properties",
 	"./unit/date/tokenizer",
+	"./unit/date/parse-properties",
 	"./unit/date/parse",
 
 	// message

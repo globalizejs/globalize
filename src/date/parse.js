@@ -1,21 +1,26 @@
 define([
 	"./pattern-re",
 	"./start-of",
-	"./tokenizer",
 	"../util/date/set-date",
 	"../util/date/set-month"
-], function( datePatternRe, dateStartOf, dateTokenizer, dateSetDate, dateSetMonth ) {
+], function( datePatternRe, dateStartOf, dateSetDate, dateSetMonth ) {
 
 function outOfRange( value, low, high ) {
 	return value < low || value > high;
 }
 
 /**
- * parse
+ * parse( value, tokens, properties )
+ *
+ * @value [String] string date.
+ *
+ * @tokens [Object] tokens returned by date/tokenizer.
+ *
+ * @properties [Object] output returned by date/tokenizer-properties.
  *
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
-return function( value, pattern, cldr ) {
+return function( value, tokens, properties ) {
 	var amPm, era, hour, hour12, valid,
 		YEAR = 0,
 		MONTH = 1,
@@ -25,7 +30,6 @@ return function( value, pattern, cldr ) {
 		SECOND = 5,
 		MILLISECONDS = 6,
 		date = new Date(),
-		tokens = dateTokenizer( value, pattern, cldr ),
 		truncateAt = [],
 		units = [ "year", "month", "day", "hour", "minute", "second", "milliseconds" ];
 
@@ -47,7 +51,7 @@ return function( value, pattern, cldr ) {
 		if ( chr === "j" ) {
 			// Locale preferred hHKk.
 			// http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Data
-			chr = cldr.supplemental.timeData.preferred();
+			chr = properties.preferredTimeData;
 		}
 
 		switch ( chr ) {
