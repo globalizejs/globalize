@@ -12,7 +12,7 @@ Cldr.load( likelySubtags );
 
 cldr = new Cldr( "en" );
 
-QUnit.module( "Datetime Expand Pattern" );
+QUnit.module( "Date Expand Pattern" );
 
 QUnit.test( "should expand skeleton \"<skeleton>\" (as a String)", function( assert ) {
 	assert.equal( expandPattern( "GyMMMEd", cldr ), "E, MMM d, y G" );
