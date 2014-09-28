@@ -20,7 +20,7 @@ function extraSetup() {
 	Globalize.load( svNumbers );
 }
 
-QUnit.module( "Number Parse", {
+QUnit.module( ".parseNumber( value )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		ar = new Globalize( "ar" );

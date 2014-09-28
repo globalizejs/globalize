@@ -16,7 +16,7 @@ function extraSetup() {
 	Globalize.load( esNumbers );
 }
 
-QUnit.module( "Number Format", {
+QUnit.module( ".formatNumber( value [, options] )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		Globalize.locale( "en" );
@@ -35,7 +35,7 @@ QUnit.test( "should validate parameters", function( assert ) {
 		};
 	});
 
-	util.assertPlainObjectParameter( assert, "attributes", function( invalidValue ) {
+	util.assertPlainObjectParameter( assert, "options", function( invalidValue ) {
 		return function() {
 			Globalize.formatNumber( 7, invalidValue );
 		};
@@ -45,32 +45,6 @@ QUnit.test( "should validate parameters", function( assert ) {
 QUnit.test( "should validate CLDR content", function( assert ) {
 	util.assertCldrContent( assert, function() {
 		Globalize.formatNumber( pi );
-	});
-});
-
-QUnit.test( "should validate options", function( assert ) {
-	extraSetup();
-
-	util.assertParameterRange( assert, 1, 21, function( num ) {
-		Globalize.formatNumber( pi, {
-			maximumSignificantDigits: 1,
-			minimumSignificantDigits: num
-		});
-	});
-	util.assertParameterRange( assert, 1, 21, function( num ) {
-		Globalize.formatNumber( pi, {
-			maximumSignificantDigits: num,
-			minimumSignificantDigits: 1
-		});
-	});
-	util.assertParameterRange( assert, 1, 21, function( num ) {
-		Globalize.formatNumber( pi, { minimumIntegerDigits: num } );
-	});
-	util.assertParameterRange( assert, 0, 20, function( num ) {
-		Globalize.formatNumber( pi, { minimumFractionDigits: num } );
-	});
-	util.assertParameterRange( assert, 0, 20, function( num ) {
-		Globalize.formatNumber( pi, { maximumFractionDigits: num } );
 	});
 });
 
