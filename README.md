@@ -100,7 +100,7 @@ information on its usage.
 | globalize.js | 1.3KB | [Core library](#core) |
 | globalize/currency.js | +2.6KB | [Currency module](#currency_module) provides currency formatting and parsing |
 | globalize/date.js | +4.8KB | [Date module](#date_module) provides date formatting and parsing |
-| globalize/message.js | +0.5KB | [Message module](#message_module) provides message translation |
+| globalize/message.js | +4.6KB | [Message module](#message_module) provides ICU message format support |
 | globalize/number.js | +2.9KB | [Number module](#number_module) provides number formatting and parsing |
 | globalize/plural.js | +1.7KB | [Plural module](#plural_module) provides pluralization support |
 
@@ -273,17 +273,25 @@ to you in different flavors):
 <a name="message_module"></a>
 ### Message module
 
-- **`Globalize.loadTranslations( json )`**
+- **`Globalize.loadMessages( json )`**
 
- Load translation data.
+ Load messages data.
 
- [Read more...](doc/api/message/load-translation.md)
+ [Read more...](doc/api/message/load-messages.md)
 
-- **`.translate( path )`**
+- **`.messageFormatter( path ) ➡ function([ variables ])`**
 
- Translate item given its path.
+ Return a function that formats a message (using ICU message format pattern)
+ given its path and a set of variables into a user-readable string. It supports
+ pluralization and gender inflections.
 
- [Read more...](doc/api/message/translate.md)
+ [Read more...](doc/api/message/message-formatter.md)
+
+- **`.formatMessage( path [, variables ] )`**
+
+ Alias to `.messageFormatter( path )([ variables ])`.
+
+ [Read more...](doc/api/message/format-message.md)
 
 <a name="number_module"></a>
 ### Number module

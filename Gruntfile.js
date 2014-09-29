@@ -106,7 +106,8 @@ module.exports = function( grunt ) {
 				optimize: "none",
 				paths: {
 					cldr: "../external/cldrjs/dist/cldr",
-					"make-plural": "../external/make-plural/make-plural"
+					"make-plural": "../external/make-plural/make-plural",
+					messageformat: "../external/messageformat/messageformat"
 				},
 				skipSemiColonInsertion: true,
 				skipModuleInsertion: true,
@@ -121,16 +122,8 @@ module.exports = function( grunt ) {
 				onBuildWrite: function( id, path, contents ) {
 					var name = camelCase( id.replace( /util\/|common\//, "" ) );
 
-					// CLDRPluralRuleParser
-					if ( (/CLDRPluralRuleParser/).test( id ) ) {
-						return contents
-
-							// Replace UMD wrapper into var assignment.
-							.replace( /\(function\(root, factory\)[\s\S]*?}\(this, function\(\) {/, "var CLDRPluralRuleParser = (function() {" )
-							.replace( /}\)\);\s+$/, "}());" );
-
 					// MakePlural
-					} else if ( (/make-plural/).test( id ) ) {
+					if ( (/make-plural/).test( id ) ) {
 						return contents
 
 							// Replace its wrapper into var assignment.
@@ -156,6 +149,22 @@ module.exports = function( grunt ) {
 
 							// Remove MakePlural.load = function(.*) {...return MakePlural;.*};
 							.replace( /MakePlural.load = function\([\s\S]*?return MakePlural;\n};/, "" );
+
+					// messageformat
+					} else if ( (/messageformat/).test( id ) ) {
+						return contents
+
+							// Replace its wrapper into var assignment.
+							.replace( /\(function \( root \) {/, [
+								"var MessageFormat;",
+								"/* jshint ignore:start */",
+								"MessageFormat = (function() {"
+							].join( "\n" ) )
+							.replace( /if \(typeof exports !== 'undefined'[\s\S]*/, [
+								"return MessageFormat;",
+								"}());",
+								"/* jshint ignore:end */"
+							].join( "\n" ) );
 					}
 
 					// 1, and 2: Remove define() wrap.
@@ -358,7 +367,7 @@ module.exports = function( grunt ) {
 		"jscs:source",
 
 		// TODO fix issues, enable
-		// "jscs:test",
+		//"jscs:test",
 		"test:unit",
 		"clean",
 		"requirejs",

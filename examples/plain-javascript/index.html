@@ -20,12 +20,14 @@
         <p>Now: <span id="date"></span></p>
         <p>A number: <span id="number"></span></p>
         <p>A currency: <span id="currency"></span></p>
-        <p>Plurals:</p>
+        <p>Plural form of <span id="plural-number"></span> is <span id="plural-form"></span></p>
+        <p>Messages:</p>
         <ul>
-            <li><span id="plural-0"></li>
-            <li><span id="plural-1"></li>
-            <li><span id="plural-2"></li>
-        </ul></span>
+            <li><span id="message-0"></span></li>
+            <li><span id="message-1"></span></li>
+            <li><span id="message-2"></span></li>
+            <li><span id="message-3"></span></li>
+        </ul>
     </div>
 
     <!--
@@ -42,6 +44,7 @@
     README.md.
     -->
     <script src="../../dist/globalize.js"></script>
+    <script src="../../dist/globalize/message.js"></script>
     <script src="../../dist/globalize/number.js"></script>
     <script src="../../dist/globalize/plural.js"></script>
 
@@ -177,9 +180,23 @@
         }
       }
     });
+    Globalize.loadMessages({
+      "en": {
+        "like": [
+          "{0, plural, offset:1",
+          "     =0 {Be the first to like this}",
+          "     =1 {You liked this}",
+          "    one {You and someone else liked this}",
+          "  other {You and # others liked this}",
+          "}"
+        ]
+      }
+    });
+
+    var en, like, number;
 
     // Instantiate "en".
-    var en = Globalize( "en" );
+    en = Globalize( "en" );
 
     // Use Globalize to format dates.
     document.getElementById( "date" ).innerHTML = en.formatDate( new Date(), {
@@ -187,15 +204,22 @@
     });
 
     // Use Globalize to format numbers.
-    document.getElementById( "number" ).innerHTML = en.formatNumber( 12345.6789 );
+    number = en.numberFormatter();
+    document.getElementById( "number" ).innerHTML = number( 12345.6789 );
 
     // Use Globalize to format currencies.
     document.getElementById( "currency" ).innerHTML = en.formatCurrency( 69900, "USD" );
 
     // Use Globalize to get the plural form of a numeric value.
-    document.getElementById( "plural-0" ).innerHTML = en.plural( 0 );
-    document.getElementById( "plural-1" ).innerHTML = en.plural( 1 );
-    document.getElementById( "plural-2" ).innerHTML = en.plural( 2 );
+    document.getElementById( "plural-number" ).innerHTML = number( 12345.6789 )
+    document.getElementById( "plural-form" ).innerHTML = en.plural( 12345.6789 );
+
+    // Use Globalize to format a message with plural inflection.
+    like = en.messageFormatter( "like" );
+    document.getElementById( "message-0" ).innerHTML = like( 0 );
+    document.getElementById( "message-1" ).innerHTML = like( 1 );
+    document.getElementById( "message-2" ).innerHTML = like( 2 );
+    document.getElementById( "message-3" ).innerHTML = like( 3 );
 
     document.getElementById( "requirements" ).style.display = "none";
     document.getElementById( "demo" ).style.display = "block";
