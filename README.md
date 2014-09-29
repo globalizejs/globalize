@@ -292,18 +292,18 @@ to you in different flavors):
 
  [Read more...](doc/api/number/number-formatter.md)
 
-- **`.formatNumber( value [, options] )`**
-
-  Format a number according to the given options or locale's defaults.
-
- [Read more...](doc/api/number/format-number.md)
-
 - **`.numberParser( [options] )`**
 
   Return a function that parses a string representing a number according to the given options or
   locale's defaults.
 
  [Read more...](doc/api/number/number-parser.md)
+
+- **`.formatNumber( value [, options] )`**
+
+  Format a number according to the given options or locale's defaults.
+
+ [Read more...](doc/api/number/format-number.md)
 
 - **`.parseNumber( value [, options] )`**
 
