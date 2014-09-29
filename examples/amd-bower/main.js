@@ -36,16 +36,18 @@ require([
 	"json!cldr-data/supplemental/plurals.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+	"json!messages/en.json",
 
 	// Extend Globalize with Date and Number modules.
 	"globalize/currency",
 	"globalize/date",
+	"globalize/message",
 	"globalize/number",
 	"globalize/plural"
 ], function( Globalize, enCurrencies, enGregorian, enNumbers, currencyData, likelySubtags,
-	pluralsData, timeData, weekData ) {
+	pluralsData, timeData, weekData, messages ) {
 
-	var en, pluralData;
+	var en, like, number;
 
 	// At this point, we have Globalize loaded. But, before we can use it, we need to feed it on the appropriate I18n content (Unicode CLDR). Read Requirements on Getting Started on the root's README.md for more information.
 	Globalize.load(
@@ -58,6 +60,7 @@ require([
 		timeData,
 		weekData
 	);
+	Globalize.loadMessages( messages );
 
 	// Instantiate "en".
 	en = Globalize( "en" );
@@ -68,15 +71,22 @@ require([
 	})
 
 	// Use Globalize to format numbers.
-	document.getElementById( "number" ).innerHTML = en.formatNumber( 12345.6789 );
+	number = en.numberFormatter();
+	document.getElementById( "number" ).innerHTML = number( 12345.6789 );
 
 	// Use Globalize to format currencies.
 	document.getElementById( "currency" ).innerHTML = en.formatCurrency( 69900, "USD" );
 
 	// Use Globalize to get the plural form of a numeric value.
-	document.getElementById( "plural-0" ).innerHTML = en.plural( 0 );
-	document.getElementById( "plural-1" ).innerHTML = en.plural( 1 );
-	document.getElementById( "plural-2" ).innerHTML = en.plural( 2 );
+	document.getElementById( "plural-number" ).innerHTML = number( 12345.6789 )
+	document.getElementById( "plural-form" ).innerHTML = en.plural( 12345.6789 );
+
+	// Use Globalize to format a message with plural inflection.
+	like = en.messageFormatter( "like" );
+	document.getElementById( "message-0" ).innerHTML = like( 0 );
+	document.getElementById( "message-1" ).innerHTML = like( 1 );
+	document.getElementById( "message-2" ).innerHTML = like( 2 );
+	document.getElementById( "message-3" ).innerHTML = like( 3 );
 
 	document.getElementById( "requirements" ).style.display = "none";
 	document.getElementById( "demo" ).style.display = "block";
