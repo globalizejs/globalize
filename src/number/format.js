@@ -19,7 +19,7 @@ return function( number, properties ) {
 	var infinitySymbol, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
 	minimumIntegerDigits, minimumSignificantDigits, nanSymbol, padding, prefix,
 	primaryGroupingSize, pattern, ret, round, roundIncrement, secondaryGroupingSize, suffix,
-	symbolMap;
+	symbolMap, currency;
 
 	padding = properties[ 1 ];
 	minimumIntegerDigits = properties[ 2 ];
@@ -34,6 +34,7 @@ return function( number, properties ) {
 	infinitySymbol = properties[ 16 ];
 	nanSymbol = properties[ 17 ];
 	symbolMap = properties[ 18 ];
+	currency = properties[ 19 ];
 
 	// NaN
 	if ( isNaN( number ) ) {
@@ -84,6 +85,11 @@ return function( number, properties ) {
 	if ( primaryGroupingSize ) {
 		number = numberFormatGroupingSeparator( number, primaryGroupingSize,
 			secondaryGroupingSize );
+	}
+
+	// Format Currency
+	if ( currency ) {
+		number = currency + " " + number;
 	}
 
 	ret += number;
