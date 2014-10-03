@@ -10,7 +10,7 @@ See also its sibling method [`.plural( value )`](./plural.md).
 
 **value**
 
-A Number for which the plural message should be formatted for.
+A Number for which the plural message should be formatted.
 
 **messageData**
 
