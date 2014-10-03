@@ -1,6 +1,9 @@
 language: ruby
 script: "bundle exec rake"
 env:
+  - RAILS_4_2=true DB=sqlite3
+  - RAILS_4_2=true DB=postgres
+  - RAILS_4_2=true DB=mysql
   - RAILS_4_1=true DB=sqlite3
   - RAILS_4_1=true DB=postgres
   - RAILS_4_1=true DB=mysql
@@ -8,6 +11,8 @@ env:
   - RAILS_4_0=true DB=postgres
   - RAILS_4_0=true DB=mysql
 rvm:
+  - 2.2
+  - 2.1
   - 2.0.0
   - 1.9.3
   - rbx-2

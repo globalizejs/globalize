@@ -19,8 +19,11 @@ Gem::Specification.new do |s|
     s.add_dependency 'activerecord', '~> 4.0.0'
     s.add_dependency 'activemodel', '~> 4.0.0'
   elsif ENV['RAILS_4_1']
-    s.add_dependency 'activerecord', '~> 4.1.0.beta1'
-    s.add_dependency 'activemodel', '~> 4.1.0.beta1'
+    s.add_dependency 'activerecord', '~> 4.1.0'
+    s.add_dependency 'activemodel', '~> 4.1.0'
+  elsif ENV['RAILS_4_2']
+    s.add_dependency 'activerecord', '>= 4.2.0.beta2', '< 4.3'
+    s.add_dependency 'activemodel', '>= 4.2.0.beta2', '< 4.3'
   else
     s.add_dependency 'activerecord', '>= 4.0.0', '< 5'
     s.add_dependency 'activemodel', '>= 4.0.0', '< 5'
