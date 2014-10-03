@@ -1,4 +1,5 @@
 language: ruby
+sudo: false
 script: "bundle exec rake"
 env:
   - RAILS_4_2=true DB=sqlite3
@@ -17,3 +18,6 @@ rvm:
   - 1.9.3
   - rbx-2
   # - jruby-19mode
+notifications:
+  webhooks:
+    - https://webhooks.gitter.im/e/40dc875af26f64f39090
