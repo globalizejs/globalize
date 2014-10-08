@@ -122,7 +122,7 @@ QUnit.test( "should parse scientific notation numbers", function( assert ) {
 	extraSetup();
 
 	assert.equal( Globalize.parseNumber( "3E-3" ), 0.003 );
-	assert.equal( sv.parseNumber( "3×10^-3" ), 0.003 );
+	assert.equal( sv.parseNumber( "3×10^−3" ), 0.003 );
 });
 
 /**

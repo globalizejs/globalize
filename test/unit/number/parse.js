@@ -6,17 +6,19 @@ define([
 	"json!fixtures/cldr/main/dz/numbers.json",
 	"json!fixtures/cldr/main/en/numbers.json",
 	"json!fixtures/cldr/main/es/numbers.json",
+	"json!fixtures/cldr/main/ru/numbers.json",
 	"json!fixtures/cldr/main/sv/numbers.json",
 	"json!fixtures/cldr/supplemental/likelySubtags.json"
-], function( Cldr, parse, properties, arNumbers, dzNumbers, enNumbers, esNumbers, svNumbers,
-	likelySubtags ) {
+], function( Cldr, parse, properties, arNumbers, dzNumbers, enNumbers, esNumbers, ruNumbers,
+	svNumbers, likelySubtags ) {
 
-var ar, dz, en, es, sv;
+var ar, dz, en, es, ru, sv;
 
 Cldr.load( arNumbers );
 Cldr.load( dzNumbers );
 Cldr.load( enNumbers );
 Cldr.load( esNumbers );
+Cldr.load( ruNumbers );
 Cldr.load( svNumbers );
 Cldr.load( likelySubtags );
 
@@ -24,6 +26,7 @@ ar = new Cldr( "ar" );
 dz = new Cldr( "dz" );
 en = new Cldr( "en" );
 es = new Cldr( "es" );
+ru = new Cldr( "sv" );
 sv = new Cldr( "sv" );
 
 QUnit.module( "Number Parse" );
@@ -70,6 +73,10 @@ QUnit.test( "should parse zero-padded decimals", function( assert ) {
 QUnit.test( "should parse negative decimal", function( assert ) {
 	assert.equal( parse( "-3.14", properties( "0.##", en ) ), -3.14 );
 	assert.equal( parse( "(3.14)", properties( "0.##;(0.##)", en ) ), -3.14 );
+});
+
+QUnit.test( "should not parse too permissive", function( assert ) {
+	assert.deepEqual( parse( "3.14", properties( "0.##", ru ) ), NaN ); 
 });
 
 /**
@@ -125,7 +132,7 @@ QUnit.test( "should parse negative mille", function( assert ) {
  */
 QUnit.test( "should parse scientific notation numbers", function( assert ) {
 	assert.equal( parse( "3E-3", properties( "0", en ) ), 0.003 );
-	assert.equal( parse( "3×10^-3", properties( "0", sv ) ), 0.003 );
+	assert.equal( parse( "3×10^−3", properties( "0", sv ) ), 0.003 );
 });
 
 /**
