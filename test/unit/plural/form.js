@@ -10,6 +10,19 @@ var ar, en, ja, pt, ru, zh;
 Cldr.load( likelySubtags );
 Cldr.load( plurals );
 
+// Temporary fix due to CLDR v26 regression about pt_BR plural
+// http://unicode.org/cldr/trac/ticket/7178
+Cldr.load({
+	"supplemental": {
+		"plurals-type-cardinal": {
+			pt: {
+				"pluralRule-count-one": "i = 0,1",
+				"pluralRule-count-other": ""
+			}
+		}
+	}
+});
+
 ar = new Cldr( "ar" );
 en = new Cldr( "en" );
 ja = new Cldr( "ja" );
@@ -52,7 +65,7 @@ QUnit.test( "should return plural form of different locales", function( assert )
 	assert.equal( pluralForm( 2, ja ), "other" );
 	assert.equal( pluralForm( 3.14, ja ), "other" );
 
-	assert.equal( pluralForm( 0, pt ), "other" );
+	assert.equal( pluralForm( 0, pt ), "one" );
 	assert.equal( pluralForm( 1, pt ), "one" );
 	assert.equal( pluralForm( 2, pt ), "other" );
 	assert.equal( pluralForm( 0.1, pt ), "one" );
