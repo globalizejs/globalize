@@ -1,20 +1,18 @@
 define([
 	"globalize",
 	"json!cldr-data/main/ar/numbers.json",
-	"json!cldr-data/main/dz/numbers.json",
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/es/numbers.json",
 	"json!cldr-data/main/sv/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"../../util",
 	"globalize/number"
-], function( Globalize, arNumbers, dzNumbers, enNumbers, esNumbers, svNumbers, likelySubtags, util ) {
+], function( Globalize, arNumbers, enNumbers, esNumbers, svNumbers, likelySubtags, util ) {
 
-var ar, dz, es, sv;
+var ar, es, sv;
 
 function extraSetup() {
 	Globalize.load( arNumbers );
-	Globalize.load( dzNumbers );
 	Globalize.load( enNumbers );
 	Globalize.load( esNumbers );
 	Globalize.load( svNumbers );
@@ -24,7 +22,6 @@ QUnit.module( ".parseNumber( value [, options] )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		ar = new Globalize( "ar" );
-		dz = new Globalize( "dz" );
 		es = new Globalize( "es" );
 		sv = new Globalize( "sv" );
 		Globalize.locale( "en" );
@@ -133,7 +130,6 @@ QUnit.test( "should parse infinite numbers", function( assert ) {
 
 	assert.equal( Globalize.parseNumber( "∞" ), Infinity );
 	assert.equal( Globalize.parseNumber( "-∞" ), -Infinity );
-	assert.equal( dz.parseNumber( "གྲངས་མེད" ), Infinity );
 });
 
 /**

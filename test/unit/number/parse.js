@@ -3,19 +3,17 @@ define([
 	"src/number/parse",
 	"src/number/parse-properties",
 	"json!cldr-data/main/ar/numbers.json",
-	"json!cldr-data/main/dz/numbers.json",
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/es/numbers.json",
 	"json!cldr-data/main/ru/numbers.json",
 	"json!cldr-data/main/sv/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json"
-], function( Cldr, parse, properties, arNumbers, dzNumbers, enNumbers, esNumbers, ruNumbers,
+], function( Cldr, parse, properties, arNumbers, enNumbers, esNumbers, ruNumbers,
 	svNumbers, likelySubtags ) {
 
-var ar, dz, en, es, ru, sv;
+var ar, en, es, ru, sv;
 
 Cldr.load( arNumbers );
-Cldr.load( dzNumbers );
 Cldr.load( enNumbers );
 Cldr.load( esNumbers );
 Cldr.load( ruNumbers );
@@ -23,7 +21,6 @@ Cldr.load( svNumbers );
 Cldr.load( likelySubtags );
 
 ar = new Cldr( "ar" );
-dz = new Cldr( "dz" );
 en = new Cldr( "en" );
 es = new Cldr( "es" );
 ru = new Cldr( "sv" );
@@ -142,7 +139,6 @@ QUnit.test( "should parse infinite numbers", function( assert ) {
 	assert.equal( parse( "∞", properties( "0", en ) ), Infinity );
 	assert.equal( parse( "-∞", properties( "0", en ) ), -Infinity );
 	assert.equal( parse( "(∞)", properties( "0;(0)", en ) ), -Infinity );
-	assert.equal( parse( "གྲངས་མེད", properties( "0", dz ) ), Infinity );
 });
 
 /**
