@@ -1,9 +1,9 @@
 define([
 	"globalize",
-	"json!fixtures/cldr/main/ar/numbers.json",
-	"json!fixtures/cldr/main/en/numbers.json",
-	"json!fixtures/cldr/main/es/numbers.json",
-	"json!fixtures/cldr/supplemental/likelySubtags.json",
+	"json!cldr-data/main/ar/numbers.json",
+	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/es/numbers.json",
+	"json!cldr-data/supplemental/likelySubtags.json",
 	"../../util",
 	"globalize/number"
 ], function( Globalize, arNumbers, enNumbers, esNumbers, likelySubtags, util ) {

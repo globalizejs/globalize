@@ -2,10 +2,10 @@ define([
 	"cldr",
 	"src/date/tokenizer",
 	"src/date/tokenizer-properties",
-	"json!fixtures/cldr/main/en/ca-gregorian.json",
-	"json!fixtures/cldr/supplemental/likelySubtags.json",
-	"json!fixtures/cldr/supplemental/timeData.json",
-	"json!fixtures/cldr/supplemental/weekData.json"
+	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/timeData.json",
+	"json!cldr-data/supplemental/weekData.json"
 ], function( Cldr, tokenizer, properties, enCaGregorian, likelySubtags, timeData, weekData ) {
 
 var cldr;

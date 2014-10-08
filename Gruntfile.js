@@ -42,6 +42,16 @@ module.exports = function( grunt ) {
 						];
 					}
 				}
+			},
+			keepalive: {
+				options: {
+					keepalive: true,
+					middleware: function( connect ) {
+						return [
+							mountFolder( connect, "." )
+						];
+					}
+				}
 			}
 		},
 		jshint: {

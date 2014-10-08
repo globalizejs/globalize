@@ -1,9 +1,9 @@
 define([
 	"cldr",
 	"src/date/parse-properties",
-	"json!fixtures/cldr/main/en/ca-gregorian.json",
-	"json!fixtures/cldr/supplemental/likelySubtags.json",
-	"json!fixtures/cldr/supplemental/timeData.json",
+	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/timeData.json",
 	"cldr/supplemental"
 ], function( Cldr, parseProperties, enCaGregorian, likelySubtags, timeData ) {
 

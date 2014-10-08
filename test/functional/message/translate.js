@@ -1,6 +1,6 @@
 define([
 	"globalize",
-	"json!fixtures/cldr/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/likelySubtags.json",
 	"../../util",
 	"cldr/unresolved",
 	"globalize/message"

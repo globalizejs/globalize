@@ -1,8 +1,8 @@
 define([
 	"cldr",
 	"src/plural/form",
-	"json!fixtures/cldr/supplemental/likelySubtags.json",
-	"json!fixtures/cldr/supplemental/plurals.json"
+	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/plurals.json"
 ], function( Cldr, pluralForm, likelySubtags, plurals ) {
 
 var ar, en, ja, pt, ru, zh;

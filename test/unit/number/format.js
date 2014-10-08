@@ -2,10 +2,10 @@ define([
 	"cldr",
 	"src/number/format",
 	"src/number/format-properties",
-	"json!fixtures/cldr/main/ar/numbers.json",
-	"json!fixtures/cldr/main/en/numbers.json",
-	"json!fixtures/cldr/main/es/numbers.json",
-	"json!fixtures/cldr/supplemental/likelySubtags.json"
+	"json!cldr-data/main/ar/numbers.json",
+	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/es/numbers.json",
+	"json!cldr-data/supplemental/likelySubtags.json"
 ], function( Cldr, format, properties, arNumbers, enNumbers, esNumbers,
 	likelySubtags ) {
 

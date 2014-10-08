@@ -2,13 +2,13 @@ define([
 	"cldr",
 	"src/number/parse",
 	"src/number/parse-properties",
-	"json!fixtures/cldr/main/ar/numbers.json",
-	"json!fixtures/cldr/main/dz/numbers.json",
-	"json!fixtures/cldr/main/en/numbers.json",
-	"json!fixtures/cldr/main/es/numbers.json",
-	"json!fixtures/cldr/main/ru/numbers.json",
-	"json!fixtures/cldr/main/sv/numbers.json",
-	"json!fixtures/cldr/supplemental/likelySubtags.json"
+	"json!cldr-data/main/ar/numbers.json",
+	"json!cldr-data/main/dz/numbers.json",
+	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/es/numbers.json",
+	"json!cldr-data/main/ru/numbers.json",
+	"json!cldr-data/main/sv/numbers.json",
+	"json!cldr-data/supplemental/likelySubtags.json"
 ], function( Cldr, parse, properties, arNumbers, dzNumbers, enNumbers, esNumbers, ruNumbers,
 	svNumbers, likelySubtags ) {
 

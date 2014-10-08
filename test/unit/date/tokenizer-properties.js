@@ -1,8 +1,8 @@
 define([
 	"cldr",
 	"src/date/tokenizer-properties",
-	"json!fixtures/cldr/main/en/ca-gregorian.json",
-	"json!fixtures/cldr/supplemental/likelySubtags.json"
+	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/supplemental/likelySubtags.json"
 ], function( Cldr, tokenizerProperties, enCaGregorian, likelySubtags ) {
 
 var cldr;

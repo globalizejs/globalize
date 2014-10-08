@@ -1,11 +1,11 @@
 define([
 	"globalize",
 	"src/date/start-of",
-	"json!fixtures/cldr/main/en/ca-gregorian.json",
-	"json!fixtures/cldr/main/pt/ca-gregorian.json",
-	"json!fixtures/cldr/supplemental/likelySubtags.json",
-	"json!fixtures/cldr/supplemental/timeData.json",
-	"json!fixtures/cldr/supplemental/weekData.json",
+	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/main/pt/ca-gregorian.json",
+	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/timeData.json",
+	"json!cldr-data/supplemental/weekData.json",
 	"../../util",
 	"globalize/date"
 ], function( Globalize, startOf, enCaGregorian, ptCaGregorian, likelySubtags, timeData, weekData, util ) {

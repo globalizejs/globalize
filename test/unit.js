@@ -1,8 +1,8 @@
 require.config({
 	paths: {
 		cldr: "../external/cldrjs/dist/cldr",
+		"cldr-data": "../external/cldr-data",
 		CLDRPluralRuleParser: "../external/CLDRPluralRuleParser/src/CLDRPluralRuleParser",
-		fixtures: "./fixtures",
 		json: "../external/requirejs-plugins/src/json",
 		src: "../src",
 		text: "../external/requirejs-text/text"

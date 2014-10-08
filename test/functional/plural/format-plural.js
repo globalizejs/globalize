@@ -1,7 +1,7 @@
 define([
 	"globalize",
-	"json!fixtures/cldr/supplemental/likelySubtags.json",
-	"json!fixtures/cldr/supplemental/plurals.json",
+	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/plurals.json",
 	"../../util",
 	"globalize/plural"
 ], function( Globalize, likelySubtags, plurals, util ) {

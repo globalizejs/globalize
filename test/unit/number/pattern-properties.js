@@ -1,8 +1,8 @@
 define([
 	"cldr",
 	"src/number/format-properties",
-	"json!fixtures/cldr/main/en/numbers.json",
-	"json!fixtures/cldr/supplemental/likelySubtags.json"
+	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/supplemental/likelySubtags.json"
 ], function( Cldr, properties, enNumbers, likelySubtags ) {
 
 var en;

@@ -433,42 +433,51 @@ the same build model of jQuery and Modernizr.
 Core, and all modules' public APIs are located in the `src/` directory, ie.
 `core.js`, `date.js`, `message.js`, `number.js`, and `plural.js`.
 
-<a name="build"></a>
-### Build
+<a name="dev_dependencies"></a>
+### Install development external dependencies
 
 Install Grunt and external dependencies. First, install the
 [grunt-cli](http://gruntjs.com/getting-started#installing-the-cli) and
-[bower](http://bower.io/) packages if you haven't before. These should be installed
-globally (like this: `npm install -g grunt-cli bower`). Then:
+[bower](http://bower.io/) packages if you haven't before. These should be
+installed globally (like this: `npm install -g grunt-cli bower`). Then:
 
 ```bash
 npm install && bower install
 ```
 
-Build distribution files.
-```bash
-grunt
-```
-
 <a name="tests"></a>
 ### Tests
 
-Tests can be run either in the browser or using Node.js (via Grunt).
+Tests can be run either in the browser or using Node.js (via Grunt) after having
+installed the external development dependencies (for more details, see above).
 
 ***Unit tests***
 
-To run the unit tests, run `grunt test:unit`, or open
-`file:///.../globalize/test/unit.html` in a browser. It tests the very specific functionality
-of each function (sometimes internal/private).
+To run the unit tests, run `grunt test:unit`, or run `grunt connect:keepalive`
+and open `http://localhost:9001/test/unit.html` in a browser (or
+`http://localhost:9001/test/unit-es5-shim.html` for IE8). It tests the very
+specific functionality of each function (sometimes internal/private).
 
 The goal of the unit tests is to make it easy to spot bugs, easy to debug.
 
 ***Functional tests***
 
 To run the functional tests, create the dist files by running `grunt`. Then, run
-`grunt test:functional`, or open
-`file:///.../globalize/test/functional.html` in a browser. Note that `grunt` will
-automatically run unit and functional tests for you to ensure the built files
-are safe.
+`grunt test:functional`, or open `http://localhost:9001/test/functional.html` in
+a browser (or `http://localhost:9001/test/functional-es5-shim.html` for IE8).
+Note that `grunt` will automatically run unit and functional tests for you to
+ensure the built files are safe.
 
-The goal of the functional tests is to ensure that everything works as expected when it is combined.
+The goal of the functional tests is to ensure that everything works as expected
+when it is combined.
+
+<a name="build"></a>
+### Build
+
+Build the distribution files after having installed the external development
+dependencies (for more details, see above).
+
+```bash
+grunt
+```
+

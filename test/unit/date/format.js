@@ -2,10 +2,10 @@ define([
 	"cldr",
 	"src/date/format",
 	"src/date/format-properties",
-	"json!fixtures/cldr/main/en/ca-gregorian.json",
-	"json!fixtures/cldr/supplemental/likelySubtags.json",
-	"json!fixtures/cldr/supplemental/timeData.json",
-	"json!fixtures/cldr/supplemental/weekData.json",
+	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/timeData.json",
+	"json!cldr-data/supplemental/weekData.json",
 	"cldr/supplemental"
 ], function( Cldr, format, properties, enCaGregorian, likelySubtags, timeData, weekData ) {
 
