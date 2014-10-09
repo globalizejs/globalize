@@ -111,7 +111,7 @@ return function( value, properties ) {
 		// Return the first found one (and set token accordingly), or null.
 		function lookup( path ) {
 			var i, re,
-				data = properties[ path.join( "/" ).replace( /^.*calendars\//, "" ) ];
+				data = properties[ path.join( "/" ) ];
 
 			for ( i in data ) {
 				re = new RegExp( "^" + data[ i ] );
@@ -150,7 +150,7 @@ return function( value, properties ) {
 			// Era
 			case "G":
 				lookup([
-					"dates/calendars/gregorian/eras",
+					"gregorian/eras",
 					length <= 3 ? "eraAbbr" : ( length === 4 ? "eraNames" : "eraNarrow" )
 				]);
 				break;
@@ -174,7 +174,7 @@ return function( value, properties ) {
 				// number l=1:{1}, l=2:{2}.
 				// lookup l=3...
 				oneDigitIfLengthOne() || twoDigitsIfLengthTwo() || lookup([
-					"dates/calendars/gregorian/quarters",
+					"gregorian/quarters",
 					chr === "Q" ? "format" : "stand-alone",
 					widths[ length - 3 ]
 				]);
@@ -186,7 +186,7 @@ return function( value, properties ) {
 				// number l=1:{1,2}, l=2:{2}.
 				// lookup l=3...
 				oneOrTwoDigitsIfLengthOne() || twoDigitsIfLengthTwo() || lookup([
-					"dates/calendars/gregorian/months",
+					"gregorian/months",
 					chr === "M" ? "format" : "stand-alone",
 					widths[ length - 3 ]
 				]);
@@ -222,17 +222,17 @@ return function( value, properties ) {
 					// Note: if short day names are not explicitly specified, abbreviated day
 					// names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					lookup([
-						"dates/calendars/gregorian/days",
+						"gregorian/days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						"short"
 					]) || lookup([
-						"dates/calendars/gregorian/days",
+						"gregorian/days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						"abbreviated"
 					]);
 				} else {
 					lookup([
-						"dates/calendars/gregorian/days",
+						"gregorian/days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						widths[ length < 3 ? 0 : length - 3 ]
 					]);
@@ -242,7 +242,7 @@ return function( value, properties ) {
 			// Period (AM or PM)
 			case "a":
 				lookup([
-					"dates/calendars/gregorian/dayPeriods/format/wide"
+					"gregorian/dayPeriods/format/wide"
 				]);
 				break;
 
