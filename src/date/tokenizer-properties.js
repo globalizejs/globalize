@@ -18,7 +18,9 @@ return function( pattern, cldr ) {
 		widths = [ "abbreviated", "wide", "narrow" ];
 
 	function populateProperties( path, value ) {
-		properties[ path.replace( /^.*calendars\//, "" ) ] = value;
+
+		// The `dates` and `calendars` trim's purpose is to reduce properties' key size only.
+		properties[ path.replace( /^.*\/dates\//, "" ).replace( /calendars\//, "" ) ] = value;
 	}
 
 	cldr.on( "get", populateProperties );
@@ -28,6 +30,11 @@ return function( pattern, cldr ) {
 
 		chr = current.charAt( 0 ),
 		length = current.length;
+
+		if ( chr === "Z" && length < 5 ) {
+				chr = "O";
+				length = 4;
+		}
 
 		switch ( chr ) {
 
@@ -102,6 +109,20 @@ return function( pattern, cldr ) {
 					"dates/calendars/gregorian/dayPeriods/format/wide"
 				]);
 				break;
+
+			// Zone
+			case "z":
+			case "O":
+				cldr.main( "dates/timeZoneNames/gmtFormat" );
+				cldr.main( "dates/timeZoneNames/gmtZeroFormat" );
+				cldr.main( "dates/timeZoneNames/hourFormat" );
+				break;
+
+			case "v":
+			case "V":
+				throw createErrorUnsupportedFeature({
+					feature: "timezone pattern `" + chr + "`"
+				});
 		}
 	});
 

@@ -13,11 +13,22 @@ define([
 ], function( Cldr, parse, parseProperties, startOf, tokenizer, tokenizerProperties, enCaGregorian,
 	likelySubtags, timeData, weekData ) {
 
-var cldr, date1, date2;
+var cldr, date1, date2, midnight;
 
 function assertParse( assert, stringDate, pattern, cldr, date ) {
 	var tokens = tokenizer( stringDate, tokenizerProperties( pattern, cldr ) );
 	assert.deepEqual( parse( stringDate, tokens, parseProperties( cldr ) ), date );
+}
+
+function assertParseTimezone( assert, stringDate, pattern, cldr, timezoneOffset ) {
+	var parsedTimezoneOffset, parsedDate, tokens,
+		testPattern = "HH:mm " + pattern,
+		testStringDate = "00:00 " + stringDate;
+	tokens = tokenizer( testStringDate, tokenizerProperties( testPattern, cldr ) );
+	parsedDate = parse( testStringDate, tokens, parseProperties( cldr ) );
+	parsedTimezoneOffset = ( parsedDate - midnight ) / 1000 / 60 + midnight.getTimezoneOffset();
+	assert.equal( parsedTimezoneOffset, timezoneOffset, "stringDate `" + stringDate +
+		"` pattern `" + pattern + "`" );
 }
 
 Cldr.load( enCaGregorian );
@@ -26,6 +37,9 @@ Cldr.load( timeData );
 Cldr.load( weekData );
 
 cldr = new Cldr( "en" );
+
+midnight = new Date();
+midnight = startOf( midnight, "day" );
 
 QUnit.module( "Date Parse" );
 
@@ -375,6 +389,101 @@ QUnit.test( "should parse milliseconds in a day (A+)", function( assert ) {
  *  Zone
  */
 
-// TODO all
+QUnit.test( "should format timezone (z)", function( assert ) {
+	[ "z", "zz", "zzz", "zzzz" ].forEach(function( z ) {
+		assertParseTimezone( assert, "GMT", z, cldr, 0 );
+	});
+
+	assertParseTimezone( assert, "GMT-3", "z", cldr, 180 );
+	assertParseTimezone( assert, "GMT-3", "zz", cldr, 180 );
+	assertParseTimezone( assert, "GMT-3", "zzz", cldr, 180 );
+	assertParseTimezone( assert, "GMT-03:00", "zzzz", cldr, 180 );
+
+	assertParseTimezone( assert, "GMT+11", "z", cldr, -660 );
+	assertParseTimezone( assert, "GMT+11", "zz", cldr, -660 );
+	assertParseTimezone( assert, "GMT+11", "zzz", cldr, -660 );
+	assertParseTimezone( assert, "GMT+11:00", "zzzz", cldr, -660 );
+});
+
+QUnit.test( "should format timezone (Z)", function( assert ) {
+	assertParseTimezone( assert, "+0000", "Z", cldr, 0 );
+	assertParseTimezone( assert, "+0000", "ZZ", cldr, 0 );
+	assertParseTimezone( assert, "+0000", "ZZZ", cldr, 0 );
+	assertParseTimezone( assert, "GMT", "ZZZZ", cldr, 0 );
+	assertParseTimezone( assert, "Z", "ZZZZZ", cldr, 0 );
+
+	assertParseTimezone( assert, "-0300", "Z", cldr, 180 );
+	assertParseTimezone( assert, "-0300", "ZZ", cldr, 180 );
+	assertParseTimezone( assert, "-0300", "ZZZ", cldr, 180 );
+	assertParseTimezone( assert, "GMT-03:00","ZZZZ" , cldr, 180 );
+	assertParseTimezone( assert, "-03:00", "ZZZZZ", cldr, 180 );
+
+	assertParseTimezone( assert, "+1100", "Z", cldr, -660 );
+	assertParseTimezone( assert, "+1100", "ZZ", cldr, -660 );
+	assertParseTimezone( assert, "+1100", "ZZZ", cldr, -660 );
+	assertParseTimezone( assert, "GMT+11:00","ZZZZ" , cldr, -660 );
+	assertParseTimezone( assert, "+11:00", "ZZZZZ", cldr, -660 );
+});
+
+QUnit.test( "should format timezone (O)", function( assert ) {
+	assertParseTimezone( assert, "GMT", "O", cldr, 0 );
+	assertParseTimezone( assert, "GMT", "OOOO", cldr, 0 );
+
+	assertParseTimezone( assert, "GMT-3", "O", cldr, 180 );
+	assertParseTimezone( assert, "GMT-03:00","OOOO" , cldr, 180 );
+
+	assertParseTimezone( assert, "GMT+11", "O", cldr, -660 );
+	assertParseTimezone( assert, "GMT+11:00","OOOO" , cldr, -660 );
+});
+
+QUnit.test( "should format timezone (X)", function( assert ) {
+	assertParseTimezone( assert, "Z", "X", cldr, 0 );
+	assertParseTimezone( assert, "Z", "XX", cldr, 0 );
+	assertParseTimezone( assert, "Z", "XXX", cldr, 0 );
+	assertParseTimezone( assert, "Z", "XXXX", cldr, 0 );
+	assertParseTimezone( assert, "Z", "XXXXX", cldr, 0 );
+
+	assertParseTimezone( assert, "-03", "X", cldr, 180 );
+	assertParseTimezone( assert, "-0300", "XX", cldr, 180 );
+	assertParseTimezone( assert, "-03:00", "XXX", cldr, 180 );
+	assertParseTimezone( assert, "-0300", "XXXX", cldr, 180 );
+	assertParseTimezone( assert, "-03:00", "XXXXX", cldr, 180 );
+
+	assertParseTimezone( assert, "+0530", "XX", cldr, -330 );
+	assertParseTimezone( assert, "+05:30", "XXX", cldr, -330 );
+	assertParseTimezone( assert, "+0530", "XXXX", cldr, -330 );
+	assertParseTimezone( assert, "+05:30", "XXXXX", cldr, -330 );
+
+	assertParseTimezone( assert, "+11", "X", cldr, -660 );
+	assertParseTimezone( assert, "+1100", "XX", cldr, -660 );
+	assertParseTimezone( assert, "+11:00", "XXX", cldr, -660 );
+	assertParseTimezone( assert, "+1100", "XXXX", cldr, -660 );
+	assertParseTimezone( assert, "+11:00", "XXXXX", cldr, -660 );
+});
+
+QUnit.test( "should format timezone (x)", function( assert ) {
+	assertParseTimezone( assert, "+00", "x", cldr, 0 );
+	assertParseTimezone( assert, "+0000", "xx", cldr, 0 );
+	assertParseTimezone( assert, "+00:00", "xxx", cldr, 0 );
+	assertParseTimezone( assert, "+0000", "xxxx", cldr, 0 );
+	assertParseTimezone( assert, "+00:00", "xxxxx", cldr, 0 );
+
+	assertParseTimezone( assert, "-03", "x", cldr, 180 );
+	assertParseTimezone( assert, "-0300", "xx", cldr, 180 );
+	assertParseTimezone( assert, "-03:00", "xxx", cldr, 180 );
+	assertParseTimezone( assert, "-0300", "xxxx", cldr, 180 );
+	assertParseTimezone( assert, "-03:00", "xxxxx", cldr, 180 );
+
+	assertParseTimezone( assert, "+0530", "xx", cldr, -330 );
+	assertParseTimezone( assert, "+05:30", "xxx", cldr, -330 );
+	assertParseTimezone( assert, "+0530", "xxxx", cldr, -330 );
+	assertParseTimezone( assert, "+05:30", "xxxxx", cldr, -330 );
+
+	assertParseTimezone( assert, "+11", "x", cldr, -660 );
+	assertParseTimezone( assert, "+1100", "xx", cldr, -660 );
+	assertParseTimezone( assert, "+11:00", "xxx", cldr, -660 );
+	assertParseTimezone( assert, "+1100", "xxxx", cldr, -660 );
+	assertParseTimezone( assert, "+11:00", "xxxxx", cldr, -660 );
+});
 
 });

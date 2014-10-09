@@ -577,6 +577,198 @@ QUnit.test( "should tokenize milliseconds in a day (A+)", function( assert ) {
  *  Zone
  */
 
-// TODO all
+QUnit.test( "should tokenize timezone (z)", function( assert ) {
+	assert.deepEqual( tokenizer( "GMT", properties( "z", cldr ) ), [{
+		lexeme: "GMT",
+		type: "z",
+		value: 0
+	}] );
+	assert.deepEqual( tokenizer( "GMT", properties( "zzzz", cldr ) ), [{
+		lexeme: "GMT",
+		type: "zzzz",
+		value: 0
+	}] );
+	assert.deepEqual( tokenizer( "GMT-3", properties( "z", cldr ) ), [{
+		lexeme: "GMT-3",
+		type: "z",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "GMT-03:00", properties( "zzzz", cldr ) ), [{
+		lexeme: "GMT-03:00",
+		type: "zzzz",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "GMT+11", properties( "z", cldr ) ), [{
+		lexeme: "GMT+11",
+		type: "z",
+		value: -660
+	}] );
+	assert.deepEqual( tokenizer( "GMT+11:00", properties( "zzzz", cldr ) ), [{
+		lexeme: "GMT+11:00",
+		type: "zzzz",
+		value: -660
+	}] );
+});
+
+QUnit.test( "should tokenize timezone (Z)", function( assert ) {
+	assert.deepEqual( tokenizer( "+0000", properties( "Z", cldr ) ), [{
+		lexeme: "+0000",
+		type: "Z",
+		value: 0
+	}] );
+	assert.deepEqual( tokenizer( "GMT", properties( "ZZZZ", cldr ) ), [{
+		lexeme: "GMT",
+		type: "ZZZZ",
+		value: 0
+	}] );
+	assert.deepEqual( tokenizer( "Z", properties( "ZZZZZ", cldr ) ), [{
+		lexeme: "Z",
+		type: "ZZZZZ",
+		value: 0
+	}] );
+	assert.deepEqual( tokenizer( "-0300", properties( "Z", cldr ) ), [{
+		lexeme: "-0300",
+		type: "Z",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "GMT-03:00", properties( "ZZZZ", cldr ) ), [{
+		lexeme: "GMT-03:00",
+		type: "ZZZZ",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "-03:00", properties( "ZZZZZ", cldr ) ), [{
+		lexeme: "-03:00",
+		type: "ZZZZZ",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "+1100", properties( "Z", cldr ) ), [{
+		lexeme: "+1100",
+		type: "Z",
+		value: -660
+	}] );
+	assert.deepEqual( tokenizer( "GMT+11:00", properties( "ZZZZ", cldr ) ), [{
+		lexeme: "GMT+11:00",
+		type: "ZZZZ",
+		value: -660
+	}] );
+	assert.deepEqual( tokenizer( "+11:00", properties( "ZZZZZ", cldr ) ), [{
+		lexeme: "+11:00",
+		type: "ZZZZZ",
+		value: -660
+	}] );
+});
+
+QUnit.test( "should tokenize timezone (O)", function( assert ) {
+	assert.deepEqual( tokenizer( "GMT", properties( "O", cldr ) ), [{
+		lexeme: "GMT",
+		type: "O",
+		value: 0
+	}] );
+	assert.deepEqual( tokenizer( "GMT", properties( "OOOO", cldr ) ), [{
+		lexeme: "GMT",
+		type: "OOOO",
+		value: 0
+	}] );
+	assert.deepEqual( tokenizer( "GMT-3", properties( "O", cldr ) ), [{
+		lexeme: "GMT-3",
+		type: "O",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "GMT-03:00", properties( "OOOO", cldr ) ), [{
+		lexeme: "GMT-03:00",
+		type: "OOOO",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "GMT+11", properties( "O", cldr ) ), [{
+		lexeme: "GMT+11",
+		type: "O",
+		value: -660
+	}] );
+	assert.deepEqual( tokenizer( "GMT+11:00", properties( "OOOO", cldr ) ), [{
+		lexeme: "GMT+11:00",
+		type: "OOOO",
+		value: -660
+	}] );
+});
+
+QUnit.test( "should tokenize timezone (X)", function( assert ) {
+	[ "X", "XX", "XXX", "XXXX", "XXXXX" ].forEach(function( X ) {
+		assert.deepEqual( tokenizer( "Z", properties( X, cldr ) ), [{
+			lexeme: "Z",
+			type: X,
+			value: 0
+		}] );
+	});
+	assert.deepEqual( tokenizer( "-03", properties( "X", cldr ) ), [{
+		lexeme: "-03",
+		type: "X",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "-0300", properties( "XX", cldr ) ), [{
+		lexeme: "-0300",
+		type: "XX",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "-03:00", properties( "XXX", cldr ) ), [{
+		lexeme: "-03:00",
+		type: "XXX",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "-0300", properties( "XXXX", cldr ) ), [{
+		lexeme: "-0300",
+		type: "XXXX",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "-03:00", properties( "XXXXX", cldr ) ), [{
+		lexeme: "-03:00",
+		type: "XXXXX",
+		value: 180
+	}] );
+	assert.deepEqual( tokenizer( "+0530", properties( "XX", cldr ) ), [{
+		lexeme: "+0530",
+		type: "XX",
+		value: -330
+	}] );
+	assert.deepEqual( tokenizer( "+05:30", properties( "XXX", cldr ) ), [{
+		lexeme: "+05:30",
+		type: "XXX",
+		value: -330
+	}] );
+	assert.deepEqual( tokenizer( "+0530", properties( "XXXX", cldr ) ), [{
+		lexeme: "+0530",
+		type: "XXXX",
+		value: -330
+	}] );
+	assert.deepEqual( tokenizer( "+05:30", properties( "XXXXX", cldr ) ), [{
+		lexeme: "+05:30",
+		type: "XXXXX",
+		value: -330
+	}] );
+	assert.deepEqual( tokenizer( "+11", properties( "X", cldr ) ), [{
+		lexeme: "+11",
+		type: "X",
+		value: -660
+	}] );
+	assert.deepEqual( tokenizer( "+1100", properties( "XX", cldr ) ), [{
+		lexeme: "+1100",
+		type: "XX",
+		value: -660
+	}] );
+	assert.deepEqual( tokenizer( "+11:00", properties( "XXX", cldr ) ), [{
+		lexeme: "+11:00",
+		type: "XXX",
+		value: -660
+	}] );
+	assert.deepEqual( tokenizer( "+1100", properties( "XXXX", cldr ) ), [{
+		lexeme: "+1100",
+		type: "XXXX",
+		value: -660
+	}] );
+	assert.deepEqual( tokenizer( "+11:00", properties( "XXXXX", cldr ) ), [{
+		lexeme: "+11:00",
+		type: "XXXXX",
+		value: -660
+	}] );
+});
 
 });

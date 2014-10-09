@@ -21,7 +21,7 @@ function outOfRange( value, low, high ) {
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, tokens, properties ) {
-	var amPm, era, hour, hour12, valid,
+	var amPm, era, hour, hour12, timezoneOffset, valid,
 		YEAR = 0,
 		MONTH = 1,
 		DAY = 2,
@@ -227,16 +227,14 @@ return function( value, tokens, properties ) {
 				break;
 
 			// Zone
-			// see http://www.unicode.org/reports/tr35/tr35-dates.html#Using_Time_Zone_Names ?
-			// Need to be implemented.
-			case "z":
 			case "Z":
+			case "z":
 			case "O":
-			case "v":
-			case "V":
 			case "X":
 			case "x":
-				throw new Error( "Not implemented" );
+				timezoneOffset = token.value - date.getTimezoneOffset();
+				break;
+
 		}
 
 		return true;
@@ -259,6 +257,10 @@ return function( value, tokens, properties ) {
 
 	if ( hour12 && amPm === "pm" ) {
 		date.setHours( date.getHours() + 12 );
+	}
+
+	if ( timezoneOffset ) {
+		date.setMinutes( date.getMinutes() + timezoneOffset );
 	}
 
 	// Truncate date at the most precise unit defined. Eg.

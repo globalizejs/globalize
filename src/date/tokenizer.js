@@ -42,6 +42,53 @@ return function( value, properties ) {
 		var chr, length, tokenRe,
 			token = {};
 
+		function hourFormatParse( tokenRe ) {
+			var aux = value.match( tokenRe );
+
+			if ( !aux ) {
+				return false;
+			}
+
+			// hourFormat containing H only, e.g., `+H;-H`
+			if ( aux.length < 4 ) {
+				token.value = ( aux[ 1 ] ? -aux[ 1 ] : +aux[ 2 ] ) * 60;
+
+			// hourFormat containing H and m, e.g., `+HHmm;-HHmm`
+			} else {
+				token.value = ( aux[ 1 ] ? -aux[ 1 ] : +aux[ 3 ] ) * 60 +
+					( aux[ 1 ] ? -aux[ 2 ] : +aux[ 4 ] );
+			}
+
+			return true;
+		}
+
+		// Transform:
+		// - "+H;-H" -> /\+(\d\d?)|-(\d\d?)/
+		// - "+HH;-HH" -> /\+(\d\d)|-(\d\d)/
+		// - "+HHmm;-HHmm" -> /\+(\d\d)(\d\d)|-(\d\d)(\d\d)/
+		// - "+HH:mm;-HH:mm" -> /\+(\d\d):(\d\d)|-(\d\d):(\d\d)/
+		//
+		// If gmtFormat is GMT{0}, the regexp must fill {0} in each side, e.g.:
+		// - "+H;-H" -> /GMT\+(\d\d?)|GMT-(\d\d?)/
+		function hourFormatRe( hourFormat, gmtFormat ) {
+			var re;
+
+			if ( !gmtFormat ) {
+				gmtFormat = "{0}";
+			}
+
+			re = hourFormat
+				.replace( "+", "\\+" )
+				.replace( /HH|mm/g, "(\\d\\d)" )
+				.replace( /H|m/g, "(\\d\\d?)" );
+
+			re = re.split( ";" ).map(function( part ) {
+				return gmtFormat.replace( "{0}", part );
+			}).join( "|" );
+
+			return new RegExp( re );
+		}
+
 		function oneDigitIfLengthOne() {
 			if ( length === 1 ) {
 				return tokenRe = /\d/;
@@ -79,6 +126,24 @@ return function( value, properties ) {
 		token.type = current;
 		chr = current.charAt( 0 ),
 		length = current.length;
+
+		if ( chr === "Z" ) {
+			// Z..ZZZ: same as "xxxx".
+			if ( length < 4 ) {
+				chr = "x";
+				length = 4;
+
+			// ZZZZ: same as "OOOO".
+			} else if ( length < 5 ) {
+				chr = "O";
+				length = 4;
+
+			// ZZZZZ: same as "XXXXX"
+			} else {
+				chr = "X";
+				length = 5;
+			}
+		}
 
 		switch ( chr ) {
 
@@ -214,16 +279,44 @@ return function( value, properties ) {
 				break;
 
 			// Zone
-			// see http://www.unicode.org/reports/tr35/tr35-dates.html#Using_Time_Zone_Names ?
-			// Need to be implemented.
 			case "z":
-			case "Z":
 			case "O":
-			case "v":
-			case "V":
+				// O: "{gmtFormat}+H;{gmtFormat}-H" or "{gmtZeroFormat}", eg. "GMT-8" or "GMT".
+				// OOOO: "{gmtFormat}{hourFormat}" or "{gmtZeroFormat}", eg. "GMT-08:00" or "GMT".
+				if ( value === properties[ "timeZoneNames/gmtZeroFormat" ] ) {
+					token.value = 0;
+					tokenRe = new RegExp( properties[ "timeZoneNames/gmtZeroFormat" ] );
+				} else {
+					tokenRe = hourFormatRe(
+						length < 4 ? "+H;-H" : properties[ "timeZoneNames/hourFormat" ],
+						properties[ "timeZoneNames/gmtFormat" ]
+					);
+					if ( !hourFormatParse( tokenRe ) ) {
+						return null;
+					}
+				}
+				break;
+
 			case "X":
+				// Same as x*, except it uses "Z" for zero offset.
+				if ( value === "Z" ) {
+					token.value = 0;
+					tokenRe = /Z/;
+					break;
+				}
+
+			/* falls through */
 			case "x":
-				throw new Error( "Not implemented" );
+				// x: hourFormat("+HH;-HH")
+				// xx or xxxx: hourFormat("+HHmm;-HHmm")
+				// xxx or xxxxx: hourFormat("+HH:mm;-HH:mm")
+				tokenRe = hourFormatRe(
+					length === 1 ? "+HH;-HH" : ( length % 2 ? "+HH:mm;-HH:mm" : "+HHmm;-HHmm" )
+				);
+				if ( !hourFormatParse( tokenRe ) ) {
+					return null;
+				}
+				break;
 
 			case "'":
 				token.type = "literal";
