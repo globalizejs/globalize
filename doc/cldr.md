@@ -5,7 +5,7 @@
 The Unicode CLDR is available for download as JSON:
 - [`json.zip`](http://www.unicode.org/Public/cldr/latest/json.zip) for the
   most used languages.
-- [`json_full.zip`](http://www.unicode.org/Public/cldr/latest/json-full.zip)
+- [`json-full.zip`](http://www.unicode.org/Public/cldr/latest/json-full.zip)
   for all the available CLDR languages.
 
 For the examples below, first fetch CLDR JSON data:
