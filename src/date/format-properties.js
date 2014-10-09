@@ -1,7 +1,8 @@
 define([
 	"./first-day-of-week",
-	"./pattern-re"
-], function( dateFirstDayOfWeek, datePatternRe ) {
+	"./pattern-re",
+	"../common/create-error/unsupported-feature"
+], function( dateFirstDayOfWeek, datePatternRe, createErrorUnsupportedFeature ) {
 
 /**
  * properties( pattern, cldr )
@@ -30,6 +31,12 @@ return function( pattern, cldr ) {
 			properties.preferredTime = chr = cldr.supplemental.timeData.preferred();
 		}
 
+		// ZZZZ: same as "OOOO".
+		if ( chr === "Z" && length === 4 ) {
+			chr = "O";
+			length = 4;
+		}
+
 		switch ( chr ) {
 
 			// Era
@@ -48,7 +55,9 @@ return function( pattern, cldr ) {
 
 			case "u": // Extended year. Need to be implemented.
 			case "U": // Cyclic year name. Need to be implemented.
-				throw new Error( "Not implemented" );
+				throw createErrorUnsupportedFeature({
+					feature: "year pattern `" + chr + "`"
+				});
 
 			// Quarter
 			case "Q":
@@ -92,6 +101,13 @@ return function( pattern, cldr ) {
 				properties.firstDay = dateFirstDayOfWeek( cldr );
 				properties.minDays = cldr.supplemental.weekData.minDays();
 				break;
+
+			// Day
+			case "g":
+				// Modified Julian day. Need to be implemented.
+				throw createErrorUnsupportedFeature({
+					feature: "Julian day pattern `g`"
+				});
 
 			// Week day
 			case "e":
@@ -141,16 +157,21 @@ return function( pattern, cldr ) {
 				break;
 
 			// Zone
-			// see http://www.unicode.org/reports/tr35/tr35-dates.html#Using_Time_Zone_Names ?
-			// Need to be implemented.
 			case "z":
-			case "Z":
 			case "O":
+				// O: "{gmtFormat}+H;{gmtFormat}-H" or "{gmtZeroFormat}", eg. "GMT-8" or "GMT".
+				// OOOO: "{gmtFormat}{hourFormat}" or "{gmtZeroFormat}", eg. "GMT-08:00" or "GMT".
+				properties.gmtFormat = cldr.main( "dates/timeZoneNames/gmtFormat" );
+				properties.gmtZeroFormat = cldr.main( "dates/timeZoneNames/gmtZeroFormat" );
+				properties.tzLongHourFormat = cldr.main( "dates/timeZoneNames/hourFormat" );
+				break;
+
 			case "v":
 			case "V":
-			case "X":
-			case "x":
-				throw new Error( "Not implemented" );
+				throw createErrorUnsupportedFeature({
+					feature: "timezone pattern `" + chr + "`"
+				});
+
 		}
 	});
 
