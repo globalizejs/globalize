@@ -1,6 +1,7 @@
 define([
-	"./pattern-re"
-], function( numberPatternRe ) {
+	"./pattern-re",
+	"../common/create-error/unsupported-feature"
+], function( numberPatternRe, createErrorUnsupportedFeature ) {
 
 /**
  * format( number, pattern )
@@ -69,12 +70,16 @@ return function( pattern ) {
 
 	// Scientific notation
 	if ( scientificNotation ) {
-		throw new Error( "Scientific notation not implemented" );
+		throw createErrorUnsupportedFeature({
+			feature: "scientific notation (not implemented)"
+		});
 	}
 
 	// Padding
 	if ( padding ) {
-		throw new Error( "Padding not implemented" );
+		throw createErrorUnsupportedFeature({
+			feature: "padding (not implemented)"
+		});
 	}
 
 	// Grouping

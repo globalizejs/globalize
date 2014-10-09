@@ -1,7 +1,8 @@
 define([
+	"../../common/create-error/unsupported-feature",
 	"../../util/number/to-precision",
 	"../../util/string/pad"
-], function( numberToPrecision, stringPad ) {
+], function( createErrorUnsupportedFeature, numberToPrecision, stringPad ) {
 
 /**
  * toPrecision( number, minimumSignificantDigits, maximumSignificantDigits, round )
@@ -34,7 +35,9 @@ return function( number, minimumSignificantDigits, maximumSignificantDigits, rou
 	number = ( +number ).toString( 10 );
 
 	if ( (/e/).test( number ) ) {
-		throw new Error( "Ops! Integers out of (1e21, 1e-7) not supported" );
+		throw createErrorUnsupportedFeature({
+			feature: "integers out of (1e21, 1e-7)"
+		});
 	}
 
 	// Add trailing zeros if necessary.

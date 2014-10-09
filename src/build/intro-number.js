@@ -31,7 +31,8 @@
 	}
 }(this, function( Cldr, Globalize ) {
 
-var validateCldr = Globalize._validateCldr,
+var createError = Globalize._createError,
+	validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validateParameterPresence = Globalize._validateParameterPresence,
 	validateParameterRange = Globalize._validateParameterRange,

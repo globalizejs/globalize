@@ -90,10 +90,6 @@ return function( date, properties ) {
 				}
 				break;
 
-			case "u": // Extended year. Need to be implemented.
-			case "U": // Cyclic year name. Need to be implemented.
-				throw new Error( "Not implemented" );
-
 			// Quarter
 			case "Q":
 			case "q":
@@ -150,10 +146,6 @@ return function( date, properties ) {
 				// Day of Week in month. eg. 2nd Wed in July.
 				ret = Math.floor( date.getDate() / 7 ) + 1;
 				break;
-
-			case "g+":
-				// Modified Julian day. Need to be implemented.
-				throw new Error( "Not implemented" );
 
 			// Week day
 			case "e":

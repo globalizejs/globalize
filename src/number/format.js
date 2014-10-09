@@ -89,14 +89,10 @@ return function( number, properties ) {
 	ret += number;
 
 	// Scientific notation
-	if ( false ) {
-		throw new Error( "Scientific notation not implemented" );
-	}
+	// TODO implement here
 
 	// Padding
-	if ( false ) {
-		throw new Error( "Padding not implemented" );
-	}
+	// TODO implement here
 
 	ret += suffix;
 

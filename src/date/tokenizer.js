@@ -168,10 +168,6 @@ return function( value, properties ) {
 				}
 				break;
 
-			case "u": // Extended year. Need to be implemented.
-			case "U": // Cyclic year name. Need to be implemented.
-				throw new Error( "Not implemented" );
-
 			// Quarter
 			case "Q":
 			case "q":
@@ -196,7 +192,7 @@ return function( value, properties ) {
 				]);
 				break;
 
-			// Day (see d below)
+			// Day
 			case "D":
 				// number {l,3}.
 				if ( length <= 3 ) {
@@ -209,10 +205,6 @@ return function( value, properties ) {
 				// number l=1:{1}.
 				oneDigitIfLengthOne();
 				break;
-
-			case "g+":
-				// Modified Julian day. Need to be implemented.
-				throw new Error( "Not implemented" );
 
 			// Week day
 			case "e":

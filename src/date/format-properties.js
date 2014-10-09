@@ -55,7 +55,9 @@ return function( pattern, cldr ) {
 
 			case "u": // Extended year. Need to be implemented.
 			case "U": // Cyclic year name. Need to be implemented.
-				throw new Error( "Not implemented" );
+				throw createErrorUnsupportedFeature({
+					feature: "year pattern `" + chr + "`"
+				});
 
 			// Quarter
 			case "Q":
@@ -99,6 +101,13 @@ return function( pattern, cldr ) {
 				properties.firstDay = dateFirstDayOfWeek( cldr );
 				properties.minDays = cldr.supplemental.weekData.minDays();
 				break;
+
+			// Day
+			case "g":
+				// Modified Julian day. Need to be implemented.
+				throw createErrorUnsupportedFeature({
+					feature: "Julian day pattern `g`"
+				});
 
 			// Week day
 			case "e":

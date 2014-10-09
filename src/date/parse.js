@@ -1,9 +1,11 @@
 define([
 	"./pattern-re",
 	"./start-of",
+	"../common/create-error/unsupported-feature",
 	"../util/date/set-date",
 	"../util/date/set-month"
-], function( datePatternRe, dateStartOf, dateSetDate, dateSetMonth ) {
+], function( datePatternRe, dateStartOf, createErrorUnsupportedFeature, dateSetDate,
+	dateSetMonth ) {
 
 function outOfRange( value, low, high ) {
 	return value < low || value > high;
@@ -82,9 +84,9 @@ return function( value, tokens, properties ) {
 				break;
 
 			case "Y": // Year in "Week of Year"
-			case "u": // Extended year. Need to be implemented.
-			case "U": // Cyclic year name. Need to be implemented.
-				throw new Error( "Not implemented" );
+				throw createErrorUnsupportedFeature({
+					feature: "year pattern `" + chr + "`"
+				});
 
 			// Quarter (skip)
 			case "Q":
@@ -135,10 +137,6 @@ return function( value, tokens, properties ) {
 				// Day of Week in month. eg. 2nd Wed in July.
 				// Skip
 				break;
-
-			case "g+":
-				// Modified Julian day. Need to be implemented.
-				throw new Error( "Not implemented" );
 
 			// Week day
 			case "e":

@@ -1,6 +1,7 @@
 define([
-	"./pattern-re"
-], function( datePatternRe ) {
+	"./pattern-re",
+	"../common/create-error/unsupported-feature"
+], function( datePatternRe, createErrorUnsupportedFeature ) {
 
 /**
  * tokenizerProperties( pattern, cldr )
@@ -46,6 +47,13 @@ return function( pattern, cldr ) {
 				]);
 				break;
 
+			// Year
+			case "u": // Extended year. Need to be implemented.
+			case "U": // Cyclic year name. Need to be implemented.
+				throw createErrorUnsupportedFeature({
+					feature: "year pattern `" + chr + "`"
+				});
+
 			// Quarter
 			case "Q":
 			case "q":
@@ -71,6 +79,13 @@ return function( pattern, cldr ) {
 					]);
 				}
 				break;
+
+			// Day
+			case "g":
+				// Modified Julian day. Need to be implemented.
+				throw createErrorUnsupportedFeature({
+					feature: "Julian day pattern `g`"
+				});
 
 			// Week day
 			case "e":
