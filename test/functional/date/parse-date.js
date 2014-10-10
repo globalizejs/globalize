@@ -2,18 +2,21 @@ define([
 	"globalize",
 	"src/date/start-of",
 	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/main/en/timeZoneNames.json",
 	"json!cldr-data/main/pt/ca-gregorian.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"../../util",
 	"globalize/date"
-], function( Globalize, startOf, enCaGregorian, ptCaGregorian, likelySubtags, timeData, weekData, util ) {
+], function( Globalize, startOf, enCaGregorian, enTimeZoneNames, ptCaGregorian, likelySubtags,
+	timeData, weekData, util ) {
 
 var date;
 
 function extraSetup() {
 	Globalize.load( enCaGregorian );
+	Globalize.load( enTimeZoneNames );
 	Globalize.load( ptCaGregorian );
 	Globalize.load( timeData );
 	Globalize.load( weekData );
@@ -133,7 +136,7 @@ QUnit.test( "should parse a formatted date (reverse operation test)", function( 
 
 	date = new Date();
 	date = startOf( date, "minute" );
-	assert.deepEqual( Globalize.parseDate( Globalize.formatDate( date, { datetime: "short" } ), { datetime: "short" } ), date );
+	assert.deepEqual( Globalize.parseDate( Globalize.formatDate( date, { datetime: "full" } ), { datetime: "full" } ), date );
 });
 
 });
