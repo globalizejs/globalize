@@ -97,7 +97,7 @@ information on its usage.
 | File | Minified + gzipped size | Summary |
 |---|--:|---|
 | globalize.js | 1.1KB | [Core library](#core) |
-| globalize/date.js | +3.2KB | [Date module](#date_module) provides date formatting and parsing |
+| globalize/date.js | +3.8KB | [Date module](#date_module) provides date formatting and parsing |
 | globalize/message.js | +0.5KB | [Message module](#message_module) provides message translation |
 | globalize/number.js | +2.6KB | [Number module](#number_module) provides number formatting and parsing |
 | globalize/plural.js | +2.0KB | [Plural module](#plural_module) provides pluralization support |
