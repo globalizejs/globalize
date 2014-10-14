@@ -47,18 +47,16 @@ function Globalize( locale ) {
 }
 
 /**
- * Globalize.load( json )
+ * Globalize.load( json, ... )
  *
  * @json [JSON]
  *
  * Load resolved or unresolved cldr data.
  * Somewhat equivalent to previous Globalize.addCultureInfo(...).
  */
-Globalize.load = function( json ) {
-	validateParameterPresence( json, "json" );
-	validateParameterTypePlainObject( json, "json" );
-
-	Cldr.load( json );
+Globalize.load = function() {
+	// validations are delegated to Cldr.load().
+	Cldr.load.apply( Cldr, arguments );
 };
 
 /**

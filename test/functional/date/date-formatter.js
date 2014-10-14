@@ -11,9 +11,11 @@ define([
 var date = new Date( 2010, 8, 15, 17, 35, 7, 369 );
 
 function extraSetup() {
-	Globalize.load( enCaGregorian );
-	Globalize.load( timeData );
-	Globalize.load( weekData );
+	Globalize.load(
+		enCaGregorian,
+		timeData,
+		weekData
+	);
 }
 
 QUnit.module( ".dateFormatter( pattern )", {

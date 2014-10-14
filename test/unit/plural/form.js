@@ -7,8 +7,7 @@ define([
 
 var ar, en, ja, pt, ru, zh;
 
-Cldr.load( likelySubtags );
-Cldr.load( plurals );
+Cldr.load( likelySubtags, plurals );
 
 // Temporary fix due to CLDR v26 regression about pt_BR plural
 // http://unicode.org/cldr/trac/ticket/7178

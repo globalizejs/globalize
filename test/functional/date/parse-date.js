@@ -15,11 +15,13 @@ define([
 var date;
 
 function extraSetup() {
-	Globalize.load( enCaGregorian );
-	Globalize.load( enTimeZoneNames );
-	Globalize.load( ptCaGregorian );
-	Globalize.load( timeData );
-	Globalize.load( weekData );
+	Globalize.load(
+		enCaGregorian,
+		enTimeZoneNames,
+		ptCaGregorian,
+		timeData,
+		weekData
+	);
 }
 
 QUnit.module( ".parseDate( value, pattern )", {

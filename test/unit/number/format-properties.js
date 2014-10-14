@@ -8,9 +8,11 @@ define([
 
 var en, es;
 
-Cldr.load( enNumbers );
-Cldr.load( esNumbers );
-Cldr.load( likelySubtags );
+Cldr.load(
+	enNumbers,
+	esNumbers,
+	likelySubtags
+);
 
 en = new Cldr( "en" );
 es = new Cldr( "es" );

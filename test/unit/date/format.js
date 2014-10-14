@@ -27,11 +27,13 @@ FakeDate.prototype.getTimezoneOffset = function() {
 	return this.timezoneOffset * -60;
 };
 
-Cldr.load( enCaGregorian );
-Cldr.load( likelySubtags );
-Cldr.load( timeData );
-Cldr.load( timeZoneNames );
-Cldr.load( weekData );
+Cldr.load(
+	enCaGregorian,
+	likelySubtags,
+	timeData,
+	timeZoneNames,
+	weekData
+);
 
 cldr = new Cldr( "en" );
 

@@ -12,10 +12,12 @@ define([
 var ar, es, sv;
 
 function extraSetup() {
-	Globalize.load( arNumbers );
-	Globalize.load( enNumbers );
-	Globalize.load( esNumbers );
-	Globalize.load( svNumbers );
+	Globalize.load(
+		arNumbers,
+		enNumbers,
+		esNumbers,
+		svNumbers
+	);
 }
 
 QUnit.module( ".parseNumber( value [, options] )", {

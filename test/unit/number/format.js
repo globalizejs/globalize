@@ -16,10 +16,12 @@ var ar, en, es,
 	earthDiameter = 12735, /* 1 */
 	pi = 3.14159265359;
 
-Cldr.load( arNumbers );
-Cldr.load( enNumbers );
-Cldr.load( esNumbers );
-Cldr.load( likelySubtags );
+Cldr.load(
+	arNumbers,
+	enNumbers,
+	esNumbers,
+	likelySubtags
+);
 
 ar = new Cldr( "ar" );
 en = new Cldr( "en" );

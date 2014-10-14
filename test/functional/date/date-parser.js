@@ -15,10 +15,12 @@ function assertParseDate( assert, input, options, output ) {
 }
 
 function extraSetup() {
-	Globalize.load( enCaGregorian );
-	Globalize.load( ptCaGregorian );
-	Globalize.load( timeData );
-	Globalize.load( weekData );
+	Globalize.load(
+		enCaGregorian,
+		ptCaGregorian,
+		timeData,
+		weekData
+	);
 }
 
 QUnit.module( ".dateParser( pattern )", {

@@ -7,8 +7,7 @@ define([
 
 var cldr;
 
-Cldr.load( enCaGregorian );
-Cldr.load( likelySubtags );
+Cldr.load( enCaGregorian, likelySubtags );
 
 cldr = new Cldr( "en" );
 

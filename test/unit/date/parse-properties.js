@@ -9,9 +9,11 @@ define([
 
 var cldr;
 
-Cldr.load( enCaGregorian );
-Cldr.load( likelySubtags );
-Cldr.load( timeData );
+Cldr.load(
+	enCaGregorian,
+	likelySubtags,
+	timeData
+);
 
 cldr = new Cldr( "en" );
 

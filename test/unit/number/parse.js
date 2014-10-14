@@ -13,12 +13,14 @@ define([
 
 var ar, en, es, ru, sv;
 
-Cldr.load( arNumbers );
-Cldr.load( enNumbers );
-Cldr.load( esNumbers );
-Cldr.load( ruNumbers );
-Cldr.load( svNumbers );
-Cldr.load( likelySubtags );
+Cldr.load(
+	arNumbers,
+	enNumbers,
+	esNumbers,
+	ruNumbers,
+	svNumbers,
+	likelySubtags
+);
 
 ar = new Cldr( "ar" );
 en = new Cldr( "en" );

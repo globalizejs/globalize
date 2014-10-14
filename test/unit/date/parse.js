@@ -31,10 +31,12 @@ function assertParseTimezone( assert, stringDate, pattern, cldr, timezoneOffset 
 		"` pattern `" + pattern + "`" );
 }
 
-Cldr.load( enCaGregorian );
-Cldr.load( likelySubtags );
-Cldr.load( timeData );
-Cldr.load( weekData );
+Cldr.load(
+	enCaGregorian,
+	likelySubtags,
+	timeData,
+	weekData
+);
 
 cldr = new Cldr( "en" );
 

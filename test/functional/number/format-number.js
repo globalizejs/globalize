@@ -11,9 +11,11 @@ define([
 var pi = 3.14159265359;
 
 function extraSetup() {
-	Globalize.load( arNumbers );
-	Globalize.load( enNumbers );
-	Globalize.load( esNumbers );
+	Globalize.load(
+		arNumbers,
+		enNumbers,
+		esNumbers
+	);
 }
 
 QUnit.module( ".formatNumber( value [, options] )", {
