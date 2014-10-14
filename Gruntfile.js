@@ -250,8 +250,8 @@ module.exports = function( grunt ) {
 				}
 			},
 			allInOneNode: {
-				src: "src/build/allinone-node.js",
-				dest: "dist/globalize-allinone-node.js"
+				src: "src/build/node-main.js",
+				dest: "dist/node-main.js"
 			}
 		},
 		uglify: {

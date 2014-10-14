@@ -55,7 +55,7 @@
     "Tobie Langel <tobie.langel@gmail.com> (http://tobielangel.com)",
     "Boris Moore <borismoore@gmail.com> (http://www.borismoore.com)"
   ],
-  "main": "./dist/globalize-allinone-node.js",
+  "main": "./dist/node-main.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/jquery/globalize.git"
