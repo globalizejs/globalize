@@ -1,4 +1,4 @@
-## Globalize.load( cldrJSONData )
+## Globalize.load( cldrJSONData, ... )
 
 This method allows you to load CLDR JSON locale data. `Globalize.load()` is a
 proxy to `Cldr.load()`.

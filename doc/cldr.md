@@ -51,10 +51,24 @@ Example of loading it dynamically:
 ```html
 <script src="jquery.js"></script>
 <script>
-$.get( "cldr/main/en/ca-gregorian.json", Globalize.load );
-$.get( "cldr/supplemental/likelySubtags.json", Globalize.load );
-$.get( "cldr/supplemental/timeData.json", Globalize.load );
-$.get( "cldr/supplemental/weekData.json", Globalize.load );
+$.when(
+  $.get( "cldr/main/en/ca-gregorian.json" ),
+  $.get( "cldr/supplemental/likelySubtags.json" ),
+  $.get( "cldr/supplemental/timeData.json" ),
+  $.get( "cldr/supplemental/weekData.json" )
+).then(function() {
+
+  // Normalize $.get results, we only need the JSON, not the request statuses.
+  return [].slice.apply( arguments, [ 0 ] ).map(function( result ) {
+      return result[ 0 ];
+  });
+
+}).then( Globalize.load ).then(function() {
+
+  // Your code goes here.
+
+});
+
 </script>
 ```
 
@@ -69,10 +83,14 @@ define([
   "globalize/date"
 ], function( Globalize, enCaGregorian, likelySubtags, timeData, weekData ) {
 
-  Globalize.load( enCaGregorian );
-  Globalize.load( likelySubtags );
-  Globalize.load( timeData );
-  Globalize.load( weekData );
+  Globalize.load(
+    enCaGregorian,
+    likelySubtags,
+    timeData,
+    weekData
+  );
+
+  // Your code goes here.
 
 });
 ```
@@ -80,9 +98,13 @@ define([
 Example using Node.js:
 
 ```javascript
-var Globalize = require( "globalize" );
-Globalize.load( require( "./cldr/main/en/ca-gregorian.json" ) );
-Globalize.load( require( "./cldr/supplemental/likelySubtags.json" ) );
-Globalize.load( require( "./cldr/supplemental/timeData.json" ) );
-Globalize.load( require( "./cldr/supplemental/weekData.json" ) );
+var cldrData = require( "cldr-data" ),
+  Globalize = require( "globalize" );
+
+Globalize.load(
+  cldrData( "main/en/ca-gregorian" ),
+  cldrData( "supplemental/likelySubtags" ),
+  cldrData( "supplemental/timeData" ),
+  cldrData( "supplemental/weekData" )
+);
 ```

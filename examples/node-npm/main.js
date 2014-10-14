@@ -4,12 +4,14 @@ var cldrData = require( "cldr-data" );
 var Globalize = require( "globalize" );
 
 // Before we can use Globalize, we need to feed it on the appropriate I18n content (Unicode CLDR). Read Requirements on Getting Started on the root's README.md for more information.
-Globalize.load( cldrData( "main/en/ca-gregorian" ) );
-Globalize.load( cldrData( "main/en/numbers" ) );
-Globalize.load( cldrData( "supplemental/likelySubtags" ) );
-Globalize.load( cldrData( "supplemental/plurals" ) );
-Globalize.load( cldrData( "supplemental/timeData" ) );
-Globalize.load( cldrData( "supplemental/weekData" ) );
+Globalize.load(
+	cldrData( "main/en/ca-gregorian" ),
+	cldrData( "main/en/numbers" ),
+	cldrData( "supplemental/likelySubtags" ),
+	cldrData( "supplemental/plurals" ),
+	cldrData( "supplemental/timeData" ),
+	cldrData( "supplemental/weekData" )
+);
 
 // Set "en" as our default locale.
 Globalize.locale( "en" );

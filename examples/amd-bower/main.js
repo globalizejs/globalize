@@ -43,12 +43,14 @@ require([
 	var en, pluralData;
 
 	// At this point, we have Globalize loaded. But, before we can use it, we need to feed it on the appropriate I18n content (Unicode CLDR). Read Requirements on Getting Started on the root's README.md for more information.
-	Globalize.load( enGregorian );
-	Globalize.load( enNumbers );
-	Globalize.load( likelySubtags );
-	Globalize.load( pluralsData );
-	Globalize.load( timeData );
-	Globalize.load( weekData );
+	Globalize.load(
+		enGregorian,
+		enNumbers,
+		likelySubtags,
+		pluralsData,
+		timeData,
+		weekData
+	);
 
 	// Instantiate "en".
 	en = Globalize( "en" );
