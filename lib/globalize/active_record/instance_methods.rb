@@ -124,9 +124,9 @@ module Globalize
         @translation_caches ||= {}
       end
 
-      def translations_by_locale(&block)
+      def translations_by_locale
         translations.each_with_object(HashWithIndifferentAccess.new) do |t, hash|
-          hash[t.locale] = block_given? ? block.call(t) : t
+          hash[t.locale] = block_given? ? yield(t) : t
         end
       end
 
