@@ -52,11 +52,11 @@ module Globalize
   protected
 
     def read_locale
-      Thread.current[:globalize_locale]
+      @globalize_locale
     end
 
     def set_locale(locale)
-      Thread.current[:globalize_locale] = locale.try(:to_sym)
+      @globalize_locale = locale.try(:to_sym)
     end
 
     def read_fallbacks
