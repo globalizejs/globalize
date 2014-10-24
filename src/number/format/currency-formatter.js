@@ -13,7 +13,7 @@ define(function() {
  */
 return function( number, currency, cldr ) {
 
-	return cldr.main( "currencies");
+	return cldr.main( "numbers/currencies/" + currency + "/symbol" );
 };
 
 });
