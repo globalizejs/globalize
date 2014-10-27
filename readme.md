@@ -157,7 +157,7 @@ NOTE: Remember to add the new field to the model:
 
 ```ruby
 translates :title, :author
-```     
+```
 
 ## Versioning with Globalize
 
@@ -296,6 +296,18 @@ post.title(:foo => "bar")
 
 post.title(:superlative => "rocks")
 # #=> "Globalize rocks!"
+```
+
+## Fragment caching
+
+Don't forget to add globalize locale into the `cache_key` to separate different localizations of the record.
+One of the possible ways to implement it:
+
+```ruby
+# inside translated model
+def cache_key
+  super + '-' + Globalize.locale.to_s
+end
 ```
 
 ## Official Globalize extensions
