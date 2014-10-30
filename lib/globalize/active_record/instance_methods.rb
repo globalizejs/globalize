@@ -134,6 +134,11 @@ module Globalize
         translations_by_locale(&:"#{name}")
       end
 
+      # Get available locales from translations association, without a separate distinct query
+      def available_locales
+        translations.map(&:locale).uniq
+      end
+
       def globalize_fallbacks(locale)
         Globalize.fallbacks(locale)
       end
