@@ -61,7 +61,7 @@ module Globalize
 
         super.merge(Hash[equalities.map { |where|
           name = where.left.name
-          [name, binds.fetch(name.to_s) { where.right }]
+          [name, binds.fetch(name.to_s) { right = where.right; right.is_a?(Arel::Nodes::Casted) ? right.val : right }]
         }])
       end
 

@@ -37,7 +37,11 @@ module Globalize
         stash.reject {|locale, attrs| attrs.empty?}.each do |locale, attrs|
           translation = record.translations_by_locale[locale] ||
                         record.translations.build(locale: locale.to_s)
-          attrs.each { |name, value| translation[name] = value }
+
+          attrs.each do |name, value|
+            value = value.val if value.is_a?(Arel::Nodes::Casted)
+            translation[name] = value
+          end
           ensure_foreign_key_for(translation)
           translation.save!
         end
@@ -53,8 +57,7 @@ module Globalize
 
       # Sometimes the translation is initialised before a foreign key can be set.
       def ensure_foreign_key_for(translation)
-        # AR >= 4.1 reflections renamed to _reflections
-        translation[translation.class.reflections[:globalized_model].foreign_key] = record.id
+        translation[translation.class.reflections["globalized_model"].foreign_key] = record.id
       end
 
       def type_cast(name, value)
