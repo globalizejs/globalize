@@ -1,6 +1,9 @@
 language: ruby
 sudo: false
 script: "bundle exec rake"
+# Per https://github.com/travis-ci/travis-ci/issues/2821
+install:
+  - bundle install --retry=3
 env:
   - RAILS_4_2=true DB=sqlite3
   - RAILS_4_2=true DB=postgres
