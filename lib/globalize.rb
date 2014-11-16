@@ -52,15 +52,15 @@ module Globalize
   protected
 
     def read_locale
-      Thread.current[:globalize_locale]
+      @globalize_locale
     end
 
     def set_locale(locale)
-      Thread.current[:globalize_locale] = locale.try(:to_sym)
+      @globalize_locale = locale.try(:to_sym)
     end
 
     def read_fallbacks
-      Thread.current[:fallbacks] || HashWithIndifferentAccess.new
+      @fallbacks || HashWithIndifferentAccess.new
     end
 
     def set_fallbacks(locales)
@@ -70,7 +70,7 @@ module Globalize
         fallback_hash[key] = value.presence || [key]
       end if locales.present?
 
-      Thread.current[:fallbacks] = fallback_hash
+      @fallbacks = fallback_hash
     end
   end
 end
