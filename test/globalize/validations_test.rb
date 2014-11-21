@@ -1,8 +1,7 @@
 require File.expand_path('../../test_helper', __FILE__)
 
 class ValidationsTest < MiniTest::Spec
-  def teardown
-    super
+  after(:each) do
     Validatee.reset_callbacks(:validate)
   end
 

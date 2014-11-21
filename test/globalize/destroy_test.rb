@@ -4,9 +4,7 @@ require File.expand_path('../../test_helper', __FILE__)
 class DestroyTest < MiniTest::Spec
   describe '.destroy_all' do
     before do
-      @posts = [
-        Post.create(:title => 'title'),
-        Post.create(:title => 'title') ]
+      @posts = [Post.create(:title => 'title'), Post.create(:title => 'title')]
       Globalize.with_locale(:ja) do
         @posts[0].update_attributes(:title => 'タイトル1')
         @posts[1].update_attributes(:title => 'タイトル2')

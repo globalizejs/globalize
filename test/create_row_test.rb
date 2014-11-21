@@ -19,13 +19,13 @@ module ActiveRecord
 end
 
 class CreateRowTest < MiniTest::Spec
-  def setup
+  before(:each) do
     ActiveSupport::Notifications.subscribe('sql.active_record', ActiveRecord::Updater.new)
     ActiveRecord::Updater.query_count = 0
     ActiveRecord::Updater.queries = []
   end
 
-  def teardown
+  after(:each) do
     ActiveSupport::Notifications.unsubscribe('sql.active_record')
   end
 

@@ -3,15 +3,14 @@ require File.expand_path('../../test_helper', __FILE__)
 class MigrationTest < MiniTest::Spec
   include Globalize::ActiveRecord::Exceptions
 
-  def setup
-    super
+  before(:each) do
     reset_schema(Migrated, MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters, TwoAttributesMigrated)
     assert Migrated.translation_class.table_exists? == false
     assert Migrated.translation_class.index_exists_on?(:migrated_id) == false
     assert Migrated.translation_class.index_exists_on?(:locale) == false
   end
 
-  def teardown
+  after(:each) do
     reset_schema(Migrated, MigratedWithMegaUltraSuperLongModelNameWithMoreThenSixtyCharacters, TwoAttributesMigrated)
   end
 

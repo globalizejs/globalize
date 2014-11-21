@@ -6,13 +6,12 @@ class TestLogger < String
 end
 
 class LogMissingTranslationsTest < MiniTest::Spec
-  def setup
+  before(:each) do
     @locale, @key, @options = :en, :foo, {}
     @exception = I18n::MissingTranslationData.new(@locale, @key, @options)
 
     @logger = TestLogger.new
     I18n.missing_translations_logger = @logger
-    super
   end
 
   it "defines I18n.missing_translations_logger accessor" do

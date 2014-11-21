@@ -194,7 +194,7 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
   end
 
   describe 'fallbacks' do
-    def setup
+    before(:each) do
       @previous_backend = I18n.backend
       I18n.pretend_fallbacks
       I18n.backend = BackendWithFallbacks.new
@@ -204,7 +204,7 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
       I18n.fallbacks.map('en' => [ 'ja' ])
     end
 
-    def teardown
+    after(:each) do
       I18n.fallbacks.clear
       I18n.hide_fallbacks
       I18n.backend = @previous_backend

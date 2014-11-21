@@ -4,7 +4,6 @@ require 'fileutils'
 require 'logger'
 
 Bundler.require(:default, :test)
-require 'database_cleaner'
 
 log = '/tmp/globalize3_test.log'
 FileUtils.touch(log) unless File.exists?(log)
@@ -12,14 +11,8 @@ ActiveRecord::Base.logger = Logger.new(log)
 ActiveRecord::LogSubscriber.attach_to(:active_record)
 ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :database => ':memory:')
 
-$:.unshift File.expand_path('../../lib', __FILE__)
-require 'globalize'
-require 'erb'
-
 require File.expand_path('../data/schema', __FILE__)
 require File.expand_path('../data/models', __FILE__)
-
-DatabaseCleaner.strategy = :truncation
 
 require 'minitest/autorun'
 require 'minitest/reporters'
@@ -28,22 +21,22 @@ Minitest::Reporters.use!
 require 'minitest/spec'
 
 I18n.enforce_available_locales = true
-I18n.available_locales = [ :en, :'en-US', :fr, :de, :'de-DE', :he, :nl, :pl]
+I18n.available_locales = [ :en, :'en-US', :fr, :de, :'de-DE', :he, :nl, :pl ]
 
-MiniTest::Spec.class_eval do
-  def setup
+require 'database_cleaner'
+DatabaseCleaner.strategy = :transaction
+class MiniTest::Spec
+  before :each do
+    DatabaseCleaner.start
     I18n.locale = I18n.default_locale = :en
     Globalize.locale = nil
-    DatabaseCleaner.start
   end
 
-  def teardown
+  after :each do
     DatabaseCleaner.clean
   end
 
-  def with_locale(*args, &block)
-    Globalize.with_locale(*args, &block)
-  end
+  delegate :with_locale, to: Globalize
 
   def with_fallbacks
     previous = I18n.backend
