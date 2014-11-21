@@ -21,6 +21,12 @@ rvm:
   - 1.9.3
   - rbx-2
   # - jruby-19mode
+matrix:
+  allow_failures:
+    - rvm: 2.2
+    - env: RAILS_4_2=true DB=sqlite3
+    - env: RAILS_4_2=true DB=postgres
+    - env: RAILS_4_2=true DB=mysql
 notifications:
   webhooks:
     - https://webhooks.gitter.im/e/40dc875af26f64f39090
