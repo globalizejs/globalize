@@ -1,21 +1,27 @@
 # Globalize Changelog
 
-## 4.0.2 (2014-6-29)
+## 4.0.3 (2014-11-24)
+* Fixes a problem where after dup the dup'd model and the original model shared a translation instance, which means that if you mutate a translated field on the dup and save it, the original becomes a clone of the dup. [#352](https://github.com/globalize/globalize/pull/352).
+* Deprecated `with_required_attributes`, `required_attributes`, and `required_translated_attributes`. `with_translations` no longer invokes `with_required_attributes`. [#355](https://github.com/globalize/globalize/pull/355).
+* Removed all usages of `Thread.local`. [#374](https://github.com/globalize/globalize/pull/374). (thanks [Hubert Lee](https://github.com/hube)).
+* Added `available_locales` method. This duplicates `translated_locales` method, but it doesn't use a separate `DISTINCT` query. [#339](https://github.com/globalize/globalize/pull/339). (thanks [Andrew Volozhanin](https://github.com/scarfacedeb)).
+
+## 4.0.2 (2014-06-29)
 * Use `reflections` class method so `ensure_foreign_key_for` works in AR >= 4.1.2, fixes [#353](https://github.com/globalize/globalize/pull/353).
 * Set `touch:true` on `belongs_to` for the globalized model, fixes [#330](https://github.com/globalize/globalize/pull/330) (thanks [shlensky](https://github.com/shlensky)).
 * Accept optional arguments passed to `where_values_hash`, fixes [#354](https://github.com/globalize/globalize/pull/354) (thanks [felixbuenemann](https://github.com/felixbuenemann)).
 
-## 4.0.1 (2014-3-29)
+## 4.0.1 (2014-03-29)
 * Fix bug where `with_translations` only works if called after `where` in relation chain, fixes [#343](https://github.com/globalize/globalize/issues/343).
 * Use `preload` and `joins` instead of `includes` in `with_translations`, fixes [#329](https://github.com/globalize/globalize/issues/329) (thanks [Andrew Volozhanin](https://github.com/scarfacedeb)).
 * Update `database_cleaner` dependency to 1.2.0.
 * Support use of `first`/`take`/`last` with limit on queries with translated attributes, fixes [#322](https://github.com/globalize/globalize/issues/322) (thanks [prusswan](https://github.com/prusswan)).
 * Ensure that options are always extracted from `attr_names` in `Globalize::ActiveRecord::ActMacro#translates`, PR [#319](https://github.com/globalize/globalize/pull/319) (thanks [Marek](https://github.com/keram)).
 
-## 4.0.0 (2014-1-4)
+## 4.0.0 (2014-01-04)
 * Extract all versioning-related code to separate [globalize-versioning](https://github.com/globalize/globalize-versioning) gem.
 
-## 4.0.0.alpha.5 (2014-1-4)
+## 4.0.0.alpha.5 (2014-01-04)
 * Fix issue where globalize breaks has_many through when model called with `where` (thanks [Paul McMahon](https://github.com/pwim)).
 * Modify dup so that translations are copied, and remove custom clone code to conform to Rails/AR semantics (thanks [Paul McMahon](https://github.com/pwim)).
 
@@ -52,15 +58,15 @@
 * Duplicate arguments in query finders before modifying them, fixes [#284](https://github.com/globalize/globalize/issues/284).
 * Add test for `find_or_create_by` with translated attribute.
 
-## 4.0.0.alpha.1 (2013-10-9)
+## 4.0.0.alpha.1 (2013-10-09)
 
 * Initial release of Rails 4-compatible gem.
 
-## 3.1.0 (2014-1-25)
+## 3.1.0 (2014-01-25)
 
 * Backport scope support on uniqueness validation from 4.0, drop support for ActiveRecord < 3.1, fixes [#324](https://github.com/globalize/globalize/issues/324).
 
-## 3.0.4 (2014-1-8)
+## 3.0.4 (2014-01-08)
 * Extract all versioning-related code to separate [globalize-versioning](https://github.com/globalize/globalize-versioning) gem.
 
 ## 3.0.3 (2013-12-26)
