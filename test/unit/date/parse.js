@@ -391,7 +391,7 @@ QUnit.test( "should parse milliseconds in a day (A+)", function( assert ) {
  *  Zone
  */
 
-QUnit.test( "should format timezone (z)", function( assert ) {
+QUnit.test( "should parse timezone (z)", function( assert ) {
 	[ "z", "zz", "zzz", "zzzz" ].forEach(function( z ) {
 		assertParseTimezone( assert, "GMT", z, cldr, 0 );
 	});
@@ -407,7 +407,7 @@ QUnit.test( "should format timezone (z)", function( assert ) {
 	assertParseTimezone( assert, "GMT+11:00", "zzzz", cldr, -660 );
 });
 
-QUnit.test( "should format timezone (Z)", function( assert ) {
+QUnit.test( "should parse timezone (Z)", function( assert ) {
 	assertParseTimezone( assert, "+0000", "Z", cldr, 0 );
 	assertParseTimezone( assert, "+0000", "ZZ", cldr, 0 );
 	assertParseTimezone( assert, "+0000", "ZZZ", cldr, 0 );
@@ -427,7 +427,7 @@ QUnit.test( "should format timezone (Z)", function( assert ) {
 	assertParseTimezone( assert, "+11:00", "ZZZZZ", cldr, -660 );
 });
 
-QUnit.test( "should format timezone (O)", function( assert ) {
+QUnit.test( "should parse timezone (O)", function( assert ) {
 	assertParseTimezone( assert, "GMT", "O", cldr, 0 );
 	assertParseTimezone( assert, "GMT", "OOOO", cldr, 0 );
 
@@ -438,7 +438,7 @@ QUnit.test( "should format timezone (O)", function( assert ) {
 	assertParseTimezone( assert, "GMT+11:00","OOOO" , cldr, -660 );
 });
 
-QUnit.test( "should format timezone (X)", function( assert ) {
+QUnit.test( "should parse timezone (X)", function( assert ) {
 	assertParseTimezone( assert, "Z", "X", cldr, 0 );
 	assertParseTimezone( assert, "Z", "XX", cldr, 0 );
 	assertParseTimezone( assert, "Z", "XXX", cldr, 0 );
@@ -463,7 +463,7 @@ QUnit.test( "should format timezone (X)", function( assert ) {
 	assertParseTimezone( assert, "+11:00", "XXXXX", cldr, -660 );
 });
 
-QUnit.test( "should format timezone (x)", function( assert ) {
+QUnit.test( "should parse timezone (x)", function( assert ) {
 	assertParseTimezone( assert, "+00", "x", cldr, 0 );
 	assertParseTimezone( assert, "+0000", "xx", cldr, 0 );
 	assertParseTimezone( assert, "+00:00", "xxx", cldr, 0 );
