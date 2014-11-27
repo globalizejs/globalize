@@ -548,4 +548,14 @@ QUnit.test( "should format timezone (x)", function( assert ) {
 	assert.equal( format( date, properties( "xxxxx", cldr ) ), "+11:00" );
 });
 
+/**
+ *  Literal
+ */
+
+QUnit.test( "should format literal (')", function( assert ) {
+	assert.equal( format( date1, properties( "yyyy.MM.dd G 'at' HH:mm:ss zzz", cldr ) ),
+		"1982.01.02 AD at 09:05:59 GMT-2" );
+	assert.equal( format( date1, properties( "hh 'o''clock' a", cldr ) ), "09 o'clock AM" );
+});
+
 });

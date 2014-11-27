@@ -152,5 +152,4 @@ QUnit.test( "should parse invalid numbers as NaN", function( assert ) {
 	assert.deepEqual( parse( "NaN", properties( "0", en ) ), NaN );
 });
 
-
 });

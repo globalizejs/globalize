@@ -1,6 +1,7 @@
 define([
-	"./pattern-re"
-], function( datePatternRe ) {
+	"./pattern-re",
+	"../util/regexp/escape"
+], function( datePatternRe, regexpEscape ) {
 
 /**
  * tokenizer( value, pattern, properties )
@@ -312,11 +313,11 @@ return function( value, properties ) {
 
 			case "'":
 				token.type = "literal";
-				if ( current.charAt( 1 ) === "'" ) {
-					tokenRe = /'/;
-				} else {
-					tokenRe = /'[^']+'/;
+				current = current.replace( /''/, "'" );
+				if ( length > 2 ) {
+					current = current.slice( 1, -1 );
 				}
+				tokenRe = new RegExp( regexpEscape( current ) );
 				break;
 
 			default:

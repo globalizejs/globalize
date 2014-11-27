@@ -269,4 +269,12 @@ QUnit.test( "should format infinite numbers", function( assert ) {
 	assert.equal( format( NaN, properties( "0", en ) ), "NaN" );
 });
 
+/**
+ *  Literal
+ */
+
+QUnit.test( "should format literal (')", function( assert ) {
+	assert.equal( format( 69900, properties( "'$'#,##0", en ) ), "$69,900" );
+});
+
 });

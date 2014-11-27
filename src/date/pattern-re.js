@@ -1,5 +1,5 @@
 define(function() {
 
-return (/([a-z])\1*|'[^']+'|''|./ig);
+return (/([a-z])\1*|'([^']|'')+'|''|./ig);
 
 });

@@ -35,6 +35,7 @@
 var createError = Globalize._createError,
 	formatMessage = Globalize._formatMessage,
 	isPlainObject = Globalize._isPlainObject,
+	regexpEscape = Globalize._regexpEscape,
 	validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validateParameterPresence = Globalize._validateParameterPresence,

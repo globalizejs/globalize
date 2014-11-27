@@ -32,6 +32,7 @@
 }(this, function( Cldr, Globalize ) {
 
 var createError = Globalize._createError,
+	regexpEscape = Globalize._regexpEscape,
 	validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validateParameterPresence = Globalize._validateParameterPresence,

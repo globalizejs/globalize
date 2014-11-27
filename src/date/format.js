@@ -244,7 +244,15 @@ return function( date, properties ) {
 				ret = dateTimezoneHourFormat( date, ret );
 				break;
 
-			// Anything else is considered a literal, including [ ,:/.'@#], chinese, japonese, and
+			// ' literals.
+			case "'":
+				current = current.replace( /''/, "'" );
+				if ( length > 2 ) {
+					current = current.slice( 1, -1 );
+				}
+				return current;
+
+			// Anything else is considered a literal, including [ ,:/.@#], chinese, japonese, and
 			// arabic characters.
 			default:
 				return current;

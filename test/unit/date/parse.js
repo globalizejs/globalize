@@ -488,4 +488,11 @@ QUnit.test( "should parse timezone (x)", function( assert ) {
 	assertParseTimezone( assert, "+11:00", "xxxxx", cldr, -660 );
 });
 
+QUnit.test( "should parse literal (')", function( assert ) {
+	var date = new Date();
+	date.setHours( 9 );
+	date = startOf( date, "hour" );
+	assertParse( assert, "09 o'clock AM", "hh 'o''clock' a", cldr, date );
+});
+
 });

@@ -97,8 +97,12 @@ return function( number, properties ) {
 	ret += suffix;
 
 	// Symbols
-	return ret.replace( /'[^']+'|[.,\-+E%\u2030]/g, function( symbol ) {
+	return ret.replace( /'([^']|'')+'|''|[.,\-+E%\u2030]/g, function( symbol ) {
 		if ( symbol.charAt( 0 ) === "'" ) {
+			symbol = symbol.replace( /''/, "'" );
+			if ( symbol.length > 2 ) {
+				symbol = symbol.slice( 1, -1 );
+			}
 			return symbol;
 		}
 		return symbolMap[ symbol ];
