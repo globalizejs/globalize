@@ -14,6 +14,9 @@ require([
 	// core
 	"./functional/core",
 
+	// currency
+	"./functional/currency/currency-formatter",
+
 	// date
 	"./functional/date/date-formatter",
 	"./functional/date/date-parser",
