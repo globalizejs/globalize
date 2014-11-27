@@ -10,6 +10,7 @@ define([
 	"./common/validate/parameter-type/string",
 	"./number/format",
 	"./number/format-properties",
+	"./number/numbering-system",
 	"./number/parse",
 	"./number/parse-properties",
 	"./number/pattern",
@@ -19,8 +20,8 @@ define([
 ], function( Globalize, createErrorUnsupportedFeature, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterRange, validateParameterTypeNumber,
 	validateParameterTypePlainObject, validateParameterTypeString, numberFormat,
-	numberFormatProperties, numberParse, numberParseProperties, numberPattern, numberSymbol,
-	stringPad ) {
+	numberFormatProperties, numberNumberingSystem, numberParse, numberParseProperties, numberPattern,
+	numberSymbol, stringPad ) {
 
 /**
  * .numberFormatter( [options] )
@@ -164,6 +165,7 @@ Globalize.prototype.parseNumber = function( value, options ) {
  * Optimization to avoid duplicating some internal functions across modules.
  */
 Globalize._createErrorUnsupportedFeature = createErrorUnsupportedFeature;
+Globalize._numberNumberingSystem = numberNumberingSystem;
 Globalize._numberSymbol = numberSymbol;
 Globalize._stringPad = stringPad;
 Globalize._validateParameterTypeString = validateParameterTypeString;

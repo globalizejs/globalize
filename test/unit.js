@@ -13,6 +13,9 @@ require([
 	// core
 	"./unit/core/locale",
 
+	// currency
+	"./unit/currency/symbol-pattern",
+
 	// date
 	"./unit/date/expand-pattern",
 	"./unit/date/timezone-hour-format",

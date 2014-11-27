@@ -190,6 +190,18 @@ module.exports = function( grunt ) {
 							}
 						},
 						{
+							name: "globalize.currency",
+							include: [ "currency" ],
+							exclude: [ "cldr", "cldr/event", "./core", "./number" ],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-currency.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
 							name: "globalize.date",
 							include: [ "date" ],
 							exclude: [ "cldr", "cldr/supplemental", "./core", "./number" ],
@@ -283,6 +295,7 @@ module.exports = function( grunt ) {
 			dist: {
 				files: {
 					"tmp/globalize.min.js": [ "dist/globalize.js" ],
+					"tmp/globalize/currency.min.js": [ "dist/globalize/currency.js" ],
 					"tmp/globalize/date.min.js": [ "dist/globalize/date.js" ],
 					"tmp/globalize/number.min.js": [ "dist/globalize/number.js" ],
 					"tmp/globalize/plural.min.js": [ "dist/globalize/plural.js" ],

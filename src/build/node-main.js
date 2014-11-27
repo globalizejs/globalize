@@ -19,4 +19,5 @@ require( "./globalize/number" );
 require( "./globalize/plural" );
 
 // Load after globalize/number
+require( "./globalize/currency" );
 require( "./globalize/date" );
