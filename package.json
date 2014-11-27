@@ -70,7 +70,7 @@
     "cldr-data": ">=25"
   },
   "devDependencies": {
-    "cldr-data-downloader": "0.0.x",
+    "cldr-data-downloader": "0.1.x",
     "grunt": "0.4.5",
     "grunt-check-dependencies": "0.6.0",
     "grunt-compare-size": "0.4.0",

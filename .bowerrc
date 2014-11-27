@@ -1,6 +1,6 @@
 {
   "directory": "external",
   "scripts": {
-    "postinstall": "./node_modules/cldr-data-downloader/bin/download.js -i external/cldr-data/index.json -o external/cldr-data/"
+    "postinstall": "node ./node_modules/cldr-data-downloader/bin/download.js -i external/cldr-data/index.json -o external/cldr-data/"
   }
 }
