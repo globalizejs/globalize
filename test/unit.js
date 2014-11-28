@@ -2,7 +2,6 @@ require.config({
 	paths: {
 		cldr: "../external/cldrjs/dist/cldr",
 		"cldr-data": "../external/cldr-data",
-		CLDRPluralRuleParser: "../external/CLDRPluralRuleParser/src/CLDRPluralRuleParser",
 		json: "../external/requirejs-plugins/src/json",
 		src: "../src",
 		text: "../external/requirejs-text/text"
@@ -38,10 +37,7 @@ require([
 	"./unit/number/format-properties",
 	"./unit/number/format",
 	"./unit/number/parse-properties",
-	"./unit/number/parse",
-
-	/* plural */
-	"./unit/plural/form"
+	"./unit/number/parse"
 
 ], function() {
 	QUnit.start();

@@ -106,8 +106,7 @@ module.exports = function( grunt ) {
 				optimize: "none",
 				paths: {
 					cldr: "../external/cldrjs/dist/cldr",
-					CLDRPluralRuleParser: "../external/CLDRPluralRuleParser/src/" +
-						"CLDRPluralRuleParser"
+					"make-plural": "../external/make-plural/make-plural"
 				},
 				skipSemiColonInsertion: true,
 				skipModuleInsertion: true,
@@ -130,6 +129,34 @@ module.exports = function( grunt ) {
 							// Replace UMD wrapper into var assignment.
 							.replace( /\(function\(root, factory\)[\s\S]*?}\(this, function\(\) {/, "var CLDRPluralRuleParser = (function() {" )
 							.replace( /}\)\);\s+$/, "}());" );
+
+					// MakePlural
+					} else if ( (/make-plural/).test( id ) ) {
+						return contents
+
+							// Replace its wrapper into var assignment.
+							.replace( /\(function \(global\) {/, [
+								"var MakePlural;",
+								"/* jshint ignore:start */",
+								"MakePlural = (function() {"
+							].join( "\n" ) )
+							.replace( /if \(\(typeof module !== 'undefined'[\s\S]*/, [
+								"return MakePlural;",
+								"}());",
+								"/* jshint ignore:end */"
+							].join( "\n" ) )
+
+							// Remove if (!MakePlural.rules...) {...}
+							.replace( /if \(!MakePlural.rules \|\|[\s\S]*?}/, "" )
+
+							// Remove function xhr_require(src, url) {...}
+							.replace( /function xhr_require\(src, [\s\S]*?}/, "" )
+
+							// Remove function test(...) {...}
+							.replace( /function test\(lc, fn, [\s\S]*?return ok;\n}/, "" )
+
+							// Remove MakePlural.load = function(.*) {...return MakePlural;.*};
+							.replace( /MakePlural.load = function\([\s\S]*?return MakePlural;\n};/, "" );
 					}
 
 					// 1, and 2: Remove define() wrap.
@@ -194,7 +221,7 @@ module.exports = function( grunt ) {
 						{
 							name: "globalize.plural",
 							include: [ "plural" ],
-							exclude: [ "cldr", "cldr/event", "./core" ],
+							exclude: [ "cldr", "cldr/event", "cldr/supplemental", "./core" ],
 							create: true,
 							override: {
 								wrap: {

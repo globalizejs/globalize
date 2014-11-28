@@ -30,7 +30,6 @@ require([
 	"./functional/number/parse-number",
 
 	// plural
-	"./functional/plural/format-plural",
 	"./functional/plural/plural"
 
 ], function() {

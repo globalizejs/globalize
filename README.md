@@ -100,7 +100,7 @@ information on its usage.
 | globalize/date.js | +3.8KB | [Date module](#date_module) provides date formatting and parsing |
 | globalize/message.js | +0.5KB | [Message module](#message_module) provides message translation |
 | globalize/number.js | +2.6KB | [Number module](#number_module) provides number formatting and parsing |
-| globalize/plural.js | +2.0KB | [Plural module](#plural_module) provides pluralization support |
+| globalize/plural.js | +1.7KB | [Plural module](#plural_module) provides pluralization support |
 <!--- By updating this table, also update its clone in #usage -->
 
 <a name="browser_support"></a>
@@ -314,14 +314,14 @@ to you in different flavors):
 <a name="plural_module"></a>
 ### Plural module
 
-- **`Globalize.formatPlural( value, messageData [, formatValue ] )`**
+- **`.pluralGenerator()`**
 
- Return the appropriate message based on value's plural group: `zero`, `one`,
- `two`, `few`, `many`, or `other`.
+ Return a function that returns the value's corresponding plural group: `zero`, `one`, `two`, `few`,
+ `many`, or `other`.
 
- [Read more...](doc/api/plural/format-plural.md)
+ [Read more...](doc/api/plural/plural-generator.md)
 
-- **`Globalize.plural( value )`**
+- **`.plural( value )`**
 
  Return the value's corresponding plural group: `zero`, `one`, `two`, `few`, `many`, or `other`.
 
@@ -365,12 +365,6 @@ to you in different flavors):
  Thrown when a required parameter is missing on any static or instance methods.
 
  [Read more...](doc/error/e-missing-parameter.md)
-
-- **`E_PAR_MISSING_KEY`**
-
- Thrown when a parameter misses a required key.
-
- [Read more...](doc/error/e-par-missing-key.md)
 
 - **`E_PAR_OUT_OF_RANGE`**
 
