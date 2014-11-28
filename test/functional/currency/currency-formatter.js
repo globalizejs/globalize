@@ -7,11 +7,13 @@ define([
 	"json!cldr-data/main/zh/currencies.json",
 	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/plurals.json",
 	"../../util",
 	"globalize/currency",
-	"globalize/number"
+	"globalize/number",
+	"globalize/plural"
 ], function( Globalize, deCurrencies, deNumbers, enCurrencies, enNumbers, zhCurrencies,
-	zhNumbers, likelySubtags, util ) {
+	zhNumbers, likelySubtags, plurals, util ) {
 
 var teslaS = 69900;
 
@@ -21,6 +23,7 @@ function extraSetup() {
 		deNumbers,
 		enCurrencies,
 		enNumbers,
+		plurals,
 		zhCurrencies,
 		zhNumbers
 	);
@@ -87,6 +90,30 @@ QUnit.test( "should return a formatter", function( assert ) {
 	assert.equal( Globalize.currencyFormatter( "USD" )( teslaS ), "$69,900.00" );
 	assert.equal( de.currencyFormatter( "USD" )( teslaS ), "69.900,00 $" );
 	assert.equal( zh.currencyFormatter( "USD" )( teslaS ), "US$ 69,900.00" );
+
+	assert.equal( Globalize.currencyFormatter( "USD", {
+		style: "code"
+	})( teslaS ), "69,900 USD" );
+
+	assert.equal( de.currencyFormatter( "USD", {
+		style: "code"
+	})( teslaS ), "69.900 USD" );
+
+	assert.equal( zh.currencyFormatter( "USD", {
+		style: "code"
+	})( teslaS ), "69,900USD" );
+
+	assert.equal( Globalize.currencyFormatter( "USD", {
+		style: "name"
+	})( teslaS ), "69,900 US dollars" );
+
+	assert.equal( de.currencyFormatter( "USD", {
+		style: "name"
+	})( teslaS ), "69.900 US-Dollar" );
+
+	assert.equal( zh.currencyFormatter( "USD", {
+		style: "name"
+	})( teslaS ), "69,900美元" );
 });
 
 });

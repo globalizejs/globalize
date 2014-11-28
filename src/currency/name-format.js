@@ -3,15 +3,23 @@ define([
 ], function( formatMessage ) {
 
 /**
+ * nameFormat( formattedNumber, pluralForm, properties )
+ *
+ * Return the appropriate name form currency format.
  */
-return function( value, pluralForm, properties ) {
-	var displayNames = properties.displayNames,
+return function( formattedNumber, pluralForm, properties ) {
+	var displayName, unitPattern,
+		displayNames = properties.displayNames || {},
 		unitPatterns = properties.unitPatterns;
 
-	return formatMessage( unitPatterns[ pluralForm ] || unitPatterns.other, [
-		value,
-		displayNames[ pluralForm ] || displayNames.other
-	]);
+	displayName = displayNames[ "displayName-count-" + pluralForm ] ||
+		displayNames[ "displayName-count-other" ] ||
+		displayNames.displayName ||
+		properties.currency;
+	unitPattern = unitPatterns[ "unitPattern-count-" + pluralForm ] ||
+		unitPatterns[ "unitPattern-count-other" ];
+
+	return formatMessage( unitPattern, [ formattedNumber, displayName ]);
 };
 
 });

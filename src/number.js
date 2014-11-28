@@ -166,6 +166,7 @@ Globalize.prototype.parseNumber = function( value, options ) {
  */
 Globalize._createErrorUnsupportedFeature = createErrorUnsupportedFeature;
 Globalize._numberNumberingSystem = numberNumberingSystem;
+Globalize._numberPattern = numberPattern;
 Globalize._numberSymbol = numberSymbol;
 Globalize._stringPad = stringPad;
 Globalize._validateParameterTypeString = validateParameterTypeString;

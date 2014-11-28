@@ -35,6 +35,8 @@
 var alwaysArray = Globalize._alwaysArray,
 	formatMessage = Globalize._formatMessage,
 	numberNumberingSystem = Globalize._numberNumberingSystem,
+	numberPattern = Globalize._numberPattern,
+	validate = Globalize._validate,
 	validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validateParameterPresence = Globalize._validateParameterPresence,
