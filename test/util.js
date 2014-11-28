@@ -74,6 +74,16 @@ return {
 		assertParameterType( assert, "array", name, fn );
 	},
 
+	assertCurrencyParameter: function( assert, name, fn ) {
+		assertParameterType( assert, [ "string" ], name, fn );
+		assert.throws( fn( "ABCD" ), function E_INVALID_PAR_TYPE( error ) {
+			return error.code === "E_INVALID_PAR_TYPE" &&
+				error.name === name &&
+				"value" in error &&
+				"expected" in error;
+		}, "Expected \"E_INVALID_PAR_TYPE: Invalid `" + name + "` parameter type (string.length > 3)\" to be thrown" );
+	},
+
 	assertDateParameter: function( assert, name, fn ) {
 		assertParameterType( assert, "date", name, fn );
 	},

@@ -160,6 +160,7 @@ Globalize.prototype.parseNumber = function( value, options ) {
  */
 Globalize._numberNumberingSystem = numberNumberingSystem;
 Globalize._numberPattern = numberPattern;
+Globalize._validateParameterTypeNumber = validateParameterTypeNumber;
 
 return Globalize;
 
