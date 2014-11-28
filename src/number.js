@@ -159,6 +159,7 @@ Globalize.prototype.parseNumber = function( value, options ) {
  * Optimization to avoid duplicating some internal functions across modules.
  */
 Globalize._numberNumberingSystem = numberNumberingSystem;
+Globalize._numberPattern = numberPattern;
 
 return Globalize;
 

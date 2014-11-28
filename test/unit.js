@@ -14,7 +14,11 @@ require([
 	"./unit/core/locale",
 
 	// currency
+	"./unit/currency/code-properties",
+	"./unit/currency/name-properties",
 	"./unit/currency/symbol-pattern",
+
+	"./unit/currency/name-format",
 
 	// date
 	"./unit/date/expand-pattern",

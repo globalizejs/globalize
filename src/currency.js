@@ -5,16 +5,18 @@ define([
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/currency",
 	"./common/validate/parameter-type/plain-object",
-	"./currency/code-pattern",
+	"./common/validate/plural-module-presence",
+	"./currency/code-properties",
 	"./currency/name-format",
-	"./currency/name-pattern",
+	"./currency/name-properties",
 	"./currency/symbol-pattern",
 	"./util/object/omit",
 	"./number",
 	"cldr/event"
 ], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeCurrency, validateParameterTypePlainObject, currencyCodePattern,
-	currencyNameFormat, currencyNamePattern, currencySymbolPattern, objectOmit ) {
+	validateParameterTypeCurrency, validateParameterTypePlainObject, validatePluralModulePresence,
+	currencyCodeProperties, currencyNameFormat, currencyNameProperties, currencySymbolPattern,
+	objectOmit ) {
 
 /**
  * .currencyFormatter( currency [, options] )
@@ -30,7 +32,7 @@ define([
  */
 Globalize.currencyFormatter =
 Globalize.prototype.currencyFormatter = function( currency, options ) {
-	var cldr, numberFormatter, pattern, patternFn;
+	var cldr, fn, numberFormatter, plural, properties;
 
 	validateParameterPresence( currency, "currency" );
 	validateParameterTypeCurrency( currency, "currency" );
@@ -44,27 +46,27 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 
 	cldr.on( "get", validateCldr );
 
-	// Get pattern given style "symbol" (default), "code" or "name".
-	patternFn = { code: currencyCodePattern, name: currencyNamePattern };
-	pattern = ( patternFn[ options.style ] || currencySymbolPattern )( currency, cldr );
+	// Get properties given style ("symbol" default, "code" or "name").
+	fn = { code: currencyCodeProperties, name: currencyNameProperties };
+	properties = ( fn[ options.style ] || currencySymbolPattern )( currency, cldr );
 
 	cldr.off( "get", validateCldr );
 
-	// Return formatter when style is "symbol" or "code".
-	if ( typeof pattern === "string" ) {
+	// Return formatter when style is "symbol".
+	if ( typeof properties === "string" ) {
 
 		// options = options minus style, plus pattern.
 		options = objectOmit( options, "style" );
-		options.pattern = pattern;
+		options.pattern = properties;
 		return this.numberFormatter( options );
 	}
 
-	// Return formatter when style is "name".
-	numberFormatter = this.numberFormatter( pattern.pattern );
-	// FIXME validate plural presence or throw "load plural module" error.
-	//plural = this.plural(); // FIXME generator
+	// Return formatter when style is "code" or "name".
+	validatePluralModulePresence();
+	numberFormatter = this.numberFormatter({ pattern: properties.pattern });
+	plural = this.pluralGenerator();
 	return function( value ) {
-		return currencyNameFormat( numberFormatter( value ), /* plural( value ), */ pattern );
+		return currencyNameFormat( numberFormatter( value ), plural( value ), properties );
 	};
 };
 
