@@ -7,13 +7,15 @@ define([
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/zh/currencies.json",
 	"json!cldr-data/main/zh/numbers.json",
+	"json!cldr-data/supplemental/currencyData.json",
 	"json!cldr-data/supplemental/likelySubtags.json"
 ], function( Cldr, symbolPattern, deCurrencies, deNumbers, enCurrencies, enNumbers, zhCurrencies,
-	zhNumbers, likelySubtags ) {
+	zhNumbers, currencyData, likelySubtags ) {
 
 var de, en, zh;
 
 Cldr.load(
+	currencyData,
 	deCurrencies,
 	deNumbers,
 	enCurrencies,

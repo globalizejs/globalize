@@ -1,7 +1,8 @@
 define([
+	"./supplemental-override",
 	"../common/regexp-not-s",
 	"../number/numbering-system"
-], function( regexpNotS, numberNumberingSystem ) {
+], function( currencySupplementalOverride, regexpNotS, numberNumberingSystem ) {
 
 /**
  * symbolPattern( currency, cldr )
@@ -35,6 +36,10 @@ return function( currency, cldr ) {
 		"currencyFormats-numberSystem-" + numberNumberingSystem( cldr ),
 		"standard" /* 1 */
 	]);
+
+	// The number of decimal places and the rounding for each currency is not locale-specific. Those
+	// values overridden by Supplemental Currency Data.
+	pattern = currencySupplementalOverride( currency, pattern, cldr );
 
 	return pattern.split( ";" ).map(function( pattern ) {
 

@@ -38,6 +38,7 @@
 
 var createError = Globalize._createError,
 	regexpEscape = Globalize._regexpEscape,
+	stringPad = Globalize._stringPad,
 	validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validateParameterPresence = Globalize._validateParameterPresence,

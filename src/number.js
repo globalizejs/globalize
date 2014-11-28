@@ -20,8 +20,8 @@ define([
 ], function( Globalize, createErrorUnsupportedFeature, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterRange, validateParameterTypeNumber,
 	validateParameterTypePlainObject, validateParameterTypeString, numberFormat,
-	numberFormatProperties, numberNumberingSystem, numberParse, numberParseProperties, numberPattern,
-	numberSymbol, stringPad ) {
+	numberFormatProperties, numberNumberingSystem, numberParse, numberParseProperties,
+	numberPattern, numberSymbol, stringPad ) {
 
 /**
  * .numberFormatter( [options] )
@@ -169,6 +169,7 @@ Globalize._numberNumberingSystem = numberNumberingSystem;
 Globalize._numberPattern = numberPattern;
 Globalize._numberSymbol = numberSymbol;
 Globalize._stringPad = stringPad;
+Globalize._validateParameterTypeNumber = validateParameterTypeNumber;
 Globalize._validateParameterTypeString = validateParameterTypeString;
 
 return Globalize;

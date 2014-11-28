@@ -4,6 +4,7 @@ define([
 	"./common/validate/default-locale",
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/currency",
+	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/plain-object",
 	"./common/validate/plural-module-presence",
 	"./currency/code-properties",
@@ -14,9 +15,15 @@ define([
 	"./number",
 	"cldr/event"
 ], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeCurrency, validateParameterTypePlainObject, validatePluralModulePresence,
-	currencyCodeProperties, currencyNameFormat, currencyNameProperties, currencySymbolPattern,
-	objectOmit ) {
+	validateParameterTypeNumber, validateParameterTypeCurrency, validateParameterTypePlainObject,
+	validatePluralModulePresence, currencyCodeProperties, currencyNameFormat,
+	currencyNameProperties, currencySymbolPattern, objectOmit ) {
+
+function validateRequiredCldr( path, value ) {
+	validateCldr( path, value, {
+		skip: [ /supplemental\/currencyData\/fractions\/[A-Za-z]{3}$/ ]
+	});
+}
 
 /**
  * .currencyFormatter( currency [, options] )
@@ -44,28 +51,32 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 
 	validateDefaultLocale( cldr );
 
-	cldr.on( "get", validateCldr );
+	cldr.on( "get", validateRequiredCldr );
 
 	// Get properties given style ("symbol" default, "code" or "name").
 	fn = { code: currencyCodeProperties, name: currencyNameProperties };
 	properties = ( fn[ options.style ] || currencySymbolPattern )( currency, cldr );
 
-	cldr.off( "get", validateCldr );
+	cldr.off( "get", validateRequiredCldr );
+
+	options = objectOmit( options, "style" );
 
 	// Return formatter when style is "symbol".
 	if ( typeof properties === "string" ) {
 
 		// options = options minus style, plus pattern.
-		options = objectOmit( options, "style" );
 		options.pattern = properties;
 		return this.numberFormatter( options );
 	}
 
 	// Return formatter when style is "code" or "name".
 	validatePluralModulePresence();
-	numberFormatter = this.numberFormatter({ pattern: properties.pattern });
+	options.pattern = properties.pattern;
+	numberFormatter = this.numberFormatter( options );
 	plural = this.pluralGenerator();
 	return function( value ) {
+		validateParameterPresence( value, "value" );
+		validateParameterTypeNumber( value, "value" );
 		return currencyNameFormat( numberFormatter( value ), plural( value ), properties );
 	};
 };
