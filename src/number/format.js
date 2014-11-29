@@ -1,9 +1,10 @@
 define([
 	"./format/grouping-separator",
 	"./format/integer-fraction-digits",
-	"./format/significant-digits"
+	"./format/significant-digits",
+	"./format/currency-formatter"
 ], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits,
-	numberFormatSignificantDigits ) {
+	numberFormatSignificantDigits, numberFormatCurrencyFormatter ) {
 
 /**
  * format( number, properties )
@@ -15,11 +16,11 @@ define([
  * Return the formatted number.
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
-return function( number, properties ) {
+return function( number, properties, cldr ) {
 	var infinitySymbol, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
 	minimumIntegerDigits, minimumSignificantDigits, nanSymbol, padding, prefix,
 	primaryGroupingSize, pattern, ret, round, roundIncrement, secondaryGroupingSize, suffix,
-	symbolMap;
+	symbolMap, currency;
 
 	padding = properties[ 1 ];
 	minimumIntegerDigits = properties[ 2 ];
@@ -34,6 +35,7 @@ return function( number, properties ) {
 	infinitySymbol = properties[ 16 ];
 	nanSymbol = properties[ 17 ];
 	symbolMap = properties[ 18 ];
+	currency = properties[ 19 ];
 
 	// NaN
 	if ( isNaN( number ) ) {
@@ -84,6 +86,11 @@ return function( number, properties ) {
 	if ( primaryGroupingSize ) {
 		number = numberFormatGroupingSeparator( number, primaryGroupingSize,
 			secondaryGroupingSize );
+	}
+
+	// Format Currency
+	if ( currency ) {
+		number = numberFormatCurrencyFormatter( number, currency, cldr );
 	}
 
 	ret += number;

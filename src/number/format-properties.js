@@ -60,6 +60,7 @@ return function( pattern, cldr, options ) {
 	getOptions( "maximumFractionDigits", 4 );
 	getOptions( "minimumSignificantDigits", 5 );
 	getOptions( "maximumSignificantDigits", 6 );
+	getOptions( "currency", 19 );
 
 	// Grouping separators
 	if ( options.useGrouping === false ) {

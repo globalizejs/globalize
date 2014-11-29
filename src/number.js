@@ -78,7 +78,7 @@ Globalize.prototype.numberFormatter = function( options ) {
 	return function( value ) {
 		validateParameterPresence( value, "value" );
 		validateParameterTypeNumber( value, "value" );
-		return numberFormat( value, properties );
+		return numberFormat( value, properties, cldr );
 	};
 };
 
