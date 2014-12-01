@@ -16,6 +16,7 @@ require([
 
 	// currency
 	"./functional/currency/currency-formatter",
+	"./functional/currency/format-currency",
 
 	// date
 	"./functional/date/date-formatter",
