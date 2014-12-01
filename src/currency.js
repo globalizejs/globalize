@@ -106,7 +106,11 @@ Globalize.prototype.currencyParser = function( /* currency, options */ ) {
  * Format a currency according to the given options and the default/instance locale.
  */
 Globalize.formatCurrency =
-Globalize.prototype.formatCurrency = function( /* value, currency, options */ ) {
+Globalize.prototype.formatCurrency = function( value, currency, options ) {
+	validateParameterPresence( value, "value" );
+	validateParameterTypeNumber( value, "value" );
+
+	return this.currencyFormatter( currency, options )( value );
 };
 
 /**
