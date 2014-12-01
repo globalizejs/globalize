@@ -26,6 +26,7 @@ Node.js module.
   - [Date module](#date_module)
   - [Message module](#message_module)
   - [Number module](#number_module)
+    - [Currency module](#currency_module)
   - [Plural module](#plural_module)
   - more to come...
 - [Error reference](#error)
@@ -96,10 +97,11 @@ information on its usage.
 
 | File | Minified + gzipped size | Summary |
 |---|--:|---|
-| globalize.js | 1.1KB | [Core library](#core) |
+| globalize.js | 1.3KB | [Core library](#core) |
+| globalize/currency.js | +2.6KB | [Currency module](#currency_module) provides currency formatting and parsing |
 | globalize/date.js | +4.8KB | [Date module](#date_module) provides date formatting and parsing |
 | globalize/message.js | +0.5KB | [Message module](#message_module) provides message translation |
-| globalize/number.js | +3.0KB | [Number module](#number_module) provides number formatting and parsing |
+| globalize/number.js | +2.9KB | [Number module](#number_module) provides number formatting and parsing |
 | globalize/plural.js | +1.7KB | [Plural module](#plural_module) provides pluralization support |
 
 <a name="browser_support"></a>
@@ -166,6 +168,7 @@ requirements. See table below.
 | Module | Required CLDR JSON files |
 |---|---|
 | Core module | cldr/supplemental/likelySubtags.json |
+| Currency module | cldr/main/`locale`/currencies.json<br>cldr/supplemental/currencyData.json<br>+CLDR JSON files from number module |
 | Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/main/`locale`/timeZoneNames.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json<br>+CLDR JSON files from number module |
 | Number module | cldr/main/`locale`/numbers.json<br>cldr/supplemental/numberingSystems.json |
 | Plural module | cldr/supplemental/plurals.json |
@@ -310,6 +313,22 @@ to you in different flavors):
 
  [Read more...](doc/api/number/parse-number.md)
 
+<a name="currency_module"></a>
+#### Currency module
+
+- **`.currencyFormatter( currency [, options] )`**
+
+  Return a function that formats a currency according to the given options or
+  locale's defaults.
+
+ [Read more...](doc/api/currency/currency-formatter.md)
+
+- **`.formatCurrency( value, currency [, options] )`**
+
+  Format a currency according to the given options or locale's defaults.
+
+ [Read more...](doc/api/currency/format-currency.md)
+
 <a name="plural_module"></a>
 ### Plural module
 
@@ -378,6 +397,11 @@ to you in different flavors):
  Thrown when any static method, eg. `Globalize.formatNumber()` is used prior to
 setting the Global locale with `Globalize.locale( <locale> )`.
  [Read more...](doc/error/e-default-locale-not-defined.md)
+
+- **`E_MISSING_PLURAL_MODULE`**
+
+ Thrown when plural module is needed, but not loaded, eg. to format currencies
+ using the named form. [Read more...](doc/error/e-missing-plural-module.md)
 
 - **`E_UNSUPPORTED`**
 
