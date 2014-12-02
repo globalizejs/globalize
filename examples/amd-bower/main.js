@@ -28,22 +28,29 @@ require([
 	"globalize",
 
 	// CLDR content.
+	"json!cldr-data/main/en/currencies.json",
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/supplemental/currencyData.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 
 	// Extend Globalize with Date and Number modules.
+	"globalize/currency",
 	"globalize/date",
 	"globalize/number",
 	"globalize/plural"
-], function( Globalize, enGregorian, enNumbers, likelySubtags, pluralsData, timeData, weekData ) {
+], function( Globalize, enCurrencies, enGregorian, enNumbers, currencyData, likelySubtags,
+	pluralsData, timeData, weekData ) {
+
 	var en, pluralData;
 
 	// At this point, we have Globalize loaded. But, before we can use it, we need to feed it on the appropriate I18n content (Unicode CLDR). Read Requirements on Getting Started on the root's README.md for more information.
 	Globalize.load(
+		currencyData,
+		enCurrencies,
 		enGregorian,
 		enNumbers,
 		likelySubtags,
@@ -63,14 +70,13 @@ require([
 	// Use Globalize to format numbers.
 	document.getElementById( "number" ).innerHTML = en.formatNumber( 12345.6789 );
 
-	// Use Globalize to format a message with plural inflection.
-	pluralData = {
-		one: "{0} result",
-		other: "{0} results"
-	};
-	document.getElementById( "plural-0" ).innerHTML = en.formatPlural( 0, pluralData );
-	document.getElementById( "plural-1" ).innerHTML = en.formatPlural( 1, pluralData );
-	document.getElementById( "plural-2" ).innerHTML = en.formatPlural( 2, pluralData );
+	// Use Globalize to format currencies.
+	document.getElementById( "currency" ).innerHTML = en.formatCurrency( 69900, "USD" );
+
+	// Use Globalize to get the plural form of a numeric value.
+	document.getElementById( "plural-0" ).innerHTML = en.plural( 0 );
+	document.getElementById( "plural-1" ).innerHTML = en.plural( 1 );
+	document.getElementById( "plural-2" ).innerHTML = en.plural( 2 );
 
 	document.getElementById( "requirements" ).style.display = "none";
 	document.getElementById( "demo" ).style.display = "block";

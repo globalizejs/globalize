@@ -19,6 +19,7 @@
         <h2>Demo output</h2>
         <p>Now: <span id="date"></span></p>
         <p>A number: <span id="number"></span></p>
+        <p>A currency: <span id="currency"></span></p>
         <p>Plurals:</p>
         <ul>
             <li><span id="plural-0"></li>
@@ -44,6 +45,9 @@
     <script src="../../dist/globalize/date.js"></script>
     <script src="../../dist/globalize/number.js"></script>
     <script src="../../dist/globalize/plural.js"></script>
+
+    <!-- Load after globalize/number.js -->
+    <script src="../../dist/globalize/currency.js"></script>
 
     <script>
 
@@ -110,6 +114,11 @@
             }
           },
           "numbers": {
+            "currencies": {
+              "USD": {
+                "symbol": "$"
+              }
+            },
             "defaultNumberingSystem": "latn",
             "symbols-numberSystem-latn": {
               "decimal": ".",
@@ -124,6 +133,21 @@
             },
             "decimalFormats-numberSystem-latn": {
               "standard": "#,##0.###"
+            },
+            "currencyFormats-numberSystem-latn": {
+              "currencySpacing": {
+                "beforeCurrency": {
+                  "currencyMatch": "[:^S:]",
+                  "surroundingMatch": "[:digit:]",
+                  "insertBetween": " "
+                },
+                "afterCurrency": {
+                  "currencyMatch": "[:^S:]",
+                  "surroundingMatch": "[:digit:]",
+                  "insertBetween": " "
+                }
+              },
+              "standard": "¤#,##0.00"
             }
           }
         }
@@ -132,6 +156,14 @@
         "version": {
           "_cldrVersion": "25",
           "_number": "$Revision: 91 $"
+        },
+        "currencyData": {
+          "fractions": {
+            "DEFAULT": {
+              "_rounding": "0",
+              "_digits": "2"
+            }
+          }
         },
         "likelySubtags": {
           "en": "en-Latn-US",
@@ -156,14 +188,13 @@
     // Use Globalize to format numbers.
     document.getElementById( "number" ).innerHTML = en.formatNumber( 12345.6789 );
 
-    // Use Globalize to format a message with plural inflection.
-    var pluralData = {
-      one: "{0} result",
-      other: "{0} results"
-    };
-    document.getElementById( "plural-0" ).innerHTML = en.formatPlural( 0, pluralData );
-    document.getElementById( "plural-1" ).innerHTML = en.formatPlural( 1, pluralData );
-    document.getElementById( "plural-2" ).innerHTML = en.formatPlural( 2, pluralData );
+    // Use Globalize to format currencies.
+    document.getElementById( "currency" ).innerHTML = en.formatCurrency( 69900, "USD" );
+
+    // Use Globalize to get the plural form of a numeric value.
+    document.getElementById( "plural-0" ).innerHTML = en.plural( 0 );
+    document.getElementById( "plural-1" ).innerHTML = en.plural( 1 );
+    document.getElementById( "plural-2" ).innerHTML = en.plural( 2 );
 
     document.getElementById( "requirements" ).style.display = "none";
     document.getElementById( "demo" ).style.display = "block";

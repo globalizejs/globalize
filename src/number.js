@@ -9,14 +9,15 @@ define([
 	"./common/validate/parameter-type/string",
 	"./number/format",
 	"./number/format-properties",
+	"./number/numbering-system",
 	"./number/parse",
 	"./number/parse-properties",
 	"./number/pattern",
 	"cldr/event"
 ], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterRange, validateParameterTypeNumber, validateParameterTypePlainObject,
-	validateParameterTypeString, numberFormat, numberFormatProperties, numberParse,
-	numberParseProperties, numberPattern ) {
+	validateParameterTypeString, numberFormat, numberFormatProperties, numberNumberingSystem,
+	numberParse, numberParseProperties, numberPattern ) {
 
 /**
  * .numberFormatter( [options] )
@@ -42,7 +43,9 @@ Globalize.prototype.numberFormatter = function( options ) {
 
 	cldr.on( "get", validateCldr );
 
-	if ( !options.pattern ) {
+	if ( options.pattern ) {
+		pattern = options.pattern;
+	} else {
 		pattern = numberPattern( options.style || "decimal", cldr );
 	}
 
@@ -151,6 +154,13 @@ Globalize.prototype.parseNumber = function( value, options ) {
 
 	return this.numberParser( options )( value );
 };
+
+/**
+ * Optimization to avoid duplicating some internal functions across modules.
+ */
+Globalize._numberNumberingSystem = numberNumberingSystem;
+Globalize._numberPattern = numberPattern;
+Globalize._validateParameterTypeNumber = validateParameterTypeNumber;
 
 return Globalize;
 

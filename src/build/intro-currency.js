@@ -18,8 +18,8 @@
 		define([
 			"cldr",
 			"../globalize",
-			"cldr/event",
-			"cldr/supplemental"
+			"./number",
+			"cldr/event"
 		], factory );
 	} else if ( typeof exports === "object" ) {
 
@@ -27,17 +27,20 @@
 		module.exports = factory( require( "cldrjs" ), require( "globalize" ) );
 	} else {
 
-		// Extend global
+		// Global
 		factory( root.Cldr, root.Globalize );
 	}
 }(this, function( Cldr, Globalize ) {
 
-var createError = Globalize._createError,
+var alwaysArray = Globalize._alwaysArray,
 	formatMessage = Globalize._formatMessage,
-	isPlainObject = Globalize._isPlainObject,
-	regexpEscape = Globalize._regexpEscape,
+	numberNumberingSystem = Globalize._numberNumberingSystem,
+	numberPattern = Globalize._numberPattern,
 	stringPad = Globalize._stringPad,
+	validate = Globalize._validate,
 	validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validateParameterPresence = Globalize._validateParameterPresence,
-	validateParameterType = Globalize._validateParameterType;
+	validateParameterType = Globalize._validateParameterType,
+	validateParameterTypeNumber = Globalize._validateParameterTypeNumber,
+	validateParameterTypePlainObject = Globalize._validateParameterTypePlainObject;
