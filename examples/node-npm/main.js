@@ -27,8 +27,5 @@ console.log( Globalize.formatNumber( 12345 ) );
 // Use Globalize to format currencies.
 console.log( Globalize.formatCurrency( 69900, "USD" ) );
 
-// Use Globalize to format a message with plural inflection.
-console.log( Globalize.formatPlural( 12345, {
-	one: "{0} result",
-	other: "{0} results"
-}));
+// Use Globalize to get the plural form of a numeric value.
+console.log( Globalize.plural( 12345 );
