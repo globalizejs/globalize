@@ -31,7 +31,7 @@ function validateRequiredCldr( path, value ) {
  * @currency [String] 3-letter currency code as defined by ISO 4217.
  *
  * @options [Object]:
- * - style: [String] "symbol" (default), "code" or "name".
+ * - style: [String] "symbol" (default), "accounting", "code" or "name".
  * - see also number/format options.
  *
  * Return a function that formats a currency according to the given options and default/instance
@@ -55,7 +55,8 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 
 	// Get properties given style ("symbol" default, "code" or "name").
 	fn = { code: currencyCodeProperties, name: currencyNameProperties };
-	properties = ( fn[ options.style ] || currencySymbolPattern )( currency, cldr );
+	properties = ( fn[ options.style ] || currencySymbolPattern )( currency, cldr,
+		options );
 
 	cldr.off( "get", validateRequiredCldr );
 

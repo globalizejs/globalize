@@ -32,12 +32,16 @@ zh = new Cldr( "zh" );
 QUnit.module( "Currency Symbol Pattern" );
 
 QUnit.test( "should return pattern replacing `¤` with the appropriate currency symbol literal", function( assert ) {
-	assert.equal( symbolPattern( "USD", en ), "'$'#,##0.00" );
-	assert.equal( symbolPattern( "EUR", en ), "'€'#,##0.00" );
-	assert.equal( symbolPattern( "USD", de ), "#,##0.00 '$'" );
-	assert.equal( symbolPattern( "EUR", de ), "#,##0.00 '€'" );
-	assert.equal( symbolPattern( "USD", zh ), "'US$' #,##0.00" );
-	assert.equal( symbolPattern( "EUR", zh ), "'€' #,##0.00" );
+	assert.equal( symbolPattern( "USD", en, {} ), "'$'#,##0.00" );
+	assert.equal( symbolPattern( "EUR", en, {} ), "'€'#,##0.00" );
+	assert.equal( symbolPattern( "USD", de, {} ), "#,##0.00 '$'" );
+	assert.equal( symbolPattern( "EUR", de, {} ), "#,##0.00 '€'" );
+	assert.equal( symbolPattern( "USD", zh, {} ), "'US$' #,##0.00" );
+	assert.equal( symbolPattern( "EUR", zh, {} ), "'€' #,##0.00" );
+
+	assert.equal( symbolPattern( "USD", en, {
+		style: "accounting"
+	}), "'$'#,##0.00;('$'#,##0.00)" );
 });
 
 });
