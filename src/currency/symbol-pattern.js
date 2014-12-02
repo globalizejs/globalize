@@ -9,7 +9,7 @@ define([
  *
  * Return pattern replacing `¤` with the appropriate currency symbol literal.
  */
-return function( currency, cldr ) {
+return function( currency, cldr, options ) {
 	var currencySpacing, pattern,
 		regexp = {
 			"[:digit:]": /\d/,
@@ -30,11 +30,10 @@ return function( currency, cldr ) {
 		]);
 	});
 
-	// TODO: Allow other `u-cu`s [1].
 	pattern = cldr.main([
 		"numbers",
 		"currencyFormats-numberSystem-" + numberNumberingSystem( cldr ),
-		"standard" /* 1 */
+		options.style === "accounting" ? "accounting" : "standard"
 	]);
 
 	// The number of decimal places and the rounding for each currency is not locale-specific. Those
