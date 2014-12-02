@@ -73,14 +73,10 @@ require([
 	// Use Globalize to format currencies.
 	document.getElementById( "currency" ).innerHTML = en.formatCurrency( 69900, "USD" );
 
-	// Use Globalize to format a message with plural inflection.
-	pluralData = {
-		one: "{0} result",
-		other: "{0} results"
-	};
-	document.getElementById( "plural-0" ).innerHTML = en.formatPlural( 0, pluralData );
-	document.getElementById( "plural-1" ).innerHTML = en.formatPlural( 1, pluralData );
-	document.getElementById( "plural-2" ).innerHTML = en.formatPlural( 2, pluralData );
+	// Use Globalize to get the plural form of a numeric value.
+	document.getElementById( "plural-0" ).innerHTML = en.plural( 0 );
+	document.getElementById( "plural-1" ).innerHTML = en.plural( 1 );
+	document.getElementById( "plural-2" ).innerHTML = en.plural( 2 );
 
 	document.getElementById( "requirements" ).style.display = "none";
 	document.getElementById( "demo" ).style.display = "block";
