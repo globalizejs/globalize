@@ -61,10 +61,12 @@ locale.
 
 ```javascript
 var arFormatter = Globalize( "ar" ).numberFormatter(),
-  esFormatter = Globalize( "es" ).numberFormatter();
+  esFormatter = Globalize( "es" ).numberFormatter(),
+  zhFormatter = Globalize( "zh-u-nu-native" ).numberFormatter();
 
-arFormatter( 3.141592 ); // "3٫142"
+arFormatter( 3.141592 ); // "٣٫١٤٢"
 esFormatter( 3.141592 ); // "3,142"
+zhFormatter( 3.141592 ); // "三.一四二"
 ```
 
 Controlling digits by specifying integer and fraction digits counts:

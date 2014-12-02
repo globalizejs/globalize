@@ -7,11 +7,13 @@ define([
 	"json!cldr-data/main/es/numbers.json",
 	"json!cldr-data/main/ru/numbers.json",
 	"json!cldr-data/main/sv/numbers.json",
-	"json!cldr-data/supplemental/likelySubtags.json"
-], function( Cldr, parse, properties, arNumbers, enNumbers, esNumbers, ruNumbers,
-	svNumbers, likelySubtags ) {
+	"json!cldr-data/main/zh/numbers.json",
+	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/numberingSystems.json"
+], function( Cldr, parse, properties, arNumbers, enNumbers, esNumbers, ruNumbers, svNumbers,
+	zhNumbers, likelySubtags, numberingSystems ) {
 
-var ar, en, es, ru, sv;
+var ar, en, es, ru, sv, zh;
 
 Cldr.load(
 	arNumbers,
@@ -19,7 +21,9 @@ Cldr.load(
 	esNumbers,
 	ruNumbers,
 	svNumbers,
-	likelySubtags
+	zhNumbers,
+	likelySubtags,
+	numberingSystems
 );
 
 ar = new Cldr( "ar" );
@@ -27,6 +31,7 @@ en = new Cldr( "en" );
 es = new Cldr( "es" );
 ru = new Cldr( "sv" );
 sv = new Cldr( "sv" );
+zh = new Cldr( "zh-u-nu-native" );
 
 QUnit.module( "Number Parse" );
 
@@ -60,7 +65,8 @@ QUnit.test( "should parse negative integers", function( assert ) {
 QUnit.test( "should parse decimals", function( assert ) {
 	assert.equal( parse( "3.14", properties( "0.##", en ) ), 3.14 );
 	assert.equal( parse( "3,14", properties( "0.##", es ) ), 3.14 );
-	assert.equal( parse( "3٫14", properties( "0.##", ar ) ), 3.14 );
+	assert.equal( parse( "٣٫١٤", properties( "0.##", ar ) ), 3.14 );
+	assert.equal( parse( "三.一四", properties( "0.##", zh ) ), 3.14 );
 	assert.equal( parse( "3.00", properties( "0.##", en ) ), 3 );
 });
 
@@ -93,7 +99,7 @@ QUnit.test( "should parse percent", function( assert ) {
 });
 
 QUnit.test( "should localize percent symbol (%)", function( assert ) {
-	assert.equal( parse( "50٪", properties( "#0%", ar ) ), 0.5 );
+	assert.equal( parse( "٥٠٪", properties( "#0%", ar ) ), 0.5 );
 });
 
 QUnit.test( "should parse negative percentage", function( assert ) {
@@ -117,7 +123,7 @@ QUnit.test( "should parse per mille", function( assert ) {
 	assert.equal( parse( "0.5\u2030", properties( "##0.#\u2030", en ) ), 0.0005 );
 	assert.equal( parse( "500\u2030", properties( "#0‰", en ) ), 0.5 );
 	assert.equal( parse( "500‰", properties( "#0‰", en ) ), 0.5 );
-	assert.equal( parse( "500؉", properties( "#0\u2030", ar ) ), 0.5 );
+	assert.equal( parse( "٥٠٠؉", properties( "#0\u2030", ar ) ), 0.5 );
 });
 
 QUnit.test( "should parse negative mille", function( assert ) {

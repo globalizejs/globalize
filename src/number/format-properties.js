@@ -1,10 +1,11 @@
 define([
+	"./numbering-system-digits-map",
 	"./pattern-properties",
 	"./symbol",
 	"./symbol/map",
 	"./symbol/name",
 	"../util/number/round"
-], function( numberPatternProperties, numberSymbol, numberSymbolMap,
+], function( numberNumberingSystemDigitsMap, numberPatternProperties, numberSymbol, numberSymbolMap,
 	numberSymbolName, numberRound ) {
 
 /**
@@ -52,7 +53,8 @@ return function( pattern, cldr, options ) {
 		numberRound( options.round ),
 		numberSymbol( "infinity", cldr ),
 		numberSymbol( "nan", cldr ),
-		numberSymbolMap( cldr )
+		numberSymbolMap( cldr ),
+		numberNumberingSystemDigitsMap( cldr )
 	]);
 
 	getOptions( "minimumIntegerDigits", 2 );
@@ -87,6 +89,7 @@ return function( pattern, cldr, options ) {
 	// 16: @infinitySymbol [String] Infinity symbol.
 	// 17: @nanSymbol [String] NaN symbol.
 	// 18: @symbolMap [Object] A bunch of other symbols.
+	// 19: @nuDigitsMap [Array] Digits map if numbering system is different than `latn`.
 	return properties;
 };
 

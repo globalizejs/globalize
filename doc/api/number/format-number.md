@@ -30,10 +30,12 @@ locale.
 
 ```javascript
 var ar = new Globalize( "ar" ),
-  es = new Globalize( "es" );
+  es = new Globalize( "es" ),
+  zh = new Globalize( "zh-u-nu-native" );
 
-ar.formatNumber( 3.141592 ); // "3٫142"
+ar.formatNumber( 3.141592 ); // "٣٫١٤٢"
 es.formatNumber( 3.141592 ); // "3,142"
+zh.formatNumber( 3.141592 ); // "三.一四二"
 ```
 
 Controlling digits by specifying integer and fraction digits counts:

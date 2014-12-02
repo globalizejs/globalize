@@ -5,13 +5,15 @@ define([
 	"json!cldr-data/main/ar/numbers.json",
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/es/numbers.json",
-	"json!cldr-data/supplemental/likelySubtags.json"
-], function( Cldr, format, properties, arNumbers, enNumbers, esNumbers,
-	likelySubtags ) {
+	"json!cldr-data/main/zh/numbers.json",
+	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/numberingSystems.json"
+], function( Cldr, format, properties, arNumbers, enNumbers, esNumbers, zhNumbers, likelySubtags,
+	numberingSystems ) {
 
 // 1: Earth average diameter according to:
 // http://www.wolframalpha.com/input/?i=earth+diameter
-var ar, en, es,
+var ar, en, es, zh,
 	deci = 0.1,
 	earthDiameter = 12735, /* 1 */
 	pi = 3.14159265359;
@@ -20,12 +22,15 @@ Cldr.load(
 	arNumbers,
 	enNumbers,
 	esNumbers,
-	likelySubtags
+	zhNumbers,
+	likelySubtags,
+	numberingSystems
 );
 
 ar = new Cldr( "ar" );
 en = new Cldr( "en" );
 es = new Cldr( "es" );
+zh = new Cldr( "zh-u-nu-native" );
 
 QUnit.module( "Number Format" );
 
@@ -80,7 +85,8 @@ QUnit.test( "should zero-pad minimum fraction digits", function( assert ) {
 
 QUnit.test( "should localize decimal separator symbol (.)", function( assert ) {
 	assert.equal( format( pi, properties( "0.##", es ) ), "3,14" );
-	assert.equal( format( pi, properties( "0.##", ar ) ), "3٫14" );
+	assert.equal( format( pi, properties( "0.##", ar ) ), "٣٫١٤" );
+	assert.equal( format( pi, properties( "0.##", zh ) ), "三.一四" );
 });
 
 QUnit.test( "should allow integer and fraction options override", function( assert ) {
@@ -216,7 +222,7 @@ QUnit.test( "should format percent", function( assert ) {
 });
 
 QUnit.test( "should localize percent symbol (%)", function( assert ) {
-	assert.equal( format( 0.5, properties( "#0%", ar ) ), "50٪" );
+	assert.equal( format( 0.5, properties( "#0%", ar ) ), "٥٠٪" );
 });
 
 QUnit.test( "should format negative percentage", function( assert ) {
@@ -243,7 +249,7 @@ QUnit.test( "should format per mille", function( assert ) {
 });
 
 QUnit.test( "should localize per mille symbol (\u2030)", function( assert ) {
-	assert.equal( format( 0.5, properties( "#0\u2030", ar ) ), "500؉" );
+	assert.equal( format( 0.5, properties( "#0\u2030", ar ) ), "٥٠٠؉" );
 });
 
 QUnit.test( "should format negative mille", function( assert ) {

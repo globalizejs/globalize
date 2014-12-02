@@ -1,11 +1,12 @@
 define([
+	"./numbering-system-digits-map",
 	"./pattern-properties",
 	"./symbol",
 	"./symbol/inverted-map",
 	"./symbol/name",
 	"../util/object/flat-extend"
-], function( numberPatternProperties, numberSymbol, numberSymbolInvertedMap, numberSymbolName,
-	objectFlatExtend ) {
+], function( numberNumberingSystemDigitsMap, numberPatternProperties, numberSymbol,
+	numberSymbolInvertedMap, numberSymbolName, objectFlatExtend ) {
 
 /**
  * parseProperties( pattern, cldr )
@@ -17,11 +18,26 @@ define([
  * Return parser properties, used to feed parser function.
  */
 return function( pattern, cldr ) {
-	var negativePattern, negativeProperties;
+	var invertedNuDigitsMap, invertedNuDigitsMapSanityCheck, negativePattern, negativeProperties,
+		nuDigitsMap = numberNumberingSystemDigitsMap( cldr );
 
 	pattern = pattern.split( ";" );
 	negativePattern = pattern[ 1 ] || "-" + pattern[ 0 ];
 	negativeProperties = numberPatternProperties( negativePattern );
+	if ( nuDigitsMap ) {
+		invertedNuDigitsMap = nuDigitsMap.split( "" ).reduce(function( object, localizedDigit, i ) {
+			object[ localizedDigit ] = String( i );
+			return object;
+		}, {} );
+		invertedNuDigitsMapSanityCheck = "0123456789".split( "" ).reduce(function( object, digit ) {
+			object[ digit ] = "invalid";
+			return object;
+		}, {} );
+		invertedNuDigitsMap = objectFlatExtend(
+			invertedNuDigitsMapSanityCheck,
+			invertedNuDigitsMap
+		);
+	}
 
 	// 0: @infinitySymbol [String] Infinity symbol.
 	// 1: @invertedSymbolMap [Object] Inverted symbol map augmented with sanity check.
@@ -31,11 +47,14 @@ return function( pattern, cldr ) {
 	//    mappings will invalidate parsing, working as the sanity check).
 	// 2: @negativePrefix [String] Negative prefix.
 	// 3: @negativeSuffix [String] Negative suffix with percent or per mille stripped out.
+	// 4: @invertedNuDigitsMap [Object] Inverted digits map if numbering system is different than
+	//    `latn` augmented with sanity check (similar to invertedSymbolMap).
 	return [
 		numberSymbol( "infinity", cldr ),
 		objectFlatExtend( {}, numberSymbolName, numberSymbolInvertedMap( cldr ) ),
 		negativeProperties[ 0 ],
-		negativeProperties[ 10 ].replace( "%", "" ).replace( "\u2030", "" )
+		negativeProperties[ 10 ].replace( "%", "" ).replace( "\u2030", "" ),
+		invertedNuDigitsMap
 	];
 };
 

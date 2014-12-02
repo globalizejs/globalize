@@ -17,7 +17,7 @@ define([
  */
 return function( number, properties ) {
 	var infinitySymbol, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
-	minimumIntegerDigits, minimumSignificantDigits, nanSymbol, padding, prefix,
+	minimumIntegerDigits, minimumSignificantDigits, nanSymbol, nuDigitsMap, padding, prefix,
 	primaryGroupingSize, pattern, ret, round, roundIncrement, secondaryGroupingSize, suffix,
 	symbolMap;
 
@@ -34,6 +34,7 @@ return function( number, properties ) {
 	infinitySymbol = properties[ 16 ];
 	nanSymbol = properties[ 17 ];
 	symbolMap = properties[ 18 ];
+	nuDigitsMap = properties[ 19 ];
 
 	// NaN
 	if ( isNaN( number ) ) {
@@ -91,21 +92,35 @@ return function( number, properties ) {
 	// Scientific notation
 	// TODO implement here
 
-	// Padding
+	// Padding/'([^']|'')+'|''|[.,\-+E%\u2030]/g
 	// TODO implement here
 
 	ret += suffix;
 
-	// Symbols
-	return ret.replace( /'([^']|'')+'|''|[.,\-+E%\u2030]/g, function( symbol ) {
-		if ( symbol.charAt( 0 ) === "'" ) {
-			symbol = symbol.replace( /''/, "'" );
-			if ( symbol.length > 2 ) {
-				symbol = symbol.slice( 1, -1 );
+	return ret.replace( /('([^']|'')+'|'')|./g, function( character, literal ) {
+
+		// Literals
+		if ( literal ) {
+			literal = literal.replace( /''/, "'" );
+			if ( literal.length > 2 ) {
+				literal = literal.slice( 1, -1 );
 			}
-			return symbol;
+			return literal;
 		}
-		return symbolMap[ symbol ];
+
+		// Symbols
+		character = character.replace( /[.,\-+E%\u2030]/, function( symbol ) {
+			return symbolMap[ symbol ];
+		});
+
+		// Numbering system
+		if ( nuDigitsMap ) {
+			character = character.replace( /[0-9]/, function( digit ) {
+				return nuDigitsMap[ +digit ];
+			});
+		}
+
+		return character;
 	});
 };
 

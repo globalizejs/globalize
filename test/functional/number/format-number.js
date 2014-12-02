@@ -3,10 +3,13 @@ define([
 	"json!cldr-data/main/ar/numbers.json",
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/es/numbers.json",
+	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/numberingSystems.json",
 	"../../util",
 	"globalize/number"
-], function( Globalize, arNumbers, enNumbers, esNumbers, likelySubtags, util ) {
+], function( Globalize, arNumbers, enNumbers, esNumbers, zhNumbers, likelySubtags, numberingSystems,
+	util ) {
 
 var pi = 3.14159265359;
 
@@ -14,7 +17,9 @@ function extraSetup() {
 	Globalize.load(
 		arNumbers,
 		enNumbers,
-		esNumbers
+		esNumbers,
+		zhNumbers,
+		numberingSystems
 	);
 }
 
@@ -55,7 +60,8 @@ QUnit.test( "should format decimal style", function( assert ) {
 
 	assert.equal( Globalize.formatNumber( pi ), "3.142" );
 	assert.equal( Globalize( "es" ).formatNumber( pi ), "3,142" );
-	assert.equal( Globalize( "ar" ).formatNumber( pi ), "3٫142" );
+	assert.equal( Globalize( "ar" ).formatNumber( pi ), "٣٫١٤٢" );
+	assert.equal( Globalize( "zh-u-nu-native" ).formatNumber( pi ), "三.一四二" );
 	assert.equal( Globalize.formatNumber( 99999999.99 ), "99,999,999.99" );
 
 	assert.equal( Globalize.formatNumber( pi, {
@@ -99,7 +105,7 @@ QUnit.test( "should format percent style", function( assert ) {
 	extraSetup();
 
 	assert.equal( Globalize.formatNumber( pi, { style: "percent" } ), "314%" );
-	assert.equal( Globalize( "ar" ).formatNumber( pi, { style: "percent" } ), "314٪" );
+	assert.equal( Globalize( "ar" ).formatNumber( pi, { style: "percent" } ), "٣١٤٪" );
 });
 
 });

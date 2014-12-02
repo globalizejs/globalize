@@ -15,13 +15,14 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
 return function( value, properties ) {
-	var aux, infinitySymbol, invertedSymbolMap, localizedSymbolsRe, negativePrefix, negativeSuffix,
-		number, prefix, suffix;
+	var aux, infinitySymbol, invertedNuDigitsMap, invertedSymbolMap, localizedDigitRe,
+		localizedSymbolsRe, negativePrefix, negativeSuffix, number, prefix, suffix;
 
 	infinitySymbol = properties[ 0 ];
 	invertedSymbolMap = properties[ 1 ];
 	negativePrefix = properties[ 2 ];
 	negativeSuffix = properties[ 3 ];
+	invertedNuDigitsMap = properties[ 4 ];
 
 	// Infinite number.
 	if ( aux = value.match( infinitySymbol ) ) {
@@ -33,6 +34,7 @@ return function( value, properties ) {
 	// Finite number.
 	} else {
 
+		// TODO: Create it during setup, i.e., make it a property.
 		localizedSymbolsRe = new RegExp(
 			Object.keys( invertedSymbolMap ).map(function( localizedSymbol ) {
 				return regexpEscape( localizedSymbol );
@@ -44,6 +46,21 @@ return function( value, properties ) {
 		value = value.replace( localizedSymbolsRe, function( localizedSymbol ) {
 			return invertedSymbolMap[ localizedSymbol ];
 		});
+
+		// Reverse localized numbering system.
+		if ( invertedNuDigitsMap ) {
+
+			// TODO: Create it during setup, i.e., make it a property.
+			localizedDigitRe = new RegExp(
+				Object.keys( invertedNuDigitsMap ).map(function( localizedDigit ) {
+					return regexpEscape( localizedDigit );
+				}).join( "|" ),
+				"g"
+			);
+			value = value.replace( localizedDigitRe, function( localizedDigit ) {
+				return invertedNuDigitsMap[ localizedDigit ];
+			});
+		}
 
 		// Is it a valid number?
 		value = value.match( numberNumberRe );

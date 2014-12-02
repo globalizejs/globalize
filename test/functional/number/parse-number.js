@@ -4,19 +4,24 @@ define([
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/es/numbers.json",
 	"json!cldr-data/main/sv/numbers.json",
+	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/numberingSystems.json",
 	"../../util",
 	"globalize/number"
-], function( Globalize, arNumbers, enNumbers, esNumbers, svNumbers, likelySubtags, util ) {
+], function( Globalize, arNumbers, enNumbers, esNumbers, svNumbers, zhNumbers, likelySubtags,
+	numberingSystems, util ) {
 
-var ar, es, sv;
+var ar, es, sv, zh;
 
 function extraSetup() {
 	Globalize.load(
 		arNumbers,
 		enNumbers,
 		esNumbers,
-		svNumbers
+		svNumbers,
+		zhNumbers,
+		numberingSystems
 	);
 }
 
@@ -26,6 +31,7 @@ QUnit.module( ".parseNumber( value [, options] )", {
 		ar = new Globalize( "ar" );
 		es = new Globalize( "es" );
 		sv = new Globalize( "sv" );
+		zh = new Globalize( "zh-u-nu-native" );
 		Globalize.locale( "en" );
 	},
 	teardown: util.resetCldrContent
@@ -84,7 +90,8 @@ QUnit.test( "should parse decimals", function( assert ) {
 
 	assert.equal( Globalize.parseNumber( "3.14" ), 3.14 );
 	assert.equal( es.parseNumber( "3,14" ), 3.14 );
-	assert.equal( ar.parseNumber( "3٫14" ), 3.14 );
+	assert.equal( ar.parseNumber( "٣٫١٤" ), 3.14 );
+	assert.equal( zh.parseNumber( "三.一四" ), 3.14 );
 	assert.equal( Globalize.parseNumber( "3.00" ), 3 );
 	assert.equal( Globalize.parseNumber( "12735.0" ), 12735 );
 	assert.equal( Globalize.parseNumber( "0.10" ), 0.1 );
@@ -110,7 +117,7 @@ QUnit.test( "should parse percent", function( assert ) {
 	assert.equal( Globalize.parseNumber( "100%" ), 1 );
 	assert.equal( Globalize.parseNumber( "0.5%" ), 0.005 );
 	assert.equal( Globalize.parseNumber( "0.5%" ), 0.005 );
-	assert.equal( ar.parseNumber( "50٪" ), 0.5 );
+	assert.equal( ar.parseNumber( "٥٠٪" ), 0.5 );
 	assert.equal( Globalize.parseNumber( "-10%" ), -0.1 );
 });
 
