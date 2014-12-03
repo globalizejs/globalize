@@ -74,8 +74,9 @@ For comparison, follow the formatting output of different symbols in different
 locales using the plural messages `Globalize( locale ).formatCurrency( 1,
 currency, { style: "name" } )`.
 
-| `USD` | `1.00 US dollar` | `1,00 US-Dollar` | `1.00美元` |
+| 3-letter currency code | en (English) | de (German) | zh (Chinese) |
 | --- | --- | --- | --- |
+| `USD` | `1.00 US dollar` | `1,00 US-Dollar` | `1.00美元` |
 | `EUR` | `1.00 euro` | `1,00 Euro` | `1.00欧元` |
 | `CNY` | `1.00 Chinese yuan` | `1,00 Chinesischer Yuan` | `1.00人民币` |
 | `JPY` | `1 Japanese yen` | `1 Japanischer Yen` | `1日元` |
