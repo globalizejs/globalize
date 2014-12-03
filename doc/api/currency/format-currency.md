@@ -27,8 +27,8 @@ locale.
 
 ```javascript
 Globalize.locale( "en" );
-Globalize.formatCurrency( 1, "USD" );           // "$9.99"
-Globalize.formatCurrency( 1, "EUR" );           // "€9.99"
+Globalize.formatCurrency( 1, "USD" ); // "$9.99"
+Globalize.formatCurrency( 1, "EUR" ); // "€9.99"
 ```
 
 You can use the instance method `.formatCurrency()`, which uses the instance
