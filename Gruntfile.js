@@ -74,7 +74,7 @@ module.exports = function( grunt ) {
 				}
 			},
 			dist: {
-				src: [ "dist/globalize*.js", "dist/globalize/*.js", "!dist/**/*.min.*js" ],
+				src: [ "dist/globalize*.js", "dist/globalize/*.js" ],
 				options: {
 					jshintrc: "src/.dist-jshintrc"
 				}
@@ -84,7 +84,7 @@ module.exports = function( grunt ) {
 			source: [ "src/**/*.js", "!src/build/**" ],
 			grunt: "Gruntfile.js",
 			test: [ "test/*.js", "test/functional/**/*.js", "test/unit/**/*.js" ],
-			dist: [ "dist/globalize*.js", "dist/globalize/*.js", "!dist/**/*.min.*js" ]
+			dist: [ "dist/globalize*.js", "dist/globalize/*.js" ]
 		},
 		qunit: {
 			functional: {
@@ -287,11 +287,11 @@ module.exports = function( grunt ) {
 			},
 			dist: {
 				files: {
-					"dist/globalize.min.js": [ "dist/globalize.js" ],
-					"dist/globalize/date.min.js": [ "dist/globalize/date.js" ],
-					"dist/globalize/number.min.js": [ "dist/globalize/number.js" ],
-					"dist/globalize/plural.min.js": [ "dist/globalize/plural.js" ],
-					"dist/globalize/message.min.js": [ "dist/globalize/message.js" ]
+					"tmp/globalize.min.js": [ "dist/globalize.js" ],
+					"tmp/globalize/date.min.js": [ "dist/globalize/date.js" ],
+					"tmp/globalize/number.min.js": [ "dist/globalize/number.js" ],
+					"tmp/globalize/plural.min.js": [ "dist/globalize/plural.js" ],
+					"tmp/globalize/message.min.js": [ "dist/globalize/message.js" ]
 				}
 			}
 		},
@@ -299,8 +299,8 @@ module.exports = function( grunt ) {
 		// TODO figure out how to specify exceptions for externals
 		"compare_size": {
 			files: [
-				"dist/globalize.min.js",
-				"dist/globalize/*min.js"
+				"tmp/globalize.min.js",
+				"tmp/globalize/*min.js"
 			],
 			options: {
 				compress: {

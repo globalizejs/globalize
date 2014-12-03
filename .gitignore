@@ -2,3 +2,4 @@
 bower_components/
 external
 node_modules
+tmp/
