@@ -1,4 +1,4 @@
-/*!
+/**
  * Globalize v@VERSION
  *
  * http://github.com/jquery/globalize
@@ -8,6 +8,10 @@
  * http://jquery.org/license
  *
  * Date: @DATE
+ */
+/*!
+ * Globalize v@VERSION @DATE Released under the MIT license
+ * http://git.io/TrdQbw
  */
 (function( root, factory ) {
 
