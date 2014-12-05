@@ -22,6 +22,14 @@ module Globalize
         end
       end
 
+      def order(opts, *rest)
+        if respond_to?(:translated_attribute_names) && parsed = parse_translated_order(opts)
+          super(parsed)
+        else
+          super
+        end
+      end
+
       def exists?(conditions = :none)
         if parsed = parse_translated_conditions(conditions)
           with_translations_in_fallbacks.exists?(parsed)
@@ -62,6 +70,27 @@ module Globalize
         else
           relation.with_translations_in_fallbacks
         end
+      end
+
+      private
+
+      def parse_translated_order(opts)
+        case opts
+        when Hash
+          ordering = opts.map do |column, direction|
+            klass = translated_column?(column) ? translation_class : self
+            klass.arel_table[column].send(direction)
+          end
+          order(ordering).order_clauses
+        when Symbol
+          translated_column_name(opts) if translated_attribute_names.include?(opts)
+        else # failsafe returns nothing
+          nil
+        end
+      end
+
+      def translated_column?(column)
+        translated_attribute_names.include?(column)
       end
     end
   end
