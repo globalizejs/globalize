@@ -42,7 +42,9 @@ Globalize.prototype.numberFormatter = function( options ) {
 
 	cldr.on( "get", validateCldr );
 
-	if ( !options.pattern ) {
+	if ( options.pattern ) {
+		pattern = options.pattern;
+	} else {
 		pattern = numberPattern( options.style || "decimal", cldr );
 	}
 
@@ -103,7 +105,9 @@ Globalize.prototype.numberParser = function( options ) {
 
 	cldr.on( "get", validateCldr );
 
-	if ( !options.pattern ) {
+	if ( options.pattern ) {
+		pattern = options.pattern;
+	} else {
 		pattern = numberPattern( options.style || "decimal", cldr );
 	}
 
