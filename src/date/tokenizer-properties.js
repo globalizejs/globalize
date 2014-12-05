@@ -1,7 +1,8 @@
 define([
 	"./pattern-re",
-	"../common/create-error/unsupported-feature"
-], function( datePatternRe, createErrorUnsupportedFeature ) {
+	"../common/create-error/unsupported-feature",
+	"../number/symbol"
+], function( datePatternRe, createErrorUnsupportedFeature, numberSymbol ) {
 
 /**
  * tokenizerProperties( pattern, cldr )
@@ -14,7 +15,8 @@ define([
  */
 return function( pattern, cldr ) {
 	var properties = {
-			pattern: pattern
+			pattern: pattern,
+			timeSeparator: numberSymbol( "timeSeparator", cldr )
 		},
 		widths = [ "abbreviated", "wide", "narrow" ];
 

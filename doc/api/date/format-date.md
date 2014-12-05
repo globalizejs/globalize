@@ -29,9 +29,9 @@ Globalize.formatDate( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" } );
 You can use the instance method `.formatDate()`, which uses the instance locale.
 
 ```javascript
-var de = new Globalize( "de" );
-de.formatDate( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" } );
-// "30.11.10 17:55"
+var ar = new Globalize( "ar" );
+ar.formatDate( new Date( 2010, 10, 30, 17, 55 ), { datetime: "short" } );
+// "٣٠‏/١١‏/٢٠١٠ ٥،٥٥ م"
 ```
 
 Comparison between different locales.
@@ -40,8 +40,9 @@ Comparison between different locales.
 | --- | --- |
 | *en* | `"11/1/10, 5:55 PM"` |
 | *en_GB* | `"01/11/2010 17:55"` |
-| *de* | `"01.11.10 17:55"` |
 | *zh* | `"10/11/1 下午5:55"` |
-| *ar* | `"1‏/11‏/2010 5:55 م"` |
-| *pt* | `"01/11/10 17:55"` |
+| *zh-u-nu-native* | `"一〇/一一/一 下午五:五五"` |
 | *es* | `"1/11/10 17:55"` |
+| *de* | `"01.11.10 17:55"` |
+| *pt* | `"01/11/10 17:55"` |
+| *ar* | `"١‏/١١‏/٢٠١٠ ٥،٥٥ م"` |

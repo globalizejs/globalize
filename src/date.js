@@ -16,7 +16,8 @@ define([
 	"./date/tokenizer",
 	"./date/tokenizer-properties",
 	"cldr/event",
-	"cldr/supplemental"
+	"cldr/supplemental",
+	"./number"
 ], function( Cldr, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterTypeDataType, validateParameterTypeDate, validateParameterTypeDatePattern,
 	validateParameterTypeString, Globalize, dateExpandPattern, dateFormat, dateFormatProperties,
@@ -49,7 +50,7 @@ function validateRequiredCldr( path, value ) {
  */
 Globalize.dateFormatter =
 Globalize.prototype.dateFormatter = function( pattern ) {
-	var cldr, properties;
+	var cldr, formatNumber, pad, properties;
 
 	validateParameterPresence( pattern, "pattern" );
 	validateParameterTypeDatePattern( pattern, "pattern" );
@@ -62,6 +63,15 @@ Globalize.prototype.dateFormatter = function( pattern ) {
 	pattern = dateExpandPattern( pattern, cldr );
 	properties = dateFormatProperties( pattern, cldr );
 	cldr.off( "get", validateRequiredCldr );
+
+	// Create needed number formatters.
+	formatNumber = properties.formatNumber;
+	for ( pad in formatNumber ) {
+		formatNumber[ pad ] = this.numberFormatter({
+			pattern: formatNumber[ pad ]
+		});
+	}
+	properties.formatNumber = formatNumber;
 
 	return function( value ) {
 		validateParameterPresence( value, "value" );
@@ -94,6 +104,8 @@ Globalize.prototype.dateParser = function( pattern ) {
 	tokenizerProperties = dateTokenizerProperties( pattern, cldr );
 	parseProperties = dateParseProperties( cldr );
 	cldr.off( "get", validateRequiredCldr );
+
+	tokenizerProperties.parseNumber = this.numberParser({ pattern: "0" });
 
 	return function( value ) {
 		var tokens;

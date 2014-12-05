@@ -34,7 +34,7 @@ Globalize.parseDate( "1/2/13", { date: "short" } );
 You can use the instance method `.parseDate()`, which uses the instance locale.
 
 ```javascript
-var es = new Globalize( "es" );
-es.parseDate( "1/2/13", { date: "short" } );
-// Fri Feb 01 2013 00:00:00
+var ar = new Globalize( "ar" );
+ar.parseDate( "٢‏/١‏/٢٠١٣ ١٢،٠٠ ص" , { date: "short" } );
+// Wed Jan 02 2013 00:00:00
 ```

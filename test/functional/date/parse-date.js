@@ -1,24 +1,37 @@
 define([
 	"globalize",
 	"src/date/start-of",
+	"json!cldr-data/main/ar/ca-gregorian.json",
+	"json!cldr-data/main/ar/numbers.json",
+	"json!cldr-data/main/ar/timeZoneNames.json",
 	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/en/timeZoneNames.json",
 	"json!cldr-data/main/pt/ca-gregorian.json",
+	"json!cldr-data/main/pt/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/numberingSystems.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"../../util",
 	"globalize/date"
-], function( Globalize, startOf, enCaGregorian, enTimeZoneNames, ptCaGregorian, likelySubtags,
-	timeData, weekData, util ) {
+], function( Globalize, startOf, arCaGregorian, arNumbers, arTimeZoneNames, enCaGregorian,
+	enNumbers, enTimeZoneNames, ptCaGregorian, ptNumbers, likelySubtags, numberingSystems, timeData,
+	weekData, util ) {
 
-var date;
+var ar, date;
 
 function extraSetup() {
 	Globalize.load(
+		arCaGregorian,
+		arNumbers,
+		arTimeZoneNames,
 		enCaGregorian,
+		enNumbers,
 		enTimeZoneNames,
+		numberingSystems,
 		ptCaGregorian,
+		ptNumbers,
 		timeData,
 		weekData
 	);
@@ -32,8 +45,8 @@ QUnit.module( ".parseDate( value, pattern )", {
 	teardown: util.resetCldrContent
 });
 
-function assertParseDate( assert, input, options, output ) {
-	assert.deepEqual( Globalize.parseDate( input, options ), output, JSON.stringify( options ) );
+function assertParseDate( assert, input, options, output, globalize ) {
+	assert.deepEqual( ( globalize || Globalize ).parseDate( input, options ), output, JSON.stringify( options ) );
 }
 
 QUnit.test( "should validate parameters", function( assert ) {
@@ -63,6 +76,8 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 QUnit.test( "should parse skeleton", function( assert ) {
 	extraSetup();
 
+	ar = Globalize( "ar" );
+
 	date = new Date();
 	date.setDate( 15 );
 	date = startOf( date, "day" );
@@ -80,10 +95,12 @@ QUnit.test( "should parse skeleton", function( assert ) {
 	date = startOf( date, "day" );
 	assertParseDate( assert, "Wed, Sep 15, 2010 AD", { skeleton: "GyMMMEd" }, date );
 	assertParseDate( assert, "9/15/2010", { skeleton: "yMd" }, date );
+	assertParseDate( assert, "الأربعاء، ١٥ سبتمبر، ٢٠١٠ م", "GyMMMEd", date, ar );
 
 	date = new Date( 2010, 0 );
 	date = startOf( date, "year" );
 	assertParseDate( assert, "Q3 2010", { skeleton: "yQQQ" }, date );
+	assertParseDate( assert, "الربع الثالث ٢٠١٠", "yQQQ", date, ar );
 
 	// Via instance globalize.parseDate().
 	assert.deepEqual( Globalize( "pt" ).parseDate( "2010 T3", { skeleton: "yQQQ" } ), date, "{ skeleton: \"yQQQ\" }" );
@@ -92,14 +109,18 @@ QUnit.test( "should parse skeleton", function( assert ) {
 QUnit.test( "should parse time presets", function( assert ) {
 	extraSetup();
 
+	ar = Globalize( "ar" );
+
 	date = new Date();
 	date.setHours( 17 );
 	date.setMinutes( 35 );
 	date.setSeconds( 7 );
 	date = startOf( date, "second" );
 	assertParseDate( assert, "5:35:07 PM", { time: "medium" }, date );
+	assertParseDate( assert, "٥،٣٥،٠٧ م", { time: "medium" }, date, ar );
 	date = startOf( date, "minute" );
 	assertParseDate( assert, "5:35 PM", { time: "short" }, date );
+	assertParseDate( assert, "٥،٣٥ م", { time: "short" }, date, ar );
 });
 
 QUnit.test( "should parse date presets", function( assert ) {
@@ -136,9 +157,12 @@ QUnit.test( "should parse raw pattern", function( assert ) {
 QUnit.test( "should parse a formatted date (reverse operation test)", function( assert ) {
 	extraSetup();
 
+	ar = Globalize( "ar" );
+
 	date = new Date();
 	date = startOf( date, "minute" );
 	assert.deepEqual( Globalize.parseDate( Globalize.formatDate( date, { datetime: "full" } ), { datetime: "full" } ), date );
+	assert.deepEqual( ar.parseDate( ar.formatDate( date, { datetime: "full" } ), { datetime: "full" } ), date );
 });
 
 });

@@ -66,7 +66,7 @@ return function( value, tokens, properties ) {
 
 			// Year
 			case "y":
-				value = +token.lexeme;
+				value = token.value;
 				if ( length === 2 ) {
 					if ( outOfRange( value, 0, 99 ) ) {
 						return false;
@@ -97,7 +97,7 @@ return function( value, tokens, properties ) {
 			case "M":
 			case "L":
 				if ( length <= 2 ) {
-					value = +token.lexeme;
+					value = token.value;
 				} else {
 					value = +token.value;
 				}
@@ -115,7 +115,7 @@ return function( value, tokens, properties ) {
 
 			// Day
 			case "d":
-				value = +token.lexeme;
+				value = token.value;
 				if ( outOfRange( value, 1, 31 ) ) {
 					return false;
 				}
@@ -124,7 +124,7 @@ return function( value, tokens, properties ) {
 				break;
 
 			case "D":
-				value = +token.lexeme;
+				value = token.value;
 				if ( outOfRange( value, 1, 366 ) ) {
 					return false;
 				}
@@ -153,7 +153,7 @@ return function( value, tokens, properties ) {
 
 			// Hour
 			case "h": // 1-12
-				value = +token.lexeme;
+				value = token.value;
 				if ( outOfRange( value, 1, 12 ) ) {
 					return false;
 				}
@@ -163,7 +163,7 @@ return function( value, tokens, properties ) {
 				break;
 
 			case "K": // 0-11
-				value = +token.lexeme;
+				value = token.value;
 				if ( outOfRange( value, 0, 11 ) ) {
 					return false;
 				}
@@ -173,7 +173,7 @@ return function( value, tokens, properties ) {
 				break;
 
 			case "k": // 1-24
-				value = +token.lexeme;
+				value = token.value;
 				if ( outOfRange( value, 1, 24 ) ) {
 					return false;
 				}
@@ -183,7 +183,7 @@ return function( value, tokens, properties ) {
 				break;
 
 			case "H": // 0-23
-				value = +token.lexeme;
+				value = token.value;
 				if ( outOfRange( value, 0, 23 ) ) {
 					return false;
 				}
@@ -194,7 +194,7 @@ return function( value, tokens, properties ) {
 
 			// Minute
 			case "m":
-				value = +token.lexeme;
+				value = token.value;
 				if ( outOfRange( value, 0, 59 ) ) {
 					return false;
 				}
@@ -204,7 +204,7 @@ return function( value, tokens, properties ) {
 
 			// Second
 			case "s":
-				value = +token.lexeme;
+				value = token.value;
 				if ( outOfRange( value, 0, 59 ) ) {
 					return false;
 				}
@@ -219,7 +219,7 @@ return function( value, tokens, properties ) {
 
 			/* falls through */
 			case "S":
-				value = Math.round( +token.lexeme * Math.pow( 10, 3 - length ) );
+				value = Math.round( token.value * Math.pow( 10, 3 - length ) );
 				date.setMilliseconds( value );
 				truncateAt.push( MILLISECONDS );
 				break;
@@ -232,7 +232,6 @@ return function( value, tokens, properties ) {
 			case "x":
 				timezoneOffset = token.value - date.getTimezoneOffset();
 				break;
-
 		}
 
 		return true;

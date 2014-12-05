@@ -197,7 +197,7 @@ module.exports = function( grunt ) {
 						{
 							name: "globalize.date",
 							include: [ "date" ],
-							exclude: [ "cldr", "cldr/supplemental", "./core" ],
+							exclude: [ "cldr", "cldr/supplemental", "./core", "./number" ],
 							create: true,
 							override: {
 								wrap: {

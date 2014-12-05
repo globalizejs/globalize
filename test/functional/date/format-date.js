@@ -1,20 +1,37 @@
 define([
 	"globalize",
+	"json!cldr-data/main/ar/ca-gregorian.json",
+	"json!cldr-data/main/ar/numbers.json",
+	"json!cldr-data/main/ar/timeZoneNames.json",
 	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/en/timeZoneNames.json",
 	"json!cldr-data/main/pt/ca-gregorian.json",
+	"json!cldr-data/main/pt/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/numberingSystems.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"../../util",
 	"globalize/date"
-], function( Globalize, enCaGregorian, ptCaGregorian, likelySubtags, timeData, weekData, util ) {
+], function( Globalize, arCaGregorian, arNumbers, arTimeZoneNames, enCaGregorian, enNumbers,
+	enTimeZoneNames, ptCaGregorian, ptNumbers, likelySubtags, numberingSystems, timeData, weekData,
+	util ) {
 
-var date = new Date( 2010, 8, 15, 17, 35, 7, 369 );
+var ar,
+	date = new Date( 2010, 8, 15, 17, 35, 7, 369 );
 
 function extraSetup() {
 	Globalize.load(
+		arCaGregorian,
+		arNumbers,
+		arTimeZoneNames,
 		enCaGregorian,
+		enNumbers,
+		enTimeZoneNames,
+		numberingSystems,
 		ptCaGregorian,
+		ptNumbers,
 		timeData,
 		weekData
 	);
@@ -59,15 +76,19 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 QUnit.test( "should format skeleton", function( assert ) {
 	extraSetup();
 
+	ar = Globalize( "ar" );
+
 	assert.equal( Globalize.formatDate( date, { skeleton: "d" } ), "15" );
 	assert.equal( Globalize.formatDate( date, { skeleton: "Ed" } ), "15 Wed" );
 	assert.equal( Globalize.formatDate( date, { skeleton: "Ehms" } ), "Wed 5:35:07 PM" );
 	assert.equal( Globalize.formatDate( date, { skeleton: "GyMMMEd" } ), "Wed, Sep 15, 2010 AD" );
 	assert.equal( Globalize.formatDate( date, { skeleton: "yMd" } ), "9/15/2010" );
 	assert.equal( Globalize.formatDate( date, { skeleton: "yQQQ" } ), "Q3 2010" );
+	assert.equal( ar.formatDate( date, { skeleton: "yQQQ" } ), "الربع الثالث ٢٠١٠" );
 
 	// Passed as string
 	assert.equal( Globalize.formatDate( date, "GyMMMEd" ), "Wed, Sep 15, 2010 AD" );
+	assert.equal( ar.formatDate( date, "GyMMMEd" ), "الأربعاء، ١٥ سبتمبر، ٢٠١٠ م" );
 
 	// Via instance .formatDate().
 	assert.equal( Globalize( "pt" ).formatDate( date, { skeleton: "Ehms" } ), "qua, 5:35:07 PM" );
@@ -77,8 +98,13 @@ QUnit.test( "should format skeleton", function( assert ) {
 QUnit.test( "should format time presets", function( assert ) {
 	extraSetup();
 
+	ar = Globalize( "ar" );
+
 	assert.equal( Globalize.formatDate( date, { time: "medium" } ), "5:35:07 PM" );
+	assert.equal( ar.formatDate( date, { time: "medium" } ), "٥،٣٥،٠٧ م" );
+
 	assert.equal( Globalize.formatDate( date, { time: "short" } ), "5:35 PM" );
+	assert.equal( ar.formatDate( date, { time: "short" } ), "٥،٣٥ م" );
 });
 
 QUnit.test( "should format date presets", function( assert ) {

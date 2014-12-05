@@ -6,33 +6,49 @@ define([
 	"src/date/tokenizer",
 	"src/date/tokenizer-properties",
 	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"cldr/supplemental"
-], function( Cldr, parse, parseProperties, startOf, tokenizer, tokenizerProperties, enCaGregorian,
-	likelySubtags, timeData, weekData ) {
+], function( Cldr, parse, parseProperties, startOf, tokenizer, numberTokenizerProperties,
+	enCaGregorian, enNumbers, likelySubtags, timeData, weekData ) {
 
 var cldr, date1, date2, midnight;
 
 function assertParse( assert, stringDate, pattern, cldr, date ) {
-	var tokens = tokenizer( stringDate, tokenizerProperties( pattern, cldr ) );
+	var tokenizerProperties, tokens;
+
+	tokenizerProperties = numberTokenizerProperties( pattern, cldr );
+	tokenizerProperties.parseNumber = simpleParseNumber;
+	tokens = tokenizer( stringDate, tokenizerProperties );
+
 	assert.deepEqual( parse( stringDate, tokens, parseProperties( cldr ) ), date );
 }
 
 function assertParseTimezone( assert, stringDate, pattern, cldr, timezoneOffset ) {
-	var parsedTimezoneOffset, parsedDate, tokens,
+	var parsedTimezoneOffset, parsedDate, tokenizerProperties, tokens,
 		testPattern = "HH:mm " + pattern,
 		testStringDate = "00:00 " + stringDate;
-	tokens = tokenizer( testStringDate, tokenizerProperties( testPattern, cldr ) );
+
+	tokenizerProperties = numberTokenizerProperties( testPattern, cldr );
+	tokenizerProperties.parseNumber = simpleParseNumber;
+	tokens = tokenizer( testStringDate, tokenizerProperties );
 	parsedDate = parse( testStringDate, tokens, parseProperties( cldr ) );
 	parsedTimezoneOffset = ( parsedDate - midnight ) / 1000 / 60 + midnight.getTimezoneOffset();
+
 	assert.equal( parsedTimezoneOffset, timezoneOffset, "stringDate `" + stringDate +
 		"` pattern `" + pattern + "`" );
 }
 
+// Simple number parser for this test purposes.
+function simpleParseNumber( value ) {
+	return +value;
+}
+
 Cldr.load(
 	enCaGregorian,
+	enNumbers,
 	likelySubtags,
 	timeData,
 	weekData

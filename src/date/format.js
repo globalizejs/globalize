@@ -6,10 +6,9 @@ define([
 	"./pattern-re",
 	"./start-of",
 	"./timezone-hour-format",
-	"./week-days",
-	"../util/string/pad"
+	"./week-days"
 ], function( dateDayOfWeek, dateDayOfYear, dateFirstDayOfWeek, dateMillisecondsInDay,
-	datePatternRe, dateStartOf, dateTimezoneHourFormat, dateWeekDays, stringPad ) {
+	datePatternRe, dateStartOf, dateTimezoneHourFormat, dateWeekDays ) {
 
 /**
  * format( date, properties )
@@ -23,8 +22,11 @@ define([
  * Disclosure: this function borrows excerpts of dojo/date/locale.
  */
 return function( date, properties ) {
+	var formatNumber = properties.formatNumber,
+		timeSeparator = properties.timeSeparator;
+
 	return properties.pattern.replace( datePatternRe, function( current ) {
-		var pad, ret,
+		var ret,
 			chr = current.charAt( 0 ),
 			length = current.length;
 
@@ -64,10 +66,10 @@ return function( date, properties ) {
 				// Plain year.
 				// The length specifies the padding, but for two letters it also specifies the
 				// maximum length.
-				ret = String( date.getFullYear() );
-				pad = true;
+				ret = date.getFullYear();
 				if ( length === 2 ) {
-					ret = ret.substr( ret.length - 2 );
+					ret = String( ret );
+					ret = +ret.substr( ret.length - 2 );
 				}
 				break;
 
@@ -83,10 +85,10 @@ return function( date, properties ) {
 					properties.firstDay -
 					properties.minDays
 				);
-				ret = String( ret.getFullYear() );
-				pad = true;
+				ret = ret.getFullYear();
 				if ( length === 2 ) {
-					ret = ret.substr( ret.length - 2 );
+					ret = String( ret );
+					ret = +ret.substr( ret.length - 2 );
 				}
 				break;
 
@@ -94,9 +96,7 @@ return function( date, properties ) {
 			case "Q":
 			case "q":
 				ret = Math.ceil( ( date.getMonth() + 1 ) / 3 );
-				if ( length <= 2 ) {
-					pad = true;
-				} else {
+				if ( length > 2 ) {
 					ret = properties.quarters[ chr ][ length ][ ret ];
 				}
 				break;
@@ -105,9 +105,7 @@ return function( date, properties ) {
 			case "M":
 			case "L":
 				ret = date.getMonth() + 1;
-				if ( length <= 2 ) {
-					pad = true;
-				} else {
+				if ( length > 2 ) {
 					ret = properties.months[ chr ][ length ][ ret ];
 				}
 				break;
@@ -120,7 +118,6 @@ return function( date, properties ) {
 				ret = dateDayOfWeek( dateStartOf( date, "year" ), properties.firstDay );
 				ret = Math.ceil( ( dateDayOfYear( date ) + ret ) / 7 ) -
 					( 7 - ret >= properties.minDays ? 0 : 1 );
-				pad = true;
 				break;
 
 			case "W":
@@ -134,12 +131,10 @@ return function( date, properties ) {
 			// Day
 			case "d":
 				ret = date.getDate();
-				pad = true;
 				break;
 
 			case "D":
 				ret = dateDayOfYear( date ) + 1;
-				pad = true;
 				break;
 
 			case "F":
@@ -154,7 +149,6 @@ return function( date, properties ) {
 					// Range is [1-7] (deduced by example provided on documentation)
 					// TODO Should pad with zeros (not specified in the docs)?
 					ret = dateDayOfWeek( date, properties.firstDay ) + 1;
-					pad = true;
 					break;
 				}
 
@@ -172,44 +166,36 @@ return function( date, properties ) {
 			// Hour
 			case "h": // 1-12
 				ret = ( date.getHours() % 12 ) || 12;
-				pad = true;
 				break;
 
 			case "H": // 0-23
 				ret = date.getHours();
-				pad = true;
 				break;
 
 			case "K": // 0-11
 				ret = date.getHours() % 12;
-				pad = true;
 				break;
 
 			case "k": // 1-24
 				ret = date.getHours() || 24;
-				pad = true;
 				break;
 
 			// Minute
 			case "m":
 				ret = date.getMinutes();
-				pad = true;
 				break;
 
 			// Second
 			case "s":
 				ret = date.getSeconds();
-				pad = true;
 				break;
 
 			case "S":
 				ret = Math.round( date.getMilliseconds() * Math.pow( 10, length - 3 ) );
-				pad = true;
 				break;
 
 			case "A":
 				ret = Math.round( dateMillisecondsInDay( date ) * Math.pow( 10, length - 3 ) );
-				pad = true;
 				break;
 
 			// Zone
@@ -222,7 +208,9 @@ return function( date, properties ) {
 				} else {
 					ret = dateTimezoneHourFormat(
 						date,
-						length < 4 ? "+H;-H" : properties.tzLongHourFormat
+						length < 4 ? "+H;-H" : properties.tzLongHourFormat,
+						timeSeparator,
+						formatNumber
 					);
 					ret = properties.gmtFormat.replace( /\{0\}/, ret );
 				}
@@ -241,7 +229,12 @@ return function( date, properties ) {
 				// xx or xxxx: hourFormat("+HHmm;-HHmm")
 				// xxx or xxxxx: hourFormat("+HH:mm;-HH:mm")
 				ret = length === 1 ? "+HH;-HH" : ( length % 2 ? "+HH:mm;-HH:mm" : "+HHmm;-HHmm" );
-				ret = dateTimezoneHourFormat( date, ret );
+				ret = dateTimezoneHourFormat( date, ret, ":" );
+				break;
+
+			// timeSeparator
+			case ":":
+				ret = timeSeparator;
 				break;
 
 			// ' literals.
@@ -250,15 +243,16 @@ return function( date, properties ) {
 				if ( length > 2 ) {
 					current = current.slice( 1, -1 );
 				}
-				return current;
+				ret = current;
+				break;
 
 			// Anything else is considered a literal, including [ ,:/.@#], chinese, japonese, and
 			// arabic characters.
 			default:
-				return current;
+				ret = current;
 		}
-		if ( pad ) {
-			ret = stringPad( ret, length );
+		if ( typeof ret === "number" ) {
+			ret = formatNumber[ length ]( ret );
 		}
 		return ret;
 	});

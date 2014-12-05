@@ -1,7 +1,8 @@
 define([
 	"./pattern-re",
-	"../util/regexp/escape"
-], function( datePatternRe, regexpEscape ) {
+	"../util/regexp/escape",
+	"../util/regexp/n"
+], function( datePatternRe, regexpEscape, regexpN ) {
 
 /**
  * tokenizer( value, pattern, properties )
@@ -36,28 +37,35 @@ define([
  */
 return function( value, properties ) {
 	var valid,
+		parseNumber = properties.parseNumber,
+		timeSeparator = properties.timeSeparator,
 		tokens = [],
 		widths = [ "abbreviated", "wide", "narrow" ];
 
 	valid = properties.pattern.match( datePatternRe ).every(function( current ) {
-		var chr, length, tokenRe,
+		var chr, length, numeric, tokenRe,
 			token = {};
 
-		function hourFormatParse( tokenRe ) {
+		function hourFormatParse( tokenRe, parseNumber ) {
 			var aux = value.match( tokenRe );
+			parseNumber = parseNumber || function( value ) {
+				return +value;
+			};
 
 			if ( !aux ) {
 				return false;
 			}
 
 			// hourFormat containing H only, e.g., `+H;-H`
-			if ( aux.length < 4 ) {
-				token.value = ( aux[ 1 ] ? -aux[ 1 ] : +aux[ 2 ] ) * 60;
+			if ( aux.length < 8 ) {
+				token.value =
+					( aux[ 1 ] ? -parseNumber( aux[ 1 ] ) : parseNumber( aux[ 4 ] ) ) * 60;
 
 			// hourFormat containing H and m, e.g., `+HHmm;-HHmm`
 			} else {
-				token.value = ( aux[ 1 ] ? -aux[ 1 ] : +aux[ 3 ] ) * 60 +
-					( aux[ 1 ] ? -aux[ 2 ] : +aux[ 4 ] );
+				token.value =
+					( aux[ 1 ] ? -parseNumber( aux[ 1 ] ) : parseNumber( aux[ 7 ] ) ) * 60 +
+					( aux[ 1 ] ? -parseNumber( aux[ 4 ] ) : parseNumber( aux[ 10 ] ) );
 			}
 
 			return true;
@@ -71,7 +79,7 @@ return function( value, properties ) {
 		//
 		// If gmtFormat is GMT{0}, the regexp must fill {0} in each side, e.g.:
 		// - "+H;-H" -> /GMT\+(\d\d?)|GMT-(\d\d?)/
-		function hourFormatRe( hourFormat, gmtFormat ) {
+		function hourFormatRe( hourFormat, gmtFormat, timeSeparator ) {
 			var re;
 
 			if ( !gmtFormat ) {
@@ -80,8 +88,16 @@ return function( value, properties ) {
 
 			re = hourFormat
 				.replace( "+", "\\+" )
-				.replace( /HH|mm/g, "(\\d\\d)" )
-				.replace( /H|m/g, "(\\d\\d?)" );
+
+				// Unicode equivalent to (\\d\\d)
+				.replace( /HH|mm/g, "((" + regexpN.source + ")(" + regexpN.source + "))" )
+
+				// Unicode equivalent to (\\d\\d?)
+				.replace( /H|m/g, "((" + regexpN.source + ")(" + regexpN.source + ")?)" );
+
+			if ( timeSeparator ) {
+				re = re.replace( /:/g, timeSeparator );
+			}
 
 			re = re.split( ";" ).map(function( part ) {
 				return gmtFormat.replace( "{0}", part );
@@ -92,19 +108,28 @@ return function( value, properties ) {
 
 		function oneDigitIfLengthOne() {
 			if ( length === 1 ) {
-				return tokenRe = /\d/;
+
+				// Unicode equivalent to /\d/
+				numeric = true;
+				return tokenRe = regexpN;
 			}
 		}
 
 		function oneOrTwoDigitsIfLengthOne() {
 			if ( length === 1 ) {
-				return tokenRe = /\d\d?/;
+
+				// Unicode equivalent to /\d\d?/
+				numeric = true;
+				return tokenRe = new RegExp( "(" + regexpN.source + ")(" + regexpN.source + ")?" );
 			}
 		}
 
 		function twoDigitsIfLengthTwo() {
 			if ( length === 2 ) {
-				return tokenRe = /\d\d/;
+
+				// Unicode equivalent to /\d\d/
+				numeric = true;
+				return tokenRe = new RegExp( "(" + regexpN.source + ")(" + regexpN.source + ")" );
 			}
 		}
 
@@ -159,13 +184,21 @@ return function( value, properties ) {
 			// Year
 			case "y":
 			case "Y":
+				numeric = true;
+
 				// number l=1:+, l=2:{2}, l=3:{3,}, l=4:{4,}, ...
 				if ( length === 1 ) {
-					tokenRe = /\d+/;
+
+					// Unicode equivalent to /\d+/.
+					tokenRe = new RegExp( "(" + regexpN.source + ")+" );
 				} else if ( length === 2 ) {
-					tokenRe = /\d\d/;
+
+					// Unicode equivalent to /\d\d/
+					tokenRe = new RegExp( "(" + regexpN.source + ")(" + regexpN.source + ")" );
 				} else {
-					tokenRe = new RegExp( "\\d{" + length + ",}" );
+
+					// Unicode equivalent to /\d{length,}/
+					tokenRe = new RegExp( "(" + regexpN.source + "){" + length + ",}" );
 				}
 				break;
 
@@ -197,7 +230,10 @@ return function( value, properties ) {
 			case "D":
 				// number {l,3}.
 				if ( length <= 3 ) {
-					tokenRe = new RegExp( "\\d{" + length + ",3}" );
+
+					// Unicode equivalent to /\d{length,3}/
+					numeric = true;
+					tokenRe = new RegExp( "(" + regexpN.source + "){" + length + ",3}" );
 				}
 				break;
 
@@ -263,12 +299,18 @@ return function( value, properties ) {
 
 			case "S":
 				// number {l}.
-					tokenRe = new RegExp( "\\d{" + length + "}" );
+
+				// Unicode equivalent to /\d{length}/
+				numeric = true;
+				tokenRe = new RegExp( "(" + regexpN.source + "){" + length + "}" );
 				break;
 
 			case "A":
 				// number {l+5}.
-					tokenRe = new RegExp( "\\d{" + ( length + 5 ) + "}" );
+
+				// Unicode equivalent to /\d{length+5}/
+				numeric = true;
+				tokenRe = new RegExp( "(" + regexpN.source + "){" + ( length + 5 ) + "}" );
 				break;
 
 			// Zone
@@ -282,9 +324,10 @@ return function( value, properties ) {
 				} else {
 					tokenRe = hourFormatRe(
 						length < 4 ? "+H;-H" : properties[ "timeZoneNames/hourFormat" ],
-						properties[ "timeZoneNames/gmtFormat" ]
+						properties[ "timeZoneNames/gmtFormat" ],
+						timeSeparator
 					);
-					if ( !hourFormatParse( tokenRe ) ) {
+					if ( !hourFormatParse( tokenRe, parseNumber ) ) {
 						return null;
 					}
 				}
@@ -332,6 +375,9 @@ return function( value, properties ) {
 		// Get lexeme and consume it.
 		value = value.replace( new RegExp( "^" + tokenRe.source ), function( lexeme ) {
 			token.lexeme = lexeme;
+			if ( numeric ) {
+				token.value = parseNumber( lexeme );
+			}
 			return "";
 		});
 

@@ -1,8 +1,11 @@
 define([
 	"./first-day-of-week",
 	"./pattern-re",
-	"../common/create-error/unsupported-feature"
-], function( dateFirstDayOfWeek, datePatternRe, createErrorUnsupportedFeature ) {
+	"../common/create-error/unsupported-feature",
+	"../number/symbol",
+	"../util/string/pad"
+], function( dateFirstDayOfWeek, datePatternRe, createErrorUnsupportedFeature, numberSymbol,
+	stringPad ) {
 
 /**
  * properties( pattern, cldr )
@@ -17,12 +20,22 @@ define([
  * TODO Support other calendar types.
  */
 return function( pattern, cldr ) {
-	var properties = {},
+	var properties = {
+			pattern: pattern,
+			timeSeparator: numberSymbol( "timeSeparator", cldr )
+		},
 		widths = [ "abbreviated", "wide", "narrow" ];
 
-	properties.pattern = pattern;
+	function setFormatNumberPattern( pad ) {
+		if ( !properties.formatNumber ) {
+			properties.formatNumber = {};
+		}
+		properties.formatNumber[ pad ] = stringPad( "", pad );
+	}
+
 	pattern.replace( datePatternRe, function( current ) {
-		var chr = current.charAt( 0 ),
+		var formatNumber,
+			chr = current.charAt( 0 ),
 			length = current.length;
 
 		if ( chr === "j" ) {
@@ -47,10 +60,17 @@ return function( pattern, cldr ) {
 				]);
 				break;
 
+			// Year
+			case "y":
+				// Plain year.
+				formatNumber = true;
+				break;
+
 			case "Y":
 				// Year in "Week of Year"
 				properties.firstDay = dateFirstDayOfWeek( cldr );
 				properties.minDays = cldr.supplemental.weekData.minDays();
+				formatNumber = true;
 				break;
 
 			case "u": // Extended year. Need to be implemented.
@@ -74,6 +94,8 @@ return function( pattern, cldr ) {
 						chr === "Q" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
+				} else {
+					formatNumber = true;
 				}
 				break;
 
@@ -92,6 +114,8 @@ return function( pattern, cldr ) {
 						chr === "M" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
+				} else {
+					formatNumber = true;
 				}
 				break;
 
@@ -100,9 +124,16 @@ return function( pattern, cldr ) {
 			case "W":
 				properties.firstDay = dateFirstDayOfWeek( cldr );
 				properties.minDays = cldr.supplemental.weekData.minDays();
+				formatNumber = true;
 				break;
 
 			// Day
+			case "d":
+			case "D":
+			case "F":
+				formatNumber = true;
+				break;
+
 			case "g":
 				// Modified Julian day. Need to be implemented.
 				throw createErrorUnsupportedFeature({
@@ -114,6 +145,7 @@ return function( pattern, cldr ) {
 			case "c":
 				if ( length <= 2 ) {
 					properties.firstDay = dateFirstDayOfWeek( cldr );
+					formatNumber = true;
 					break;
 				}
 
@@ -156,6 +188,22 @@ return function( pattern, cldr ) {
 				);
 				break;
 
+			// Hour
+			case "h": // 1-12
+			case "H": // 0-23
+			case "K": // 0-11
+			case "k": // 1-24
+
+			// Minute
+			case "m":
+
+			// Second
+			case "s":
+			case "S":
+			case "A":
+				formatNumber = true;
+				break;
+
 			// Zone
 			case "z":
 			case "O":
@@ -164,6 +212,13 @@ return function( pattern, cldr ) {
 				properties.gmtFormat = cldr.main( "dates/timeZoneNames/gmtFormat" );
 				properties.gmtZeroFormat = cldr.main( "dates/timeZoneNames/gmtZeroFormat" );
 				properties.tzLongHourFormat = cldr.main( "dates/timeZoneNames/hourFormat" );
+
+			/* falls through */
+			case "Z":
+			case "X":
+			case "x":
+				setFormatNumberPattern( 1 );
+				setFormatNumberPattern( 2 );
 				break;
 
 			case "v":
@@ -171,7 +226,10 @@ return function( pattern, cldr ) {
 				throw createErrorUnsupportedFeature({
 					feature: "timezone pattern `" + chr + "`"
 				});
+		}
 
+		if ( formatNumber ) {
+			setFormatNumberPattern( length );
 		}
 	});
 

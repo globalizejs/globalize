@@ -14,7 +14,9 @@
 module.exports = require( "./globalize" );
 
 // Extent core with the following modules
-require( "./globalize/date" );
 require( "./globalize/message" );
 require( "./globalize/number" );
 require( "./globalize/plural" );
+
+// Load after globalize/number
+require( "./globalize/date" );

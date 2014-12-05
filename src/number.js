@@ -1,5 +1,6 @@
 define([
 	"./core",
+	"./common/create-error/unsupported-feature",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
 	"./common/validate/parameter-presence",
@@ -12,11 +13,14 @@ define([
 	"./number/parse",
 	"./number/parse-properties",
 	"./number/pattern",
+	"./number/symbol",
+	"./util/string/pad",
 	"cldr/event"
-], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterRange, validateParameterTypeNumber, validateParameterTypePlainObject,
-	validateParameterTypeString, numberFormat, numberFormatProperties, numberParse,
-	numberParseProperties, numberPattern ) {
+], function( Globalize, createErrorUnsupportedFeature, validateCldr, validateDefaultLocale,
+	validateParameterPresence, validateParameterRange, validateParameterTypeNumber,
+	validateParameterTypePlainObject, validateParameterTypeString, numberFormat,
+	numberFormatProperties, numberParse, numberParseProperties, numberPattern, numberSymbol,
+	stringPad ) {
 
 /**
  * .numberFormatter( [options] )
@@ -155,6 +159,14 @@ Globalize.prototype.parseNumber = function( value, options ) {
 
 	return this.numberParser( options )( value );
 };
+
+/**
+ * Optimization to avoid duplicating some internal functions across modules.
+ */
+Globalize._createErrorUnsupportedFeature = createErrorUnsupportedFeature;
+Globalize._numberSymbol = numberSymbol;
+Globalize._stringPad = stringPad;
+Globalize._validateParameterTypeString = validateParameterTypeString;
 
 return Globalize;
 

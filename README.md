@@ -97,11 +97,10 @@ information on its usage.
 | File | Minified + gzipped size | Summary |
 |---|--:|---|
 | globalize.js | 1.1KB | [Core library](#core) |
-| globalize/date.js | +3.8KB | [Date module](#date_module) provides date formatting and parsing |
+| globalize/date.js | +4.8KB | [Date module](#date_module) provides date formatting and parsing |
 | globalize/message.js | +0.5KB | [Message module](#message_module) provides message translation |
-| globalize/number.js | +2.6KB | [Number module](#number_module) provides number formatting and parsing |
+| globalize/number.js | +3.0KB | [Number module](#number_module) provides number formatting and parsing |
 | globalize/plural.js | +1.7KB | [Plural module](#plural_module) provides pluralization support |
-<!--- By updating this table, also update its clone in #usage -->
 
 <a name="browser_support"></a>
 ### Browser Support
@@ -167,7 +166,7 @@ requirements. See table below.
 | Module | Required CLDR JSON files |
 |---|---|
 | Core module | cldr/supplemental/likelySubtags.json |
-| Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/main/`locale`/timeZoneNames.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json |
+| Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/main/`locale`/timeZoneNames.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json<br>+CLDR JSON files from number module |
 | Number module | cldr/main/`locale`/numbers.json<br>cldr/supplemental/numberingSystems.json |
 | Plural module | cldr/supplemental/plurals.json |
 

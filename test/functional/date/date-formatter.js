@@ -1,18 +1,23 @@
 define([
 	"globalize",
+	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/numberingSystems.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"../../util",
 	"globalize/date"
-], function( Globalize, enCaGregorian, likelySubtags, timeData, weekData, util ) {
+], function( Globalize, enNumbers, enCaGregorian, likelySubtags, numberingSystems, timeData,
+	weekData, util ) {
 
 var date = new Date( 2010, 8, 15, 17, 35, 7, 369 );
 
 function extraSetup() {
 	Globalize.load(
 		enCaGregorian,
+		enNumbers,
+		numberingSystems,
 		timeData,
 		weekData
 	);

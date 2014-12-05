@@ -22,6 +22,7 @@
 		define([
 			"cldr",
 			"../globalize",
+			"./number",
 			"cldr/event",
 			"cldr/supplemental"
 		], factory );
@@ -37,10 +38,14 @@
 }(this, function( Cldr, Globalize ) {
 
 var createError = Globalize._createError,
+	createErrorUnsupportedFeature = Globalize._createErrorUnsupportedFeature,
 	formatMessage = Globalize._formatMessage,
 	isPlainObject = Globalize._isPlainObject,
+	numberSymbol = Globalize._numberSymbol,
 	regexpEscape = Globalize._regexpEscape,
+	stringPad = Globalize._stringPad,
 	validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validateParameterPresence = Globalize._validateParameterPresence,
-	validateParameterType = Globalize._validateParameterType;
+	validateParameterType = Globalize._validateParameterType,
+	validateParameterTypeString = Globalize._validateParameterTypeString;

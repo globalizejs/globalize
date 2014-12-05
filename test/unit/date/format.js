@@ -2,14 +2,15 @@ define([
 	"cldr",
 	"src/date/format",
 	"src/date/format-properties",
+	"src/util/string/pad",
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/main/en/timeZoneNames.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"cldr/supplemental"
-], function( Cldr, format, properties, enCaGregorian, timeZoneNames, likelySubtags, timeData,
-	weekData ) {
+], function( Cldr, format, formatProperties, stringPad, enCaGregorian, timeZoneNames, likelySubtags,
+	timeData, weekData ) {
 
 var cldr,
 	year0 = new Date( -62167190400000 ),
@@ -21,6 +22,24 @@ var cldr,
 
 function FakeDate( timezoneOffset ) {
 	this.timezoneOffset = timezoneOffset;
+}
+
+function simpleFormat( pad ) {
+	return function( value ) {
+		return stringPad( value, pad );
+	};
+}
+
+function properties( pattern, cldr ) {
+	var pad,
+		aux = formatProperties( pattern, cldr );
+
+	// Create simple number formatters for this test purposes.
+	for ( pad in aux.formatNumber ) {
+		aux.formatNumber[ pad ] = simpleFormat( pad );
+	}
+
+	return aux;
 }
 
 FakeDate.prototype.getTimezoneOffset = function() {

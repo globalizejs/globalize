@@ -2,13 +2,17 @@ define([
 	"globalize",
 	"src/date/start-of",
 	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/pt/ca-gregorian.json",
+	"json!cldr-data/main/pt/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/numberingSystems.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"../../util",
 	"globalize/date"
-], function( Globalize, startOf, enCaGregorian, ptCaGregorian, likelySubtags, timeData, weekData, util ) {
+], function( Globalize, startOf, enCaGregorian, enNumbers, ptCaGregorian, ptNumbers, likelySubtags,
+	numberingSystems, timeData, weekData, util ) {
 
 function assertParseDate( assert, input, options, output ) {
 	assert.deepEqual( Globalize.dateParser( options )( input ), output, JSON.stringify( options ) );
@@ -17,7 +21,10 @@ function assertParseDate( assert, input, options, output ) {
 function extraSetup() {
 	Globalize.load(
 		enCaGregorian,
+		enNumbers,
 		ptCaGregorian,
+		ptNumbers,
+		numberingSystems,
 		timeData,
 		weekData
 	);
