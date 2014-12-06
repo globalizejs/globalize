@@ -10,11 +10,35 @@
  * Date: @DATE
  */
 
+var Globalize,
+	cldrData = require( "cldr-data" );
+
 // Core
-module.exports = require( "./globalize" );
+module.exports = Globalize = require( "./globalize" );
 
 // Extent core with the following modules
 require( "./globalize/date" );
 require( "./globalize/message" );
 require( "./globalize/number" );
 require( "./globalize/plural" );
+
+// Auto-load CLDR content for:
+Globalize.load(
+
+	// ... core module
+	cldrData( "supplemental/likelySubtags" ),
+
+	// ... date module
+	cldrData.main( "ca-gregorian" ),
+	cldrData.main( "timeZoneNames" ),
+	cldrData( "supplemental/timeData" ),
+	cldrData( "supplemental/weekData" ),
+
+	// ... number module
+	cldrData.main( "numbers" ),
+
+	// ... plural module
+	cldrData( "supplemental/plurals" )
+);
+
+
