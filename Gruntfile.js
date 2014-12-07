@@ -115,10 +115,9 @@ module.exports = function( grunt ) {
 				// Convert content as follows:
 				// a) "Single return" means the module only contains a return statement that is
 				//    converted to a var declaration.
-				// b) "Not as simple as a single return" means the define wrappers are replaced by
-				//    a function wrapper call and the returned value is assigned to a var.
-				// c) "Module" means the define wrappers are removed, but content is untouched.
-				//    Only for root id's (the ones in src, not in src's subpaths).
+				// b) "Module" means the define wrappers are removed, but content is untouched.
+				//    Only for root id's (the ones in src, not in src's subpaths). Note there's no
+				//    conditional code checking for this type.
 				onBuildWrite: function( id, path, contents ) {
 					var name = camelCase( id.replace( /util\/|common\//, "" ) );
 
@@ -166,12 +165,8 @@ module.exports = function( grunt ) {
 						.replace( rdefineEnd, "" ) /* 2 */
 						.replace( /define\(\[[^\]]+\]\)[\W\n]+$/, "" ); /* 3 */
 
-					// Type b (not as simple as a single return)
-					if ( [ "date/parse" ].indexOf( id ) !== -1 ) {
-						contents = "var " + name + " = (function() {" +
-							contents + "}());";
 					// Type a (single return)
-					} else if ( ( /\// ).test( id ) ) {
+					if ( ( /\// ).test( id ) ) {
 						contents = contents
 							.replace( /\nreturn/, "\nvar " + name + " =" );
 					}

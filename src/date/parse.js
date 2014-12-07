@@ -3,13 +3,10 @@ define([
 	"./start-of",
 	"../common/create-error/unsupported-feature",
 	"../util/date/set-date",
-	"../util/date/set-month"
+	"../util/date/set-month",
+	"../util/out-of-range"
 ], function( datePatternRe, dateStartOf, createErrorUnsupportedFeature, dateSetDate,
-	dateSetMonth ) {
-
-function outOfRange( value, low, high ) {
-	return value < low || value > high;
-}
+	dateSetMonth, outOfRange ) {
 
 /**
  * parse( value, tokens, properties )
