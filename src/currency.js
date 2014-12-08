@@ -53,24 +53,21 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 
 	validateDefaultLocale( cldr );
 
-	cldr.on( "get", validateRequiredCldr );
-
 	// Get properties given style ("symbol" default, "code" or "name").
+	cldr.on( "get", validateRequiredCldr );
 	properties = ({
 		code: currencyCodeProperties,
 		name: currencyNameProperties,
 		symbol: currencySymbolProperties
 	}[ style ] )( currency, cldr, options );
-
 	cldr.off( "get", validateRequiredCldr );
 
+	// options = options minus style, plus pattern.
 	options = objectOmit( options, "style" );
 	options.pattern = properties.pattern;
 
 	// Return formatter when style is "symbol".
 	if ( style === "symbol" ) {
-
-		// options = options minus style, plus pattern.
 		return this.numberFormatter( options );
 	}
 
