@@ -97,6 +97,9 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
  */
 Globalize.currencyParser =
 Globalize.prototype.currencyParser = function( /* currency, options */ ) {
+
+	// TODO implement parser.
+
 };
 
 /**
