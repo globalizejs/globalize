@@ -17,7 +17,9 @@ define([
 ], function( Globalize, deCurrencies, deNumbers, enCurrencies, enNumbers, zhCurrencies,
 	zhNumbers, currencyData, likelySubtags, plurals, util ) {
 
-var teslaS = 69900;
+var code = { style: "code" },
+	name = { style: "name" },
+	teslaS = 69900;
 
 function extraSetup() {
 	Globalize.load(
@@ -67,6 +69,7 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 
 QUnit.test( "should return a currency formatter", function( assert ) {
 	var de, zh;
+
 	extraSetup();
 
 	de = Globalize( "de" );
@@ -76,29 +79,13 @@ QUnit.test( "should return a currency formatter", function( assert ) {
 	assert.equal( de.currencyFormatter( "USD" )( teslaS ), "69.900,00 $" );
 	assert.equal( zh.currencyFormatter( "USD" )( teslaS ), "US$ 69,900.00" );
 
-	assert.equal( Globalize.currencyFormatter( "USD", {
-		style: "code"
-	})( teslaS ), "69,900.00 USD" );
+	assert.equal( Globalize.currencyFormatter( "USD", code )( teslaS ), "69,900.00 USD" );
+	assert.equal( de.currencyFormatter( "USD", code )( teslaS ), "69.900,00 USD" );
+	assert.equal( zh.currencyFormatter( "USD", code )( teslaS ), "69,900.00USD" );
 
-	assert.equal( de.currencyFormatter( "USD", {
-		style: "code"
-	})( teslaS ), "69.900,00 USD" );
-
-	assert.equal( zh.currencyFormatter( "USD", {
-		style: "code"
-	})( teslaS ), "69,900.00USD" );
-
-	assert.equal( Globalize.currencyFormatter( "USD", {
-		style: "name"
-	})( teslaS ), "69,900.00 US dollars" );
-
-	assert.equal( de.currencyFormatter( "USD", {
-		style: "name"
-	})( teslaS ), "69.900,00 US-Dollar" );
-
-	assert.equal( zh.currencyFormatter( "USD", {
-		style: "name"
-	})( teslaS ), "69,900.00美元" );
+	assert.equal( Globalize.currencyFormatter( "USD", name )( teslaS ), "69,900.00 US dollars" );
+	assert.equal( de.currencyFormatter( "USD", name )( teslaS ), "69.900,00 US-Dollar" );
+	assert.equal( zh.currencyFormatter( "USD", name )( teslaS ), "69,900.00美元" );
 });
 
 // The number of decimal places and the rounding for each currency is not locale-specific data.
@@ -113,13 +100,11 @@ QUnit.test( "should return a currency formatter, overriden by Supplemental Curre
 	assert.equal( Globalize.currencyFormatter( "ZWD" )( 12345.67 ), "ZWD 12,345" );
 	assert.equal( Globalize.currencyFormatter( "JPY" )( 12345.67 ), "¥12,345" );
 
-	assert.equal( Globalize.currencyFormatter( "CLF", {
-		style: "code"
-	})( 12345.67 ), "12,345.6700 CLF" );
+	assert.equal( Globalize.currencyFormatter( "CLF", code )( 12345.67 ),
+		"12,345.6700 CLF" );
 
-	assert.equal( Globalize.currencyFormatter( "CLF", {
-		style: "name"
-	})( 12345.67 ), "12,345.6700 Chilean units of account (UF)" );
+	assert.equal( Globalize.currencyFormatter( "CLF", name )( 12345.67 ),
+		"12,345.6700 Chilean units of account (UF)" );
 });
 
 // User options should override everything.
