@@ -10,7 +10,7 @@ define([
 	"./currency/code-properties",
 	"./currency/name-format",
 	"./currency/name-properties",
-	"./currency/symbol-pattern",
+	"./currency/symbol-properties",
 	"./util/object/omit",
 
 	"./number",
@@ -18,7 +18,7 @@ define([
 ], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterTypeNumber, validateParameterTypeCurrency, validateParameterTypePlainObject,
 	validatePluralModulePresence, currencyCodeProperties, currencyNameFormat,
-	currencyNameProperties, currencySymbolPattern, objectOmit ) {
+	currencyNameProperties, currencySymbolProperties, objectOmit ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -59,24 +59,23 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 	properties = ({
 		code: currencyCodeProperties,
 		name: currencyNameProperties,
-		symbol: currencySymbolPattern
+		symbol: currencySymbolProperties
 	}[ style ] )( currency, cldr, options );
 
 	cldr.off( "get", validateRequiredCldr );
 
 	options = objectOmit( options, "style" );
+	options.pattern = properties.pattern;
 
 	// Return formatter when style is "symbol".
-	if ( typeof properties === "string" ) {
+	if ( style === "symbol" ) {
 
 		// options = options minus style, plus pattern.
-		options.pattern = properties;
 		return this.numberFormatter( options );
 	}
 
 	// Return formatter when style is "code" or "name".
 	validatePluralModulePresence();
-	options.pattern = properties.pattern;
 	numberFormatter = this.numberFormatter( options );
 	plural = this.pluralGenerator();
 	return function( value ) {
