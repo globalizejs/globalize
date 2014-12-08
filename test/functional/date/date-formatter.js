@@ -7,6 +7,7 @@ define([
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"../../util",
+
 	"globalize/date"
 ], function( Globalize, enNumbers, enCaGregorian, likelySubtags, numberingSystems, timeData,
 	weekData, util ) {

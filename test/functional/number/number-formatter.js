@@ -5,6 +5,7 @@ define([
 	"json!cldr-data/main/es/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"../../util",
+
 	"globalize/number"
 ], function( Globalize, arNumbers, enNumbers, esNumbers, likelySubtags, util ) {
 

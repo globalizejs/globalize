@@ -1,6 +1,7 @@
 define([
 	"globalize",
 	"../util",
+
 	"globalize/date",
 	"globalize/message",
 	"globalize/number"

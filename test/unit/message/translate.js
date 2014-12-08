@@ -1,6 +1,7 @@
 define([
 	"src/core",
 	"json!cldr-data/supplemental/likelySubtags.json",
+
 	"cldr/unresolved",
 	"src/message"
 ], function( Globalize, likelySubtags ) {

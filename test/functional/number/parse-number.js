@@ -8,6 +8,7 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/numberingSystems.json",
 	"../../util",
+
 	"globalize/number"
 ], function( Globalize, arNumbers, enNumbers, esNumbers, svNumbers, zhNumbers, likelySubtags,
 	numberingSystems, util ) {

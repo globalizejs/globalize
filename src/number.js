@@ -16,6 +16,7 @@ define([
 	"./number/pattern",
 	"./number/symbol",
 	"./util/string/pad",
+
 	"cldr/event"
 ], function( Globalize, createErrorUnsupportedFeature, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterRange, validateParameterTypeNumber,
