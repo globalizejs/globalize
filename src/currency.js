@@ -10,14 +10,14 @@ define([
 	"./currency/code-properties",
 	"./currency/name-format",
 	"./currency/name-properties",
-	"./currency/symbol-pattern",
+	"./currency/symbol-properties",
 	"./util/object/omit",
 	"./number",
 	"cldr/event"
 ], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterTypeNumber, validateParameterTypeCurrency, validateParameterTypePlainObject,
 	validatePluralModulePresence, currencyCodeProperties, currencyNameFormat,
-	currencyNameProperties, currencySymbolPattern, objectOmit ) {
+	currencyNameProperties, currencySymbolProperties, objectOmit ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -39,7 +39,7 @@ function validateRequiredCldr( path, value ) {
  */
 Globalize.currencyFormatter =
 Globalize.prototype.currencyFormatter = function( currency, options ) {
-	var cldr, fn, numberFormatter, plural, properties;
+	var cldr, numberFormatter, plural, properties, style;
 
 	validateParameterPresence( currency, "currency" );
 	validateParameterTypeCurrency( currency, "currency" );
@@ -47,32 +47,31 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 	validateParameterTypePlainObject( options, "options" );
 
 	options = options || {};
+	style = options.style || "symbol";
 	cldr = this.cldr;
 
 	validateDefaultLocale( cldr );
 
-	cldr.on( "get", validateRequiredCldr );
-
 	// Get properties given style ("symbol" default, "code" or "name").
-	fn = { code: currencyCodeProperties, name: currencyNameProperties };
-	properties = ( fn[ options.style ] || currencySymbolPattern )( currency, cldr,
-		options );
-
+	cldr.on( "get", validateRequiredCldr );
+	properties = ({
+		code: currencyCodeProperties,
+		name: currencyNameProperties,
+		symbol: currencySymbolProperties
+	}[ style ] )( currency, cldr, options );
 	cldr.off( "get", validateRequiredCldr );
 
+	// options = options minus style, plus pattern.
 	options = objectOmit( options, "style" );
+	options.pattern = properties.pattern;
 
 	// Return formatter when style is "symbol".
-	if ( typeof properties === "string" ) {
-
-		// options = options minus style, plus pattern.
-		options.pattern = properties;
+	if ( style === "symbol" ) {
 		return this.numberFormatter( options );
 	}
 
 	// Return formatter when style is "code" or "name".
 	validatePluralModulePresence();
-	options.pattern = properties.pattern;
 	numberFormatter = this.numberFormatter( options );
 	plural = this.pluralGenerator();
 	return function( value ) {

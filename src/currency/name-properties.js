@@ -1,9 +1,7 @@
 define([
-	"./supplemental-override",
-	"./unit-patterns",
-	"../number/pattern",
+	"./code-properties",
 	"../util/object/filter"
-], function( currencySupplementalOverride, currencyUnitPatterns, numberPattern, objectFilter ) {
+], function( currencyCodeProperties, objectFilter ) {
 
 /**
  * nameProperties( currency, cldr )
@@ -11,21 +9,14 @@ define([
  * Return number pattern with the appropriate currency code in as literal.
  */
 return function( currency, cldr ) {
-	var pattern = numberPattern( "decimal", cldr );
+	var properties = currencyCodeProperties( currency, cldr );
 
-	// The number of decimal places and the rounding for each currency is not locale-specific. Those
-	// values overridden by Supplemental Currency Data.
-	pattern = currencySupplementalOverride( currency, pattern, cldr );
+	properties.displayNames = objectFilter( cldr.main([
+		"numbers/currencies",
+		currency
+	]), /^displayName/ );
 
-	return {
-		currency: currency,
-		displayNames: objectFilter( cldr.main([
-			"numbers/currencies",
-			currency
-		]), /^displayName/ ),
-		pattern: pattern,
-		unitPatterns: currencyUnitPatterns( cldr )
-	};
+	return properties;
 };
 
 });
