@@ -6,6 +6,7 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
 	"../../util",
+
 	"globalize/currency",
 	"globalize/number"
 ], function( Globalize, enCurrencies, enNumbers, currencyData, likelySubtags, plurals, util ) {

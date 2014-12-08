@@ -15,6 +15,7 @@ define([
 	"./date/parse-properties",
 	"./date/tokenizer",
 	"./date/tokenizer-properties",
+
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, validateCldr, validateDefaultLocale, validateParameterPresence,

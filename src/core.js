@@ -15,6 +15,7 @@ define([
 	"./util/is-plain-object",
 	"./util/regexp/escape",
 	"./util/string/pad",
+
 	"cldr/event"
 ], function( Cldr, createError, formatMessage, validate, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterRange, validateParameterType,

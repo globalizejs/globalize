@@ -2,6 +2,7 @@ define([
 	"globalize",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"../../util",
+
 	"cldr/unresolved",
 	"globalize/message"
 ], function( Globalize, likelySubtags, util ) {

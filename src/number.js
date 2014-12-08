@@ -13,6 +13,7 @@ define([
 	"./number/parse",
 	"./number/parse-properties",
 	"./number/pattern",
+
 	"cldr/event"
 ], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterRange, validateParameterTypeNumber, validateParameterTypePlainObject,

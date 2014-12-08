@@ -12,6 +12,7 @@ define([
 	"./currency/name-properties",
 	"./currency/symbol-pattern",
 	"./util/object/omit",
+
 	"./number",
 	"cldr/event"
 ], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,

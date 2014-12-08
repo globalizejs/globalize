@@ -7,6 +7,7 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+
 	"cldr/supplemental"
 ], function( Cldr, format, properties, enCaGregorian, timeZoneNames, likelySubtags, timeData,
 	weekData ) {
