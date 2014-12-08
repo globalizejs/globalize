@@ -39,7 +39,7 @@ function validateRequiredCldr( path, value ) {
  */
 Globalize.currencyFormatter =
 Globalize.prototype.currencyFormatter = function( currency, options ) {
-	var cldr, fn, numberFormatter, plural, properties;
+	var cldr, numberFormatter, plural, properties, style;
 
 	validateParameterPresence( currency, "currency" );
 	validateParameterTypeCurrency( currency, "currency" );
@@ -47,6 +47,7 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 	validateParameterTypePlainObject( options, "options" );
 
 	options = options || {};
+	style = options.style || "symbol";
 	cldr = this.cldr;
 
 	validateDefaultLocale( cldr );
@@ -54,9 +55,11 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 	cldr.on( "get", validateRequiredCldr );
 
 	// Get properties given style ("symbol" default, "code" or "name").
-	fn = { code: currencyCodeProperties, name: currencyNameProperties };
-	properties = ( fn[ options.style ] || currencySymbolPattern )( currency, cldr,
-		options );
+	properties = ({
+		code: currencyCodeProperties,
+		name: currencyNameProperties,
+		symbol: currencySymbolPattern
+	}[ style ] )( currency, cldr, options );
 
 	cldr.off( "get", validateRequiredCldr );
 
