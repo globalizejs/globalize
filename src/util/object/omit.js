@@ -2,6 +2,11 @@ define([
 	"../always-array"
 ], function( alwaysArray ) {
 
+/**
+ * objectOmit( object, keys )
+ *
+ * Return a copy of the object, filtered to omit the blacklisted array of keys.
+ */
 return function( object, keys ) {
 	var key,
 		copy = {};
