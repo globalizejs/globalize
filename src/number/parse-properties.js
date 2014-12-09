@@ -4,9 +4,9 @@ define([
 	"./symbol",
 	"./symbol/inverted-map",
 	"./symbol/name",
-	"../util/object/flat-extend"
+	"../util/object/extend"
 ], function( numberNumberingSystemDigitsMap, numberPatternProperties, numberSymbol,
-	numberSymbolInvertedMap, numberSymbolName, objectFlatExtend ) {
+	numberSymbolInvertedMap, numberSymbolName, objectExtend ) {
 
 /**
  * parseProperties( pattern, cldr )
@@ -33,7 +33,7 @@ return function( pattern, cldr ) {
 			object[ digit ] = "invalid";
 			return object;
 		}, {} );
-		invertedNuDigitsMap = objectFlatExtend(
+		invertedNuDigitsMap = objectExtend(
 			invertedNuDigitsMapSanityCheck,
 			invertedNuDigitsMap
 		);
@@ -51,7 +51,7 @@ return function( pattern, cldr ) {
 	//    `latn` augmented with sanity check (similar to invertedSymbolMap).
 	return [
 		numberSymbol( "infinity", cldr ),
-		objectFlatExtend( {}, numberSymbolName, numberSymbolInvertedMap( cldr ) ),
+		objectExtend( {}, numberSymbolName, numberSymbolInvertedMap( cldr ) ),
 		negativeProperties[ 0 ],
 		negativeProperties[ 10 ].replace( "%", "" ).replace( "\u2030", "" ),
 		invertedNuDigitsMap
