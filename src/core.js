@@ -13,6 +13,7 @@ define([
 	"./util/always-array",
 	"./util/always-cldr",
 	"./util/is-plain-object",
+	"./util/object/extend",
 	"./util/regexp/escape",
 	"./util/string/pad",
 
@@ -20,7 +21,7 @@ define([
 ], function( Cldr, createError, formatMessage, validate, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterRange, validateParameterType,
 	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
-	isPlainObject, regexpEscape, stringPad ) {
+	isPlainObject, objectExtend, regexpEscape, stringPad ) {
 
 function validateLikelySubtags( cldr ) {
 	cldr.once( "get", validateCldr );
@@ -90,6 +91,7 @@ Globalize._alwaysArray = alwaysArray;
 Globalize._createError = createError;
 Globalize._formatMessage = formatMessage;
 Globalize._isPlainObject = isPlainObject;
+Globalize._objectExtend = objectExtend;
 Globalize._regexpEscape = regexpEscape;
 Globalize._stringPad = stringPad;
 Globalize._validate = validate;
