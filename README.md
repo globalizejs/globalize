@@ -97,11 +97,11 @@ information on its usage.
 
 | File | Minified + gzipped size | Summary |
 |---|--:|---|
-| globalize.js | 1.1KB | [Core library](#core) |
+| globalize.js | 1.3KB | [Core library](#core) |
 | globalize/currency.js | +2.6KB | [Currency module](#currency_module) provides currency formatting and parsing |
 | globalize/date.js | +3.8KB | [Date module](#date_module) provides date formatting and parsing |
 | globalize/message.js | +0.5KB | [Message module](#message_module) provides message translation |
-| globalize/number.js | +2.7KB | [Number module](#number_module) provides number formatting and parsing |
+| globalize/number.js | +2.9KB | [Number module](#number_module) provides number formatting and parsing |
 | globalize/plural.js | +1.7KB | [Plural module](#plural_module) provides pluralization support |
 <!--- By updating this table, also update its clone in #usage -->
 
