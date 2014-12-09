@@ -1,6 +1,7 @@
 {
   "directory": "external",
   "scripts": {
+    "preinstall": "npm install cldr-data-downloader@0.1.x",
     "postinstall": "node ./node_modules/cldr-data-downloader/bin/download.js -i external/cldr-data/index.json -o external/cldr-data/"
   }
 }
