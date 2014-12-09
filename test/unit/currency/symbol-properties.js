@@ -32,14 +32,14 @@ zh = new Cldr( "zh" );
 QUnit.module( "Currency Symbol Properties" );
 
 QUnit.test( "should return pattern replacing `¤` with the appropriate currency symbol literal", function( assert ) {
-	assert.equal( symbolProperties( "USD", en, {} ), { pattern: "'$'#,##0.00" } );
-	assert.equal( symbolProperties( "EUR", en, {} ), { pattern: "'€'#,##0.00" } );
-	assert.equal( symbolProperties( "USD", de, {} ), { pattern: "#,##0.00 '$'" } );
-	assert.equal( symbolProperties( "EUR", de, {} ), { pattern: "#,##0.00 '€'" } );
-	assert.equal( symbolProperties( "USD", zh, {} ), { pattern: "'US$' #,##0.00" } );
-	assert.equal( symbolProperties( "EUR", zh, {} ), { pattern: "'€' #,##0.00" } );
+	assert.deepEqual( symbolProperties( "USD", en, {} ), { pattern: "'$'#,##0.00" } );
+	assert.deepEqual( symbolProperties( "EUR", en, {} ), { pattern: "'€'#,##0.00" } );
+	assert.deepEqual( symbolProperties( "USD", de, {} ), { pattern: "#,##0.00 '$'" } );
+	assert.deepEqual( symbolProperties( "EUR", de, {} ), { pattern: "#,##0.00 '€'" } );
+	assert.deepEqual( symbolProperties( "USD", zh, {} ), { pattern: "'US$' #,##0.00" } );
+	assert.deepEqual( symbolProperties( "EUR", zh, {} ), { pattern: "'€' #,##0.00" } );
 
-	assert.equal( symbolProperties( "USD", en, {
+	assert.deepEqual( symbolProperties( "USD", en, {
 		style: "accounting"
 	}), {
 		pattern: "'$'#,##0.00;('$'#,##0.00)"

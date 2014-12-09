@@ -1,8 +1,8 @@
 define([
 	"./supplemental-override",
-	"../common/regexp-not-s",
-	"../number/numbering-system"
-], function( currencySupplementalOverride, regexpNotS, numberNumberingSystem ) {
+	"../number/numbering-system",
+	"../util/regexp/not-s"
+], function( currencySupplementalOverride, numberNumberingSystem, regexpNotS ) {
 
 /**
  * symbolProperties( currency, cldr )
@@ -37,9 +37,9 @@ return function( currency, cldr, options ) {
 	]);
 
 	pattern =
-	
-		// The number of decimal places and the rounding for each currency is not locale-specific. Those
-		// values are overridden by Supplemental Currency Data.
+
+		// The number of decimal places and the rounding for each currency is not locale-specific.
+		// Those values are overridden by Supplemental Currency Data.
 		currencySupplementalOverride( currency, pattern, cldr )
 
 		// Replace "¤" with the appropriate symbol literal.
