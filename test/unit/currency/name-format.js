@@ -1,37 +1,38 @@
 define([
-	"src/currency/name-format"
-], function( format ) {
+	"cldr",
+	"src/currency/name-format",
+	"src/currency/name-properties",
+	"json!cldr-data/main/en/currencies.json",
+	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/zh/currencies.json",
+	"json!cldr-data/main/zh/numbers.json",
+	"json!cldr-data/supplemental/currencyData.json",
+	"json!cldr-data/supplemental/likelySubtags.json"
+], function( Cldr, format, properties, enCurrencies, enNumbers, zhCurrencies, zhNumbers,
+	currencyData, likelySubtags ) {
+
+var en, zh;
+
+Cldr.load(
+	currencyData,
+	enCurrencies,
+	enNumbers,
+	likelySubtags,
+	zhCurrencies,
+	zhNumbers
+);
+
+en = new Cldr( "en" );
+zh = new Cldr( "zh" );
 
 QUnit.module( "Currency Name Foramt" );
 
 QUnit.test( "should return appropriate properties", function( assert ) {
-	assert.deepEqual( format( "1", "one", {
-		"currency": "USD",
-		"displayNames": {
-			"displayName": "US Dollar",
-			"displayName-count-one": "US dollar",
-			"displayName-count-other": "US dollars"
-		},
-		"unitPatterns": {
-			"unitPattern-count-one": "{0} {1}",
-			"unitPattern-count-other": "{0} {1}"
-		}
-	}), "1 US dollar" );
+	assert.deepEqual( format( "1", "one", properties( "USD", en ) ), "1 US dollar" );
+	assert.deepEqual( format( "2", "other", properties( "USD", en ) ), "2 US dollars" );
 
-	assert.deepEqual( format( "2", "other", {
-		"currency": "USD",
-		"displayNames": {
-			"displayName": "US Dollar",
-			"displayName-count-one": "US dollar",
-			"displayName-count-other": "US dollars"
-		},
-		"unitPatterns": {
-			"unitPattern-count-one": "{0} {1}",
-			"unitPattern-count-other": "{0} {1}"
-		}
-	}), "2 US dollars" );
-
-	assert.deepEqual( format( "1", "anything", {
+	// Test the fallback to displayNames by the lack of displayNames-count-*.
+	assert.deepEqual( format( "1", "something", {
 		"displayNames": {
 			"displayName": "US Dollar",
 		},
@@ -40,25 +41,17 @@ QUnit.test( "should return appropriate properties", function( assert ) {
 		}
 	}), "1 US Dollar" );
 
-	assert.deepEqual( format( "1", "anything", {
+	// Test the fallback to currency by the lack of displayName and displayName-count-*.
+	assert.deepEqual( format( "1", "something", {
 		"currency": "USD",
 		"unitPatterns": {
 			"unitPattern-count-other": "{0} {1}"
 		}
 	}), "1 USD" );
 
-	assert.deepEqual( format( "10", "other", {
-		"currency": "CNY",
-		"displayNames": {
-			"displayName": "人民币",
-			"displayName-count-other": "人民币"
-		},
-		"pattern": "#,##0.###",
-		"unitPatterns": {
-			"unitPattern-count-other": "{0}{1}"
-		}
-	}), "10人民币" );
+	assert.deepEqual( format( "10", "other", properties( "CNY", zh ) ), "10人民币" );
 
+	// Testing inverted unitPattern {1} {0}.
 	assert.deepEqual( format( "1", "other", {
 		"currency": "TZS",
 		"unitPatterns": {
