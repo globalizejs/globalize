@@ -42,19 +42,23 @@ return function( currency, cldr, options ) {
 		// Those values are overridden by Supplemental Currency Data.
 		currencySupplementalOverride( currency, pattern, cldr )
 
-		// Replace "¤" with the appropriate symbol literal.
+		// Replace "¤" (\u00A4) with the appropriate symbol literal.
 		.split( ";" ).map(function( pattern ) {
 
-			// "\u00A4" = "¤"
 			return pattern.split( "\u00A4" ).map(function( part, i ) {
 				var currencyMatch = regexp[ currencySpacing[ i ].currencyMatch ],
 					surroundingMatch = regexp[ currencySpacing[ i ].surroundingMatch ],
 					insertBetween = "";
 
-				if ( currencyMatch.test( symbol.charAt( i ? symbol.length - 1 : 0 ) ) && part &&
-							surroundingMatch.test(
-								part.charAt( i ? 0 : part.length - 1 ).replace( /[#@,.]/g, "0" )
-							) ) {
+				// For currencyMatch and surroundingMatch definitions, read [1].
+				// When i === 0, beforeCurrency is being handled. Otherwise, afterCurrency.
+				// 1: http://www.unicode.org/reports/tr35/tr35-numbers.html#Currencies
+				currencyMatch = currencyMatch.test( symbol.charAt( i ? symbol.length - 1 : 0 ) );
+				surroundingMatch = surroundingMatch.test(
+					part.charAt( i ? 0 : part.length - 1 ).replace( /[#@,.]/g, "0" )
+				);
+
+				if ( currencyMatch && part && surroundingMatch ) {
 					insertBetween = currencySpacing[ i ].insertBetween;
 				}
 
