@@ -1,0 +1,7 @@
+{
+  "test_framework": "qunit",
+  "test_path": [ "test/unit-es5-shim.html", "test/functional-es5-shim.html" ],
+  "browsers": [
+    "ie_8"
+  ]
+}

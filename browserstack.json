@@ -1,0 +1,17 @@
+{
+  "test_framework": "qunit",
+  "test_path": [ "test/unit.html", "test/functional.html" ],
+  "browsers": [
+    "chrome_previous",
+    "chrome_latest",
+    "firefox_previous",
+    "firefox_latest",
+    "ie_9",
+    "ie_10",
+    "ie_11",
+    "opera_previous",
+    "opera_latest",
+    "safari_previous",
+    "safari_latest"
+  ]
+}
