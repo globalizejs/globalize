@@ -4,7 +4,6 @@ define([
 	"json!cldr-data/supplemental/plurals.json",
 	"../../util",
 
-	"cldr/event",
 	"cldr/unresolved",
 	"globalize/message",
 	"globalize/plural"

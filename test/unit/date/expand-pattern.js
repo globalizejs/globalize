@@ -2,7 +2,10 @@ define([
 	"cldr",
 	"src/date/expand-pattern",
 	"json!cldr-data/main/en/ca-gregorian.json",
-	"json!cldr-data/supplemental/likelySubtags.json"
+	"json!cldr-data/supplemental/likelySubtags.json",
+
+  "cldr/event",
+  "cldr/supplemental"
 ], function( Cldr, expandPattern, enCaGregorian, likelySubtags ) {
 
 var cldr;

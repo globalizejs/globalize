@@ -7,7 +7,10 @@ define([
 	"json!cldr-data/main/zh/currencies.json",
 	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/currencyData.json",
-	"json!cldr-data/supplemental/likelySubtags.json"
+	"json!cldr-data/supplemental/likelySubtags.json",
+
+  "cldr/event",
+  "cldr/supplemental"
 ], function( Cldr, format, properties, enCurrencies, enNumbers, zhCurrencies, zhNumbers,
 	currencyData, likelySubtags ) {
 

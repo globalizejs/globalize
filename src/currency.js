@@ -14,7 +14,8 @@ define([
 	"./util/object/omit",
 
 	"./number",
-	"cldr/event"
+	"cldr/event",
+	"cldr/supplemental"
 ], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterTypeNumber, validateParameterTypeCurrency, validateParameterTypePlainObject,
 	validatePluralModulePresence, currencyCodeProperties, currencyNameFormat,

@@ -7,7 +7,10 @@ define([
 	"json!cldr-data/main/es/numbers.json",
 	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
-	"json!cldr-data/supplemental/numberingSystems.json"
+	"json!cldr-data/supplemental/numberingSystems.json",
+
+  "cldr/event",
+  "cldr/supplemental"
 ], function( Cldr, format, properties, arNumbers, enNumbers, esNumbers, zhNumbers, likelySubtags,
 	numberingSystems ) {
 

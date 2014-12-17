@@ -8,6 +8,7 @@ define([
 	"./common/validate/parameter-type",
 	"./common/validate/parameter-type/number",
 
+	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, MakePlural, Globalize, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterType, validateParameterTypeNumber ) {

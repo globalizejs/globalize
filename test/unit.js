@@ -5,7 +5,8 @@ require.config({
 		json: "../external/requirejs-plugins/src/json",
 		src: "../src",
 		text: "../external/requirejs-text/text"
-	}
+	},
+	waitSeconds: 30
 });
 
 require([
@@ -44,5 +45,10 @@ require([
 	"./unit/number/parse"
 
 ], function() {
+	QUnit.start();
+}, function( error ) {
+	QUnit.test( "reqirejs load failure", function( assert ) {
+		assert.ok( false, "requirejs failed to load: " + QUnit.jsDump.parse( error ) );
+	});
 	QUnit.start();
 });

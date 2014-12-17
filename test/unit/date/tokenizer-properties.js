@@ -2,7 +2,10 @@ define([
 	"cldr",
 	"src/date/tokenizer-properties",
 	"json!cldr-data/main/en/ca-gregorian.json",
-	"json!cldr-data/supplemental/likelySubtags.json"
+	"json!cldr-data/supplemental/likelySubtags.json",
+
+  "cldr/event",
+  "cldr/supplemental"
 ], function( Cldr, tokenizerProperties, enCaGregorian, likelySubtags ) {
 
 var cldr;
