@@ -19,7 +19,8 @@
 			"cldr",
 			"../globalize",
 			"./number",
-			"cldr/event"
+			"cldr/event",
+			"cldr/supplemental"
 		], factory );
 	} else if ( typeof exports === "object" ) {
 

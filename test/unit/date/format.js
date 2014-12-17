@@ -9,6 +9,7 @@ define([
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 
+	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, format, formatProperties, stringPad, enCaGregorian, timeZoneNames, likelySubtags,
 	timeData, weekData ) {

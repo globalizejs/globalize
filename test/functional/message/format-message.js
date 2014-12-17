@@ -4,7 +4,6 @@ define([
 	"json!cldr-data/supplemental/plurals.json",
 	"../../util",
 
-	"cldr/event",
 	"globalize/message",
 	"globalize/plural"
 ], function( Globalize, likelySubtags, plurals, util ) {

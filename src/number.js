@@ -17,7 +17,8 @@ define([
 	"./number/symbol",
 	"./util/string/pad",
 
-	"cldr/event"
+	"cldr/event",
+	"cldr/supplemental"
 ], function( Globalize, createErrorUnsupportedFeature, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterRange, validateParameterTypeNumber,
 	validateParameterTypePlainObject, validateParameterTypeString, numberFormat,

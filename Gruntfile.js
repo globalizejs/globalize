@@ -201,7 +201,13 @@ module.exports = function( grunt ) {
 						{
 							name: "globalize.currency",
 							include: [ "currency" ],
-							exclude: [ "cldr", "cldr/event", "./core", "./number" ],
+							exclude: [
+								"cldr",
+								"cldr/event",
+								"cldr/supplemental",
+								"./core",
+								"./number"
+							],
 							create: true,
 							override: {
 								wrap: {
@@ -213,7 +219,13 @@ module.exports = function( grunt ) {
 						{
 							name: "globalize.date",
 							include: [ "date" ],
-							exclude: [ "cldr", "cldr/supplemental", "./core", "./number" ],
+							exclude: [
+								"cldr",
+								"cldr/event",
+								"cldr/supplemental",
+								"./core",
+								"./number"
+							],
 							create: true,
 							override: {
 								wrap: {
@@ -223,9 +235,26 @@ module.exports = function( grunt ) {
 							}
 						},
 						{
+							name: "globalize.message",
+							include: [ "message" ],
+							exclude: [ "cldr", "./core" ],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-message.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
 							name: "globalize.number",
 							include: [ "number" ],
-							exclude: [ "cldr", "cldr/event", "./core" ],
+							exclude: [
+								"cldr",
+								"cldr/event",
+								"cldr/supplemental",
+								"./core"
+							],
 							create: true,
 							override: {
 								wrap: {
@@ -237,23 +266,16 @@ module.exports = function( grunt ) {
 						{
 							name: "globalize.plural",
 							include: [ "plural" ],
-							exclude: [ "cldr", "cldr/event", "cldr/supplemental", "./core" ],
+							exclude: [
+								"cldr",
+								"cldr/event",
+								"cldr/supplemental",
+								"./core"
+							],
 							create: true,
 							override: {
 								wrap: {
 									startFile: "src/build/intro-plural.js",
-									endFile: "src/build/outro.js"
-								}
-							}
-						},
-						{
-							name: "globalize.message",
-							include: [ "message" ],
-							exclude: [ "cldr", "cldr/event", "./core" ],
-							create: true,
-							override: {
-								wrap: {
-									startFile: "src/build/intro-message.js",
 									endFile: "src/build/outro.js"
 								}
 							}
