@@ -291,8 +291,6 @@ to you in different flavors):
 
  Alias to `.messageFormatter( path )([ variables ])`.
 
- [Read more...](doc/api/message/format-message.md)
-
 <a name="number_module"></a>
 ### Number module
 
