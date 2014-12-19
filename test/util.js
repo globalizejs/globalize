@@ -100,6 +100,27 @@ return {
 		assertParameterType( assert, [ "cldr", "null", "string" ], name, fn );
 	},
 
+	assertMessagePresence: function( assert, path, fn ) {
+		assert.throws( fn, function E_MISSING_PARAMETER( error ) {
+			return error.code === "E_MISSING_MESSAGE" &&
+				error.path === path;
+		}, "Expected \"E_MISSING_MESSAGE: Missing required message content `" + path + "`\" to be thrown" );
+	},
+
+	assertMessageType: function( assert, path, fn ) {
+		Object.keys( allTypes ).filter( not([ "array", "string" ]) ).forEach(function( type ) {
+			assert.throws( fn( allTypes[ type ] ), function E_INVALID_MESSAGE( error ) {
+				return error.code === "E_INVALID_MESSAGE" &&
+					error.path === path &&
+					"expected" in error;
+			}, "Expected \"E_INVALID_MESSAGE: Invalid message content `" + path + "`\" to be thrown. (" + type + ")" );
+		});
+	},
+
+	assertMessageVariablesType: function( assert, name, fn ) {
+		assertParameterType( assert, [ "array", "cldr", "number", "plainObject", "string" ], name, fn );
+	},
+
 	assertNumberParameter: function( assert, name, fn ) {
 		assertParameterType( assert, "number", name, fn );
 	},

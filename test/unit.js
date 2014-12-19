@@ -33,9 +33,6 @@ require([
 
 	"./unit/date/parse",
 
-	// message
-	"./unit/message/translate",
-
 	// number
 	"./unit/number/pattern-properties",
 	"./unit/number/format/integer-fraction-digits",
