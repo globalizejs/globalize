@@ -16,7 +16,7 @@
     "make-plural": "eemeli/make-plural.js#2.1.2",
     "es5-shim": "3.4.0",
     "messageformat": "SlexAxton/messageformat.js#debeaf4",
-    "qunit": "1.12.0",
+    "qunit": "1.16.0",
     "requirejs": "2.1.9",
     "requirejs-plugins": "1.0.2",
     "requirejs-text": "2.0.10"
