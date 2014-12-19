@@ -7,6 +7,8 @@ require.config({
 		src: "../src",
 		text: "../external/requirejs-text/text"
 	},
+
+	// Increase the default of 7 seconds for high-latency envs like browserstack-runner.
 	waitSeconds: 30
 });
 
