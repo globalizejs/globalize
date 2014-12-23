@@ -20,7 +20,7 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, tokens, properties ) {
-	var amPm, era, hour, hour12, timezoneOffset, valid,
+	var amPm, era, hour, hour12, timezoneOffset, valid, dayPart,
 		YEAR = 0,
 		MONTH = 1,
 		DAY = 2,
@@ -116,7 +116,7 @@ return function( value, tokens, properties ) {
 				if ( outOfRange( value, 1, 31 ) ) {
 					return false;
 				}
-				dateSetDate( date, value );
+				dayPart = value;
 				truncateAt.push( DAY );
 				break;
 
@@ -247,6 +247,10 @@ return function( value, tokens, properties ) {
 	if ( era === 0 ) {
 		// 1 BC = year 0
 		date.setFullYear( date.getFullYear() * -1 + 1 );
+	}
+
+	if ( dayPart ) {
+		dateSetDate( date, dayPart );
 	}
 
 	if ( hour12 && amPm === "pm" ) {
