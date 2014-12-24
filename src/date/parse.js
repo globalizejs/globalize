@@ -1,11 +1,11 @@
 define([
+	"./last-day-of-month",
 	"./pattern-re",
 	"./start-of",
 	"../common/create-error/unsupported-feature",
-	"../util/date/set-date",
 	"../util/date/set-month",
 	"../util/out-of-range"
-], function( datePatternRe, dateStartOf, createErrorUnsupportedFeature, dateSetDate,
+], function( dateLastDayOfMonth, datePatternRe, dateStartOf, createErrorUnsupportedFeature,
 	dateSetMonth, outOfRange ) {
 
 /**
@@ -20,7 +20,7 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, tokens, properties ) {
-	var amPm, era, hour, hour12, timezoneOffset, valid, dayPart,
+	var amPm, day, era, hour, hour12, timezoneOffset, valid,
 		YEAR = 0,
 		MONTH = 1,
 		DAY = 2,
@@ -112,11 +112,7 @@ return function( value, tokens, properties ) {
 
 			// Day
 			case "d":
-				value = token.value;
-				if ( outOfRange( value, 1, 31 ) ) {
-					return false;
-				}
-				dayPart = value;
+				day = token.value;
 				truncateAt.push( DAY );
 				break;
 
@@ -249,8 +245,11 @@ return function( value, tokens, properties ) {
 		date.setFullYear( date.getFullYear() * -1 + 1 );
 	}
 
-	if ( dayPart ) {
-		dateSetDate( date, dayPart );
+	if ( day !== undefined ) {
+		if ( outOfRange( day, 1, dateLastDayOfMonth( date ) ) ) {
+			return null;
+		}
+		date.setDate( day );
 	}
 
 	if ( hour12 && amPm === "pm" ) {
