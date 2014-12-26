@@ -247,7 +247,7 @@ return function( value, tokens, properties ) {
 		}
 		date.setDate( day );
 	} else if ( totalDays !== undefined ) {
-		if ( outOfRange( totalDays, 1, dateIsLeapYear( date.getFullYear() ) ? 366 : 355 ) ) {
+		if ( outOfRange( totalDays, 1, dateIsLeapYear( date.getFullYear() ) ? 366 : 365 ) ) {
 			return null;
 		}
 		date.setMonth(0);
