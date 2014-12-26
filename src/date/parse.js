@@ -1,12 +1,13 @@
 define([
+	"./is-leap-year",
 	"./last-day-of-month",
 	"./pattern-re",
 	"./start-of",
 	"../common/create-error/unsupported-feature",
 	"../util/date/set-month",
 	"../util/out-of-range"
-], function( dateLastDayOfMonth, datePatternRe, dateStartOf, createErrorUnsupportedFeature,
-	dateSetMonth, outOfRange ) {
+], function( dateIsLeapYear, dateLastDayOfMonth, datePatternRe, dateStartOf,
+	createErrorUnsupportedFeature, dateSetMonth, outOfRange ) {
 
 /**
  * parse( value, tokens, properties )
@@ -20,7 +21,7 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, tokens, properties ) {
-	var amPm, day, era, hour, hour12, timezoneOffset, valid,
+	var amPm, day, era, hour, hour12, timezoneOffset, totalDays, valid,
 		YEAR = 0,
 		MONTH = 1,
 		DAY = 2,
@@ -117,12 +118,7 @@ return function( value, tokens, properties ) {
 				break;
 
 			case "D":
-				value = token.value;
-				if ( outOfRange( value, 1, 366 ) ) {
-					return false;
-				}
-				date.setMonth(0);
-				date.setDate( value );
+				totalDays = token.value;
 				truncateAt.push( DAY );
 				break;
 
@@ -250,6 +246,12 @@ return function( value, tokens, properties ) {
 			return null;
 		}
 		date.setDate( day );
+	} else if ( totalDays !== undefined ) {
+		if ( outOfRange( totalDays, 1, dateIsLeapYear( date.getFullYear() ) ? 366 : 355 ) ) {
+			return null;
+		}
+		date.setMonth(0);
+		date.setDate( totalDays );
 	}
 
 	if ( hour12 && amPm === "pm" ) {
