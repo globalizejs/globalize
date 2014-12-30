@@ -1,8 +1,13 @@
 require.config({
 	paths: {
-		cldr: "../external/cldrjs/dist/cldr",
 		"cldr-data": "../external/cldr-data",
+		cldr: "../external/cldrjs/dist/cldr",
 		json: "../external/requirejs-plugins/src/json",
+
+		// Sinon.js dependency.
+		lolex: "../external/lolex/lolex",
+
+		sinon: "../external/sinon/lib/sinon",
 		src: "../src",
 		text: "../external/requirejs-text/text"
 	},
