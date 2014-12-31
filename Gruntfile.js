@@ -28,6 +28,13 @@ module.exports = function( grunt ) {
 
 	grunt.initConfig({
 		pkg: pkg,
+		commitplease: {
+			currentBranch: {
+				options: {
+					committish: "cf52d58..HEAD"
+				}
+			}
+		},
 		connect: {
 			options: {
 				port: 9001,
@@ -407,7 +414,8 @@ module.exports = function( grunt ) {
 		// "jscs:dist",
 		"test:functional",
 		"uglify",
-		"compare_size"
+		"compare_size",
+		"commitplease"
 	]);
 
 };
