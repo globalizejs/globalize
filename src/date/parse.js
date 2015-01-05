@@ -21,7 +21,7 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, tokens, properties ) {
-	var amPm, day, era, hour, hour12, timezoneOffset, totalDays, valid,
+	var amPm, day, daysOfYear, era, hour, hour12, timezoneOffset, valid,
 		YEAR = 0,
 		MONTH = 1,
 		DAY = 2,
@@ -118,7 +118,7 @@ return function( value, tokens, properties ) {
 				break;
 
 			case "D":
-				totalDays = token.value;
+				daysOfYear = token.value;
 				truncateAt.push( DAY );
 				break;
 
@@ -246,12 +246,12 @@ return function( value, tokens, properties ) {
 			return null;
 		}
 		date.setDate( day );
-	} else if ( totalDays !== undefined ) {
-		if ( outOfRange( totalDays, 1, dateIsLeapYear( date.getFullYear() ) ? 366 : 365 ) ) {
+	} else if ( daysOfYear !== undefined ) {
+		if ( outOfRange( daysOfYear, 1, dateIsLeapYear( date.getFullYear() ) ? 366 : 365 ) ) {
 			return null;
 		}
 		date.setMonth(0);
-		date.setDate( totalDays );
+		date.setDate( daysOfYear );
 	}
 
 	if ( hour12 && amPm === "pm" ) {
