@@ -15,7 +15,7 @@ class DupTest < MiniTest::Spec
     end
 
     it 'stores translations of found record' do
-      check_stored_translations( Post.find(saved_post).dup )
+      check_stored_translations( Post.find(saved_post.id).dup )
     end
 
     it 'stores translations of record reloaded after creation' do

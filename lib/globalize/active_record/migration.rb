@@ -70,7 +70,7 @@ module Globalize
           connection.create_table(translations_table_name) do |t|
             t.references table_name.sub(/^#{table_name_prefix}/, '').singularize, :null => false
             t.string :locale, :null => false
-            t.timestamps
+            t.timestamps :null => false
           end
         end
 
