@@ -49,7 +49,7 @@ require([
 ], function() {
 	QUnit.start();
 }, function( error ) {
-	QUnit.test( "reqirejs load failure", function( assert ) {
+	QUnit.test( "requirejs load failure", function( assert ) {
 		assert.ok( false, "requirejs failed to load: " + QUnit.jsDump.parse( error ) );
 	});
 	QUnit.start();
