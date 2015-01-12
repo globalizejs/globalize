@@ -1,5 +1,6 @@
 define([
 	"cldr",
+	"sinon",
 	"src/date/parse",
 	"src/date/parse-properties",
 	"src/date/start-of",
@@ -13,7 +14,7 @@ define([
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, parse, parseProperties, startOf, tokenizer, numberTokenizerProperties,
+], function( Cldr, sinon, parse, parseProperties, startOf, tokenizer, numberTokenizerProperties,
 	enCaGregorian, enNumbers, likelySubtags, timeData, weekData ) {
 
 var cldr, date1, date2, midnight;
@@ -165,10 +166,26 @@ QUnit.test( "should parse month (MMMMM|LLLLL)", function( assert ) {
  */
 
 QUnit.test( "should parse day (d) with no padding", function( assert ) {
+	var clock;
+
 	date1 = new Date();
 	date1.setDate( 2 );
 	date1 = startOf( date1, "day" );
 	assertParse( assert, "2", "d", cldr, date1 );
+
+	// Test #323 - Day parsing must use the correct day range given its corresponding month/year.
+	// `sinon.useFakeTimers( date )` overwrites Date with a custom implementation, where now = date.
+	date1 = new Date( 2014, 1, 28 );
+	clock = sinon.useFakeTimers( new Date( 2014, 1 ).getTime() );
+	assertParse( assert, "29", "d", cldr, null );
+	assertParse( assert, "28", "d", cldr, date1 );
+	clock.restore();
+
+	date2 = new Date( 2016, 1, 29 );
+	clock = sinon.useFakeTimers( new Date( 2016, 1 ).getTime() );
+	assertParse( assert, "30", "d", cldr, null );
+	assertParse( assert, "29", "d", cldr, date2 );
+	clock.restore();
 });
 
 QUnit.test( "should parse day (dd) with padding", function( assert ) {
@@ -179,11 +196,25 @@ QUnit.test( "should parse day (dd) with padding", function( assert ) {
 });
 
 QUnit.test( "should parse day of year (D) with no padding", function( assert ) {
+	var clock;
+
 	date1 = new Date();
 	date1.setMonth( 0 );
 	date1.setDate( 2 );
 	date1 = startOf( date1, "day" );
 	assertParse( assert, "2", "D", cldr, date1 );
+
+	// Test #323 - Day of year parsing must use the correct day range given leap year into account.
+	// `sinon.useFakeTimers( date )` overwrites Date with a custom implementation, where now = date.
+	clock = sinon.useFakeTimers( new Date( 2014, 1 ).getTime() );
+	assertParse( assert, "366", "D", cldr, null );
+	clock.restore();
+
+	// date1 = last day of 2016
+	date1 = new Date( 2017, 0, 0 );
+	clock = sinon.useFakeTimers( new Date( 2016, 1 ).getTime() );
+	assertParse( assert, "366", "D", cldr, date1 );
+	clock.restore();
 });
 
 QUnit.test( "should parse day of year (DD|DDD) with padding", function( assert ) {
