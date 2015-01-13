@@ -1,6 +1,24 @@
 ActiveRecord::Migration.verbose = false
 
 ActiveRecord::Schema.define do
+  create_table :authors, :force => true do |t|
+    t.string     :name
+  end
+
+  create_table :articles, :force => true do |t|
+    t.references :author
+  end
+
+  create_table :article_translations, :force => true do |t|
+    t.references :article
+    t.string     :title
+  end
+
+  create_table :comments_without_translations, :force => true do |t|
+    t.references :article
+    t.string     :content
+  end
+
   create_table :translations, :force => true do |t|
     t.string   :blah
   end
