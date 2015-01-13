@@ -23,7 +23,7 @@ rvm:
   # - jruby-19mode
 matrix:
   allow_failures:
-    - rvm: 2.2
+    - rvm: rbx-2
     - env: RAILS_4_2=true DB=sqlite3
     - env: RAILS_4_2=true DB=postgres
     - env: RAILS_4_2=true DB=mysql
