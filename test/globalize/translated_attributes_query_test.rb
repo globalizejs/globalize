@@ -179,6 +179,57 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
         assert_equal 2, @take.size
       end
     end
+
+    describe '.order' do
+      describe 'returns record in order' do
+        describe 'for translated columns' do
+          it 'returns record in order, column as symbol' do
+            @order = Post.where(:title => 'title').order(:title)
+            assert_equal ['post_translations.title'], @order.order_values
+          end
+
+          it 'returns record in order, column and direction as hash' do
+            @order = Post.where(:title => 'title').order(title: :desc)
+            assert_match(/ORDER BY "post_translations"."title" DESC/, @order.to_sql)
+          end
+
+          it 'returns record in order, leaving string untouched' do
+            @order = Post.where(:title => 'title').order('title ASC')
+            assert_equal ['title ASC'], @order.order_values
+          end
+        end
+
+        describe 'for non-translated columns' do
+          it 'returns record in order, column as symbol' do
+            @order = Post.where(:title => 'title').order(:id)
+            assert_match(/ORDER BY "posts"."id" ASC/, @order.to_sql)
+          end
+
+          it 'returns record in order, column and direction as hash' do
+            @order = Post.where(:title => 'title').order(id: :desc)
+            assert_match(/ORDER BY "posts"."id" DESC/, @order.to_sql)
+          end
+
+          it 'returns record in order, leaving string untouched' do
+            @order = Post.where(:title => 'title').order('id ASC')
+            assert_equal ['id ASC'], @order.order_values
+          end
+        end
+
+        describe 'for mixed columns' do
+          it 'returns record in order, column and direction as hash' do
+            @order = Post.where(:title => 'title').order(title: :desc, id: :asc)
+            assert_match(/ORDER BY "post_translations"."title" DESC/, @order.to_sql)
+            assert_match(/"id" ASC/, @order.to_sql)
+          end
+
+          it 'returns record in order, leaving string untouched' do
+            @order = Post.where(:title => 'title').order('title ASC, id DESC')
+            assert_equal ['title ASC, id DESC'], @order.order_values
+          end
+        end
+      end
+    end
   end
 
   describe '.where_values_hash' do
