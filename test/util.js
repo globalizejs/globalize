@@ -74,6 +74,10 @@ return {
 		assertParameterType( assert, "array", name, fn );
 	},
 
+	assertCldrJsonDataParameter: function( assert, name, fn ) {
+		assertParameterType( assert, [ "array", "cldr", "plainObject" ], name, fn );
+	},
+
 	assertCurrencyParameter: function( assert, name, fn ) {
 		assertParameterType( assert, [ "string" ], name, fn );
 		assert.throws( fn( "ABCD" ), function E_INVALID_PAR_TYPE( error ) {

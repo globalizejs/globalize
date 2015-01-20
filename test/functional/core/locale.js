@@ -1,6 +1,6 @@
 define([
 	"globalize",
-	"../util",
+	"../../util",
 
 	"globalize/date",
 	"globalize/message",
@@ -35,7 +35,7 @@ QUnit.test( "should validate whether default locale is defined on static calls",
 	});
 
 	util.assertDefaultLocalePresence( assert, function() {
-		Globalize.translate( "amen" );
+		Globalize.formatMessage( "amen" );
 	});
 });
 
