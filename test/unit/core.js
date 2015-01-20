@@ -74,6 +74,7 @@ QUnit.test( "should lookup bundle", function( assert ) {
 	// `en-US` bundle.
 	assert.equal( Globalize( "yy" ).cldr.attributes.bundle, "yy-YY" );
 	assert.equal( Globalize( "yy-YY" ).cldr.attributes.bundle, "yy-YY" );
+
 	assert.deepEqual( Globalize( "xx-XZ" ).cldr.attributes.bundle, null );
 });
 

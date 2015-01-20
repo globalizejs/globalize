@@ -32,6 +32,7 @@ QUnit.module( ".messageFormatter( path )", {
 			root: {
 				amen: "Amen"
 			},
+			de: {},
 			en: {
 				greetings: {
 					hello: "Hello",
