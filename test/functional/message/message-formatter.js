@@ -17,6 +17,13 @@ QUnit.assert.messageFormatter = function( locale, path, variables, expected ) {
 	this.equal( Globalize( locale ).messageFormatter( path )( variables ), expected );
 };
 
+QUnit.assert.messageBundlePresence = function( fn ) {
+	this.throws( fn, function E_MISSING_MESSAGE_BUNDLE( error ) {
+		return error.code === "E_MISSING_MESSAGE_BUNDLE" &&
+			"locale" in error;
+	}, "Expected \"E_MISSING_MESSAGE_BUNDLE\" to be thrown" );
+};
+
 QUnit.module( ".messageFormatter( path )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
@@ -24,12 +31,6 @@ QUnit.module( ".messageFormatter( path )", {
 		Globalize.loadMessages({
 			root: {
 				amen: "Amen"
-			},
-			pt: {
-				amen: "Amém"
-			},
-			zh: {
-				amen: "阿门"
 			},
 			en: {
 				greetings: {
@@ -59,10 +60,27 @@ QUnit.module( ".messageFormatter( path )", {
 					"  other {# tasks}",
 					"} remaining"
 				]
+			},
+			"en-GB": {},
+			fr: {},
+			pt: {
+				amen: "Amém"
+			},
+			"pt-PT": {},
+			zh: {
+				amen: "阿门"
 			}
 		});
 	},
 	teardown: util.resetCldrContent
+});
+
+QUnit.test( "should pass test's prerequisites", function( assert ) {
+	var sr = new Globalize( "sr" );
+
+	// OBS: Ensure `sr` cldr/main dataset hasn't being loaded elsewhere. It's a prerequisites for
+	// the below messageBundlePresence test.
+	assert.deepEqual( sr.cldr.attributes.bundle, null, "`sr` cldr/main dataset cannot be loaded" );
 });
 
 QUnit.test( "should validate parameters", function( assert ) {
@@ -78,6 +96,10 @@ QUnit.test( "should validate parameters", function( assert ) {
 });
 
 QUnit.test( "should validate messages", function( assert ) {
+	assert.messageBundlePresence(function() {
+		Globalize( "sr" ).messageFormatter( "path" );
+	});
+
 	util.assertMessagePresence( assert, "non-existent/path", function() {
 		Globalize( "en" ).messageFormatter( "non-existent/path" );
 	});

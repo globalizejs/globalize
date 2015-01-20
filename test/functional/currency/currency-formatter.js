@@ -37,7 +37,11 @@ function extraSetup() {
 
 QUnit.module( ".currencyFormatter( currency [, options] )", {
 	setup: function() {
-		Globalize.load( likelySubtags );
+		Globalize.load( likelySubtags, {
+			main: {
+				en: {}
+			}
+		});
 		Globalize.locale( "en" );
 	},
 	teardown: util.resetCldrContent

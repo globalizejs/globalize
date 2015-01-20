@@ -3,15 +3,21 @@ define([
 	"src/date/format",
 	"src/date/format-properties",
 	"src/util/string/pad",
+	"json!cldr-data/main/de/ca-gregorian.json",
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/main/en/timeZoneNames.json",
+	"json!cldr-data/main/en-GB/ca-gregorian.json",
+	"json!cldr-data/main/en-IN/ca-gregorian.json",
+	"json!cldr-data/main/pt/ca-gregorian.json",
+	"json!cldr-data/main/ru/ca-gregorian.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, format, formatProperties, stringPad, enCaGregorian, timeZoneNames, likelySubtags,
+], function( Cldr, format, formatProperties, stringPad, deCaGregorian, enCaGregorian,
+	enTimeZoneNames, enGbCaGregorian, enInCaGregorian, ptCaGregorian, ruCaGregorian, likelySubtags,
 	timeData, weekData ) {
 
 var cldr,
@@ -49,10 +55,15 @@ FakeDate.prototype.getTimezoneOffset = function() {
 };
 
 Cldr.load(
+	deCaGregorian,
 	enCaGregorian,
+	enGbCaGregorian,
+	enInCaGregorian,
+	enTimeZoneNames,
 	likelySubtags,
+	ptCaGregorian,
+	ruCaGregorian,
 	timeData,
-	timeZoneNames,
 	weekData
 );
 

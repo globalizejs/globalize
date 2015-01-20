@@ -33,7 +33,11 @@ function extraSetup() {
 
 QUnit.module( ".dateParser( pattern )", {
 	setup: function() {
-		Globalize.load( likelySubtags );
+		Globalize.load( likelySubtags, {
+			main: {
+				en: {}
+			}
+		});
 		Globalize.locale( "en" );
 	},
 	teardown: util.resetCldrContent

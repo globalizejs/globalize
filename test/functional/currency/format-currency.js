@@ -24,7 +24,11 @@ function extraSetup() {
 
 QUnit.module( ".formatCurrency( value, currency [, options] )", {
 	setup: function() {
-		Globalize.load( likelySubtags );
+		Globalize.load( likelySubtags, {
+			main: {
+				en: {}
+			}
+		});
 		Globalize.locale( "en" );
 	},
 	teardown: util.resetCldrContent

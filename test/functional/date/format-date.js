@@ -40,7 +40,11 @@ function extraSetup() {
 
 QUnit.module( ".formatDate( value, pattern )", {
 	setup: function() {
-		Globalize.load( likelySubtags );
+		Globalize.load( likelySubtags, {
+			main: {
+				en: {}
+			}
+		});
 		Globalize.locale( "en" );
 	},
 	teardown: util.resetCldrContent
