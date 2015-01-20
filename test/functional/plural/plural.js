@@ -27,7 +27,11 @@ function extraSetup() {
 
 QUnit.module( ".plural( value )", {
 	setup: function() {
-		Globalize.load( likelySubtags );
+		Globalize.load( likelySubtags, {
+			main: {
+				en: {}
+			}
+		});
 		Globalize.locale( "en" );
 	},
 	teardown: util.resetCldrContent

@@ -26,7 +26,11 @@ function extraSetup() {
 
 QUnit.module( ".dateFormatter( pattern )", {
 	setup: function() {
-		Globalize.load( likelySubtags );
+		Globalize.load( likelySubtags, {
+			main: {
+				en: {}
+			}
+		});
 		Globalize.locale( "en" );
 	},
 	teardown: util.resetCldrContent

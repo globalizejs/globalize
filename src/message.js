@@ -4,6 +4,7 @@ define([
 	"./core",
 	"./common/create-error",
 	"./common/validate/default-locale",
+	"./common/validate/message-bundle",
 	"./common/validate/message-presence",
 	"./common/validate/message-type",
 	"./common/validate/parameter-presence",
@@ -15,8 +16,8 @@ define([
 
 	"cldr/event"
 ], function( Cldr, MessageFormat, Globalize, createError, validateDefaultLocale,
-	validateMessagePresence, validateMessageType, validateParameterPresence, validateParameterType,
-	validateParameterTypeMessageVariables, validateParameterTypePlainObject,
+	validateMessageBundle, validateMessagePresence, validateMessageType, validateParameterPresence,
+	validateParameterType, validateParameterTypeMessageVariables, validateParameterTypePlainObject,
 	validatePluralModulePresence, alwaysArray ) {
 
 var slice = [].slice;
@@ -40,12 +41,21 @@ function MessageFormatInit( globalize, cldr ) {
  * Load translation data.
  */
 Globalize.loadMessages = function( json ) {
-	var customData = {
-		"globalize-messages": json
-	};
+	var locale,
+		customData = {
+			"globalize-messages": json,
+			"main": {}
+		};
 
 	validateParameterPresence( json, "json" );
 	validateParameterTypePlainObject( json, "json" );
+
+	// Set available bundles by populating customData main dataset.
+	for ( locale in json ) {
+		if ( json.hasOwnProperty( locale ) ) {
+			customData.main[ locale ] = {};
+		}
+	}
 
 	Cldr.load( customData );
 };
@@ -69,8 +79,9 @@ Globalize.prototype.messageFormatter = function( path ) {
 	cldr = this.cldr;
 
 	validateDefaultLocale( cldr );
+	validateMessageBundle( cldr );
 
-	message = cldr.get( [ "globalize-messages/{languageId}" ].concat( path ) );
+	message = cldr.get( [ "globalize-messages/{bundle}" ].concat( path ) );
 	validateMessagePresence( path, message );
 
 	// If message is an Array, concatenate it.

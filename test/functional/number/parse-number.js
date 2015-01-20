@@ -28,7 +28,15 @@ function extraSetup() {
 
 QUnit.module( ".parseNumber( value [, options] )", {
 	setup: function() {
-		Globalize.load( likelySubtags );
+		Globalize.load( likelySubtags, {
+			main: {
+				ar: {},
+				en: {},
+				es: {},
+				sv: {},
+				zh: {}
+			}
+		});
 		ar = new Globalize( "ar" );
 		es = new Globalize( "es" );
 		sv = new Globalize( "sv" );

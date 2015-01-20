@@ -13,7 +13,11 @@ function extraSetup() {
 
 QUnit.module( ".numberParser( [options] )", {
 	setup: function() {
-		Globalize.load( likelySubtags );
+		Globalize.load( likelySubtags, {
+			main: {
+				en: {}
+			}
+		});
 		Globalize.locale( "en" );
 	},
 	teardown: util.resetCldrContent

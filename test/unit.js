@@ -14,6 +14,7 @@ require.config({
 require([
 
 	// core
+	"./unit/core",
 	"./unit/core/locale",
 
 	// currency
