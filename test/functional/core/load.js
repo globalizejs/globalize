@@ -1,6 +1,6 @@
 define([
 	"globalize",
-	"../util"
+	"../../util"
 ], function( Globalize, util ) {
 
 QUnit.module( "Globalize.load( cldrJSONData )" );
@@ -10,7 +10,7 @@ QUnit.test( "should validate parameters", function( assert ) {
 		Globalize.load();
 	});
 
-	util.assertPlainObjectParameter( assert, "json", function( invalidValue ) {
+	util.assertCldrJsonDataParameter( assert, "json", function( invalidValue ) {
 		return function() {
 			Globalize.load( invalidValue );
 		};

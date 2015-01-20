@@ -16,6 +16,8 @@ require([
 
 	// core
 	"./functional/core",
+	"./functional/core/load",
+	"./functional/core/locale",
 
 	// currency
 	"./functional/currency/currency-formatter",
