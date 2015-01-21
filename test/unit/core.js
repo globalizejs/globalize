@@ -17,17 +17,39 @@ Cldr.load( likelySubtags, {
 		}
 	},
 	main: {
-		"de-CH": {},
-		en: {},
-		"en-GB": {},
-		"pa-Arab": {},
-		"sr-Cyrl": {},
-		"sr-Latn": {},
-		"uz-Arab": {},
-		"xx": {},
-		"yy-YY": {},
-		"zh": {},
-		"zh-Hant": {}
+		"de-CH": {
+			"test-bundle": "de-CH"
+		},
+		en: {
+			"test-bundle": "en"
+		},
+		"en-GB": {
+			"test-bundle": "en-GB"
+		},
+		"pa-Arab": {
+			"test-bundle": "pa-Arab"
+		},
+		"sr-Cyrl": {
+			"test-bundle": "sr-Cyrl"
+		},
+		"sr-Latn": {
+			"test-bundle": "sr-Latn"
+		},
+		"uz-Arab": {
+			"test-bundle": "uz-Arab"
+		},
+		"xx": {
+			"test-bundle": "xx"
+		},
+		"yy-YY": {
+			"test-bundle": "yy-YY"
+		},
+		"zh": {
+			"test-bundle": "zh"
+		},
+		"zh-Hant": {
+			"test-bundle": "zh-Hant"
+		}
 	}
 });
 
@@ -46,36 +68,40 @@ QUnit.test( "should allow Cldr instance to be passed as locale", function( asser
 });
 
 QUnit.test( "should lookup bundle", function( assert ) {
-	assert.equal( Globalize( "de-Latn-CH" ).cldr.attributes.bundle, "de-CH" );
-	assert.equal( Globalize( "en" ).cldr.attributes.bundle, "en" );
-	assert.equal( Globalize( "en-GB" ).cldr.attributes.bundle, "en-GB" );
-	assert.equal( Globalize( "en-Latn-GB" ).cldr.attributes.bundle, "en-GB" );
-	assert.equal( Globalize( "pa-Arab" ).cldr.attributes.bundle, "pa-Arab" );
-	assert.equal( Globalize( "pa-PK" ).cldr.attributes.bundle, "pa-Arab" );
-	assert.equal( Globalize( "sr" ).cldr.attributes.bundle, "sr-Cyrl" );
-	assert.equal( Globalize( "sr-Cyrl" ).cldr.attributes.bundle, "sr-Cyrl" );
-	assert.equal( Globalize( "sr-Latn" ).cldr.attributes.bundle, "sr-Latn" );
-	assert.equal( Globalize( "sr-Latn-RS" ).cldr.attributes.bundle, "sr-Latn" );
-	assert.equal( Globalize( "sr-RS" ).cldr.attributes.bundle, "sr-Cyrl" );
-	assert.equal( Globalize( "uz-AF" ).cldr.attributes.bundle, "uz-Arab" );
-	assert.equal( Globalize( "uz-Arab" ).cldr.attributes.bundle, "uz-Arab" );
-	assert.equal( Globalize( "zh" ).cldr.attributes.bundle, "zh" );
-	assert.equal( Globalize( "zh-CN" ).cldr.attributes.bundle, "zh" );
-	assert.equal( Globalize( "zh-Hans" ).cldr.attributes.bundle, "zh" );
-	assert.equal( Globalize( "zh-Hant" ).cldr.attributes.bundle, "zh-Hant" );
-	assert.equal( Globalize( "zh-TW" ).cldr.attributes.bundle, "zh-Hant" );
+	assert.equal( Globalize( "de-Latn-CH" ).cldr.main( "test-bundle" ), "de-CH" );
+	assert.equal( Globalize( "en" ).cldr.main( "test-bundle" ), "en" );
+	assert.equal( Globalize( "en-GB" ).cldr.main( "test-bundle" ), "en-GB" );
+	assert.equal( Globalize( "en-Latn-GB" ).cldr.main( "test-bundle" ), "en-GB" );
+	assert.equal( Globalize( "pa-Arab" ).cldr.main( "test-bundle" ), "pa-Arab" );
+	assert.equal( Globalize( "pa-PK" ).cldr.main( "test-bundle" ), "pa-Arab" );
+	assert.equal( Globalize( "sr" ).cldr.main( "test-bundle" ), "sr-Cyrl" );
+	assert.equal( Globalize( "sr-Cyrl" ).cldr.main( "test-bundle" ), "sr-Cyrl" );
+	assert.equal( Globalize( "sr-Latn" ).cldr.main( "test-bundle" ), "sr-Latn" );
+	assert.equal( Globalize( "sr-Latn-RS" ).cldr.main( "test-bundle" ), "sr-Latn" );
+	assert.equal( Globalize( "sr-RS" ).cldr.main( "test-bundle" ), "sr-Cyrl" );
+	assert.equal( Globalize( "uz-AF" ).cldr.main( "test-bundle" ), "uz-Arab" );
+	assert.equal( Globalize( "uz-Arab" ).cldr.main( "test-bundle" ), "uz-Arab" );
+	assert.equal( Globalize( "zh" ).cldr.main( "test-bundle" ), "zh" );
+	assert.equal( Globalize( "zh-CN" ).cldr.main( "test-bundle" ), "zh" );
+	assert.equal( Globalize( "zh-Hans" ).cldr.main( "test-bundle" ), "zh" );
+	assert.equal( Globalize( "zh-Hant" ).cldr.main( "test-bundle" ), "zh-Hant" );
+	assert.equal( Globalize( "zh-TW" ).cldr.main( "test-bundle" ), "zh-Hant" );
 
 	// Simulate loading `en` main dataset. Both instances `en` or `en-US` will use
 	// `en` bundle.
-	assert.equal( Globalize( "xx" ).cldr.attributes.bundle, "xx" );
-	assert.equal( Globalize( "xx-XX" ).cldr.attributes.bundle, "xx" );
+	assert.equal( Globalize( "xx" ).cldr.main( "test-bundle" ), "xx" );
+	assert.equal( Globalize( "xx-XX" ).cldr.main( "test-bundle" ), "xx" );
 
 	// Simulate loading `en-US` main dataset. Both instances `en` or `en-US` will use
 	// `en-US` bundle.
-	assert.equal( Globalize( "yy" ).cldr.attributes.bundle, "yy-YY" );
-	assert.equal( Globalize( "yy-YY" ).cldr.attributes.bundle, "yy-YY" );
+	assert.equal( Globalize( "yy" ).cldr.main( "test-bundle" ), "yy-YY" );
+	assert.equal( Globalize( "yy-YY" ).cldr.main( "test-bundle" ), "yy-YY" );
 
-	assert.deepEqual( Globalize( "xx-XZ" ).cldr.attributes.bundle, null );
+	assert.throws(function() {
+		Globalize( "xx-XZ" ).cldr.main( "test-bundle" );
+	}, function E_MISSING_BUNDLE( error ) {
+		return error.code === "E_MISSING_BUNDLE" && error.locale === "xx-XZ";
+	});
 });
 
 });
