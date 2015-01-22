@@ -1,6 +1,6 @@
 {
   "name": "globalize",
-  "version": "1.0.0-alpha.15",
+  "version": "1.0.0-alpha.16",
   "description": "A JavaScript library for internationalization and localization that leverage the official Unicode CLDR JSON data.",
   "keywords": [
     "utility",
