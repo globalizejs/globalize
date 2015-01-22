@@ -99,8 +99,8 @@ information on its usage.
 |---|--:|---|
 | globalize.js | 1.3KB | [Core library](#core) |
 | globalize/currency.js | +2.6KB | [Currency module](#currency_module) provides currency formatting and parsing |
-| globalize/date.js | +4.8KB | [Date module](#date_module) provides date formatting and parsing |
-| globalize/message.js | +5.5KB | [Message module](#message_module) provides ICU message format support |
+| globalize/date.js | +4.9KB | [Date module](#date_module) provides date formatting and parsing |
+| globalize/message.js | +5.6KB | [Message module](#message_module) provides ICU message format support |
 | globalize/number.js | +2.9KB | [Number module](#number_module) provides number formatting and parsing |
 | globalize/plural.js | +1.7KB | [Plural module](#plural_module) provides pluralization support |
 
