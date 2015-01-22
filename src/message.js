@@ -11,7 +11,9 @@ define([
 	"./common/validate/parameter-type/message-variables",
 	"./common/validate/parameter-type/plain-object",
 	"./common/validate/plural-module-presence",
-	"./util/always-array"
+	"./util/always-array",
+
+	"cldr/event"
 ], function( Cldr, MessageFormat, Globalize, createError, validateDefaultLocale,
 	validateMessagePresence, validateMessageType, validateParameterPresence, validateParameterType,
 	validateParameterTypeMessageVariables, validateParameterTypePlainObject,

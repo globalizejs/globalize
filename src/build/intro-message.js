@@ -21,7 +21,8 @@
 		// AMD
 		define([
 			"cldr",
-			"../globalize"
+			"../globalize",
+			"cldr/event"
 		], factory );
 	} else if ( typeof exports === "object" ) {
 
