@@ -18,6 +18,10 @@ QUnit.test( "should validate parameters", function( assert ) {
 });
 
 QUnit.test( "should validate whether default locale is defined on static calls", function( assert ) {
+
+	// Ensure default locale is not set.
+	delete Globalize.cldr;
+
 	util.assertDefaultLocalePresence( assert, function() {
 		Globalize.formatDate( new Date(), "GyMMMEd" );
 	});
