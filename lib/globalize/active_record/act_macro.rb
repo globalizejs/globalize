@@ -63,14 +63,9 @@ module Globalize
       end
 
       def serializer_for_attribute(attr_name)
-        if defined?(::ActiveRecord::Type::Serialized)
-          column = self.columns_hash[attr_name.to_s]
-          if column && column.cast_type.is_a?(::ActiveRecord::Type::Serialized)
-            column.cast_type.coder
-          end
-        else
-          # Rails < 4.2
-          self.serialized_attributes[attr_name.to_s]
+        column = self.columns_hash[attr_name.to_s]
+        if column && column.cast_type.is_a?(::ActiveRecord::Type::Serialized)
+          column.cast_type.coder
         end
       end
 
