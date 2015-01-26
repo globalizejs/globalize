@@ -12,7 +12,7 @@ define(function() {
  * Return number.toPrecision( precision ) using the given round function.
  */
 return function( number, precision, round ) {
-	var roundOrder, roundIncrement;
+	var roundOrder;
 
 	// Get number at two extra significant figure precision.
 	number = number.toPrecision( precision + 2 );
@@ -20,16 +20,8 @@ return function( number, precision, round ) {
 	// Then, round it to the required significant figure precision.
 	roundOrder = Math.ceil( Math.log( Math.abs( number ) ) / Math.log( 10 ) );
 	roundOrder -= precision;
-	roundIncrement = Math.pow( 10, roundOrder );
 
-	number = round( number, roundIncrement );
-
-	// Ignore decimal error, eg. `1234 * 0.0001 = 0.12340000000000001`.
-	if ( roundOrder < 0 ) {
-		number = +number.toFixed( -roundOrder );
-	}
-
-	return number;
+	return round( number, { exponent: roundOrder } );
 };
 
 });

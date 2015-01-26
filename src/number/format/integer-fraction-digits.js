@@ -33,11 +33,8 @@ return function( number, minimumIntegerDigits, minimumFractionDigits, maximumFra
 
 		// Maximum fraction digits
 		} else {
-			number = round( number, Math.pow( 10, -maximumFractionDigits ) );
+			number = round( number, { exponent: -maximumFractionDigits } );
 		}
-
-		// Ignore decimal error, eg. `1234 * 0.0001 = 0.12340000000000001`.
-		number = +number.toFixed( maximumFractionDigits );
 
 		// Minimum fraction digits
 		if ( minimumFractionDigits ) {

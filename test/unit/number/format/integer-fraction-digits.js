@@ -65,10 +65,12 @@ QUnit.test( "should allow different rounding options", function( assert ) {
 	assert.equal( formatIntegerFractionDigits( -pi, 1, 0, 4, truncate, null ), "-3.1415" );
 });
 
-// Fix #227
-QUnit.test( "should ignore decimal error", function( assert ) {
+// `12341234.233` => `"12,341,234.233000001"` (#227).
+// `0.00015 * 10000 = 1.49999999999999` (#376).
+QUnit.test( "should handle inaccurate floating point arithmetics", function( assert ) {
 	assert.equal( formatIntegerFractionDigits( 12341234.233, 1, 1, 3, round, null ), "12341234.233" );
 	assert.equal( formatIntegerFractionDigits( 1234 * 0.0001, 1, 1, 4, round, null ), "0.1234" );
+	assert.equal( formatIntegerFractionDigits( 0.00015, 1, 1, 4, round, null ) ), "0.0002" );
 });
 
 });

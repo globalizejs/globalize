@@ -151,6 +151,10 @@ QUnit.test( "should allow rounding", function( assert ) {
 	assert.equal( format( pi, properties( "0.20", en ) ), "3.20" );
 	assert.equal( format( pi, properties( "0.5", en ) ), "3.0" );
 	assert.equal( format( pi, properties( "0.1", en ) ), "3.1" );
+
+	// Handle inaccurate floating point arithmetics like 0.00015 * 10000 = 1.49999999999999.
+	// See #376.
+	assert.equal( format( 0.00015, properties( "0.0000", en ) ), "0.0002" );
 });
 
 QUnit.test( "should allow different rounding options", function( assert ) {
@@ -183,7 +187,11 @@ QUnit.test( "should format significant digits", function( assert ) {
 	assert.equal( format( pi, properties( "@####", en ) ), "3.1416" );
 	assert.equal( format( 0.10004, properties( "@@", en ) ), "0.10" );
 	assert.equal( format( 0.10004, properties( "@##", en ) ), "0.1" );
+
+	// This also test for the following inaccurate floating point arithmetics:
+	// `1234 * 0.0001 = 0.12340000000000001`.
 	assert.equal( format( 0.12345, properties( "@@@", en ) ), "0.123" );
+
 	assert.equal( format( 1.23004, properties( "@@##", en ) ), "1.23" );
 });
 
