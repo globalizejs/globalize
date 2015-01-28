@@ -152,8 +152,8 @@ QUnit.test( "should allow rounding", function( assert ) {
 	assert.equal( format( pi, properties( "0.5", en ) ), "3.0" );
 	assert.equal( format( pi, properties( "0.1", en ) ), "3.1" );
 
-	// Handle inaccurate floating point arithmetics like 0.00015 * 10000 = 1.49999999999999 before
-	// running the rounding function. See #376.
+	// Handle inaccurate floating point arithmetics like 0.00015 * 10000 = 1.49999999999999.
+	// See #376.
 	assert.equal( format( 0.00015, properties( "0.0001", en ) ), "0.0002" );
 });
 
