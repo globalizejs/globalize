@@ -70,7 +70,7 @@ QUnit.test( "should allow different rounding options", function( assert ) {
 QUnit.test( "should handle inaccurate floating point arithmetics", function( assert ) {
 	assert.equal( formatIntegerFractionDigits( 12341234.233, 1, 1, 3, round, null ), "12341234.233" );
 	assert.equal( formatIntegerFractionDigits( 1234 * 0.0001, 1, 1, 4, round, null ), "0.1234" );
-	assert.equal( formatIntegerFractionDigits( 0.00015, 1, 1, 4, round, null ) ), "0.0002" );
+	assert.equal( formatIntegerFractionDigits( 0.00015, 1, 1, 4, round, null ), "0.0002" );
 });
 
 });
