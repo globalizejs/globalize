@@ -82,7 +82,7 @@ module Globalize
             klass = translated_column?(column) ? translation_class : self
             klass.arel_table[column].send(direction)
           end
-          order(ordering).order_clauses
+          order(ordering).order_values
         when Symbol
           translated_column_name(opts) if translated_attribute_names.include?(opts)
         else # failsafe returns nothing
