@@ -243,4 +243,8 @@ ActiveRecord::Schema.define do
     t.references :post
     t.string :file_type
   end
+
+  create_table "foo_bar_bazs" do |t|
+    t.string :bumm
+  end
 end
