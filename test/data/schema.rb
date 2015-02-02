@@ -163,7 +163,7 @@ ActiveRecord::Schema.define do
     t.string :title
   end
 
-  create_table :news_item_translations, :force => true do |t|
+  create_table :news_translations, :force => true do |t|
     t.integer  'news_id'
     t.string     :locale
     t.string     :title
