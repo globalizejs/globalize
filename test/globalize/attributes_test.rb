@@ -208,17 +208,16 @@ class AttributesTest < MiniTest::Spec
 
   describe 'model with attribute column in both model and translation table' do
     it 'does not update original columns with content not in the default locale' do
-      skip 'need to fix before we release 4.0.0'
       task = Task.create :name => 'Title'
 
       task.translated_attribute_names # this should not make the test fail, but does
       Globalize.with_locale(:de) { task.update_attributes :name => 'Titel' }
 
       legacy_task = LegacyTask.find(task.id)
-      assert_equal 'Title', legacy_task.name
+      assert_nil legacy_task.name
     end
 
-    it 'updates original columns with content in the default locale' do
+    it 'does not update original columns with content in the default locale' do
       task = Task.create
 
       I18n.locale = :de
@@ -228,13 +227,13 @@ class AttributesTest < MiniTest::Spec
       task.update_attributes :name => 'New Title'
 
       legacy_task = LegacyTask.find(task.id)
-      assert_equal 'New Title', legacy_task.name
+      assert_nil legacy_task.name
 
       I18n.locale = I18n.default_locale = :de
       assert_equal 'Neues Titel', task.name
       task.update_attributes :name => 'Der neueste Titel'
 
-      assert_equal 'Der neueste Titel', legacy_task.reload.name
+      assert_nil legacy_task.reload.name
 
       I18n.locale = :en
       assert_equal 'New Title', task.name
@@ -243,14 +242,14 @@ class AttributesTest < MiniTest::Spec
     it 'does not update original columns with content in a different locale' do
       word = Word.create :locale => 'nl', :term => 'ontvrienden', :definition => 'Iemand als vriend verwijderen op een sociaal netwerk'
       legacy_word = LegacyWord.find(word.id)
-      assert_equal 'ontvrienden', legacy_word.term
+      assert_nil legacy_word.term
 
       I18n.locale = :en
       word.update_attributes :term => 'unfriend', :definition => 'To remove someone as a friend on a social network'
 
       assert_equal 'unfriend',    word.term
       assert_equal 'ontvrienden', word.term(:nl)
-      assert_equal 'ontvrienden', legacy_word.reload.term
+      assert_nil legacy_word.reload.term
 
       I18n.locale = I18n.default_locale = :de
       word.update_attributes :term => 'entfreunde', :definition => 'Um jemanden als Freund in einem sozialen Netzwerk zu entfernen'
@@ -258,10 +257,10 @@ class AttributesTest < MiniTest::Spec
       assert_equal 'entfreunde',  word.term
       assert_equal 'unfriend',    word.term(:en)
       assert_equal 'ontvrienden', word.term(:nl)
-      assert_equal 'ontvrienden', legacy_word.reload.term
+      assert_nil legacy_word.reload.term
     end
 
-    it 'updates original columns with content in the same locale' do
+    it 'does not update original columns with content in the same locale' do
       word = Word.create :locale => 'nl', :term => 'ontvrienden', :definition => 'Iemand als vriend verwijderen op een sociaal netwerk'
 
       I18n.locale = :en
@@ -273,7 +272,7 @@ class AttributesTest < MiniTest::Spec
       legacy_word = LegacyWord.find(word.id)
       assert_equal 'ontvriend', word.term
       assert_equal 'unfriend',  word.term(:en)
-      assert_equal 'ontvriend', legacy_word.term
+      assert_nil  legacy_word.term
     end
 
     it 'does not change a blank attribute to nil' do
