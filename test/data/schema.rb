@@ -67,6 +67,10 @@ ActiveRecord::Schema.define do
     t.string :untranslated
   end
 
+  create_table :migrated_with_mega_ultra_super_long_model_name_with_more_then_sixty_characters, :force => true do |t|
+    t.string :name
+  end
+
   create_table :two_attributes_migrateds, :force => true do |t|
     t.string :name
     t.string :untranslated
@@ -159,7 +163,7 @@ ActiveRecord::Schema.define do
     t.string :title
   end
 
-  create_table :news_item_translations, :force => true do |t|
+  create_table :news_translations, :force => true do |t|
     t.integer  'news_id'
     t.string     :locale
     t.string     :title
@@ -238,5 +242,9 @@ ActiveRecord::Schema.define do
   create_table "attachments" do |t|
     t.references :post
     t.string :file_type
+  end
+
+  create_table "foo_bar_bazs" do |t|
+    t.string :bumm
   end
 end

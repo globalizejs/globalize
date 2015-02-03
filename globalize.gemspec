@@ -15,21 +15,10 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.rubyforge_project = '[none]'
 
-  if ENV['RAILS_4_0']
-    s.add_dependency 'activerecord', '~> 4.0.0'
-    s.add_dependency 'activemodel', '~> 4.0.0'
-  elsif ENV['RAILS_4_1']
-    s.add_dependency 'activerecord', '~> 4.1.0'
-    s.add_dependency 'activemodel', '~> 4.1.0'
-  elsif ENV['RAILS_4_2']
-    s.add_dependency 'activerecord', '>= 4.2.0.beta2', '< 4.3'
-    s.add_dependency 'activemodel', '>= 4.2.0.beta2', '< 4.3'
-  else
-    s.add_dependency 'activerecord', '>= 4.0.0', '< 5'
-    s.add_dependency 'activemodel', '>= 4.0.0', '< 5'
-  end
+  s.add_dependency 'activerecord', '>= 4.2.0', '< 4.3'
+  s.add_dependency 'activemodel', '>= 4.2.0', '< 4.3'
 
-  s.add_development_dependency 'database_cleaner', '~> 1.3.0'
+  s.add_development_dependency 'database_cleaner', '~> 1.4.0'
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'minitest-reporters'
 

@@ -1,7 +1,7 @@
 require File.expand_path('../../test_helper', __FILE__)
 
 class DirtyTrackingTest < MiniTest::Spec
-  
+
   describe '#changed' do
     it 'includes translated attributes in list of changed attribute keys' do
       post = Post.create(:title => 'title', :content => 'content')

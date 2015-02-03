@@ -61,7 +61,7 @@ module Globalize
 
         super.merge(Hash[equalities.map { |where|
           name = where.left.name
-          [name, binds.fetch(name.to_s) { where.right }]
+          [name, binds.fetch(name.to_s) { right = where.right; right.is_a?(Arel::Nodes::Casted) ? right.val : right }]
         }])
       end
 
@@ -82,7 +82,7 @@ module Globalize
             klass = translated_column?(column) ? translation_class : self
             klass.arel_table[column].send(direction)
           end
-          order(ordering).order_clauses
+          order(ordering).order_values
         when Symbol
           translated_column_name(opts) if translated_attribute_names.include?(opts)
         else # failsafe returns nothing

@@ -36,6 +36,7 @@ class TranslationClassTest < MiniTest::Spec
     it "can create a translation class for a namespaced model" do
       module Foo
         module Bar
+          def self.table_name_prefix; "foo_bar_"; end
           class Baz < ActiveRecord::Base
             translates :bumm
           end
