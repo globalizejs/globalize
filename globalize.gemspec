@@ -26,18 +26,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rdoc'
 
   s.add_development_dependency 'rake'
-  s.post_install_message = <<-END
-
-Globalize has extracted versioning support to a separate gem named
-globalize-versioning. If you are using versioning (with paper_trail
-or any other versioning gem), please add the line
-"gem 'globalize-versioning'" to your Gemfile and go to the github
-page at globalize/globalize-versioning if you encounter any problems.
-
-Note that the globalize-versioning gem does not delegate versions to
-the translation table, so you will have to update your syntax to
-the form: `post.translation.versions`. See the globalize-versioning
-readme for details.
-
-  END
 end

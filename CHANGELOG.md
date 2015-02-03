@@ -1,5 +1,8 @@
 # Globalize Changelog
 
+## 5.0.0 (2014-03-03)
+* Added support for Rails 4.2, but removed support for every previous version of Rails.  This is a backward incompatible change, thus the version is now 5.0.0. (thanks [Nico Ritsche](https://github.com/ncri) and others). [#396](https://github.com/globalize/globalize/pull/396).
+
 ## 4.0.3 (2014-11-24)
 * Fixes a problem where after dup the dup'd model and the original model shared a translation instance, which means that if you mutate a translated field on the dup and save it, the original becomes a clone of the dup. [#352](https://github.com/globalize/globalize/pull/352).
 * Deprecated `with_required_attributes`, `required_attributes`, and `required_translated_attributes`. `with_translations` no longer invokes `with_required_attributes`. [#355](https://github.com/globalize/globalize/pull/355).
