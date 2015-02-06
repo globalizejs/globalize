@@ -15,5 +15,11 @@ class CacheKeyTest < MiniTest::Spec
 
       refute_equal original_cache_key, product.cache_key
     end
+
+    it "works even for an uninitialized locale" do
+      product = with_locale(:en) { Product.create(:name => 'first') }
+
+      refute_nil with_locale(:de) { product.cache_key }
+    end
   end
 end
