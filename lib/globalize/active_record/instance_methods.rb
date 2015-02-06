@@ -161,6 +161,10 @@ module Globalize
         globalize.send(:column_for_attribute, name)
       end
 
+      def cache_key
+        [super, translation.cache_key].join("/")
+      end
+
     protected
 
       def each_locale_and_translated_attribute
