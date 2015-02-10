@@ -64,6 +64,12 @@ I18n.locale = :he
 post.title # => גלובאלייז2 שולט!
 ```
 
+You can also set translations with mass-assignment by specifying the locale:
+
+```ruby
+post.attributes = { title: 'גלובאלייז2 שולט!', locale: :he }
+```
+
 In order to make this work, you'll need to add the appropriate translation tables.
 Globalize comes with a handy helper method to help you do this.
 It's called `create_translation_table!`. Here's an example:
