@@ -156,20 +156,6 @@ class GlobalizeTest < MiniTest::Spec
       end
     end
 
-    describe '#read_attribute' do
-      it "works with unsaved translation" do
-        validatee = Validatee.create!(:string => 'a')
-        Globalize.with_locale(:de) {
-          assert_equal :de, validatee.read_attribute(:locale)
-        }
-      end
-
-      it "saves locale for unsaved untranslated model with locale column" do
-        untranslated = Untranslated.new(:locale => "Hello, I'm locale.")
-        assert_equal "Hello, I'm locale.", untranslated.read_attribute(:locale)
-      end
-    end
-
     describe 'with reload in after_save callback' do
       it "saves correctly" do
         reloading_post = ReloadingPost.create!(:title => 'title')

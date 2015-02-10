@@ -45,9 +45,7 @@ module Globalize
         options = {:translated => true, :locale => nil}.merge(options)
         return super(name) unless options[:translated]
 
-        if name == :locale
-          try(:locale).presence || translation.locale
-        elsif translated?(name)
+        if translated?(name)
           if (value = globalize.fetch(options[:locale] || Globalize.locale, name))
             value
           else
@@ -150,7 +148,7 @@ module Globalize
       end
 
       def save(*)
-        Globalize.with_locale(read_attribute(:locale) || I18n.default_locale) do
+        Globalize.with_locale(translation.locale || I18n.default_locale) do
           super
         end
       end
@@ -189,10 +187,7 @@ module Globalize
       def with_given_locale(attributes, &block)
         attributes.symbolize_keys! if attributes.respond_to?(:symbolize_keys!)
 
-        locale = respond_to?(:locale=) ? attributes.try(:[], :locale) :
-                                         attributes.try(:delete, :locale)
-
-        if locale
+        if locale = attributes.try(:delete, :locale)
           Globalize.with_locale(locale, &block)
         else
           yield
