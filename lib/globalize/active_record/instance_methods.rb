@@ -46,8 +46,8 @@ module Globalize
         return super(name) unless options[:translated]
 
         if name == :locale
-          self.try(:locale).presence || self.translation.locale
-        elsif self.class.translated?(name)
+          try(:locale).presence || translation.locale
+        elsif translated?(name)
           if (value = globalize.fetch(options[:locale] || Globalize.locale, name))
             value
           else
@@ -66,7 +66,7 @@ module Globalize
 
       def translated_attributes
         translated_attribute_names.inject({}) do |attributes, name|
-          attributes.merge(name.to_s => self.send(name))
+          attributes.merge(name.to_s => send(name))
         end
       end
 
