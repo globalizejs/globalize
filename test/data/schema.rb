@@ -41,6 +41,17 @@ ActiveRecord::Schema.define do
     t.datetime   :published_at
   end
 
+  create_table :products, :force => true do |t|
+    t.timestamps :null => false
+  end
+
+  create_table :product_translations, :force => true do |t|
+    t.string     :locale
+    t.references :product
+    t.string     :name
+    t.timestamps :null => false
+  end
+
   create_table :parents, :force => true do |t|
   end
 
