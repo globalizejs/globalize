@@ -7,7 +7,7 @@ define([
 	"./common/validate/parameter-type/date",
 	"./common/validate/parameter-type/date-pattern",
 	"./common/validate/parameter-type/string",
-    "./common/validate/parameter-type/number",
+	"./common/validate/parameter-type/number",
 	"./core",
 	"./date/expand-pattern",
 	"./date/format",
@@ -23,8 +23,8 @@ define([
 ], function( Cldr, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterTypeDataType, validateParameterTypeDate, validateParameterTypeDatePattern,
 	validateParameterTypeString, validateParameterTypeNumber, Globalize, dateExpandPattern,
-    dateFormat, dateFormatProperties, dateParse, dateParseProperties, dateTokenizer,
-    dateTokenizerProperties ) {
+	dateFormat, dateFormatProperties, dateParse, dateParseProperties, dateTokenizer,
+	dateTokenizerProperties ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -167,31 +167,31 @@ Globalize.prototype.parseDate = function( value, pattern ) {
  */
 Globalize.getDay =
 Globalize.prototype.getDay = function(day, format) {
-    var rv,
-        cldr = this.cldr;
+	var rv,
+		cldr = this.cldr;
 
-    validateParameterPresence(day, "day");
-    validateParameterTypeString(day, "day");
-    validateParameterTypeString(format, "format");
+	validateParameterPresence(day, "day");
+	validateParameterTypeString(day, "day");
+	validateParameterTypeString(format, "format");
 
-    if (format === undefined) {
-        format = "wide";
-    }
+	if (format === undefined) {
+		format = "wide";
+	}
 
-    cldr.on( "get", validateRequiredCldr );
-    rv = cldr.main([ "dates/calendars/gregorian/days/stand-alone", format, day ]);
-    cldr.off( "get", validateRequiredCldr );
+	cldr.on( "get", validateRequiredCldr );
+	rv = cldr.main([ "dates/calendars/gregorian/days/stand-alone", format, day ]);
+	cldr.off( "get", validateRequiredCldr );
 
-    return rv;
+	return rv;
 };
 
 function relativeCountKey(count) {
-    if (count === 1) {
-        return "relativeTimePattern-count-one";
-    } else {
-        // TODO: should we look up correct pluralisms i.e. support more than one and other
-        return "relativeTimePattern-count-other";
-    }
+	if (count === 1) {
+		return "relativeTimePattern-count-one";
+	} else {
+		// TODO: should we look up correct pluralisms i.e. support more than one and other
+		return "relativeTimePattern-count-other";
+	}
 }
 
 /**
@@ -209,39 +209,39 @@ function relativeCountKey(count) {
  */
 Globalize.formatRelativeCount =
 Globalize.prototype.formatRelativeCount = function(type, count, maxWordOffset) {
-    var fmt, cldr, lookup;
+	var fmt, cldr, lookup;
 
-    validateParameterPresence(type, "type");
-    validateParameterTypeString(type, "type");
-    validateParameterPresence(count, "count");
-    validateParameterTypeNumber(count, "count");
-    validateParameterTypeNumber(maxWordOffset, "maxWordOffset");
+	validateParameterPresence(type, "type");
+	validateParameterTypeString(type, "type");
+	validateParameterPresence(count, "count");
+	validateParameterTypeNumber(count, "count");
+	validateParameterTypeNumber(maxWordOffset, "maxWordOffset");
 
-    if (maxWordOffset === undefined) {
-        maxWordOffset = 3;
-    }
-    lookup = [ "dates", "fields", type ];
-    cldr = this.cldr;
+	if (maxWordOffset === undefined) {
+		maxWordOffset = 3;
+	}
+	lookup = [ "dates", "fields", type ];
+	cldr = this.cldr;
 
-    if (Math.abs(count) <= maxWordOffset) {
-        fmt = cldr.main(lookup.concat([ "relative-type-" + count ]));
-        if (fmt !== undefined) {
-            return fmt;
-        }
-    }
+	if (Math.abs(count) <= maxWordOffset) {
+		fmt = cldr.main(lookup.concat([ "relative-type-" + count ]));
+		if (fmt !== undefined) {
+			return fmt;
+		}
+	}
 
-    if (count < 0) {
-        count =  Math.abs(count);
-        lookup.push("relativeTime-type-past");
-    } else if (count > 0) {
-        lookup.push("relativeTime-type-future");
-    }
-    lookup.push(relativeCountKey(count));
+	if (count < 0) {
+		count =  Math.abs(count);
+		lookup.push("relativeTime-type-past");
+	} else if (count > 0) {
+		lookup.push("relativeTime-type-future");
+	}
+	lookup.push(relativeCountKey(count));
 
-    cldr.on( "get", validateRequiredCldr );
-    fmt = cldr.main(lookup);
-    cldr.off( "get", validateRequiredCldr );
-    return Globalize._cldrFormat(fmt, count);
+	cldr.on( "get", validateRequiredCldr );
+	fmt = cldr.main(lookup);
+	cldr.off( "get", validateRequiredCldr );
+	return Globalize._cldrFormat(fmt, count);
 };
 
 return Globalize;

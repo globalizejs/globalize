@@ -12,8 +12,8 @@ require.config({
 });
 
 require([
-    // util
-    "./unit/util/cldr-format.js",
+	// util
+	"./unit/util/cldr-format.js",
 
 	// core
 	"./unit/core",

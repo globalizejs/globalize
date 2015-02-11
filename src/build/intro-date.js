@@ -49,4 +49,4 @@ var createError = Globalize._createError,
 	validateParameterPresence = Globalize._validateParameterPresence,
 	validateParameterType = Globalize._validateParameterType,
 	validateParameterTypeString = Globalize._validateParameterTypeString,
-    validateParameterTypeNumber = Globalize._validateParameterTypeNumber;
+	validateParameterTypeNumber = Globalize._validateParameterTypeNumber;

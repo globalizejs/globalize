@@ -16,7 +16,7 @@ define([
 	"./util/object/extend",
 	"./util/regexp/escape",
 	"./util/string/pad",
-    "./util/cldr-format",
+	"./util/cldr-format",
 
 	"cldr/event"
 ], function( Cldr, createError, formatMessage, validate, validateCldr, validateDefaultLocale,
