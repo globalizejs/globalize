@@ -7,6 +7,7 @@ define([
 	"./common/validate/parameter-type/date",
 	"./common/validate/parameter-type/date-pattern",
 	"./common/validate/parameter-type/string",
+    "./common/validate/parameter-type/number",
 	"./core",
 	"./date/expand-pattern",
 	"./date/format",
@@ -21,8 +22,9 @@ define([
 	"./number"
 ], function( Cldr, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterTypeDataType, validateParameterTypeDate, validateParameterTypeDatePattern,
-	validateParameterTypeString, Globalize, dateExpandPattern, dateFormat, dateFormatProperties,
-	dateParse, dateParseProperties, dateTokenizer, dateTokenizerProperties ) {
+	validateParameterTypeString, validateParameterTypeNumber, Globalize, dateExpandPattern,
+    dateFormat, dateFormatProperties, dateParse, dateParseProperties, dateTokenizer,
+    dateTokenizerProperties ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -199,26 +201,42 @@ function relativeCountKey(count) {
  *  can optionally have -short or -narrow appended.
  *
  * @count [Number] The amount of time, negative for in the past;
- *  positive for in the future. 0 is not currently handled
+ *  positive for in the future.
+ *
+ * @minWordOffset [Optional Number] The maximum offset when special offset words like
+ *  yesterday and tomorrow will be looked for. Some languages proivide serveral of these.
+ *  default 2
  */
 Globalize.formatRelativeCount =
-Globalize.prototype.formatRelativeCount = function(type, count) {
-    var fmt,
-        cldr = this.cldr,
-        lookup = [ "dates", "fields", type ];
+Globalize.prototype.formatRelativeCount = function(type, count, maxWordOffset) {
+    var fmt, cldr, lookup;
+
+    validateParameterPresence(type, "type");
+    validateParameterTypeString(type, "type");
+    validateParameterPresence(count, "count");
+    validateParameterTypeNumber(count, "count");
+    validateParameterTypeNumber(maxWordOffset, "maxWordOffset");
+
+    if (maxWordOffset === undefined) {
+        maxWordOffset = 3;
+    }
+    lookup = [ "dates", "fields", type ];
+    cldr = this.cldr;
+
+    if (Math.abs(count) <= maxWordOffset) {
+        fmt = cldr.main(lookup.concat([ "relative-type-" + count ]));
+        if (fmt !== undefined) {
+            return fmt;
+        }
+    }
 
     if (count < 0) {
         count =  Math.abs(count);
         lookup.push("relativeTime-type-past");
-        lookup.push(relativeCountKey(count));
     } else if (count > 0) {
         lookup.push("relativeTime-type-future");
-        lookup.push(relativeCountKey(count));
-    } else {
-        // TODO: what to do with zero
-        // we could return the appropriate word for today
-        throw new Error("Zero is not handled by formatRelativeCount");
     }
+    lookup.push(relativeCountKey(count));
 
     cldr.on( "get", validateRequiredCldr );
     fmt = cldr.main(lookup);
