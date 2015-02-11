@@ -153,6 +153,36 @@ Globalize.prototype.parseDate = function( value, pattern ) {
 	return this.dateParser( pattern )( value );
 };
 
+/**
+ * .getDay( day [, format] )
+ *
+ * Get the localised string for a day of the week.
+ *
+ * @value [String] a day key (mon, tue, etc.)
+ *
+ * @format [Optional String] a format for the day of the week wide, short or narrow
+ *  defaults to narrow
+ */
+Globalize.getDay =
+Globalize.prototype.getDay = function(day, format) {
+    var rv,
+        cldr = this.cldr;
+
+    validateParameterPresence(day, "day");
+    validateParameterTypeString(day, "day");
+    validateParameterTypeString(format, "format");
+
+    if (format === undefined) {
+        format = "wide";
+    }
+
+    cldr.on( "get", validateRequiredCldr );
+    rv = cldr.main([ "dates/calendars/gregorian/days/stand-alone", format, day ]);
+    cldr.off( "get", validateRequiredCldr );
+
+    return rv;
+};
+
 return Globalize;
 
 });

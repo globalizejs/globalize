@@ -28,6 +28,7 @@ require([
 	"./functional/date/date-parser",
 	"./functional/date/format-date",
 	"./functional/date/parse-date",
+    "./functional/date/get-day",
 
 	// message
 	"./functional/message/message-formatter",
