@@ -29,6 +29,7 @@ require([
 	"./functional/date/format-date",
 	"./functional/date/parse-date",
     "./functional/date/get-day",
+    "./functional/date/format-relative-count",
 
 	// message
 	"./functional/message/message-formatter",

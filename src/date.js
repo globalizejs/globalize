@@ -183,6 +183,49 @@ Globalize.prototype.getDay = function(day, format) {
     return rv;
 };
 
+function relativeCountKey(count) {
+    if (count === 1) {
+        return "relativeTimePattern-count-one";
+    } else {
+        // TODO: should we look up correct pluralisms i.e. support more than one and other
+        return "relativeTimePattern-count-other";
+    }
+}
+
+/**
+ * .formatRelativeCount(type, count)
+ *
+ * @type [String] The type of time (day, week, month, quarter, year)
+ *  can optionally have -short or -narrow appended.
+ *
+ * @count [Number] The amount of time, negative for in the past;
+ *  positive for in the future. 0 is not currently handled
+ */
+Globalize.formatRelativeCount =
+Globalize.prototype.formatRelativeCount = function(type, count) {
+    var fmt,
+        cldr = this.cldr,
+        lookup = [ "dates", "fields", type ];
+
+    if (count < 0) {
+        count =  Math.abs(count);
+        lookup.push("relativeTime-type-past");
+        lookup.push(relativeCountKey(count));
+    } else if (count > 0) {
+        lookup.push("relativeTime-type-future");
+        lookup.push(relativeCountKey(count));
+    } else {
+        // TODO: what to do with zero
+        // we could return the appropriate word for today
+        throw new Error("Zero is not handled by formatRelativeCount");
+    }
+
+    cldr.on( "get", validateRequiredCldr );
+    fmt = cldr.main(lookup);
+    cldr.off( "get", validateRequiredCldr );
+    return Globalize._cldrFormat(fmt, count);
+};
+
 return Globalize;
 
 });
