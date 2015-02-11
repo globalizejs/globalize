@@ -147,19 +147,6 @@ ActiveRecord::Schema.define do
     t.string     :name
   end
 
-  create_table :words, :force => true do |t|
-    t.string :term
-    t.text   :definition
-    t.string :locale
-  end
-
-  create_table :word_translations, :force => true do |t|
-    t.references :word
-    t.string     :term
-    t.text       :definition
-    t.string     :locale,    :default => 'en'
-  end
-
   create_table 'UPPERCASE_TABLE_NAME', :force => true do |t|
     t.string :name
   end

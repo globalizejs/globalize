@@ -170,6 +170,11 @@ NOTE: Remember to add the new field to the model:
 ```ruby
 translates :title, :author
 ```
+## Gotchas
+
+Because globalize uses the `:locale` key to specify the locale during
+mass-assignment, you should avoid having a `locale` attribute on the parent
+model.
 
 ## Versioning with Globalize
 
