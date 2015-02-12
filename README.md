@@ -85,9 +85,9 @@ display something better than "Edited 1 minutes ago".
 <a name="why_globalize"></a>
 ### Why Globalize?
 
-It provides number formatting and parsing, date and time formatting and parsing,
-currency formatting, message formatting (ICU message format pattern), and plural
-support.
+Globalize provides number formatting and parsing, date and time formatting and
+parsing, currency formatting, message formatting (ICU message format pattern),
+and plural support.
 
 Our design goals are (a) to leverage the official CLDR JSON data, (b) allow
 users to load as much or as little data as they need, (c) avoid duplicating data
