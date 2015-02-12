@@ -79,7 +79,8 @@ and dates into that string format.
 
 Even if the application deals with Enligh loacle only, it may still need
 globalization to format programming language bytes into human understandable
-language and vice-versa in a effective and reasonable way.
+language and vice-versa in a effective and reasonable way. For example, to
+display something better than "Edited 1 minutes ago".
 
 <a name="why_globalize"></a>
 ### Why Globalize?
