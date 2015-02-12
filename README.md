@@ -77,6 +77,10 @@ providing an API to convert user-entered number and date strings - in their
 own format - into actual numbers and dates, and conversely, to format numbers
 and dates into that string format.
 
+Even if the application deals with Enligh loacle only, it may still likely need
+globalization to format programming language bytes into human understandable
+language and vice-versa in a effective and reasonable way.
+
 <a name="why_globalize"></a>
 ### Why Globalize?
 
@@ -96,8 +100,8 @@ Some of the strengths of using Globalize are:
 - Consistency. Same results are obtained across browsers and on the server.
 - Support using multiple locales simultaneously.
 
-For alternative libraries and more, check out [this
-site](http://rxaviers.github.io/javascript-globalization/).
+For alternative libraries and more, check out [this JavaScript globalization
+overview](http://rxaviers.github.io/javascript-globalization/).
 
 <a name="where_to_use"></a>
 ### Where to use it?
