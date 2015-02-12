@@ -79,7 +79,7 @@ and dates into that string format.
 <a name="where_to_use"></a>
 ### Where to use it?
 
-It's designed to work both in the [browser](#browser_support), or in
+Globalize is designed to work both in the [browser](#browser_support), or in
 [Node.js](#usage). It supports both [AMD](#usage) and [CommonJS](#usage).
 
 <a name="where_does_data_come_from"></a>
