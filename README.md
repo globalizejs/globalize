@@ -101,7 +101,7 @@ Some of the strengths of using Globalize are:
 - Consistency. Same results are obtained across browsers and on the server.
 - Support using multiple locales simultaneously.
 
-For alternative libraries and more, check out [this JavaScript globalization
+For alternative libraries and more, check out this [JavaScript globalization
 overview](http://rxaviers.github.io/javascript-globalization/).
 
 <a name="where_to_use"></a>
