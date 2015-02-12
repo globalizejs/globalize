@@ -80,10 +80,9 @@ and dates into that string format.
 <a name="why_globalize"></a>
 ### Why Globalize?
 
-Globalize has initially been created to fullfil jQuery UI (datepicker and
-spinner widgets). It provides number formatting and parsing, date and time
-formatting and parsing, currency formatting, message formatting (ICU message
-format pattern), and plural support.
+It provides number formatting and parsing, date and time formatting and parsing,
+currency formatting, message formatting (ICU message format pattern), and plural
+support.
 
 Our design goals are (a) to leverage the official CLDR JSON data, (b) allow
 users to load as much or as little data as they need, (c) avoid duplicating data
