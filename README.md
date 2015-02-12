@@ -12,7 +12,8 @@ Node.js module.
   - [This is an alpha 1.x version](#alpha)
   - [Not accepting 0.x fixes anymore](#0.x-fixes)
 - [About Globalize](#about)
-  - [Why globalization?](#why)
+  - [Why globalization?](#why_globalization)
+  - [Why Globalize?](#why_globalize)
   - [Where to use it?](#where_to_use)
   - [Where does the data come from?](#where_does_data_come_from)
   - [Only load and use what you need](#modules)
@@ -58,7 +59,7 @@ Are you looking for 0.x docs? Find them [here](https://github.com/jquery/globali
 <a name="about"></a>
 ## About Globalize
 
-<a name="why"></a>
+<a name="why_globalization"></a>
 ### Why globalization?
 
 Each language, and the countries that speak that language, have different
@@ -75,6 +76,29 @@ in the format they are accustomed to. This library makes this possible,
 providing an API to convert user-entered number and date strings - in their
 own format - into actual numbers and dates, and conversely, to format numbers
 and dates into that string format.
+
+<a name="why_globalize"></a>
+### Why Globalize?
+
+Globalize has initially been created to fullfil jQuery UI (datepicker and
+spinner widgets). It provides number formatting and parsing, date and time
+formatting and parsing, currency formatting, message formatting (ICU message
+format pattern), and plural support.
+
+Our design goals are (a) to leverage the official CLDR JSON data, (b) allow
+users to load as much or as little data as they need, (c) avoid duplicating data
+if using multiple i18n libraries that leverage CLDR, and (d) run in browsers or
+node.js.
+
+Some of the strengths of using Globalize are:
+
+- Based on CLDR data (largest and most extensive i18n repository).
+- No bugs due to outdated i18n content (it has no hard coded i18n data).
+- Consistency. Same results are obtained across browsers.
+- Allow different locale instances running simultaneously.
+
+For an overview of JavaScript globalization libraries, check out [this
+site](http://rxaviers.github.io/javascript-globalization/).
 
 <a name="where_to_use"></a>
 ### Where to use it?
