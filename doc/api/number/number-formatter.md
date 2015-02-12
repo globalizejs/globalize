@@ -1,6 +1,9 @@
-## .numberFormatter( [options] )
+## .numberFormatter( [options] ) ➜ function( value )
 
 Return a function that formats a number according to the given options.
+
+The returned function is invoked with one argument: the Number `value` to be
+formatted.
 
 ### Parameters
 
@@ -99,8 +102,8 @@ formatter( 12345 );
 // "12,300"
 
 formatter = Globalize.numberFormatter({
-    minimumSignificantDigits: 1,
-    maximumSignificantDigits: 3
+  minimumSignificantDigits: 1,
+  maximumSignificantDigits: 3
 });
 
 formatter( 0.00012345 );
@@ -117,4 +120,16 @@ var formatter = Globalize.numberFormatter({
 
 formatter( 3.141592 );
 // "3.15"
+```
+
+For improved performance on iterations, first create the formatter. Then, reuse
+it on each loop.
+
+```javascript
+var numbers = [ 1, 1, 2, 3, ... ];
+var formatter = Globalize( "en" ).numberFormatter();
+
+formattedNumbers = numbers.map(function( number ) {
+  return formatter( number );
+});
 ```

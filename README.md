@@ -225,22 +225,22 @@ to you in different flavors):
 
 - **`Globalize.load( cldrJSONData, ... )`**
 
- This method allows you to load CLDR JSON locale data. `Globalize.load()` is a
- proxy to `Cldr.load()`.
+  This method allows you to load CLDR JSON locale data. `Globalize.load()` is a
+  proxy to `Cldr.load()`.
 
- [Read more...](doc/api/core/load.md)
+  [Read more...](doc/api/core/load.md)
 
 - **`Globalize.locale( [locale|cldr] )`**
 
- Set default locale, or get it if locale argument is omitted.
+  Set default locale, or get it if locale argument is omitted.
 
- [Read more...](doc/api/core/locale.md)
+  [Read more...](doc/api/core/locale.md)
 
 - **`[new] Globalize( locale|cldr )`**
 
- Create a Globalize instance.
+  Create a Globalize instance.
 
- [Read more...](doc/api/core/constructor.md)
+  [Read more...](doc/api/core/constructor.md)
 
 <a name="date_module"></a>
 ### Date module
@@ -249,47 +249,42 @@ to you in different flavors):
 
   Return a function that formats a date according to the given `pattern`.
 
- [Read more...](doc/api/date/date-formatter.md)
+  [Read more...](doc/api/date/date-formatter.md)
 
 - **`.dateParser( pattern )`**
 
   Return a function that parses a string date according to the given `pattern`.
 
- [Read more...](doc/api/date/date-parser.md)
+  [Read more...](doc/api/date/date-parser.md)
 
 - **`.formatDate( value, pattern )`**
 
-  Format a date `value` according to the given `pattern`.
-
- [Read more...](doc/api/date/format-date.md)
+  Alias for `.dateFormatter( pattern )( value )`.
 
 - **`.parseDate( value, pattern )`**
 
-  Parse a string representing a date into a JavaScript Date object according to
-  the given pattern.
-
- [Read more...](doc/api/date/parse-date.md)
+  Alias for `.dateParser( pattern )( value )`.
 
 <a name="message_module"></a>
 ### Message module
 
 - **`Globalize.loadMessages( json )`**
 
- Load messages data.
+  Load messages data.
 
- [Read more...](doc/api/message/load-messages.md)
+  [Read more...](doc/api/message/load-messages.md)
 
 - **`.messageFormatter( path ) ➡ function([ variables ])`**
 
- Return a function that formats a message (using ICU message format pattern)
- given its path and a set of variables into a user-readable string. It supports
- pluralization and gender inflections.
+  Return a function that formats a message (using ICU message format pattern)
+  given its path and a set of variables into a user-readable string. It supports
+  pluralization and gender inflections.
 
- [Read more...](doc/api/message/message-formatter.md)
+  [Read more...](doc/api/message/message-formatter.md)
 
 - **`.formatMessage( path [, variables ] )`**
 
- Alias to `.messageFormatter( path )([ variables ])`.
+  Alias for `.messageFormatter( path )([ variables ])`.
 
 <a name="number_module"></a>
 ### Number module
@@ -298,26 +293,22 @@ to you in different flavors):
 
   Return a function that formats a number according to the given options or locale's defaults.
 
- [Read more...](doc/api/number/number-formatter.md)
+  [Read more...](doc/api/number/number-formatter.md)
 
 - **`.numberParser( [options] )`**
 
   Return a function that parses a string representing a number according to the given options or
   locale's defaults.
 
- [Read more...](doc/api/number/number-parser.md)
+  [Read more...](doc/api/number/number-parser.md)
 
 - **`.formatNumber( value [, options] )`**
 
-  Format a number according to the given options or locale's defaults.
-
- [Read more...](doc/api/number/format-number.md)
+  Alias for `.numberFormatter( [options] )( value )`.
 
 - **`.parseNumber( value [, options] )`**
 
-  Parse a string representing a number according to the given options or locale's defaults. If value is invalid, `NaN` is returned.
-
- [Read more...](doc/api/number/parse-number.md)
+  Alias for `.numberParser( [options] )( value )`.
 
 <a name="currency_module"></a>
 #### Currency module
@@ -327,29 +318,25 @@ to you in different flavors):
   Return a function that formats a currency according to the given options or
   locale's defaults.
 
- [Read more...](doc/api/currency/currency-formatter.md)
+  [Read more...](doc/api/currency/currency-formatter.md)
 
 - **`.formatCurrency( value, currency [, options] )`**
 
-  Format a currency according to the given options or locale's defaults.
-
- [Read more...](doc/api/currency/format-currency.md)
+  Alias for `.currencyFormatter( currency [, options] )( value )`.
 
 <a name="plural_module"></a>
 ### Plural module
 
 - **`.pluralGenerator()`**
 
- Return a function that returns the value's corresponding plural group: `zero`, `one`, `two`, `few`,
- `many`, or `other`.
+  Return a function that returns the value's corresponding plural group: `zero`,
+  `one`, `two`, `few`, `many`, or `other`.
 
- [Read more...](doc/api/plural/plural-generator.md)
+  [Read more...](doc/api/plural/plural-generator.md)
 
 - **`.plural( value )`**
 
- Return the value's corresponding plural group: `zero`, `one`, `two`, `few`, `many`, or `other`.
-
- [Read more...](doc/api/plural/plural.md)
+  Alias for `.pluralGenerator()( value )`.
 
 
 <a name="error"></a>
@@ -359,60 +346,64 @@ to you in different flavors):
 
 - **`E_INVALID_CLDR`**
 
- Thrown when a CLDR item has an invalid or unexpected value.
+  Thrown when a CLDR item has an invalid or unexpected value.
 
  [Read more...](doc/error/e-invalid-cldr.md)
 
 - **`E_MISSING_CLDR`**
 
- Thrown when any required CLDR item is NOT found.
+  Thrown when any required CLDR item is NOT found.
 
- [Read more...](doc/error/e-missing-cldr.md)
+  [Read more...](doc/error/e-missing-cldr.md)
 
 ### Parameter Errors
 
 - **`E_INVALID_PAR_TYPE`**
 
- Thrown when a parameter has an invalid type on any static or instance methods.
+  Thrown when a parameter has an invalid type on any static or instance methods.
 
- [Read more...](doc/error/e-invalid-par-type.md)
+  [Read more...](doc/error/e-invalid-par-type.md)
 
 - **`E_INVALID_PAR_VALUE`**
 
- Thrown for certain parameters when the type is correct, but the value is
- invalid.
+  Thrown for certain parameters when the type is correct, but the value is
+  invalid.
 
- [Read more...](doc/error/e-invalid-par-value.md)
+  [Read more...](doc/error/e-invalid-par-value.md)
 
 - **`E_MISSING_PARAMETER`**
 
- Thrown when a required parameter is missing on any static or instance methods.
+  Thrown when a required parameter is missing on any static or instance methods.
 
- [Read more...](doc/error/e-missing-parameter.md)
+  [Read more...](doc/error/e-missing-parameter.md)
 
 - **`E_PAR_OUT_OF_RANGE`**
 
- Thrown when a parameter is not within a valid range of values.
+  Thrown when a parameter is not within a valid range of values.
 
- [Read more...](doc/error/e-par-out-of-range.md)
+  [Read more...](doc/error/e-par-out-of-range.md)
 
 ### Other Errors
 
 - **`E_DEFAULT_LOCALE_NOT_DEFINED`**
 
- Thrown when any static method, eg. `Globalize.formatNumber()` is used prior to
-setting the Global locale with `Globalize.locale( <locale> )`.
- [Read more...](doc/error/e-default-locale-not-defined.md)
+  Thrown when any static method, eg. `Globalize.formatNumber()` is used prior to
+  setting the Global locale with `Globalize.locale( <locale> )`.
+
+  [Read more...](doc/error/e-default-locale-not-defined.md)
 
 - **`E_MISSING_PLURAL_MODULE`**
 
- Thrown when plural module is needed, but not loaded, eg. to format currencies
- using the named form. [Read more...](doc/error/e-missing-plural-module.md)
+  Thrown when plural module is needed, but not loaded, eg. to format currencies
+  using the named form.
+  
+  [Read more...](doc/error/e-missing-plural-module.md)
 
 - **`E_UNSUPPORTED`**
 
- Thrown for unsupported features, eg. to format unsupported date patterns.
- [Read more...](doc/error/e-unsupported.md)
+  Thrown for unsupported features, eg. to format unsupported date patterns.
+
+  [Read more...](doc/error/e-unsupported.md)
 
 
 <a name="development"></a>

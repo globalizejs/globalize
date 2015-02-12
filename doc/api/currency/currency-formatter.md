@@ -1,7 +1,10 @@
-## .currencyFormatter( currency [, options] )
+## .currencyFormatter( currency [, options] ) ➜ function( value )
 
-Return a function that formats a currency according to the given options or
+Return a function that formats a `currency` according to the given `options` or
 locale's defaults.
+
+The returned function is invoked with one argument: the Number `value` to be
+formatted.
 
 ### Parameters
 
@@ -19,6 +22,10 @@ A JSON object including none or any of the following options.
 
 See [`.numberFormatter( [options] )`](../number/number-formatter.md) for more
 options.
+
+**value**
+
+Number to be formatted, eg. `9.99`.
 
 ### Example
 
@@ -60,10 +67,9 @@ locales.
 For the accounting variation of the symbol format, use `style: "accounting"`.
 
 ```javascript
-var formatter;
-
-Globalize.locale( "en" );
-formatter = Globalize.currencyFormatter( "USD", { style: "accounting" } );
+var formatter Globalize( "en" ).currencyFormatter( "USD", {
+  style: "accounting"
+});
 
 formatter( -1 ); // "($1.00)"
 ```
@@ -71,10 +77,9 @@ formatter( -1 ); // "($1.00)"
 For plural messages, use `style: "name"`.
 
 ```javascript
-var formatter;
-
-Globalize.locale( "en" );
-formatter = Globalize.currencyFormatter( "USD", { style: "name" } );
+var formatter = Globalize( "en" ).currencyFormatter( "USD", {
+  style: "name"
+});
 
 formatter( 0 ); // "0.00 US dollars"
 formatter( 1 ); // "1.00 US dollar"
@@ -96,10 +101,9 @@ locales using the plural messages `Globalize( locale ).currencyFormatter( curren
 For the international currency code, use `style: "code"`.
 
 ```javascript
-var formatter;
-
-Globalize.locale( "en" );
-formatter = Globalize.currencyFormatter( "USD", { style: "code" } );
+var formatter = Globalize( "en" ).currencyFormatter( "USD", {
+  style: "code"
+});
 
 formatter( 9.99 );
 // "9.99 USD"
@@ -124,4 +128,17 @@ formatter = Globalize.currencyFormatter( "USD", {
 });
 
 formatter( 1.491 ); // "$1.50"
+```
+
+For improved performance on iterations, first create the formatter. Then, reuse
+it on each loop.
+
+```javascript
+var formatter = Globalize( "en" ).currencyFormatter( "USD" );
+
+renderInvoice({
+  prices: prices.map(function( price ) {
+    return formatter( price );
+  })
+});
 ```

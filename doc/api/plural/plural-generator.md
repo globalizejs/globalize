@@ -1,10 +1,17 @@
-## .pluralGenerator()
+## .pluralGenerator() ➜ function( value )
 
 It supports the creation of internationalized messages with plural inflection by
 returning a function that returns the value's plural group: `zero`, `one`,
 `two`, `few`, `many`, or `other`.
 
-The returned function has the same API of [`./plural( value )`](./plural.md).
+The returned function is invoked with one argument: the Number `value` for which
+to return the plural group.
+
+### Parameters
+
+**value**
+
+A Number for which to return the plural group.
 
 ### Example
 
@@ -34,3 +41,13 @@ var plural = Globalize( "zh" ).pluralGenerator();
 
 plural( 1 ); // "other"
 ```
+
+For comparison:
+
+| | en (English) | ru (Russian) | ar (Arabic) |
+| --- | --- | --- | --- |
+| `plural( 0 )` | `other` | `many` | `zero` |
+| `plural( 1 )` | `one` | `one` | `one` |
+| `plural( 2 )` | `other` | `few` | `two` |
+| `plural( 3 )` | `other` | `few` | `few` |
+| `plural( 5 )` | `other` | `many` | `few` |
