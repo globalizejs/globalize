@@ -89,7 +89,7 @@ Globalize provides number formatting and parsing, date and time formatting and
 parsing, currency formatting, message formatting (ICU message format pattern),
 and plural support.
 
-Our design goals are:
+Design Goals.
 
 - Leverage the official CLDR JSON data.
 - Allow users to load as much or as little data as they need.
@@ -97,7 +97,7 @@ Our design goals are:
 - Run in browsers and node.js.
 - Make globalization as easy to use as jQuery.
 
-Some of the strengths of using Globalize are:
+Strengths of Using Globalize.
 
 - Based on CLDR data (largest and most extensive i18n repository).
 - No bugs due to outdated i18n content (it has no hard coded i18n data).
