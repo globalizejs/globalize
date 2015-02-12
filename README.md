@@ -77,7 +77,7 @@ providing an API to convert user-entered number and date strings - in their
 own format - into actual numbers and dates, and conversely, to format numbers
 and dates into that string format.
 
-Even if the application deals with Enligh locale only, it may still need
+Even if the application deals with English locale only, it may still need
 globalization to format programming language bytes into human understandable
 language and vice-versa in a effective and reasonable way. For example, to
 display something better than "Edited 1 minutes ago".
