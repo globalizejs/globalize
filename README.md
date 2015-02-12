@@ -12,7 +12,8 @@ Node.js module.
   - [This is an alpha 1.x version](#alpha)
   - [Not accepting 0.x fixes anymore](#0.x-fixes)
 - [About Globalize](#about)
-  - [Why globalization?](#why)
+  - [Why globalization?](#why_globalization)
+  - [Why Globalize?](#why_globalize)
   - [Where to use it?](#where_to_use)
   - [Where does the data come from?](#where_does_data_come_from)
   - [Only load and use what you need](#modules)
@@ -58,7 +59,7 @@ Are you looking for 0.x docs? Find them [here](https://github.com/jquery/globali
 <a name="about"></a>
 ## About Globalize
 
-<a name="why"></a>
+<a name="why_globalization"></a>
 ### Why globalization?
 
 Each language, and the countries that speak that language, have different
@@ -75,6 +76,65 @@ in the format they are accustomed to. This library makes this possible,
 providing an API to convert user-entered number and date strings - in their
 own format - into actual numbers and dates, and conversely, to format numbers
 and dates into that string format.
+
+Even if the application deals only with the English locale, it may still need
+globalization to format programming language bytes into human-understandable
+language and vice-versa in an effective and reasonable way. For example, to
+display something better than "Edited 1 minutes ago".
+
+<a name="why_globalize"></a>
+### Why Globalize?
+
+Globalize provides number formatting and parsing, date and time formatting and
+parsing, currency formatting, message formatting (ICU message format pattern),
+and plural support.
+
+Design Goals.
+
+- Leverages the Unicode CLDR data and follows its UTS#35 specification.
+- Keeps code separate from i18n content. Doesn't host or embed any locale data
+  in the library. Empowers developers to control the loading mechanism of their
+  choice.
+- Allows developers to load as much or as little data as they need. Avoids
+  duplicating data if using multiple i18n libraries that leverage CLDR.
+- Keeps code modular. Allows developers to load the i18n functionalities they
+  need.
+- Runs in browsers and Node.js, consitently across all of them.
+- Makes globalization as easy to use as jQuery.
+
+Globalize is based on the Unicode Consortium's Common Locale Data Repository
+(CLDR), the largest and most extensive standard repository of locale data
+available. CLDR is constantly updated and is used by many large applications and
+operating systems, so you'll always have access to the most accurate and
+up-to-date locale data.
+
+Globalize needs CLDR content to function properly, although it doesn't embed,
+hard-code, or host such content. Instead, Globalize empowers developers to load
+CLDR data the way they want. Vanilla CLDR in its official JSON format (no
+pre-processing) is expected to be provided. As a consequence, (a) Globalize
+avoids bugs caused by outdated i18n content. Developers can use up-to-date CLDR
+data directly from Unicode as soon as it's released, without having to wait for
+any pipeline on our side. (b) Developers have full control over which locale
+coverage they want to provide on their applications. (c) Developers are able to
+share the same i18n dataset between Globalize and other libraries that leverage
+CLDR. There's no need for duplicating data.
+
+Globalize is systematically tested against desktop and mobile browsers and
+Node.js. So, using it you'll get consistent results across different browsers
+and across browsers and the server.
+
+Globalize doesn't use native Ecma-402 yet, which could potentially improve date
+and number formatting performance. Although Ecma-402 support is improving among
+modern browsers and even Node.js, the functionality and locale coverage level
+varies between different environments (see Comparing JavaScript Libraries'
+[slide 25][]). Globalize needs to do more research and testings to use it
+reliably.
+
+For alternative libraries and more, check out this [JavaScript globalization
+overview][].
+
+[slide 25]: http://jsi18n.com/jsi18n.pdf
+[JavaScript globalization overview]: http://rxaviers.github.io/javascript-globalization/
 
 <a name="where_to_use"></a>
 ### Where to use it?
