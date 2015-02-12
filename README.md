@@ -78,8 +78,8 @@ own format - into actual numbers and dates, and conversely, to format numbers
 and dates into that string format.
 
 Even if the application deals only with the English locale, it may still need
-globalization to format programming language bytes into human understandable
-language and vice-versa in a effective and reasonable way. For example, to
+globalization to format programming language bytes into human-understandable
+language and vice-versa in an effective and reasonable way. For example, to
 display something better than "Edited 1 minutes ago".
 
 <a name="why_globalize"></a>
