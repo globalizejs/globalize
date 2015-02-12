@@ -100,7 +100,7 @@ Design Goals.
 Strengths of Using Globalize.
 
 - Based on CLDR data (largest and most extensive i18n repository).
-- No bugs due to outdated i18n content (it has no hard coded i18n data).
+- No bugs due to outdated i18n content (it has no hard-coded i18n data).
 - Consistency. Same results are obtained across browsers and on the server.
 - Support using multiple locales simultaneously.
 
