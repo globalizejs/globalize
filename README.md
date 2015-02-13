@@ -91,18 +91,22 @@ and plural support.
 
 Design Goals.
 
-- Leverage the official CLDR JSON data.
+- Leverage the Unicode CLDR data in its official JSON format.
+- Follow Unicode Technical Standard #35.
 - Allow users to load as much or as little data as they need.
 - Avoid duplicating data if using multiple i18n libraries that leverage CLDR.
-- Run in browsers and node.js.
+- Run in browsers and Node.js.
 - Make globalization as easy to use as jQuery.
 
 Strengths of Using Globalize.
 
-- Based on CLDR data (largest and most extensive i18n repository).
-- No bugs due to outdated i18n content (it has no hard-coded i18n data).
-- Consistency. Same results are obtained across browsers and on the server.
-- Support using multiple locales simultaneously.
+- Use the largest and most extensive i18n repository. Globalize is based on CLDR
+  data.
+- Avoid bugs caused by outdated i18n content. Globalize has no hard-coded i18n
+  data. Up-to-date CLDR data can be used directly as soon as it's released.
+- Get consistent results across different browsers. Get consistent results
+  between browsers and the server.
+- Use multiple locales simultaneously.
 
 For alternative libraries and more, check out this [JavaScript globalization
 overview](http://rxaviers.github.io/javascript-globalization/).
