@@ -91,22 +91,62 @@ and plural support.
 
 Design Goals.
 
-- Leverage the Unicode CLDR data in its official JSON format.
-- Follow Unicode Technical Standard #35.
-- Allow users to load as much or as little data as they need.
-- Avoid duplicating data if using multiple i18n libraries that leverage CLDR.
-- Run in browsers and Node.js.
-- Make globalization as easy to use as jQuery.
+- Leverages the Unicode CLDR data and follows its UTS#35 specification.
+- Keeps code separate from i18n content. Doesn't host or embed any locale data
+  in the library. Empowers developers to control the loading mechanism of their
+  choice.
+- Allows developers to load as much or as little data as they need. Avoids
+  duplicating data if using multiple i18n libraries that leverage CLDR.
+- Keeps code modular. Allows developers to load the i18n functionalities they
+  need.
+- Runs in browsers and Node.js, consitently across all of them.
+- Makes globalization as easy to use as jQuery.
 
-Strengths of Using Globalize.
+Globalize is based on the Unicode Consortium's Common Locale Data Repository
+(CLDR), the largest and most extensive standard repository of locale data
+available. CLDR is constantly updated and is used by many large applications and
+operating systems, so you'll always have access to the most accurate and
+up-to-date locale data.
 
-- Use the largest and most extensive i18n repository. Globalize is based on CLDR
-  data.
-- Avoid bugs caused by outdated i18n content. Globalize has no hard-coded i18n
-  data. Up-to-date CLDR data can be used directly as soon as it's released.
-- Get consistent results across different browsers. Get consistent results
+Globalize needs CLDR content to function properly, although it doesn't embed,
+hard-code, or host such content. Instead, Globalize empowers developers to load
+CLDR data the way they want. Vanilla CLDR in its official JSON format (no
+pre-processing) is expected to be provided. As a consequence, (a) Globalize
+avoids bugs caused by outdated i18n content. Developers can use up-to-date CLDR
+data directly from Unicode as soon as it's released, without having to wait for
+any pipeline on our side. (b) Developers have full control over which locale
+coverage they want to provide on their applications. (c) Developers are able to
+share the same i18n dataset between Globalize and other libraries that leverage
+CLDR. There's no need for duplicating data.
+
+Using Globalize, you'll get consistent results across different browsers and
+you'll get consistent results across browsers and the server. Globalize is
+systematically tested against desktop and mobile browsers and Node.js.
+
+
+- Gets consistent results across different browsers. Gets consistent results
   between browsers and the server.
-- Use multiple locales simultaneously.
+- Uses multiple locales simultaneously.
+
+- Gets consistent results across different browsers. Gets consistent results
+  between browsers and the server.
+- Uses multiple locales simultaneously.
+
+Globalize follows the Unicode Technical Standard #35 (UTS#35) and uses the
+Unicode Consortium's Common Locale Data Repository (CLDR), the largest and most
+extensive standard repository of locale data available. CLDR is constantly
+updated and is used by many large applications and operating systems, so you'll
+always have access to the most accurate and up-to-date locale data.
+
+No locale data is hard-coded into Globalize. 
+
+Users are empowered to load locale data
+
+  . So, use up-to-date CLDR as soon as it's released, without waiting
+  for any pipeline on our side.
+
+
+Design Goals.
 
 For alternative libraries and more, check out this [JavaScript globalization
 overview](http://rxaviers.github.io/javascript-globalization/).
