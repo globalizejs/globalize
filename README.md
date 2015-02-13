@@ -126,11 +126,15 @@ and across browsers and the server.
 Globalize doesn't use native Ecma-402 yet, which could potentially improve date
 and number formatting performance. Although Ecma-402 support is improving among
 modern browsers and even Node.js, the functionality and locale coverage level
-varies between different environments. Globalize needs to do more research and
-testings to use it reliably.
+varies between different environments (see Comparing JavaScript Libraries'
+[slide 25][]). Globalize needs to do more research and testings to use it
+reliably.
 
 For alternative libraries and more, check out this [JavaScript globalization
-overview](http://rxaviers.github.io/javascript-globalization/).
+overview][].
+
+[slide 25]: http://jsi18n.com/jsi18n.pdf
+[JavaScript globalization overview]: http://rxaviers.github.io/javascript-globalization/
 
 <a name="where_to_use"></a>
 ### Where to use it?
