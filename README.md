@@ -119,9 +119,15 @@ coverage they want to provide on their applications. (c) Developers are able to
 share the same i18n dataset between Globalize and other libraries that leverage
 CLDR. There's no need for duplicating data.
 
-Globalize is systematically tested against desktop, mobile browsers and Node.js.
-So, using it you'll get consistent results across different browsers and across
-browsers and the server.
+Globalize is systematically tested against desktop and mobile browsers and
+Node.js. So, using it you'll get consistent results across different browsers
+and across browsers and the server.
+
+Globalize doesn't use native Ecma-402 yet, which could potentially improve date
+and number formatting performance. Although Ecma-402 support is improving among
+modern browsers and even Node.js, the functionality and locale coverage level
+varies between different environments. Globalize needs to do more research and
+testings to support it reliably.
 
 For alternative libraries and more, check out this [JavaScript globalization
 overview](http://rxaviers.github.io/javascript-globalization/).
