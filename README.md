@@ -123,31 +123,6 @@ Using Globalize, you'll get consistent results across different browsers and
 you'll get consistent results across browsers and the server. Globalize is
 systematically tested against desktop and mobile browsers and Node.js.
 
-
-- Gets consistent results across different browsers. Gets consistent results
-  between browsers and the server.
-- Uses multiple locales simultaneously.
-
-- Gets consistent results across different browsers. Gets consistent results
-  between browsers and the server.
-- Uses multiple locales simultaneously.
-
-Globalize follows the Unicode Technical Standard #35 (UTS#35) and uses the
-Unicode Consortium's Common Locale Data Repository (CLDR), the largest and most
-extensive standard repository of locale data available. CLDR is constantly
-updated and is used by many large applications and operating systems, so you'll
-always have access to the most accurate and up-to-date locale data.
-
-No locale data is hard-coded into Globalize. 
-
-Users are empowered to load locale data
-
-  . So, use up-to-date CLDR as soon as it's released, without waiting
-  for any pipeline on our side.
-
-
-Design Goals.
-
 For alternative libraries and more, check out this [JavaScript globalization
 overview](http://rxaviers.github.io/javascript-globalization/).
 
