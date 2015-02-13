@@ -11,7 +11,7 @@ define([
  *
  * Return the formatted message. For example:
  *
- * - formatMessage( "{0} second", 1 ); // 1 second
+ * - formatMessage( "{0} second", [ 1 ] ); // 1 second
  *
  * - formatMessage( "{0}/{1}", ["m", "s"] ); // m/s
  *
