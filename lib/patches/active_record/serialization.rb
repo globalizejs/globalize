@@ -3,11 +3,6 @@ module ActiveRecord
     module Serialization
       extend ActiveSupport::Concern
 
-      included do
-        mattr_accessor :globalize_serialized_attributes, instance_writer: false
-        self.globalize_serialized_attributes = {}
-      end
-
       module ClassMethods
         def serialize_with_globalize(attr_name, class_name_or_coder = Object)
           serialize_without_globalize(attr_name, class_name_or_coder)
@@ -20,7 +15,7 @@ module ActiveRecord
                     Coders::YAMLColumn.new(class_name_or_coder)
                   end
 
-          self.globalize_serialized_attributes[attr_name]= coder
+          self.globalize_serialized_attributes[attr_name] = coder
         end
         alias_method_chain :serialize, :globalize
       end

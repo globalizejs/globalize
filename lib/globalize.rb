@@ -78,4 +78,7 @@ module Globalize
   end
 end
 
+ActiveRecord::Base.mattr_accessor :globalize_serialized_attributes, instance_writer: false
+ActiveRecord::Base.globalize_serialized_attributes = {}
+
 ActiveRecord::Base.extend(Globalize::ActiveRecord::ActMacro)
