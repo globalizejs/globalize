@@ -57,6 +57,7 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 	// Get properties given style ("symbol" default, "code" or "name").
 	cldr.on( "get", validateRequiredCldr );
 	properties = ({
+		accounting: currencySymbolProperties,
 		code: currencyCodeProperties,
 		name: currencyNameProperties,
 		symbol: currencySymbolProperties
@@ -67,8 +68,8 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 	options = objectOmit( options, "style" );
 	options.pattern = properties.pattern;
 
-	// Return formatter when style is "symbol".
-	if ( style === "symbol" ) {
+	// Return formatter when style is "symbol" or "accounting".
+	if ( style === "symbol" || style === "accounting" ) {
 		return this.numberFormatter( options );
 	}
 

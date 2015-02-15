@@ -17,7 +17,8 @@ define([
 ], function( Globalize, deCurrencies, deNumbers, enCurrencies, enNumbers, zhCurrencies,
 	zhNumbers, currencyData, likelySubtags, plurals, util ) {
 
-var code = { style: "code" },
+var accounting = { style: "accounting" },
+	code = { style: "code" },
 	name = { style: "name" },
 	teslaS = 69900;
 
@@ -90,6 +91,8 @@ QUnit.test( "should return a currency formatter", function( assert ) {
 	assert.equal( Globalize.currencyFormatter( "USD", name )( teslaS ), "69,900.00 US dollars" );
 	assert.equal( de.currencyFormatter( "USD", name )( teslaS ), "69.900,00 US-Dollar" );
 	assert.equal( zh.currencyFormatter( "USD", name )( teslaS ), "69,900.00美元" );
+
+	assert.equal( Globalize.currencyFormatter( "USD", accounting )( -1 ), "($1.00)" );
 });
 
 // The number of decimal places and the rounding for each currency is not locale-specific data.
