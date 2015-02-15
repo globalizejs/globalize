@@ -245,4 +245,13 @@ ActiveRecord::Schema.define do
   create_table "foo_bar_bazs" do |t|
     t.string :bumm
   end
+
+  create_table :artworks, :force => true do |t|
+  end
+
+  create_table :artwork_translations, :force => true do |t|
+    t.string     :locale
+    t.references :artwork
+    t.string     :title, null: false
+  end
 end
