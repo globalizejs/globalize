@@ -249,11 +249,25 @@ to you in different flavors):
 
   Return a function that formats a date according to the given `pattern`.
 
+  ```javascript
+  .dateFormatter( "GyMMMd" )( new Date() )              ➡  "Nov 30, 2010 AD"
+  .dateFormatter({ date: "medium" })( new Date() )      ➡  "Nov 1, 2010"
+  .dateFormatter({ time: "medium" })( new Date() )      ➡  "5:55:00 PM"
+  .dateFormatter({ datetime: "medium" })( new Date() )  ➡  "Nov 1, 2010, 5:55:00 PM"
+  ```
+
   [Read more...](doc/api/date/date-formatter.md)
 
 - **`.dateParser( pattern )`**
 
   Return a function that parses a string date according to the given `pattern`.
+
+  ```javascript
+  .dateParser( "GyMMMd" )( "Nov 30, 2010 AD" )                      ➡  new Date()
+  .dateParser({ date: "medium" })( "Nov 1, 2010" )                  ➡  new Date()
+  .dateParser({ time: "medium" })( "5:55:00 PM" )                   ➡  new Date()
+  .dateParser({ datetime: "medium" })( "Nov 1, 2010, 5:55:00 PM" )  ➡  new Date()
+  ```
 
   [Read more...](doc/api/date/date-parser.md)
 
@@ -280,6 +294,11 @@ to you in different flavors):
   given its path and a set of variables into a user-readable string. It supports
   pluralization and gender inflections.
 
+  | | |
+  | --- | --- |
+  | `.messageFormatter( "task" )( 1000 )` | `"You have 1,000 tasks remaining"` |
+  | `.messageFormatter( "like" )( 3 )` | `"You and 2 others liked this"` |
+
   [Read more...](doc/api/message/message-formatter.md)
 
 - **`.formatMessage( path [, variables ] )`**
@@ -293,12 +312,26 @@ to you in different flavors):
 
   Return a function that formats a number according to the given options or locale's defaults.
 
+  ```javascript
+  .numberFormatter()( pi )                                 ➡  "3.142"
+  .numberFormatter({ maximumFractionDigits: 5 })( pi )     ➡  "3.14159"
+  .numberFormatter({ round: "floor" })( pi )               ➡  "3.141"
+  .numberFormatter({ minimumFractionDigits: 2 })( 10000 )  ➡  "10,000.00"
+  .numberFormatter({ style: "percent" })( 0.5 )            ➡  "50%"
+  ```
+
   [Read more...](doc/api/number/number-formatter.md)
 
 - **`.numberParser( [options] )`**
 
   Return a function that parses a string representing a number according to the given options or
   locale's defaults.
+
+  ```javascript
+  .numberParser()( "3.14159" )                  ➡  3.14159
+  .numberParser()( "10,000.00" )                ➡  10000
+  .numberParser({ style: "percent" })( "50%" )  ➡  0.5
+  ```
 
   [Read more...](doc/api/number/number-parser.md)
 
@@ -318,6 +351,14 @@ to you in different flavors):
   Return a function that formats a currency according to the given options or
   locale's defaults.
 
+  ```javascript
+  .currencyFormatter( "USD" )( 1 )                           ➡  "$1.00"
+  .currencyFormatter( "USD", { style: "accounting" })( -1 )  ➡  "($1.00)"
+  .currencyFormatter( "USD", { style: "name" })( 69900 )     ➡  "69,900.00 US dollars"
+  .currencyFormatter( "USD", { style: "code" })( 69900 )     ➡  "69,900.00 USD"
+  .currencyFormatter( "USD", { round: "ceil" })( 1.491 )     ➡  "$1.50"
+  ```
+
   [Read more...](doc/api/currency/currency-formatter.md)
 
 - **`.formatCurrency( value, currency [, options] )`**
@@ -331,6 +372,11 @@ to you in different flavors):
 
   Return a function that returns the value's corresponding plural group: `zero`,
   `one`, `two`, `few`, `many`, or `other`.
+
+  ```javascript
+  .pluralGenerator()( 0 )  ➡  "other"
+  .pluralGenerator()( 1 )  ➡  "one"
+  ```
 
   [Read more...](doc/api/plural/plural-generator.md)
 
