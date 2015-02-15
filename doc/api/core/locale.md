@@ -28,6 +28,12 @@ The [Cldr instance](https://github.com/rxaviers/cldrjs), eg. new
 
 ### Example
 
+Prior to using this function, you must load
+`cldr/supplemental/likelySubtags.json`. Read [CLDR content][] if you need more
+information.
+
+[CLDR content]: ../../../README.md#2-cldr-content
+
 ```javascript
 // Set "pt" as our default locale.
 Globalize.locale( "pt" );

@@ -47,6 +47,12 @@ A JSON object including none or any of the following options.
 
 ### Example
 
+Prior to using any number methods, you must load
+`cldr/main/{locale}/numbers.json` and `cldr/supplemental/numberingSystems.json`.
+Read [CLDR content][] if you need more information.
+
+[CLDR content]: ../../../README.md#2-cldr-content
+
 You can use the static method `Globalize.numberFormatter()`, which uses the
 default locale.
 

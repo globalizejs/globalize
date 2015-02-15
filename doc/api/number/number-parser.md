@@ -22,6 +22,12 @@ String with number to be parsed, eg. `"3.14"`.
 
 ### Example
 
+Prior to using any number methods, you must load
+`cldr/main/{locale}/numbers.json` and `cldr/supplemental/numberingSystems.json`.
+Read [CLDR content][] if you need more information.
+
+[CLDR content]: ../../../README.md#2-cldr-content
+
 You can use the static method `Globalize.numberParser()`, which uses the
 default locale.
 

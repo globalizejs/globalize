@@ -16,8 +16,9 @@ A Number for which to return the plural group.
 ### Example
 
 Prior to using any plural method, you must load `supplemental/plurals.json`.
-Read [CLDR content](../../../README.md#2-cldr-content) if you need more
-information.
+Read [CLDR content][] if you need more information.
+
+[CLDR content]: ../../../README.md#2-cldr-content
 
 You can use the static method `Globalize.pluralGenerator()`, which uses the
 default locale.

@@ -29,6 +29,14 @@ Number to be formatted, eg. `9.99`.
 
 ### Example
 
+Prior to using any currency methods, you must load
+`cldr/main/{locale}/currencies.json`, `cldr/supplemental/currencyData.json`, and
+the CLDR content required by the number module. If using plural messages, you
+also must load the CLDR content required by the plural module. Read [CLDR
+content][] if you need more information.
+
+[CLDR content]: ../../../README.md#2-cldr-content
+
 You can use the static method `Globalize.currencyFormatter()`, which uses the
 default locale.
 

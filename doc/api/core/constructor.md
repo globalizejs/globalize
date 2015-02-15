@@ -9,6 +9,12 @@ instance.
 
 ### Example
 
+Prior to creating any Globalize instance, you must load
+`cldr/supplemental/likelySubtags.json`. Read [CLDR content][] if you need more
+information.
+
+[CLDR content]: ../../../README.md#2-cldr-content
+
 ```javascript
 var en = new Globalize( "en" );
 

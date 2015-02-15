@@ -18,6 +18,14 @@ String with date to be parsed, eg. `"11/1/10, 5:55 PM"`.
 
 ### Example
 
+Prior to using any date methods, you must load
+`cldr/main/{locale}/ca-gregorian.json`, `cldr/main/{locale}/timeZoneNames.json`,
+`cldr/supplemental/timeData.json`, `cldr/supplemental/weekData.json`, and the
+CLDR content required by the number module. Read [CLDR content][] if you need
+more information.
+
+[CLDR content]: ../../../README.md#2-cldr-content
+
 You can use the static method `Globalize.dateParser()`, which uses the default
 locale.
 
