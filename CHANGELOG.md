@@ -1,11 +1,11 @@
 # Globalize Changelog
 
-## Unreleased
+## 5.0.1 (2015-02-15)
 
 * Don't touch table when model is loaded. [#412](https://github.com/globalize/globalize/pull/412)
 * Remove handling for locale attribute on parent model [#411](https://github.com/globalize/globalize/pull/411) by awesome [Tekin Suleyman](https://github.com/tekin).
 
-## 5.0.0 (2014-03-03)
+## 5.0.0 (2015-02-03)
 * Added support for Rails 4.2, but removed support for every previous version of Rails.  This is a backward incompatible change, thus the version is now 5.0.0. (thanks [Nico Ritsche](https://github.com/ncri) and others). [#396](https://github.com/globalize/globalize/pull/396).
 
 ## 4.0.3 (2014-11-24)
