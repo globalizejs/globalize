@@ -1,5 +1,9 @@
 # Globalize Changelog
 
+## 5.1.0 (unreleased)
+
+* Replaced `after_` callbacks with `before_` callbacks and set `autosave: true` by default. [#341](https://github.com/globalize/globalize/pull/341) by [Andrew Volozhanin](https://github.com/scarfacedeb)
+
 ## 5.0.1 (2015-02-15)
 
 * Don't touch table when model is loaded. [#412](https://github.com/globalize/globalize/pull/412)
