@@ -28,6 +28,10 @@ Globalize.prototype.formatRelativeTime = function( value, unit, options ) {
 
 	// TODO validations
 
+	// FIXME remove this comment.
+	// This method is an alias for `.relativeTimeFormatter( unit, options )( value )`, therefore, it
+	// should act as an alias. No duplicate implementation needs to take place in here.
+
 	return this.relativeTimeFormatter( unit, options )( value );
 };
 
@@ -52,6 +56,11 @@ Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 	options = options || {};
 
 	cldr.on( "get", validateCldr );
+
+	// FIXME remove this comment.
+	// Every cldr processing must happen here. The idea is to split the formatting into setup and
+	// execution phases. This is the setup phase. The properties variable will keep all the necessary
+	// information for the formatting-execution that happens below.
 	properties = relativeTimeProperties( unit, cldr, options );
 	cldr.off( "get", validateCldr );
 
@@ -60,6 +69,12 @@ Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 
 	return function( value ) {
 		validateParameterPresence( value, "value" );
+
+	// FIXME remove this comment.
+	// This is the formatting-execution. The idea is having this method not dependent on cldr and as
+	// light as possible due to:
+	// "For improved performance on iterations, first create the formatter. Then, reuse it on each
+	// loop."
 		return relativeTimeFormat( numberFormatter( value ), plural( value ), properties );
 	};
 };
