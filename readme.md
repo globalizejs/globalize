@@ -335,7 +335,7 @@ end
 * [globalize-accessors](https://github.com/globalize/globalize-accessors) - generator of accessor methods for models. *(e.g. title_en, title_cz)*
 * [globalize-versioning](https://github.com/globalize/globalize-versioning) - versioning support for using Globalize with [`paper_trail`](https://github.com/airblade/paper_trail). (compatible with Globalize 3.x and 4.x)
 
-## Alternative Solutions
+## Alternative solutions
 
 * [Traco](https://github.com/barsoom/traco) - use multiple columns in the same model (Barsoom)
 * [hstore_translate](http://github.com/robworley/hstore_translate) - use PostgreSQL's hstore datatype to store translations, instead of separate translation tables (Rob Worley)
