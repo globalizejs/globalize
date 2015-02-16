@@ -338,3 +338,5 @@ end
 * [hstore_translate](http://github.com/robworley/hstore_translate) - use PostgreSQL's hstore datatype to store translations, instead of separate translation tables (Rob Worley)
 
 ## Related solutions
+
+* [friendly_id-globalize](https://github.com/norman/friendly_id-globalize) - lets you use Globalize to translate slugs (Norman Clarke)
