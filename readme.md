@@ -329,21 +329,12 @@ end
 
 ## Official Globalize extensions
 
-* [globalize-accessors](https://github.com/globalize/globalize-accessors) - Replacement for [easy_globalize_3_accessors](https://github.com/paneq/easy_globalize3_accessors) compatible with Globalize 3.x and 4.x.
-* [globalize-versioning](https://github.com/globalize/globalize-versioning) - Versioning support for using Globalize with [`paper_trail`](https://github.com/airblade/paper_trail).
+* [globalize-accessors](https://github.com/globalize/globalize-accessors) - generator of accessor methods for models. *(e.g. title_en, title_cz)*
+* [globalize-versioning](https://github.com/globalize/globalize-versioning) - versioning support for using Globalize with [`paper_trail`](https://github.com/airblade/paper_trail). (compatible with Globalize 3.x and 4.x)
 
 ## Alternative Solutions
 
-* [Veger's fork](http://github.com/veger/globalize2) - uses default AR schema for the default locale, delegates to the translations table for other locales only
-* [TranslatableColumns](http://github.com/iain/translatable_columns) - have multiple languages of the same attribute in a model (Iain Hecker)
-* [Traco](https://github.com/barsoom/traco) - A newer take on using multiple columns in the same model (Barsoom)
-* [localized_record](http://github.com/glennpow/localized_record) - allows records to have localized attributes without any modifications to the database (Glenn Powell)
-* [model_translations](http://github.com/janne/model_translations) - Minimal implementation of Globalize2 style model translations (Jan Andersson)
-* [hstore_translate](http://github.com/robworley/hstore_translate) - Rails I18n library for ActiveRecord model/data translation using PostgreSQL's hstore datatype (Rob Worley)
+* [Traco](https://github.com/barsoom/traco) - use multiple columns in the same model (Barsoom)
+* [hstore_translate](http://github.com/robworley/hstore_translate) - use PostgreSQL's hstore datatype to store translations, instead of separate translation tables (Rob Worley)
 
 ## Related solutions
-
-* [globalize2_versioning](http://github.com/joshmh/globalize2_versioning) - acts_as_versioned style versioning for globalize2 (Joshua Harvey)
-* [i18n_multi_locales_validations](http://github.com/ZenCocoon/i18n_multi_locales_validations) - multi-locales attributes validations to validates attributes from globalize2 translations models (Sébastien Grosjean)
-* [migrate_from_globalize1](http://gist.github.com/120867) - migrate model translations from Globalize1 to globalize2 (Tomasz Stachewicz)
-* [batch_translations](http://github.com/rilla/batch_translations) - allow saving multiple globalize2 translations in the same request (Jose Alvarez Rilla)
