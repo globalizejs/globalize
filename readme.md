@@ -327,6 +327,9 @@ def cache_key
 end
 ```
 
+## Tutorials and articles
+* [Go Global with Rails and I18n](http://www.sitepoint.com/go-global-rails-i18n/) - introductory article about i18n in Rails (Ilya Bodrov)
+
 ## Official Globalize extensions
 
 * [globalize-accessors](https://github.com/globalize/globalize-accessors) - generator of accessor methods for models. *(e.g. title_en, title_cz)*
