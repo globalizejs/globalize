@@ -7,8 +7,8 @@ define([
 	"json!cldr-data/supplemental/currencyData.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 
-  "cldr/event",
-  "cldr/supplemental"
+	"cldr/event",
+	"cldr/supplemental"
 ], function( Cldr, properties, deNumbers, enNumbers, zhNumbers, currencyData, likelySubtags ) {
 
 var de, en, zh;

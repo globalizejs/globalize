@@ -4,8 +4,8 @@ define([
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 
-  "cldr/event",
-  "cldr/supplemental"
+	"cldr/event",
+	"cldr/supplemental"
 ], function( Cldr, properties, enNumbers, likelySubtags ) {
 
 var en;

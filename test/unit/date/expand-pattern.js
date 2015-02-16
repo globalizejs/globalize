@@ -4,8 +4,8 @@ define([
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 
-  "cldr/event",
-  "cldr/supplemental"
+	"cldr/event",
+	"cldr/supplemental"
 ], function( Cldr, expandPattern, enCaGregorian, likelySubtags ) {
 
 var cldr;

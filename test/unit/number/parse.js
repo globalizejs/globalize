@@ -11,8 +11,8 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/numberingSystems.json",
 
-  "cldr/event",
-  "cldr/supplemental"
+	"cldr/event",
+	"cldr/supplemental"
 ], function( Cldr, parse, properties, arNumbers, enNumbers, esNumbers, ruNumbers, svNumbers,
 	zhNumbers, likelySubtags, numberingSystems ) {
 
