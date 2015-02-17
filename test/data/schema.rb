@@ -254,4 +254,14 @@ ActiveRecord::Schema.define do
     t.references :artwork
     t.string     :title, null: false
   end
+
+  create_table :questions, :force => true do |t|
+  end
+
+  create_table :question_translations, :force => true do |t|
+    t.string     :locale
+    t.references :question
+    t.string     :title, null: false
+  end
+
 end
