@@ -147,6 +147,20 @@ class FallbacksTest < MiniTest::Spec
       task.update_attributes :name => ''
       assert_equal 'foo', task.name
     end
+
+    describe 'presence validation' do
+      it 'adds error messages for fallback locale' do
+        I18n.fallbacks.map :'de-DE' => [ :'en-US' ]
+        question = Question.create title: 'What is it?'
+        params = { title: '' }
+
+        I18n.locale = 'de-DE'
+        question.update_attributes(params)
+
+        assert_equal question.errors.first, [:title, "can't be blank"]
+      end
+    end
+
   end
 
   describe 'STI model' do
