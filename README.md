@@ -8,9 +8,6 @@ A JavaScript library for internationalization and localization that leverage the
 official [Unicode CLDR](http://cldr.unicode.org/) JSON data. The library works both for the browser and as a
 Node.js module.
 
-- [Heads up!](#heads_up)
-  - [This is an alpha 1.x version](#alpha)
-  - [Not accepting 0.x fixes anymore](#0.x-fixes)
 - [About Globalize](#about)
   - [Why globalization?](#why_globalization)
   - [Why Globalize?](#why_globalize)
@@ -36,24 +33,6 @@ Node.js module.
   - [Source files](#source_files)
   - [Build](#build)
   - [Tests](#tests)
-
-
-<a name="heads_up"></a>
-## Heads up!
-
-<a name="alpha"></a>
-### This is an alpha 1.x version
-We're working on the migration to using the Unicode CLDR. This is an alpha
-version of Globalize. In other words, this is not a software for production
-environment (yet).
-
-<a name="0.x-fixes"></a>
-### Not accepting 0.x fixes anymore
-
-Patches to the previous 0.x codebase probably can't be used. If you have a
-problem, please create an issue first before trying to patch it.
-
-Are you looking for 0.x docs? Find them [here](https://github.com/jquery/globalize/tree/79ae658b842f75f58199d6e9074e01f7ce207468).
 
 
 <a name="about"></a>
@@ -135,6 +114,13 @@ overview][].
 
 [slide 25]: http://jsi18n.com/jsi18n.pdf
 [JavaScript globalization overview]: http://rxaviers.github.io/javascript-globalization/
+
+### Migrating from Globalize 0.x
+
+Are you coming from Globalize 0.x? Read our [migration guide][] to learn what
+have changed and how to migrate older 0.x code to up-to-date 1.x.
+
+[migration guide]: [doc/migrating-from-0.x.md]
 
 <a name="where_to_use"></a>
 ### Where to use it?
