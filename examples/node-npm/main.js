@@ -5,8 +5,9 @@ var Globalize = require( "globalize" );
 
 // Before we can use Globalize, we need to feed it on the appropriate I18n content (Unicode CLDR). Read Requirements on Getting Started on the root's README.md for more information.
 Globalize.load(
-	require( "cldr-data/main/en/currencies" ),
 	require( "cldr-data/main/en/ca-gregorian" ),
+	require( "cldr-data/main/en/currencies" ),
+	require( "cldr-data/main/en/dateFields" ),
 	require( "cldr-data/main/en/numbers" ),
 	require( "cldr-data/supplemental/currencyData" ),
 	require( "cldr-data/supplemental/likelySubtags" ),
@@ -37,3 +38,5 @@ console.log( like( 0 ) );
 console.log( like( 1 ) );
 console.log( like( 2 ) );
 console.log( like( 3 ) );
+
+console.log( Globalize.formatRelativeTime( -35, "second" ) );

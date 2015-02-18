@@ -3,28 +3,34 @@ define([
 ], function( formatMessage ) {
 
 /**
- * format( formattedNumber, pluralForm, properties )
+ * format( value, numberFormatter, pluralGenerator, properties )
  *
- * @formattedNumber [String]
+ * @value [Number] The number to format
  *
- * @pluralForm [String]
+ * @numberFormatter [String] A numberFormatter from Globalize.numberFormatter
+ *
+ * @pluralGenerator [String] A pluralGenerator from Globalize.pluralGenerator
  *
  * @properties [Object] containing relative time plural message.
  *
  * Format relative time.
  */
-return function( formattedNumber, pluralForm, properties ) {
-	var message;
+return function( value, numberFormatter, pluralGenerator, properties ) {
 
-	// FIXME REMOVEME Impementation based on:
-	// http://www.unicode.org/reports/tr35/tr35-dates.html#Calendar_Fields
-	//
-	// Feel free to create any helper function you judge necessary. They must all
-	// live inside src/relative-time/. Ideally, each file must hold one single
-  // function for easy unit testing.
+	var relativeTime,
+		message = properties[ "relative-type-" + value ];
 
-	message = properties[ "relativeTime-type-past" ][ "relativeTimePattern-count-" + pluralForm ];
-	return formatMessage( message, [ formattedNumber ] );
+	if ( message ) {
+		return message;
+	}
+
+	relativeTime = value <= 0 ? properties[ "relativeTime-type-past" ]
+		: properties[ "relativeTime-type-future" ];
+
+	value = Math.abs( value );
+
+	message = relativeTime[ "relativeTimePattern-count-" + pluralGenerator( value ) ];
+	return formatMessage( message, [ numberFormatter( value ) ] );
 };
 
 });

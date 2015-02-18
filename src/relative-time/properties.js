@@ -8,32 +8,34 @@ define(function() {
  * @cldr [Cldr instance].
  *
  * @options [Object]
- * - form: [String] eg. "short" or "narrow".
+ * - form: [String] eg. "short" or "narrow". Or falsy for default long form
  *
  * Return relative time properties.
  */
-return function( /*unit, cldr, options*/ ) {
+return function( unit, cldr, options ) {
 
-	// FIXME REMOVEME Impementation based on:
-	// http://www.unicode.org/reports/tr35/tr35-dates.html#Calendar_Fields
-	//
-	// Feel free to create any helper function you judge necessary. They must all
-	// live inside src/relative-time/. Ideally, each file must hold one single
-  // function for easy unit testing.
+	var form = options.form,
+		raw, properties, key, match;
 
-	return {
-		"relative-type--1": "last month",
-		"relative-type-0": "this month",
-		"relative-type-1": "next month",
-		"relativeTime-type-future": {
-			"relativeTimePattern-count-one": "in {0} month",
-			"relativeTimePattern-count-other": "in {0} months"
-		},
-		"relativeTime-type-past": {
-			"relativeTimePattern-count-one": "{0} month ago",
-			"relativeTimePattern-count-other": "{0} months ago"
-		}
+	if ( form ) {
+		unit = unit + "-" + form;
+	}
+
+	raw = cldr.main( [ "dates", "fields", unit ] );
+	properties = {
+		"relativeTime-type-future": raw[ "relativeTime-type-future" ],
+		"relativeTime-type-past": raw[ "relativeTime-type-past" ]
 	};
+	for ( key in raw ) {
+		if ( raw.hasOwnProperty( key ) ) {
+			match = /relative-type-(-?[0-9]+)/.exec( key );
+			if ( match ) {
+				properties[ key ] = raw[ key ];
+			}
+		}
+	}
+
+	return properties;
 };
 
 });
