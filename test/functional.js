@@ -40,8 +40,10 @@ require([
 	"./functional/number/parse-number",
 
 	// plural
-	"./functional/plural/plural"
+	"./functional/plural/plural",
 
+	// relative-time
+	"./functional/relative-time/format"
 ], function() {
 	QUnit.start();
 }, function( error ) {

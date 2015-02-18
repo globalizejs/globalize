@@ -8,32 +8,44 @@ define(function() {
  * @cldr [Cldr instance].
  *
  * @options [Object]
- * - form: [String] eg. "short" or "narrow".
+ * - form: [String] eg. "short" or "narrow". Or falsy for default long form
+ * - minWordOffset [Optional Number] The maximum offset when special offset words like
+ *  yesterday and tomorrow will be looked for. Some languages provide several of these.
+ *  default null -> use all available
+ *  Set to 0 to not use any except today, now etc.
  *
  * Return relative time properties.
  */
-return function( /*unit, cldr, options*/ ) {
+return function( unit, cldr, options ) {
 
-	// FIXME REMOVEME Impementation based on:
-	// http://www.unicode.org/reports/tr35/tr35-dates.html#Calendar_Fields
-	//
-	// Feel free to create any helper function you judge necessary. They must all
-	// live inside src/relative-time/. Ideally, each file must hold one single
-  // function for easy unit testing.
+	options = options || {};
 
-	return {
-		"relative-type--1": "last month",
-		"relative-type-0": "this month",
-		"relative-type-1": "next month",
-		"relativeTime-type-future": {
-			"relativeTimePattern-count-one": "in {0} month",
-			"relativeTimePattern-count-other": "in {0} months"
-		},
-		"relativeTime-type-past": {
-			"relativeTimePattern-count-one": "{0} month ago",
-			"relativeTimePattern-count-other": "{0} months ago"
-		}
+	var maxWordOffset = options.maxWordOffset,
+		form = options.form,
+		raw, rv, k, m;
+
+	if ( form ) {
+		unit = unit + "-" + form;
+	}
+
+	raw = cldr.main( [ "dates", "fields", unit ] );
+	rv = {
+		"relativeTime-type-future": raw[ "relativeTime-type-future" ],
+		"relativeTime-type-past": raw[ "relativeTime-type-past" ]
 	};
+	for (k in raw) {
+		if (raw.hasOwnProperty(k)) {
+			m = /relative-type-(-?[0-9]+)/.exec(k);
+			if (m && (
+				maxWordOffset == null || // (null or undefined)
+				maxWordOffset >= Math.abs(parseInt(m[1], 10))
+				)) {
+				rv[k] = raw[k];
+			}
+		}
+	}
+
+	return rv;
 };
 
 });
