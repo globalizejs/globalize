@@ -164,7 +164,14 @@ module.exports = function( grunt ) {
 								"return MessageFormat;",
 								"}());",
 								"/* jshint ignore:end */"
-							].join( "\n" ) );
+							].join( "\n" ) )
+
+							// Remove MessageFormat.getPluralFunc = function(...) {...}
+							.replace( /MessageFormat.getPluralFunc = function[\s\S]*?return null;\n  }/, "" )
+
+							// ... and code that uses it.
+							.replace( /if \(!pluralFunc\) {\n[\s\S]*?}/, "" );
+
 					}
 
 					// 1, and 2: Remove define() wrap.
