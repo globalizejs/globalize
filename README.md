@@ -173,7 +173,7 @@ requirements. See table below.
 | Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/main/`locale`/timeZoneNames.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json<br>+CLDR JSON files from number module |
 | Number module | cldr/main/`locale`/numbers.json<br>cldr/supplemental/numberingSystems.json |
 | Plural module | cldr/supplemental/plurals.json |
-| Relative time module | cldr/main/`locale`/dateFields.json<br>CLDR JSON files from number and plural modules |
+| Relative time module | cldr/main/`locale`/dateFields.json<br>+CLDR JSON files from number and plural modules |
 
 *(b) How am I supposed to get and load CLDR content?*
 
@@ -404,7 +404,7 @@ to you in different flavors):
 
 - **`.formatRelativeTime( value, unit [, options] )`**
 
-  Alias for `.formatRelativeTime( unit, options )( value )`.
+  Alias for `.relativeTimeFormatter( unit, options )( value )`.
 
 
 <a name="error"></a>
