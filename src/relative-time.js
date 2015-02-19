@@ -36,7 +36,7 @@ Globalize.prototype.formatRelativeTime = function( value, unit, options ) {
 /**
  * .relativeTimeFormatter( unit[, options ])
  *
- * @unit [String] eg. "day", "week", "month", etc.
+ * @unit [String] String value indicating the unit to be formatted. eg. "day", "week", "month", etc.
  *
  * @options [Object]
  * - form: [String] eg. "short" or "narrow". Or falsy for default long form
