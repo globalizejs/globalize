@@ -37,7 +37,8 @@ QUnit.test( "should format number in past", function( assert ) {
 			makeMockNumberFormatter( assert, 7 ),
 			makeMockPluralGenerator( "other" ),
 			properties( "month", cldr, {} ) ),
-		"7 months ago" );
+		"7 months ago"
+    );
 });
 
 QUnit.test( "should format number in future", function( assert ) {
@@ -47,7 +48,8 @@ QUnit.test( "should format number in future", function( assert ) {
 			makeMockNumberFormatter( assert, 7 ),
 			makeMockPluralGenerator( "other" ),
 			properties( "month", cldr, {} ) ),
-		"in 7 months" );
+		"in 7 months"
+    );
 });
 
 QUnit.test( "should format using word if possible", function( assert ) {
@@ -59,7 +61,8 @@ QUnit.test( "should format using word if possible", function( assert ) {
 	}
 	assert.equal(
 		format( 1, mockNumberFormatter, mockPluralGenerator, properties( "month", cldr, {} ) ),
-		"next month" );
+		"next month"
+    );
 });
 
 QUnit.test( "should format numerically if relative-type is absent", function( assert ) {
@@ -78,7 +81,8 @@ QUnit.test( "should format numerically if relative-type is absent", function( as
 					"relativeTimePattern-count-other": "{0} months ago"
 				}
 		} ),
-		"in 1 month" );
+		"in 1 month"
+    );
 });
 
 });

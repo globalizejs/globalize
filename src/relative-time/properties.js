@@ -31,14 +31,14 @@ return function( unit, cldr, options ) {
 		"relativeTime-type-future": raw[ "relativeTime-type-future" ],
 		"relativeTime-type-past": raw[ "relativeTime-type-past" ]
 	};
-	for (key in raw) {
-		if (raw.hasOwnProperty(key)) {
-			match = /relative-type-(-?[0-9]+)/.exec(key);
+	for ( key in raw ) {
+		if ( raw.hasOwnProperty( key ) ) {
+			match = /relative-type-(-?[0-9]+)/.exec( key );
 			if ( match && (
-				maximumWordOffset == null || // (null or undefined)
-				maximumWordOffset >= Math.abs( parseInt( match[1], 10 ) )
-				) ) {
-				properties[key] = raw[key];
+                    maximumWordOffset == null || // (null or undefined)
+                    maximumWordOffset >= Math.abs( parseInt( match[1], 10 ) )
+                    ) ) {
+				properties[ key ] = raw[ key ];
 			}
 		}
 	}

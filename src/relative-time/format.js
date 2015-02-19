@@ -26,10 +26,10 @@ return function( value, numberFormatter, pluralGenerator, properties ) {
 	relativeTime = value < 0 ? properties[ "relativeTime-type-past" ]
 		: properties[ "relativeTime-type-future" ];
 
-	value = Math.abs(value);
+	value = Math.abs( value );
 
-	message = relativeTime[ "relativeTimePattern-count-" + pluralGenerator(value) ];
-	return formatMessage( message, [ numberFormatter(value) ] );
+	message = relativeTime[ "relativeTimePattern-count-" + pluralGenerator( value ) ];
+	return formatMessage( message, [ numberFormatter( value ) ] );
 };
 
 });

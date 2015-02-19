@@ -395,9 +395,9 @@ to you in different flavors):
  default/instance locale.
 
   ```javascript
-  .relativeTimeFormatter( day )( 1 )  ➡  "tomorrow"
-  .relativeTimeFormatter( day )( -1 )  ➡  "yesterday"
-  .relativeTimeFormatter( day )( 3 )  ➡  "in 3 days"
+  .relativeTimeFormatter( "day" )( 1 )  ➡  "tomorrow"
+  .relativeTimeFormatter( "day" )( -1 )  ➡  "yesterday"
+  .relativeTimeFormatter( "day" )( 3 )  ➡  "in 3 days"
   ```
 
   [Read more...](doc/api/relative-time/relative-time-formatter.md)
