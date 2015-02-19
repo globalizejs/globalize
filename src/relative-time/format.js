@@ -3,11 +3,13 @@ define([
 ], function( formatMessage ) {
 
 /**
- * format( formattedNumber, pluralForm, properties )
+ * format( value, numberFormatter, pluralGenerator, properties )
  *
- * @formattedNumber [String]
+ * @value [Number] The number to format
  *
- * @pluralForm [String]
+ * @numberFormatter [String] A numberFormatter from Globalize.numberFormatter
+ *
+ * @pluralGenerator [String] A pluralGenerator from Globalize.pluralGenerator
  *
  * @properties [Object] containing relative time plural message.
  *
@@ -17,12 +19,12 @@ return function( value, numberFormatter, pluralGenerator, properties ) {
 
 	var relativeTime, message = properties[ "relative-type-" + value ];
 
-	if (message) {
+	if ( message ) {
 		return message;
 	}
 
 	relativeTime = value < 0 ? properties[ "relativeTime-type-past" ]
-							 : properties[ "relativeTime-type-future" ];
+		: properties[ "relativeTime-type-future" ];
 
 	value = Math.abs(value);
 

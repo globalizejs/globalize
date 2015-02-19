@@ -18,19 +18,17 @@ define([
  *
  * @value [Number] The number of unit to format.
  *
- * @unit [String] eg. "day", "week", "month", etc.
+ * @unit [String] see .relativeTimeFormatter() for details
  *
- * @options [Object]
- * - form: [String] eg. "short" or "narrow". Or falsy for default long form
- * - minWordOffset [Optional Number] The maximum offset when special offset words like
- *  yesterday and tomorrow will be looked for. Some languages provide several of these.
- *  default null -> use all available
- *  Set to 0 to not use any except today, now etc.
+ * @options [Object] see .relativeTimeFormatter() for details
  *
  * Formats a relative time according to the given unit, options, and the default/instance locale.
  */
 Globalize.formatRelativeTime =
 Globalize.prototype.formatRelativeTime = function( value, unit, options ) {
+
+	validateParameterPresence( value, "value" );
+	validateParameterTypeNumber( value, "value" );
 
 	return this.relativeTimeFormatter( unit, options )( value );
 };
@@ -41,20 +39,21 @@ Globalize.prototype.formatRelativeTime = function( value, unit, options ) {
  * @unit [String] eg. "day", "week", "month", etc.
  *
  * @options [Object]
- * - form: [String] eg. "short" or "narrow".
- * - maxWordOffset [Optional Number] The maximum offset for which special offset words like
+ * - form: [String] eg. "short" or "narrow". Or falsy for default long form
+ * - maximumWordOffset [Optional Number] The maximum offset when special offset words like
  *  yesterday and tomorrow will be looked for. Some languages provide several of these.
- *  default 2
+ *  default null -> use all available
+ *  Set to 0 to not use any except today, now etc.
  *
  * Returns a function that formats a relative time according to the given unit, options, and the
  * default/instance locale.
  */
 Globalize.relativeTimeFormatter =
 Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
-	var cldr, numberFormatter, plural, properties;
+	var cldr, numberFormatter, pluralGenerator, properties;
 
-	validateParameterPresence(unit, "unit");
-	validateParameterTypeString(unit, "unit");
+	validateParameterPresence( unit, "unit" );
+	validateParameterTypeString( unit, "unit" );
 
 	cldr = this.cldr;
 	options = options || {};
@@ -64,7 +63,7 @@ Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 	cldr.off( "get", validateCldr );
 
 	numberFormatter = this.numberFormatter( options );
-	plural = this.pluralGenerator();
+	pluralGenerator = this.pluralGenerator();
 
 	return function( value ) {
 		// This validation is repeated in the numberFormatter, but the numberFormatter
@@ -72,7 +71,7 @@ Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 		validateParameterPresence( value, "value" );
 		validateParameterTypeNumber( value, "value" );
 
-		return relativeTimeFormat( value, numberFormatter, plural, properties );
+		return relativeTimeFormat( value, numberFormatter, pluralGenerator, properties );
 	};
 };
 

@@ -21,7 +21,7 @@ de = new Cldr( "de" );
 QUnit.module( "Relative Time Properties" );
 
 QUnit.test( "should return month info in english", function( assert ) {
-	assert.deepEqual( properties( "month", cldr ), {
+	assert.deepEqual( properties( "month", cldr, {} ), {
 		"relative-type--1": "last month",
 		"relative-type-0": "this month",
 		"relative-type-1": "next month",
@@ -37,7 +37,7 @@ QUnit.test( "should return month info in english", function( assert ) {
 });
 
 QUnit.test( "should return complete day info in german", function( assert ) {
-	assert.deepEqual( properties( "day", de ), {
+	assert.deepEqual( properties( "day", de, {} ), {
 		"relative-type--1": "gestern",
 		"relative-type--2": "vorgestern",
 		"relative-type-0": "heute",
@@ -55,7 +55,7 @@ QUnit.test( "should return complete day info in german", function( assert ) {
 });
 
 QUnit.test( "should filter relative-types if requested", function( assert ) {
-	assert.deepEqual( properties( "day", de, { maxWordOffset: 1 } ), {
+	assert.deepEqual( properties( "day", de, { maximumWordOffset: 1 } ), {
 		"relative-type--1": "gestern",
 		"relative-type-0": "heute",
 		"relative-type-1": "morgen",
