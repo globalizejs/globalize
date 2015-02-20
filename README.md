@@ -120,7 +120,7 @@ overview][].
 Are you coming from Globalize 0.x? Read our [migration guide][] to learn what
 have changed and how to migrate older 0.x code to up-to-date 1.x.
 
-[migration guide]: [doc/migrating-from-0.x.md]
+[migration guide]: doc/migrating-from-0.x.md
 
 <a name="where_to_use"></a>
 ### Where to use it?
