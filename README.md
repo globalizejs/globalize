@@ -340,10 +340,10 @@ to you in different flavors):
   given its path and a set of variables into a user-readable string. It supports
   pluralization and gender inflections.
 
-  | | |
-  | --- | --- |
-  | `.messageFormatter( "task" )( 1000 )` | `"You have 1,000 tasks remaining"` |
-  | `.messageFormatter( "like" )( 3 )` | `"You and 2 others liked this"` |
+  ```javascript
+  .messageFormatter( "task" )( 1000 )  ➡  "You have 1,000 tasks remaining"
+  .messageFormatter( "like" )( 3 )     ➡  "You and 2 others liked this"
+  ```
 
   [Read more...](doc/api/message/message-formatter.md)
 
