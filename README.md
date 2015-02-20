@@ -104,6 +104,7 @@ information on its usage.
 | globalize/message.js | +5.6KB | [Message module](#message_module) provides ICU message format support |
 | globalize/number.js | +2.9KB | [Number module](#number_module) provides number formatting and parsing |
 | globalize/plural.js | +1.7KB | [Plural module](#plural_module) provides pluralization support |
+| globalize/relative-time.js | +0.7KB | [Relative time module](#relative-time_module) provides relative time formatting support |
 
 <a name="browser_support"></a>
 ### Browser Support
@@ -396,8 +397,9 @@ to you in different flavors):
 
   ```javascript
   .relativeTimeFormatter( "day" )( 1 )  ➡  "tomorrow"
-  .relativeTimeFormatter( "day" )( -1 )  ➡  "yesterday"
-  .relativeTimeFormatter( "day" )( 3 )  ➡  "in 3 days"
+  .relativeTimeFormatter( "month" )( -1 )  ➡  "last month"
+  .relativeTimeFormatter( "month" )( 3 )  ➡  "in 3 months"
+  .relativeTimeFormatter( "day", { mamximumWordOffset: 0 } )( 1 )  ➡  "in 1 day"
   ```
 
   [Read more...](doc/api/relative-time/relative-time-formatter.md)

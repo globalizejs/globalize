@@ -47,5 +47,10 @@ formatter( 1 ); // "next month"
 formatter( 3 ); // "in 3 months"
 formatter( -1 ); // "last month"
 formatter( -3 ); // "3 months ago"
+
+formatter = Globalize.relativeTimeFormatter( 'day', { maximumWordOffset: 0 } );
+
+formatter( 1 ); // "in 1 day"
+formatter( -3 ); // "3 days ago"
 ```
 
