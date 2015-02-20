@@ -187,7 +187,7 @@ var likeFormatter,
 
 Globalize.loadMessages({
   en: {
-    like: [
+    likeIncludingMe: [
       "{0, plural, offset:1",
       "     =0 {Be the first to like this}",
       "     =1 {You liked this}",
@@ -198,7 +198,7 @@ Globalize.loadMessages({
   }
 });
 
-likeFormatter = Globalize( "en" ).messageFormatter( "like" );
+likeFormatter = Globalize( "en" ).messageFormatter( "likeIncludingMe" );
 
 likeFormatter( 0 );
 ➡ "Be the first to like this"

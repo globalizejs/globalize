@@ -78,7 +78,7 @@ Design Goals.
   duplicating data if using multiple i18n libraries that leverage CLDR.
 - Keeps code modular. Allows developers to load the i18n functionalities they
   need.
-- Runs in browsers and Node.js, consitently across all of them.
+- Runs in browsers and Node.js, consistently across all of them.
 - Makes globalization as easy to use as jQuery.
 
 Globalize is based on the Unicode Consortium's Common Locale Data Repository
@@ -105,9 +105,8 @@ and across browsers and the server.
 Globalize doesn't use native Ecma-402 yet, which could potentially improve date
 and number formatting performance. Although Ecma-402 support is improving among
 modern browsers and even Node.js, the functionality and locale coverage level
-varies between different environments (see Comparing JavaScript Libraries'
-[slide 25][]). Globalize needs to do more research and testings to use it
-reliably.
+varies between different environments (see Comparing JavaScript Libraries [slide
+25][]). Globalize needs to do more research and testings to use it reliably.
 
 For alternative libraries and more, check out this [JavaScript globalization
 overview][].
@@ -340,10 +339,10 @@ to you in different flavors):
   given its path and a set of variables into a user-readable string. It supports
   pluralization and gender inflections.
 
-  | | |
-  | --- | --- |
-  | `.messageFormatter( "task" )( 1000 )` | `"You have 1,000 tasks remaining"` |
-  | `.messageFormatter( "like" )( 3 )` | `"You and 2 others liked this"` |
+  ```javascript
+  .messageFormatter( "task" )( 1000 )  ➡  "You have 1,000 tasks remaining"
+  .messageFormatter( "like" )( 3 )     ➡  "You and 2 others liked this"
+  ```
 
   [Read more...](doc/api/message/message-formatter.md)
 

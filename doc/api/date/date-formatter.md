@@ -107,9 +107,8 @@ For comparison, follow the same formatter using different locales.
 | *pt* | `"01/11/10 17:55"` |
 | *ar* | `"١‏/١١‏/٢٠١٠ ٥،٥٥ م"` |
 
-Use presents for convenience. There are three different presents: `date`,
-`time`, or `datetime`. Their possible values are: `full`, `long`, `medium`, or
-`short`.
+Use convenient presets for `date`, `time`, or `datetime`. Their possible values
+are: `full`, `long`, `medium`, or `short`.
 
 | `presetValue` | `Globalize( "en" ).dateFormatter( presetValue )( new Date( 2010, 10, 1, 17, 55 ) )` |
 | --- | --- |
