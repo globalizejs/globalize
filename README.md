@@ -78,7 +78,7 @@ Design Goals.
   duplicating data if using multiple i18n libraries that leverage CLDR.
 - Keeps code modular. Allows developers to load the i18n functionalities they
   need.
-- Runs in browsers and Node.js, consitently across all of them.
+- Runs in browsers and Node.js, consistently across all of them.
 - Makes globalization as easy to use as jQuery.
 
 Globalize is based on the Unicode Consortium's Common Locale Data Repository
@@ -98,14 +98,14 @@ coverage they want to provide on their applications. (c) Developers are able to
 share the same i18n dataset between Globalize and other libraries that leverage
 CLDR. There's no need for duplicating data.
 
-Globalize is systematically tested against desktop and mobile browsers and
+Globalize is systematically tested against desktop and mobile browsers and on
 Node.js. So, using it you'll get consistent results across different browsers
 and across browsers and the server.
 
 Globalize doesn't use native Ecma-402 yet, which could potentially improve date
 and number formatting performance. Although Ecma-402 support is improving among
-modern browsers and even Node.js, the functionality and locale coverage level
-varies between different environments (see Comparing JavaScript Libraries'
+modern browsers and even on Node.js, the functionality and locale coverage level
+varies between different environments (see Comparing JavaScript Libraries
 [slide 25][]). Globalize needs to do more research and testings to use it
 reliably.
 
