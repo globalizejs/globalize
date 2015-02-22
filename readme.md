@@ -327,6 +327,13 @@ def cache_key
 end
 ```
 
+## Thread-safety
+
+Globalize uses [request_store](https://github.com/steveklabnik/request_store) gem to clean up thread-global variable after every request.
+RequestStore includes a Railtie that will configure everything properly for Rails 3+ apps.
+
+If you're not using Rails, you may need to consult a RequestStore's [README](https://github.com/steveklabnik/request_store#no-rails-no-problem) to configure it.
+
 ## Tutorials and articles
 * [Go Global with Rails and I18n](http://www.sitepoint.com/go-global-rails-i18n/) - introductory article about i18n in Rails (Ilya Bodrov)
 
