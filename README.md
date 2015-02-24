@@ -78,7 +78,7 @@ Design Goals.
   duplicating data if using multiple i18n libraries that leverage CLDR.
 - Keeps code modular. Allows developers to load the i18n functionalities they
   need.
-- Runs in browsers and Node.js, consitently across all of them.
+- Runs in browsers and Node.js, consistently across all of them.
 - Makes globalization as easy to use as jQuery.
 
 Globalize is based on the Unicode Consortium's Common Locale Data Repository
