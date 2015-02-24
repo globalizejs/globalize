@@ -3,7 +3,7 @@
  *
  * http://github.com/jquery/globalize
  *
- * Copyright 2010, 2014 jQuery Foundation, Inc. and other contributors
+ * Copyright jQuery Foundation and other contributors
  * Released under the MIT license
  * http://jquery.org/license
  *
