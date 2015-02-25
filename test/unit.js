@@ -45,7 +45,11 @@ require([
 	"./unit/number/format-properties",
 	"./unit/number/format",
 	"./unit/number/parse-properties",
-	"./unit/number/parse"
+	"./unit/number/parse",
+
+	// relative time
+	"./unit/relative-time/properties",
+	"./unit/relative-time/format"
 
 ], function() {
 	QUnit.start();

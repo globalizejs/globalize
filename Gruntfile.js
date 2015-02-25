@@ -286,6 +286,25 @@ module.exports = function( grunt ) {
 									endFile: "src/build/outro.js"
 								}
 							}
+						},
+						{
+							name: "globalize.relative-time",
+							include: [ "relative-time" ],
+							exclude: [
+								"cldr",
+								"cldr/event",
+								"cldr/supplemental",
+								"./core",
+								"./number",
+								"./plural"
+							],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-relative-time.js",
+									endFile: "src/build/outro.js"
+								}
+							}
 						}
 					]
 				}
@@ -337,7 +356,8 @@ module.exports = function( grunt ) {
 					"tmp/globalize/date.min.js": [ "dist/globalize/date.js" ],
 					"tmp/globalize/number.min.js": [ "dist/globalize/number.js" ],
 					"tmp/globalize/plural.min.js": [ "dist/globalize/plural.js" ],
-					"tmp/globalize/message.min.js": [ "dist/globalize/message.js" ]
+					"tmp/globalize/message.min.js": [ "dist/globalize/message.js" ],
+					"tmp/globalize/relative-time.min.js": [ "dist/globalize/relative-time.js" ]
 				}
 			}
 		},

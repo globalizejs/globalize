@@ -26,6 +26,7 @@ Node.js module.
   - [Number module](#number_module)
     - [Currency module](#currency_module)
   - [Plural module](#plural_module)
+  - [Relative time module](#relative-time_module)
   - more to come...
 - [Error reference](#error)
 - [Development](#development)
@@ -149,6 +150,7 @@ information on its usage.
 | globalize/message.js | +5.4KB | [Message module](#message_module) provides ICU message format support |
 | globalize/number.js | +2.9KB | [Number module](#number_module) provides number formatting and parsing |
 | globalize/plural.js | +1.7KB | [Plural module](#plural_module) provides pluralization support |
+| globalize/relative-time.js | +0.7KB | [Relative time module](#relative-time_module) provides relative time formatting support |
 
 <a name="browser_support"></a>
 ### Browser Support
@@ -218,6 +220,7 @@ requirements. See table below.
 | Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/main/`locale`/timeZoneNames.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json<br>+CLDR JSON files from number module |
 | Number module | cldr/main/`locale`/numbers.json<br>cldr/supplemental/numberingSystems.json |
 | Plural module | cldr/supplemental/plurals.json |
+| Relative time module | cldr/main/`locale`/dateFields.json<br>+CLDR JSON files from number and plural modules |
 
 *(b) How am I supposed to get and load CLDR content?*
 
@@ -430,6 +433,27 @@ to you in different flavors):
 
   Alias for `.pluralGenerator()( value )`.
 
+<a name="relative-time_module"></a>
+### Relative time module
+
+- **`.relativeTimeFormatter( unit [, options] )`**
+
+ Returns a function that formats a relative time according to the given unit, options, and the
+ default/instance locale.
+
+  ```javascript
+  .relativeTimeFormatter( "day" )( 1 )  ➡  "tomorrow"
+  .relativeTimeFormatter( "month" )( -1 )  ➡  "last month"
+  .relativeTimeFormatter( "month" )( 3 )  ➡  "in 3 months"
+  .relativeTimeFormatter( "day", { mamximumWordOffset: 0 } )( 1 )  ➡  "in 1 day"
+  ```
+
+  [Read more...](doc/api/relative-time/relative-time-formatter.md)
+
+- **`.formatRelativeTime( value, unit [, options] )`**
+
+  Alias for `.relativeTimeFormatter( unit, options )( value )`.
+
 
 <a name="error"></a>
 ## Error reference
@@ -523,6 +547,8 @@ to you in different flavors):
 │   ├── number/ (number source code)
 │   ├── plural.js (plural module)
 │   ├── plural/ (plural source code)
+│   ├── relative-time.js (relative time module)
+│   ├── relative-time/ (relative time source code)
 │   └── util/ (basic JavaScript helpers polyfills, eg array.map)
 └── test/ (unit and functional test files)
     ├── fixtures/ (CLDR fixture data)
