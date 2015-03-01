@@ -85,4 +85,23 @@ QUnit.test( "should format numerically if relative-type is absent", function( as
     );
 });
 
+QUnit.test( "should format 0 as the past if no relative option is available", function( assert ) {
+    assert.equal(
+        format(
+            0,
+            makeMockNumberFormatter( assert, 0 ),
+            makeMockPluralGenerator( "other" ), {
+                "relativeTime-type-future": {
+                    "relativeTimePattern-count-one": "in {0} month",
+                    "relativeTimePattern-count-other": "in {0} months"
+                },
+                "relativeTime-type-past": {
+                    "relativeTimePattern-count-one": "{0} month ago",
+                    "relativeTimePattern-count-other": "{0} months ago"
+                }
+            } ),
+        "0 months ago"
+    );
+});
+
 });
