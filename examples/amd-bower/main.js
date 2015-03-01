@@ -68,7 +68,7 @@ require([
 	// Use Globalize to format dates.
 	document.getElementById( "date" ).innerHTML = en.formatDate( new Date(), {
 		datetime: "medium"
-	})
+	});
 
 	// Use Globalize to format numbers.
 	number = en.numberFormatter();
@@ -78,7 +78,7 @@ require([
 	document.getElementById( "currency" ).innerHTML = en.formatCurrency( 69900, "USD" );
 
 	// Use Globalize to get the plural form of a numeric value.
-	document.getElementById( "plural-number" ).innerHTML = number( 12345.6789 )
+	document.getElementById( "plural-number" ).innerHTML = number( 12345.6789 );
 	document.getElementById( "plural-form" ).innerHTML = en.plural( 12345.6789 );
 
 	// Use Globalize to format a message with plural inflection.
