@@ -68,8 +68,4 @@ QUnit.test( "should format using word if available", function( assert ) {
 	assert.equal( de.relativeTimeFormatter( "day" )( 2 ), "übermorgen" );
 } );
 
-QUnit.test( "should format numerically if outside word limit", function( assert ) {
-	assert.equal( de.relativeTimeFormatter( "day", { maximumWordOffset: 0 } )( -1 ), "vor 1 Tag" );
-} );
-
 } );

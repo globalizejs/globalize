@@ -54,22 +54,6 @@ QUnit.test( "should return complete day info in german", function( assert ) {
 	});
 });
 
-QUnit.test( "should filter relative-types if requested", function( assert ) {
-	assert.deepEqual( properties( "day", de, { maximumWordOffset: 1 } ), {
-		"relative-type--1": "gestern",
-		"relative-type-0": "heute",
-		"relative-type-1": "morgen",
-		"relativeTime-type-future": {
-			"relativeTimePattern-count-one": "in {0} Tag",
-			"relativeTimePattern-count-other": "in {0} Tagen"
-		},
-		"relativeTime-type-past": {
-			"relativeTimePattern-count-one": "vor {0} Tag",
-			"relativeTimePattern-count-other": "vor {0} Tagen"
-		}
-	});
-});
-
 QUnit.test( "should return short info when requested", function( assert ) {
 	assert.deepEqual( properties( "month", cldr, { form: "short" } ), {
 		"relative-type--1": "last mo.",

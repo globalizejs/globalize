@@ -40,10 +40,6 @@ Globalize.prototype.formatRelativeTime = function( value, unit, options ) {
  *
  * @options [Object]
  * - form: [String] eg. "short" or "narrow". Or falsy for default long form
- * - maximumWordOffset [Optional Number] The maximum offset when special offset words like
- *  yesterday and tomorrow will be looked for. Some languages provide several of these.
- *  default null -> use all available
- *  Set to 0 to not use any except today, now etc.
  *
  * Returns a function that formats a relative time according to the given unit, options, and the
  * default/instance locale.

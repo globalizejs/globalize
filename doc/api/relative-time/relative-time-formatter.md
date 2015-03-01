@@ -15,10 +15,6 @@ String value indicating the unit to be formatted. eg. "day", "week", "month", et
 **options**
 
 - form: [String] eg. "short" or "narrow". Or falsy for default long form
-- maximumWordOffset [Optional Number] The maximum offset when special offset words like
-  yesterday and tomorrow will be looked for. Some languages provide several of these.
-  default null -> use all available
-  Set to 0 to not use any except today, now etc.
 
 **value**
 
@@ -47,10 +43,5 @@ formatter( 1 ); // "next month"
 formatter( 3 ); // "in 3 months"
 formatter( -1 ); // "last month"
 formatter( -3 ); // "3 months ago"
-
-formatter = Globalize.relativeTimeFormatter( 'day', { maximumWordOffset: 0 } );
-
-formatter( 1 ); // "in 1 day"
-formatter( -3 ); // "3 days ago"
 ```
 

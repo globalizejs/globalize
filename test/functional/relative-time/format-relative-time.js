@@ -94,20 +94,4 @@ QUnit.test( "should format using word if available", function( assert ) {
 	assert.equal( de.formatRelativeTime( 2, "day" ), "übermorgen" );
 } );
 
-QUnit.test( "should format future date numerically if outside word limit", function( assert ) {
-	assert.equal( en.formatRelativeTime( 1, "day", { maximumWordOffset: 0 } ), "in 1 day" );
-} );
-
-QUnit.test( "should format past date numerically if outside word limit", function( assert ) {
-	assert.equal( de.formatRelativeTime( -1, "day", { maximumWordOffset: 0 } ), "vor 1 Tag" );
-} );
-
-QUnit.test( "should format using short form", function( assert ) {
-	assert.equal( en.formatRelativeTime( -1, "week", { maximumWordOffset: 0, form: "short" } ), "1 wk. ago" );
-} );
-
-QUnit.test( "should format using narrow form", function( assert ) {
-	assert.equal( en.formatRelativeTime( -1, "week", { maximumWordOffset: 0, form: "narrow" } ), "1 wk. ago" );
-} );
-
 } );
