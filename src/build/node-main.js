@@ -21,3 +21,6 @@ require( "./globalize/plural" );
 // Load after globalize/number
 require( "./globalize/currency" );
 require( "./globalize/date" );
+
+// Load after globalize/number and globalize/plural
+require( "./globalize/relative-time" );
