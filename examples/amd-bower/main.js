@@ -31,6 +31,7 @@ require([
 	"json!cldr-data/main/en/currencies.json",
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/en/dateFields.json",
 	"json!cldr-data/supplemental/currencyData.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
@@ -43,8 +44,9 @@ require([
 	"globalize/date",
 	"globalize/message",
 	"globalize/number",
-	"globalize/plural"
-], function( Globalize, enCurrencies, enGregorian, enNumbers, currencyData, likelySubtags,
+	"globalize/plural",
+	"globalize/relative-time"
+], function( Globalize, enCurrencies, enGregorian, enNumbers, enDateFields, currencyData, likelySubtags,
 	pluralsData, timeData, weekData, messages ) {
 
 	var en, like, number;
@@ -55,6 +57,7 @@ require([
 		enCurrencies,
 		enGregorian,
 		enNumbers,
+		enDateFields,
 		likelySubtags,
 		pluralsData,
 		timeData,
@@ -90,5 +93,7 @@ require([
 
 	document.getElementById( "requirements" ).style.display = "none";
 	document.getElementById( "demo" ).style.display = "block";
+
+	document.getElementById( "relative-time").innerText = en.formatRelativeTime( -35, 'second' );
 
 });

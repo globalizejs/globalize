@@ -9,6 +9,7 @@ Globalize.load(
 	cldrData( "main/en/currencies" ),
 	cldrData( "main/en/ca-gregorian" ),
 	cldrData( "main/en/numbers" ),
+	cldrData( "main/en/dateFields" ),
 	cldrData( "supplemental/currencyData" ),
 	cldrData( "supplemental/likelySubtags" ),
 	cldrData( "supplemental/plurals" ),
@@ -38,3 +39,5 @@ console.log( like( 0 ) );
 console.log( like( 1 ) );
 console.log( like( 2 ) );
 console.log( like( 3 ) );
+
+console.log( Globalize.formatRelativeTime( -35, "second" ) );
