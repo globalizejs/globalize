@@ -111,7 +111,7 @@ Globalize.prototype.messageFormatter = function( path ) {
  * Format a message given its path.
  */
 Globalize.formatMessage =
-Globalize.prototype.formatMessage = function( path ) {
+Globalize.prototype.formatMessage = function( path /* , variables */ ) {
 	return this.messageFormatter( path ).apply( {}, slice.call( arguments, 1 ) );
 };
 
