@@ -77,22 +77,27 @@ Globalize.loadMessages({
   root: {
     amen: "Amen"
   },
+  de: {},
+  en: {},
+  "en-GB": {},
+  fr: {},
   pt: {
     amen: "Amém"
-  }
+  },
+  "pt-PT": {}
 });
 
-Globalize( "pt-PT" ).formatMessage( "amen" ); // "Amém"
 Globalize( "de" ).formatMessage( "amen" ); // "Amen"
 Globalize( "en" ).formatMessage( "amen" ); // "Amen"
 Globalize( "en-GB" ).formatMessage( "amen" ); // "Amen"
 Globalize( "fr" ).formatMessage( "amen" ); // "Amen"
+Globalize( "pt-PT" ).formatMessage( "amen" ); // "Amém"
 ```
 
-Note that `pt-PT`, `de`, `en`, `en-GB`, and `fr` have never been defined.
-`.formatMessage()` inherits `pt-PT` messages from `pt` (`pt-PT` ➡ `pt`), and
-it inherits the other messages from root, eg. `en-GB` ➡ `en` ➡ `root`. Yes,
-`root` is the last bundle of the parent lookup.
+Note that `de`, `en`, `en-GB`, `fr`, and `pt-PT` are empty. `.formatMessage()`
+inherits `pt-PT` messages from `pt` (`pt-PT` ➡ `pt`), and it inherits the other
+messages from root, eg. `en-GB` ➡ `en-001` ➡ `en` ➡ `root`. Yes, `root` is the
+last bundle of the parent lookup.
 
 Attention: On browsers, message inheritance only works if the optional
 dependency `cldr/unresolved` is loaded.
