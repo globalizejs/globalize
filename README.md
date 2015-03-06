@@ -136,7 +136,7 @@ information on its usage.
 
 | File | Minified + gzipped size | Summary |
 |---|--:|---|
-| globalize.js | 1.3KB | [Core library](#core) |
+| globalize.js | 1.3KB | [Core library](#core-module) |
 | globalize/currency.js | +2.6KB | [Currency module](#currency-module) provides currency formatting and parsing |
 | globalize/date.js | +4.9KB | [Date module](#date-module) provides date formatting and parsing |
 | globalize/message.js | +5.4KB | [Message module](#message-module) provides ICU message format support |
