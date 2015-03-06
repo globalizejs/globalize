@@ -11,10 +11,10 @@ Node.js module.
 - [About Globalize](#about-globalize)
   - [Why globalization?](#why-globalization)
   - [Why Globalize?](#why-globalize)
-  - [Where to use it?](#where_to_use)
-  - [Where does the data come from?](#where_does_data_come_from)
+  - [Where to use it?](#where-to-use-it)
+  - [Where does the data come from?](#where-does-data-come-from)
   - [Only load and use what you need](#modules)
-  - [Browser support](#browser_support)
+  - [Browser support](#browser-support)
 - [Getting started](#getting_started)
   - [Requirements](#requirements)
   - [Installation](#installation)
@@ -118,13 +118,11 @@ have changed and how to migrate older 0.x code to up-to-date 1.x.
 
 [migration guide]: doc/migrating-from-0.x.md
 
-<a name="where_to_use"></a>
 ### Where to use it?
 
 Globalize is designed to work both in the [browser](#browser_support), or in
 [Node.js](#usage). It supports both [AMD](#usage) and [CommonJS](#usage).
 
-<a name="where_does_data_come_from"></a>
 ### Where does the data come from?
 
 Globalize uses the [Unicode CLDR](http://cldr.unicode.org/), the largest and
@@ -134,7 +132,6 @@ We do NOT embed any i18n data within our library. However, we make it really
 easy to use. Read [How to get and load CLDR JSON data](#cldr) for more
 information on its usage.
 
-<a name="modules"></a>
 ### Pick the modules you need
 
 | File | Minified + gzipped size | Summary |
@@ -146,7 +143,6 @@ information on its usage.
 | globalize/number.js | +2.9KB | [Number module](#number_module) provides number formatting and parsing |
 | globalize/plural.js | +1.7KB | [Plural module](#plural_module) provides pluralization support |
 
-<a name="browser_support"></a>
 ### Browser Support
 
 Globalize 1.x supports the following browsers:
