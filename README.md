@@ -8,8 +8,8 @@ A JavaScript library for internationalization and localization that leverage the
 official [Unicode CLDR](http://cldr.unicode.org/) JSON data. The library works both for the browser and as a
 Node.js module.
 
-- [About Globalize](#about)
-  - [Why globalization?](#why_globalization)
+- [About Globalize](#about-globalize)
+  - [Why globalization?](#why-globalization)
   - [Why Globalize?](#why_globalize)
   - [Where to use it?](#where_to_use)
   - [Where does the data come from?](#where_does_data_come_from)
@@ -35,10 +35,8 @@ Node.js module.
   - [Tests](#tests)
 
 
-<a name="about"></a>
 ## About Globalize
 
-<a name="why_globalization"></a>
 ### Why globalization?
 
 Each language, and the countries that speak that language, have different
