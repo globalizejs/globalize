@@ -12,7 +12,7 @@ For more information, see https://github.com/rxaviers/cldrjs#readme.
 
 **cldrJSONData**
 
-A JSON object with CLDR data. See [Getting Started](#../../../README.md#cldr)
+A JSON object with CLDR data. See [Getting Started](#../../../README.md#2-cldr-content)
 for more information.
 
 ### Example

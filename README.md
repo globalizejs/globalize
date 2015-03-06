@@ -258,7 +258,7 @@ to you in different flavors):
   This method allows you to load CLDR JSON locale data. `Globalize.load()` is a
   proxy to `Cldr.load()`.
 
-  [Read more...](#2-cldr-content)
+  [Read more...](doc/api/core/load.md)
 
 - **`Globalize.locale( [locale|cldr] )`**
 
