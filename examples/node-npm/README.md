@@ -54,5 +54,4 @@ information, see [npm's cldr-data](https://github.com/rxaviers/cldr-data-npm).
 Once you've completed the requirements above:
 
 1. Run `node main.js`.
-1. Understand the demo by reading the source code (both index.html and main.js).
-We have comments there for you.
+1. Understand the demo by reading the source code. We have comments there for you.
