@@ -20,12 +20,12 @@ Node.js module.
   - [Installation](#installation)
   - [Usage](#usage)
 - [API](#api)
-  - [Core](#core)
-  - [Date module](#date_module)
-  - [Message module](#message_module)
-  - [Number module](#number_module)
-    - [Currency module](#currency_module)
-  - [Plural module](#plural_module)
+  - [Core](#core-module)
+  - [Date module](#date-module)
+  - [Message module](#message-module)
+  - [Number module](#number-module)
+    - [Currency module](#currency-module)
+  - [Plural module](#plural-module)
   - more to come...
 - [Error reference](#error)
 - [Development](#development)
@@ -177,7 +177,6 @@ information can be found at
 
 ### Requirements
 
-<a name="dependencies"></a>
 #### 1. Dependencies
 
 You need to satisfy Globalize dependencies prior to using it. The good news
@@ -188,7 +187,6 @@ If you use a package manager like bower or npm, you don't need to worry about
 it. If this isn't the case, then you need to manually download cldr.js
 yourself. Check the [Hello World examples](#usage) for more information.
 
-<a name="cldr"></a>
 #### 2. CLDR content
 
 Globalize is the i18n software (the engine). Unicode CLDR is the i18n content
@@ -251,10 +249,8 @@ to you in different flavors):
 - [Hello World (plain JavaScript)](examples/plain-javascript/).
 
 
-<a name="api"></a>
 ## API
 
-<a name="core"></a>
 ### Core module
 
 - **`Globalize.load( cldrJSONData, ... )`**
@@ -276,7 +272,6 @@ to you in different flavors):
 
   [Read more...](doc/api/core/constructor.md)
 
-<a name="date_module"></a>
 ### Date module
 
 - **`.dateFormatter( pattern )`**
@@ -313,7 +308,6 @@ to you in different flavors):
 
   Alias for `.dateParser( pattern )( value )`.
 
-<a name="message_module"></a>
 ### Message module
 
 - **`Globalize.loadMessages( json )`**
@@ -339,7 +333,6 @@ to you in different flavors):
 
   Alias for `.messageFormatter( path )([ variables ])`.
 
-<a name="number_module"></a>
 ### Number module
 
 - **`.numberFormatter( [options] )`**
@@ -377,7 +370,6 @@ to you in different flavors):
 
   Alias for `.numberParser( [options] )( value )`.
 
-<a name="currency_module"></a>
 #### Currency module
 
 - **`.currencyFormatter( currency [, options] )`**
@@ -399,7 +391,6 @@ to you in different flavors):
 
   Alias for `.currencyFormatter( currency [, options] )( value )`.
 
-<a name="plural_module"></a>
 ### Plural module
 
 - **`.pluralGenerator()`**
