@@ -10,7 +10,7 @@ Node.js module.
 
 - [About Globalize](#about-globalize)
   - [Why globalization?](#why-globalization)
-  - [Why Globalize?](#why-globalize)
+  - [Why Globalize?](#why_globalize)
   - [Where to use it?](#where_to_use)
   - [Where does the data come from?](#where_does_data_come_from)
   - [Only load and use what you need](#modules)
