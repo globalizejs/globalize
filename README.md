@@ -120,7 +120,7 @@ have changed and how to migrate older 0.x code to up-to-date 1.x.
 
 ### Where to use it?
 
-Globalize is designed to work both in the [browser](#browser_support), or in
+Globalize is designed to work both in the [browser](#browser-support), or in
 [Node.js](#usage). It supports both [AMD](#usage) and [CommonJS](#usage).
 
 ### Where does the data come from?
@@ -129,7 +129,7 @@ Globalize uses the [Unicode CLDR](http://cldr.unicode.org/), the largest and
 most extensive standard repository of locale data.
 
 We do NOT embed any i18n data within our library. However, we make it really
-easy to use. Read [How to get and load CLDR JSON data](#cldr) for more
+easy to use. Read [How to get and load CLDR JSON data](#2-cldr-content) for more
 information on its usage.
 
 ### Pick the modules you need
@@ -137,11 +137,11 @@ information on its usage.
 | File | Minified + gzipped size | Summary |
 |---|--:|---|
 | globalize.js | 1.3KB | [Core library](#core) |
-| globalize/currency.js | +2.6KB | [Currency module](#currency_module) provides currency formatting and parsing |
-| globalize/date.js | +4.9KB | [Date module](#date_module) provides date formatting and parsing |
-| globalize/message.js | +5.4KB | [Message module](#message_module) provides ICU message format support |
-| globalize/number.js | +2.9KB | [Number module](#number_module) provides number formatting and parsing |
-| globalize/plural.js | +1.7KB | [Plural module](#plural_module) provides pluralization support |
+| globalize/currency.js | +2.6KB | [Currency module](#currency-module) provides currency formatting and parsing |
+| globalize/date.js | +4.9KB | [Date module](#date-module) provides date formatting and parsing |
+| globalize/message.js | +5.4KB | [Message module](#message-module) provides ICU message format support |
+| globalize/number.js | +2.9KB | [Number module](#number-module) provides number formatting and parsing |
+| globalize/plural.js | +1.7KB | [Plural module](#plural-module) provides pluralization support |
 
 ### Browser Support
 
@@ -225,7 +225,7 @@ Use bower `bower install globalize`, or npm `npm install globalize`.
 *By using source files...*
 
 1. `git clone https://github.com/jquery/globalize.git`.
-1. [Build the distribution files](https://github.com/jquery/globalize/#build).
+1. [Build the distribution files](#build).
 
 ### Usage
 
@@ -258,7 +258,7 @@ to you in different flavors):
   This method allows you to load CLDR JSON locale data. `Globalize.load()` is a
   proxy to `Cldr.load()`.
 
-  [Read more...](doc/api/core/load.md)
+  [Read more...](#2-cldr-content)
 
 - **`Globalize.locale( [locale|cldr] )`**
 
