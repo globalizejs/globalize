@@ -10,7 +10,7 @@ Node.js module.
 
 - [About Globalize](#about-globalize)
   - [Why globalization?](#why-globalization)
-  - [Why Globalize?](#why_globalize)
+  - [Why Globalize?](#why-globalize)
   - [Where to use it?](#where_to_use)
   - [Where does the data come from?](#where_does_data_come_from)
   - [Only load and use what you need](#modules)
@@ -59,7 +59,6 @@ globalization to format programming language bytes into human-understandable
 language and vice-versa in an effective and reasonable way. For example, to
 display something better than "Edited 1 minutes ago".
 
-<a name="why_globalize"></a>
 ### Why Globalize?
 
 Globalize provides number formatting and parsing, date and time formatting and
