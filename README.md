@@ -15,7 +15,7 @@ Node.js module.
   - [Where does the data come from?](#where-does-the-data-come-from)
   - [Only load and use what you need](#pick-the-modules-you-need)
   - [Browser support](#browser-support)
-- [Getting started](#getting_started)
+- [Getting started](#getting-started)
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -173,10 +173,8 @@ information can be found at
 - Object.keys()
 
 
-<a name="getting_started"></a>
 ## Getting Started
 
-<a name="requirements"></a>
 ### Requirements
 
 <a name="dependencies"></a>
@@ -215,7 +213,6 @@ requirements. See table below.
 
 Learn [how to get and load CLDR content...](doc/cldr.md).
 
-<a name="installation"></a>
 ### Installation
 
 *By downloading a ZIP or a TAR.GZ...*
@@ -232,7 +229,6 @@ Use bower `bower install globalize`, or npm `npm install globalize`.
 1. `git clone https://github.com/jquery/globalize.git`.
 1. [Build the distribution files](https://github.com/jquery/globalize/#build).
 
-<a name="usage"></a>
 ### Usage
 
 Globalize's consumable-files are located in the `./dist` directory. If you
