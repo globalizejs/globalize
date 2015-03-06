@@ -27,12 +27,12 @@ Node.js module.
     - [Currency module](#currency-module)
   - [Plural module](#plural-module)
   - more to come...
-- [Error reference](#error)
+- [Error reference](#error-reference)
 - [Development](#development)
-  - [File structure](#file_structure)
-  - [Source files](#source_files)
-  - [Build](#build)
+  - [File structure](#file-structure)
+  - [Source files](#source-files)
   - [Tests](#tests)
+  - [Build](#build)
 
 
 ## About Globalize
@@ -410,7 +410,6 @@ to you in different flavors):
   Alias for `.pluralGenerator()( value )`.
 
 
-<a name="error"></a>
 ## Error reference
 
 ### CLDR Errors
@@ -477,10 +476,8 @@ to you in different flavors):
   [Read more...](doc/error/e-unsupported.md)
 
 
-<a name="development"></a>
 ## Development
 
-<a name="file_structure"></a>
 ### File structure
 ```
 ├── bower.json (metadata file)
@@ -513,7 +510,6 @@ to you in different flavors):
     └── unit.js
 ```
 
-<a name="source_files"></a>
 ### Source files
 
 The source files are as granular as possible. When combined to generate the
@@ -523,7 +519,6 @@ the same build model of jQuery and Modernizr.
 Core, and all modules' public APIs are located in the `src/` directory, ie.
 `core.js`, `date.js`, `message.js`, `number.js`, and `plural.js`.
 
-<a name="dev_dependencies"></a>
 ### Install development external dependencies
 
 Install Grunt and external dependencies. First, install the
@@ -535,7 +530,6 @@ installed globally (like this: `npm install -g grunt-cli bower`). Then:
 npm install && bower install
 ```
 
-<a name="tests"></a>
 ### Tests
 
 Tests can be run either in the browser or using Node.js (via Grunt) after having
@@ -561,7 +555,6 @@ ensure the built files are safe.
 The goal of the functional tests is to ensure that everything works as expected
 when it is combined.
 
-<a name="build"></a>
 ### Build
 
 Build the distribution files after having installed the external development
