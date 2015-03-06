@@ -8,37 +8,35 @@ A JavaScript library for internationalization and localization that leverage the
 official [Unicode CLDR](http://cldr.unicode.org/) JSON data. The library works both for the browser and as a
 Node.js module.
 
-- [About Globalize](#about)
-  - [Why globalization?](#why_globalization)
-  - [Why Globalize?](#why_globalize)
-  - [Where to use it?](#where_to_use)
-  - [Where does the data come from?](#where_does_data_come_from)
-  - [Only load and use what you need](#modules)
-  - [Browser support](#browser_support)
-- [Getting started](#getting_started)
+- [About Globalize](#about-globalize)
+  - [Why globalization?](#why-globalization)
+  - [Why Globalize?](#why-globalize)
+  - [Where to use it?](#where-to-use-it)
+  - [Where does the data come from?](#where-does-the-data-come-from)
+  - [Only load and use what you need](#pick-the-modules-you-need)
+  - [Browser support](#browser-support)
+- [Getting started](#getting-started)
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
 - [API](#api)
-  - [Core](#core)
-  - [Date module](#date_module)
-  - [Message module](#message_module)
-  - [Number module](#number_module)
-    - [Currency module](#currency_module)
-  - [Plural module](#plural_module)
+  - [Core](#core-module)
+  - [Date module](#date-module)
+  - [Message module](#message-module)
+  - [Number module](#number-module)
+    - [Currency module](#currency-module)
+  - [Plural module](#plural-module)
   - more to come...
-- [Error reference](#error)
+- [Error reference](#error-reference)
 - [Development](#development)
-  - [File structure](#file_structure)
-  - [Source files](#source_files)
-  - [Build](#build)
+  - [File structure](#file-structure)
+  - [Source files](#source-files)
   - [Tests](#tests)
+  - [Build](#build)
 
 
-<a name="about"></a>
 ## About Globalize
 
-<a name="why_globalization"></a>
 ### Why globalization?
 
 Each language, and the countries that speak that language, have different
@@ -61,7 +59,6 @@ globalization to format programming language bytes into human-understandable
 language and vice-versa in an effective and reasonable way. For example, to
 display something better than "Edited 1 minutes ago".
 
-<a name="why_globalize"></a>
 ### Why Globalize?
 
 Globalize provides number formatting and parsing, date and time formatting and
@@ -121,35 +118,31 @@ have changed and how to migrate older 0.x code to up-to-date 1.x.
 
 [migration guide]: doc/migrating-from-0.x.md
 
-<a name="where_to_use"></a>
 ### Where to use it?
 
-Globalize is designed to work both in the [browser](#browser_support), or in
+Globalize is designed to work both in the [browser](#browser-support), or in
 [Node.js](#usage). It supports both [AMD](#usage) and [CommonJS](#usage).
 
-<a name="where_does_data_come_from"></a>
 ### Where does the data come from?
 
 Globalize uses the [Unicode CLDR](http://cldr.unicode.org/), the largest and
 most extensive standard repository of locale data.
 
 We do NOT embed any i18n data within our library. However, we make it really
-easy to use. Read [How to get and load CLDR JSON data](#cldr) for more
+easy to use. Read [How to get and load CLDR JSON data](#2-cldr-content) for more
 information on its usage.
 
-<a name="modules"></a>
 ### Pick the modules you need
 
 | File | Minified + gzipped size | Summary |
 |---|--:|---|
-| globalize.js | 1.3KB | [Core library](#core) |
-| globalize/currency.js | +2.6KB | [Currency module](#currency_module) provides currency formatting and parsing |
-| globalize/date.js | +4.9KB | [Date module](#date_module) provides date formatting and parsing |
-| globalize/message.js | +5.4KB | [Message module](#message_module) provides ICU message format support |
-| globalize/number.js | +2.9KB | [Number module](#number_module) provides number formatting and parsing |
-| globalize/plural.js | +1.7KB | [Plural module](#plural_module) provides pluralization support |
+| globalize.js | 1.3KB | [Core library](#core-module) |
+| globalize/currency.js | +2.6KB | [Currency module](#currency-module) provides currency formatting and parsing |
+| globalize/date.js | +4.9KB | [Date module](#date-module) provides date formatting and parsing |
+| globalize/message.js | +5.4KB | [Message module](#message-module) provides ICU message format support |
+| globalize/number.js | +2.9KB | [Number module](#number-module) provides number formatting and parsing |
+| globalize/plural.js | +1.7KB | [Plural module](#plural-module) provides pluralization support |
 
-<a name="browser_support"></a>
 ### Browser Support
 
 Globalize 1.x supports the following browsers:
@@ -180,13 +173,10 @@ information can be found at
 - Object.keys()
 
 
-<a name="getting_started"></a>
 ## Getting Started
 
-<a name="requirements"></a>
 ### Requirements
 
-<a name="dependencies"></a>
 #### 1. Dependencies
 
 You need to satisfy Globalize dependencies prior to using it. The good news
@@ -197,7 +187,6 @@ If you use a package manager like bower or npm, you don't need to worry about
 it. If this isn't the case, then you need to manually download cldr.js
 yourself. Check the [Hello World examples](#usage) for more information.
 
-<a name="cldr"></a>
 #### 2. CLDR content
 
 Globalize is the i18n software (the engine). Unicode CLDR is the i18n content
@@ -222,7 +211,6 @@ requirements. See table below.
 
 Learn [how to get and load CLDR content...](doc/cldr.md).
 
-<a name="installation"></a>
 ### Installation
 
 *By downloading a ZIP or a TAR.GZ...*
@@ -237,9 +225,8 @@ Use bower `bower install globalize`, or npm `npm install globalize`.
 *By using source files...*
 
 1. `git clone https://github.com/jquery/globalize.git`.
-1. [Build the distribution files](https://github.com/jquery/globalize/#build).
+1. [Build the distribution files](#build).
 
-<a name="usage"></a>
 ### Usage
 
 Globalize's consumable-files are located in the `./dist` directory. If you
@@ -262,10 +249,8 @@ to you in different flavors):
 - [Hello World (plain JavaScript)](examples/plain-javascript/).
 
 
-<a name="api"></a>
 ## API
 
-<a name="core"></a>
 ### Core module
 
 - **`Globalize.load( cldrJSONData, ... )`**
@@ -287,7 +272,6 @@ to you in different flavors):
 
   [Read more...](doc/api/core/constructor.md)
 
-<a name="date_module"></a>
 ### Date module
 
 - **`.dateFormatter( pattern )`**
@@ -324,7 +308,6 @@ to you in different flavors):
 
   Alias for `.dateParser( pattern )( value )`.
 
-<a name="message_module"></a>
 ### Message module
 
 - **`Globalize.loadMessages( json )`**
@@ -350,7 +333,6 @@ to you in different flavors):
 
   Alias for `.messageFormatter( path )([ variables ])`.
 
-<a name="number_module"></a>
 ### Number module
 
 - **`.numberFormatter( [options] )`**
@@ -388,7 +370,6 @@ to you in different flavors):
 
   Alias for `.numberParser( [options] )( value )`.
 
-<a name="currency_module"></a>
 #### Currency module
 
 - **`.currencyFormatter( currency [, options] )`**
@@ -410,7 +391,6 @@ to you in different flavors):
 
   Alias for `.currencyFormatter( currency [, options] )( value )`.
 
-<a name="plural_module"></a>
 ### Plural module
 
 - **`.pluralGenerator()`**
@@ -430,7 +410,6 @@ to you in different flavors):
   Alias for `.pluralGenerator()( value )`.
 
 
-<a name="error"></a>
 ## Error reference
 
 ### CLDR Errors
@@ -497,10 +476,8 @@ to you in different flavors):
   [Read more...](doc/error/e-unsupported.md)
 
 
-<a name="development"></a>
 ## Development
 
-<a name="file_structure"></a>
 ### File structure
 ```
 ├── bower.json (metadata file)
@@ -533,7 +510,6 @@ to you in different flavors):
     └── unit.js
 ```
 
-<a name="source_files"></a>
 ### Source files
 
 The source files are as granular as possible. When combined to generate the
@@ -543,7 +519,6 @@ the same build model of jQuery and Modernizr.
 Core, and all modules' public APIs are located in the `src/` directory, ie.
 `core.js`, `date.js`, `message.js`, `number.js`, and `plural.js`.
 
-<a name="dev_dependencies"></a>
 ### Install development external dependencies
 
 Install Grunt and external dependencies. First, install the
@@ -555,7 +530,6 @@ installed globally (like this: `npm install -g grunt-cli bower`). Then:
 npm install && bower install
 ```
 
-<a name="tests"></a>
 ### Tests
 
 Tests can be run either in the browser or using Node.js (via Grunt) after having
@@ -581,7 +555,6 @@ ensure the built files are safe.
 The goal of the functional tests is to ensure that everything works as expected
 when it is combined.
 
-<a name="build"></a>
 ### Build
 
 Build the distribution files after having installed the external development
