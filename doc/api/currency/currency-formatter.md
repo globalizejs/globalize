@@ -128,7 +128,7 @@ formatter = Globalize.currencyFormatter( "USD", {
   style: "name"
 });
 
-formatter( 1 ); // > "1 US dollar"
+formatter( 1 );     // > "1 US dollar"
 
 formatter = Globalize.currencyFormatter( "USD", {
   round: "ceil"
