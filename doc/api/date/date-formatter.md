@@ -133,7 +133,7 @@ var globalize = Globalize( "en" ),
   monthDayFormatter = globalize.dateFormatter( "MMMd" ),
   hourMinuteSecondFormatter = globalize.dateFormatter( "Hms" );
 
-monthDayFormatter( date ); // > "Nov 30"
+monthDayFormatter( date );         // > "Nov 30"
 hourMinuteSecondFormatter( date ); // > "17:55:00"
 ```
 

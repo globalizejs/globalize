@@ -70,7 +70,7 @@ formatter = Globalize( "en" ).messageFormatter( "hello" );
 formatter([ "Wolfgang", "Amadeus", "Mozart" ]); // > "Hello, Wolfgang Amadeus Mozart"
 
 // Numbered variables using function arguments.
-formatter( "Wolfgang", "Amadeus", "Mozart" ); // > "Hello, Wolfgang Amadeus Mozart"
+formatter( "Wolfgang", "Amadeus", "Mozart" );   // > "Hello, Wolfgang Amadeus Mozart"
 
 // Named variables using Object key-value pairs.
 formatter = Globalize( "en" ).messageFormatter( "hey" );

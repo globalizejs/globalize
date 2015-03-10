@@ -43,8 +43,7 @@ Globalize.loadMessages({
   }
 });
 
-Globalize( "pt" ).formatMessage( "greetings/hello" );
-➡ Olá
+Globalize( "pt" ).formatMessage( "greetings/hello" ); // > Olá
 ```
 
 #### Multiline strings
