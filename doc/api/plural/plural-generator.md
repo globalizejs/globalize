@@ -29,9 +29,9 @@ var plural;
 Globalize.locale( "en" );
 plural = Globalize.pluralGenerator();
 
-plural( 0 ); // "other"
-plural( 1 ); // "one"
-plural( 2 ); // "other"
+plural( 0 ); // > "other"
+plural( 1 ); // > "one"
+plural( 2 ); // > "other"
 ```
 
 You can use the instance method `.pluralGenerator()`, which uses the instance
@@ -40,7 +40,7 @@ locale.
 ```javascript
 var plural = Globalize( "zh" ).pluralGenerator();
 
-plural( 1 ); // "other"
+plural( 1 ); // > "other"
 ```
 
 For comparison:

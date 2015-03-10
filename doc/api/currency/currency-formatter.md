@@ -46,7 +46,7 @@ var formatter;
 Globalize.locale( "en" );
 formatter = Globalize.currencyFormatter( "USD" );
 
-formatter( 9.99 ); // "$9.99"
+formatter( 9.99 ); // > "$9.99"
 ```
 
 You can use the instance method `.currencyFormatter()`, which uses the instance
@@ -56,8 +56,8 @@ locale.
 var deFormatter = Globalize( "de" ).currencyFormatter( "EUR" ),
   zhFormatter = Globalize( "zh" ).currencyFormatter( "EUR" );
 
-deFormatter( 9.99 ); // "9,99 €"
-zhFormatter( 9.99 ); // "€ 9.99"
+deFormatter( 9.99 ); // > "9,99 €"
+zhFormatter( 9.99 ); // > "€ 9.99"
 ```
 
 For comparison, follow the formatting output of different symbols in different
@@ -79,7 +79,7 @@ var formatter Globalize( "en" ).currencyFormatter( "USD", {
   style: "accounting"
 });
 
-formatter( -1 ); // "($1.00)"
+formatter( -1 ); // > "($1.00)"
 ```
 
 For plural messages, use `style: "name"`.
@@ -89,8 +89,8 @@ var formatter = Globalize( "en" ).currencyFormatter( "USD", {
   style: "name"
 });
 
-formatter( 0 ); // "0.00 US dollars"
-formatter( 1 ); // "1.00 US dollar"
+formatter( 0 ); // > "0.00 US dollars"
+formatter( 1 ); // > "1.00 US dollar"
 ```
 
 For comparison, follow the formatting output of different symbols in different
@@ -113,8 +113,7 @@ var formatter = Globalize( "en" ).currencyFormatter( "USD", {
   style: "code"
 });
 
-formatter( 9.99 );
-// "9.99 USD"
+formatter( 9.99 ); // > "9.99 USD"
 ```
 
 Override the number of digits, grouping separators, rounding function or any
@@ -129,13 +128,13 @@ formatter = Globalize.currencyFormatter( "USD", {
   style: "name"
 });
 
-formatter( 1 ); // "1 US dollar"
+formatter( 1 ); // > "1 US dollar"
 
 formatter = Globalize.currencyFormatter( "USD", {
   round: "ceil"
 });
 
-formatter( 1.491 ); // "$1.50"
+formatter( 1.491 ); // > "$1.50"
 ```
 
 For improved performance on iterations, first create the formatter. Then, reuse

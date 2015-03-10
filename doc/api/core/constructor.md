@@ -21,6 +21,6 @@ var en = new Globalize( "en" );
 // You can optionally omit the `new` operator.
 var pt = Globalize( "pt" );
 
-en.formatNumber( 3.1415 ); // 3.142
-pt.formatNumber( 3.1415 ); // 3,142
+en.formatNumber( 3.1415 ); // > 3.142
+pt.formatNumber( 3.1415 ); // > 3,142
 ```

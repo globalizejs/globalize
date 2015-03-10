@@ -65,7 +65,7 @@ Globalize.loadMessages({
 });
 
 Globalize( "en" ).formatMessage( "longText" );
-➡ "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?"
+// > "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?"
 ```
 
 #### Messages inheritance
@@ -87,11 +87,11 @@ Globalize.loadMessages({
   "pt-PT": {}
 });
 
-Globalize( "de" ).formatMessage( "amen" ); // "Amen"
-Globalize( "en" ).formatMessage( "amen" ); // "Amen"
-Globalize( "en-GB" ).formatMessage( "amen" ); // "Amen"
-Globalize( "fr" ).formatMessage( "amen" ); // "Amen"
-Globalize( "pt-PT" ).formatMessage( "amen" ); // "Amém"
+Globalize( "de" ).formatMessage( "amen" );    // > "Amen"
+Globalize( "en" ).formatMessage( "amen" );    // > "Amen"
+Globalize( "en-GB" ).formatMessage( "amen" ); // > "Amen"
+Globalize( "fr" ).formatMessage( "amen" );    // > "Amen"
+Globalize( "pt-PT" ).formatMessage( "amen" ); // > "Amém"
 ```
 
 Note that `de`, `en`, `en-GB`, `fr`, and `pt-PT` are empty. `.formatMessage()`
