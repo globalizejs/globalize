@@ -41,7 +41,7 @@ Globalize.locale( "pt" );
 formatter = Globalize.messageFormatter( "greetings/bye" );
 
 formatter();
-➡ "Tchau"
+// > "Tchau"
 ```
 
 You can use the instance method `.messageFormatter()`, which uses the instance locale.
@@ -51,7 +51,7 @@ var pt = new Globalize( "pt" ),
   formatter = pt.messageFormatter( "greetings/bye" );
 
 formatter();
-➡ "Tchau"
+// > "Tchau"
 ```
 
 #### Simple Variable Replacement
@@ -70,11 +70,11 @@ formatter = Globalize( "en" ).messageFormatter( "hello" );
 
 // Numbered variables using Array.
 formatter([ "Wolfgang", "Amadeus", "Mozart" ]);
-➡ "Hello, Wolfgang Amadeus Mozart"
+// > "Hello, Wolfgang Amadeus Mozart"
 
 // Numbered variables using function arguments.
 formatter( "Wolfgang", "Amadeus", "Mozart" );
-➡ "Hello, Wolfgang Amadeus Mozart"
+// > "Hello, Wolfgang Amadeus Mozart"
 
 // Named variables using Object key-value pairs.
 formatter = Globalize( "en" ).messageFormatter( "hey" );
@@ -83,7 +83,7 @@ formatter({
   middle: "Amadeus",
   last: "Mozart"
 });
-➡ "Hey, Wolfgang Amadeus Mozart"
+// > "Hey, Wolfgang Amadeus Mozart"
 ```
 
 #### Gender inflections
@@ -113,7 +113,7 @@ formatter({
   host: "Beethoven",
   hostGender: "male"
 });
-➡ "Beethoven invites Mozart to his party"
+// > "Beethoven invites Mozart to his party"
 ```
 
 #### Plural inflections
@@ -146,7 +146,7 @@ taskFormatter({
   count: 1000,
   formattedCount: numberFormatter( 1000 )
 });
-➡ "You have 1,000 tasks remaining"
+// > "You have 1,000 tasks remaining"
 ```
 
 Literal numeric keys can be used in `plural` to match single, specific numbers.
@@ -174,7 +174,7 @@ taskFormatter({
   count: 0,
   formattedCount: en.numberFormatter( 0 )
 });
-➡ "You have no tasks remaining"
+// > "You have no tasks remaining"
 ```
 
 You may find useful having the plural forms calculated with an offset applied.
@@ -201,16 +201,16 @@ Globalize.loadMessages({
 likeFormatter = Globalize( "en" ).messageFormatter( "likeIncludingMe" );
 
 likeFormatter( 0 );
-➡ "Be the first to like this"
+// > "Be the first to like this"
 
 likeFormatter( 1 );
-➡ "You liked this"
+// > "You liked this"
 
 likeFormatter( 2 );
-➡ "You and someone else liked this"
+// > "You and someone else liked this"
 
 likeFormatter( 3 );
-➡ "You and 2 others liked this"
+// > "You and 2 others liked this"
 ```
 
 Read on [SlexAxton/messageFormatter.js][] for more information on regard of ICU

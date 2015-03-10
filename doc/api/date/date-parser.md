@@ -36,13 +36,13 @@ Globalize.locale( "en" );
 parser = Globalize.dateParser({ date: short });
 
 parser( "1/2/13" );
-// Wed Jan 02 2013 00:00:00
+// > Wed Jan 02 2013 00:00:00
 
 Globalize.locale( "es" );
 parser = Globalize.dateParser({ date: short });
 
 parser( "1/2/13" );
-// Fri Feb 01 2013 00:00:00
+// > Fri Feb 01 2013 00:00:00
 ```
 
 You can use the instance method `.dateParser()`, which uses the instance locale.
@@ -51,7 +51,7 @@ You can use the instance method `.dateParser()`, which uses the instance locale.
 var esParser = Globalize( "es" ).dateParser({ date: short });
 
 esParser( "1/2/13" );
-// Fri Feb 01 2013 00:00:00
+// > Fri Feb 01 2013 00:00:00
 ```
 
 For improved performance on iterations, first create the parser. Then, reuse it

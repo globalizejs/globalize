@@ -279,10 +279,17 @@ to you in different flavors):
   Return a function that formats a date according to the given `pattern`.
 
   ```javascript
-  .dateFormatter( "GyMMMd" )( new Date() )              ➡  "Nov 30, 2010 AD"
-  .dateFormatter({ date: "medium" })( new Date() )      ➡  "Nov 1, 2010"
-  .dateFormatter({ time: "medium" })( new Date() )      ➡  "5:55:00 PM"
-  .dateFormatter({ datetime: "medium" })( new Date() )  ➡  "Nov 1, 2010, 5:55:00 PM"
+  .dateFormatter( "GyMMMd" )( new Date() )
+  // > "Nov 30, 2010 AD"
+
+  .dateFormatter({ date: "medium" })( new Date() )
+  // > "Nov 1, 2010"
+
+  .dateFormatter({ time: "medium" })( new Date() )
+  // > "5:55:00 PM"
+
+  .dateFormatter({ datetime: "medium" })( new Date() )
+  // > "Nov 1, 2010, 5:55:00 PM"
   ```
 
   [Read more...](doc/api/date/date-formatter.md)
@@ -292,10 +299,17 @@ to you in different flavors):
   Return a function that parses a string date according to the given `pattern`.
 
   ```javascript
-  .dateParser( "GyMMMd" )( "Nov 30, 2010 AD" )                      ➡  new Date()
-  .dateParser({ date: "medium" })( "Nov 1, 2010" )                  ➡  new Date()
-  .dateParser({ time: "medium" })( "5:55:00 PM" )                   ➡  new Date()
-  .dateParser({ datetime: "medium" })( "Nov 1, 2010, 5:55:00 PM" )  ➡  new Date()
+  .dateParser( "GyMMMd" )( "Nov 30, 2010 AD" )
+  // > new Date()
+
+  .dateParser({ date: "medium" })( "Nov 1, 2010" )
+  // > new Date()
+
+  .dateParser({ time: "medium" })( "5:55:00 PM" )
+  // > new Date()
+
+  .dateParser({ datetime: "medium" })( "Nov 1, 2010, 5:55:00 PM" )
+  // > new Date()
   ```
 
   [Read more...](doc/api/date/date-parser.md)
@@ -323,8 +337,11 @@ to you in different flavors):
   pluralization and gender inflections.
 
   ```javascript
-  .messageFormatter( "task" )( 1000 )  ➡  "You have 1,000 tasks remaining"
-  .messageFormatter( "like" )( 3 )     ➡  "You and 2 others liked this"
+  .messageFormatter( "task" )( 1000 )
+  // > "You have 1,000 tasks remaining"
+
+  .messageFormatter( "like" )( 3 )
+  // > "You and 2 others liked this"
   ```
 
   [Read more...](doc/api/message/message-formatter.md)
@@ -340,11 +357,20 @@ to you in different flavors):
   Return a function that formats a number according to the given options or locale's defaults.
 
   ```javascript
-  .numberFormatter()( pi )                                 ➡  "3.142"
-  .numberFormatter({ maximumFractionDigits: 5 })( pi )     ➡  "3.14159"
-  .numberFormatter({ round: "floor" })( pi )               ➡  "3.141"
-  .numberFormatter({ minimumFractionDigits: 2 })( 10000 )  ➡  "10,000.00"
-  .numberFormatter({ style: "percent" })( 0.5 )            ➡  "50%"
+  .numberFormatter()( pi )
+  // > "3.142"
+
+  .numberFormatter({ maximumFractionDigits: 5 })( pi )
+  // > "3.14159"
+
+  .numberFormatter({ round: "floor" })( pi )
+  // > "3.141"
+
+  .numberFormatter({ minimumFractionDigits: 2 })( 10000 )
+  // > "10,000.00"
+
+  .numberFormatter({ style: "percent" })( 0.5 )
+  // > "50%"
   ```
 
   [Read more...](doc/api/number/number-formatter.md)
@@ -355,9 +381,14 @@ to you in different flavors):
   locale's defaults.
 
   ```javascript
-  .numberParser()( "3.14159" )                  ➡  3.14159
-  .numberParser()( "10,000.00" )                ➡  10000
-  .numberParser({ style: "percent" })( "50%" )  ➡  0.5
+  .numberParser()( "3.14159" )
+  // > 3.14159
+
+  .numberParser()( "10,000.00" )
+  // > 10000
+
+  .numberParser({ style: "percent" })( "50%" )
+  // > 0.5
   ```
 
   [Read more...](doc/api/number/number-parser.md)
@@ -378,11 +409,20 @@ to you in different flavors):
   locale's defaults.
 
   ```javascript
-  .currencyFormatter( "USD" )( 1 )                           ➡  "$1.00"
-  .currencyFormatter( "USD", { style: "accounting" })( -1 )  ➡  "($1.00)"
-  .currencyFormatter( "USD", { style: "name" })( 69900 )     ➡  "69,900.00 US dollars"
-  .currencyFormatter( "USD", { style: "code" })( 69900 )     ➡  "69,900.00 USD"
-  .currencyFormatter( "USD", { round: "ceil" })( 1.491 )     ➡  "$1.50"
+  .currencyFormatter( "USD" )( 1 )
+  // > "$1.00"
+
+  .currencyFormatter( "USD", { style: "accounting" })( -1 )
+  // > "($1.00)"
+
+  .currencyFormatter( "USD", { style: "name" })( 69900 )
+  // > "69,900.00 US dollars"
+
+  .currencyFormatter( "USD", { style: "code" })( 69900 )
+  // > "69,900.00 USD"
+
+  .currencyFormatter( "USD", { round: "ceil" })( 1.491 )
+  // > "$1.50"
   ```
 
   [Read more...](doc/api/currency/currency-formatter.md)
@@ -399,8 +439,11 @@ to you in different flavors):
   `one`, `two`, `few`, `many`, or `other`.
 
   ```javascript
-  .pluralGenerator()( 0 )  ➡  "other"
-  .pluralGenerator()( 1 )  ➡  "one"
+  .pluralGenerator()( 0 )
+  // > "other"
+
+  .pluralGenerator()( 1 )
+  // > "one"
   ```
 
   [Read more...](doc/api/plural/plural-generator.md)
@@ -466,7 +509,7 @@ to you in different flavors):
 
   Thrown when plural module is needed, but not loaded, eg. to format currencies
   using the named form.
-  
+
   [Read more...](doc/error/e-missing-plural-module.md)
 
 - **`E_UNSUPPORTED`**
