@@ -399,7 +399,6 @@ to you in different flavors):
   .relativeTimeFormatter( "day" )( 1 )  ➡  "tomorrow"
   .relativeTimeFormatter( "month" )( -1 )  ➡  "last month"
   .relativeTimeFormatter( "month" )( 3 )  ➡  "in 3 months"
-  .relativeTimeFormatter( "day", { mamximumWordOffset: 0 } )( 1 )  ➡  "in 1 day"
   ```
 
   [Read more...](doc/api/relative-time/relative-time-formatter.md)

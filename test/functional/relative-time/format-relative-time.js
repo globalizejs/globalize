@@ -14,7 +14,7 @@ define( [
 ], function( Globalize, enDateFields, deDateFields, enNumbers, deNumbers,
 	likelySubtags, numberingSystems, plurals, util ) {
 
-var en, de;
+var de, en;
 
 QUnit.module( "fomatRelativeTime function ( no cldr )", {
 	setup: function( ) {
@@ -40,8 +40,8 @@ QUnit.module( "formatRelativeTime function", {
 			numberingSystems, enNumbers, deNumbers,
 			plurals );
 		Globalize.locale( "en" );
-		en = new Globalize( "en" );
 		de = new Globalize( "de" );
+		en = new Globalize( "en" );
 	},
 	teardown: util.resetCldrContent
 } );

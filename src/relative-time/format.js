@@ -17,7 +17,8 @@ define([
  */
 return function( value, numberFormatter, pluralGenerator, properties ) {
 
-	var relativeTime, message = properties[ "relative-type-" + value ];
+	var relativeTime,
+		message = properties[ "relative-type-" + value ];
 
 	if ( message ) {
 		return message;

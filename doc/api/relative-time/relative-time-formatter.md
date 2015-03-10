@@ -37,11 +37,22 @@ locale.
 var formatter;
 
 Globalize.locale( "en" );
-formatter = Globalize.relativeTimeFormatter( 'month' );
+formatter = Globalize.relativeTimeFormatter( "month" );
 
 formatter( 1 ); // "next month"
 formatter( 3 ); // "in 3 months"
 formatter( -1 ); // "last month"
 formatter( -3 ); // "3 months ago"
 ```
+
+You can use the instance method `.relativeTimeFormatter()`, which uses the instance locale.
+
+```javascript
+var globalize = new Globalize( "en" ),
+	formatter = globalize.relativeTimeFormatter( "week" );
+
+formatter( 1 ); // "next week"
+```
+
+
 
