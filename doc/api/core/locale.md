@@ -40,7 +40,7 @@ Globalize.locale( "pt" );
 
 // Get default locale.
 Globalize.locale();
-// {
+// > {
 //   attributes: {
 //      "languageId": "pt",
 //      "maxLanguageId": "pt_Latn_BR",

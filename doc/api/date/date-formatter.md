@@ -81,7 +81,7 @@ var formatter;
 Globalize.locale( "en" );
 formatter = Globalize.dateFormatter({ datetime: "short" });
 
-formatter( new Date( 2010, 10, 30, 17, 55 ) ); // "11/30/10, 5:55 PM"
+formatter( new Date( 2010, 10, 30, 17, 55 ) ); // > "11/30/10, 5:55 PM"
 ```
 
 You can use the instance method `.dateFormatter()`, which uses the instance locale.

@@ -37,7 +37,7 @@ var parser;
 Globalize.locale( "en" );
 parser = Globalize.numberParser();
 
-parser( "3.14" ); // 3.14
+parser( "3.14" ); // > 3.14
 ```
 
 You can use the instance method `.numberParser()`, which uses the instance
