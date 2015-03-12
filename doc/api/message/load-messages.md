@@ -43,7 +43,8 @@ Globalize.loadMessages({
   }
 });
 
-Globalize( "pt" ).formatMessage( "greetings/hello" ); // > Olá
+Globalize( "pt" ).formatMessage( "greetings/hello" );
+// > Olá
 ```
 
 #### Multiline strings
@@ -86,11 +87,20 @@ Globalize.loadMessages({
   "pt-PT": {}
 });
 
-Globalize( "de" ).formatMessage( "amen" );    // > "Amen"
-Globalize( "en" ).formatMessage( "amen" );    // > "Amen"
-Globalize( "en-GB" ).formatMessage( "amen" ); // > "Amen"
-Globalize( "fr" ).formatMessage( "amen" );    // > "Amen"
-Globalize( "pt-PT" ).formatMessage( "amen" ); // > "Amém"
+Globalize( "de" ).formatMessage( "amen" );
+// > "Amen"
+
+Globalize( "en" ).formatMessage( "amen" );
+// > "Amen"
+
+Globalize( "en-GB" ).formatMessage( "amen" );
+// > "Amen"
+
+Globalize( "fr" ).formatMessage( "amen" );
+// > "Amen"
+
+Globalize( "pt-PT" ).formatMessage( "amen" );
+// > "Amém"
 ```
 
 Note that `de`, `en`, `en-GB`, `fr`, and `pt-PT` are empty. `.formatMessage()`

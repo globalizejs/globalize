@@ -62,7 +62,8 @@ var formatter;
 Globalize.locale( "en" );
 formatter = Globalize.numberFormatter();
 
-formatter( 3.141592 ); // > "3.142"
+formatter( 3.141592 );
+// > "3.142"
 ```
 
 You can use the instance method `.numberFormatter()`, which uses the instance
@@ -73,17 +74,24 @@ var arFormatter = Globalize( "ar" ).numberFormatter(),
   esFormatter = Globalize( "es" ).numberFormatter(),
   zhFormatter = Globalize( "zh-u-nu-native" ).numberFormatter();
 
-arFormatter( 3.141592 ); // > "٣٫١٤٢"
-esFormatter( 3.141592 ); // > "3,142"
-zhFormatter( 3.141592 ); // > "三.一四二"
+arFormatter( 3.141592 );
+// > "٣٫١٤٢"
+
+esFormatter( 3.141592 );
+// > "3,142"
+
+zhFormatter( 3.141592 );
+// > "三.一四二"
 ```
 
 Controlling digits by specifying integer and fraction digits counts:
 
 ```javascript
-Globalize.numberFormatter({ maximumFractionDigits: 2 })( 3.141592 ); // > "3.14"
+Globalize.numberFormatter({ maximumFractionDigits: 2 })( 3.141592 );
+// > "3.14"
 
-Globalize.numberFormatter({ minimumFractionDigits: 2 })( 1.5 );      // > "1.50"
+Globalize.numberFormatter({ minimumFractionDigits: 2 })( 1.5 );
+// > "1.50"
 ```
 
 Controlling digits by specifying significant digits counts:
@@ -94,21 +102,24 @@ var formatter = Globalize.numberFormatter({
   maximumSignificantDigits: 3
 });
 
-formatter( 3.141592 );   // > "3.14"
+formatter( 3.141592 );
+// > "3.14"
 
 formatter = Globalize.numberFormatter({
   minimumSignificantDigits: 1,
   maximumSignificantDigits: 3
 });
 
-formatter( 12345 );      // > "12,300"
+formatter( 12345 );
+// > "12,300"
 
 formatter = Globalize.numberFormatter({
   minimumSignificantDigits: 1,
   maximumSignificantDigits: 3
 });
 
-formatter( 0.00012345 ); // > "0.000123"
+formatter( 0.00012345 );
+// > "0.000123"
 ```
 
 Using different rounding functions example:
@@ -119,7 +130,8 @@ var formatter = Globalize.numberFormatter({
   round: "ceil"
 });
 
-formatter( 3.141592 ); // > "3.15"
+formatter( 3.141592 );
+// > "3.15"
 ```
 
 For improved performance on iterations, first create the formatter. Then, reuse

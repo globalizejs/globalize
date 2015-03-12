@@ -40,7 +40,8 @@ Globalize.loadMessages({
 Globalize.locale( "pt" );
 formatter = Globalize.messageFormatter( "greetings/bye" );
 
-formatter(); // > "Tchau"
+formatter();
+// > "Tchau"
 ```
 
 You can use the instance method `.messageFormatter()`, which uses the instance locale.
@@ -49,7 +50,8 @@ You can use the instance method `.messageFormatter()`, which uses the instance l
 var pt = new Globalize( "pt" ),
   formatter = pt.messageFormatter( "greetings/bye" );
 
-formatter(); // > "Tchau"
+formatter();
+// > "Tchau"
 ```
 
 #### Simple Variable Replacement
@@ -67,10 +69,12 @@ Globalize.loadMessages({
 formatter = Globalize( "en" ).messageFormatter( "hello" );
 
 // Numbered variables using Array.
-formatter([ "Wolfgang", "Amadeus", "Mozart" ]); // > "Hello, Wolfgang Amadeus Mozart"
+formatter([ "Wolfgang", "Amadeus", "Mozart" ]);
+// > "Hello, Wolfgang Amadeus Mozart"
 
 // Numbered variables using function arguments.
-formatter( "Wolfgang", "Amadeus", "Mozart" );   // > "Hello, Wolfgang Amadeus Mozart"
+formatter( "Wolfgang", "Amadeus", "Mozart" );
+// > "Hello, Wolfgang Amadeus Mozart"
 
 // Named variables using Object key-value pairs.
 formatter = Globalize( "en" ).messageFormatter( "hey" );
@@ -196,13 +200,17 @@ Globalize.loadMessages({
 
 likeFormatter = Globalize( "en" ).messageFormatter( "likeIncludingMe" );
 
-likeFormatter( 0 ); // > "Be the first to like this"
+likeFormatter( 0 );
+// > "Be the first to like this"
 
-likeFormatter( 1 ); // > "You liked this"
+likeFormatter( 1 );
+// > "You liked this"
 
-likeFormatter( 2 ); // > "You and someone else liked this"
+likeFormatter( 2 );
+// > "You and someone else liked this"
 
-likeFormatter( 3 ); // > "You and 2 others liked this"
+likeFormatter( 3 );
+// > "You and 2 others liked this"
 ```
 
 Read on [SlexAxton/messageFormatter.js][] for more information on regard of ICU

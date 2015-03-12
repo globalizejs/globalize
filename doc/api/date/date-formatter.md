@@ -81,7 +81,8 @@ var formatter;
 Globalize.locale( "en" );
 formatter = Globalize.dateFormatter({ datetime: "short" });
 
-formatter( new Date( 2010, 10, 30, 17, 55 ) ); // > "11/30/10, 5:55 PM"
+formatter( new Date( 2010, 10, 30, 17, 55 ) );
+// > "11/30/10, 5:55 PM"
 ```
 
 You can use the instance method `.dateFormatter()`, which uses the instance locale.
@@ -90,8 +91,11 @@ You can use the instance method `.dateFormatter()`, which uses the instance loca
 var enFormatter = Globalize( "en" ).dateFormatter({ datetime: "short" }),
   deFormatter = Globalize( "de" ).dateFormatter({ datetime: "short" });
 
-enFormatter( new Date( 2010, 10, 30, 17, 55 ) ); // > "11/30/10, 5:55 PM"
-deFormatter( new Date( 2010, 10, 30, 17, 55 ) ); // > "30.11.10 17:55"
+enFormatter( new Date( 2010, 10, 30, 17, 55 ) );
+// > "11/30/10, 5:55 PM"
+
+deFormatter( new Date( 2010, 10, 30, 17, 55 ) );
+// > "30.11.10 17:55"
 ```
 
 For comparison, follow the same formatter using different locales.
@@ -133,8 +137,11 @@ var globalize = Globalize( "en" ),
   monthDayFormatter = globalize.dateFormatter( "MMMd" ),
   hourMinuteSecondFormatter = globalize.dateFormatter( "Hms" );
 
-monthDayFormatter( date );         // > "Nov 30"
-hourMinuteSecondFormatter( date ); // > "17:55:00"
+monthDayFormatter( date );
+// > "Nov 30"
+
+hourMinuteSecondFormatter( date );
+// > "17:55:00"
 ```
 
 For improved performance on iterations, first create the formatter. Then, reuse
