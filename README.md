@@ -220,7 +220,7 @@ and download the latest available Globalize package.
 
 *By using a package manager...*
 
-Use bower `bower install globalize`, or npm `npm install globalize`.
+Use bower `bower install globalize`, or npm `npm install globalize cldr-data`.
 
 *By using source files...*
 
