@@ -1,7 +1,6 @@
 define([
-	"../../util/number/truncate",
 	"../../util/string/pad"
-], function( numberTruncate, stringPad ) {
+], function( stringPad ) {
 
 /**
  * integerFractionDigits( number, minimumIntegerDigits, minimumFractionDigits,
@@ -43,7 +42,7 @@ return function( number, minimumIntegerDigits, minimumFractionDigits, maximumFra
 			number = number.join( "." );
 		}
 	} else {
-		number = numberTruncate( number );
+		number = round( number );
 	}
 
 	number = String( number );

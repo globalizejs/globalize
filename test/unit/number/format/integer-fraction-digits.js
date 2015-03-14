@@ -44,6 +44,7 @@ QUnit.test( "should zero-pad minimum fraction digits", function( assert ) {
 
 QUnit.test( "should allow rounding", function( assert ) {
 	assert.equal( formatIntegerFractionDigits( pi, 1, 2, 2, round, 0.10 ), "3.10" );
+	assert.equal( formatIntegerFractionDigits( 100.7, 1, 0, 0, round, null ), "101" );
 });
 
 QUnit.test( "should allow different rounding options", function( assert ) {
