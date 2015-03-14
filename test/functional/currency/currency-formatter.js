@@ -104,8 +104,8 @@ QUnit.test( "should return a currency formatter, overriden by Supplemental Curre
 	assert.equal( Globalize.currencyFormatter( "CLF" )( 12345 ), "CLF 12,345.0000" );
 	assert.equal( Globalize.currencyFormatter( "CLF" )( 12345.67 ), "CLF 12,345.6700" );
 	assert.equal( Globalize.currencyFormatter( "ZWD" )( 12345 ), "ZWD 12,345" );
-	assert.equal( Globalize.currencyFormatter( "ZWD" )( 12345.67 ), "ZWD 12,345" );
-	assert.equal( Globalize.currencyFormatter( "JPY" )( 12345.67 ), "¥12,345" );
+	assert.equal( Globalize.currencyFormatter( "ZWD" )( 12345.67 ), "ZWD 12,346" );
+	assert.equal( Globalize.currencyFormatter( "JPY" )( 12345.67 ), "¥12,346" );
 
 	assert.equal( Globalize.currencyFormatter( "CLF", code )( 12345.67 ),
 		"12,345.6700 CLF" );
