@@ -2,13 +2,15 @@ define([
 	"globalize",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
+	"json!cldr-data/supplemental/ordinals.json",
 	"../../util",
 
 	"globalize/plural"
-], function( Globalize, likelySubtags, plurals, util ) {
+], function( Globalize, likelySubtags, plurals, ordinals, util ) {
 
 function extraSetup() {
 	Globalize.load( plurals );
+	Globalize.load( ordinals );
 
 	// Temporary fix due to CLDR v26 regression about pt_BR plural
 	// http://unicode.org/cldr/trac/ticket/7178
@@ -47,6 +49,12 @@ QUnit.test( "should validate parameters", function( assert ) {
 			Globalize.plural( invalidValue );
 		};
 	});
+
+	util.assertPlainObjectParameter( assert, "options", function( invalidOptions ) {
+		return function() {
+			Globalize.plural( 0, invalidOptions );
+		};
+	});
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
@@ -67,6 +75,14 @@ QUnit.test( "should return plural form", function( assert ) {
 	assert.equal( Globalize( "en" ).plural( 0.14 ), "other" );
 	assert.equal( Globalize( "en" ).plural( 3.14 ), "other" );
 
+	assert.equal( Globalize( "en" ).plural( 0, { type: "ordinal" } ), "other" );
+	assert.equal( Globalize( "en" ).plural( 1, { type: "ordinal" } ), "one" );
+	assert.equal( Globalize( "en" ).plural( 2, { type: "ordinal" } ), "two" );
+	assert.equal( Globalize( "en" ).plural( 3, { type: "ordinal" } ), "few" );
+	assert.equal( Globalize( "en" ).plural( 1412, { type: "ordinal" } ), "other" );
+	assert.equal( Globalize( "en" ).plural( 0.14, { type: "ordinal" } ), "other" );
+	assert.equal( Globalize( "en" ).plural( 3.14, { type: "ordinal" } ), "other" );
+
 	assert.equal( Globalize( "ar" ).plural( 0 ), "zero" );
 	assert.equal( Globalize( "ar" ).plural( 1 ), "one" );
 	assert.equal( Globalize( "ar" ).plural( 2 ), "two" );
@@ -86,6 +102,10 @@ QUnit.test( "should return plural form", function( assert ) {
 	assert.equal( Globalize( "ar" ).plural( 111 ), "many" );
 	assert.equal( Globalize( "ar" ).plural( 199 ), "many" );
 	assert.equal( Globalize( "ar" ).plural( 3.14 ), "other" );
+
+	[ 0, 1, 2, 3, 9, 10, 11, 99, 100, 101, 3.14 ].forEach(function( value ) {
+		assert.equal( Globalize( "ar" ).plural( value, { type: "ordinal" } ), "other" );
+	});
 
 	assert.equal( Globalize( "ja" ).plural( 0 ), "other" );
 	assert.equal( Globalize( "ja" ).plural( 1 ), "other" );
