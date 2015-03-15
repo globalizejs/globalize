@@ -1,4 +1,4 @@
-## .pluralGenerator() ➜ function( value )
+## .pluralGenerator( [options] ) ➜ function( value )
 
 It supports the creation of internationalized messages with plural inflection by
 returning a function that returns the value's plural group: `zero`, `one`,
@@ -9,13 +9,24 @@ to return the plural group.
 
 ### Parameters
 
+**options** Optional
+
+A JSON object including none or any of the following options.
+
+> **type** Optional
+>
+> String `cardinal` (default), or `ordinal`.
+
 **value**
 
 A Number for which to return the plural group.
 
 ### Example
 
-Prior to using any plural method, you must load `supplemental/plurals.json`.
+Prior to using any plural method, you must load either
+`supplemental/plurals.json` for cardinals or `supplemental/ordinals.json` for
+ordinals.
+
 Read [CLDR content][] if you need more information.
 
 [CLDR content]: ../../../README.md#2-cldr-content
@@ -27,6 +38,8 @@ default locale.
 var plural;
 
 Globalize.locale( "en" );
+
+// Cardinals
 plural = Globalize.pluralGenerator();
 
 plural( 0 );
@@ -37,6 +50,18 @@ plural( 1 );
 
 plural( 2 );
 // > "other"
+
+// Ordinals
+plural = Globalize.pluralGenerator({ type: "ordinal" });
+
+plural( 0 );
+// > "other"
+
+plural( 1 );
+// > "one"
+
+plural( 2 );
+// > "two"
 ```
 
 You can use the instance method `.pluralGenerator()`, which uses the instance
@@ -49,7 +74,7 @@ plural( 1 );
 // > "other"
 ```
 
-For comparison:
+For comparison (cardinals):
 
 | | en (English) | ru (Russian) | ar (Arabic) |
 | --- | --- | --- | --- |
@@ -58,3 +83,13 @@ For comparison:
 | `plural( 2 )` | `other` | `few` | `two` |
 | `plural( 3 )` | `other` | `few` | `few` |
 | `plural( 5 )` | `other` | `many` | `few` |
+
+For comparison (ordinals):
+
+| | en (English) | ru (Russian) | ar (Arabic) |
+| --- | --- | --- | --- |
+| `plural( 0, { type: "ordinal" } )` | `other` | `other` | `other` |
+| `plural( 1, { type: "ordinal" } )` | `one` | `other` | `other` |
+| `plural( 2, { type: "ordinal" } )` | `two` | `other` | `other` |
+| `plural( 3, { type: "ordinal" } )` | `few` | `other` | `other` |
+| `plural( 5, { type: "ordinal" } )` | `other` | `other` | `other` |

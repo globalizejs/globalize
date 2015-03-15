@@ -205,7 +205,7 @@ requirements. See table below.
 | Currency module | cldr/main/`locale`/currencies.json<br>cldr/supplemental/currencyData.json<br>+CLDR JSON files from number module<br>+CLDR JSON files from plural module for name style support |
 | Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/main/`locale`/timeZoneNames.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json<br>+CLDR JSON files from number module |
 | Number module | cldr/main/`locale`/numbers.json<br>cldr/supplemental/numberingSystems.json |
-| Plural module | cldr/supplemental/plurals.json |
+| Plural module | cldr/supplemental/plurals.json (for cardinals)<br>cldr/supplemental/ordinals.json (for ordinals) |
 
 *(b) How am I supposed to get and load CLDR content?*
 
@@ -433,10 +433,12 @@ to you in different flavors):
 
 ### Plural module
 
-- **`.pluralGenerator()`**
+- **`.pluralGenerator( [options] )`**
 
   Return a function that returns the value's corresponding plural group: `zero`,
   `one`, `two`, `few`, `many`, or `other`.
+
+  The function may be used for cardinals or ordinals.
 
   ```javascript
   .pluralGenerator()( 0 )
@@ -444,13 +446,19 @@ to you in different flavors):
 
   .pluralGenerator()( 1 )
   // > "one"
+
+  .pluralGenerator({ type: "ordinal" })( 1 )
+  // > "one"
+
+  .pluralGenerator({ type: "ordinal" })( 2 )
+  // > "two"
   ```
 
   [Read more...](doc/api/plural/plural-generator.md)
 
-- **`.plural( value )`**
+- **`.plural( value[, options ] )`**
 
-  Alias for `.pluralGenerator()( value )`.
+  Alias for `.pluralGenerator( [options] )( value )`.
 
 
 ## Error reference
