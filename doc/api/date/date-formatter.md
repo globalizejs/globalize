@@ -125,6 +125,19 @@ are: `full`, `long`, `medium`, or `short`.
 | `{ datetime: "long" }` | `"November 1, 2010 at 5:55:00 PM GMT-2"` |
 | `{ datetime: "full" }` | `"Monday, November 1, 2010 at 5:55:00 PM GMT-02:00"` |
 
+| `skeleton` | `Globalize( "en" ).dateFormatter( skeleton )( new Date( 2010, 10, 1, 17, 55 ) )` |
+| --- | --- |
+| `"E"` | `"Tue"` |
+| `"EHm"` | `"Tue 17:55"` |
+| `"EHms"` | `"Tue 17:55:00"` |
+| `"Ed"` | `"30 Tue"` |
+| `"Ehm"` | `"Tue 5:55 PM"` |
+| `"Ehms"` | `"Tue 5:55:00 PM"` |
+| `"Gy"` | `"2010 AD"` |
+| `"GyMMM"` | `"Nov 2010 AD"` |
+| `"GyMMMEd"` | `"Tue, Nov 30, 2010 AD"` |
+| `"GyMMMd"` | `"Nov 30, 2010 AD"` |
+
 Use skeletons for more flexibility (see its description [above](#parameters)).
 
 ```javascript
