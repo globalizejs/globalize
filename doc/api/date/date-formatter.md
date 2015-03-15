@@ -129,7 +129,45 @@ are: `full`, `long`, `medium`, or `short`.
 | `{ datetime: "long" }` | `"November 1, 2010 at 5:55:00 PM GMT-2"` |
 | `{ datetime: "full" }` | `"Monday, November 1, 2010 at 5:55:00 PM GMT-02:00"` |
 
-Use skeletons for more flexibility (see its description [above](#parameters)).
+Use `skeleton` for more flexibility (see its description [above](#parameters)).
+
+| `skeleton` | `Globalize( "en" ).dateFormatter( skeleton )( new Date( 2010, 10, 1, 17, 55 ) )` |
+| --- | --- |
+| `"E"` | `"Tue"` |
+| `"EHm"` | `"Tue 17:55"` |
+| `"EHms"` | `"Tue 17:55:00"` |
+| `"Ed"` | `"30 Tue"` |
+| `"Ehm"` | `"Tue 5:55 PM"` |
+| `"Ehms"` | `"Tue 5:55:00 PM"` |
+| `"Gy"` | `"2010 AD"` |
+| `"GyMMM"` | `"Nov 2010 AD"` |
+| `"GyMMMEd"` | `"Tue, Nov 30, 2010 AD"` |
+| `"GyMMMd"` | `"Nov 30, 2010 AD"` |
+| `"H"` | `"17"` |
+| `"Hm"` | `"17:55"` |
+| `"Hms"` | `"17:55:00"` |
+| `"M"` | `"11"` |
+| `"MEd"` | `"Tue, 11/30"` |
+| `"MMM"` | `"Nov"` |
+| `"MMMEd"` | `"Tue, Nov 30"` |
+| `"MMMd"` | `"Nov 30"` |
+| `"Md"` | `"11/30"` |
+| `"d"` | `"30"` |
+| `"h"` | `"5 PM"` |
+| `"hm"` | `"5:55 PM"` |
+| `"hms"` | `"5:55:00 PM"` |
+| `"ms"` | `"55:00"` |
+| `"y"` | `"2010"` |
+| `"yM"` | `"11/2010"` |
+| `"yMEd"` | `"Tue, 11/30/2010"` |
+| `"yMMM"` | `"Nov 2010"` |
+| `"yMMMEd"` | `"Tue, Nov 30, 2010"` |
+| `"yMMMd"` | `"Nov 30, 2010"` |
+| `"yMd"` | `"11/30/2010"` |
+| `"yQQQ"` | `"Q4 2010"` |
+| `"yQQQQ"` | `"4th quarter 2010"` |
+
+For example,
 
 ```javascript
 var globalize = Globalize( "en" ),
