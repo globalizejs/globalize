@@ -293,7 +293,25 @@ module.exports = function( grunt ) {
 									endFile: "src/build/outro.js"
 								}
 							}
-						}
+						},
+                        {
+                            name: "globalize.postalcode",
+                            include: [ "postalcode" ],
+                            exclude: [
+                                "cldr",
+                                "cldr/event",
+                                "cldr/supplemental",
+                                "./core",
+                                "./common/validate/parameter-type/string"
+                            ],
+                            create: true,
+                            override: {
+                                wrap: {
+                                    startFile: "src/build/intro-postalcode.js",
+                                    endFile: "src/build/outro.js"
+                                }
+                            }
+                        }
 					]
 				}
 			}

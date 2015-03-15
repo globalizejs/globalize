@@ -40,7 +40,10 @@ require([
 	"./functional/number/parse-number",
 
 	// plural
-	"./functional/plural/plural"
+	"./functional/plural/plural",
+
+    // postalcode
+    "./functional/postalcode/postalcode"
 
 ], function() {
 	QUnit.start();
