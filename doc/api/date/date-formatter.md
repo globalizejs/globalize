@@ -7,7 +7,7 @@ be formatted.
 
 ### Parameters
 
-**pattern**
+**skeleton**
 
 String value indicating a skeleton, eg. `"GyMMMd"`.
 
@@ -34,6 +34,7 @@ Or, a JSON object including one of the following.
 > `{ skeleton: "GyMMMd" }`.
 >
 > **date**
+>
 > One of the following String values: `full`, `long`, `medium`, or `short`, eg.
 > `{ date: "full" }`. 
 >
@@ -44,7 +45,7 @@ Or, a JSON object including one of the following.
 >
 > **datetime**
 > 
-> One of the following String values: `full`, `long`, `medium`, or `short`, eg.
+> One of the following String values: `full`, `long`, `medium`, and `short`, eg.
 > `{ datetime: "full" }`
 >
 > **pattern**
