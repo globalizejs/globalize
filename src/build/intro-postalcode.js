@@ -39,4 +39,4 @@
 var validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validateParameterPresence = Globalize._validateParameterPresence,
-    validateParameterTypeString = Globalize._validateParameterTypeString;
+	validateParameterTypeString = Globalize._validateParameterTypeString;

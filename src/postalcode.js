@@ -16,18 +16,19 @@ define([
  *
  * @value [String]
  *
- * TRUE if the value is matched with postalcode pattern given the locale.
- * FALSE if the value is not matched with postalcode pattern given the locale.
+ * Returns true if the value matches the postalcode pattern for the given locale,
+ * otherwise returns false
  *
  * Return the boolean.
  */
 Globalize.validatePostalCode =
-Globalize.prototype.validatePostalCode = function( value ) {
+Globalize.prototype.validatePostalCode = function( value, flag ) {
 	validateParameterPresence( value, "value" );
-    validateParameterTypeString( value, "value" );
-	return this.postalCodeValidator()( value );
+	validateParameterTypeString( value, "value" );
+	return this.postalCodeValidator()( value, flag );
 };
 
+Globalize.postalCodeValidator =
 /**
  * .postalCodeValidator()
  *
@@ -37,32 +38,32 @@ Globalize.prototype.validatePostalCode = function( value ) {
  *
  * @value [String]
  *
- *
- * TRUE if the value is matched with postalcode pattern given the locale.
- * FALSE if the value is not matched with postalcode pattern given the locale.
+ * Returns true if the value matches the postalcode pattern for the given locale,
+ * otherwise returns false
  *
  * Return the boolean.
  *
  */
-Globalize.postalCodeValidator =
-Globalize.prototype.postalCodeValidator = function() {
-	var cldr, regex,
-        beginning = "^",
-        end = "$";
+	Globalize.prototype.postalCodeValidator = function() {
+		var cldr, regex, pattern;
 
 	cldr = this.cldr;
 
 	validateDefaultLocale( cldr );
 
-	cldr.on( "get", validateCldr );
-    regex = new RegExp(beginning + cldr.supplemental("postalCodeData/{region}") + end);
-	cldr.off( "get", validateCldr );
+	cldr.once( "get", validateCldr );
+	pattern = "^" + cldr.supplemental("postalCodeData/{region}") + "$";
+	regex = new RegExp(pattern);
 
-	return function( value ) {
+	return function( value, flag ) {
 		validateParameterPresence( value, "value" );
 		validateParameterTypeString( value, "value" );
 
-		return regex.test(value);
+		if ( flag && typeof flag === "string" ){
+			regex = new RegExp( pattern, flag );
+		}
+
+		return regex.test( value );
 	};
 };
 
