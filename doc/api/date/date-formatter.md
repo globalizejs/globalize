@@ -7,7 +7,7 @@ be formatted.
 
 ### Parameters
 
-**pattern**
+**machinePattern**
 
 String value indicating a skeleton, eg. `"GyMMMd"`.
 
@@ -34,6 +34,7 @@ Or, a JSON object including one of the following.
 > `{ skeleton: "GyMMMd" }`.
 >
 > **date**
+>
 > One of the following String values: `full`, `long`, `medium`, or `short`, eg.
 > `{ date: "full" }`. 
 >
@@ -108,7 +109,7 @@ For comparison, follow the same formatter using different locales.
 | *ar* | `"١‏/١١‏/٢٠١٠ ٥،٥٥ م"` |
 
 Use convenient presets for `date`, `time`, or `datetime`. Their possible values
-are: `full`, `long`, `medium`, or `short`.
+are: `full`, `long`, `medium`, and `short`.
 
 | `presetValue` | `Globalize( "en" ).dateFormatter( presetValue )( new Date( 2010, 10, 1, 17, 55 ) )` |
 | --- | --- |
@@ -141,10 +142,10 @@ For improved performance on iterations, first create the formatter. Then, reuse
 it on each loop.
 
 ```javascript
-var dates = [ new Date( a ), new Date( b ), ... ];
+var dates = [ new Date( 2010, 10, 30, 17, 55 ), new Date( 2015, 3, 18, 4, 25 )]; // Array can be very large
 var formatter = Globalize( "en" ).dateFormatter({ time: "short" });
-
 formattedDates = dates.map(function( date ) {
   return formatter( date );
 });
+// > Array [ "5:55 PM", "4:25 AM" ]
 ```
