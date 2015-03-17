@@ -42,8 +42,8 @@ require([
 	// plural
 	"./functional/plural/plural",
 
-    // postalcode
-    "./functional/postalcode/postalcode"
+	// postalcode
+	"./functional/postalcode/postalcode"
 
 ], function() {
 	QUnit.start();
