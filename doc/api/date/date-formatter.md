@@ -144,6 +144,7 @@ it on each loop.
 ```javascript
 var dates = [ new Date( 2010, 10, 30, 17, 55 ), new Date( 2015, 3, 18, 4, 25 ) ]; // Array can be very large
 var formatter = Globalize( "en" ).dateFormatter({ time: "short" });
+
 var formattedDates = dates.map(function( date ) {
   return formatter( date );
 });
