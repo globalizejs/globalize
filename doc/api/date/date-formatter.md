@@ -7,7 +7,7 @@ be formatted.
 
 ### Parameters
 
-**pattern**
+** pattern**
 
 String value indicating a skeleton, eg. `"GyMMMd"`.
 
