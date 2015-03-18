@@ -28,7 +28,6 @@ Globalize.prototype.validatePostalCode = function( value, region ) {
 	return this.postalCodeValidator( region )( value );
 };
 
-Globalize.postalCodeValidator =
 /**
  * .postalCodeValidator()
  *
@@ -46,7 +45,7 @@ Globalize.postalCodeValidator =
  */
 Globalize.postalCodeValidator =
 Globalize.prototype.postalCodeValidator = function( region ) {
-	var cldr, regex, pattern;
+	var cldr, pattern, regex;
 
 	cldr = this.cldr;
 	region = region || cldr.attributes.region;

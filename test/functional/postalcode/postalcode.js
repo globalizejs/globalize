@@ -3,12 +3,10 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/postalCodeData.json",
 	"../../util",
-	"json!./dummy/kr.json",
-	"json!./dummy/us.json",
 
 	"globalize/postalcode"
 
-], function( Globalize, likelySubtags, postalcode, util, kr, us ) {
+], function( Globalize, likelySubtags, postalcode, util ) {
 
 	QUnit.module( ".validatePostalCode( value )", {
 		setup: function() {
@@ -17,7 +15,7 @@ define([
 					ko: {}
 				}
 			});
-			Globalize.locale( "ko" );
+			Globalize.locale( "ko-KR" );
 		},
 		teardown: util.resetCldrContent
 	});
@@ -50,35 +48,35 @@ define([
 		assert.strictEqual( Globalize( "und-AD" ).validatePostalCode( "AD123" ), true );
 		assert.strictEqual( Globalize( "und-AD" ).validatePostalCode( "ad345" ), false );
 
-		assert.strictEqual( Globalize( "en" ).validatePostalCode( "12345" ), true );
-		assert.strictEqual( Globalize( "en" ).validatePostalCode( "12345-6789" ), true );
-		assert.strictEqual( Globalize( "en" ).validatePostalCode( "12345-67899" ), false );
-		assert.strictEqual( Globalize( "en" ).validatePostalCode( "12345 6789" ), true );
-		assert.strictEqual( Globalize( "en" ).validatePostalCode( "12345 67899" ), false );
+		assert.strictEqual( Globalize( "en-US" ).validatePostalCode( "12345" ), true );
+		assert.strictEqual( Globalize( "en-US" ).validatePostalCode( "12345-6789" ), true );
+		assert.strictEqual( Globalize( "en-US" ).validatePostalCode( "12345-67899" ), false );
+		assert.strictEqual( Globalize( "en-US" ).validatePostalCode( "12345 6789" ), true );
+		assert.strictEqual( Globalize( "en-US" ).validatePostalCode( "12345 67899" ), false );
 
-		assert.strictEqual( Globalize( "ar" ).validatePostalCode( "12345" ), true );
-		assert.strictEqual( Globalize( "ar" ).validatePostalCode( "123456" ), false );
-		assert.strictEqual( Globalize( "ar" ).validatePostalCode( "12345-12" ), false );
+		assert.strictEqual( Globalize( "ar-EG" ).validatePostalCode( "12345" ), true );
+		assert.strictEqual( Globalize( "ar-EG" ).validatePostalCode( "123456" ), false );
+		assert.strictEqual( Globalize( "ar-EG" ).validatePostalCode( "12345-12" ), false );
 
-		assert.strictEqual( Globalize( "ja" ).validatePostalCode( "123-4567" ), true );
-		assert.strictEqual( Globalize( "ja" ).validatePostalCode( "123-456" ), false );
-		assert.strictEqual( Globalize( "ja" ).validatePostalCode( "1234-567" ), false );
-		assert.strictEqual( Globalize( "ja" ).validatePostalCode( "1234567" ), false );
+		assert.strictEqual( Globalize( "ja-JP" ).validatePostalCode( "123-4567" ), true );
+		assert.strictEqual( Globalize( "ja-JP" ).validatePostalCode( "123-456" ), false );
+		assert.strictEqual( Globalize( "ja-JP" ).validatePostalCode( "1234-567" ), false );
+		assert.strictEqual( Globalize( "ja-JP" ).validatePostalCode( "1234567" ), false );
 
-		assert.strictEqual( Globalize( "ru" ).validatePostalCode( "123456" ), true );
-		assert.strictEqual( Globalize( "ru" ).validatePostalCode( "1234567" ), false );
-		assert.strictEqual( Globalize( "ru" ).validatePostalCode( "123-45" ), false );
+		assert.strictEqual( Globalize( "ru-RU" ).validatePostalCode( "123456" ), true );
+		assert.strictEqual( Globalize( "ru-RU" ).validatePostalCode( "1234567" ), false );
+		assert.strictEqual( Globalize( "ru-RU" ).validatePostalCode( "123-45" ), false );
 
-		assert.strictEqual( Globalize( "zh" ).validatePostalCode( "123456" ), true );
-		assert.strictEqual( Globalize( "zh" ).validatePostalCode( "123-45" ), false );
-		assert.strictEqual( Globalize( "zh" ).validatePostalCode( "1234567" ), false );
+		assert.strictEqual( Globalize( "zh-CN" ).validatePostalCode( "123456" ), true );
+		assert.strictEqual( Globalize( "zh-CN" ).validatePostalCode( "123-45" ), false );
+		assert.strictEqual( Globalize( "zh-CN" ).validatePostalCode( "1234567" ), false );
 
-		assert.strictEqual( Globalize( "en" ).validatePostalCode( "12345" ), true );
-		assert.strictEqual( Globalize( "en" ).validatePostalCode( "12345", "CN" ), false );
-		assert.strictEqual( Globalize( "en" ).validatePostalCode( "123456" ), false );
-		assert.strictEqual( Globalize( "en" ).validatePostalCode( "123456", "CN" ), true );
-		assert.strictEqual( Globalize( "en" ).validatePostalCode( "12345-6789" ), true );
-		assert.strictEqual( Globalize( "en" ).validatePostalCode( "12345-6789", "CN" ), false );
+		assert.strictEqual( Globalize( "en-US" ).validatePostalCode( "12345" ), true );
+		assert.strictEqual( Globalize( "en-US" ).validatePostalCode( "12345", "CN" ), false );
+		assert.strictEqual( Globalize( "en-US" ).validatePostalCode( "123456" ), false );
+		assert.strictEqual( Globalize( "en-US" ).validatePostalCode( "123456", "CN" ), true );
+		assert.strictEqual( Globalize( "en-US" ).validatePostalCode( "12345-6789" ), true );
+		assert.strictEqual( Globalize( "en-US" ).validatePostalCode( "12345-6789", "CN" ), false );
 
 		assert.strictEqual( Globalize.postalCodeValidator()( "123-456" ), true );
 		assert.strictEqual( Globalize.postalCodeValidator( "US" )( "12345" ), true );
@@ -87,13 +85,6 @@ define([
 		assert.strictEqual( Globalize.postalCodeValidator( "CN" )( "123456" ), true );
 		assert.strictEqual( Globalize.postalCodeValidator( "US" )( "12345-6789" ), true );
 		assert.strictEqual( Globalize.postalCodeValidator( "CN" )( "12345-6789" ), false );
-
-		kr.features.forEach(function( item ){
-			assert.strictEqual( Globalize( "ko" ).validatePostalCode( item.properties.Postcode ), true );
-		});
-		us.features.forEach(function( item ){
-			assert.strictEqual( Globalize( "us" ).validatePostalCode( item.properties.Postcode ), true );
-		});
 	});
 
 });
