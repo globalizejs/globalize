@@ -1,3 +1,24 @@
+function getDateTime( type, cldr ) {
+	var result;
+	result = cldr.main([
+		"dates/calendars/gregorian/dateTimeFormats",
+		type
+	]);
+	if ( result ) {
+		result = formatMessage( result, [
+			cldr.main([
+				"dates/calendars/gregorian/timeFormats",
+				type
+			]),
+			cldr.main([
+				"dates/calendars/gregorian/dateFormats",
+				type
+			])
+		]);
+	}
+	return result;
+}
+
 define([
 	"../common/format-message",
 	"../common/create-error/invalid-parameter-value"
@@ -24,6 +45,7 @@ define([
  * - { datetime: "full" } returns "EEEE, MMMM d, y 'at' h:mm:ss a zzzz";
  * - { pattern: "dd/mm" } returns "dd/mm";
  */
+
 return function( pattern, cldr ) {
 	var result;
 
@@ -33,10 +55,43 @@ return function( pattern, cldr ) {
 
 	switch ( true ) {
 		case "skeleton" in pattern:
-			result = cldr.main([
-				"dates/calendars/gregorian/dateTimeFormats/availableFormats",
-				pattern.skeleton
-			]);
+			var flagDate = false, flagTime = false;
+			var skeleton = pattern.skeleton;
+			for ( var i = 0 ; i < skeleton.length ; i++ ) {
+				var ch = skeleton[ i ];
+				if ( ch == 'h' || ch == 'H' || ch == 'm' || ch == 's' ) { //Check if skeleton contains Time component
+					flagTime = true;
+				}
+				if ( ch == 'y' || ch == 'M' || ch == 'd' ) { // Check if skeleton contains Date component
+					flagDate = true;
+				}
+			}
+			if ( ( flagDate != flagTime ) ) {
+				result = cldr.main([
+					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+					skeleton
+				]);
+			}
+			else if ( flagDate && flagTime ) {
+				if ( skeleton.indexOf( "MMMM" ) > -1 && skeleton.indexOf( "E" ) > -1 ) {
+					result = getDateTime( "full", cldr );
+				}
+				else if ( skeleton.indexOf( "MMMM" ) > -1 ) {
+					result = getDateTime( "long", cldr );
+				}
+				else if ( skeleton.indexOf( "MMM" ) > -1 ) {
+					result = getDateTime( "medium", cldr );
+				}
+				else {
+					result = getDateTime( "short", cldr );
+				}
+			}
+			else {
+				result = cldr.main([
+					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+					skeleton
+				]);
+			}
 			break;
 
 		case "date" in pattern:
