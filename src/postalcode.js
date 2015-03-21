@@ -21,8 +21,7 @@ define([
  *
  * Return the boolean.
  */
-Globalize.validatePostalCode =
-Globalize.prototype.validatePostalCode = function( value, region ) {
+Globalize.validatePostalCode = function( value, region ) {
 	validateParameterPresence( value, "value" );
 	validateParameterTypeString( value, "value" );
 	return this.postalCodeValidator( region )( value );
@@ -43,12 +42,10 @@ Globalize.prototype.validatePostalCode = function( value, region ) {
  * Return the boolean.
  *
  */
-Globalize.postalCodeValidator =
-Globalize.prototype.postalCodeValidator = function( region ) {
+Globalize.postalCodeValidator = function( region ) {
 	var cldr, pattern, regex;
 
 	cldr = this.cldr;
-	region = region || cldr.attributes.region;
 
 	validateParameterPresence( region, "region" );
 	validateParameterTypeString( region, "region" );
