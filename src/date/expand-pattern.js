@@ -47,7 +47,7 @@ function getDateTime( type, dateSkeleton, timeSkeleton, cldr ) {
 }
 
 return function( pattern, cldr ) {
-	var result;
+	var result, flagDate, flagTime, skeleton, dateSkeleton, timeSkeleton;
 
 	if ( typeof pattern === "string" ) {
 		pattern = { skeleton: pattern };
@@ -55,8 +55,8 @@ return function( pattern, cldr ) {
 
 	switch ( true ) {
 		case "skeleton" in pattern:
-			var flagDate = false, flagTime = false;
-			var skeleton = pattern.skeleton;
+			flagDate = false, flagTime = false;
+			skeleton = pattern.skeleton;
 			if ( /[hHms]/.test( skeleton ) ) {
 				flagTime = true;
 			}
@@ -65,8 +65,7 @@ return function( pattern, cldr ) {
 			}
 			if ( /Ed/g.test( skeleton ) ) {
 				flagDate = true;
-			}
-			else if ( /Eh/g.test( skeleton ) || /EH/g.test( skeleton ) ||
+			} else if ( /Eh/g.test( skeleton ) || /EH/g.test( skeleton ) ||
 					/E/g.test( skeleton ) ) {
 				flagTime = true;
 			}
@@ -75,51 +74,39 @@ return function( pattern, cldr ) {
 					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
 					skeleton
 				]);
-			}
-			else if ( flagDate && flagTime ) {
-				var dateSkeleton = "", timeSkeleton = "";
+			} else if ( flagDate && flagTime ) {
+				dateSkeleton = "", timeSkeleton = "";
 				for ( var i = 0 ; i < skeleton.length ; i++ ) {
-					// Get timeSkeleton
 					if ( /[hHms]/.test( skeleton[ i ] ) ) {
 						timeSkeleton += skeleton[ i ];
-					}
-					// Get dateSkeleton
-					else if ( /[GyQMd]/.test( skeleton[ i ] ) ) {
+					} else if ( /[GyQMd]/.test( skeleton[ i ] ) ) {
 						dateSkeleton += skeleton[ i ];
-					}
-					// Check for "E"
-					else if ( skeleton[ i ] === "E" ) {
+					} else if ( skeleton[ i ] === "E" ) {
 						if ( /Ed/g.test( skeleton.slice( i ) ) ) {
 							dateSkeleton += "Ed";
 							i++;
-						}
-						else if ( /Eh/g.test( skeleton.slice( i ) ) ) {
+						} else if ( /Eh/g.test( skeleton.slice( i ) ) ) {
 							timeSkeleton += "Eh";
 							i++;
-						}
-						else if ( /EH/g.test( skeleton.slice( i ) ) ) {
+						} else if ( /EH/g.test( skeleton.slice( i ) ) ) {
 							timeSkeleton += "EH";
 							i++;
-						}
-						else {
+						} else {
 							timeSkeleton += "E";
 						}
 					}
 				}
 				if ( /MMMM/g.test( dateSkeleton ) && /[E]/.test( dateSkeleton ) ) {
 					result = getDateTime( "full", dateSkeleton, timeSkeleton, cldr );
-				}
-				else if ( /MMMM/g.test( dateSkeleton ) ) {
+				} else if ( /MMMM/g.test( dateSkeleton ) ) {
 					result = getDateTime( "long", dateSkeleton, timeSkeleton, cldr );
-				}
-				else if ( /MMM/g.test( dateSkeleton ) ) {
+				} else if ( /MMM/g.test( dateSkeleton ) ) {
 					result = getDateTime( "medium", dateSkeleton, timeSkeleton, cldr );
 					if ( result.indexOf( "G" ) > -1 ) {
 						result = result.replace( "G", "" );
 						result += " G";
 					}
-				}
-				else {
+				} else {
 					result = getDateTime( "short", dateSkeleton, timeSkeleton, cldr );
 					if ( result.indexOf( "G" ) > -1 ) {
 						result = result.replace( "G" , "" );
