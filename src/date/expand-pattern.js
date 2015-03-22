@@ -70,7 +70,7 @@ return function( pattern, cldr ) {
 					/E/g.test( skeleton ) ) {
 				flagTime = true;
 			}
-			if ( ( flagDate != flagTime ) ) {
+			if ( ( flagDate !== flagTime ) ) {
 				result = cldr.main([
 					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
 					skeleton
@@ -115,14 +115,14 @@ return function( pattern, cldr ) {
 				else if ( /MMM/g.test( dateSkeleton ) ) {
 					result = getDateTime( "medium", dateSkeleton, timeSkeleton, cldr );
 					if ( result.indexOf( "G" ) > -1 ) {
-						result = result.replace( 'G', '' );
+						result = result.replace( "G", "" );
 						result += " G";
 					}
 				}
 				else {
 					result = getDateTime( "short", dateSkeleton, timeSkeleton, cldr );
 					if ( result.indexOf( "G" ) > -1 ) {
-						result = result.replace( 'G' , '' );
+						result = result.replace( "G" , "" );
 						result += " G";
 					}
 				}
