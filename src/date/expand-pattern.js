@@ -88,7 +88,7 @@ return function( pattern, cldr ) {
 						dateSkeleton += skeleton[ i ];
 					}
 					// Check for "E"
-					else if ( skeleton[ i ] == "E" ) {
+					else if ( skeleton[ i ] === "E" ) {
 						if ( /Ed/g.test( skeleton.slice( i ) ) ) {
 							dateSkeleton += "Ed";
 							i++;
