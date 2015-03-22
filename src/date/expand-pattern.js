@@ -66,7 +66,7 @@ return function( pattern, cldr ) {
 			if ( /Ed/g.test( skeleton ) ) {
 				flagDate = true;
 			}
-			else if ( /Eh/g.test( skeleton ) || /EH/g.test( skeleton ) || 
+			else if ( /Eh/g.test( skeleton ) || /EH/g.test( skeleton ) ||
 					/E/g.test( skeleton ) ) {
 				flagTime = true;
 			}
