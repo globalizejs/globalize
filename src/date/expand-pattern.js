@@ -1,24 +1,3 @@
-function getDateTime( type, cldr ) {
-	var result;
-	result = cldr.main([
-		"dates/calendars/gregorian/dateTimeFormats",
-		type
-	]);
-	if ( result ) {
-		result = formatMessage( result, [
-			cldr.main([
-				"dates/calendars/gregorian/timeFormats",
-				type
-			]),
-			cldr.main([
-				"dates/calendars/gregorian/dateFormats",
-				type
-			])
-		]);
-	}
-	return result;
-}
-
 define([
 	"../common/format-message",
 	"../common/create-error/invalid-parameter-value"
@@ -46,6 +25,27 @@ define([
  * - { pattern: "dd/mm" } returns "dd/mm";
  */
 
+function getDateTime( type, dateSkeleton, timeSkeleton, cldr ) {
+	var result;
+	result = cldr.main([
+		"dates/calendars/gregorian/dateTimeFormats",
+		type
+	]);
+	if ( result ) {
+		result = formatMessage( result, [
+			cldr.main([
+				"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+				timeSkeleton
+			]),
+			cldr.main([
+				"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+				dateSkeleton
+			])
+		]);
+	}
+	return result;
+}
+
 return function( pattern, cldr ) {
 	var result;
 
@@ -57,14 +57,17 @@ return function( pattern, cldr ) {
 		case "skeleton" in pattern:
 			var flagDate = false, flagTime = false;
 			var skeleton = pattern.skeleton;
-			for ( var i = 0 ; i < skeleton.length ; i++ ) {
-				var ch = skeleton[ i ];
-				if ( ch == 'h' || ch == 'H' || ch == 'm' || ch == 's' ) { //Check if skeleton contains Time component
-					flagTime = true;
-				}
-				if ( ch == 'y' || ch == 'M' || ch == 'd' ) { // Check if skeleton contains Date component
-					flagDate = true;
-				}
+			if ( /[hHms]/.test( skeleton ) ) {
+				flagTime = true;
+			}
+			if ( /[GyQMd]/.test( skeleton ) ) {
+				flagDate = true;
+			}
+			if ( /Ed/g.test( skeleton ) ) {
+				flagDate = true;
+			}
+			else if ( /Eh/g.test( skeleton ) || /EH/g.test( skeleton ) || /E/g.test( skeleton ) ) {
+				flagTime = true;
 			}
 			if ( ( flagDate != flagTime ) ) {
 				result = cldr.main([
@@ -73,24 +76,55 @@ return function( pattern, cldr ) {
 				]);
 			}
 			else if ( flagDate && flagTime ) {
-				if ( skeleton.indexOf( "MMMM" ) > -1 && skeleton.indexOf( "E" ) > -1 ) {
-					result = getDateTime( "full", cldr );
+				var dateSkeleton = "", timeSkeleton = "";
+				for ( var i = 0 ; i < skeleton.length ; i++ ) {
+					// Get timeSkeleton
+					if ( /[hHms]/.test( skeleton[i] ) ) {
+						timeSkeleton += skeleton[i];
+					}
+					// Get dateSkeleton
+					else if ( /[GyQMd]/.test( skeleton[i] ) ) {
+						dateSkeleton += skeleton[i];
+					}
+					// Check for "E"
+					else if ( skeleton[ i ] == "E" ) {
+						if ( /Ed/g.test( skeleton.slice( i ) ) ) {
+							dateSkeleton += "Ed";
+							i++;
+						}
+						else if ( /Eh/g.test( skeleton.slice( i ) ) ) {
+							timeSkeleton += "Eh";
+							i++;
+						}
+						else if ( /EH/g.test( skeleton.slice( i ) ) ) {
+							timeSkeleton += "EH";
+							i++;
+						}
+						else {
+							timeSkeleton += "E";
+						}
+					}
 				}
-				else if ( skeleton.indexOf( "MMMM" ) > -1 ) {
-					result = getDateTime( "long", cldr );
+				if ( /MMMM/g.test( dateSkeleton ) && /[E]/g.test( dateSkeleton ) ) {
+					result = getDateTime( "full", dateSkeleton, timeSkeleton, cldr);
 				}
-				else if ( skeleton.indexOf( "MMM" ) > -1 ) {
-					result = getDateTime( "medium", cldr );
+				else if ( /MMMM/g.test( dateSkeleton ) ) {
+					result = getDateTime( "long", dateSkeleton, timeSkeleton, cldr);
+				}
+				else if ( /MMM/g.test( dateSkeleton ) ) {
+					result = getDateTime( "medium", dateSkeleton, timeSkeleton, cldr);
+					if ( result.indexOf("G") > -1 ) {
+						result = result.replace('G','');
+						result += " G";
+					}
 				}
 				else {
-					result = getDateTime( "short", cldr );
+					result = getDateTime( "short", dateSkeleton, timeSkeleton, cldr);
+					if ( result.indexOf("G") > -1 ) {
+						result = result.replace('G','');
+						result += " G";
+					}
 				}
-			}
-			else {
-				result = cldr.main([
-					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
-					skeleton
-				]);
 			}
 			break;
 
