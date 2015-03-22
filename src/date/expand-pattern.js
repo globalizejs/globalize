@@ -47,7 +47,7 @@ function getDateTime( type, dateSkeleton, timeSkeleton, cldr ) {
 }
 
 return function( pattern, cldr ) {
-	var result, flagDate, flagTime, skeleton, dateSkeleton, timeSkeleton;
+	var result, flagDate, flagTime, skeleton, dateSkeleton, timeSkeleton, i;
 
 	if ( typeof pattern === "string" ) {
 		pattern = { skeleton: pattern };
@@ -76,7 +76,7 @@ return function( pattern, cldr ) {
 				]);
 			} else if ( flagDate && flagTime ) {
 				dateSkeleton = "", timeSkeleton = "";
-				for ( var i = 0 ; i < skeleton.length ; i++ ) {
+				for ( i = 0 ; i < skeleton.length ; i++ ) {
 					if ( /[hHms]/.test( skeleton[ i ] ) ) {
 						timeSkeleton += skeleton[ i ];
 					} else if ( /[GyQMd]/.test( skeleton[ i ] ) ) {
@@ -109,7 +109,7 @@ return function( pattern, cldr ) {
 				} else {
 					result = getDateTime( "short", dateSkeleton, timeSkeleton, cldr );
 					if ( result.indexOf( "G" ) > -1 ) {
-						result = result.replace( "G" , "" );
+						result = result.replace( "G", "" );
 						result += " G";
 					}
 				}
