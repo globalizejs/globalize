@@ -105,7 +105,7 @@ return function( pattern, cldr ) {
 						}
 					}
 				}
-				if ( /MMMM/g.test( dateSkeleton ) && /[E]/g.test( dateSkeleton ) ) {
+				if ( /MMMM/g.test( dateSkeleton ) && /[E]/.test( dateSkeleton ) ) {
 					result = getDateTime( "full", dateSkeleton, timeSkeleton, cldr);
 				}
 				else if ( /MMMM/g.test( dateSkeleton ) ) {
@@ -120,8 +120,8 @@ return function( pattern, cldr ) {
 				}
 				else {
 					result = getDateTime( "short", dateSkeleton, timeSkeleton, cldr);
-					if ( result.indexOf("G") > -1 ) {
-						result = result.replace('G','');
+					if ( result.indexOf( "G" ) > -1 ) {
+						result = result.replace( 'G' , '' );
 						result += " G";
 					}
 				}
