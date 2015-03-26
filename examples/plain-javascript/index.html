@@ -239,10 +239,11 @@
     document.getElementById( "message-2" ).innerHTML = like( 2 );
     document.getElementById( "message-3" ).innerHTML = like( 3 );
 
+    // Use Globalize to format a relative time.
+    document.getElementById( "relative-time" ).innerText = en.formatRelativeTime( -35, "second" );
+
     document.getElementById( "requirements" ).style.display = "none";
     document.getElementById( "demo" ).style.display = "block";
-
-    document.getElementById( "relative-time").innerText = en.formatRelativeTime( -35, 'second' );
 
     </script>
 

@@ -16,25 +16,25 @@ define( [
 
 var en, de;
 
-QUnit.module( "fomatRelativeTime function ( no cldr )", {
+QUnit.module( ".relativeTimeFormatter( unit [, options] ) - no CLDR", {
 	setup: function( ) {
 		Globalize.load( likelySubtags, {
 			main: {
 				en: {}
 			}
-		} );
+		});
 		Globalize.locale( "en" );
 	},
 	teardown: util.resetCldrContent
-} );
+});
 
 QUnit.test( "should validate CLDR content", function( assert ) {
 	util.assertCldrContent( assert, function( ) {
 		Globalize.relativeTimeFormatter( "day" );
-	} );
-} );
+	});
+});
 
-QUnit.module( "formatRelativeTime function", {
+QUnit.module( ".relativeTimeFormatter( unit [, options] )", {
 	setup: function( ) {
 		Globalize.load( likelySubtags, enDateFields, deDateFields,
 			numberingSystems, enNumbers, deNumbers,
@@ -44,28 +44,28 @@ QUnit.module( "formatRelativeTime function", {
 		de = new Globalize( "de" );
 	},
 	teardown: util.resetCldrContent
-} );
+});
 
 QUnit.test( "should validate unit argument presence", function( assert ) {
 	util.assertParameterPresence( assert, "unit", function( ) {
 		Globalize.formatRelativeTime( 0 );
-	} );
-} );
+	});
+});
 
 QUnit.test( "should validate unit argument is string", function( assert ) {
 	util.assertStringParameter( assert, "unit", function( invalidValue ) {
 		return function( ) {
 			Globalize.relativeTimeFormatter( invalidValue );
 		};
-	} );
-} );
+	});
+});
 
 QUnit.test( "should format long form", function( assert ) {
 	assert.equal( en.relativeTimeFormatter( "week" )( -2 ), "2 weeks ago" );
-} );
+});
 
 QUnit.test( "should format using word if available", function( assert ) {
 	assert.equal( de.relativeTimeFormatter( "day" )( 2 ), "übermorgen" );
-} );
+});
 
-} );
+});

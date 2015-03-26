@@ -26,7 +26,7 @@ Node.js module.
   - [Number module](#number-module)
     - [Currency module](#currency-module)
   - [Plural module](#plural-module)
-  - [Relative time module](#relative-time_module)
+  - [Relative time module](#relative-time-module)
   - more to come...
 - [Error reference](#error-reference)
 - [Development](#development)
@@ -143,7 +143,7 @@ information on its usage.
 | globalize/message.js | +5.4KB | [Message module](#message-module) provides ICU message format support |
 | globalize/number.js | +2.9KB | [Number module](#number-module) provides number formatting and parsing |
 | globalize/plural.js | +1.7KB | [Plural module](#plural-module) provides pluralization support |
-| globalize/relative-time.js | +0.7KB | [Relative time module](#relative-time_module) provides relative time formatting support |
+| globalize/relative-time.js | +0.7KB | [Relative time module](#relative-time-module) provides relative time formatting support |
 
 ### Browser Support
 
@@ -463,7 +463,6 @@ to you in different flavors):
 
   Alias for `.pluralGenerator( [options] )( value )`.
 
-<a name="relative-time_module"></a>
 ### Relative time module
 
 - **`.relativeTimeFormatter( unit [, options] )`**
@@ -472,9 +471,14 @@ to you in different flavors):
  default/instance locale.
 
   ```javascript
-  .relativeTimeFormatter( "day" )( 1 )  ➡  "tomorrow"
-  .relativeTimeFormatter( "month" )( -1 )  ➡  "last month"
-  .relativeTimeFormatter( "month" )( 3 )  ➡  "in 3 months"
+  .relativeTimeFormatter( "day" )( 1 )
+  // > "tomorrow"
+
+  .relativeTimeFormatter( "month" )( -1 )
+  // > "last month"
+
+  .relativeTimeFormatter( "month" )( 3 )
+  // > "in 3 months"
   ```
 
   [Read more...](doc/api/relative-time/relative-time-formatter.md)

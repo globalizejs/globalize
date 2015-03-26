@@ -1,4 +1,4 @@
-## .relativeTimeFormatter( unit[, options ]) ➜ function( value )
+## .relativeTimeFormatter( unit [, options] ) ➜ function( value )
 
 Returns a function that formats a relative time according to the given unit, options, and the
 default/instance locale.
@@ -39,10 +39,17 @@ var formatter;
 Globalize.locale( "en" );
 formatter = Globalize.relativeTimeFormatter( "month" );
 
-formatter( 1 ); // "next month"
-formatter( 3 ); // "in 3 months"
-formatter( -1 ); // "last month"
-formatter( -3 ); // "3 months ago"
+formatter( 1 );
+// > "next month"
+
+formatter( 3 );
+// > "in 3 months"
+
+formatter( -1 );
+// > "last month"
+
+formatter( -3 );
+// > "3 months ago"
 ```
 
 You can use the instance method `.relativeTimeFormatter()`, which uses the instance locale.
@@ -51,7 +58,8 @@ You can use the instance method `.relativeTimeFormatter()`, which uses the insta
 var globalize = new Globalize( "en" ),
 	formatter = globalize.relativeTimeFormatter( "week" );
 
-formatter( 1 ); // "next week"
+formatter( 1 );
+// > "next week"
 ```
 
 

@@ -8,7 +8,7 @@ define(function() {
  * @cldr [Cldr instance].
  *
  * @options [Object]
- * - form: [String] eg. "short" or "narrow". Or falsy for default long form
+ * - form: [String] eg. "short" or "narrow". Or falsy for default long form.
  *
  * Return relative time properties.
  */

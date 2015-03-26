@@ -39,4 +39,5 @@ console.log( like( 1 ) );
 console.log( like( 2 ) );
 console.log( like( 3 ) );
 
+// Use Globalize to format relative time.
 console.log( Globalize.formatRelativeTime( -35, "second" ) );

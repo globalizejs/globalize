@@ -1,26 +1,28 @@
 define([
 	"./core",
 	"./common/validate/cldr",
+	"./common/validate/default-locale",
 	"./common/validate/parameter-presence",
-	"./common/validate/parameter-type/string",
 	"./common/validate/parameter-type/number",
+	"./common/validate/parameter-type/string",
 	"./relative-time/format",
 	"./relative-time/properties",
 
 	"./number",
 	"./plural",
 	"cldr/event"
-], function( Globalize, validateCldr, validateParameterPresence, validateParameterTypeString,
-			 validateParameterTypeNumber, relativeTimeFormat, relativeTimeProperties ) {
+], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
+	validateParameterTypeNumber, validateParameterTypeString, relativeTimeFormat,
+	relativeTimeProperties ) {
 
 /**
- * .formatRelativeTime( value, unit[, options] )
+ * .formatRelativeTime( value, unit [, options] )
  *
  * @value [Number] The number of unit to format.
  *
- * @unit [String] see .relativeTimeFormatter() for details
+ * @unit [String] see .relativeTimeFormatter() for details.
  *
- * @options [Object] see .relativeTimeFormatter() for details
+ * @options [Object] see .relativeTimeFormatter() for details.
  *
  * Formats a relative time according to the given unit, options, and the default/instance locale.
  */
@@ -34,12 +36,12 @@ Globalize.prototype.formatRelativeTime = function( value, unit, options ) {
 };
 
 /**
- * .relativeTimeFormatter( unit[, options ])
+ * .relativeTimeFormatter( unit [, options ])
  *
  * @unit [String] String value indicating the unit to be formatted. eg. "day", "week", "month", etc.
  *
  * @options [Object]
- * - form: [String] eg. "short" or "narrow". Or falsy for default long form
+ * - form: [String] eg. "short" or "narrow". Or falsy for default long form.
  *
  * Returns a function that formats a relative time according to the given unit, options, and the
  * default/instance locale.
@@ -54,6 +56,8 @@ Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 	cldr = this.cldr;
 	options = options || {};
 
+	validateDefaultLocale( cldr );
+
 	cldr.on( "get", validateCldr );
 	properties = relativeTimeProperties( unit, cldr, options );
 	cldr.off( "get", validateCldr );
@@ -62,8 +66,6 @@ Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 	pluralGenerator = this.pluralGenerator();
 
 	return function( value ) {
-		// This validation is repeated in the numberFormatter, but the numberFormatter
-		// isn't always called so we need to do it here as well
 		validateParameterPresence( value, "value" );
 		validateParameterTypeNumber( value, "value" );
 
