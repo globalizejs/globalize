@@ -68,8 +68,8 @@ return function( pattern, cldr ) {
 						dateSkeleton += skeleton[i];
 					}
 				}
-				if ( ( /MMMM/g.test( dateSkeleton ) || /LLLL/g.test( dateSkeleton ) ) 
-					&& /[Ec]/.test( dateSkeleton ) ) {
+				if ( ( /MMMM/g.test( dateSkeleton ) || /LLLL/g.test( dateSkeleton ) ) &&
+						/[Ec]/.test( dateSkeleton ) ) {
 					result = getDateTime( "full", dateSkeleton, timeSkeleton, cldr);
 				} else if ( /MMMM/g.test( dateSkeleton ) ) {
 					result = getDateTime( "long", dateSkeleton, timeSkeleton, cldr);
