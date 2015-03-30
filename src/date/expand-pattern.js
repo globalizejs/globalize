@@ -47,7 +47,7 @@ function getDateTime( type, dateSkeleton, timeSkeleton, cldr ) {
 }
 
 return function( pattern, cldr ) {
-	var result, skeleton, dateSkeleton = "", timeSkeleton = "", i;
+	var result, skeleton, dateSkeleton = "", timeSkeleton = "";
 
 	if ( typeof pattern === "string" ) {
 		pattern = { skeleton: pattern };
