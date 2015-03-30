@@ -25,30 +25,30 @@ define([
  * - { pattern: "dd/mm" } returns "dd/mm";
  */
 
-function getDateTime( type, dateSkeleton, timeSkeleton, cldr ) {
-	var result;
-	result = cldr.main([
-		"dates/calendars/gregorian/dateTimeFormats",
-		type
-	]);
-	if ( result ) {
-		result = formatMessage( result, [
-			cldr.main([
-				"dates/calendars/gregorian/dateTimeFormats/availableFormats",
-				timeSkeleton
-			]),
-			cldr.main([
-				"dates/calendars/gregorian/dateTimeFormats/availableFormats",
-				dateSkeleton
-			])
-		]);
-	}
-	return result;
-}
-
 return function( pattern, cldr ) {
-	var result, skeleton, dateSkeleton = "", timeSkeleton = "";
-
+	var result, getDateTime, skeleton, dateSkeleton = "", timeSkeleton = "";
+	
+	getDateTime = function( type, dateSkeleton, timeSkeleton, cldr ) {
+		var result;
+		result = cldr.main([
+			"dates/calendars/gregorian/dateTimeFormats",
+			type
+		]);
+		if ( result ) {
+			result = formatMessage( result, [
+				cldr.main([
+					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+					timeSkeleton
+				]),
+				cldr.main([
+					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+					dateSkeleton
+				])
+			]);
+		}
+		return result;
+	};
+	
 	if ( typeof pattern === "string" ) {
 		pattern = { skeleton: pattern };
 	}
