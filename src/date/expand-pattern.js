@@ -27,7 +27,7 @@ define([
 
 return function( pattern, cldr ) {
 	var result, getDateTime, skeleton, dateSkeleton = "", timeSkeleton = "";
-	
+
 	getDateTime = function( type, dateSkeleton, timeSkeleton, cldr ) {
 		var result;
 		result = cldr.main([
@@ -48,7 +48,7 @@ return function( pattern, cldr ) {
 		}
 		return result;
 	};
-	
+
 	if ( typeof pattern === "string" ) {
 		pattern = { skeleton: pattern };
 	}
