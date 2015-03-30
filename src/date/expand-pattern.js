@@ -60,23 +60,17 @@ return function( pattern, cldr ) {
 				"dates/calendars/gregorian/dateTimeFormats/availableFormats",
 				skeleton
 			]);
-			if ( result === undefined ) {
-				for ( i = 0 ; i < skeleton.length ; i++ ) {
-					if ( /[hHms]/.test( skeleton[i] ) ) {
-						timeSkeleton += skeleton[i];
-					} else if ( /[GyQMEd]/.test( skeleton[i] ) ) {
-						dateSkeleton += skeleton[i];
-					}
-				}
-				if ( ( /MMMM/g.test( dateSkeleton ) || /LLLL/g.test( dateSkeleton ) ) &&
-						/[Ec]/.test( dateSkeleton ) ) {
-					result = getDateTime( "full", dateSkeleton, timeSkeleton, cldr);
+			if ( !result ) {
+				timeSkeleton = skeleton.split( /[^hHKkmsSAzZOvVXx]/ ).slice( -1 )[ 0 ];
+				dateSkeleton = skeleton.split( /[^GyYuUrQqMLlwWdDFgEec]/ )[ 0 ];
+				if (  /(MMMM|LLLL).*[Ec]/.test( dateSkeleton ) ) {
+					result = getDateTime( "full", dateSkeleton, timeSkeleton, cldr );
 				} else if ( /MMMM/g.test( dateSkeleton ) ) {
-					result = getDateTime( "long", dateSkeleton, timeSkeleton, cldr);
+					result = getDateTime( "long", dateSkeleton, timeSkeleton, cldr );
 				} else if ( /MMM/g.test( dateSkeleton ) || /LLL/g.test( dateSkeleton ) ) {
-					result = getDateTime( "medium", dateSkeleton, timeSkeleton, cldr);
+					result = getDateTime( "medium", dateSkeleton, timeSkeleton, cldr );
 				} else {
-					result = getDateTime( "short", dateSkeleton, timeSkeleton, cldr);
+					result = getDateTime( "short", dateSkeleton, timeSkeleton, cldr );
 				}
 			}
 			break;

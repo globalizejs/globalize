@@ -28,9 +28,9 @@ function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
 		skip: [
 			/dates\/calendars\/gregorian\/days\/.*\/short/,
+			/dates\/calendars\/gregorian\/dateTimeFormats\/availableFormats/,
 			/supplemental\/timeData\/(?!001)/,
-			/supplemental\/weekData\/(?!001)/,
-			/dates\/calendars\/gregorian\/dateTimeFormats\/availableFormats/
+			/supplemental\/weekData\/(?!001)/
 		]
 	});
 }
