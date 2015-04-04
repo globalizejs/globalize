@@ -27,8 +27,8 @@ define([
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
 		skip: [
-			/dates\/calendars\/gregorian\/days\/.*\/short/,
 			/dates\/calendars\/gregorian\/dateTimeFormats\/availableFormats/,
+			/dates\/calendars\/gregorian\/days\/.*\/short/,
 			/supplemental\/timeData\/(?!001)/,
 			/supplemental\/weekData\/(?!001)/
 		]
