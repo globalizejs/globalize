@@ -26,9 +26,9 @@ define([
  */
 
 return function( pattern, cldr ) {
-	var result, getDateTime, skeleton, dateSkeleton = "", timeSkeleton = "";
+	var result, getDateTime, skeleton, dateSkeleton = "", timeSkeleton = "", type;
 
-	getDateTime = function( type, dateSkeleton, timeSkeleton, cldr ) {
+	getDateTime = function( type, dateSkeleton, timeSkeleton, datePath, timePath, cldr ) {
 		var result;
 		result = cldr.main([
 			"dates/calendars/gregorian/dateTimeFormats",
@@ -37,11 +37,11 @@ return function( pattern, cldr ) {
 		if ( result ) {
 			result = formatMessage( result, [
 				cldr.main([
-					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+					timePath,
 					timeSkeleton
 				]),
 				cldr.main([
-					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+					datePath,
 					dateSkeleton
 				])
 			]);
@@ -64,14 +64,17 @@ return function( pattern, cldr ) {
 				timeSkeleton = skeleton.split( /[^hHKkmsSAzZOvVXx]/ ).slice( -1 )[ 0 ];
 				dateSkeleton = skeleton.split( /[^GyYuUrQqMLlwWdDFgEec]/ )[ 0 ];
 				if (  /(MMMM|LLLL).*[Ec]/.test( dateSkeleton ) ) {
-					result = getDateTime( "full", dateSkeleton, timeSkeleton, cldr );
+					type = "full";
 				} else if ( /MMMM/g.test( dateSkeleton ) ) {
-					result = getDateTime( "long", dateSkeleton, timeSkeleton, cldr );
+					type = "long";
 				} else if ( /MMM/g.test( dateSkeleton ) || /LLL/g.test( dateSkeleton ) ) {
-					result = getDateTime( "medium", dateSkeleton, timeSkeleton, cldr );
+					type = "medium";
 				} else {
-					result = getDateTime( "short", dateSkeleton, timeSkeleton, cldr );
+					type = "short";
 				}
+				result = getDateTime( type, dateSkeleton, timeSkeleton,
+						"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+						"dates/calendars/gregorian/dateTimeFormats/availableFormats", cldr );
 			}
 			break;
 
@@ -85,22 +88,9 @@ return function( pattern, cldr ) {
 			break;
 
 		case "datetime" in pattern:
-			result = cldr.main([
-				"dates/calendars/gregorian/dateTimeFormats",
-				pattern.datetime
-			]);
-			if ( result ) {
-				result = formatMessage( result, [
-					cldr.main([
-						"dates/calendars/gregorian/timeFormats",
-						pattern.datetime
-					]),
-					cldr.main([
-						"dates/calendars/gregorian/dateFormats",
-						pattern.datetime
-					])
-				]);
-			}
+			result = getDateTime( pattern.datetime, pattern.datetime, pattern.datetime,
+					"dates/calendars/gregorian/dateFormats",
+					"dates/calendars/gregorian/timeFormats", cldr );
 			break;
 
 		case "pattern" in pattern:
