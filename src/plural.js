@@ -66,11 +66,15 @@ Globalize.prototype.pluralGenerator = function( options ) {
 	MakePlural.rules = {};
 	MakePlural.rules[ type ] = cldr.supplemental( "plurals-type-" + type );
 
-	plural = MakePlural( cldr.attributes.language, {
-		"no_tests": true,
+	// FIXME
+	if ( isOrdinal ) {
+		delete MakePlural.rules.cardinal;
+	}
+
+	plural = new MakePlural( cldr.attributes.language, {
 		"ordinals": isOrdinal,
-		"no_cardinals": isOrdinal
-	} );
+		"cardinals": !isOrdinal
+	});
 
 	return function( value ) {
 		validateParameterPresence( value, "value" );

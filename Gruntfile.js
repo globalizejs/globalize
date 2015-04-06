@@ -134,6 +134,19 @@ module.exports = function( grunt ) {
 					if ( (/make-plural/).test( id ) ) {
 						return contents
 
+							// Remove browserify wrappers.
+							.replace( /^\(function\(f\){if\(typeof exports==="object"&&type.*/, "" )
+							.replace( /},{}\]},{},\[1\]\)\(1\)[\s\S]*?$/, "" )
+
+							// Remove self-tests.
+							.replace( /var Tests =[\s\S]*?\n}\)\(\);/, "")
+							.replace( "this.tests = new Tests(this);", "" )
+							.replace( /this.fn.test =[\s\S]*?bind\(this\);/, "" )
+							.replace( "this.tests.add(type, cat, examples);", "" )
+
+							// Remove load method.
+							.replace( /load: {[\s\S]*?\n        }/, "" )
+
 							// Replace its wrapper into var assignment.
 							.replace( /\(function \(global\) {/, [
 								"var MakePlural;",
@@ -145,41 +158,66 @@ module.exports = function( grunt ) {
 								"}());",
 								"/* jshint ignore:end */"
 							].join( "\n" ) )
-
-							// Remove if (!MakePlural.rules...) {...}
-							.replace( /if \(!MakePlural.rules \|\|[\s\S]*?}/, "" )
-
-							// Remove function xhr_require(src, url) {...}
-							.replace( /function xhr_require\(src, [\s\S]*?}/, "" )
-
-							// Remove function test(...) {...}
-							.replace( /function test\(lc, fn, [\s\S]*?return ok;\n}/, "" )
-
-							// Remove MakePlural.load = function(.*) {...return MakePlural;.*};
-							.replace( /MakePlural.load = function\([\s\S]*?return MakePlural;\n};/, "" );
+							// Wrap everything into a var assignment.
+							.replace( "module.exports = MakePlural;", "" )
+							.replace( /^/, [
+								"var MakePlural;",
+								"/* jshint ignore:start */",
+								"MakePlural = (function() {"
+							].join( "\n" ) )
+							.replace( /$/, [
+								"return MakePlural;",
+								"}());",
+								"/* jshint ignore:end */"
+							].join( "\n" ) );
 
 					// messageformat
 					} else if ( (/messageformat/).test( id ) ) {
 						return contents
 
-							// Replace its wrapper into var assignment.
-							.replace( /\(function \( root \) {/, [
+							// Remove browserify wrappers.
+							.replace( /^\(function\(f\){if\(typeof exports==="object"&&type.*/, "" )
+							.replace( "},{}],2:[function(require,module,exports){", "" )
+							.replace( /},{"\.\/messageformat-parser":1,"make-plural\/plural.*/, "" )
+							.replace( /},{}\]},{},\[2\]\)\(2\)[\s\S]*?$/, "" )
+
+							// Set `MessageFormat.plurals` and remove `make-plural/plurals`
+							// completely. This is populated by Globalize on demand.
+							.replace( /var _cp = \[[\s\S]*?$/, "" )
+							.replace(
+								"MessageFormat.plurals = require('make-plural/plurals')",
+								"MessageFormat.plurals = {}"
+							)
+
+							// Set `MessageFormat._parse`
+							.replace(
+								"MessageFormat._parse = require('./messageformat-parser').parse;",
+								""
+							)
+							.replace( /module\.exports = \(function\(\) {([\s\S]*?)\n}\)\(\);/, [
+								"MessageFormat._parse = (function() {",
+								"$1",
+								"})().parse;"
+							].join( "\n" ) )
+
+							// Remove unused code.
+							.replace( /if \(!pluralFunc\) {\n[\s\S]*?\n  }/, "" )
+							.replace( /if \(!locale\) {\n[\s\S]*?  }\n/, "this.lc = [locale];" )
+							.replace( /(MessageFormat\.formatters) = {[\s\S]*?\n};/, "$1 = {};" )
+							.replace( /MessageFormat\.prototype\.setIntlSupport[\s\S]*?\n};/, "" )
+
+							// Wrap everything into a var assignment.
+							.replace( "module.exports = MessageFormat;", "" )
+							.replace( /^/, [
 								"var MessageFormat;",
 								"/* jshint ignore:start */",
 								"MessageFormat = (function() {"
 							].join( "\n" ) )
-							.replace( /if \(typeof exports !== 'undefined'[\s\S]*/, [
+							.replace( /$/, [
 								"return MessageFormat;",
 								"}());",
 								"/* jshint ignore:end */"
-							].join( "\n" ) )
-
-							// Remove MessageFormat.getPluralFunc = function(...) {...}
-							.replace( /MessageFormat.getPluralFunc = function[\s\S]*?return null;\n  }/, "" )
-
-							// ... and code that uses it.
-							.replace( /if \(!pluralFunc\) {\n[\s\S]*?}/, "" );
-
+							].join( "\n" ) );
 					}
 
 					// 1, and 2: Remove define() wrap.
