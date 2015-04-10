@@ -28,7 +28,7 @@ Cldr.load(
 en = new Cldr( "en" );
 zh = new Cldr( "zh" );
 
-QUnit.module( "Currency Name Foramt" );
+QUnit.module( "Currency Name Format" );
 
 QUnit.test( "should return appropriate properties", function( assert ) {
 	assert.deepEqual( format( "1", "one", properties( "USD", en ) ), "1 US dollar" );
