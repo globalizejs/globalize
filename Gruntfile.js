@@ -75,7 +75,8 @@ module.exports = function( grunt ) {
 				}
 			},
 			test: {
-				src: [ "test/*.js", "test/functional/**/*.js", "test/unit/**/*.js" ],
+				src: [ "test/*.js", "test/functional/**/*.js", "test/unit/**/*.js",
+					"!test/config.js" ],
 				options: {
 					jshintrc: "test/.jshintrc"
 				}
