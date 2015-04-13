@@ -26,28 +26,17 @@ define([
  */
 
 return function( pattern, cldr ) {
-	var result, getDateTime, skeleton, dateSkeleton = "", timeSkeleton = "", type;
+	var dateSkeleton, result, skeleton, timeSkeleton, type;
 
-	getDateTime = function( type, dateSkeleton, timeSkeleton, datePath, timePath, cldr ) {
-		var result;
-		result = cldr.main([
-			"dates/calendars/gregorian/dateTimeFormats",
-			type
-		]);
-		if ( result ) {
-			result = formatMessage( result, [
-				cldr.main([
-					timePath,
-					timeSkeleton
-				]),
-				cldr.main([
-					datePath,
-					dateSkeleton
-				])
-			]);
-		}
-		return result;
-	};
+	function combineDateTime( type, datePattern, timePattern ) {
+		return formatMessage(
+			cldr.main([
+				"dates/calendars/gregorian/dateTimeFormats",
+				type
+			]),
+			[ timePattern, datePattern ]
+		);
+	}
 
 	if ( typeof pattern === "string" ) {
 		pattern = { skeleton: pattern };
@@ -63,7 +52,7 @@ return function( pattern, cldr ) {
 			if ( !result ) {
 				timeSkeleton = skeleton.split( /[^hHKkmsSAzZOvVXx]/ ).slice( -1 )[ 0 ];
 				dateSkeleton = skeleton.split( /[^GyYuUrQqMLlwWdDFgEec]/ )[ 0 ];
-				if (  /(MMMM|LLLL).*[Ec]/.test( dateSkeleton ) ) {
+				if ( /(MMMM|LLLL).*[Ec]/.test( dateSkeleton ) ) {
 					type = "full";
 				} else if ( /MMMM/g.test( dateSkeleton ) ) {
 					type = "long";
@@ -72,9 +61,16 @@ return function( pattern, cldr ) {
 				} else {
 					type = "short";
 				}
-				result = getDateTime( type, dateSkeleton, timeSkeleton,
+				result = combineDateTime( type,
+					cldr.main([
 						"dates/calendars/gregorian/dateTimeFormats/availableFormats",
-						"dates/calendars/gregorian/dateTimeFormats/availableFormats", cldr );
+						dateSkeleton
+					]),
+					cldr.main([
+                        "dates/calendars/gregorian/dateTimeFormats/availableFormats",
+						timeSkeleton
+					])
+				);
 			}
 			break;
 
@@ -88,9 +84,10 @@ return function( pattern, cldr ) {
 			break;
 
 		case "datetime" in pattern:
-			result = getDateTime( pattern.datetime, pattern.datetime, pattern.datetime,
-					"dates/calendars/gregorian/dateFormats",
-					"dates/calendars/gregorian/timeFormats", cldr );
+			result = combineDateTime( pattern.datetime,
+				cldr.main([ "dates/calendars/gregorian/dateFormats", pattern.datetime ]),
+				cldr.main([ "dates/calendars/gregorian/timeFormats", pattern.datetime ])
+			);
 			break;
 
 		case "pattern" in pattern:
