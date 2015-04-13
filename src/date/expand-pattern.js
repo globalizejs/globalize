@@ -67,7 +67,7 @@ return function( pattern, cldr ) {
 						dateSkeleton
 					]),
 					cldr.main([
-                        "dates/calendars/gregorian/dateTimeFormats/availableFormats",
+						"dates/calendars/gregorian/dateTimeFormats/availableFormats",
 						timeSkeleton
 					])
 				);
