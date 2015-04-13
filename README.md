@@ -11,6 +11,7 @@ Node.js module.
 - [About Globalize](#about-globalize)
   - [Why globalization?](#why-globalization)
   - [Why Globalize?](#why-globalize)
+  - [Migrating from Globalize 0.x](#migrating-from-globalize-0x)
   - [Where to use it?](#where-to-use-it)
   - [Where does the data come from?](#where-does-the-data-come-from)
   - [Only load and use what you need](#pick-the-modules-you-need)
