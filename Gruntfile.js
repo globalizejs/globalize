@@ -29,9 +29,9 @@ module.exports = function( grunt ) {
 	grunt.initConfig({
 		pkg: pkg,
 		commitplease: {
-			currentBranch: {
+			last50: {
 				options: {
-					committish: "cf52d58..HEAD"
+					committish: "HEAD~50..HEAD"
 				}
 			}
 		},
