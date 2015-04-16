@@ -168,6 +168,17 @@ Use skeletons for more flexibility (see its description [above](#parameters)).
 | `"yQQQ"` | `"Q4 2010"` |
 | `"yQQQQ"` | `"4th quarter 2010"` |
 
+Use a date fields part and a time fields part(in Canonical Order) to form skeleton for a custom Date Time format.
+
+| `skeleton` | `Globalize( "en" ).dateFormatter( skeleton )( new Date( 2010, 10, 1, 17, 55 ) )` |
+| --- | --- |
+| `"GyMMMEdhms"` | `"Mon, Nov 1, 2010 AD, 5:55:00 PM"` |
+| `"Ehms"` | `"Mon 5:55:00 PM"` |
+| `"yQQQHm"` | `"Q4 2010, 17:55"` |
+| `"MMMEdhm"` | `"Mon, Nov 1, 5:55 PM"` |
+| `"yMMMdhm"` | `"Nov 1, 2010, 5:55 PM"` |
+
+
 ```javascript
 var globalize = Globalize( "en" ),
   date = new Date( 2010, 10, 30, 17, 55 ),
