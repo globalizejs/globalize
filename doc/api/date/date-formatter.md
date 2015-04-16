@@ -162,6 +162,12 @@ Use skeletons for more flexibility (see its description [above](#parameters)).
 | `{ skeleton: "yMd" }` | `"11/30/2010"` |
 | `{ skeleton: "yQQQ" }` | `"Q4 2010"` |
 | `{ skeleton: "yQQQQ" }` | `"4th quarter 2010"` |
+| `{ skeleton: "GyMMMEdhms" }` | `"Tue, Nov 30, 2010 AD, 5:55:00 PM"` |
+| `{ skeleton: "Ehms" }` | `"Tue 5:55:00 PM"` |
+| `{ skeleton: "yQQQHm" }` | `"Q4 2010, 17:55"` |
+| `{ skeleton: "MMMEdhm" }` | `"Tue, Nov 30, 5:55 PM"` |
+| `{ skeleton: "yMMMdhm" }` | `"Nov 30, 2010, 5:55 PM"` |
+
 
 ```javascript
 var globalize = Globalize( "en" ),
