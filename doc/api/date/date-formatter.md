@@ -168,7 +168,7 @@ Use skeletons for more flexibility (see its description [above](#parameters)).
 | `"yQQQ"` | `"Q4 2010"` |
 | `"yQQQQ"` | `"4th quarter 2010"` |
 
-Use a date fields part and a time fields part(in Canonical Order) to form skeleton for a custom Date Time format.
+Use a date fields part and a time fields part (in Canonical Order) to form skeleton for a custom Date Time format.
 
 | `skeleton` | `Globalize( "en" ).dateFormatter( skeleton )( new Date( 2010, 10, 1, 17, 55 ) )` |
 | --- | --- |
