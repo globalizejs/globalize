@@ -97,7 +97,12 @@ module.exports = function( grunt ) {
 		qunit: {
 			functional: {
 				options: {
-					urls: [ "http://localhost:<%= connect.options.port %>/functional.html" ]
+					urls: [
+
+						// Use es5-shim here due to .bind(), which is not present on phantomjs v1.9.
+						// But, it should be on v2.x.
+						"http://localhost:<%= connect.options.port %>/functional-es5-shim.html"
+					]
 				}
 			},
 			unit: {

@@ -66,11 +66,6 @@ Globalize.prototype.pluralGenerator = function( options ) {
 	MakePlural.rules = {};
 	MakePlural.rules[ type ] = cldr.supplemental( "plurals-type-" + type );
 
-	// FIXME
-	if ( isOrdinal ) {
-		delete MakePlural.rules.cardinal;
-	}
-
 	plural = new MakePlural( cldr.attributes.language, {
 		"ordinals": isOrdinal,
 		"cardinals": !isOrdinal
