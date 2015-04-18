@@ -130,7 +130,7 @@ are: `full`, `long`, `medium`, and `short`.
 | `{ datetime: "long" }` | `"November 1, 2010 at 5:55:00 PM GMT-2"` |
 | `{ datetime: "full" }` | `"Monday, November 1, 2010 at 5:55:00 PM GMT-02:00"` |
 
-Use skeletons for more flexibility (see its description [above](#parameters)).
+Use skeletons( a date fields part and/or a time fields part (in Canonical Order) ) for more flexibility (see its description [above](#parameters)).
 
 | `skeleton` | `Globalize( "en" ).dateFormatter( skeleton )( new Date( 2010, 10, 1, 17, 55 ) )` |
 | --- | --- |
@@ -167,11 +167,6 @@ Use skeletons for more flexibility (see its description [above](#parameters)).
 | `"yMd"` | `"11/30/2010"` |
 | `"yQQQ"` | `"Q4 2010"` |
 | `"yQQQQ"` | `"4th quarter 2010"` |
-
-Use a date fields part and a time fields part (in Canonical Order) to form skeleton for a custom Date Time format.
-
-| `skeleton` | `Globalize( "en" ).dateFormatter( skeleton )( new Date( 2010, 10, 1, 17, 55 ) )` |
-| --- | --- |
 | `"GyMMMEdhms"` | `"Mon, Nov 1, 2010 AD, 5:55:00 PM"` |
 | `"Ehms"` | `"Mon 5:55:00 PM"` |
 | `"yQQQHm"` | `"Q4 2010, 17:55"` |
