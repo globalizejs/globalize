@@ -35,9 +35,8 @@ define([
  *
  * Return an empty Array when not successfully parsed.
  */
-return function( value, properties ) {
+return function( value, numberParser, properties ) {
 	var valid,
-		parseNumber = properties.parseNumber,
 		timeSeparator = properties.timeSeparator,
 		tokens = [],
 		widths = [ "abbreviated", "wide", "narrow" ];
@@ -46,9 +45,9 @@ return function( value, properties ) {
 		var chr, length, numeric, tokenRe,
 			token = {};
 
-		function hourFormatParse( tokenRe, parseNumber ) {
+		function hourFormatParse( tokenRe, numberParser ) {
 			var aux = value.match( tokenRe );
-			parseNumber = parseNumber || function( value ) {
+			numberParser = numberParser || function( value ) {
 				return +value;
 			};
 
@@ -59,13 +58,13 @@ return function( value, properties ) {
 			// hourFormat containing H only, e.g., `+H;-H`
 			if ( aux.length < 8 ) {
 				token.value =
-					( aux[ 1 ] ? -parseNumber( aux[ 1 ] ) : parseNumber( aux[ 4 ] ) ) * 60;
+					( aux[ 1 ] ? -numberParser( aux[ 1 ] ) : numberParser( aux[ 4 ] ) ) * 60;
 
 			// hourFormat containing H and m, e.g., `+HHmm;-HHmm`
 			} else {
 				token.value =
-					( aux[ 1 ] ? -parseNumber( aux[ 1 ] ) : parseNumber( aux[ 7 ] ) ) * 60 +
-					( aux[ 1 ] ? -parseNumber( aux[ 4 ] ) : parseNumber( aux[ 10 ] ) );
+					( aux[ 1 ] ? -numberParser( aux[ 1 ] ) : numberParser( aux[ 7 ] ) ) * 60 +
+					( aux[ 1 ] ? -numberParser( aux[ 4 ] ) : numberParser( aux[ 10 ] ) );
 			}
 
 			return true;
@@ -327,7 +326,7 @@ return function( value, properties ) {
 						properties[ "timeZoneNames/gmtFormat" ],
 						timeSeparator
 					);
-					if ( !hourFormatParse( tokenRe, parseNumber ) ) {
+					if ( !hourFormatParse( tokenRe, numberParser ) ) {
 						return null;
 					}
 				}
@@ -376,7 +375,7 @@ return function( value, properties ) {
 		value = value.replace( new RegExp( "^" + tokenRe.source ), function( lexeme ) {
 			token.lexeme = lexeme;
 			if ( numeric ) {
-				token.value = parseNumber( lexeme );
+				token.value = numberParser( lexeme );
 			}
 			return "";
 		});

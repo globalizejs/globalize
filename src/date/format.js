@@ -21,9 +21,8 @@ define([
  *
  * Disclosure: this function borrows excerpts of dojo/date/locale.
  */
-return function( date, properties ) {
-	var formatNumber = properties.formatNumber,
-		timeSeparator = properties.timeSeparator;
+return function( date, numberFormatters, properties ) {
+	var timeSeparator = properties.timeSeparator;
 
 	return properties.pattern.replace( datePatternRe, function( current ) {
 		var ret,
@@ -210,7 +209,7 @@ return function( date, properties ) {
 						date,
 						length < 4 ? "+H;-H" : properties.tzLongHourFormat,
 						timeSeparator,
-						formatNumber
+						numberFormatters
 					);
 					ret = properties.gmtFormat.replace( /\{0\}/, ret );
 				}
@@ -252,7 +251,7 @@ return function( date, properties ) {
 				ret = current;
 		}
 		if ( typeof ret === "number" ) {
-			ret = formatNumber[ length ]( ret );
+			ret = numberFormatters[ length ]( ret );
 		}
 		return ret;
 	});

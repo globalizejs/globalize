@@ -51,7 +51,7 @@ function validateRequiredCldr( path, value ) {
  */
 Globalize.dateFormatter =
 Globalize.prototype.dateFormatter = function( pattern ) {
-	var cldr, formatNumber, pad, properties;
+	var cldr, numberFormatters, pad, properties;
 
 	validateParameterPresence( pattern, "pattern" );
 	validateParameterTypeDatePattern( pattern, "pattern" );
@@ -66,18 +66,18 @@ Globalize.prototype.dateFormatter = function( pattern ) {
 	cldr.off( "get", validateRequiredCldr );
 
 	// Create needed number formatters.
-	formatNumber = properties.formatNumber;
-	for ( pad in formatNumber ) {
-		formatNumber[ pad ] = this.numberFormatter({
-			pattern: formatNumber[ pad ]
+	numberFormatters = properties.numberFormatters;
+	delete properties.numberFormatters;
+	for ( pad in numberFormatters ) {
+		numberFormatters[ pad ] = this.numberFormatter({
+			pattern: numberFormatters[ pad ]
 		});
 	}
-	properties.formatNumber = formatNumber;
 
 	return function( value ) {
 		validateParameterPresence( value, "value" );
 		validateParameterTypeDate( value, "value" );
-		return dateFormat( value, properties );
+		return dateFormat( value, numberFormatters, properties );
 	};
 };
 
@@ -91,7 +91,7 @@ Globalize.prototype.dateFormatter = function( pattern ) {
  */
 Globalize.dateParser =
 Globalize.prototype.dateParser = function( pattern ) {
-	var cldr, parseProperties, tokenizerProperties;
+	var cldr, numberParser, parseProperties, tokenizerProperties;
 
 	validateParameterPresence( pattern, "pattern" );
 	validateParameterTypeDatePattern( pattern, "pattern" );
@@ -106,7 +106,7 @@ Globalize.prototype.dateParser = function( pattern ) {
 	parseProperties = dateParseProperties( cldr );
 	cldr.off( "get", validateRequiredCldr );
 
-	tokenizerProperties.parseNumber = this.numberParser({ pattern: "0" });
+	numberParser = this.numberParser({ pattern: "0" });
 
 	return function( value ) {
 		var tokens;
@@ -114,7 +114,7 @@ Globalize.prototype.dateParser = function( pattern ) {
 		validateParameterPresence( value, "value" );
 		validateParameterTypeString( value, "value" );
 
-		tokens = dateTokenizer( value, tokenizerProperties );
+		tokens = dateTokenizer( value, numberParser, tokenizerProperties );
 		return dateParse( value, tokens, parseProperties ) || null;
 	};
 };

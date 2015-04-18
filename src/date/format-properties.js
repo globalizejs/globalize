@@ -26,11 +26,11 @@ return function( pattern, cldr ) {
 		},
 		widths = [ "abbreviated", "wide", "narrow" ];
 
-	function setFormatNumberPattern( pad ) {
-		if ( !properties.formatNumber ) {
-			properties.formatNumber = {};
+	function setNumberFormatterPattern( pad ) {
+		if ( !properties.numberFormatters ) {
+			properties.numberFormatters = {};
 		}
-		properties.formatNumber[ pad ] = stringPad( "", pad );
+		properties.numberFormatters[ pad ] = stringPad( "", pad );
 	}
 
 	pattern.replace( datePatternRe, function( current ) {
@@ -217,8 +217,8 @@ return function( pattern, cldr ) {
 			case "Z":
 			case "X":
 			case "x":
-				setFormatNumberPattern( 1 );
-				setFormatNumberPattern( 2 );
+				setNumberFormatterPattern( 1 );
+				setNumberFormatterPattern( 2 );
 				break;
 
 			case "v":
@@ -229,7 +229,7 @@ return function( pattern, cldr ) {
 		}
 
 		if ( formatNumber ) {
-			setFormatNumberPattern( length );
+			setNumberFormatterPattern( length );
 		}
 	});
 
