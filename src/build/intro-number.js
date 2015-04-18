@@ -39,6 +39,7 @@
 var createError = Globalize._createError,
 	objectExtend = Globalize._objectExtend,
 	regexpEscape = Globalize._regexpEscape,
+	runtimeBind = Globalize._runtimeBind,
 	stringPad = Globalize._stringPad,
 	validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,

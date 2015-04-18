@@ -133,7 +133,8 @@ module.exports = function( grunt ) {
 				//    Only for root id's (the ones in src, not in src's subpaths). Note there's no
 				//    conditional code checking for this type.
 				onBuildWrite: function( id, path, contents ) {
-					var name = camelCase( id.replace( /util\/|common\//, "" ) );
+					var messageformat,
+						name = camelCase( id.replace( /util\/|common\//, "" ) );
 
 					// MakePlural
 					if ( ( /make-plural/ ).test( id ) ) {
@@ -207,7 +208,7 @@ module.exports = function( grunt ) {
 							.replace( /module\.exports = \(function\(\) {([\s\S]*?)\n}\)\(\);/, [
 								"MessageFormat._parse = (function() {",
 								"$1",
-								"})().parse;"
+								"}()).parse;"
 							].join( "\n" ) )
 
 							// Remove unused code.
@@ -228,6 +229,20 @@ module.exports = function( grunt ) {
 								"}());",
 								"/* jshint ignore:end */"
 							].join( "\n" ) );
+
+					// message-runtime
+					} else if ( ( /message-runtime/ ).test( id ) ) {
+						messageformat = require( "./external/messageformat/messageformat" );
+						delete messageformat.prototype.runtime.fmt;
+						delete messageformat.prototype.runtime.pluralFuncs;
+						contents = contents.replace( "Globalize._messageFormat = {};", [
+							"/* jshint ignore:start */",
+							"Globalize._messageFormat = (function() {",
+							messageformat.prototype.runtime.toString(),
+							"return {number: number, plural: plural, select: select};",
+							"}());",
+							"/* jshint ignore:end */"
+						].join( "\n" ) );
 					}
 
 					// 1, and 2: Remove define() wrap.
@@ -361,6 +376,103 @@ module.exports = function( grunt ) {
 									endFile: "src/build/outro.js"
 								}
 							}
+						},
+						{
+							name: "globalize-runtime",
+							include: [ "core-runtime" ],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-core-runtime.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
+							name: "globalize.currency-runtime",
+							include: [ "currency-runtime" ],
+							exclude: [
+								"./core-runtime",
+								"./number-runtime"
+							],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-currency-runtime.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
+							name: "globalize.date-runtime",
+							include: [ "date-runtime" ],
+							exclude: [
+								"./core-runtime",
+								"./number-runtime"
+							],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-date-runtime.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
+							name: "globalize.message-runtime",
+							include: [ "message-runtime" ],
+							exclude: [ "./core-runtime" ],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-message-runtime.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
+							name: "globalize.number-runtime",
+							include: [ "number-runtime" ],
+							exclude: [
+								"./core-runtime"
+							],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-number-runtime.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
+							name: "globalize.plural-runtime",
+							include: [ "plural-runtime" ],
+							exclude: [
+								"./core-runtime"
+							],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-plural-runtime.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
+							name: "globalize.relative-time-runtime",
+							include: [ "relative-time-runtime" ],
+							exclude: [
+								"./core-runtime",
+								"./number-runtime",
+								"./plural-runtime"
+							],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-relative-time-runtime.js",
+									endFile: "src/build/outro.js"
+								}
+							}
 						}
 					]
 				}
@@ -381,19 +493,28 @@ module.exports = function( grunt ) {
 					return replaceConsts( content );
 				}
 			},
-			core: {
+			coreAndRuntime: {
 				expand: true,
 				cwd: "dist/.build/",
-				src: [ "globalize.js" ],
+				src: [ "globalize.js", "globalize-runtime.js" ],
 				dest: "dist/"
 			},
 			modules: {
 				expand: true,
 				cwd: "dist/.build/",
-				src: [ "globalize*.js", "!globalize.js" ],
+				src: [ "globalize*.js", "!globalize.js", "!*runtime*.js" ],
 				dest: "dist/globalize",
 				rename: function( dest, src ) {
 					return require( "path" ).join( dest, src.replace( /globalize\./, "" ) );
+				}
+			},
+			runtimeModules: {
+				expand: true,
+				cwd: "dist/.build/",
+				src: [ "globalize.*runtime.js" ],
+				dest: "dist/globalize-runtime",
+				rename: function( dest, src ) {
+					return require( "path" ).join( dest, src.replace( /(globalize\.|-runtime)/g, "" ) );
 				}
 			},
 			allInOneNode: {
@@ -413,7 +534,19 @@ module.exports = function( grunt ) {
 					"tmp/globalize/number.min.js": [ "dist/globalize/number.js" ],
 					"tmp/globalize/plural.min.js": [ "dist/globalize/plural.js" ],
 					"tmp/globalize/message.min.js": [ "dist/globalize/message.js" ],
-					"tmp/globalize/relative-time.min.js": [ "dist/globalize/relative-time.js" ]
+					"tmp/globalize/relative-time.min.js": [ "dist/globalize/relative-time.js" ],
+
+					"tmp/globalize-runtime.min.js": [ "dist/globalize-runtime.js" ],
+					"tmp/globalize-runtime/currency.min.js": [
+						"dist/globalize-runtime/currency.js"
+					],
+					"tmp/globalize-runtime/date.min.js": [ "dist/globalize-runtime/date.js" ],
+					"tmp/globalize-runtime/message.min.js": [ "dist/globalize-runtime/message.js" ],
+					"tmp/globalize-runtime/number.min.js": [ "dist/globalize-runtime/number.js" ],
+					"tmp/globalize-runtime/plural.min.js": [ "dist/globalize-runtime/plural.js" ],
+					"tmp/globalize-runtime/relative-time.min.js": [
+						"dist/globalize-runtime/relative-time.js"
+					]
 				}
 			}
 		},
@@ -422,7 +555,9 @@ module.exports = function( grunt ) {
 		"compare_size": {
 			files: [
 				"tmp/globalize.min.js",
-				"tmp/globalize/*min.js"
+				"tmp/globalize/*min.js",
+				"tmp/globalize-runtime.min.js",
+				"tmp/globalize-runtime/*min.js"
 			],
 			options: {
 				compress: {

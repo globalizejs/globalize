@@ -43,7 +43,9 @@ QUnit.module( ".parseNumber( value [, options] )", {
 		zh = new Globalize( "zh-u-nu-native" );
 		Globalize.locale( "en" );
 	},
-	teardown: util.resetCldrContent
+	teardown: function() {
+		util.resetCldrContent();
+	}
 });
 
 QUnit.test( "should validate parameters", function( assert ) {

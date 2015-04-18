@@ -1,37 +1,28 @@
 define([
 	"cldr",
 	"messageformat",
-	"./core",
 	"./common/create-error",
+	"./common/create-error/plural-module-presence",
+	"./common/runtime-bind",
 	"./common/validate/default-locale",
 	"./common/validate/message-bundle",
 	"./common/validate/message-presence",
 	"./common/validate/message-type",
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type",
-	"./common/validate/parameter-type/message-variables",
 	"./common/validate/parameter-type/plain-object",
-	"./common/validate/plural-module-presence",
+	"./core",
+	"./message/formatter/fn",
+	"./message/formatter-runtime-bind",
 	"./util/always-array",
 
 	"cldr/event"
-], function( Cldr, MessageFormat, Globalize, createError, validateDefaultLocale,
-	validateMessageBundle, validateMessagePresence, validateMessageType, validateParameterPresence,
-	validateParameterType, validateParameterTypeMessageVariables, validateParameterTypePlainObject,
-	validatePluralModulePresence, alwaysArray ) {
+], function( Cldr, MessageFormat, createError, createErrorPluralModulePresence, runtimeBind,
+	validateDefaultLocale, validateMessageBundle, validateMessagePresence, validateMessageType,
+	validateParameterPresence, validateParameterType, validateParameterTypePlainObject, Globalize,
+	messageFormatterFn, messageFormatterRuntimeBind, alwaysArray ) {
 
 var slice = [].slice;
-
-function MessageFormatInit( globalize, cldr ) {
-	var plural;
-	return new MessageFormat( cldr.locale, function( value ) {
-		if ( !plural ) {
-			validatePluralModulePresence();
-			plural = globalize.pluralGenerator();
-		}
-		return plural( value );
-	});
-}
 
 /**
  * .loadMessages( json )
@@ -69,7 +60,8 @@ Globalize.loadMessages = function( json ) {
  */
 Globalize.messageFormatter =
 Globalize.prototype.messageFormatter = function( path ) {
-	var cldr, formatter, message;
+	var cldr, formatter, isPluralModulePresent, message, pluralGenerator, returnFn,
+		args = slice.call( arguments, 0 );
 
 	validateParameterPresence( path, "path" );
 	validateParameterType( path, "path", typeof path === "string" || Array.isArray( path ),
@@ -90,15 +82,18 @@ Globalize.prototype.messageFormatter = function( path ) {
 	}
 	validateMessageType( path, message );
 
-	formatter = MessageFormatInit( this, cldr ).compile( message );
+	isPluralModulePresent = this.plural !== undefined;
+	pluralGenerator = isPluralModulePresent ?
+		this.pluralGenerator() :
+		createErrorPluralModulePresence;
 
-	return function( variables ) {
-		if ( typeof variables === "number" || typeof variables === "string" ) {
-			variables = slice.call( arguments, 0 );
-		}
-		validateParameterTypeMessageVariables( variables, "variables" );
-		return formatter( variables );
-	};
+	formatter = new MessageFormat( cldr.locale, pluralGenerator ).compile( message );
+
+	returnFn = messageFormatterFn( formatter );
+
+	runtimeBind( args, cldr, returnFn, [ messageFormatterRuntimeBind( cldr, formatter ) ] );
+
+	return returnFn;
 };
 
 /**
