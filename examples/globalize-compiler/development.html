@@ -1,0 +1,83 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Basic Globalize Compiler example (development mode)</title>
+</head>
+<body>
+    <h1>Basic Globalize Compiler example (development mode)</h1>
+
+    <div id="requirements">
+        <h2>Requirements</h2>
+        <ul>
+            <li>Read README.md for instructions.</li>
+        </ul>
+    </div>
+
+    <div id="demo" style="display: none">
+        <h2>Demo output</h2>
+        <p>Now: <span id="date"></span></p>
+        <p>A number: <span id="number"></span></p>
+        <p>A currency: <span id="currency"></span></p>
+        <p>Plural form of <span id="plural-number"></span> is <span id="plural-form"></span></p>
+        <p>Messages:</p>
+        <ul>
+            <li><span id="message-0"></span></li>
+            <li><span id="message-1"></span></li>
+            <li><span id="message-2"></span></li>
+            <li><span id="message-3"></span></li>
+        </ul>
+        <p>Something happened: <span id="relative-time"></span></p>
+    </div>
+
+    <!--
+    First, we load Globalize's dependencies (`cldrjs` and its supplemental
+    module).
+    -->
+    <script src="node_modules/globalize/node_modules/cldrjs/dist/cldr.js"></script>
+    <script src="node_modules/globalize/node_modules/cldrjs/dist/cldr/event.js"></script>
+    <script src="node_modules/globalize/node_modules/cldrjs/dist/cldr/supplemental.js"></script>
+
+    <!--
+    Next, we load Globalize and its modules. Note they are already available on
+    this repository. If it's not, read Usage on Getting Started on the root's
+    README.md.
+    -->
+    <script src="node_modules/globalize/dist/globalize.js"></script>
+    <script src="node_modules/globalize/dist/globalize/message.js"></script>
+    <script src="node_modules/globalize/dist/globalize/number.js"></script>
+    <script src="node_modules/globalize/dist/globalize/plural.js"></script>
+
+    <!-- Load after globalize/number.js -->
+    <script src="node_modules/globalize/dist/globalize/date.js"></script>
+    <script src="node_modules/globalize/dist/globalize/currency.js"></script>
+
+    <!-- Load after globalize/number.js and globalize/plural.js-->
+    <script src="node_modules/globalize/dist/globalize/relative-time.js"></script>
+
+    <!-- Load jQuery to fetch the CLDR and message JSONs -->
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+
+    <script>
+
+    // At this point, we have Globalize loaded. But, before we can use it, we
+    // need to feed it on the appropriate I18n content (Unicode CLDR). In order
+    // to do so, we use `Globalize.load()` and pass the content. On this demo,
+    // we made the things a little easier for you: we've embedded static JSON
+    // into the demo. So, you don't need to actually fetch it elsewhere.
+    $.when(
+      $.getJSON( "cldr.json" ),
+      $.getJSON( "messages.json" )
+    ).then(function( cldr, messages ) {
+
+      Globalize.load( cldr[ 0 ] );
+      Globalize.loadMessages( messages[ 0 ] );
+
+      // Load and execute our App.
+      $.getScript( "app.js" );
+
+    })
+    </script>
+
+</body>
+</html>

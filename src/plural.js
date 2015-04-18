@@ -1,7 +1,7 @@
 define([
 	"cldr",
 	"make-plural",
-	"./core",
+	"./common/runtime-bind",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
 	"./common/validate/parameter-presence",
@@ -9,12 +9,15 @@ define([
 	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/plain-object",
 	"./common/validate/parameter-type/plural-type",
+	"./core",
+	"./plural/generator-fn",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, MakePlural, Globalize, validateCldr, validateDefaultLocale,
+], function( Cldr, MakePlural, runtimeBind, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterType, validateParameterTypeNumber,
-	validateParameterTypePlainObject, validateParameterTypePluralType ) {
+	validateParameterTypePlainObject, validateParameterTypePluralType, Globalize,
+	pluralGeneratorFn ) {
 
 /**
  * .plural( value )
@@ -45,13 +48,15 @@ Globalize.prototype.plural = function( value, options ) {
  */
 Globalize.pluralGenerator =
 Globalize.prototype.pluralGenerator = function( options ) {
-	var cldr, isOrdinal, plural, type;
+	var args, cldr, isOrdinal, plural, returnFn, type;
 
 	validateParameterTypePlainObject( options, "options" );
 
 	options = options || {};
-	type = options.type || "cardinal";
 	cldr = this.cldr;
+
+	args = [ options ];
+	type = options.type || "cardinal";
 
 	validateParameterTypePluralType( options.type, "options.type" );
 
@@ -71,12 +76,11 @@ Globalize.prototype.pluralGenerator = function( options ) {
 		"cardinals": !isOrdinal
 	});
 
-	return function( value ) {
-		validateParameterPresence( value, "value" );
-		validateParameterTypeNumber( value, "value" );
+	returnFn = pluralGeneratorFn( plural );
 
-		return plural( value );
-	};
+	runtimeBind( args, cldr, returnFn, [ plural ] );
+
+	return returnFn;
 };
 
 return Globalize;

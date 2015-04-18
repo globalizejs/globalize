@@ -28,10 +28,12 @@ require([
 
 	// plural
 	"./functional/plural/plural",
+	"./functional/plural/plural-generator",
 
 	// relative-time
 	"./functional/relative-time/format-relative-time",
 	"./functional/relative-time/relative-time-formatter"
+
 ], function() {
 	QUnit.start();
 }, function( error ) {

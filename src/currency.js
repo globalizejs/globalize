@@ -1,14 +1,14 @@
 define([
 	"./core",
+	"./common/runtime-bind",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/currency",
 	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/plain-object",
-	"./common/validate/plural-module-presence",
 	"./currency/code-properties",
-	"./currency/name-format",
+	"./currency/formatter-fn",
 	"./currency/name-properties",
 	"./currency/symbol-properties",
 	"./util/object/omit",
@@ -16,10 +16,10 @@ define([
 	"./number",
 	"cldr/event",
 	"cldr/supplemental"
-], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
+], function( Globalize, runtimeBind, validateCldr, validateDefaultLocale, validateParameterPresence,
 	validateParameterTypeNumber, validateParameterTypeCurrency, validateParameterTypePlainObject,
-	validatePluralModulePresence, currencyCodeProperties, currencyNameFormat,
-	currencyNameProperties, currencySymbolProperties, objectOmit ) {
+	currencyCodeProperties, currencyFormatterFn, currencyNameProperties, currencySymbolProperties,
+	objectOmit ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -41,16 +41,18 @@ function validateRequiredCldr( path, value ) {
  */
 Globalize.currencyFormatter =
 Globalize.prototype.currencyFormatter = function( currency, options ) {
-	var cldr, numberFormatter, plural, properties, style;
+	var args, cldr, numberFormatter, pluralGenerator, properties, returnFn, style;
 
 	validateParameterPresence( currency, "currency" );
 	validateParameterTypeCurrency( currency, "currency" );
 
 	validateParameterTypePlainObject( options, "options" );
 
-	options = options || {};
-	style = options.style || "symbol";
 	cldr = this.cldr;
+	options = options || {};
+
+	args = [ currency, options ];
+	style = options.style || "symbol";
 
 	validateDefaultLocale( cldr );
 
@@ -70,18 +72,23 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 
 	// Return formatter when style is "symbol" or "accounting".
 	if ( style === "symbol" || style === "accounting" ) {
-		return this.numberFormatter( options );
-	}
+		numberFormatter = this.numberFormatter( options );
+
+		returnFn = currencyFormatterFn( numberFormatter );
+
+		runtimeBind( args, cldr, returnFn, [ numberFormatter ] );
 
 	// Return formatter when style is "code" or "name".
-	validatePluralModulePresence();
-	numberFormatter = this.numberFormatter( options );
-	plural = this.pluralGenerator();
-	return function( value ) {
-		validateParameterPresence( value, "value" );
-		validateParameterTypeNumber( value, "value" );
-		return currencyNameFormat( numberFormatter( value ), plural( value ), properties );
-	};
+	} else {
+		numberFormatter = this.numberFormatter( options );
+		pluralGenerator = this.pluralGenerator();
+
+		returnFn = currencyFormatterFn( numberFormatter, pluralGenerator, properties );
+
+		runtimeBind( args, cldr, returnFn, [ numberFormatter, pluralGenerator, properties ] );
+	}
+
+	return returnFn;
 };
 
 /**

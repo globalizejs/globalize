@@ -27,7 +27,7 @@ define([
  */
 return function( pattern, cldr, options ) {
 	var negativePattern, negativePrefix, negativeProperties, negativeSuffix, positivePattern,
-		properties;
+		roundFn, properties;
 
 	function getOptions( attribute, propertyIndex ) {
 		if ( attribute in options ) {
@@ -45,12 +45,18 @@ return function( pattern, cldr, options ) {
 	negativePrefix = negativeProperties[ 0 ];
 	negativeSuffix = negativeProperties[ 10 ];
 
+	// Have runtime code to refer to numberRound() instead of including it explicitly.
+	roundFn = numberRound( options.round );
+	roundFn.generatorString = function() {
+		return "numberRound(" + ( options.round ? "\"" + options.round + "\"" : "" ) + ")";
+	};
+
 	properties = numberPatternProperties( positivePattern ).concat([
 		positivePattern,
 		negativePrefix + positivePattern + negativeSuffix,
 		negativePrefix,
 		negativeSuffix,
-		numberRound( options.round ),
+		roundFn,
 		numberSymbol( "infinity", cldr ),
 		numberSymbol( "nan", cldr ),
 		numberSymbolMap( cldr ),

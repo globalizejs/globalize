@@ -1,0 +1,66 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Basic Globalize Compiler example (production mode)</title>
+</head>
+<body>
+    <h1>Basic Globalize Compiler example (production mode)</h1>
+
+    <div id="requirements">
+        <h2>Requirements</h2>
+        <ul>
+            <li>You need to build the `compiled-formatters.js`. Read README.md for instructions.
+            </li>
+        </ul>
+    </div>
+
+    <div id="demo" style="display: none">
+        <h2>Demo output</h2>
+        <p>Now: <span id="date"></span></p>
+        <p>A number: <span id="number"></span></p>
+        <p>A currency: <span id="currency"></span></p>
+        <p>Plural form of <span id="plural-number"></span> is <span id="plural-form"></span></p>
+        <p>Messages:</p>
+        <ul>
+            <li><span id="message-0"></span></li>
+            <li><span id="message-1"></span></li>
+            <li><span id="message-2"></span></li>
+            <li><span id="message-3"></span></li>
+        </ul>
+        <p>Something happened: <span id="relative-time"></span></p>
+    </div>
+
+    <!--
+    Load Globalize runtime and its runtime modules. Note they are already
+    available on this repository. If it's not, read Usage on Getting Started on
+    the root's README.md.
+    -->
+    <script src="node_modules/globalize/dist/globalize-runtime.js"></script>
+    <script src="node_modules/globalize/dist/globalize-runtime/message.js"></script>
+    <script src="node_modules/globalize/dist/globalize-runtime/number.js"></script>
+    <script src="node_modules/globalize/dist/globalize-runtime/plural.js"></script>
+
+    <!-- Load after globalize-runtime/number.js -->
+    <script src="node_modules/globalize/dist/globalize-runtime/date.js"></script>
+    <script src="node_modules/globalize/dist/globalize-runtime/currency.js"></script>
+
+    <!--
+    Load after globalize-runtime/number.js and globalize-runtime/plural.js
+    -->
+    <script src="node_modules/globalize/dist/globalize-runtime/relative-time.js"></script>
+
+    <!--
+    Then, load the compiled formatters.
+
+    Note, we don't need to feed Globalize on CLDR data anymore. Because, the
+    formatters have already been created by the compilation step and their
+    "snapshots" are available below.
+    -->
+    <script src="compiled-formatters.js"></script>
+
+    <!-- Our App -->
+    <script src="app.js"></script>
+
+</body>
+</html>

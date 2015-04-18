@@ -1,6 +1,7 @@
 define([
 	"./core",
 	"./common/create-error/unsupported-feature",
+	"./common/runtime-bind",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
 	"./common/validate/parameter-presence",
@@ -8,10 +9,10 @@ define([
 	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/plain-object",
 	"./common/validate/parameter-type/string",
-	"./number/format",
+	"./number/formatter-fn",
 	"./number/format-properties",
 	"./number/numbering-system",
-	"./number/parse",
+	"./number/parser-fn",
 	"./number/parse-properties",
 	"./number/pattern",
 	"./number/symbol",
@@ -19,11 +20,11 @@ define([
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Globalize, createErrorUnsupportedFeature, validateCldr, validateDefaultLocale,
-	validateParameterPresence, validateParameterRange, validateParameterTypeNumber,
-	validateParameterTypePlainObject, validateParameterTypeString, numberFormat,
-	numberFormatProperties, numberNumberingSystem, numberParse, numberParseProperties,
-	numberPattern, numberSymbol, stringPad ) {
+], function( Globalize, createErrorUnsupportedFeature, runtimeBind, validateCldr,
+	validateDefaultLocale, validateParameterPresence, validateParameterRange,
+	validateParameterTypeNumber, validateParameterTypePlainObject, validateParameterTypeString,
+	numberFormatterFn, numberFormatProperties, numberNumberingSystem, numberParserFn,
+	numberParseProperties, numberPattern, numberSymbol, stringPad ) {
 
 /**
  * .numberFormatter( [options] )
@@ -37,13 +38,15 @@ define([
  */
 Globalize.numberFormatter =
 Globalize.prototype.numberFormatter = function( options ) {
-	var cldr, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
-		minimumIntegerDigits, minimumSignificantDigits, pattern, properties;
+	var args, cldr, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
+		minimumIntegerDigits, minimumSignificantDigits, pattern, properties, returnFn;
 
 	validateParameterTypePlainObject( options, "options" );
 
 	options = options || {};
 	cldr = this.cldr;
+
+	args = [ options ];
 
 	validateDefaultLocale( cldr );
 
@@ -84,11 +87,11 @@ Globalize.prototype.numberFormatter = function( options ) {
 			minimumFractionDigits, 20 );
 	}
 
-	return function( value ) {
-		validateParameterPresence( value, "value" );
-		validateParameterTypeNumber( value, "value" );
-		return numberFormat( value, properties );
-	};
+	returnFn = numberFormatterFn( properties );
+
+	runtimeBind( args, cldr, returnFn, [ properties ] );
+
+	return returnFn;
 };
 
 /**
@@ -101,12 +104,14 @@ Globalize.prototype.numberFormatter = function( options ) {
  */
 Globalize.numberParser =
 Globalize.prototype.numberParser = function( options ) {
-	var cldr, pattern, properties;
+	var args, cldr, pattern, properties, returnFn;
 
 	validateParameterTypePlainObject( options, "options" );
 
 	options = options || {};
 	cldr = this.cldr;
+
+	args = [ options ];
 
 	validateDefaultLocale( cldr );
 
@@ -122,11 +127,11 @@ Globalize.prototype.numberParser = function( options ) {
 
 	cldr.off( "get", validateCldr );
 
-	return function( value ) {
-		validateParameterPresence( value, "value" );
-		validateParameterTypeString( value, "value" );
-		return numberParse( value, properties );
-	};
+	returnFn = numberParserFn( properties );
+
+	runtimeBind( args, cldr, returnFn, [ properties ] );
+
+	return returnFn;
 };
 
 /**
