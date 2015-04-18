@@ -22,8 +22,7 @@ function assertParse( assert, stringDate, pattern, cldr, date ) {
 	var tokenizerProperties, tokens;
 
 	tokenizerProperties = numberTokenizerProperties( pattern, cldr );
-	tokenizerProperties.parseNumber = simpleParseNumber;
-	tokens = tokenizer( stringDate, tokenizerProperties );
+	tokens = tokenizer( stringDate, simpleNumberParser, tokenizerProperties );
 
 	assert.deepEqual( parse( stringDate, tokens, parseProperties( cldr ) ), date );
 }
@@ -34,8 +33,7 @@ function assertParseTimezone( assert, stringDate, pattern, cldr, timezoneOffset 
 		testStringDate = "00:00 " + stringDate;
 
 	tokenizerProperties = numberTokenizerProperties( testPattern, cldr );
-	tokenizerProperties.parseNumber = simpleParseNumber;
-	tokens = tokenizer( testStringDate, tokenizerProperties );
+	tokens = tokenizer( testStringDate, simpleNumberParser, tokenizerProperties );
 	parsedDate = parse( testStringDate, tokens, parseProperties( cldr ) );
 	parsedTimezoneOffset = ( parsedDate - midnight ) / 1000 / 60 + midnight.getTimezoneOffset();
 
@@ -74,7 +72,7 @@ FakeDate = (function( Date ) {
 })( Date );
 
 // Simple number parser for this test purposes.
-function simpleParseNumber( value ) {
+function simpleNumberParser( value ) {
 	return +value;
 }
 
