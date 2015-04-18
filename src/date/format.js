@@ -1,14 +1,13 @@
 define([
 	"./day-of-week",
 	"./day-of-year",
-	"./first-day-of-week",
 	"./milliseconds-in-day",
 	"./pattern-re",
 	"./start-of",
 	"./timezone-hour-format",
 	"./week-days"
-], function( dateDayOfWeek, dateDayOfYear, dateFirstDayOfWeek, dateMillisecondsInDay,
-	datePatternRe, dateStartOf, dateTimezoneHourFormat, dateWeekDays ) {
+], function( dateDayOfWeek, dateDayOfYear, dateMillisecondsInDay, datePatternRe, dateStartOf,
+	dateTimezoneHourFormat, dateWeekDays ) {
 
 /**
  * format( date, properties )

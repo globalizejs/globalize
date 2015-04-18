@@ -1,0 +1,9 @@
+{
+  "name": "basic-globalize-compiler",
+  "scripts": {
+    "build": "globalize-compiler -l en -c cldr.json -m messages.json -o compiled-formatters.js app.js"
+  },
+  "devDependencies": {
+    "globalize-compiler": "git://github.com/jquery-support/globalize-compiler#b0.0.1"
+  }
+}

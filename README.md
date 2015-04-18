@@ -136,15 +136,15 @@ information on its usage.
 
 ### Pick the modules you need
 
-| File | Minified + gzipped size | Summary |
-|---|--:|---|
-| globalize.js | 1.3KB | [Core library](#core-module) |
-| globalize/currency.js | +2.6KB | [Currency module](#currency-module) provides currency formatting and parsing |
-| globalize/date.js | +4.9KB | [Date module](#date-module) provides date formatting and parsing |
-| globalize/message.js | +5.4KB | [Message module](#message-module) provides ICU message format support |
-| globalize/number.js | +2.9KB | [Number module](#number-module) provides number formatting and parsing |
-| globalize/plural.js | +1.7KB | [Plural module](#plural-module) provides pluralization support |
-| globalize/relative-time.js | +0.7KB | [Relative time module](#relative-time-module) provides relative time formatting support |
+| File | Minified + gzipped size | Runtime minified + gzipped size | Summary |
+|---|--:|--:|---|
+| globalize.js | 1.5KB | 1.0KB | [Core library](#core-module) |
+| globalize/currency.js | 2.6KB | 0.6KB | [Currency module](#currency-module) provides currency formatting and parsing |
+| globalize/date.js | 5.1KB | 3.8KB | [Date module](#date-module) provides date formatting and parsing |
+| globalize/message.js | 5.4KB | 0.7KB | [Message module](#message-module) provides ICU message format support |
+| globalize/number.js | 3.1KB | 1.8KB | [Number module](#number-module) provides number formatting and parsing |
+| globalize/plural.js | 2.3KB | 0.4KB | [Plural module](#plural-module) provides pluralization support |
+| globalize/relative-time.js | 0.8KB | 0.6KB | [Relative time module](#relative-time-module) provides relative time formatting support |
 
 ### Browser Support
 
@@ -248,10 +248,83 @@ functionalities, etc.
 
 An example is worth a thousand words. Check out our Hello World demo (available
 to you in different flavors):
-- [Hello World (AMD + bower)](examples/amd-bower/).
-- [Hello World (Node.js + npm)](examples/node-npm/).
-- [Hello World (plain JavaScript)](examples/plain-javascript/).
+- [Hello World (AMD + bower)](examples/hello-world-amd-bower/).
+- [Hello World (Node.js + npm)](examples/hello-world-node-npm/).
+- [Hello World (plain JavaScript)](examples/hello-world-plain-javascript/).
 
+
+### Performance
+
+When formatting or parsing, there's actually a two step process: (a) the
+formatter (or parser) creation and (b) its execution, where creation takes
+considerably more time (more expensive) than execution. The difference is an
+order of magnitude. In the creation phase, Globalize traverses the CLDR tree,
+processes data (e.g., expands date patterns, parses plural rules, etc), and
+returns a function that actually executes the formatting or parsing.
+
+```js
+// Formatter creation.
+var formatter = Globalize.numberFormatter();
+
+// Formatter execution (roughly 10x faster than above).
+formatter( Math.PI );
+// > 3.141
+```
+
+As a rule of thumb for optimal performance, cache your formatters and parsers.
+For example: (a) on iterations, generate them outside the loop and reuse while
+looping; (b) on server applications, generate them in advance and execute when
+requests arrive.
+
+### Compilation and the Runtime modules
+
+You really should take advantage of compiling your formatters and/or parsers
+during build time when deploying to production. It's much faster than generating
+them in real-time and it's also much smaller (i.e., better loading
+performance).
+
+To illustrate, a Globalize application looks like:
+
+```html
+<script src="cldrjs/cldr.js"></script>
+<script src="cldrjs/cldr/...js"></script>
+<script src="globalize.js"></script>
+<script src="globalize/number.js"></script>
+<script src="globalize/...js"></script>
+<script>
+// Feed Globalize on CLDR data and on translation messages.
+Globalize.load({
+  ... CLDR data ...
+});
+
+// Then, use Globalize formatters and parsers.
+</script>
+```
+
+A precompiled Globalize application using the runtime modules looks like:
+
+```html
+<script src="globalize-runtime.js"></script>
+<script src="globalize-runtime/number.js"></script>
+<script src="globalize-runtime/...js"></script>
+<script src="my-compiled-formatters-and-parsers.js"></script>
+<script>
+// Use Globalize formatters and parsers.
+</script>
+```
+
+Your compiled formatters and parsers allow you to skip a big part of the library
+and also allow you to skip loading CLDR data. Because, they have already been
+created (see [Performance](#performance) above for more information).
+
+See our [Basic Globalize Compiler example](examples/basic-globalize-compiler/).
+
+#### Globalize Compiler
+
+For information about the Globalize Compiler CLI or its JavaScript API, see the
+[Globalize Compiler documentation][].
+
+[Globalize Compiler documentation]: https://github.com/jquery-support/globalize-compiler#README
 
 ## API
 

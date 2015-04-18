@@ -20,7 +20,9 @@ QUnit.module( ".numberParser( [options] )", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: util.resetCldrContent
+	teardown: function() {
+		util.resetCldrContent();
+	}
 });
 
 QUnit.test( "should validate parameters", function( assert ) {
