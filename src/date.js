@@ -3,7 +3,6 @@ define([
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
 	"./common/validate/parameter-presence",
-	"./common/validate/parameter-type",
 	"./common/validate/parameter-type/date",
 	"./common/validate/parameter-type/date-pattern",
 	"./common/validate/parameter-type/string",
@@ -20,9 +19,9 @@ define([
 	"cldr/supplemental",
 	"./number"
 ], function( Cldr, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeDataType, validateParameterTypeDate, validateParameterTypeDatePattern,
-	validateParameterTypeString, Globalize, dateExpandPattern, dateFormat, dateFormatProperties,
-	dateParse, dateParseProperties, dateTokenizer, dateTokenizerProperties ) {
+	validateParameterTypeDate, validateParameterTypeDatePattern, validateParameterTypeString,
+	Globalize, dateExpandPattern, dateFormat, dateFormatProperties, dateParse, dateParseProperties,
+	dateTokenizer, dateTokenizerProperties ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
