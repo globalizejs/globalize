@@ -334,7 +334,7 @@ to you in different flavors):
 
   [Read more...](doc/api/message/load-messages.md)
 
-- **`.messageFormatter( path ) ➡ function([ variables ])`**
+- **`.messageFormatter( path ) ➡ function( [variables] )`**
 
   Return a function that formats a message (using ICU message format pattern)
   given its path and a set of variables into a user-readable string. It supports
