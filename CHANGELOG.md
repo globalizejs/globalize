@@ -79,7 +79,12 @@
 
 * Backport scope support on uniqueness validation from 4.0, drop support for ActiveRecord < 3.1, fixes [#324](https://github.com/globalize/globalize/issues/324).
 
+## 3.0.5 (2015-04-24)
+
+* Now working properly with the squeel library. (thanks [Toru Mori](https://github.com/torumori)). See [#437](https://github.com/globalize/globalize/pull/437)
+
 ## 3.0.4 (2014-01-08)
+
 * Extract all versioning-related code to separate [globalize-versioning](https://github.com/globalize/globalize-versioning) gem.
 
 ## 3.0.3 (2013-12-26)
