@@ -49,8 +49,8 @@ Globalize.prototype.numberFormatter = function( options ) {
 
 	cldr.on( "get", validateCldr );
 
-	if ( options.pattern ) {
-		pattern = options.pattern;
+	if ( options.raw ) {
+		pattern = options.raw;
 	} else {
 		pattern = numberPattern( options.style || "decimal", cldr );
 	}
@@ -112,8 +112,8 @@ Globalize.prototype.numberParser = function( options ) {
 
 	cldr.on( "get", validateCldr );
 
-	if ( options.pattern ) {
-		pattern = options.pattern;
+	if ( options.raw ) {
+		pattern = options.raw;
 	} else {
 		pattern = numberPattern( options.style || "decimal", cldr );
 	}

@@ -4,7 +4,7 @@ define([
 	"./common/validate/default-locale",
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/date",
-	"./common/validate/parameter-type/date-pattern",
+	"./common/validate/parameter-type/plain-object",
 	"./common/validate/parameter-type/string",
 	"./core",
 	"./date/expand-pattern",
@@ -19,7 +19,7 @@ define([
 	"cldr/supplemental",
 	"./number"
 ], function( Cldr, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeDate, validateParameterTypeDatePattern, validateParameterTypeString,
+	validateParameterTypeDate, validateParameterTypePlainObject, validateParameterTypeString,
 	Globalize, dateExpandPattern, dateFormat, dateFormatProperties, dateParse, dateParseProperties,
 	dateTokenizer, dateTokenizerProperties ) {
 
@@ -35,11 +35,11 @@ function validateRequiredCldr( path, value ) {
 }
 
 /**
- * .dateFormatter( pattern )
+ * .dateFormatter( options )
  *
- * @pattern [String or Object] see date/expand_pattern for more info.
+ * @options [Object] see date/expand_pattern for more info.
  *
- * Return a date formatter function (of the form below) according to the given pattern and the
+ * Return a date formatter function (of the form below) according to the given options and the
  * default/instance locale.
  *
  * fn( value )
@@ -50,18 +50,18 @@ function validateRequiredCldr( path, value ) {
  * locale.
  */
 Globalize.dateFormatter =
-Globalize.prototype.dateFormatter = function( pattern ) {
-	var cldr, numberFormatters, pad, properties;
+Globalize.prototype.dateFormatter = function( options ) {
+	var cldr, numberFormatters, pad, pattern, properties;
 
-	validateParameterPresence( pattern, "pattern" );
-	validateParameterTypeDatePattern( pattern, "pattern" );
+	validateParameterTypePlainObject( options, "options" );
 
 	cldr = this.cldr;
+	options = options || { skeleton: "yMd" };
 
 	validateDefaultLocale( cldr );
 
 	cldr.on( "get", validateRequiredCldr );
-	pattern = dateExpandPattern( pattern, cldr );
+	pattern = dateExpandPattern( options, cldr );
 	properties = dateFormatProperties( pattern, cldr );
 	cldr.off( "get", validateRequiredCldr );
 
@@ -70,7 +70,7 @@ Globalize.prototype.dateFormatter = function( pattern ) {
 	delete properties.numberFormatters;
 	for ( pad in numberFormatters ) {
 		numberFormatters[ pad ] = this.numberFormatter({
-			pattern: numberFormatters[ pad ]
+			raw: numberFormatters[ pad ]
 		});
 	}
 
@@ -82,31 +82,31 @@ Globalize.prototype.dateFormatter = function( pattern ) {
 };
 
 /**
- * .dateParser( pattern )
+ * .dateParser( options )
  *
- * @pattern [String or Object] see date/expand_pattern for more info.
+ * @options [Object] see date/expand_pattern for more info.
  *
  * Return a function that parses a string date according to the given `formats` and the
  * default/instance locale.
  */
 Globalize.dateParser =
-Globalize.prototype.dateParser = function( pattern ) {
-	var cldr, numberParser, parseProperties, tokenizerProperties;
+Globalize.prototype.dateParser = function( options ) {
+	var cldr, numberParser, parseProperties, pattern, tokenizerProperties;
 
-	validateParameterPresence( pattern, "pattern" );
-	validateParameterTypeDatePattern( pattern, "pattern" );
+	validateParameterTypePlainObject( options, "options" );
 
 	cldr = this.cldr;
+	options = options || { skeleton: "yMd" };
 
 	validateDefaultLocale( cldr );
 
 	cldr.on( "get", validateRequiredCldr );
-	pattern = dateExpandPattern( pattern, cldr );
+	pattern = dateExpandPattern( options, cldr );
 	tokenizerProperties = dateTokenizerProperties( pattern, cldr );
 	parseProperties = dateParseProperties( cldr );
 	cldr.off( "get", validateRequiredCldr );
 
-	numberParser = this.numberParser({ pattern: "0" });
+	numberParser = this.numberParser({ raw: "0" });
 
 	return function( value ) {
 		var tokens;
@@ -120,37 +120,37 @@ Globalize.prototype.dateParser = function( pattern ) {
 };
 
 /**
- * .formatDate( value, pattern )
+ * .formatDate( value, options )
  *
  * @value [Date]
  *
- * @pattern [String or Object] see date/expand_pattern for more info.
+ * @options [Object] see date/expand_pattern for more info.
  *
- * Formats a date or number according to the given pattern string and the default/instance locale.
+ * Formats a date or number according to the given options string and the default/instance locale.
  */
 Globalize.formatDate =
-Globalize.prototype.formatDate = function( value, pattern ) {
+Globalize.prototype.formatDate = function( value, options ) {
 	validateParameterPresence( value, "value" );
 	validateParameterTypeDate( value, "value" );
 
-	return this.dateFormatter( pattern )( value );
+	return this.dateFormatter( options )( value );
 };
 
 /**
- * .parseDate( value, pattern )
+ * .parseDate( value, options )
  *
  * @value [String]
  *
- * @pattern [String or Object] see date/expand_pattern for more info.
+ * @options [Object] see date/expand_pattern for more info.
  *
  * Return a Date instance or null.
  */
 Globalize.parseDate =
-Globalize.prototype.parseDate = function( value, pattern ) {
+Globalize.prototype.parseDate = function( value, options ) {
 	validateParameterPresence( value, "value" );
 	validateParameterTypeString( value, "value" );
 
-	return this.dateParser( pattern )( value );
+	return this.dateParser( options )( value );
 };
 
 return Globalize;

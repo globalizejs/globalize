@@ -44,11 +44,7 @@ QUnit.module( ".dateParser( pattern )", {
 });
 
 QUnit.test( "should validate parameters", function( assert ) {
-	util.assertParameterPresence( assert, "pattern", function() {
-		Globalize.dateParser();
-	});
-
-	util.assertDatePatternParameter( assert, "pattern", function( invalidValue ) {
+	util.assertPlainObjectParameter( assert, "options", function( invalidValue ) {
 		return function() {
 			Globalize.dateParser( invalidValue );
 		};
@@ -57,7 +53,7 @@ QUnit.test( "should validate parameters", function( assert ) {
 
 QUnit.test( "should validate CLDR content", function( assert ) {
 	util.assertCldrContent( assert, function() {
-		Globalize.dateParser( "d" );
+		Globalize.dateParser({ skeleton: "d" });
 	});
 });
 

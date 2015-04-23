@@ -23,11 +23,11 @@ QUnit.test( "should validate whether default locale is defined on static calls",
 	delete Globalize.cldr;
 
 	util.assertDefaultLocalePresence( assert, function() {
-		Globalize.formatDate( new Date(), "GyMMMEd" );
+		Globalize.formatDate( new Date() );
 	});
 
 	util.assertDefaultLocalePresence( assert, function() {
-		Globalize.parseDate( "15", "d" );
+		Globalize.parseDate( "15" );
 	});
 
 	util.assertDefaultLocalePresence( assert, function() {

@@ -278,12 +278,16 @@ to you in different flavors):
 
 ### Date module
 
-- **`.dateFormatter( pattern )`**
+- **`.dateFormatter( [options] )`**
 
-  Return a function that formats a date according to the given `pattern`.
+  Return a function that formats a date according to the given `options`. The default formatting is
+  numeric year, month, and day (i.e., `{ skeleton: "yMd" }`.
 
   ```javascript
-  .dateFormatter( "GyMMMd" )( new Date() )
+  .dateFormatter()( new Date() )
+  // > "11/30/2010"
+
+  .dateFormatter({ skeleton: "GyMMMd" })( new Date() )
   // > "Nov 30, 2010 AD"
 
   .dateFormatter({ date: "medium" })( new Date() )
@@ -298,33 +302,38 @@ to you in different flavors):
 
   [Read more...](doc/api/date/date-formatter.md)
 
-- **`.dateParser( pattern )`**
+- **`.dateParser( [options] )`**
 
-  Return a function that parses a string date according to the given `pattern`.
+  Return a function that parses a string representing a date into a JavaScript Date object according
+  to the given `options`. The default parsing assumes numeric year, month, and day (i.e., `{
+  skeleton: "yMd" }`).
 
   ```javascript
-  .dateParser( "GyMMMd" )( "Nov 30, 2010 AD" )
-  // > new Date()
+  .dateParser()( "11/30/2010" )
+  // > new Date( 2010, 10, 30, 0, 0, 0 )
+
+  .dateParser({ skeleton: "GyMMMd" })( "Nov 30, 2010 AD" )
+  // > new Date( 2010, 10, 30, 0, 0, 0 )
 
   .dateParser({ date: "medium" })( "Nov 1, 2010" )
-  // > new Date()
+  // > new Date( 2010, 10, 30, 0, 0, 0 )
 
   .dateParser({ time: "medium" })( "5:55:00 PM" )
-  // > new Date()
+  // > new Date( 2015, 3, 22, 17, 55, 0 ) // i.e., today @ 5:55PM
 
   .dateParser({ datetime: "medium" })( "Nov 1, 2010, 5:55:00 PM" )
-  // > new Date()
+  // > new Date( 2010, 10, 30, 17, 55, 0 )
   ```
 
   [Read more...](doc/api/date/date-parser.md)
 
-- **`.formatDate( value, pattern )`**
+- **`.formatDate( value [, options] )`**
 
-  Alias for `.dateFormatter( pattern )( value )`.
+  Alias for `.dateFormatter( [options] )( value )`.
 
-- **`.parseDate( value, pattern )`**
+- **`.parseDate( value [, options] )`**
 
-  Alias for `.dateParser( pattern )( value )`.
+  Alias for `.dateParser( [options] )( value )`.
 
 ### Message module
 

@@ -38,7 +38,7 @@ function extraSetup() {
 	);
 }
 
-QUnit.module( ".parseDate( value, pattern )", {
+QUnit.module( ".parseDate( value, options )", {
 	setup: function() {
 		Globalize.load( likelySubtags, {
 			main: {
@@ -65,7 +65,7 @@ QUnit.test( "should validate parameters", function( assert ) {
 		};
 	});
 
-	util.assertDatePatternParameter( assert, "pattern", function( invalidValue ) {
+	util.assertPlainObjectParameter( assert, "options", function( invalidValue ) {
 		return function() {
 			Globalize.parseDate( "15 Wed", invalidValue );
 		};
@@ -74,7 +74,7 @@ QUnit.test( "should validate parameters", function( assert ) {
 
 QUnit.test( "should validate CLDR content", function( assert ) {
 	util.assertCldrContent( assert, function() {
-		Globalize.parseDate( "15", "d" );
+		Globalize.parseDate( "15" );
 	});
 });
 
@@ -100,12 +100,12 @@ QUnit.test( "should parse skeleton", function( assert ) {
 	date = startOf( date, "day" );
 	assertParseDate( assert, "Wed, Sep 15, 2010 AD", { skeleton: "GyMMMEd" }, date );
 	assertParseDate( assert, "9/15/2010", { skeleton: "yMd" }, date );
-	assertParseDate( assert, "الأربعاء، ١٥ سبتمبر، ٢٠١٠ م", "GyMMMEd", date, ar );
+	assertParseDate( assert, "الأربعاء، ١٥ سبتمبر، ٢٠١٠ م", { skeleton: "GyMMMEd" }, date, ar );
 
 	date = new Date( 2010, 0 );
 	date = startOf( date, "year" );
 	assertParseDate( assert, "Q3 2010", { skeleton: "yQQQ" }, date );
-	assertParseDate( assert, "الربع الثالث ٢٠١٠", "yQQQ", date, ar );
+	assertParseDate( assert, "الربع الثالث ٢٠١٠", { skeleton: "yQQQ" }, date, ar );
 
 	// Via instance globalize.parseDate().
 	assert.deepEqual( Globalize( "pt" ).parseDate( "2010 T3", { skeleton: "yQQQ" } ), date, "{ skeleton: \"yQQQ\" }" );
@@ -156,7 +156,7 @@ QUnit.test( "should parse raw pattern", function( assert ) {
 
 	date = new Date( 2010, 8, 15 );
 	date = startOf( date, "day" );
-	assertParseDate( assert, "Wed, Sep 15, 2010 AD", { pattern: "E, MMM d, y G" }, date );
+	assertParseDate( assert, "Wed, Sep 15, 2010 AD", { raw: "E, MMM d, y G" }, date );
 });
 
 QUnit.test( "should parse a formatted date (reverse operation test)", function( assert ) {

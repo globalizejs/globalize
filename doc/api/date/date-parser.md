@@ -1,16 +1,17 @@
-## .dateParser( pattern ) ➜ function( value )
+## .dateParser( [options] ) ➜ function( value )
 
 Return a function that parses a string representing a date into a JavaScript
-Date object according to the given `pattern`.
+Date object according to the given `options`. The default parsing assumes numeric year, month, and
+day (i.e., `{ skeleton: "yMd" }`).
 
 The returned function is invoked with one argument: the String `value` to be
 parsed.
 
 ### Parameters
 
-**pattern**
+**options**
 
-See [.dateFormatter( pattern )](./date-formatter.md).
+See [.dateFormatter( [options] )](./date-formatter.md).
 
 **value**
 
@@ -33,15 +34,15 @@ locale.
 var parser;
 
 Globalize.locale( "en" );
-parser = Globalize.dateParser({ date: short });
+parser = Globalize.dateParser();
 
-parser( "1/2/13" );
+parser( "1/2/2013" );
 // > Wed Jan 02 2013 00:00:00
 
 Globalize.locale( "es" );
-parser = Globalize.dateParser({ date: short });
+parser = Globalize.dateParser();
 
-parser( "1/2/13" );
+parser( "1/2/2013" );
 // > Fri Feb 01 2013 00:00:00
 ```
 

@@ -40,7 +40,6 @@
 var createError = Globalize._createError,
 	createErrorUnsupportedFeature = Globalize._createErrorUnsupportedFeature,
 	formatMessage = Globalize._formatMessage,
-	isPlainObject = Globalize._isPlainObject,
 	numberSymbol = Globalize._numberSymbol,
 	regexpEscape = Globalize._regexpEscape,
 	stringPad = Globalize._stringPad,
@@ -48,4 +47,5 @@ var createError = Globalize._createError,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validateParameterPresence = Globalize._validateParameterPresence,
 	validateParameterType = Globalize._validateParameterType,
+	validateParameterTypePlainObject = Globalize._validateParameterTypePlainObject,
 	validateParameterTypeString = Globalize._validateParameterTypeString;

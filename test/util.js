@@ -92,10 +92,6 @@ return {
 		assertParameterType( assert, "date", name, fn );
 	},
 
-	assertDatePatternParameter: function( assert, name, fn ) {
-		assertParameterType( assert, [ "cldr", "plainObject", "string" ], name, fn );
-	},
-
 	assertLocaleParameter: function( assert, name, fn ) {
 		assertParameterType( assert, [ "cldr", "string" ], name, fn );
 	},

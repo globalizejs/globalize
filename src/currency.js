@@ -64,9 +64,9 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 	}[ style ] )( currency, cldr, options );
 	cldr.off( "get", validateRequiredCldr );
 
-	// options = options minus style, plus pattern.
+	// options = options minus style, plus raw pattern.
 	options = objectOmit( options, "style" );
-	options.pattern = properties.pattern;
+	options.raw = properties.pattern;
 
 	// Return formatter when style is "symbol" or "accounting".
 	if ( style === "symbol" || style === "accounting" ) {
