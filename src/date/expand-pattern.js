@@ -4,14 +4,14 @@ define([
 ], function( formatMessage, createErrorInvalidParameterValue ) {
 
 /**
- * expandPattern( pattern, cldr )
+ * expandPattern( options, cldr )
  *
- * @pattern [String or Object] if String, it's considered a skeleton. Object accepts:
+ * @options [Object] if String, it's considered a skeleton. Object accepts:
  * - skeleton: [String] lookup availableFormat;
  * - date: [String] ( "full" | "long" | "medium" | "short" );
  * - time: [String] ( "full" | "long" | "medium" | "short" );
  * - datetime: [String] ( "full" | "long" | "medium" | "short" );
- * - pattern: [String] For more info see datetime/format.js.
+ * - raw: [String] For more info see datetime/format.js.
  *
  * @cldr [Cldr instance].
  *
@@ -22,10 +22,10 @@ define([
  * - { date: "full" } returns "EEEE, MMMM d, y";
  * - { time: "full" } returns "h:mm:ss a zzzz";
  * - { datetime: "full" } returns "EEEE, MMMM d, y 'at' h:mm:ss a zzzz";
- * - { pattern: "dd/mm" } returns "dd/mm";
+ * - { raw: "dd/mm" } returns "dd/mm";
  */
 
-return function( pattern, cldr ) {
+return function( options, cldr ) {
 	var dateSkeleton, result, skeleton, timeSkeleton, type;
 
 	function combineDateTime( type, datePattern, timePattern ) {
@@ -38,13 +38,9 @@ return function( pattern, cldr ) {
 		);
 	}
 
-	if ( typeof pattern === "string" ) {
-		pattern = { skeleton: pattern };
-	}
-
 	switch ( true ) {
-		case "skeleton" in pattern:
-			skeleton = pattern.skeleton;
+		case "skeleton" in options:
+			skeleton = options.skeleton;
 			result = cldr.main([
 				"dates/calendars/gregorian/dateTimeFormats/availableFormats",
 				skeleton
@@ -74,30 +70,30 @@ return function( pattern, cldr ) {
 			}
 			break;
 
-		case "date" in pattern:
-		case "time" in pattern:
+		case "date" in options:
+		case "time" in options:
 			result = cldr.main([
 				"dates/calendars/gregorian",
-				"date" in pattern ? "dateFormats" : "timeFormats",
-				( pattern.date || pattern.time )
+				"date" in options ? "dateFormats" : "timeFormats",
+				( options.date || options.time )
 			]);
 			break;
 
-		case "datetime" in pattern:
-			result = combineDateTime( pattern.datetime,
-				cldr.main([ "dates/calendars/gregorian/dateFormats", pattern.datetime ]),
-				cldr.main([ "dates/calendars/gregorian/timeFormats", pattern.datetime ])
+		case "datetime" in options:
+			result = combineDateTime( options.datetime,
+				cldr.main([ "dates/calendars/gregorian/dateFormats", options.datetime ]),
+				cldr.main([ "dates/calendars/gregorian/timeFormats", options.datetime ])
 			);
 			break;
 
-		case "pattern" in pattern:
-			result = pattern.pattern;
+		case "raw" in options:
+			result = options.raw;
 			break;
 
 		default:
 			throw createErrorInvalidParameterValue({
-				name: "pattern",
-				value: pattern
+				name: "options",
+				value: options
 			});
 	}
 

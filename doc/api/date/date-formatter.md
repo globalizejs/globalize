@@ -1,16 +1,22 @@
-## .dateFormatter( pattern ) ➜ function( value )
+## .dateFormatter( [options] ) ➜ function( value )
 
-Return a function that formats a date according to the given `pattern`.
+Return a function that formats a date according to the given `options`. The
+default formatting is numeric year, month, and day (i.e., `{ skeleton: "yMd" }`.
 
 The returned function is invoked with one argument: the Date instance `value` to
 be formatted.
 
 ### Parameters
 
-**pattern**
+**options**
 
-String value indicating a skeleton, eg. `"GyMMMd"`.
+A JSON object including one of the following.
 
+> **skeleton**
+>
+> String value indicating a skeleton (see description above), eg.
+> `{ skeleton: "GyMMMd" }`.
+>
 > Skeleton provides a more flexible formatting mechanism than the predefined
 > list `full`, `long`, `medium`, or `short` represented by date, time, or
 > datetime.  Instead, they are an open-ended list of patterns containing
@@ -26,13 +32,6 @@ String value indicating a skeleton, eg. `"GyMMMd"`.
 > | *ar* | `"٩ أبريل، ٢٠١٤ م"` |
 > | *pt* | `"9 de abr de 2014 d.C."` |
 
-Or, a JSON object including one of the following.
-
-> **skeleton**
->
-> String value indicating a skeleton (see description above), eg.
-> `{ skeleton: "GyMMMd" }`.
->
 > **date**
 >
 > One of the following String values: `full`, `long`, `medium`, or `short`, eg.
@@ -48,16 +47,12 @@ Or, a JSON object including one of the following.
 > One of the following String values: `full`, `long`, `medium`, or `short`, eg.
 > `{ datetime: "full" }`
 >
-> **pattern**
+> **raw**
 >
-> String value indicating a
+> String value indicating a machine
 > [raw pattern](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)
-> eg. `{ pattern: "dd/mm" }`.
->
-> Raw patterns are NOT recommended for i18n in general. Few specific cases may
-> suite the need of using it, eg. locale-independent format for machine parsing.
->
-> Use skeletons for i18n purposes.
+> eg. `{ pattern: "dd/mm" }`. Note this is NOT recommended for i18n in general.
+> Use `skeleton` instead.
 
 **value**
 
@@ -80,37 +75,24 @@ locale.
 var formatter;
 
 Globalize.locale( "en" );
-formatter = Globalize.dateFormatter({ datetime: "short" });
+formatter = Globalize.dateFormatter();
 
 formatter( new Date( 2010, 10, 30, 17, 55 ) );
-// > "11/30/10, 5:55 PM"
+// > "11/30/2010"
 ```
 
 You can use the instance method `.dateFormatter()`, which uses the instance locale.
 
 ```javascript
-var enFormatter = Globalize( "en" ).dateFormatter({ datetime: "short" }),
-  deFormatter = Globalize( "de" ).dateFormatter({ datetime: "short" });
+var enFormatter = Globalize( "en" ).dateFormatter(),
+  deFormatter = Globalize( "de" ).dateFormatter();
 
 enFormatter( new Date( 2010, 10, 30, 17, 55 ) );
-// > "11/30/10, 5:55 PM"
+// > "11/30/2010, 5:55 PM"
 
 deFormatter( new Date( 2010, 10, 30, 17, 55 ) );
-// > "30.11.10 17:55"
+// > "30.11.2010"
 ```
-
-For comparison, follow the same formatter using different locales.
-
-| locale | `Globalize( locale ).dateFormatter({ datetime: "short" })( new Date( 2010, 10, 1, 17, 55 ) )` |
-| --- | --- |
-| *en* | `"11/1/10, 5:55 PM"` |
-| *en_GB* | `"01/11/2010 17:55"` |
-| *zh* | `"10/11/1 下午5:55"` |
-| *zh-u-nu-native* | `"一〇/一一/一 下午五:五五"` |
-| *es* | `"1/11/10 17:55"` |
-| *de* | `"01.11.10 17:55"` |
-| *pt* | `"01/11/10 17:55"` |
-| *ar* | `"١‏/١١‏/٢٠١٠ ٥،٥٥ م"` |
 
 Use convenient presets for `date`, `time`, or `datetime`. Their possible values
 are: `full`, `long`, `medium`, and `short`.
@@ -130,49 +112,62 @@ are: `full`, `long`, `medium`, and `short`.
 | `{ datetime: "long" }` | `"November 1, 2010 at 5:55:00 PM GMT-2"` |
 | `{ datetime: "full" }` | `"Monday, November 1, 2010 at 5:55:00 PM GMT-02:00"` |
 
+For comparison, follow the same formatter `{ datetime: "short" }` on different locales.
+
+| locale | `Globalize( locale ).dateFormatter({ datetime: "short" })( new Date( 2010, 10, 1, 17, 55 ) )` |
+| --- | --- |
+| *en* | `"11/1/10, 5:55 PM"` |
+| *en_GB* | `"01/11/2010 17:55"` |
+| *zh* | `"10/11/1 下午5:55"` |
+| *zh-u-nu-native* | `"一〇/一一/一 下午五:五五"` |
+| *es* | `"1/11/10 17:55"` |
+| *de* | `"01.11.10 17:55"` |
+| *pt* | `"01/11/10 17:55"` |
+| *ar* | `"١‏/١١‏/٢٠١٠ ٥،٥٥ م"` |
+
 Use skeletons for more flexibility (see its description [above](#parameters)).
 
 | `skeleton` | `Globalize( "en" ).dateFormatter( skeleton )( new Date( 2010, 10, 1, 17, 55 ) )` |
 | --- | --- |
-| `"E"` | `"Tue"` |
-| `"EHm"` | `"Tue 17:55"` |
-| `"EHms"` | `"Tue 17:55:00"` |
-| `"Ed"` | `"30 Tue"` |
-| `"Ehm"` | `"Tue 5:55 PM"` |
-| `"Ehms"` | `"Tue 5:55:00 PM"` |
-| `"Gy"` | `"2010 AD"` |
-| `"GyMMM"` | `"Nov 2010 AD"` |
-| `"GyMMMEd"` | `"Tue, Nov 30, 2010 AD"` |
-| `"GyMMMd"` | `"Nov 30, 2010 AD"` |
-| `"H"` | `"17"` |
-| `"Hm"` | `"17:55"` |
-| `"Hms"` | `"17:55:00"` |
-| `"M"` | `"11"` |
-| `"MEd"` | `"Tue, 11/30"` |
-| `"MMM"` | `"Nov"` |
-| `"MMMEd"` | `"Tue, Nov 30"` |
-| `"MMMd"` | `"Nov 30"` |
-| `"Md"` | `"11/30"` |
-| `"d"` | `"30"` |
-| `"h"` | `"5 PM"` |
-| `"hm"` | `"5:55 PM"` |
-| `"hms"` | `"5:55:00 PM"` |
-| `"ms"` | `"55:00"` |
-| `"y"` | `"2010"` |
-| `"yM"` | `"11/2010"` |
-| `"yMEd"` | `"Tue, 11/30/2010"` |
-| `"yMMM"` | `"Nov 2010"` |
-| `"yMMMEd"` | `"Tue, Nov 30, 2010"` |
-| `"yMMMd"` | `"Nov 30, 2010"` |
-| `"yMd"` | `"11/30/2010"` |
-| `"yQQQ"` | `"Q4 2010"` |
-| `"yQQQQ"` | `"4th quarter 2010"` |
+| `{ skeleton: "E" }` | `"Tue"` |
+| `{ skeleton: "EHm" }` | `"Tue 17:55"` |
+| `{ skeleton: "EHms" }` | `"Tue 17:55:00"` |
+| `{ skeleton: "Ed" }` | `"30 Tue"` |
+| `{ skeleton: "Ehm" }` | `"Tue 5:55 PM"` |
+| `{ skeleton: "Ehms" }` | `"Tue 5:55:00 PM"` |
+| `{ skeleton: "Gy" }` | `"2010 AD"` |
+| `{ skeleton: "GyMMM" }` | `"Nov 2010 AD"` |
+| `{ skeleton: "GyMMMEd" }` | `"Tue, Nov 30, 2010 AD"` |
+| `{ skeleton: "GyMMMd" }` | `"Nov 30, 2010 AD"` |
+| `{ skeleton: "H" }` | `"17"` |
+| `{ skeleton: "Hm" }` | `"17:55"` |
+| `{ skeleton: "Hms" }` | `"17:55:00"` |
+| `{ skeleton: "M" }` | `"11"` |
+| `{ skeleton: "MEd" }` | `"Tue, 11/30"` |
+| `{ skeleton: "MMM" }` | `"Nov"` |
+| `{ skeleton: "MMMEd" }` | `"Tue, Nov 30"` |
+| `{ skeleton: "MMMd" }` | `"Nov 30"` |
+| `{ skeleton: "Md" }` | `"11/30"` |
+| `{ skeleton: "d" }` | `"30"` |
+| `{ skeleton: "h" }` | `"5 PM"` |
+| `{ skeleton: "hm" }` | `"5:55 PM"` |
+| `{ skeleton: "hms" }` | `"5:55:00 PM"` |
+| `{ skeleton: "ms" }` | `"55:00"` |
+| `{ skeleton: "y" }` | `"2010"` |
+| `{ skeleton: "yM" }` | `"11/2010"` |
+| `{ skeleton: "yMEd" }` | `"Tue, 11/30/2010"` |
+| `{ skeleton: "yMMM" }` | `"Nov 2010"` |
+| `{ skeleton: "yMMMEd" }` | `"Tue, Nov 30, 2010"` |
+| `{ skeleton: "yMMMd" }` | `"Nov 30, 2010"` |
+| `{ skeleton: "yMd" }` | `"11/30/2010"` |
+| `{ skeleton: "yQQQ" }` | `"Q4 2010"` |
+| `{ skeleton: "yQQQQ" }` | `"4th quarter 2010"` |
 
 ```javascript
 var globalize = Globalize( "en" ),
   date = new Date( 2010, 10, 30, 17, 55 ),
-  monthDayFormatter = globalize.dateFormatter( "MMMd" ),
-  hourMinuteSecondFormatter = globalize.dateFormatter( "Hms" );
+  monthDayFormatter = globalize.dateFormatter({ skeleton: "MMMd" }),
+  hourMinuteSecondFormatter = globalize.dateFormatter({ skeleton: "Hms" });
 
 monthDayFormatter( date );
 // > "Nov 30"

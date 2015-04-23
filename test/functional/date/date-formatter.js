@@ -37,11 +37,7 @@ QUnit.module( ".dateFormatter( pattern )", {
 });
 
 QUnit.test( "should validate parameters", function( assert ) {
-	util.assertParameterPresence( assert, "pattern", function() {
-		Globalize.dateFormatter();
-	});
-
-	util.assertDatePatternParameter( assert, "pattern", function( invalidPattern ) {
+	util.assertPlainObjectParameter( assert, "options", function( invalidPattern ) {
 		return function() {
 			Globalize.dateFormatter( invalidPattern );
 		};
@@ -50,18 +46,18 @@ QUnit.test( "should validate parameters", function( assert ) {
 
 QUnit.test( "should validate CLDR content", function( assert ) {
 	util.assertCldrContent( assert, function() {
-		Globalize.dateFormatter( "GyMMMEd" );
+		Globalize.dateFormatter();
 	});
 });
 
 QUnit.test( "should return a formatter", function( assert ) {
 	extraSetup();
 
-	assert.equal( Globalize.dateFormatter( "GyMMMEd" )( date ), "Wed, Sep 15, 2010 AD" );
-	assert.equal( Globalize.dateFormatter( "dhms" )( date ), "15, 5:35:07 PM" );
-	assert.equal( Globalize.dateFormatter( "GyMMMEdhms" )( date ), "Wed, Sep 15, 2010 AD, 5:35:07 PM" );
-	assert.equal( Globalize.dateFormatter( "Ems" )( date ), "Wed, 35:07" );
-	assert.equal( Globalize.dateFormatter( "yQQQhm" )( date ), "Q3 2010, 5:35 PM" );
+	assert.equal( Globalize.dateFormatter({ skeleton: "GyMMMEd" })( date ), "Wed, Sep 15, 2010 AD" );
+	assert.equal( Globalize.dateFormatter({ skeleton: "dhms" })( date ), "15, 5:35:07 PM" );
+	assert.equal( Globalize.dateFormatter({ skeleton: "GyMMMEdhms" })( date ), "Wed, Sep 15, 2010 AD, 5:35:07 PM" );
+	assert.equal( Globalize.dateFormatter({ skeleton: "Ems" })( date ), "Wed, 35:07" );
+	assert.equal( Globalize.dateFormatter({ skeleton: "yQQQhm" })( date ), "Q3 2010, 5:35 PM" );
 });
 
 });

@@ -18,10 +18,6 @@ en = new Cldr( "en" );
 
 QUnit.module( "Date Expand Pattern" );
 
-QUnit.test( "should expand skeleton \"<skeleton>\" (as a String)", function( assert ) {
-	assert.equal( expandPattern( "GyMMMEd", en ), "E, MMM d, y G" );
-});
-
 QUnit.test( "should expand {skeleton: \"<skeleton>\"}", function( assert ) {
 	assert.equal( expandPattern( { skeleton: "GyMMMEd" }, en ), "E, MMM d, y G" );
 	assert.equal( expandPattern( { skeleton: "GyMMMEdhms" }, en ), "E, MMM d, y G, h:mm:ss a" );
@@ -40,8 +36,8 @@ QUnit.test( "should expand {datetime: \"(full, ...)\"}", function( assert ) {
 	assert.equal( expandPattern( { datetime: "full" }, en ), "EEEE, MMMM d, y 'at' h:mm:ss a zzzz" );
 });
 
-QUnit.test( "should expand {pattern: \"<pattern>\"}", function( assert ) {
-	assert.equal( expandPattern( { pattern: "MMM d" }, en ), "MMM d" );
+QUnit.test( "should expand {raw: \"<pattern>\"}", function( assert ) {
+	assert.equal( expandPattern( { raw: "MMM d" }, en ), "MMM d" );
 });
 
 });

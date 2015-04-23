@@ -38,7 +38,7 @@ function extraSetup() {
 	);
 }
 
-QUnit.module( ".formatDate( value, pattern )", {
+QUnit.module( ".formatDate( value, options )", {
 	setup: function() {
 		Globalize.load( likelySubtags, {
 			main: {
@@ -61,11 +61,7 @@ QUnit.test( "should validate parameters", function( assert ) {
 		};
 	});
 
-	util.assertParameterPresence( assert, "pattern", function() {
-		Globalize.formatDate( date );
-	});
-
-	util.assertDatePatternParameter( assert, "pattern", function( invalidPattern ) {
+	util.assertPlainObjectParameter( assert, "options", function( invalidPattern ) {
 		return function() {
 			Globalize.formatDate( date, invalidPattern );
 		};
@@ -74,7 +70,7 @@ QUnit.test( "should validate parameters", function( assert ) {
 
 QUnit.test( "should validate CLDR content", function( assert ) {
 	util.assertCldrContent( assert, function() {
-		Globalize.formatDate( date, "GyMMMEd" );
+		Globalize.formatDate( date );
 	});
 });
 
@@ -90,10 +86,6 @@ QUnit.test( "should format skeleton", function( assert ) {
 	assert.equal( Globalize.formatDate( date, { skeleton: "yMd" } ), "9/15/2010" );
 	assert.equal( Globalize.formatDate( date, { skeleton: "yQQQ" } ), "Q3 2010" );
 	assert.equal( ar.formatDate( date, { skeleton: "yQQQ" } ), "الربع الثالث ٢٠١٠" );
-
-	// Passed as string
-	assert.equal( Globalize.formatDate( date, "GyMMMEd" ), "Wed, Sep 15, 2010 AD" );
-	assert.equal( ar.formatDate( date, "GyMMMEd" ), "الأربعاء، ١٥ سبتمبر، ٢٠١٠ م" );
 
 	// Via instance .formatDate().
 	assert.equal( Globalize( "pt" ).formatDate( date, { skeleton: "Ehms" } ), "qua, 5:35:07 PM" );
@@ -130,7 +122,7 @@ QUnit.test( "should format datetime presets", function( assert ) {
 QUnit.test( "should format raw patterns", function( assert ) {
 	extraSetup();
 
-	assert.equal( Globalize.formatDate( date, { pattern: "E, MMM d, y G" } ), "Wed, Sep 15, 2010 AD" );
+	assert.equal( Globalize.formatDate( date, { raw: "E, MMM d, y G" } ), "Wed, Sep 15, 2010 AD" );
 });
 
 });
