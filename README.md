@@ -20,6 +20,7 @@ Node.js module.
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
+    - [Express Middleware](#using-it-with-express)
 - [API](#api)
   - [Core](#core-module)
   - [Date module](#date-module)
@@ -252,6 +253,9 @@ to you in different flavors):
 - [Hello World (Node.js + npm)](examples/node-npm/).
 - [Hello World (plain JavaScript)](examples/plain-javascript/).
 
+#### Using it with Express
+
+Checkout the [globalize-express](https://github.com/devangnegandhi/globalize-express) middleware to use Gloablize in your express web application.
 
 ## API
 
