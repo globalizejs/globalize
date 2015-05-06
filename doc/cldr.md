@@ -2,7 +2,7 @@
 
 ## How do I get CLDR data?
 
-*By downloading a ZIP...*
+*By downloading the JSON packages individually...*
 
 Unicode CLDR is available as JSON at https://github.com/unicode-cldr/ (after
 this [json-packaging proposal][] took place). Please, read
