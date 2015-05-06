@@ -4,23 +4,22 @@
 
 *By downloading a ZIP...*
 
-The Unicode CLDR is available for download as JSON:
-- [`json.zip`](http://www.unicode.org/Public/cldr/latest/json.zip) for the
-  most used languages.
-- [`json-full.zip`](http://www.unicode.org/Public/cldr/latest/json-full.zip)
-  for all the available CLDR languages.
+Unicode CLDR is available as JSON at https://github.com/unicode-cldr/ (after
+this [json-packaging proposal][] took place). Please, read
+https://github.com/unicode-cldr/cldr-json for more information about package
+organization.
 
-For example:
-
-```bash
-wget http://www.unicode.org/Public/cldr/latest/json.zip
-unzip json.zip -d cldr
-```
+[json-packaging proposal]: http://cldr.unicode.org/development/development-process/design-proposals/json-packaging
 
 *By using a package manager...*
 
+`cldr-data` can be used for convenience. It always downloads from the correct source.
+
 Use bower `bower install cldr-data` ([detailed instructions][]) or npm `npm
-install cldr-data`.
+install cldr-data`. For more information, see:
+
+- https://github.com/rxaviers/cldr-data-npm
+- https://github.com/rxaviers/cldr-data-bower
 
 [detailed instructions]: https://github.com/rxaviers/cldr-data-bower
 
