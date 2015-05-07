@@ -1,12 +1,6 @@
 define([
 	"./core",
-	"./common/validate/cldr",
-	"./common/validate/default-locale",
-	"./common/validate/parameter-presence",
-	"./common/validate/parameter-type/currency",
-	"./common/validate/parameter-type/number",
-	"./common/validate/parameter-type/plain-object",
-	"./common/validate/plural-module-presence",
+	"./common/validate",
 	"./currency/code-properties",
 	"./currency/name-format",
 	"./currency/name-properties",
@@ -16,13 +10,11 @@ define([
 	"./number",
 	"cldr/event",
 	"cldr/supplemental"
-], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeNumber, validateParameterTypeCurrency, validateParameterTypePlainObject,
-	validatePluralModulePresence, currencyCodeProperties, currencyNameFormat,
+], function( Globalize, validate, currencyCodeProperties, currencyNameFormat,
 	currencyNameProperties, currencySymbolProperties, objectOmit ) {
 
 function validateRequiredCldr( path, value ) {
-	validateCldr( path, value, {
+	validate.cldr( path, value, {
 		skip: [ /supplemental\/currencyData\/fractions\/[A-Za-z]{3}$/ ]
 	});
 }
@@ -43,16 +35,16 @@ Globalize.currencyFormatter =
 Globalize.prototype.currencyFormatter = function( currency, options ) {
 	var cldr, numberFormatter, plural, properties, style;
 
-	validateParameterPresence( currency, "currency" );
-	validateParameterTypeCurrency( currency, "currency" );
+	validate.parameterPresence( currency, "currency" );
+	validate.parameterTypeCurrency( currency, "currency" );
 
-	validateParameterTypePlainObject( options, "options" );
+	validate.parameterTypePlainObject( options, "options" );
 
 	options = options || {};
 	style = options.style || "symbol";
 	cldr = this.cldr;
 
-	validateDefaultLocale( cldr );
+	validate.defaultLocale( cldr );
 
 	// Get properties given style ("symbol" default, "code" or "name").
 	cldr.on( "get", validateRequiredCldr );
@@ -74,12 +66,12 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 	}
 
 	// Return formatter when style is "code" or "name".
-	validatePluralModulePresence();
+	validate.pluralModulePresence();
 	numberFormatter = this.numberFormatter( options );
 	plural = this.pluralGenerator();
 	return function( value ) {
-		validateParameterPresence( value, "value" );
-		validateParameterTypeNumber( value, "value" );
+		validate.parameterPresence( value, "value" );
+		validate.parameterTypeNumber( value, "value" );
 		return currencyNameFormat( numberFormatter( value ), plural( value ), properties );
 	};
 };
@@ -113,8 +105,8 @@ Globalize.prototype.currencyParser = function( /* currency, options */ ) {
  */
 Globalize.formatCurrency =
 Globalize.prototype.formatCurrency = function( value, currency, options ) {
-	validateParameterPresence( value, "value" );
-	validateParameterTypeNumber( value, "value" );
+	validate.parameterPresence( value, "value" );
+	validate.parameterTypeNumber( value, "value" );
 
 	return this.currencyFormatter( currency, options )( value );
 };

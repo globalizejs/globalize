@@ -39,8 +39,4 @@
 }(this, function( Cldr, Globalize ) {
 
 var formatMessage = Globalize._formatMessage,
-	validateCldr = Globalize._validateCldr,
-	validateDefaultLocale = Globalize._validateDefaultLocale,
-	validateParameterPresence = Globalize._validateParameterPresence,
-	validateParameterTypeString = Globalize._validateParameterTypeString,
-	validateParameterTypeNumber = Globalize._validateParameterTypeNumber;
+	validate = Globalize._validate;

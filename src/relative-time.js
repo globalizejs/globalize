@@ -1,19 +1,13 @@
 define([
 	"./core",
-	"./common/validate/cldr",
-	"./common/validate/default-locale",
-	"./common/validate/parameter-presence",
-	"./common/validate/parameter-type/number",
-	"./common/validate/parameter-type/string",
+	"./common/validate",
 	"./relative-time/format",
 	"./relative-time/properties",
 
 	"./number",
 	"./plural",
 	"cldr/event"
-], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeNumber, validateParameterTypeString, relativeTimeFormat,
-	relativeTimeProperties ) {
+], function( Globalize, validate, relativeTimeFormat, relativeTimeProperties ) {
 
 /**
  * .formatRelativeTime( value, unit [, options] )
@@ -29,8 +23,8 @@ define([
 Globalize.formatRelativeTime =
 Globalize.prototype.formatRelativeTime = function( value, unit, options ) {
 
-	validateParameterPresence( value, "value" );
-	validateParameterTypeNumber( value, "value" );
+	validate.parameterPresence( value, "value" );
+	validate.parameterTypeNumber( value, "value" );
 
 	return this.relativeTimeFormatter( unit, options )( value );
 };
@@ -50,24 +44,24 @@ Globalize.relativeTimeFormatter =
 Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 	var cldr, numberFormatter, pluralGenerator, properties;
 
-	validateParameterPresence( unit, "unit" );
-	validateParameterTypeString( unit, "unit" );
+	validate.parameterPresence( unit, "unit" );
+	validate.parameterTypeString( unit, "unit" );
 
 	cldr = this.cldr;
 	options = options || {};
 
-	validateDefaultLocale( cldr );
+	validate.defaultLocale( cldr );
 
-	cldr.on( "get", validateCldr );
+	cldr.on( "get", validate.cldr );
 	properties = relativeTimeProperties( unit, cldr, options );
-	cldr.off( "get", validateCldr );
+	cldr.off( "get", validate.cldr );
 
 	numberFormatter = this.numberFormatter( options );
 	pluralGenerator = this.pluralGenerator();
 
 	return function( value ) {
-		validateParameterPresence( value, "value" );
-		validateParameterTypeNumber( value, "value" );
+		validate.parameterPresence( value, "value" );
+		validate.parameterTypeNumber( value, "value" );
 
 		return relativeTimeFormat( value, numberFormatter, pluralGenerator, properties );
 	};

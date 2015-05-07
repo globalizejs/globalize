@@ -2,19 +2,11 @@ define([
 	"cldr",
 	"make-plural",
 	"./core",
-	"./common/validate/cldr",
-	"./common/validate/default-locale",
-	"./common/validate/parameter-presence",
-	"./common/validate/parameter-type",
-	"./common/validate/parameter-type/number",
-	"./common/validate/parameter-type/plain-object",
-	"./common/validate/parameter-type/plural-type",
+	"./common/validate",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, MakePlural, Globalize, validateCldr, validateDefaultLocale,
-	validateParameterPresence, validateParameterType, validateParameterTypeNumber,
-	validateParameterTypePlainObject, validateParameterTypePluralType ) {
+], function( Cldr, MakePlural, Globalize, validate ) {
 
 /**
  * .plural( value )
@@ -26,8 +18,8 @@ define([
  */
 Globalize.plural =
 Globalize.prototype.plural = function( value, options ) {
-	validateParameterPresence( value, "value" );
-	validateParameterTypeNumber( value, "value" );
+	validate.parameterPresence( value, "value" );
+	validate.parameterTypeNumber( value, "value" );
 	return this.pluralGenerator( options )( value );
 };
 
@@ -47,21 +39,21 @@ Globalize.pluralGenerator =
 Globalize.prototype.pluralGenerator = function( options ) {
 	var cldr, isOrdinal, plural, type;
 
-	validateParameterTypePlainObject( options, "options" );
+	validate.parameterTypePlainObject( options, "options" );
 
 	options = options || {};
 	type = options.type || "cardinal";
 	cldr = this.cldr;
 
-	validateParameterTypePluralType( options.type, "options.type" );
+	validate.parameterTypePluralType( options.type, "options.type" );
 
-	validateDefaultLocale( cldr );
+	validate.defaultLocale( cldr );
 
 	isOrdinal = type === "ordinal";
 
-	cldr.on( "get", validateCldr );
+	cldr.on( "get", validate.cldr );
 	cldr.supplemental([ "plurals-type-" + type, "{language}" ]);
-	cldr.off( "get", validateCldr );
+	cldr.off( "get", validate.cldr );
 
 	MakePlural.rules = {};
 	MakePlural.rules[ type ] = cldr.supplemental( "plurals-type-" + type );
@@ -72,8 +64,8 @@ Globalize.prototype.pluralGenerator = function( options ) {
 	});
 
 	return function( value ) {
-		validateParameterPresence( value, "value" );
-		validateParameterTypeNumber( value, "value" );
+		validate.parameterPresence( value, "value" );
+		validate.parameterTypeNumber( value, "value" );
 
 		return plural( value );
 	};

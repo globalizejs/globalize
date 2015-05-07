@@ -37,8 +37,4 @@
 
 var alwaysArray = Globalize._alwaysArray,
 	isPlainObject = Globalize._isPlainObject,
-	validate = Globalize._validate,
-	validateDefaultLocale = Globalize._validateDefaultLocale,
-	validateParameterPresence = Globalize._validateParameterPresence,
-	validateParameterType = Globalize._validateParameterType,
-	validateParameterTypePlainObject = Globalize._validateParameterTypePlainObject;
+	validate = Globalize._validate;

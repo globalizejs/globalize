@@ -3,13 +3,6 @@ define([
 	"./common/create-error",
 	"./common/format-message",
 	"./common/validate",
-	"./common/validate/cldr",
-	"./common/validate/default-locale",
-	"./common/validate/parameter-presence",
-	"./common/validate/parameter-range",
-	"./common/validate/parameter-type",
-	"./common/validate/parameter-type/locale",
-	"./common/validate/parameter-type/plain-object",
 	"./util/always-array",
 	"./util/always-cldr",
 	"./util/is-plain-object",
@@ -18,13 +11,11 @@ define([
 	"./util/string/pad",
 
 	"cldr/event"
-], function( Cldr, createError, formatMessage, validate, validateCldr, validateDefaultLocale,
-	validateParameterPresence, validateParameterRange, validateParameterType,
-	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
+], function( Cldr, createError, formatMessage, validate, alwaysArray, alwaysCldr,
 	isPlainObject, objectExtend, regexpEscape, stringPad ) {
 
 function validateLikelySubtags( cldr ) {
-	cldr.once( "get", validateCldr );
+	cldr.once( "get", validate.cldr );
 	cldr.get( "supplemental/likelySubtags" );
 }
 
@@ -42,8 +33,8 @@ function Globalize( locale ) {
 		return new Globalize( locale );
 	}
 
-	validateParameterPresence( locale, "locale" );
-	validateParameterTypeLocale( locale, "locale" );
+	validate.parameterPresence( locale, "locale" );
+	validate.parameterTypeLocale( locale, "locale" );
 
 	this.cldr = alwaysCldr( locale );
 
@@ -75,7 +66,7 @@ Globalize.load = function() {
  * Return the default Cldr instance.
  */
 Globalize.locale = function( locale ) {
-	validateParameterTypeLocale( locale, "locale" );
+	validate.parameterTypeLocale( locale, "locale" );
 
 	if ( arguments.length ) {
 		this.cldr = alwaysCldr( locale );
@@ -95,12 +86,6 @@ Globalize._objectExtend = objectExtend;
 Globalize._regexpEscape = regexpEscape;
 Globalize._stringPad = stringPad;
 Globalize._validate = validate;
-Globalize._validateCldr = validateCldr;
-Globalize._validateDefaultLocale = validateDefaultLocale;
-Globalize._validateParameterPresence = validateParameterPresence;
-Globalize._validateParameterRange = validateParameterRange;
-Globalize._validateParameterTypePlainObject = validateParameterTypePlainObject;
-Globalize._validateParameterType = validateParameterType;
 
 return Globalize;
 

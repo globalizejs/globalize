@@ -3,22 +3,11 @@ define([
 	"messageformat",
 	"./core",
 	"./common/create-error",
-	"./common/validate/default-locale",
-	"./common/validate/message-bundle",
-	"./common/validate/message-presence",
-	"./common/validate/message-type",
-	"./common/validate/parameter-presence",
-	"./common/validate/parameter-type",
-	"./common/validate/parameter-type/message-variables",
-	"./common/validate/parameter-type/plain-object",
-	"./common/validate/plural-module-presence",
+	"./common/validate",
 	"./util/always-array",
 
 	"cldr/event"
-], function( Cldr, MessageFormat, Globalize, createError, validateDefaultLocale,
-	validateMessageBundle, validateMessagePresence, validateMessageType, validateParameterPresence,
-	validateParameterType, validateParameterTypeMessageVariables, validateParameterTypePlainObject,
-	validatePluralModulePresence, alwaysArray ) {
+], function( Cldr, MessageFormat, Globalize, createError, validate, alwaysArray ) {
 
 var slice = [].slice;
 
@@ -26,7 +15,7 @@ function MessageFormatInit( globalize, cldr ) {
 	var plural;
 	return new MessageFormat( cldr.locale, function( value ) {
 		if ( !plural ) {
-			validatePluralModulePresence();
+			validate.pluralModulePresence();
 			plural = globalize.pluralGenerator();
 		}
 		return plural( value );
@@ -47,8 +36,8 @@ Globalize.loadMessages = function( json ) {
 			"main": {}
 		};
 
-	validateParameterPresence( json, "json" );
-	validateParameterTypePlainObject( json, "json" );
+	validate.parameterPresence( json, "json" );
+	validate.parameterTypePlainObject( json, "json" );
 
 	// Set available bundles by populating customData main dataset.
 	for ( locale in json ) {
@@ -71,24 +60,24 @@ Globalize.messageFormatter =
 Globalize.prototype.messageFormatter = function( path ) {
 	var cldr, formatter, message;
 
-	validateParameterPresence( path, "path" );
-	validateParameterType( path, "path", typeof path === "string" || Array.isArray( path ),
+	validate.parameterPresence( path, "path" );
+	validate.parameterType( path, "path", typeof path === "string" || Array.isArray( path ),
 		"a String nor an Array" );
 
 	path = alwaysArray( path );
 	cldr = this.cldr;
 
-	validateDefaultLocale( cldr );
-	validateMessageBundle( cldr );
+	validate.defaultLocale( cldr );
+	validate.messageBundle( cldr );
 
 	message = cldr.get( [ "globalize-messages/{bundle}" ].concat( path ) );
-	validateMessagePresence( path, message );
+	validate.messagePresence( path, message );
 
 	// If message is an Array, concatenate it.
 	if ( Array.isArray( message ) ) {
 		message = message.join( " " );
 	}
-	validateMessageType( path, message );
+	validate.messageType( path, message );
 
 	formatter = MessageFormatInit( this, cldr ).compile( message );
 
@@ -96,7 +85,7 @@ Globalize.prototype.messageFormatter = function( path ) {
 		if ( typeof variables === "number" || typeof variables === "string" ) {
 			variables = slice.call( arguments, 0 );
 		}
-		validateParameterTypeMessageVariables( variables, "variables" );
+		validate.parameterTypeArrayOrObject( variables, "variables" );
 		return formatter( variables );
 	};
 };

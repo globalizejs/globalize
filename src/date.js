@@ -1,11 +1,6 @@
 define([
 	"cldr",
-	"./common/validate/cldr",
-	"./common/validate/default-locale",
-	"./common/validate/parameter-presence",
-	"./common/validate/parameter-type/date",
-	"./common/validate/parameter-type/plain-object",
-	"./common/validate/parameter-type/string",
+	"./common/validate",
 	"./core",
 	"./date/expand-pattern",
 	"./date/format",
@@ -18,13 +13,11 @@ define([
 	"cldr/event",
 	"cldr/supplemental",
 	"./number"
-], function( Cldr, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeDate, validateParameterTypePlainObject, validateParameterTypeString,
-	Globalize, dateExpandPattern, dateFormat, dateFormatProperties, dateParse, dateParseProperties,
-	dateTokenizer, dateTokenizerProperties ) {
+], function( Cldr, validate, Globalize, dateExpandPattern, dateFormat, dateFormatProperties,
+	dateParse, dateParseProperties, dateTokenizer, dateTokenizerProperties ) {
 
 function validateRequiredCldr( path, value ) {
-	validateCldr( path, value, {
+	validate.cldr( path, value, {
 		skip: [
 			/dates\/calendars\/gregorian\/dateTimeFormats\/availableFormats/,
 			/dates\/calendars\/gregorian\/days\/.*\/short/,
@@ -53,12 +46,12 @@ Globalize.dateFormatter =
 Globalize.prototype.dateFormatter = function( options ) {
 	var cldr, numberFormatters, pad, pattern, properties;
 
-	validateParameterTypePlainObject( options, "options" );
+	validate.parameterTypePlainObject( options, "options" );
 
 	cldr = this.cldr;
 	options = options || { skeleton: "yMd" };
 
-	validateDefaultLocale( cldr );
+	validate.defaultLocale( cldr );
 
 	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( options, cldr );
@@ -75,8 +68,8 @@ Globalize.prototype.dateFormatter = function( options ) {
 	}
 
 	return function( value ) {
-		validateParameterPresence( value, "value" );
-		validateParameterTypeDate( value, "value" );
+		validate.parameterPresence( value, "value" );
+		validate.parameterTypeDate( value, "value" );
 		return dateFormat( value, numberFormatters, properties );
 	};
 };
@@ -93,12 +86,12 @@ Globalize.dateParser =
 Globalize.prototype.dateParser = function( options ) {
 	var cldr, numberParser, parseProperties, pattern, tokenizerProperties;
 
-	validateParameterTypePlainObject( options, "options" );
+	validate.parameterTypePlainObject( options, "options" );
 
 	cldr = this.cldr;
 	options = options || { skeleton: "yMd" };
 
-	validateDefaultLocale( cldr );
+	validate.defaultLocale( cldr );
 
 	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( options, cldr );
@@ -111,8 +104,8 @@ Globalize.prototype.dateParser = function( options ) {
 	return function( value ) {
 		var tokens;
 
-		validateParameterPresence( value, "value" );
-		validateParameterTypeString( value, "value" );
+		validate.parameterPresence( value, "value" );
+		validate.parameterTypeString( value, "value" );
 
 		tokens = dateTokenizer( value, numberParser, tokenizerProperties );
 		return dateParse( value, tokens, parseProperties ) || null;
@@ -130,8 +123,8 @@ Globalize.prototype.dateParser = function( options ) {
  */
 Globalize.formatDate =
 Globalize.prototype.formatDate = function( value, options ) {
-	validateParameterPresence( value, "value" );
-	validateParameterTypeDate( value, "value" );
+	validate.parameterPresence( value, "value" );
+	validate.parameterTypeDate( value, "value" );
 
 	return this.dateFormatter( options )( value );
 };
@@ -147,8 +140,8 @@ Globalize.prototype.formatDate = function( value, options ) {
  */
 Globalize.parseDate =
 Globalize.prototype.parseDate = function( value, options ) {
-	validateParameterPresence( value, "value" );
-	validateParameterTypeString( value, "value" );
+	validate.parameterPresence( value, "value" );
+	validate.parameterTypeString( value, "value" );
 
 	return this.dateParser( options )( value );
 };
