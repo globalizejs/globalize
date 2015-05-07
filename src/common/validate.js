@@ -149,7 +149,7 @@ function parameterTypeNumber( value, name ) {
 	);
 }
 
-function parameterTypeObject( value, name ) {
+function parameterTypePlainObject( value, name ) {
 	parameterType(
 		value,
 		name,
@@ -158,7 +158,7 @@ function parameterTypeObject( value, name ) {
 	);
 }
 
-function parameterTypePlural( value, name ) {
+function parameterTypePluralType( value, name ) {
 	parameterType(
 		value,
 		name,
@@ -192,8 +192,8 @@ return {
 	parameterTypeLocale: parameterTypeLocale,
 	parameterTypeArrayOrObject: parameterTypeArrayOrObject,
 	parameterTypeNumber: parameterTypeNumber,
-	parameterTypeObject: parameterTypeObject,
-	parameterTypePlural: parameterTypePlural,
+	parameterTypePlainObject: parameterTypePlainObject,
+	parameterTypePluralType: parameterTypePluralType,
 	parameterTypeString: parameterTypeString
 };
 
