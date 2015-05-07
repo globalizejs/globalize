@@ -3,6 +3,7 @@ define([
 	"./calendars/calendar-for-locale",
 	"./calendars/Gdate",
 	"./calendars/Gregorian-date",
+	"./calendars/Hebrew-date",
 	"./common/create-error",
 	"./common/format-message",
 	"./common/validate",
@@ -22,7 +23,7 @@ define([
 
 	"cldr/event"
 ], function( Cldr, calendarsCalendarForLocale, calendarsGdate,
-	calendarsGregorianDate, createError, formatMessage,
+	calendarsGregorianDate, calendarsHebrewDate, createError, formatMessage,
 	validate, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterRange, validateParameterType,
 	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
@@ -116,7 +117,8 @@ Globalize._validateParameterType = validateParameterType;
 Globalize._Gdate = calendarsGdate;
 
 Globalize.calendars = {
-  gregorian: calendarsGregorianDate
+  gregorian: calendarsGregorianDate,
+  hebrew: calendarsHebrewDate
 };
 
 return Globalize;
