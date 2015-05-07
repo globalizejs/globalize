@@ -9,14 +9,21 @@ define(function() {
  *
  * Returns the modified date
  */
-return function( date, unit ) {
+return function( date, unit, gdate ) {
+  // gdate is the globalized date for date. if unit is not 'year' or 'month', then it is not needed
+  if (unit === "year"){
+    // no choice but to go through each month one at a time
+    for (var lastMonth = gdate.nextMonth(-1); lastMonth.getYear() === gdate.getYear();){
+      gdate = lastMonth;
+			lastMonth = gdate.nextMonth(-1);
+    }
+  }
 	date = new Date( date.getTime() );
 	switch ( unit ) {
 		case "year":
-			date.setMonth( 0 );
 		/* falls through */
 		case "month":
-			date.setDate( 1 );
+			date = gdate.nextDate(1 - gdate.getDate()).toDate();
 		/* falls through */
 		case "day":
 			date.setHours( 0 );

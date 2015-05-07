@@ -7,8 +7,13 @@ define(function() {
  *
  * Return the last day of the given date's month
  */
-return function( date ) {
-	return new Date( date.getFullYear(), date.getMonth() + 1, 0).getDate();
+return function( gdate ) {
+  // no choice but to move forward one at a time
+  for (var tomorrow = gdate.nextDate(1); tomorrow.getMonth() === gdate.getMonth();){
+    gdate = tomorrow;
+		tomorrow = gdate.nextDate(1);
+  }
+  return gdate.getDate();
 };
 
 });

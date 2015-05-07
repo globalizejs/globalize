@@ -1,5 +1,8 @@
 define([
 	"cldr",
+	"./calendars/calendarForLocale",
+	"./calendars/Gdate",
+	"./calendars/GregorianDate",
 	"./common/create-error",
 	"./common/format-message",
 	"./common/validate",
@@ -18,7 +21,8 @@ define([
 	"./util/string/pad",
 
 	"cldr/event"
-], function( Cldr, createError, formatMessage, validate, validateCldr, validateDefaultLocale,
+], function( Cldr, calendarForLocale, Gdate, GregorianDate, createError, formatMessage,
+	validate, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterRange, validateParameterType,
 	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
 	isPlainObject, objectExtend, regexpEscape, stringPad ) {
@@ -26,6 +30,17 @@ define([
 function validateLikelySubtags( cldr ) {
 	cldr.once( "get", validateCldr );
 	cldr.get( "supplemental/likelySubtags" );
+}
+
+function setLocale ( object, locale ){
+	validateParameterPresence( locale, "locale" );
+	validateParameterTypeLocale( locale, "locale" );
+	object.cldr = alwaysCldr( locale );
+	calendar = calendarForLocale( object.cldr );
+	validateParameterType ( calendar, "calendar",
+		calendar in Globalize.calendars, "a defined calendar system" );
+	object.cldr.attributes.calendar = calendar;
+	validateLikelySubtags( object.cldr );
 }
 
 /**
@@ -42,12 +57,7 @@ function Globalize( locale ) {
 		return new Globalize( locale );
 	}
 
-	validateParameterPresence( locale, "locale" );
-	validateParameterTypeLocale( locale, "locale" );
-
-	this.cldr = alwaysCldr( locale );
-
-	validateLikelySubtags( this.cldr );
+	setLocale( this, locale );
 }
 
 /**
@@ -75,11 +85,12 @@ Globalize.load = function() {
  * Return the default Cldr instance.
  */
 Globalize.locale = function( locale ) {
+	var calendar;
+
 	validateParameterTypeLocale( locale, "locale" );
 
 	if ( arguments.length ) {
-		this.cldr = alwaysCldr( locale );
-		validateLikelySubtags( this.cldr );
+		setLocale( this, locale );
 	}
 	return this.cldr;
 };
@@ -101,6 +112,11 @@ Globalize._validateParameterPresence = validateParameterPresence;
 Globalize._validateParameterRange = validateParameterRange;
 Globalize._validateParameterTypePlainObject = validateParameterTypePlainObject;
 Globalize._validateParameterType = validateParameterType;
+Globalize._Gdate = Gdate;
+
+Globalize.calendars = {
+  gregorian: GregorianDate
+};
 
 return Globalize;
 

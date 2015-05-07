@@ -29,6 +29,7 @@ Cldr.load(
 );
 
 cldr = new Cldr( "en" );
+cldr.attributes.calendar = "gregorian";
 
 QUnit.assert.dateTokenizer = function( value, pattern, cldr, expected ) {
 	this.deepEqual(

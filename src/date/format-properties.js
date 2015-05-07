@@ -17,7 +17,6 @@ define([
  *
  * Return the properties given the pattern and cldr.
  *
- * TODO Support other calendar types.
  */
 return function( pattern, cldr ) {
 	var properties = {
@@ -55,7 +54,7 @@ return function( pattern, cldr ) {
 			// Era
 			case "G":
 				properties.eras = cldr.main([
-					"dates/calendars/gregorian/eras",
+					"dates/calendars/{calendar}/eras",
 					length <= 3 ? "eraAbbr" : ( length === 4 ? "eraNames" : "eraNarrow" )
 				]);
 				break;
@@ -90,7 +89,7 @@ return function( pattern, cldr ) {
 						properties.quarters[ chr ] = {};
 					}
 					properties.quarters[ chr ][ length ] = cldr.main([
-						"dates/calendars/gregorian/quarters",
+						"dates/calendars/{calendar}/quarters",
 						chr === "Q" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
@@ -110,7 +109,7 @@ return function( pattern, cldr ) {
 						properties.months[ chr ] = {};
 					}
 					properties.months[ chr ][ length ] = cldr.main([
-						"dates/calendars/gregorian/months",
+						"dates/calendars/{calendar}/months",
 						chr === "M" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
@@ -164,17 +163,17 @@ return function( pattern, cldr ) {
 					// http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					// http://unicode.org/cldr/trac/ticket/6790
 					properties.days[ chr ][ length ] = cldr.main([
-							"dates/calendars/gregorian/days",
+							"dates/calendars/{calendar}/days",
 							chr === "c" ? "stand-alone" : "format",
 							"short"
 						]) || cldr.main([
-							"dates/calendars/gregorian/days",
+							"dates/calendars/{calendar}/days",
 							chr === "c" ? "stand-alone" : "format",
 							"abbreviated"
 						]);
 				} else {
 					properties.days[ chr ][ length ] = cldr.main([
-						"dates/calendars/gregorian/days",
+						"dates/calendars/{calendar}/days",
 						chr === "c" ? "stand-alone" : "format",
 						widths[ length < 3 ? 0 : length - 3 ]
 					]);
@@ -184,7 +183,7 @@ return function( pattern, cldr ) {
 			// Period (AM or PM)
 			case "a":
 				properties.dayPeriods = cldr.main(
-					"dates/calendars/gregorian/dayPeriods/format/wide"
+					"dates/calendars/{calendar}/dayPeriods/format/wide"
 				);
 				break;
 

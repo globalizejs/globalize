@@ -1,12 +1,12 @@
 define([
-	"./is-leap-year",
+	"../core",
 	"./last-day-of-month",
 	"./pattern-re",
 	"./start-of",
 	"../common/create-error/unsupported-feature",
 	"../util/date/set-month",
 	"../util/out-of-range"
-], function( dateIsLeapYear, dateLastDayOfMonth, datePatternRe, dateStartOf,
+], function( Globalize, dateLastDayOfMonth, datePatternRe, dateStartOf,
 	createErrorUnsupportedFeature, dateSetMonth, outOfRange ) {
 
 /**
@@ -21,7 +21,8 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, tokens, properties ) {
-	var amPm, day, daysOfYear, era, hour, hour12, timezoneOffset, valid,
+	var amPm, daysOfYear, era, hour, hour12, timezoneOffset, valid,
+    date, gdate, ret, todayYear, startOfYear,
 		YEAR = 0,
 		MONTH = 1,
 		DAY = 2,
@@ -29,9 +30,33 @@ return function( value, tokens, properties ) {
 		MINUTE = 4,
 		SECOND = 5,
 		MILLISECONDS = 6,
-		date = new Date(),
+    calendar = Globalize.calendars[properties.calendar],
 		truncateAt = [],
 		units = [ "year", "month", "day", "hour", "minute", "second", "milliseconds" ];
+
+	// Assumptions:
+	// If only times are set, use today's date.
+	// If era is not set, use today's era
+	// If year is not set, use today's year
+	// If neither month nor date are set, use the beginning of the year
+	//   Using the beginning of the year is an exception to all these other
+	//   rules. Why not today's date? The technical report
+	//   http://www.unicode.org/reports/tr35/tr35-dates.html doesn't specify
+	// If month is not set but date is, use today's month
+	
+	
+	date = new Date();
+	gdate = new calendar( date );
+	ret = {
+		era: gdate.getEra(),
+		year: gdate.getYear(),
+		month: undefined,
+		date: undefined,
+		hour: date.getHours(),
+		minute: date.getMinutes(),
+		second: date.getSeconds(),
+		milliseconds: 0
+	};
 
 	if ( !tokens.length ) {
 		return null;
@@ -59,7 +84,7 @@ return function( value, tokens, properties ) {
 			// Era
 			case "G":
 				truncateAt.push( YEAR );
-				era = +token.value;
+				ret.era = +token.value;
 				break;
 
 			// Year
@@ -71,13 +96,14 @@ return function( value, tokens, properties ) {
 					}
 					// mimic dojo/date/locale: choose century to apply, according to a sliding
 					// window of 80 years before and 20 years after present year.
-					century = Math.floor( date.getFullYear() / 100 ) * 100;
+          todayYear = (new calendar(date)).getYear();
+					century = Math.floor( todayYear / 100 ) * 100;
 					value += century;
-					if ( value > date.getFullYear() + 20 ) {
+					if ( value > todayYear + 20 ) {
 						value -= 100;
 					}
 				}
-				date.setFullYear( value );
+        ret.year = value;
 				truncateAt.push( YEAR );
 				break;
 
@@ -94,15 +120,7 @@ return function( value, tokens, properties ) {
 			// Month
 			case "M":
 			case "L":
-				if ( length <= 2 ) {
-					value = token.value;
-				} else {
-					value = +token.value;
-				}
-				if ( outOfRange( value, 1, 12 ) ) {
-					return false;
-				}
-				dateSetMonth( date, value - 1 );
+				ret.month = token.value;
 				truncateAt.push( MONTH );
 				break;
 
@@ -113,7 +131,7 @@ return function( value, tokens, properties ) {
 
 			// Day
 			case "d":
-				day = token.value;
+				ret.date = token.value;
 				truncateAt.push( DAY );
 				break;
 
@@ -147,7 +165,7 @@ return function( value, tokens, properties ) {
 					return false;
 				}
 				hour = hour12 = true;
-				date.setHours( value === 12 ? 0 : value );
+				ret.hour = ( value === 12 ? 0 : value );
 				truncateAt.push( HOUR );
 				break;
 
@@ -157,7 +175,7 @@ return function( value, tokens, properties ) {
 					return false;
 				}
 				hour = hour12 = true;
-				date.setHours( value );
+				ret.hour = value;
 				truncateAt.push( HOUR );
 				break;
 
@@ -167,7 +185,7 @@ return function( value, tokens, properties ) {
 					return false;
 				}
 				hour = true;
-				date.setHours( value === 24 ? 0 : value );
+				ret.hour =( value === 24 ? 0 : value );
 				truncateAt.push( HOUR );
 				break;
 
@@ -177,7 +195,7 @@ return function( value, tokens, properties ) {
 					return false;
 				}
 				hour = true;
-				date.setHours( value );
+        ret.hour = value;
 				truncateAt.push( HOUR );
 				break;
 
@@ -187,7 +205,7 @@ return function( value, tokens, properties ) {
 				if ( outOfRange( value, 0, 59 ) ) {
 					return false;
 				}
-				date.setMinutes( value );
+				ret.minute = value;
 				truncateAt.push( MINUTE );
 				break;
 
@@ -197,19 +215,19 @@ return function( value, tokens, properties ) {
 				if ( outOfRange( value, 0, 59 ) ) {
 					return false;
 				}
-				date.setSeconds( value );
+				ret.second = value;
 				truncateAt.push( SECOND );
 				break;
 
 			case "A":
-				date.setHours( 0 );
-				date.setMinutes( 0 );
-				date.setSeconds( 0 );
+        ret.hour = 0;
+        ret.minute = 0;
+        ret.second = 0;
 
 			/* falls through */
 			case "S":
 				value = Math.round( token.value * Math.pow( 10, 3 - length ) );
-				date.setMilliseconds( value );
+        ret.milliseconds = value;
 				truncateAt.push( MILLISECONDS );
 				break;
 
@@ -219,7 +237,7 @@ return function( value, tokens, properties ) {
 			case "O":
 			case "X":
 			case "x":
-				timezoneOffset = token.value - date.getTimezoneOffset();
+				timezoneOffset = token.value - (new Date()).getTimezoneOffset();
 				break;
 		}
 
@@ -236,23 +254,42 @@ return function( value, tokens, properties ) {
 		return null;
 	}
 
-	if ( era === 0 ) {
-		// 1 BC = year 0
-		date.setFullYear( date.getFullYear() * -1 + 1 );
+	if ( ret.month == null && ret.date == null && truncateAt.indexOf( YEAR ) !== -1) {
+		// year was defined but month was not
+		gdate = new calendar( dateStartOf ( date, "year", gdate ) );
+		ret.month = gdate.getMonth();
+		ret.date = gdate.getDate();
+	}
+	if ( ret.month == null ) {
+		ret.month = gdate.getMonth();
+	}
+	if ( ret.date == null && truncateAt.indexOf( MONTH ) !== -1) {
+		// month was defined but date was not
+		ret.date = 1; // gdate assumes 1 is the first date of the month
+	}
+	if ( ret.date == null ) {
+		ret.date = gdate.getDate();
 	}
 
-	if ( day !== undefined ) {
-		if ( outOfRange( day, 1, dateLastDayOfMonth( date ) ) ) {
+  gdate = new calendar(ret.era, ret.year, ret.month, ret.date);
+
+	if ( daysOfYear !== undefined ) {
+    startOfYear = dateStartOf(gdate.toDate(), "year", gdate);
+    gdate = new calendar( startOfYear ).nextDate(daysOfYear - 1);
+		if ( gdate.getYear() !== startOfYear.getFullYear() ) {
 			return null;
 		}
-		date.setDate( day );
-	} else if ( daysOfYear !== undefined ) {
-		if ( outOfRange( daysOfYear, 1, dateIsLeapYear( date.getFullYear() ) ? 366 : 365 ) ) {
-			return null;
-		}
-		date.setMonth(0);
-		date.setDate( daysOfYear );
+	}else if ( gdate.getDate() !== ret.date ) {
+		// if the date was invalid and gdate corrected it (like turning 31 Sep into 30 Sep),
+		// we want to reject it.
+		return null;
 	}
+
+  date = gdate.toDate();
+  date.setHours(ret.hour);
+  date.setMinutes(ret.minute);
+  date.setSeconds(ret.second);
+  date.setMilliseconds(ret.milliseconds);
 
 	if ( hour12 && amPm === "pm" ) {
 		date.setHours( date.getHours() + 12 );
@@ -266,7 +303,7 @@ return function( value, tokens, properties ) {
 	// If value is "12/31", and pattern is "MM/dd":
 	// => new Date( <current Year>, 12, 31, 0, 0, 0, 0 );
 	truncateAt = Math.max.apply( null, truncateAt );
-	date = dateStartOf( date, units[ truncateAt ] );
+	date = dateStartOf( date, units[ truncateAt ], gdate );
 
 	return date;
 };

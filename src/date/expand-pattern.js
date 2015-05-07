@@ -31,7 +31,7 @@ return function( options, cldr ) {
 	function combineDateTime( type, datePattern, timePattern ) {
 		return formatMessage(
 			cldr.main([
-				"dates/calendars/gregorian/dateTimeFormats",
+				"dates/calendars/{calendar}/dateTimeFormats",
 				type
 			]),
 			[ timePattern, datePattern ]
@@ -42,7 +42,7 @@ return function( options, cldr ) {
 		case "skeleton" in options:
 			skeleton = options.skeleton;
 			result = cldr.main([
-				"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+				"dates/calendars/{calendar}/dateTimeFormats/availableFormats",
 				skeleton
 			]);
 			if ( !result ) {
@@ -59,11 +59,11 @@ return function( options, cldr ) {
 				}
 				result = combineDateTime( type,
 					cldr.main([
-						"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+						"dates/calendars/{calendar}/dateTimeFormats/availableFormats",
 						dateSkeleton
 					]),
 					cldr.main([
-						"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+						"dates/calendars/{calendar}/dateTimeFormats/availableFormats",
 						timeSkeleton
 					])
 				);
@@ -73,7 +73,7 @@ return function( options, cldr ) {
 		case "date" in options:
 		case "time" in options:
 			result = cldr.main([
-				"dates/calendars/gregorian",
+				"dates/calendars/{calendar}",
 				"date" in options ? "dateFormats" : "timeFormats",
 				( options.date || options.time )
 			]);
@@ -81,8 +81,8 @@ return function( options, cldr ) {
 
 		case "datetime" in options:
 			result = combineDateTime( options.datetime,
-				cldr.main([ "dates/calendars/gregorian/dateFormats", options.datetime ]),
-				cldr.main([ "dates/calendars/gregorian/timeFormats", options.datetime ])
+				cldr.main([ "dates/calendars/{calendar}/dateFormats", options.datetime ]),
+				cldr.main([ "dates/calendars/{calendar}/timeFormats", options.datetime ])
 			);
 			break;
 

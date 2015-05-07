@@ -16,7 +16,8 @@ define([
 return function( pattern, cldr ) {
 	var properties = {
 			pattern: pattern,
-			timeSeparator: numberSymbol( "timeSeparator", cldr )
+			timeSeparator: numberSymbol( "timeSeparator", cldr ),
+			calendar: cldr.attributes.calendar
 		},
 		widths = [ "abbreviated", "wide", "narrow" ];
 
@@ -44,7 +45,7 @@ return function( pattern, cldr ) {
 			// Era
 			case "G":
 				cldr.main([
-					"dates/calendars/gregorian/eras",
+					"dates/calendars/{calendar}/eras",
 					length <= 3 ? "eraAbbr" : ( length === 4 ? "eraNames" : "eraNarrow" )
 				]);
 				break;
@@ -61,7 +62,7 @@ return function( pattern, cldr ) {
 			case "q":
 				if ( length > 2 ) {
 					cldr.main([
-						"dates/calendars/gregorian/quarters",
+						"dates/calendars/{calendar}/quarters",
 						chr === "Q" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
@@ -75,7 +76,7 @@ return function( pattern, cldr ) {
 				// lookup l=3...
 				if ( length > 2 ) {
 					cldr.main([
-						"dates/calendars/gregorian/months",
+						"dates/calendars/{calendar}/months",
 						chr === "M" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
@@ -103,17 +104,17 @@ return function( pattern, cldr ) {
 					// Note: if short day names are not explicitly specified, abbreviated day
 					// names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					cldr.main([
-						"dates/calendars/gregorian/days",
+						"dates/calendars/{calendar}/days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						"short"
 					]) || cldr.main([
-						"dates/calendars/gregorian/days",
+						"dates/calendars/{calendar}/days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						"abbreviated"
 					]);
 				} else {
 					cldr.main([
-						"dates/calendars/gregorian/days",
+						"dates/calendars/{calendar}/days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						widths[ length < 3 ? 0 : length - 3 ]
 					]);
@@ -123,7 +124,7 @@ return function( pattern, cldr ) {
 			// Period (AM or PM)
 			case "a":
 				cldr.main([
-					"dates/calendars/gregorian/dayPeriods/format/wide"
+					"dates/calendars/{calendar}/dayPeriods/format/wide"
 				]);
 				break;
 

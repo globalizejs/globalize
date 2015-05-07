@@ -1,5 +1,6 @@
 define([
 	"cldr",
+	"src/core",
 	"src/date/parse",
 	"src/date/parse-properties",
 	"src/date/start-of",
@@ -13,13 +14,15 @@ define([
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, parse, parseProperties, startOf, tokenizer, numberTokenizerProperties,
+], function( Cldr, Globalize, parse, parseProperties, oldStartOf, tokenizer, numberTokenizerProperties,
 	enCaGregorian, enNumbers, likelySubtags, timeData, weekData ) {
 
-var cldr, date1, date2, FakeDate, midnight;
+var cldr, date1, date2, FakeDate, midnight,
+	calendar = Globalize.calendars.gregorian,
+	startOf = function ( date, unit ) { return oldStartOf ( date, unit, new calendar(date) ) };
 
 function assertParse( assert, stringDate, pattern, cldr, date ) {
-	var tokenizerProperties, tokens;
+	var properties, tokenizerProperties, tokens;
 
 	tokenizerProperties = numberTokenizerProperties( pattern, cldr );
 	tokens = tokenizer( stringDate, simpleNumberParser, tokenizerProperties );
@@ -85,6 +88,7 @@ Cldr.load(
 );
 
 cldr = new Cldr( "en" );
+cldr.attributes.calendar = "gregorian";
 
 midnight = new Date();
 midnight = startOf( midnight, "day" );

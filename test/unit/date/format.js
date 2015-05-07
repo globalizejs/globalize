@@ -3,6 +3,7 @@ define([
 	"src/date/format",
 	"src/date/format-properties",
 	"src/util/string/pad",
+	"src/calendars/GregorianDate",
 	"json!cldr-data/main/de/ca-gregorian.json",
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/main/en/timeZoneNames.json",
@@ -16,7 +17,7 @@ define([
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, format, formatProperties, stringPad, deCaGregorian, enCaGregorian,
+], function( Cldr, format, formatProperties, stringPad, GregorianDate, deCaGregorian, enCaGregorian,
 	enTimeZoneNames, enGbCaGregorian, enInCaGregorian, ptCaGregorian, ruCaGregorian, likelySubtags,
 	timeData, weekData ) {
 
@@ -56,12 +57,14 @@ Cldr.load(
 );
 
 cldr = new Cldr( "en" );
+cldr.attributes.calendar = "gregorian";
 
 QUnit.assert.dateFormat = function( date, pattern, cldr, expected ) {
 	var pad,
 		numberFormatters = [],
 		properties = formatProperties( pattern, cldr );
-
+		properties.calendar = GregorianDate;
+		
 	// Create simple number formatters for this test purposes.
 	for ( pad in properties.numberFormatters ) {
 		numberFormatters[ pad ] = simpleFormatter( pad );

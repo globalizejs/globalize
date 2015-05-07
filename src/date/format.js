@@ -17,12 +17,11 @@ define([
  *
  * @properties
  *
- * TODO Support other calendar types.
- *
  * Disclosure: this function borrows excerpts of dojo/date/locale.
  */
 return function( date, numberFormatters, properties ) {
-	var timeSeparator = properties.timeSeparator;
+	var timeSeparator = properties.timeSeparator,
+		gdate = new properties.calendar(date);
 
 	return properties.pattern.replace( datePatternRe, function( current ) {
 		var ret,
@@ -57,7 +56,7 @@ return function( date, numberFormatters, properties ) {
 
 			// Era
 			case "G":
-				ret = properties.eras[ date.getFullYear() < 0 ? 0 : 1 ];
+				ret = properties.eras[ gdate.getEra() ];
 				break;
 
 			// Year
@@ -65,7 +64,7 @@ return function( date, numberFormatters, properties ) {
 				// Plain year.
 				// The length specifies the padding, but for two letters it also specifies the
 				// maximum length.
-				ret = date.getFullYear();
+				ret = gdate.getYear();
 				if ( length === 2 ) {
 					ret = String( ret );
 					ret = +ret.substr( ret.length - 2 );
@@ -84,7 +83,7 @@ return function( date, numberFormatters, properties ) {
 					properties.firstDay -
 					properties.minDays
 				);
-				ret = ret.getFullYear();
+				ret = (new properties.calendar(ret)).getYear();
 				if ( length === 2 ) {
 					ret = String( ret );
 					ret = +ret.substr( ret.length - 2 );
@@ -94,7 +93,9 @@ return function( date, numberFormatters, properties ) {
 			// Quarter
 			case "Q":
 			case "q":
-				ret = Math.ceil( ( date.getMonth() + 1 ) / 3 );
+        // TODO: figure out how to make gdate handle this.
+				// We may have to have a Gdate.prototype.getQuarter
+				ret = Math.ceil( ( date.getMonth() + 1 ) / 3 ); //
 				if ( length > 2 ) {
 					ret = properties.quarters[ chr ][ length ][ ret ];
 				}
@@ -103,10 +104,12 @@ return function( date, numberFormatters, properties ) {
 			// Month
 			case "M":
 			case "L":
-				ret = date.getMonth() + 1;
+				ret = gdate.getMonth();
 				if ( length > 2 ) {
 					ret = properties.months[ chr ][ length ][ ret ];
-				}
+				}else {
+          ret = parseInt(ret, 10); // month number
+        }
 				break;
 
 			// Week
@@ -114,31 +117,31 @@ return function( date, numberFormatters, properties ) {
 				// Week of Year.
 				// woy = ceil( ( doy + dow of 1/1 ) / 7 ) - minDaysStuff ? 1 : 0.
 				// TODO should pad on ww? Not documented, but I guess so.
-				ret = dateDayOfWeek( dateStartOf( date, "year" ), properties.firstDay );
-				ret = Math.ceil( ( dateDayOfYear( date ) + ret ) / 7 ) -
+				ret = dateDayOfWeek( dateStartOf( date, "year", gdate ), properties.firstDay );
+				ret = Math.ceil( ( dateDayOfYear( gdate ) + ret ) / 7 ) -
 					( 7 - ret >= properties.minDays ? 0 : 1 );
 				break;
 
 			case "W":
 				// Week of Month.
 				// wom = ceil( ( dom + dow of `1/month` ) / 7 ) - minDaysStuff ? 1 : 0.
-				ret = dateDayOfWeek( dateStartOf( date, "month" ), properties.firstDay );
+				ret = dateDayOfWeek( dateStartOf( date, "month", gdate ), properties.firstDay );
 				ret = Math.ceil( ( date.getDate() + ret ) / 7 ) -
 					( 7 - ret >= properties.minDays ? 0 : 1 );
 				break;
 
 			// Day
 			case "d":
-				ret = date.getDate();
+				ret = gdate.getDate();
 				break;
 
 			case "D":
-				ret = dateDayOfYear( date ) + 1;
+				ret = dateDayOfYear( gdate ) + 1;
 				break;
 
 			case "F":
 				// Day of Week in month. eg. 2nd Wed in July.
-				ret = Math.floor( date.getDate() / 7 ) + 1;
+				ret = Math.floor( gdate.getDate() / 7 ) + 1;
 				break;
 
 			// Week day
@@ -245,7 +248,7 @@ return function( date, numberFormatters, properties ) {
 				ret = current;
 				break;
 
-			// Anything else is considered a literal, including [ ,:/.@#], chinese, japonese, and
+			// Anything else is considered a literal, including [ ,:/.@#], chinese, japanese, and
 			// arabic characters.
 			default:
 				ret = current;

@@ -26,8 +26,8 @@ define([
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
 		skip: [
-			/dates\/calendars\/gregorian\/dateTimeFormats\/availableFormats/,
-			/dates\/calendars\/gregorian\/days\/.*\/short/,
+			/dates\/calendars\/{calendar}\/dateTimeFormats\/availableFormats/,
+			/dates\/calendars\/{calendar}\/days\/.*\/short/,
 			/supplemental\/timeData\/(?!001)/,
 			/supplemental\/weekData\/(?!001)/
 		]
@@ -63,6 +63,7 @@ Globalize.prototype.dateFormatter = function( options ) {
 	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( options, cldr );
 	properties = dateFormatProperties( pattern, cldr );
+	properties.calendar = Globalize.calendars[cldr.attributes.calendar];
 	cldr.off( "get", validateRequiredCldr );
 
 	// Create needed number formatters.
@@ -104,6 +105,7 @@ Globalize.prototype.dateParser = function( options ) {
 	pattern = dateExpandPattern( options, cldr );
 	tokenizerProperties = dateTokenizerProperties( pattern, cldr );
 	parseProperties = dateParseProperties( cldr );
+	parseProperties.calendar = Globalize.calendars[cldr.attributes.calendar];
 	cldr.off( "get", validateRequiredCldr );
 
 	numberParser = this.numberParser({ raw: "0" });

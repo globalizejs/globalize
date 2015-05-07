@@ -38,6 +38,7 @@ define([
 return function( value, numberParser, properties ) {
 	var valid,
 		timeSeparator = properties.timeSeparator,
+		calendar = properties.calendar,
 		tokens = [],
 		widths = [ "abbreviated", "wide", "narrow" ];
 
@@ -175,7 +176,8 @@ return function( value, numberParser, properties ) {
 			// Era
 			case "G":
 				lookup([
-					"gregorian/eras",
+					calendar,
+					"eras",
 					length <= 3 ? "eraAbbr" : ( length === 4 ? "eraNames" : "eraNarrow" )
 				]);
 				break;
@@ -207,7 +209,8 @@ return function( value, numberParser, properties ) {
 				// number l=1:{1}, l=2:{2}.
 				// lookup l=3...
 				oneDigitIfLengthOne() || twoDigitsIfLengthTwo() || lookup([
-					"gregorian/quarters",
+					calendar,
+					"quarters",
 					chr === "Q" ? "format" : "stand-alone",
 					widths[ length - 3 ]
 				]);
@@ -219,7 +222,8 @@ return function( value, numberParser, properties ) {
 				// number l=1:{1,2}, l=2:{2}.
 				// lookup l=3...
 				oneOrTwoDigitsIfLengthOne() || twoDigitsIfLengthTwo() || lookup([
-					"gregorian/months",
+					calendar,
+					"months",
 					chr === "M" ? "format" : "stand-alone",
 					widths[ length - 3 ]
 				]);
@@ -258,17 +262,20 @@ return function( value, numberParser, properties ) {
 					// Note: if short day names are not explicitly specified, abbreviated day
 					// names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					lookup([
-						"gregorian/days",
+						calendar,
+						"days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						"short"
 					]) || lookup([
-						"gregorian/days",
+						calendar,
+						"days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						"abbreviated"
 					]);
 				} else {
 					lookup([
-						"gregorian/days",
+						calendar,
+						"days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						widths[ length < 3 ? 0 : length - 3 ]
 					]);
@@ -278,7 +285,8 @@ return function( value, numberParser, properties ) {
 			// Period (AM or PM)
 			case "a":
 				lookup([
-					"gregorian/dayPeriods/format/wide"
+					calendar,
+					"dayPeriods/format/wide"
 				]);
 				break;
 

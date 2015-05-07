@@ -6,10 +6,11 @@ define([
 /**
  * dayOfYear
  *
- * Return the distance in days of the date to the begin of the year [0-d].
+ * Return the distance in days of the globalized date to the beginning of the year [0-d].
  */
-return function( date ) {
-	return Math.floor( dateDistanceInDays( dateStartOf( date, "year" ), date ) );
+return function( gdate ) {
+  var date = gdate.toDate();
+	return Math.floor( dateDistanceInDays( dateStartOf( date, "year", gdate ), date ) );
 };
 
 });

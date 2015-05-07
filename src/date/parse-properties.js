@@ -9,7 +9,8 @@ define(function() {
  */
 return function( cldr ) {
 	return {
-		preferredTimeData: cldr.supplemental.timeData.preferred()
+		preferredTimeData: cldr.supplemental.timeData.preferred(),
+		calendar: cldr.attributes.calendar
 	};
 };
 
