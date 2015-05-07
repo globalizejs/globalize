@@ -36,5 +36,4 @@
 }(this, function( Cldr, Globalize ) {
 
 var alwaysArray = Globalize._alwaysArray,
-	isPlainObject = Globalize._isPlainObject,
 	validate = Globalize._validate;

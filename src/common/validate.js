@@ -6,7 +6,7 @@ define( [
 	"../core"
 ], function( createError, alwaysArray, isPlainObject, Cldr, Globalize ) {
 
-function validate( code, message, check, attributes ) {
+function _validate( code, message, check, attributes ) {
 	if ( !check ) {
 		throw createError( code, message, attributes );
 	}
@@ -20,18 +20,18 @@ function cldr( path, value, options ) {
 		return pathRe.test( path );
 	} );
 
-	validate( "E_MISSING_CLDR", "Missing required CLDR content `{path}`.", value || skipBoolean, {
+	_validate( "E_MISSING_CLDR", "Missing required CLDR content `{path}`.", value || skipBoolean, {
 		path: path
 	} );
 }
 
 function defaultLocale( value ) {
-	validate( "E_DEFAULT_LOCALE_NOT_DEFINED", "Default locale has not been defined.",
+	_validate( "E_DEFAULT_LOCALE_NOT_DEFINED", "Default locale has not been defined.",
 		value !== undefined, {} );
 }
 
 function messageBundle( cldr ) {
-	validate(
+	_validate(
 		"E_MISSING_MESSAGE_BUNDLE",
 		"Missing message bundle for locale `{locale}`.",
 		cldr.attributes.bundle && cldr.get( "globalize-messages/{bundle}" ) !== undefined,
@@ -43,13 +43,13 @@ function messageBundle( cldr ) {
 
 function messagePresence( path, value ) {
 	path = path.join( "/" );
-	validate( "E_MISSING_MESSAGE", "Missing required message content `{path}`.",
+	_validate( "E_MISSING_MESSAGE", "Missing required message content `{path}`.",
 		value !== undefined, { path: path } );
 }
 
 function messageType( path, value ) {
 	path = path.join( "/" );
-	validate(
+	_validate(
 		"E_INVALID_MESSAGE",
 		"Invalid message content `{path}`. {expected} expected.",
 		typeof value === "string",
@@ -61,7 +61,7 @@ function messageType( path, value ) {
 }
 
 function parameterPresence( value, name ) {
-	validate( "E_MISSING_PARAMETER", "Missing required parameter `{name}`.",
+	_validate( "E_MISSING_PARAMETER", "Missing required parameter `{name}`.",
 		value !== undefined, { name: name } );
 }
 
@@ -74,7 +74,7 @@ function parameterPresence( value, name ) {
  * @maximum [Number]. The greatest valid value, inclusive.
  */
 function parameterRange( value, name, minimum, maximum ) {
-	validate(
+	_validate(
 		"E_PAR_OUT_OF_RANGE",
 		"Parameter `{name}` has value `{value}` out of range [{minimum}, {maximum}].",
 		value === undefined || value >= minimum && value <= maximum,
@@ -88,7 +88,7 @@ function parameterRange( value, name, minimum, maximum ) {
 }
 
 function parameterType( value, name, check, expected ) {
-	validate(
+	_validate(
 		"E_INVALID_PAR_TYPE",
 		"Invalid `{name}` parameter ({value}). {expected} expected.",
 		check,
@@ -101,7 +101,7 @@ function parameterType( value, name, check, expected ) {
 }
 
 function pluralModulePresence() {
-	validate( "E_MISSING_PLURAL_MODULE", "Plural module not loaded.",
+	_validate( "E_MISSING_PLURAL_MODULE", "Plural module not loaded.",
 		Globalize.plural !== undefined, {} );
 }
 
@@ -197,4 +197,4 @@ return {
 	parameterTypeString: parameterTypeString
 };
 
-} );
+});
