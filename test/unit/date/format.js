@@ -3,7 +3,7 @@ define([
 	"src/date/format",
 	"src/date/format-properties",
 	"src/util/string/pad",
-	"src/calendars/GregorianDate",
+	"src/calendars/Gregorian-date",
 	"json!cldr-data/main/de/ca-gregorian.json",
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/main/en/timeZoneNames.json",

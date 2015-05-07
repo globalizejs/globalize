@@ -11,6 +11,7 @@ define(function() {
  */
 return function( date, unit, gdate ) {
   // gdate is the globalized date for date. if unit is not 'year' or 'month', then it is not needed
+	// passing it in is ugly; it should take a calendar constructor or cldr object
   if (unit === "year"){
     // no choice but to go through each month one at a time
     for (var lastMonth = gdate.nextMonth(-1); lastMonth.getYear() === gdate.getYear();){

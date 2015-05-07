@@ -1,8 +1,8 @@
 define([
 	"cldr",
-	"./calendars/calendarForLocale",
+	"./calendars/calendar-for-locale",
 	"./calendars/Gdate",
-	"./calendars/GregorianDate",
+	"./calendars/Gregorian-date",
 	"./common/create-error",
 	"./common/format-message",
 	"./common/validate",
@@ -21,7 +21,8 @@ define([
 	"./util/string/pad",
 
 	"cldr/event"
-], function( Cldr, calendarForLocale, Gdate, GregorianDate, createError, formatMessage,
+], function( Cldr, calendarsCalendarForLocale, calendarsGdate,
+	calendarsGregorianDate, createError, formatMessage,
 	validate, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterRange, validateParameterType,
 	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
@@ -33,10 +34,11 @@ function validateLikelySubtags( cldr ) {
 }
 
 function setLocale ( object, locale ){
+	var calendar;
 	validateParameterPresence( locale, "locale" );
 	validateParameterTypeLocale( locale, "locale" );
 	object.cldr = alwaysCldr( locale );
-	calendar = calendarForLocale( object.cldr );
+	calendar = calendarsCalendarForLocale( object.cldr );
 	validateParameterType ( calendar, "calendar",
 		calendar in Globalize.calendars, "a defined calendar system" );
 	object.cldr.attributes.calendar = calendar;
@@ -85,7 +87,6 @@ Globalize.load = function() {
  * Return the default Cldr instance.
  */
 Globalize.locale = function( locale ) {
-	var calendar;
 
 	validateParameterTypeLocale( locale, "locale" );
 
@@ -112,10 +113,10 @@ Globalize._validateParameterPresence = validateParameterPresence;
 Globalize._validateParameterRange = validateParameterRange;
 Globalize._validateParameterTypePlainObject = validateParameterTypePlainObject;
 Globalize._validateParameterType = validateParameterType;
-Globalize._Gdate = Gdate;
+Globalize._Gdate = calendarsGdate;
 
 Globalize.calendars = {
-  gregorian: GregorianDate
+  gregorian: calendarsGregorianDate
 };
 
 return Globalize;

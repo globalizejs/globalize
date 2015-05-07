@@ -105,7 +105,7 @@ Globalize.prototype.dateParser = function( options ) {
 	pattern = dateExpandPattern( options, cldr );
 	tokenizerProperties = dateTokenizerProperties( pattern, cldr );
 	parseProperties = dateParseProperties( cldr );
-	parseProperties.calendar = Globalize.calendars[cldr.attributes.calendar];
+	parseProperties.calendar = cldr.attributes.calendar;
 	cldr.off( "get", validateRequiredCldr );
 
 	numberParser = this.numberParser({ raw: "0" });

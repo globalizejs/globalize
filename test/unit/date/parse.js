@@ -19,10 +19,10 @@ define([
 
 var cldr, date1, date2, FakeDate, midnight,
 	calendar = Globalize.calendars.gregorian,
-	startOf = function ( date, unit ) { return oldStartOf ( date, unit, new calendar(date) ) };
+	startOf = function ( date, unit ) { return oldStartOf ( date, unit, new calendar(date) ); };
 
 function assertParse( assert, stringDate, pattern, cldr, date ) {
-	var properties, tokenizerProperties, tokens;
+	var tokenizerProperties, tokens;
 
 	tokenizerProperties = numberTokenizerProperties( pattern, cldr );
 	tokens = tokenizer( stringDate, simpleNumberParser, tokenizerProperties );

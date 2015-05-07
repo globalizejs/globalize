@@ -1,13 +1,11 @@
 define([
 	"../core",
-	"./last-day-of-month",
 	"./pattern-re",
 	"./start-of",
 	"../common/create-error/unsupported-feature",
-	"../util/date/set-month",
 	"../util/out-of-range"
-], function( Globalize, dateLastDayOfMonth, datePatternRe, dateStartOf,
-	createErrorUnsupportedFeature, dateSetMonth, outOfRange ) {
+], function( Globalize, datePatternRe, dateStartOf,
+	createErrorUnsupportedFeature, outOfRange ) {
 
 /**
  * parse( value, tokens, properties )
@@ -21,7 +19,7 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, tokens, properties ) {
-	var amPm, daysOfYear, era, hour, hour12, timezoneOffset, valid,
+	var amPm, daysOfYear, hour, hour12, timezoneOffset, valid,
     date, gdate, ret, todayYear, startOfYear,
 		YEAR = 0,
 		MONTH = 1,
@@ -43,8 +41,7 @@ return function( value, tokens, properties ) {
 	//   rules. Why not today's date? The technical report
 	//   http://www.unicode.org/reports/tr35/tr35-dates.html doesn't specify
 	// If month is not set but date is, use today's month
-	
-	
+
 	date = new Date();
 	gdate = new calendar( date );
 	ret = {
