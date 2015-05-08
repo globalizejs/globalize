@@ -25,7 +25,8 @@ HebrewDate.prototype.nextYear = function(n) {
 	return new HebrewDate( this._era, this._year + n, this._month, this._date );
 };
 HebrewDate.prototype.nextMonth = function(n) {
-	var hd = heb2civ( this._d ),
+	var ret,
+		hd = heb2civ( this._d ),
 		roshchodesh = addDay(this._d, -hd.d + 1),
 		//  the min/max() correct for the possibility of other month being too short
 		daysinlastmonth = Math.max( civ2heb( addDay( roshchodesh, -1 ) ).daysinmonth, hd.d ),
@@ -41,10 +42,15 @@ HebrewDate.prototype.nextMonth = function(n) {
 	}else if ( n === -1 ){
 		return new HebrewDate( addDay( this._d, -daysinlastmonth) );
 	}else if ( n > 0 ) {
-		return this.nextMonth( 1 ).nextMonth( n - 1 ); // anything wrong with tail recursion?
+		ret = this.nextMonth( 1 ).nextMonth( n - 1 ); // anything wrong with tail recursion?
 	}else /*  n < 0 */ {
-		return this.nextMonth( -1 ).nextMonth( n + 1 );
+		ret = this.nextMonth( -1 ).nextMonth( n + 1 );
 	}
+	if ( ret._date === this._date ) {
+		return ret;
+	}
+	// have to deal with dates that were coerced too far back by going through short months
+	return new HebrewDate ( this._era, ret._year, ret._month, this._date );
 };
 HebrewDate.prototype._coerceMonth = function( m, y ) {
 	var roshchodesh,
@@ -52,8 +58,8 @@ HebrewDate.prototype._coerceMonth = function( m, y ) {
 	if (hd.m === m && hd.y === y ) {
 		return;
 	}
-roshchodesh = civ2heb( heb2civ({ y: y, m: m, d:1 }) );
-	this._d = heb2civ({ y: y, m: m, d: roshchodesh.daysinmonth });
+	roshchodesh = civ2heb( heb2civ({ y: y, m: m, d:1 }) );
+	this._setDate( heb2civ({ y: y, m: m, d: roshchodesh.daysinmonth }) );
 };
 HebrewDate.prototype._setDate = function(d) {
 	var hd = civ2heb( d );

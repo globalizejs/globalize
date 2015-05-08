@@ -4,6 +4,7 @@ define([
 	"./calendars/Gdate",
 	"./calendars/Gregorian-date",
 	"./calendars/Hebrew-date",
+	"./calendars/islamic-date",
 	"./common/create-error",
 	"./common/format-message",
 	"./common/validate",
@@ -23,7 +24,7 @@ define([
 
 	"cldr/event"
 ], function( Cldr, calendarsCalendarForLocale, calendarsGdate,
-	calendarsGregorianDate, calendarsHebrewDate, createError, formatMessage,
+	calendarsGregorianDate, calendarsHebrewDate, calendarsIslamicDate, createError, formatMessage,
 	validate, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterRange, validateParameterType,
 	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
@@ -118,7 +119,8 @@ Globalize._Gdate = calendarsGdate;
 
 Globalize.calendars = {
   gregorian: calendarsGregorianDate,
-  hebrew: calendarsHebrewDate
+  hebrew: calendarsHebrewDate,
+  islamic: calendarsIslamicDate // question: is this the same as islamic-civil?
 };
 
 return Globalize;
