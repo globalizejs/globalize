@@ -4,7 +4,7 @@ define([
 	"./calendars/Gdate",
 	"./calendars/Gregorian-date",
 	"./calendars/Hebrew-date",
-	"./calendars/islamic-date",
+	"./calendars/Islamic-date",
 	"./common/create-error",
 	"./common/format-message",
 	"./common/validate",
