@@ -74,6 +74,7 @@ HebrewDate.prototype._setDate = function(d) {
 		this._year = hd.y;
 		this._month = months[ hd.m ];
 		this._date = hd.d;
+		this._d = d;
   }
 };
 HebrewDate.prototype._setFields = function(era, year, month, date) {

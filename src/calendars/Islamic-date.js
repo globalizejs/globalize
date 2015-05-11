@@ -45,6 +45,7 @@ IslamicDate.prototype._setDate = function(d) {
 		this._year = id.y;
 		this._month = "" + id.m;
 		this._date = id.d;
+		this._d = d;
   }
 };
 IslamicDate.prototype._setFields = function(era, year, month, date) {
