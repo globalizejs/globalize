@@ -26,7 +26,7 @@ HebrewDate.prototype.nextYear = function(n) {
 };
 HebrewDate.prototype.nextMonth = function(n) {
 	var ret,
-		hd = heb2civ( this._d ),
+		hd = civ2heb( this._d ),
 		roshchodesh = addDay(this._d, -hd.d + 1),
 		//  the min/max() correct for the possibility of other month being too short
 		daysinlastmonth = Math.max( civ2heb( addDay( roshchodesh, -1 ) ).daysinmonth, hd.d ),
