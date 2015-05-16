@@ -61,6 +61,21 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
+	    intern: {
+	      options: {
+	        runType: "runner"
+	      },
+	      globalize: {
+	        options: {
+	          config: "test/intern-local"
+	        }
+	      },
+	      ci: {
+	        options: {
+	          config: "test/intern"
+	        }
+	      }
+	    },
 		jshint: {
 			source: {
 				src: [ "src/**/*.js", "!src/build/**" ],
@@ -586,7 +601,7 @@ module.exports = function( grunt ) {
 		}
 	});
 
-	require( "matchdep" ).filterDev( "grunt-*" ).forEach( grunt.loadNpmTasks );
+	require( "matchdep" ).filterDev( [ "grunt-*", "intern" ] ).forEach( grunt.loadNpmTasks );
 
 	grunt.registerTask( "test", function() {
 		var args = [].slice.call( arguments );
@@ -620,6 +635,10 @@ module.exports = function( grunt ) {
 		"uglify",
 		"compare_size",
 		"commitplease"
+	]);
+
+	grunt.registerTask( "test-local", [
+		"intern:globalize"
 	]);
 
 };
