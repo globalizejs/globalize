@@ -4,10 +4,11 @@ define([
 	"json!cldr-data/main/en/dateFields.json",
 	"json!cldr-data/main/de/dateFields.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"intern!qunit",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, properties, enDateFields, deDateFields, likelySubtags ) {
+], function( Cldr, properties, enDateFields, deDateFields, likelySubtags, QUnit ) {
 
 var cldr, de;
 

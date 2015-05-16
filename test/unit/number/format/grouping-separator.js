@@ -1,6 +1,7 @@
 define([
-	"src/number/format/grouping-separator"
-], function( groupingSeparator ) {
+	"src/number/format/grouping-separator",
+	"intern!qunit"
+], function( groupingSeparator, QUnit ) {
 
 QUnit.module( "Number Format Grouping Separator" );
 

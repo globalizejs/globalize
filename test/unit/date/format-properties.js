@@ -5,10 +5,11 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+	"intern!qunit",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, properties, enCaGregorian, likelySubtags, timeData, weekData ) {
+], function( Cldr, properties, enCaGregorian, likelySubtags, timeData, weekData, QUnit ) {
 
 var cldr;
 

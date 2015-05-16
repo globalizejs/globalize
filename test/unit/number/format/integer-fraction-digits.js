@@ -1,7 +1,8 @@
 define([
 	"src/number/format/integer-fraction-digits",
-	"src/util/number/round"
-], function( formatIntegerFractionDigits, round ) {
+	"src/util/number/round",
+	"intern!QUnit"
+], function( formatIntegerFractionDigits, round, QUnit ) {
 
 // 1: Earth average diameter according to:
 // http://www.wolframalpha.com/input/?i=earth+diameter

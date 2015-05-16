@@ -8,11 +8,12 @@ define([
 	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/numberingSystems.json",
+	"intern!qunit",
 
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, format, properties, arNumbers, enNumbers, esNumbers, zhNumbers, likelySubtags,
-	numberingSystems ) {
+	numberingSystems, QUnit ) {
 
 // 1: Earth average diameter according to:
 // http://www.wolframalpha.com/input/?i=earth+diameter

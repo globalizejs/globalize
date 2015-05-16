@@ -3,10 +3,11 @@ define([
 	"src/number/format-properties",
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"intern!qunit",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, properties, enNumbers, likelySubtags ) {
+], function( Cldr, properties, enNumbers, likelySubtags, QUnit ) {
 
 var en;
 

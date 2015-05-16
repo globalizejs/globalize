@@ -1,7 +1,8 @@
 define([
 	"src/number/format/significant-digits",
-	"src/util/number/round"
-], function( formatSignificantDigits, round ) {
+	"src/util/number/round",
+	"intern!qunit"
+], function( formatSignificantDigits, round, QUnit ) {
 
 var ceil = round( "ceil" ),
 	deci = 0.1,

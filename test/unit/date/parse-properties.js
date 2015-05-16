@@ -4,10 +4,11 @@ define([
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
+	"intern!qunit",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, parseProperties, enCaGregorian, likelySubtags, timeData ) {
+], function( Cldr, parseProperties, enCaGregorian, likelySubtags, timeData, QUnit ) {
 
 var cldr;
 

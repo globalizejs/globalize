@@ -2,9 +2,10 @@ define([
 	"cldr",
 	"src/core",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"intern!qunit",
 
 	"cldr/event"
-], function( Cldr, Globalize, likelySubtags ) {
+], function( Cldr, Globalize, likelySubtags, QUnit ) {
 
 Cldr.load( likelySubtags );
 

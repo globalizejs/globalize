@@ -10,11 +10,12 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+	"intern!qunit",
 
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, parse, parseProperties, startOf, tokenizer, numberTokenizerProperties,
-	enCaGregorian, enNumbers, likelySubtags, timeData, weekData ) {
+	enCaGregorian, enNumbers, likelySubtags, timeData, weekData, QUnit ) {
 
 var cldr, date1, date2, FakeDate, midnight;
 

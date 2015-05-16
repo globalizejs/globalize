@@ -7,11 +7,12 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+	"intern!qunit",
 
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, tokenizer, tokenizerProperties, enCaGregorian, enNumbers, likelySubtags,
-	timeData, weekData ) {
+	timeData, weekData, QUnit ) {
 
 var cldr;
 

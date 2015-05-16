@@ -13,12 +13,13 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+	"intern!qunit",
 
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, format, formatProperties, stringPad, deCaGregorian, enCaGregorian,
 	enTimeZoneNames, enGbCaGregorian, enInCaGregorian, ptCaGregorian, ruCaGregorian, likelySubtags,
-	timeData, weekData ) {
+	timeData, weekData, QUnit ) {
 
 var cldr,
 	year0 = new Date( -62167190400000 ),

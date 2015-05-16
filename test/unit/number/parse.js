@@ -11,11 +11,12 @@ define([
 	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/numberingSystems.json",
+	"intern!qunit",
 
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, parse, properties, arNumbers, enNumbers, esNumbers, ptNumbers, ruNumbers,
-	svNumbers, zhNumbers, likelySubtags, numberingSystems ) {
+	svNumbers, zhNumbers, likelySubtags, numberingSystems, QUnit ) {
 
 var ar, en, es, pt, ru, sv, zh;
 

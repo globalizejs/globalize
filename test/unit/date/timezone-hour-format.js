@@ -1,6 +1,7 @@
 define([
-	"src/date/timezone-hour-format"
-], function( hourFormat ) {
+	"src/date/timezone-hour-format",
+	"intern!qunit"
+], function( hourFormat, QUnit ) {
 
 var BRT, FakeDate, HST, IST, UTC;
 

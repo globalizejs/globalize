@@ -3,10 +3,11 @@ define([
 	"src/date/tokenizer-properties",
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"intern!qunit",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, tokenizerProperties, enCaGregorian, likelySubtags ) {
+], function( Cldr, tokenizerProperties, enCaGregorian, likelySubtags, QUnit ) {
 
 var cldr;
 
