@@ -1,0 +1,26 @@
+define([
+	// "test/unit/core",
+	// "test/unit/core/locale",
+	"test/unit/currency/code-properties",
+	"test/unit/currency/name-format",
+	"test/unit/currency/name-properties",
+	"test/unit/currency/symbol-properties"
+	// "test/unit/date/expand-pattern",
+	// "test/unit/date/format-properties",
+	// "test/unit/date/format",
+	// "test/unit/date/parse-properties",
+	// "test/unit/date/parse",
+	// "test/unit/date/timezone-hour-format",
+	// "test/unit/date/tokenizer-properties",
+	// "test/unit/date/tokenizer",
+	// "test/unit/number/format-properties",
+	// "test/unit/number/format",
+	// "test/unit/number/format/grouping-separator",
+	// "test/unit/number/format/integer-fraction-digits",
+	// "test/unit/number/format/significant-digits",
+	// "test/unit/number/parse-properties",
+	// "test/unit/number/parse",
+	// "test/unit/number/pattern-properties",
+	// "test/unit/relative-time/format",
+	// "test/unit/relative-time/properties"
+]);
