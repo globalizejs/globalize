@@ -1,6 +1,5 @@
 define([
 	"cldr",
-	"src/core",
 	"src/date/parse",
 	"src/date/parse-properties",
 	"src/date/start-of",
@@ -14,12 +13,10 @@ define([
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, Globalize, parse, parseProperties, oldStartOf, tokenizer, numberTokenizerProperties,
+], function( Cldr, parse, parseProperties, startOf, tokenizer, numberTokenizerProperties,
 	enCaGregorian, enNumbers, likelySubtags, timeData, weekData ) {
 
-var cldr, date1, date2, FakeDate, midnight,
-	calendar = Globalize.calendars.gregorian,
-	startOf = function ( date, unit ) { return oldStartOf ( date, unit, new calendar(date) ); };
+var cldr, date1, date2, FakeDate, midnight;
 
 function assertParse( assert, stringDate, pattern, cldr, date ) {
 	var tokenizerProperties, tokens;
@@ -91,7 +88,7 @@ cldr = new Cldr( "en" );
 cldr.attributes.calendar = "gregorian";
 
 midnight = new Date();
-midnight = startOf( midnight, "day" );
+midnight = startOf( midnight, "day", "gregorian" );
 
 QUnit.module( "Date Parse" );
 
@@ -155,7 +152,7 @@ QUnit.test( "should parse year (yyy+) with padding", function( assert ) {
 QUnit.test( "should parse month (M|L) with no padding", function( assert ) {
 	date1 = new Date();
 	date1.setMonth( 0 );
-	date1 = startOf( date1, "month" );
+	date1 = startOf( date1, "month", "gregorian" );
 	assertParse( assert, "1", "M", cldr, date1 );
 	assertParse( assert, "1", "L", cldr, date1 );
 });
@@ -163,7 +160,7 @@ QUnit.test( "should parse month (M|L) with no padding", function( assert ) {
 QUnit.test( "should parse month (MM|LL) with padding", function( assert ) {
 	date1 = new Date();
 	date1.setMonth( 0 );
-	date1 = startOf( date1, "month" );
+	date1 = startOf( date1, "month", "gregorian" );
 	assertParse( assert, "01", "MM", cldr, date1 );
 	assertParse( assert, "01", "LL", cldr, date1 );
 });
@@ -171,7 +168,7 @@ QUnit.test( "should parse month (MM|LL) with padding", function( assert ) {
 QUnit.test( "should parse month (MMM|LLL)", function( assert ) {
 	date1 = new Date();
 	date1.setMonth( 0 );
-	date1 = startOf( date1, "month" );
+	date1 = startOf( date1, "month", "gregorian" );
 	assertParse( assert, "Jan", "MMM", cldr, date1 );
 	assertParse( assert, "Jan", "LLL", cldr, date1 );
 });
@@ -179,7 +176,7 @@ QUnit.test( "should parse month (MMM|LLL)", function( assert ) {
 QUnit.test( "should parse month (MMMM|LLLL)", function( assert ) {
 	date1 = new Date();
 	date1.setMonth( 0 );
-	date1 = startOf( date1, "month" );
+	date1 = startOf( date1, "month", "gregorian" );
 	assertParse( assert, "January", "MMMM", cldr, date1 );
 	assertParse( assert, "January", "LLLL", cldr, date1 );
 });
@@ -187,7 +184,7 @@ QUnit.test( "should parse month (MMMM|LLLL)", function( assert ) {
 QUnit.test( "should parse month (MMMMM|LLLLL)", function( assert ) {
 	date1 = new Date();
 	date1.setMonth( 0 );
-	date1 = startOf( date1, "month" );
+	date1 = startOf( date1, "month", "gregorian" );
 	assertParse( assert, "J", "MMMMM", cldr, date1 );
 	assertParse( assert, "J", "LLLLL", cldr, date1 );
 });
@@ -201,7 +198,7 @@ QUnit.test( "should parse day (d) with no padding", function( assert ) {
 
 	date1 = new Date();
 	date1.setDate( 2 );
-	date1 = startOf( date1, "day" );
+	date1 = startOf( date1, "day", "gregorian" );
 	assertParse( assert, "2", "d", cldr, date1 );
 
 	/* globals Date:true */
@@ -210,13 +207,13 @@ QUnit.test( "should parse day (d) with no padding", function( assert ) {
 	Date = FakeDate;
 
 	date1 = new Date( 2014, 1, 28 );
-	date1 = startOf( date1, "day" );
+	date1 = startOf( date1, "day", "gregorian" );
 	FakeDate.today = new Date( 2014, 1 );
 	assertParse( assert, "29", "d", cldr, null );
 	assertParse( assert, "28", "d", cldr, date1 );
 
 	date2 = new Date( 2016, 1, 29 );
-	date2 = startOf( date2, "day" );
+	date2 = startOf( date2, "day", "gregorian" );
 	FakeDate.today = new Date( 2016, 1 );
 	assertParse( assert, "30", "d", cldr, null );
 	assertParse( assert, "29", "d", cldr, date2 );
@@ -227,7 +224,7 @@ QUnit.test( "should parse day (d) with no padding", function( assert ) {
 QUnit.test( "should parse day (dd) with padding", function( assert ) {
 	date1 = new Date();
 	date1.setDate( 2 );
-	date1 = startOf( date1, "day" );
+	date1 = startOf( date1, "day", "gregorian" );
 	assertParse( assert, "02", "dd", cldr, date1 );
 });
 
@@ -237,7 +234,7 @@ QUnit.test( "should parse day of year (D) with no padding", function( assert ) {
 	date1 = new Date();
 	date1.setMonth( 0 );
 	date1.setDate( 2 );
-	date1 = startOf( date1, "day" );
+	date1 = startOf( date1, "day", "gregorian" );
 	assertParse( assert, "2", "D", cldr, date1 );
 
 	/* globals Date:true */
@@ -260,7 +257,7 @@ QUnit.test( "should parse day of year (DD|DDD) with padding", function( assert )
 	date1 = new Date();
 	date1.setMonth( 0 );
 	date1.setDate( 2 );
-	date1 = startOf( date1, "day" );
+	date1 = startOf( date1, "day", "gregorian" );
 	assertParse( assert, "02", "DD", cldr, date1 );
 	assertParse( assert, "002", "DDD", cldr, date1 );
 });
@@ -274,8 +271,8 @@ QUnit.test( "should parse period (a)", function( assert ) {
 	date2 = new Date();
 	date1.setHours( 5 );
 	date2.setHours( 17 );
-	date1 = startOf( date1, "hour" );
-	date2 = startOf( date2, "hour" );
+	date1 = startOf( date1, "hour", "gregorian" );
+	date2 = startOf( date2, "hour", "gregorian" );
 	assertParse( assert, "5 AM", "h a", cldr, date1 );
 	assertParse( assert, "5 PM", "h a", cldr, date2 );
 });
@@ -291,7 +288,7 @@ QUnit.test( "should parse hour (h) using 12-hour-cycle [1-12] with no padding", 
 
 	date1 = new Date();
 	date1.setHours( 9 );
-	date1 = startOf( date1, "hour" );
+	date1 = startOf( date1, "hour", "gregorian" );
 	assertParse( assert, "9 AM", "h a", cldr, date1 );
 
 	date1.setHours( 0 );
@@ -310,7 +307,7 @@ QUnit.test( "should parse hour (h) using 12-hour-cycle [1-12] with no padding", 
 QUnit.test( "should parse hour (hh) using 12-hour-cycle [1-12] with padding", function( assert ) {
 	date1 = new Date();
 	date1.setHours( 9 );
-	date1 = startOf( date1, "hour" );
+	date1 = startOf( date1, "hour", "gregorian" );
 	assertParse( assert, "09 AM", "hh a", cldr, date1 );
 });
 
@@ -319,7 +316,7 @@ QUnit.test( "should parse hour (H) using 24-hour-cycle [0-23] with no padding", 
 
 	date1 = new Date();
 	date1.setHours( 0 );
-	date1 = startOf( date1, "hour" );
+	date1 = startOf( date1, "hour", "gregorian" );
 	assertParse( assert, "0", "H", cldr, date1 );
 
 	date1.setHours( 1 );
@@ -335,7 +332,7 @@ QUnit.test( "should parse hour (H) using 24-hour-cycle [0-23] with no padding", 
 QUnit.test( "should parse hour (HH) using 24-hour-cycle [0-23] with padding", function( assert ) {
 	date1 = new Date();
 	date1.setHours( 9 );
-	date1 = startOf( date1, "hour" );
+	date1 = startOf( date1, "hour", "gregorian" );
 	assertParse( assert, "09", "HH", cldr, date1 );
 
 	date1.setHours( 16 );
@@ -349,7 +346,7 @@ QUnit.test( "should parse hour (K) using 12-hour-cycle [0-11] with no padding", 
 
 	date1 = new Date();
 	date1.setHours( 0 );
-	date1 = startOf( date1, "hour" );
+	date1 = startOf( date1, "hour", "gregorian" );
 	assertParse( assert, "0 AM", "K a", cldr, date1 );
 
 	date1.setHours( 8 );
@@ -365,7 +362,7 @@ QUnit.test( "should parse hour (K) using 12-hour-cycle [0-11] with no padding", 
 QUnit.test( "should parse hour (KK) using 12-hour-cycle [0-11] with padding", function( assert ) {
 	date1 = new Date();
 	date1.setHours( 8 );
-	date1 = startOf( date1, "hour" );
+	date1 = startOf( date1, "hour", "gregorian" );
 	assertParse( assert, "08 AM", "KK a", cldr, date1 );
 });
 
@@ -374,7 +371,7 @@ QUnit.test( "should parse hour (k) using 24-hour-cycle [1-24] with no padding", 
 
 	date1 = new Date();
 	date1.setHours( 0 );
-	date1 = startOf( date1, "hour" );
+	date1 = startOf( date1, "hour", "gregorian" );
 	assertParse( assert, "24", "k", cldr, date1 );
 
 	date1.setHours( 8 );
@@ -390,7 +387,7 @@ QUnit.test( "should parse hour (k) using 24-hour-cycle [1-24] with no padding", 
 QUnit.test( "should parse hour (kk) using 24-hour-cycle [1-24] with padding", function( assert ) {
 	date1 = new Date();
 	date1.setHours( 5 );
-	date1 = startOf( date1, "hour" );
+	date1 = startOf( date1, "hour", "gregorian" );
 	assertParse( assert, "05", "kk", cldr, date1 );
 
 	date1.setHours( 17 );
@@ -400,14 +397,14 @@ QUnit.test( "should parse hour (kk) using 24-hour-cycle [1-24] with padding", fu
 QUnit.test( "should parse hour (j) using preferred hour format for the locale (h, H, K, or k) with no padding", function( assert ) {
 	date1 = new Date();
 	date1.setHours( 9 );
-	date1 = startOf( date1, "hour" );
+	date1 = startOf( date1, "hour", "gregorian" );
 	assertParse( assert, "9 AM", "j a", cldr, date1 );
 });
 
 QUnit.test( "should parse hour (jj) using preferred hour format for the locale (h, H, K, or k) with padding", function( assert ) {
 	date1 = new Date();
 	date1.setHours( 9 );
-	date1 = startOf( date1, "hour" );
+	date1 = startOf( date1, "hour", "gregorian" );
 	assertParse( assert, "09 AM", "jj a", cldr, date1 );
 });
 
@@ -418,14 +415,14 @@ QUnit.test( "should parse hour (jj) using preferred hour format for the locale (
 QUnit.test( "should parse minute (m) with no padding", function( assert ) {
 	date1 = new Date();
 	date1.setMinutes( 5 );
-	date1 = startOf( date1, "minute" );
+	date1 = startOf( date1, "minute", "gregorian" );
 	assertParse( assert, "5", "m", cldr, date1 );
 });
 
 QUnit.test( "should parse minute (mm) with padding", function( assert ) {
 	date1 = new Date();
 	date1.setMinutes( 5 );
-	date1 = startOf( date1, "minute" );
+	date1 = startOf( date1, "minute", "gregorian" );
 	assertParse( assert, "05", "mm", cldr, date1 );
 });
 
@@ -436,14 +433,14 @@ QUnit.test( "should parse minute (mm) with padding", function( assert ) {
 QUnit.test( "should parse second (s) with no padding", function( assert ) {
 	date1 = new Date();
 	date1.setSeconds( 59 );
-	date1 = startOf( date1, "second" );
+	date1 = startOf( date1, "second", "gregorian" );
 	assertParse( assert, "59", "s", cldr, date1 );
 });
 
 QUnit.test( "should parse second (ss) with padding", function( assert ) {
 	date1 = new Date();
 	date1.setSeconds( 59 );
-	date1 = startOf( date1, "second" );
+	date1 = startOf( date1, "second", "gregorian" );
 	assertParse( assert, "59", "ss", cldr, date1 );
 });
 
@@ -462,13 +459,13 @@ QUnit.test( "should parse milliseconds (S+)", function( assert ) {
 
 QUnit.test( "should parse milliseconds in a day (A+)", function( assert ) {
 	date1 = new Date();
-	date1 = startOf( date1, "day" );
+	date1 = startOf( date1, "day", "gregorian" );
 	date1.setMilliseconds( 63307400 );
 	assertParse( assert, "633074", "A", cldr, date1 );
-	date1 = startOf( date1, "day" );
+	date1 = startOf( date1, "day", "gregorian" );
 	date1.setMilliseconds( 63307370 );
 	assertParse( assert, "6330737", "AA", cldr, date1 );
-	date1 = startOf( date1, "day" );
+	date1 = startOf( date1, "day", "gregorian" );
 	date1.setMilliseconds( 63307369 );
 	assertParse( assert, "63307369", "AAA", cldr, date1 );
 	assertParse( assert, "633073690", "AAAA", cldr, date1 );
@@ -579,7 +576,7 @@ QUnit.test( "should parse timezone (x)", function( assert ) {
 QUnit.test( "should parse literal (')", function( assert ) {
 	var date = new Date();
 	date.setHours( 9 );
-	date = startOf( date, "hour" );
+	date = startOf( date, "hour", "gregorian" );
 	assertParse( assert, "09 o'clock AM", "hh 'o''clock' a", cldr, date );
 });
 

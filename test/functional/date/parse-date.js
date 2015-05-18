@@ -85,7 +85,7 @@ QUnit.test( "should parse skeleton", function( assert ) {
 
 	date = new Date();
 	date.setDate( 15 );
-	date = startOf( date, "day", new Globalize.calendars.gregorian(date) );
+	date = startOf( date, "day", "gregorian" );
 	assertParseDate( assert, "15", { skeleton: "d" }, date );
 	assertParseDate( assert, "15 Wed", { skeleton: "Ed" }, date );
 
@@ -93,17 +93,17 @@ QUnit.test( "should parse skeleton", function( assert ) {
 	date.setHours( 17 );
 	date.setMinutes( 35 );
 	date.setSeconds( 7 );
-	date = startOf( date, "second", new Globalize.calendars.gregorian(date) );
+	date = startOf( date, "second", "gregorian" );
 	assertParseDate( assert, "Wed 5:35:07 PM", { skeleton: "Ehms" }, date );
 
 	date = new Date( 2010, 8, 15 );
-	date = startOf( date, "day", new Globalize.calendars.gregorian(date) );
+	date = startOf( date, "day", "gregorian" );
 	assertParseDate( assert, "Wed, Sep 15, 2010 AD", { skeleton: "GyMMMEd" }, date );
 	assertParseDate( assert, "9/15/2010", { skeleton: "yMd" }, date );
 	assertParseDate( assert, "الأربعاء، ١٥ سبتمبر، ٢٠١٠ م", { skeleton: "GyMMMEd" }, date, ar );
 
 	date = new Date( 2010, 0 );
-	date = startOf( date, "year", new Globalize.calendars.gregorian(date) );
+	date = startOf( date, "year", "gregorian" );
 	assertParseDate( assert, "Q3 2010", { skeleton: "yQQQ" }, date );
 	assertParseDate( assert, "الربع الثالث ٢٠١٠", { skeleton: "yQQQ" }, date, ar );
 
@@ -120,10 +120,10 @@ QUnit.test( "should parse time presets", function( assert ) {
 	date.setHours( 17 );
 	date.setMinutes( 35 );
 	date.setSeconds( 7 );
-	date = startOf( date, "second", new Globalize.calendars.gregorian(date) );
+	date = startOf( date, "second", "gregorian" );
 	assertParseDate( assert, "5:35:07 PM", { time: "medium" }, date );
 	assertParseDate( assert, "٥،٣٥،٠٧ م", { time: "medium" }, date, ar );
-	date = startOf( date, "minute", new Globalize.calendars.gregorian(date) );
+	date = startOf( date, "minute", "gregorian" );
 	assertParseDate( assert, "5:35 PM", { time: "short" }, date );
 	assertParseDate( assert, "٥،٣٥ م", { time: "short" }, date, ar );
 });
@@ -132,7 +132,7 @@ QUnit.test( "should parse date presets", function( assert ) {
 	extraSetup();
 
 	date = new Date( 2010, 8, 15 );
-	date = startOf( date, "day", new Globalize.calendars.gregorian(date) );
+	date = startOf( date, "day", "gregorian" );
 	assertParseDate( assert, "Wednesday, September 15, 2010", { date: "full" }, date );
 	assertParseDate( assert, "September 15, 2010", { date: "long" }, date );
 	assertParseDate( assert, "Sep 15, 2010", { date: "medium" }, date );
@@ -143,7 +143,7 @@ QUnit.test( "should parse datetime presets", function( assert ) {
 	extraSetup();
 
 	date = new Date( 2010, 8, 15 );
-	date = startOf( date, "day", new Globalize.calendars.gregorian(date) );
+	date = startOf( date, "day", "gregorian" );
 	assertParseDate( assert, "Wednesday, September 15, 2010", { date: "full" }, date );
 
 	date = new Date( 2010, 8, 15, 17, 35, 7 );
@@ -155,7 +155,7 @@ QUnit.test( "should parse raw pattern", function( assert ) {
 	extraSetup();
 
 	date = new Date( 2010, 8, 15 );
-	date = startOf( date, "day", new Globalize.calendars.gregorian(date) );
+	date = startOf( date, "day", "gregorian" );
 	assertParseDate( assert, "Wed, Sep 15, 2010 AD", { raw: "E, MMM d, y G" }, date );
 });
 
@@ -165,7 +165,7 @@ QUnit.test( "should parse a formatted date (reverse operation test)", function( 
 	ar = Globalize( "ar" );
 
 	date = new Date();
-	date = startOf( date, "minute", new Globalize.calendars.gregorian(date) );
+	date = startOf( date, "minute", "gregorian" );
 	assert.deepEqual( Globalize.parseDate( Globalize.formatDate( date, { datetime: "full" } ), { datetime: "full" } ), date );
 	assert.deepEqual( ar.parseDate( ar.formatDate( date, { datetime: "full" } ), { datetime: "full" } ), date );
 });

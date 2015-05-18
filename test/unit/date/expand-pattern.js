@@ -14,9 +14,7 @@ var de, en;
 Cldr.load( deCaGregorian, enCaGregorian, likelySubtags );
 
 de = new Cldr( "de" );
-de.attributes.calendar = "gregorian";
 en = new Cldr( "en" );
-en.attributes.calendar = "gregorian";
 
 QUnit.module( "Date Expand Pattern" );
 

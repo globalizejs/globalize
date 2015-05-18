@@ -13,7 +13,6 @@ var cldr;
 Cldr.load( enCaGregorian, likelySubtags );
 
 cldr = new Cldr( "en" );
-cldr.attributes.calendar = "gregorian";
 
 QUnit.module( "Date Tokenizer Properties" );
 
