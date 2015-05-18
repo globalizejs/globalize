@@ -5,7 +5,7 @@ define([
 function GregorianDate() { this._init.apply(this, arguments); }
 GregorianDate.prototype = new Gdate();
 
-GregorianDate.prototype.constructor = GregorianDate;
+GregorianDate.prototype.constructor = Gdate.calendars.gregorian = GregorianDate;
 GregorianDate.prototype.nextYear = function(n) {
   if (arguments.length === 0){
 		n = 1;

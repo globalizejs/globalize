@@ -1,3 +1,4 @@
+// Should this be part of cldrjs?
 define(function() {
 
 /**

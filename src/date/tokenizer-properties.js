@@ -1,8 +1,9 @@
 define([
 	"./pattern-re",
 	"../common/create-error/unsupported-feature",
-	"../number/symbol"
-], function( datePatternRe, createErrorUnsupportedFeature, numberSymbol ) {
+	"../number/symbol",
+	"../gdate/calendar-for-locale",
+], function( datePatternRe, createErrorUnsupportedFeature, numberSymbol, gdateCalendarForLocale ) {
 
 /**
  * tokenizerProperties( pattern, cldr )
@@ -17,7 +18,7 @@ return function( pattern, cldr ) {
 	var properties = {
 			pattern: pattern,
 			timeSeparator: numberSymbol( "timeSeparator", cldr ),
-			calendar: cldr.attributes.calendar
+			calendar: gdateCalendarForLocale( cldr )
 		},
 		widths = [ "abbreviated", "wide", "narrow" ];
 
@@ -45,7 +46,9 @@ return function( pattern, cldr ) {
 			// Era
 			case "G":
 				cldr.main([
-					"dates/calendars/{calendar}/eras",
+					"dates/calendars",
+					properties.calendar,
+					"eras",
 					length <= 3 ? "eraAbbr" : ( length === 4 ? "eraNames" : "eraNarrow" )
 				]);
 				break;
@@ -62,7 +65,9 @@ return function( pattern, cldr ) {
 			case "q":
 				if ( length > 2 ) {
 					cldr.main([
-						"dates/calendars/{calendar}/quarters",
+						"dates/calendars",
+						properties.calendar,
+						"quarters",
 						chr === "Q" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
@@ -76,7 +81,9 @@ return function( pattern, cldr ) {
 				// lookup l=3...
 				if ( length > 2 ) {
 					cldr.main([
-						"dates/calendars/{calendar}/months",
+						"dates/calendars",
+						properties.calendar,
+						"months",
 						chr === "M" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
@@ -104,17 +111,23 @@ return function( pattern, cldr ) {
 					// Note: if short day names are not explicitly specified, abbreviated day
 					// names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					cldr.main([
-						"dates/calendars/{calendar}/days",
+						"dates/calendars",
+						properties.calendar,
+						"days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						"short"
 					]) || cldr.main([
-						"dates/calendars/{calendar}/days",
+						"dates/calendars",
+						properties.calendar,
+						"days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						"abbreviated"
 					]);
 				} else {
 					cldr.main([
-						"dates/calendars/{calendar}/days",
+						"dates/calendars",
+						properties.calendar,
+						"days",
 						[ chr === "c" ? "stand-alone" : "format" ],
 						widths[ length < 3 ? 0 : length - 3 ]
 					]);
@@ -124,7 +137,9 @@ return function( pattern, cldr ) {
 			// Period (AM or PM)
 			case "a":
 				cldr.main([
-					"dates/calendars/{calendar}/dayPeriods/format/wide"
+					"dates/calendars",
+					properties.calendar,
+					"dayPeriods/format/wide"
 				]);
 				break;
 

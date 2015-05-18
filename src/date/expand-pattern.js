@@ -1,7 +1,8 @@
 define([
 	"../common/format-message",
-	"../common/create-error/invalid-parameter-value"
-], function( formatMessage, createErrorInvalidParameterValue ) {
+	"../common/create-error/invalid-parameter-value",
+	"../gdate/calendar-for-locale",
+], function( formatMessage, createErrorInvalidParameterValue, gdateCalendarForLocale ) {
 
 /**
  * expandPattern( options, cldr )
@@ -26,12 +27,15 @@ define([
  */
 
 return function( options, cldr ) {
-	var dateSkeleton, result, skeleton, timeSkeleton, type;
+	var dateSkeleton, result, skeleton, timeSkeleton, type,
+		calendar = gdateCalendarForLocale( cldr );
 
 	function combineDateTime( type, datePattern, timePattern ) {
 		return formatMessage(
 			cldr.main([
-				"dates/calendars/{calendar}/dateTimeFormats",
+				"dates/calendars",
+				calendar,
+				"dateTimeFormats",
 				type
 			]),
 			[ timePattern, datePattern ]
@@ -42,7 +46,9 @@ return function( options, cldr ) {
 		case "skeleton" in options:
 			skeleton = options.skeleton;
 			result = cldr.main([
-				"dates/calendars/{calendar}/dateTimeFormats/availableFormats",
+				"dates/calendars",
+				calendar,
+				"dateTimeFormats/availableFormats",
 				skeleton
 			]);
 			if ( !result ) {
@@ -59,11 +65,15 @@ return function( options, cldr ) {
 				}
 				result = combineDateTime( type,
 					cldr.main([
-						"dates/calendars/{calendar}/dateTimeFormats/availableFormats",
+						"dates/calendars",
+						calendar,
+						"dateTimeFormats/availableFormats",
 						dateSkeleton
 					]),
 					cldr.main([
-						"dates/calendars/{calendar}/dateTimeFormats/availableFormats",
+						"dates/calendars",
+						calendar,
+						"dateTimeFormats/availableFormats",
 						timeSkeleton
 					])
 				);
@@ -73,7 +83,8 @@ return function( options, cldr ) {
 		case "date" in options:
 		case "time" in options:
 			result = cldr.main([
-				"dates/calendars/{calendar}",
+				"dates/calendars",
+				calendar,
 				"date" in options ? "dateFormats" : "timeFormats",
 				( options.date || options.time )
 			]);
@@ -81,8 +92,8 @@ return function( options, cldr ) {
 
 		case "datetime" in options:
 			result = combineDateTime( options.datetime,
-				cldr.main([ "dates/calendars/{calendar}/dateFormats", options.datetime ]),
-				cldr.main([ "dates/calendars/{calendar}/timeFormats", options.datetime ])
+				cldr.main([ "dates/calendars", calendar, "dateFormats", options.datetime ]),
+				cldr.main([ "dates/calendars", calendar, "timeFormats", options.datetime ])
 			);
 			break;
 

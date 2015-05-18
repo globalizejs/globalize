@@ -17,7 +17,7 @@ function addDay(d, n){
 function HebrewDate() { this._init.apply(this, arguments); }
 HebrewDate.prototype = new Gdate();
 
-HebrewDate.prototype.constructor = HebrewDate;
+HebrewDate.prototype.constructor = Gdate.calendars.hebrew = HebrewDate;
 HebrewDate.prototype.nextYear = function(n) {
   if (arguments.length === 0){
 		n = 1;

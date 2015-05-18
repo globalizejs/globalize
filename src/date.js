@@ -63,7 +63,6 @@ Globalize.prototype.dateFormatter = function( options ) {
 	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( options, cldr );
 	properties = dateFormatProperties( pattern, cldr );
-	properties.calendar = Globalize.calendars[cldr.attributes.calendar];
 	cldr.off( "get", validateRequiredCldr );
 
 	// Create needed number formatters.
@@ -105,7 +104,6 @@ Globalize.prototype.dateParser = function( options ) {
 	pattern = dateExpandPattern( options, cldr );
 	tokenizerProperties = dateTokenizerProperties( pattern, cldr );
 	parseProperties = dateParseProperties( cldr );
-	parseProperties.calendar = cldr.attributes.calendar;
 	cldr.off( "get", validateRequiredCldr );
 
 	numberParser = this.numberParser({ raw: "0" });

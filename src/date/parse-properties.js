@@ -1,4 +1,6 @@
-define(function() {
+define([
+	"../gdate/calendar-for-locale"
+], function( gdateCalendarForLocale ) {
 
 /**
  * parseProperties( cldr )
@@ -10,7 +12,7 @@ define(function() {
 return function( cldr ) {
 	return {
 		preferredTimeData: cldr.supplemental.timeData.preferred(),
-		calendar: cldr.attributes.calendar
+		calendar: gdateCalendarForLocale( cldr )
 	};
 };
 

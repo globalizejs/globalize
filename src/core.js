@@ -1,10 +1,5 @@
 define([
 	"cldr",
-	"./calendars/calendar-for-locale",
-	"./calendars/Gdate",
-	"./calendars/Gregorian-date",
-	"./calendars/Hebrew-date",
-	"./calendars/Islamic-date",
 	"./common/create-error",
 	"./common/format-message",
 	"./common/validate",
@@ -23,9 +18,7 @@ define([
 	"./util/string/pad",
 
 	"cldr/event"
-], function( Cldr, calendarsCalendarForLocale, calendarsGdate,
-	calendarsGregorianDate, calendarsHebrewDate, calendarsIslamicDate, createError, formatMessage,
-	validate, validateCldr, validateDefaultLocale,
+], function( Cldr, createError, formatMessage, validate, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterRange, validateParameterType,
 	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
 	isPlainObject, objectExtend, regexpEscape, stringPad ) {
@@ -33,18 +26,6 @@ define([
 function validateLikelySubtags( cldr ) {
 	cldr.once( "get", validateCldr );
 	cldr.get( "supplemental/likelySubtags" );
-}
-
-function setLocale ( object, locale ){
-	var calendar;
-	validateParameterPresence( locale, "locale" );
-	validateParameterTypeLocale( locale, "locale" );
-	object.cldr = alwaysCldr( locale );
-	calendar = calendarsCalendarForLocale( object.cldr );
-	validateParameterType ( calendar, "calendar",
-		calendar in Globalize.calendars, "a defined calendar system" );
-	object.cldr.attributes.calendar = calendar;
-	validateLikelySubtags( object.cldr );
 }
 
 /**
@@ -61,7 +42,12 @@ function Globalize( locale ) {
 		return new Globalize( locale );
 	}
 
-	setLocale( this, locale );
+	validateParameterPresence( locale, "locale" );
+	validateParameterTypeLocale( locale, "locale" );
+
+	this.cldr = alwaysCldr( locale );
+
+	validateLikelySubtags( this.cldr );
 }
 
 /**
@@ -89,11 +75,11 @@ Globalize.load = function() {
  * Return the default Cldr instance.
  */
 Globalize.locale = function( locale ) {
-
 	validateParameterTypeLocale( locale, "locale" );
 
 	if ( arguments.length ) {
-		setLocale( this, locale );
+		this.cldr = alwaysCldr( locale );
+		validateLikelySubtags( this.cldr );
 	}
 	return this.cldr;
 };
@@ -115,13 +101,6 @@ Globalize._validateParameterPresence = validateParameterPresence;
 Globalize._validateParameterRange = validateParameterRange;
 Globalize._validateParameterTypePlainObject = validateParameterTypePlainObject;
 Globalize._validateParameterType = validateParameterType;
-Globalize._Gdate = calendarsGdate;
-
-Globalize.calendars = {
-  gregorian: calendarsGregorianDate,
-  hebrew: calendarsHebrewDate,
-  islamic: calendarsIslamicDate // question: is this the same as islamic-civil?
-};
 
 return Globalize;
 

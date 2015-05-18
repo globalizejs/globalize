@@ -10,7 +10,7 @@ define([
  */
 return function( gdate ) {
   var date = gdate.toDate();
-	return Math.floor( dateDistanceInDays( dateStartOf( date, "year", gdate ), date ) );
+	return Math.floor( dateDistanceInDays( gdate.startOfYear().toDate(), date ) );
 };
 
 });

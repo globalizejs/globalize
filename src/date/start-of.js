@@ -1,4 +1,6 @@
-define(function() {
+define([
+	"./Gdate"
+], function( Gdate ) {
 
 /**
  * startOf changes the input to the beginning of the given unit.
@@ -7,25 +9,21 @@ define(function() {
  * seconds and milliseconds to 0. Starting at the month does the same, but
  * also sets the date to 1.
  *
+ * calendar is the name of the calendar system, to determine what a "year" and "month" are
+ *
  * Returns the modified date
  */
-return function( date, unit, gdate ) {
-  // gdate is the globalized date for date. if unit is not 'year' or 'month', then it is not needed
-	// passing it in is ugly; it should take a calendar constructor or cldr object
-  if (unit === "year"){
-    // no choice but to go through each month one at a time
-    for (var lastMonth = gdate.nextMonth(-1); lastMonth.getYear() === gdate.getYear();){
-      gdate = lastMonth;
-			lastMonth = gdate.nextMonth(-1);
-    }
-  }
-	date = new Date( date.getTime() );
+return function( date, unit, calendar ){
+	if ( unit === "year" ){
+		date = new Gdate.calendars[ calendar ]( date ).startOfYear().toDate();
+	} else if ( unit == "month" ){
+		date = new Gdate.calendars[ calendar ]( date ).startOfMonth().toDate();
+	} else {
+		date = new Date( date.getTime() );
+	}
 	switch ( unit ) {
 		case "year":
-		/* falls through */
 		case "month":
-			date = gdate.nextDate(1 - gdate.getDate()).toDate();
-		/* falls through */
 		case "day":
 			date.setHours( 0 );
 		/* falls through */

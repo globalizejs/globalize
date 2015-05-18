@@ -24,6 +24,19 @@ Gdate.prototype = {
   },
 	nextYear: undefined, // virtual function
 	nextMonth: undefined, // virtual function
+	startOfMonth: function(){
+		return gdate.nextDate( 1 - this._date );
+	},
+	startOfYear: function(){
+    // no choice but to go through each month one at a time
+		var thisMonth = this,
+			lastMonth = thisMonth.nextMonth(-1);
+    while ( lastMonth.getYear() === thisMonth._year ){
+      thisMonth = lastMonth;
+			lastMonth = thisMonth.nextMonth(-1);
+    }
+		return thisMonth;
+  },
   toDate: function() { return new Date( this._d.getTime() ); },
   _init: function( era, year, month, date ) {
     if (era instanceof Date){
@@ -43,6 +56,8 @@ Gdate.prototype = {
   _date: NaN,
   _d: new Date(NaN)
 };
+
+Gdate.calendars = {}; // this will store the calendar algorithms (the Gdate subclass constructors)
 
 return Gdate;
 

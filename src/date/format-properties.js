@@ -2,6 +2,7 @@ define([
 	"./first-day-of-week",
 	"./pattern-re",
 	"../common/create-error/unsupported-feature",
+	"../gdate/calendar-for-locale",
 	"../number/symbol",
 	"../util/string/pad"
 ], function( dateFirstDayOfWeek, datePatternRe, createErrorUnsupportedFeature, numberSymbol,
@@ -21,7 +22,8 @@ define([
 return function( pattern, cldr ) {
 	var properties = {
 			pattern: pattern,
-			timeSeparator: numberSymbol( "timeSeparator", cldr )
+			timeSeparator: numberSymbol( "timeSeparator", cldr ),
+			calendar = gdateCalendarForLocale( cldr )
 		},
 		widths = [ "abbreviated", "wide", "narrow" ];
 
@@ -54,7 +56,9 @@ return function( pattern, cldr ) {
 			// Era
 			case "G":
 				properties.eras = cldr.main([
-					"dates/calendars/{calendar}/eras",
+					"dates/calendars",
+					properties.calendar,
+					"eras",
 					length <= 3 ? "eraAbbr" : ( length === 4 ? "eraNames" : "eraNarrow" )
 				]);
 				break;
@@ -89,7 +93,9 @@ return function( pattern, cldr ) {
 						properties.quarters[ chr ] = {};
 					}
 					properties.quarters[ chr ][ length ] = cldr.main([
-						"dates/calendars/{calendar}/quarters",
+						"dates/calendars",
+						properties.calendar,
+						"quarters",
 						chr === "Q" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
@@ -109,7 +115,9 @@ return function( pattern, cldr ) {
 						properties.months[ chr ] = {};
 					}
 					properties.months[ chr ][ length ] = cldr.main([
-						"dates/calendars/{calendar}/months",
+						"dates/calendars",
+						properties.calendar,
+						"months",
 						chr === "M" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
@@ -163,17 +171,23 @@ return function( pattern, cldr ) {
 					// http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					// http://unicode.org/cldr/trac/ticket/6790
 					properties.days[ chr ][ length ] = cldr.main([
-							"dates/calendars/{calendar}/days",
+							"dates/calendars",
+							properties.calendar,
+							"days",
 							chr === "c" ? "stand-alone" : "format",
 							"short"
 						]) || cldr.main([
-							"dates/calendars/{calendar}/days",
+							"dates/calendars",
+							properties.calendar,
+							"days",
 							chr === "c" ? "stand-alone" : "format",
 							"abbreviated"
 						]);
 				} else {
 					properties.days[ chr ][ length ] = cldr.main([
-						"dates/calendars/{calendar}/days",
+						"dates/calendars",
+						properties.calendar,
+						"days",
 						chr === "c" ? "stand-alone" : "format",
 						widths[ length < 3 ? 0 : length - 3 ]
 					]);
@@ -182,9 +196,11 @@ return function( pattern, cldr ) {
 
 			// Period (AM or PM)
 			case "a":
-				properties.dayPeriods = cldr.main(
-					"dates/calendars/{calendar}/dayPeriods/format/wide"
-				);
+				properties.dayPeriods = cldr.main([
+					"dates/calendars",
+					properties.calendar,
+					"dayPeriods/format/wide"
+				]);
 				break;
 
 			// Hour

@@ -11,7 +11,7 @@ var jdEpoch = 1948439.5,
 function IslamicDate() { this._init.apply(this, arguments); }
 IslamicDate.prototype = new Gdate();
 
-IslamicDate.prototype.constructor = IslamicDate;
+IslamicDate.prototype.constructor = Gdate.calendars.islamic = IslamicDate;
 IslamicDate.prototype.nextYear = function(n) {
   if (arguments.length === 0){
 		n = 1;

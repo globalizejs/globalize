@@ -6,9 +6,10 @@ define([
 	"./pattern-re",
 	"./start-of",
 	"./timezone-hour-format",
-	"./week-days"
+	"./week-days",
+	"../gdate/Gdate"
 ], function( dateDayOfWeek, dateDayOfYear, dateFirstDayOfWeek, dateMillisecondsInDay,
-	datePatternRe, dateStartOf, dateTimezoneHourFormat, dateWeekDays ) {
+	datePatternRe, dateStartOf, dateTimezoneHourFormat, dateWeekDays, Gdate ) {
 
 /**
  * format( date, properties )
@@ -21,7 +22,7 @@ define([
  */
 return function( date, numberFormatters, properties ) {
 	var timeSeparator = properties.timeSeparator,
-		gdate = new properties.calendar(date);
+		gdate = new Gdate.calendars[ properties.calendar ]( date );
 
 	return properties.pattern.replace( datePatternRe, function( current ) {
 		var ret,
@@ -83,7 +84,7 @@ return function( date, numberFormatters, properties ) {
 					properties.firstDay -
 					properties.minDays
 				);
-				ret = (new properties.calendar(ret)).getYear();
+				ret = (new Gdate.calendars[ properties.calendar ]( ret )).getYear();
 				if ( length === 2 ) {
 					ret = String( ret );
 					ret = +ret.substr( ret.length - 2 );
@@ -117,7 +118,7 @@ return function( date, numberFormatters, properties ) {
 				// Week of Year.
 				// woy = ceil( ( doy + dow of 1/1 ) / 7 ) - minDaysStuff ? 1 : 0.
 				// TODO should pad on ww? Not documented, but I guess so.
-				ret = dateDayOfWeek( dateStartOf( date, "year", gdate ), properties.firstDay );
+				ret = dateDayOfWeek( gdate.startOfYear().toDate(), properties.firstDay );
 				ret = Math.ceil( ( dateDayOfYear( gdate ) + ret ) / 7 ) -
 					( 7 - ret >= properties.minDays ? 0 : 1 );
 				break;
@@ -125,7 +126,7 @@ return function( date, numberFormatters, properties ) {
 			case "W":
 				// Week of Month.
 				// wom = ceil( ( dom + dow of `1/month` ) / 7 ) - minDaysStuff ? 1 : 0.
-				ret = dateDayOfWeek( dateStartOf( date, "month", gdate ), properties.firstDay );
+				ret = dateDayOfWeek( gdate.startOfMonth().toDate(), properties.firstDay );
 				ret = Math.ceil( ( date.getDate() + ret ) / 7 ) -
 					( 7 - ret >= properties.minDays ? 0 : 1 );
 				break;
