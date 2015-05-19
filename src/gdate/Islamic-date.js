@@ -90,7 +90,7 @@ function daysInMonth ( year, month ) {
 //	i.e. days since January 1, 4713 BCE Greenwich noon.
 function toJD ( year, month, day ) {
 	return day + Math.ceil( 29.5 * (month - 1) ) + ( year - 1 ) * 354 +
-		Math.floor( 3 + (11 * year ) / 30 + jdEpoch - 1 );
+		Math.floor( ( 3 + 11 * year ) / 30 ) + jdEpoch - 1;
 }
 
 function fromJD ( jd ) {
