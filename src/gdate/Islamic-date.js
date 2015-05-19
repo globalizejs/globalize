@@ -19,9 +19,12 @@ IslamicDate.prototype.nextYear = function(n) {
 	return new IslamicDate( this._era, this._year + n, this._month, this._date );
 };
 IslamicDate.prototype.nextMonth = function(n) {
-	var id = fromJD( dateToJD( this._d ) ),
-		m = id.m + n,
-		y = id.y + Math.floor( ( m - 1 ) / 12 );
+	var id = fromJD( dateToJD( this._d ) ), m, y;
+  if (arguments.length === 0){
+		n = 1;
+	}
+	m = id.m + n;
+	y = id.y + Math.floor( ( m - 1 ) / 12 );
 	m = ( m + 11 ) % 12 + 1;
 	return new IslamicDate( this._era, y, m, id.d );
 };
