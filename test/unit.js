@@ -13,6 +13,7 @@ require([
 	"./unit/currency/name-format",
 
 	// date
+	"src/gdate/Gregorian-date",
 	"./unit/date/expand-pattern",
 	"./unit/date/timezone-hour-format",
 

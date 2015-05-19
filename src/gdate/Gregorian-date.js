@@ -19,7 +19,7 @@ GregorianDate.prototype.nextMonth = function(n) {
   if (arguments.length === 0){
 		n = 1;
 	}
-  var d = new Date(this._d);
+  var d = new Date(this._d.getTime());
   d.setMonth(this._d.getMonth() + n);
   this._coerceMonth(d, (this._d.getMonth() + n + 12) % 12);
   return new GregorianDate(d);
@@ -84,5 +84,4 @@ GregorianDate.prototype._setFields = function(era, year, month, date) {
   this._setDate(d);
 };
 
-return GregorianDate;
 });

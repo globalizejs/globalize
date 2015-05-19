@@ -5,8 +5,8 @@ define([
 	"../gdate/calendar-for-locale",
 	"../number/symbol",
 	"../util/string/pad"
-], function( dateFirstDayOfWeek, datePatternRe, createErrorUnsupportedFeature, numberSymbol,
-	stringPad ) {
+], function( dateFirstDayOfWeek, datePatternRe, createErrorUnsupportedFeature,
+	gdateCalendarForLocale,	numberSymbol,	stringPad ) {
 
 /**
  * properties( pattern, cldr )
@@ -23,7 +23,7 @@ return function( pattern, cldr ) {
 	var properties = {
 			pattern: pattern,
 			timeSeparator: numberSymbol( "timeSeparator", cldr ),
-			calendar = gdateCalendarForLocale( cldr )
+			calendar: gdateCalendarForLocale( cldr )
 		},
 		widths = [ "abbreviated", "wide", "narrow" ];
 

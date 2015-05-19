@@ -1,7 +1,7 @@
 define([
 	"../common/format-message",
 	"../common/create-error/invalid-parameter-value",
-	"../gdate/calendar-for-locale",
+	"../gdate/calendar-for-locale"
 ], function( formatMessage, createErrorInvalidParameterValue, gdateCalendarForLocale ) {
 
 /**

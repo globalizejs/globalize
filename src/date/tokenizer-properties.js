@@ -2,7 +2,7 @@ define([
 	"./pattern-re",
 	"../common/create-error/unsupported-feature",
 	"../number/symbol",
-	"../gdate/calendar-for-locale",
+	"../gdate/calendar-for-locale"
 ], function( datePatternRe, createErrorUnsupportedFeature, numberSymbol, gdateCalendarForLocale ) {
 
 /**

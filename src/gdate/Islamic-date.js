@@ -74,8 +74,6 @@ IslamicDate.prototype._setFields = function(era, year, month, date) {
 	this._coerceMonth( m, year );
 };
 
-return IslamicDate;
-
 function leapYear ( year ) {
 	return ( year * 11 + 14) % 30 < 11;
 }

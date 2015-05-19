@@ -1,6 +1,6 @@
 define([
-	"./Gdate"
-], function( Gdate ) {
+	"../gdate/Gdate"
+], function( gdateGdate ) {
 
 /**
  * startOf changes the input to the beginning of the given unit.
@@ -13,11 +13,11 @@ define([
  *
  * Returns the modified date
  */
-return function( date, unit, calendar ){
+return function( date, unit, calendar ) {
 	if ( unit === "year" ){
-		date = new Gdate.calendars[ calendar ]( date ).startOfYear().toDate();
-	} else if ( unit == "month" ){
-		date = new Gdate.calendars[ calendar ]( date ).startOfMonth().toDate();
+		date = new gdateGdate.calendars[ calendar ]( date ).startOfYear().toDate();
+	} else if ( unit === "month" ){
+		date = new gdateGdate.calendars[ calendar ]( date ).startOfMonth().toDate();
 	} else {
 		date = new Date( date.getTime() );
 	}

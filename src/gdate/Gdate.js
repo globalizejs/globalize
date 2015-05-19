@@ -24,20 +24,26 @@ Gdate.prototype = {
   },
 	nextYear: undefined, // virtual function
 	nextMonth: undefined, // virtual function
-	startOfMonth: function(){
-		return gdate.nextDate( 1 - this._date );
+	startOfMonth: function() {
+		return this.nextDate( 1 - this._date );
 	},
-	startOfYear: function(){
+	startOfYear: function() {
     // no choice but to go through each month one at a time
 		var thisMonth = this,
 			lastMonth = thisMonth.nextMonth(-1);
-    while ( lastMonth.getYear() === thisMonth._year ){
+   while ( lastMonth.getYear() === thisMonth._year ){
       thisMonth = lastMonth;
 			lastMonth = thisMonth.nextMonth(-1);
     }
-		return thisMonth;
+		return thisMonth.startOfMonth();
   },
-  toDate: function() { return new Date( this._d.getTime() ); },
+  toDate: function() {
+		// we need to make sure that an arbitrary time doesn't leak through
+		var d = new Date( this._d.getFullYear(), this._d.getMonth(), this._d.getDate(),
+			0, 0, 0, 0 );
+		d.setFullYear( this._d.getFullYear() ); // deal with Y2K bug in Javascript
+		return d;
+	},
   _init: function( era, year, month, date ) {
     if (era instanceof Date){
       this._setDate(era);

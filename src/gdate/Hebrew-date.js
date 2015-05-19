@@ -109,8 +109,6 @@ HebrewDate.prototype._setFields = function(era, year, month, date) {
 	this._coerceMonth( m, year );
 };
 
-return HebrewDate;
-
 function pesach(year) {
 	var a, b, c, m,
 		mar;	// "day in March" on which Pesach falls

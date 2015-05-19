@@ -1,7 +1,6 @@
 define([
-	"./distance-in-days",
-	"./start-of"
-], function( dateDistanceInDays, dateStartOf ) {
+	"./distance-in-days"
+], function( dateDistanceInDays ) {
 
 /**
  * dayOfYear
@@ -10,7 +9,7 @@ define([
  */
 return function( gdate ) {
   var date = gdate.toDate();
-	return Math.floor( dateDistanceInDays( gdate.startOfYear().toDate(), date ) );
+	return Math.round( dateDistanceInDays( gdate.startOfYear().toDate(), date ) );
 };
 
 });

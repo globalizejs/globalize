@@ -29,7 +29,8 @@ function validateRequiredCldr( path, value ) {
 			/dates\/calendars\/[^\/]+\/dateTimeFormats\/availableFormats/,
 			/dates\/calendars\/[^\/]+\/days\/.*\/short/,
 			/supplemental\/timeData\/(?!001)/,
-			/supplemental\/weekData\/(?!001)/
+			/supplemental\/weekData\/(?!001)/,
+			/supplemental\/calendarPreferenceData/
 		]
 	});
 }

@@ -2,11 +2,14 @@ define([
 	"./pattern-re",
 	"./start-of",
 	"../common/create-error/unsupported-feature",
-	"../util/date/set-month",
 	"../util/out-of-range",
-	"../gdate/Gdate"
+	"../gdate/Gdate",
+	// Question: how can I allow these to be loaded conditionally (as needed?)
+	"../gdate/Gregorian-date",
+	"../gdate/Hebrew-date",
+	"../gdate/Islamic-date"
 ], function( datePatternRe, dateStartOf,
-	createErrorUnsupportedFeature, dateSetMonth, outOfRange, Gdate ) {
+	createErrorUnsupportedFeature, outOfRange, Gdate ) {
 
 /**
  * parse( value, tokens, properties )
@@ -20,7 +23,7 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, tokens, properties ) {
-	var amPm, day, daysOfYear, era, hour, hour12, timezoneOffset, valid, year,
+	var amPm, day, daysOfYear, era, hour, hour12, month, timezoneOffset, valid, year,
 		YEAR = 0,
 		MONTH = 1,
 		DAY = 2,
@@ -94,7 +97,7 @@ return function( value, tokens, properties ) {
 			// Month
 			case "M":
 			case "L":
-				month = token.value;
+				month = "" + token.value;
 				truncateAt.push( MONTH );
 				break;
 
@@ -228,13 +231,8 @@ return function( value, tokens, properties ) {
 		return null;
 	}
 
-
 	if ( hour12 && amPm === "pm" ) {
 		date.setHours( date.getHours() + 12 );
-	}
-
-	if ( timezoneOffset ) {
-		date.setMinutes( date.getMinutes() + timezoneOffset );
 	}
 
 	// Unspecified units use today's values and
@@ -245,32 +243,36 @@ return function( value, tokens, properties ) {
 		era = gdate.getEra();
 	}
 	if ( year == null ) {
-		year = gtoday.getYear();
+		year = gdate.getYear();
 	}
 	if ( daysOfYear !== undefined ) {
-		gdate = new Gdate.calendars[ properties.calendar ]( era, year, gtoday.getMonth(), 1 );
+		gdate = new Gdate.calendars[ properties.calendar ]( era, year, gdate.getMonth(), 1 );
 		gdate = gdate.startOfYear().nextDate( daysOfYear - 1);
 		if ( gdate.getYear() !== year ) {
-			return false;
+			return null;
 		}
 	}
 	if ( month == null ) {
-		month = gtoday.getMonth();
+		month = gdate.getMonth();
 	}
 	if ( day == null ) {
-		day = gtoday.getDate();
+		day = gdate.getDate();
 	}
 	gdate = new Gdate.calendars[ properties.calendar ]( era, year, month, day );
 	if ( gdate.getMonth() !== month || gdate.getDate() !== day ) {
 		// Question: do we really need to do this check,
 		// or can we rely on Gdate to correct out-of-bounds values?
-		return false;
+		// Question: when should this return null and when false?
+		return null;
 	}
 	date.setFullYear( gdate.toDate().getFullYear() );
 	date.setMonth( gdate.toDate().getMonth() );
 	date.setDate( gdate.toDate().getDate() );
 	truncateAt = Math.max.apply( null, truncateAt );
-	date = dateStartOf( date, units[ truncateAt ] );
+	date = dateStartOf( date, units[ truncateAt ], properties.calendar );
+	if ( timezoneOffset ) {
+		date.setMinutes( date.getMinutes() + timezoneOffset );
+	}
 
 	return date;
 };

@@ -1,6 +1,5 @@
 define([
 	"globalize",
-	"src/date/start-of",
 	"json!cldr-data/main/ar/ca-gregorian.json",
 	"json!cldr-data/main/ar/numbers.json",
 	"json!cldr-data/main/ar/timeZoneNames.json",
@@ -16,11 +15,37 @@ define([
 	"../../util",
 
 	"globalize/date"
-], function( Globalize, startOf, arCaGregorian, arNumbers, arTimeZoneNames, enCaGregorian,
+], function( Globalize, arCaGregorian, arNumbers, arTimeZoneNames, enCaGregorian,
 	enNumbers, enTimeZoneNames, ptCaGregorian, ptNumbers, likelySubtags, numberingSystems, timeData,
 	weekData, util ) {
 
 var ar, date;
+
+// the actual startOf function depends on Gdate, which is internal to Globalize.
+// This needs to be fixed.
+function startOf ( date, unit ) {
+	date = new Date( date.getTime() );
+	switch ( unit ) {
+		case "year":
+			date.setMonth( 0 );
+		/* falls through */
+		case "month":
+			date.setDate( 1 );
+		/* falls through */
+		case "day":
+			date.setHours( 0 );
+		/* falls through */
+		case "hour":
+			date.setMinutes( 0 );
+		/* falls through */
+		case "minute":
+			date.setSeconds( 0 );
+		/* falls through */
+		case "second":
+			date.setMilliseconds( 0 );
+	}
+	return date;
+}
 
 function extraSetup() {
 	Globalize.load(
