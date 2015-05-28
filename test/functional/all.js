@@ -1,0 +1,20 @@
+define([
+	"test/functional/core",
+	"test/functional/core/load",
+	"test/functional/core/locale",
+	"test/functional/currency/currency-formatter",
+	"test/functional/currency/format-currency",
+	"test/functional/date/date-formatter",
+	"test/functional/date/date-parser",
+	"test/functional/date/format-date",
+	"test/functional/date/parse-date",
+	"test/functional/message/format-message",
+	"test/functional/message/message-formatter",
+	"test/functional/number/format-number",
+	"test/functional/number/number-formatter",
+	"test/functional/number/number-parser",
+	"test/functional/number/parse-number",
+	"test/functional/plural/plural",
+	"test/functional/relative-time/format-relative-time",
+	"test/functional/relative-time/relative-time-formatter"
+]);
