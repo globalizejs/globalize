@@ -1,7 +1,8 @@
 define([
 	"globalize",
-	"../util"
-], function( Globalize, util ) {
+	"../util",
+	"intern!qunit",
+], function( Globalize, util, QUnit ) {
 
 QUnit.module( "Globalize class constructor" );
 

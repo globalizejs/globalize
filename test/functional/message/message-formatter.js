@@ -3,11 +3,12 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
 	"../../util",
+	"intern!qunit",
 
 	"cldr/unresolved",
 	"globalize/message",
 	"globalize/plural"
-], function( Globalize, likelySubtags, plurals, util ) {
+], function( Globalize, likelySubtags, plurals, util, QUnit ) {
 
 QUnit.assert.messageFormatter = function( locale, path, variables, expected ) {
 	if ( arguments.length === 3 ) {

@@ -10,10 +10,11 @@ define([
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"../../util",
+	"intern!qunit",
 
 	"globalize/date"
 ], function( Globalize, startOf, enCaGregorian, enNumbers, ptCaGregorian, ptNumbers, likelySubtags,
-	numberingSystems, timeData, weekData, util ) {
+	numberingSystems, timeData, weekData, util, QUnit ) {
 
 function assertParseDate( assert, input, options, output ) {
 	assert.deepEqual( Globalize.dateParser( options )( input ), output, JSON.stringify( options ) );

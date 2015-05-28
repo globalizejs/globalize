@@ -10,12 +10,13 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
 	"../../util",
+	"intern!qunit",
 
 	"globalize/currency",
 	"globalize/number",
 	"globalize/plural"
 ], function( Globalize, deCurrencies, deNumbers, enCurrencies, enNumbers, zhCurrencies,
-	zhNumbers, currencyData, likelySubtags, plurals, util ) {
+	zhNumbers, currencyData, likelySubtags, plurals, util, QUnit ) {
 
 var accounting = { style: "accounting" },
 	code = { style: "code" },

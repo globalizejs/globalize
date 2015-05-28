@@ -5,9 +5,10 @@ define([
 	"json!cldr-data/main/es/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"../../util",
+	"intern!qunit",
 
 	"globalize/number"
-], function( Globalize, arNumbers, enNumbers, esNumbers, likelySubtags, util ) {
+], function( Globalize, arNumbers, enNumbers, esNumbers, likelySubtags, util, QUnit ) {
 
 var pi = 3.14159265359;
 

@@ -8,11 +8,12 @@ define( [
 	"json!cldr-data/supplemental/numberingSystems.json",
 	"json!cldr-data/supplemental/plurals.json",
 	"../../util",
+	"intern!qunit",
 
 	"globalize/number",
 	"globalize/relative-time"
 ], function( Globalize, enDateFields, deDateFields, enNumbers, deNumbers,
-	likelySubtags, numberingSystems, plurals, util ) {
+	likelySubtags, numberingSystems, plurals, util, QUnit ) {
 
 var en, de;
 

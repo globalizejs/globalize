@@ -4,9 +4,10 @@ define([
 	"json!cldr-data/supplemental/plurals.json",
 	"json!cldr-data/supplemental/ordinals.json",
 	"../../util",
+	"intern!qunit",
 
 	"globalize/plural"
-], function( Globalize, likelySubtags, plurals, ordinals, util ) {
+], function( Globalize, likelySubtags, plurals, ordinals, util, QUnit ) {
 
 function extraSetup() {
 	Globalize.load( plurals );

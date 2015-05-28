@@ -3,9 +3,10 @@ define([
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"../../util",
+	"intern!qunit",
 
 	"globalize/number"
-], function( Globalize, enNumbers, likelySubtags, util ) {
+], function( Globalize, enNumbers, likelySubtags, util, QUnit ) {
 
 function extraSetup() {
 	Globalize.load( enNumbers );

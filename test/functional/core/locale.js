@@ -1,11 +1,12 @@
 define([
 	"globalize",
 	"../../util",
+	"intern!qunit",
 
 	"globalize/date",
 	"globalize/message",
 	"globalize/number"
-], function( Globalize, util ) {
+], function( Globalize, util, QUnit ) {
 
 QUnit.module( "Globalize.locale( [locale|cldr] )" );
 

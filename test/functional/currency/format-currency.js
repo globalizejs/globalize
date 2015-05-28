@@ -6,10 +6,11 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
 	"../../util",
+	"intern!qunit",
 
 	"globalize/currency",
 	"globalize/number"
-], function( Globalize, enCurrencies, enNumbers, currencyData, likelySubtags, plurals, util ) {
+], function( Globalize, enCurrencies, enNumbers, currencyData, likelySubtags, plurals, util, QUnit ) {
 
 var teslaS = 69900;
 

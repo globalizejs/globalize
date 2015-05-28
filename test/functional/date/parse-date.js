@@ -14,11 +14,12 @@ define([
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"../../util",
+	"intern!qunit",
 
 	"globalize/date"
 ], function( Globalize, startOf, arCaGregorian, arNumbers, arTimeZoneNames, enCaGregorian,
 	enNumbers, enTimeZoneNames, ptCaGregorian, ptNumbers, likelySubtags, numberingSystems, timeData,
-	weekData, util ) {
+	weekData, util, QUnit ) {
 
 var ar, date;
 
