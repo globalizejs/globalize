@@ -688,7 +688,7 @@ QUnit.test( "should tokenize timezone (Z)", function( assert ) {
 	assert.dateTokenizer( "+0000", "Z", cldr, [{
 		lexeme: "+0000",
 		type: "Z",
-		value: 0
+		value: -0
 	}] );
 	assert.dateTokenizer( "GMT", "ZZZZ", cldr, [{
 		lexeme: "GMT",
