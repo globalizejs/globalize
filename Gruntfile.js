@@ -67,7 +67,7 @@ module.exports = function( grunt ) {
 			},
 			globalize: {
 				options: {
-					config: "test/intern-local",
+					config: "test/intern-local"
 				}
 			},
 			ci: {

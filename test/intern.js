@@ -12,17 +12,17 @@ define({
   tunnel: "BrowserStackTunnel",
   useLoader: {
     "host-node": "requirejs",
-    "host-browser": "external/requirejs/require.js"
+    "host-browser": "../../external/requirejs/require.js"
   },
   loader: {
     paths: {
-      qunit: "external/qunit/qunit/qunit",
-      cldr: "external/cldrjs/dist/cldr",
-      "cldr-data": "external/cldr-data",
-      globalize: "dist/globalize",
-      json: "external/requirejs-plugins/src/json",
-      src: "src",
-      text: "external/requirejs-text/text"
+      qunit: "../external/qunit/qunit/qunit",
+      cldr: "../external/cldrjs/dist/cldr",
+      "cldr-data": "../external/cldr-data",
+      globalize: "../dist/globalize",
+      json: "../external/requirejs-plugins/src/json",
+      src: "../src",
+      text: "../external/requirejs-text/text"
     }
   },
   suites: [
