@@ -92,8 +92,9 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-jscs": "1.8.0",
     "gzip-js": "0.3.2",
-    "intern": "git://github.com/apsdehal/intern.git#qunit",
-    "matchdep": "0.3.0"
+    "intern": "git://github.com/theintern/intern#master",
+    "matchdep": "0.3.0",
+    "requirejs": "2.1.17"
   },
   "license": "MIT",
   "scripts": {
