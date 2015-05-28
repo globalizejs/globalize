@@ -61,21 +61,21 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
-	    intern: {
-	      options: {
-	        runType: "runner"
-	      },
-	      globalize: {
-	        options: {
-	          config: "test/intern-local"
-	        }
-	      },
-	      ci: {
-	        options: {
-	          config: "test/intern"
-	        }
-	      }
-	    },
+		intern: {
+			options: {
+				runType: "runner"
+			},
+			globalize: {
+				options: {
+					config: "test/intern-local",
+				}
+			},
+			ci: {
+				options: {
+					config: "test/intern"
+				}
+			}
+		},
 		jshint: {
 			source: {
 				src: [ "src/**/*.js", "!src/build/**" ],
