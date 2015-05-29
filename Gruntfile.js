@@ -3,8 +3,12 @@ module.exports = function( grunt ) {
 	"use strict";
 
 	var isConnectTestRunning,
+		serverOptions = {},
+		binPath = require( "chromedriver" ).path,
 		rdefineEnd = /\}\);[^}\w]*$/,
 		pkg = grunt.file.readJSON( "package.json" );
+
+	serverOptions[ "Dwebdriver.chrome.driver=" + binPath ] = "";
 
 	function camelCase( input ) {
 		return input.toLowerCase().replace( /[-/](.)/g, function( match, group1 ) {
@@ -598,6 +602,17 @@ module.exports = function( grunt ) {
 					packageManager: "npm"
 				}
 			}
+		},
+		"start-selenium-server": {
+			dev: {
+				options: {
+					downloadUrl: "https://selenium-release.storage.googleapis.com/2.45/" +
+						"selenium-server-standalone-2.45.0.jar",
+					downloadLocation: "node_modules/grunt-selenium-server/",
+					serverOptions: serverOptions,
+					systemProperties: {}
+				}
+			}
 		}
 	});
 
@@ -613,7 +628,6 @@ module.exports = function( grunt ) {
 		grunt.task.run( [ "qunit" ].concat( args ).join( ":" ) );
 	});
 
-	// Default task.
 	grunt.registerTask( "default", [
 		"jshint:grunt",
 		"jshint:source",
@@ -623,7 +637,6 @@ module.exports = function( grunt ) {
 
 		// TODO fix issues, enable
 		//"jscs:test",
-		"test:unit",
 		"clean",
 		"requirejs",
 		"copy",
@@ -631,14 +644,19 @@ module.exports = function( grunt ) {
 
 		// TODO fix issues, enable
 		// "jscs:dist",
-		"test:functional",
 		"uglify",
 		"compare_size",
 		"commitplease"
 	]);
 
-	grunt.registerTask( "test-local", [
-		"intern:globalize"
+	grunt.registerTask( "test-ci", [
+		"default",
+		"test:ci"
 	]);
 
+	grunt.registerTask( "test-local", [
+		"default",
+		"start-selenium-server",
+		"intern:globalize"
+	]);
 };
