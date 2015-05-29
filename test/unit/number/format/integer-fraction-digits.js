@@ -1,7 +1,7 @@
 define([
 	"src/number/format/integer-fraction-digits",
 	"src/util/number/round",
-	"intern!QUnit"
+	"intern!qunit"
 ], function( formatIntegerFractionDigits, round, QUnit ) {
 
 // 1: Earth average diameter according to:

@@ -6,7 +6,7 @@ define([
 	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/currencyData.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
-	"intern!QUnit",
+	"intern!qunit",
 
 	"cldr/event",
 	"cldr/supplemental"
