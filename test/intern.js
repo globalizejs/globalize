@@ -29,7 +29,5 @@ define({
     "test/unit/all",
     "test/functional/all"
   ],
-  functionalSuites: [
-  ],
   excludeInstrumentation: /^(?:node_modules|test)\//
 });

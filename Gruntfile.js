@@ -2,8 +2,7 @@ module.exports = function( grunt ) {
 
 	"use strict";
 
-	var isConnectTestRunning,
-		serverOptions = {},
+	var serverOptions = {},
 		binPath = require( "chromedriver" ).path,
 		rdefineEnd = /\}\);[^}\w]*$/,
 		pkg = grunt.file.readJSON( "package.json" );
@@ -69,14 +68,28 @@ module.exports = function( grunt ) {
 			options: {
 				runType: "runner"
 			},
-			globalize: {
+			unitLocal: {
 				options: {
-					config: "test/intern-local"
+					config: "test/intern-local",
+					suites: [ "test/unit/all" ]
 				}
 			},
-			ci: {
+			functionalLocal: {
 				options: {
-					config: "test/intern"
+					config: "test/intern-local",
+					suites: [ "test/functional/all" ]
+				}
+			},
+			unitCi: {
+				options: {
+					config: "test/intern",
+					suites: [ "test/unit/all" ]
+				}
+			},
+			functionalCi: {
+				options: {
+					config: "test/intern",
+					suites: [ "test/functional/all" ]
 				}
 			}
 		},
@@ -618,7 +631,7 @@ module.exports = function( grunt ) {
 
 	require( "matchdep" ).filterDev( [ "grunt-*", "intern" ] ).forEach( grunt.loadNpmTasks );
 
-	grunt.registerTask( "test", function() {
+/*	grunt.registerTask( "test", function() {
 		var args = [].slice.call( arguments );
 		if ( !isConnectTestRunning ) {
 			grunt.task.run( "checkDependencies" );
@@ -628,20 +641,26 @@ module.exports = function( grunt ) {
 		grunt.task.run( [ "qunit" ].concat( args ).join( ":" ) );
 	});
 
-	grunt.registerTask( "default", [
+*/
+	grunt.registerTask( "pre-unit", [
 		"jshint:grunt",
 		"jshint:source",
 		"jshint:test",
 		"jscs:grunt",
-		"jscs:source",
+		"jscs:source"
 
+	]);
+
+	grunt.registerTask( "pre-functional", [
 		// TODO fix issues, enable
 		//"jscs:test",
 		"clean",
 		"requirejs",
 		"copy",
-		"jshint:dist",
+		"jshint:dist"
+	]);
 
+	grunt.registerTask( "post-functional", [
 		// TODO fix issues, enable
 		// "jscs:dist",
 		"uglify",
@@ -649,14 +668,28 @@ module.exports = function( grunt ) {
 		"commitplease"
 	]);
 
-	grunt.registerTask( "test-ci", [
-		"default",
-		"test:ci"
+	grunt.registerTask( "default", [
+		"pre-unit",
+		"intern:unitLocal",
+		"pre-functional",
+		"intern:functionalLocal",
+		"post-functional"
 	]);
 
-	grunt.registerTask( "test-local", [
-		"default",
+	grunt.registerTask( "test-ci", [
+		"pre-unit",
+		"intern:unitCi",
+		"pre-functional",
+		"intern:functionalCi",
+		"post-functional"
+	]);
+
+	grunt.registerTask( "test", [
+		"pre-unit",
 		"start-selenium-server",
-		"intern:globalize"
+		"intern:unitLocal",
+		"pre-functional",
+		"intern:functionalLocal",
+		"post-functional"
 	]);
 };
