@@ -5,7 +5,7 @@ define({
   capabilities: {},
   environments: [
     { browserName: "chrome" },
-    { browserName: "internet explorer", version: [ "11", "10" ] },
+    { browserName: "internet explorer", version: [ "11", "10", "9" ] },
     { browserName: "firefox", version: "34" }
   ],
   maxConcurrency: 2,
