@@ -622,8 +622,7 @@ module.exports = function( grunt ) {
 		"jshint:source",
 		"jshint:test",
 		"jscs:grunt",
-		"jscs:source",
-		"start-selenium-server"
+		"jscs:source"
 	]);
 
 	grunt.registerTask( "pre-functional", [
@@ -638,7 +637,6 @@ module.exports = function( grunt ) {
 	grunt.registerTask( "post-functional", [
 		// TODO fix issues, enable
 		// "jscs:dist",
-		"stop-selenium-server",
 		"uglify",
 		"compare_size",
 		"commitplease"
@@ -646,9 +644,11 @@ module.exports = function( grunt ) {
 
 	grunt.registerTask( "default", [
 		"pre-unit",
+		"start-selenium-server",
 		"intern:unitLocal",
 		"pre-functional",
 		"intern:functionalLocal",
+		"stop-selenium-server",
 		"post-functional"
 	]);
 
@@ -661,10 +661,6 @@ module.exports = function( grunt ) {
 	]);
 
 	grunt.registerTask( "test", [
-		"pre-unit",
-		"intern:unitLocal",
-		"pre-functional",
-		"intern:functionalLocal",
-		"post-functional"
+		"default"
 	]);
 };
