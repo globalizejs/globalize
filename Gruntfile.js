@@ -9,6 +9,9 @@ module.exports = function( grunt ) {
 
 	serverOptions[ "Dwebdriver.chrome.driver=" + binPath ] = "";
 
+	console.log(process.env.BROWSERSTACK_USERNAME);
+	console.log(process.env.BROWSERSTACK_ACCESS_KEY);
+
 	function camelCase( input ) {
 		return input.toLowerCase().replace( /[-/](.)/g, function( match, group1 ) {
 			return group1.toUpperCase();
