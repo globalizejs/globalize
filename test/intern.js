@@ -4,9 +4,9 @@ define({
   proxyUrl: "http://localhost:9000/",
   capabilities: {},
   environments: [
-    { browserName: "chrome" },
+    { browserName: "chrome", version: [ "previous", "current" ] },
     { browserName: "internet explorer", version: [ "11", "10", "9" ] },
-    { browserName: "firefox", version: "34" }
+    { browserName: "firefox", version: [ "previous", "current" ] }
   ],
   maxConcurrency: 2,
   tunnel: "BrowserStackTunnel",

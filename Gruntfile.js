@@ -126,23 +126,6 @@ module.exports = function( grunt ) {
 			test: [ "test/*.js", "test/functional/**/*.js", "test/unit/**/*.js" ],
 			dist: [ "dist/globalize*.js", "dist/globalize/*.js" ]
 		},
-		qunit: {
-			functional: {
-				options: {
-					urls: [
-
-						// Use es5-shim here due to .bind(), which is not present on phantomjs v1.9.
-						// But, it should be on v2.x.
-						"http://localhost:<%= connect.options.port %>/functional-es5-shim.html"
-					]
-				}
-			},
-			unit: {
-				options: {
-					urls: [ "http://localhost:<%= connect.options.port %>/unit.html" ]
-				}
-			}
-		},
 		requirejs: {
 			options: {
 				dir: "dist/.build",
@@ -634,17 +617,6 @@ module.exports = function( grunt ) {
 
 	require( "matchdep" ).filterDev( [ "grunt-*", "intern" ] ).forEach( grunt.loadNpmTasks );
 
-/*  grunt.registerTask( "test", function() {
-		var args = [].slice.call( arguments );
-		if ( !isConnectTestRunning ) {
-			grunt.task.run( "checkDependencies" );
-			grunt.task.run( "connect:test" );
-			isConnectTestRunning = true;
-		}
-		grunt.task.run( [ "qunit" ].concat( args ).join( ":" ) );
-	});
-
-*/
 	grunt.registerTask( "pre-unit", [
 		"jshint:grunt",
 		"jshint:source",
