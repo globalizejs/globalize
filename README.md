@@ -669,6 +669,8 @@ handle dependencies and CLDR loading manually yourself.
     ├── functional/ (functional tests)
     ├── functional.html
     ├── functional.js
+    ├── intern.js
+    ├── intern-local.js
     ├── unit/ (unit tests)
     ├── unit.html
     └── unit.js
@@ -701,7 +703,7 @@ installed the external development dependencies (for more details, see above).
 
 ***Unit tests***
 
-To run the unit tests, run `grunt test:unit`, or run `grunt connect:keepalive`
+To run the unit tests, run `grunt test:unitLocal`, or run `grunt connect:keepalive`
 and open `http://localhost:9001/test/unit.html` in a browser (or
 `http://localhost:9001/test/unit-es5-shim.html` for IE8). It tests the very
 specific functionality of each function (sometimes internal/private).
@@ -711,7 +713,7 @@ The goal of the unit tests is to make it easy to spot bugs, easy to debug.
 ***Functional tests***
 
 To run the functional tests, create the dist files by running `grunt`. Then, run
-`grunt test:functional`, or open `http://localhost:9001/test/functional.html` in
+`grunt test:functionalLocal`, or open `http://localhost:9001/test/functional.html` in
 a browser (or `http://localhost:9001/test/functional-es5-shim.html` for IE8).
 Note that `grunt` will automatically run unit and functional tests for you to
 ensure the built files are safe.
