@@ -92,19 +92,17 @@ module.exports = function( grunt ) {
 					suites: [ "test/functional/all" ]
 				}
 			},
-			unitCiIE8 {
+			unitCiIE8: {
 				options: {
 					config: "test/intern",
-					environments: [
-					{ browserName: "internet explorer", version: [ "8" ]}],
+					environments: [	{ browserName: "internet explorer", version: [ "8" ] } ],
 					suites: "test/unit/all_ie8"
 				}
 			},
-			functionalCiIE8 {
+			functionalCiIE8: {
 				options: {
 					config: "test/intern",
-					environments: [
-					{ browserName: "internet explorer", version: [ "8" ]}],
+					environments: [ { browserName: "internet explorer", version: [ "8" ] } ],
 					suites: "test/functional/all_ie8"
 				}
 			}
@@ -670,7 +668,7 @@ module.exports = function( grunt ) {
 
 	grunt.registerTask( "test-ci", [
 		"pre-unit",
-		"intern:unitCi"
+		"intern:unitCi",
 		"intern:unitCiIE8",
 		"pre-functional",
 		"intern:functionalCi",
