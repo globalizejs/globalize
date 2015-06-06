@@ -9,9 +9,6 @@ module.exports = function( grunt ) {
 
 	serverOptions[ "Dwebdriver.chrome.driver=" + binPath ] = "";
 
-	console.log(process.env.BROWSERSTACK_USERNAME);
-	console.log(process.env.BROWSERSTACK_ACCESS_KEY);
-
 	function camelCase( input ) {
 		return input.toLowerCase().replace( /[-/](.)/g, function( match, group1 ) {
 			return group1.toUpperCase();
@@ -97,15 +94,13 @@ module.exports = function( grunt ) {
 			},
 			unitCiIE8: {
 				options: {
-					config: "test/intern",
-					environments: [	{ browserName: "internet explorer", version: [ "8" ] } ],
+					config: "test/intern-ie8",
 					suites: "test/unit/all_ie8"
 				}
 			},
 			functionalCiIE8: {
 				options: {
-					config: "test/intern",
-					environments: [ { browserName: "internet explorer", version: [ "8" ] } ],
+					config: "test/intern-ie8",
 					suites: "test/functional/all_ie8"
 				}
 			}

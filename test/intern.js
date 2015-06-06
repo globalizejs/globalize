@@ -6,7 +6,8 @@ define({
   environments: [
     { browserName: "chrome" },
     { browserName: "internet explorer", version: [ "11", "10", "9" ] },
-    { browserName: "firefox" }
+    // TODO: Firefox 35 is broken for Browserstack, fix when they have Selenium 2.46
+    { browserName: "firefox", version: [ "34" ] }
   ],
   maxConcurrency: 2,
   tunnel: "BrowserStackTunnel",
