@@ -264,6 +264,18 @@ to you in different flavors):
 
   [Read more...](doc/api/core/load.md)
 
+- **`Globalize.getCldrData( [baseUrl], [fileName] )`**
+  
+  This method loads the cldr data with JQuery from a given JSQL local file synchroniously.
+  
+  Example:
+  the base setup:
+  var loc = "de";
+  var baseUrl = "/cldr";
+  
+  Globalize.getCldrData(baseUrl, "/supplemental/likelySubtags.json");
+  Globalize.getCldrData(baseUrl, "/main/" + loc + "/currencies.json");
+  
 - **`Globalize.locale( [locale|cldr] )`**
 
   Set default locale, or get it if locale argument is omitted.
