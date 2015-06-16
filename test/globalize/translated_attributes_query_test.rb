@@ -197,6 +197,16 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
             @order = Post.where(:title => 'title').order('title ASC')
             assert_equal ['title ASC'], @order.order_values
           end
+
+          it 'generates a working query' do
+            sql = Post.order(:title).to_sql
+            assert Post.connection.execute(sql)
+          end
+
+          it 'returns relation that includes translated attribute' do
+            @order = Post.order(:title)
+            assert_equal [:translations], @order.joins_values
+          end
         end
 
         describe 'for non-translated columns' do
@@ -214,6 +224,16 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
             @order = Post.where(:title => 'title').order('id ASC')
             assert_equal ['id ASC'], @order.order_values
           end
+
+          it 'generates a working query' do
+            sql = Post.order(:id).to_sql
+            assert Post.connection.execute(sql)
+          end
+
+          it 'returns relation that does not include a translated attribute' do
+            @order = Post.order(:id)
+            assert_equal [], @order.joins_values
+          end
         end
 
         describe 'for mixed columns' do
@@ -226,6 +246,16 @@ class TranslatedAttributesQueryTest < MiniTest::Spec
           it 'returns record in order, leaving string untouched' do
             @order = Post.where(:title => 'title').order('title ASC, id DESC')
             assert_equal ['title ASC, id DESC'], @order.order_values
+          end
+
+          it 'generates a working query' do
+            sql = Post.order(:title, :id).to_sql
+            assert Post.connection.execute(sql)
+          end
+
+          it 'returns relation that includes translated attribute' do
+            @order = Post.order(:title, :id)
+            assert_equal [:translations], @order.joins_values
           end
         end
       end
