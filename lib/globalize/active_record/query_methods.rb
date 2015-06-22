@@ -24,7 +24,7 @@ module Globalize
 
       def order(opts, *rest)
         if respond_to?(:translated_attribute_names) && parsed = parse_translated_order(opts)
-          super(parsed)
+          join_translations super(parsed)
         else
           super
         end
