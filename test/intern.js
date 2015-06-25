@@ -30,5 +30,6 @@ define({
     "test/unit/all",
     "test/functional/all"
   ],
+  unitTestsWaitForReporter: false,
   excludeInstrumentation: /^(?:node_modules|test)\//
 });
