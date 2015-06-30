@@ -38,7 +38,26 @@ Replaced by `.formatMessage( path [, variables ] )`. The new API is quite differ
 
 ## Globalize.parseInt/parseFloat
 
-Replaced by `.parseNumber( value [, options] )`.
+Replaced by `.parseNumber( value [, options] )`.  So where you might have previously executed:
+
+```js
+Globalize( "en" ).parseFloat( "123,456.789" )
+// > 123456.789
+```
+
+You could now execute:
+
+```js
+Globalize( "en" ).parseNumber( "123,456.789" )
+// > 123456.789
+```
+
+`parseNumber` is an alias for [`.numberParser( [options] )( value )`](api/number/number-parser.md).  So you could also do this:
+
+```js
+Globalize( "en" ).numberParser()( "123,456.789" )
+// > 123456.789
+```
 
 ## Globalize.parseDate
 
