@@ -16,12 +16,16 @@ module Globalize
       class Migrator
         include Globalize::ActiveRecord::Exceptions
 
-        attr_reader :model, :fields
+        attr_reader :model
         delegate :translated_attribute_names, :connection, :table_name,
           :table_name_prefix, :translations_table_name, :columns, :to => :model
 
         def initialize(model)
           @model = model
+        end
+
+        def fields
+          @fields ||= complete_translated_fields
         end
 
         def create_translation_table!(fields = {}, options = {})
@@ -62,7 +66,7 @@ module Globalize
         # It's a problem because in early migrations would add all the translated attributes
         def complete_translated_fields
           translated_attribute_names.each do |name|
-            fields[name] ||= column_type(name)
+            @fields[name] ||= column_type(name)
           end
         end
 
