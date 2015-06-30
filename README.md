@@ -82,6 +82,8 @@ and `drop_translation_table!` inside the `change` instance method.
 
 ***Do not use the `change` method, use `up` and `down`!***
 
+Also note that before you can create a translation table, you have to define the translated attributes via `translates` in your model as shown above.
+
 ```ruby
 class CreatePosts < ActiveRecord::Migration
   def up
