@@ -22,7 +22,7 @@ you want. But, as an exercise of this demo, we'll download it ourselves. So:
 1. Click at [cldrjs releases tab](https://github.com/rxaviers/cldrjs/releases).
 1. Download the latest package.
 1. Unzip it.
-1. Move its `dist/` files into `cldrjs` of this directory.
+1. Create a `cldrjs` directory alongside `index.html` and `README.md` and move the cldrjs `dist/` files into it.
 
 Then, you'll get this:
 
@@ -30,10 +30,13 @@ Then, you'll get this:
 .
 ├── cldrjs
 │   ├── cldr.js
+│   ├── node_main.js
 │   └── cldr
 │       ├── event.js
 │       └── supplemental.js
+│       └── unresolved.js
 └── index.html
+└── README.md
 ```
 
 For more information read [cldrjs' usage and
@@ -41,7 +44,7 @@ installation](https://github.com/rxaviers/cldrjs#usage-and-installation) docs.
 
 **2. CLDR content**
 
-Another tipical Globalize requirement is to fetch CLDR content yourself. But, on
+Another typical Globalize requirement is to fetch CLDR content yourself. But, on
 this demo we made the things a little easier for you: we've embedded static JSON
 into the demo. So, you don't need to actually fetch it anywhere. For more
 information about fetching Unicode CLDR JSON data, see [How do I get CLDR
@@ -49,6 +52,17 @@ data?](../../doc/cldr.md).
 
 No action needed here.
 
+**3. Globalize dist files**
+
+To run the demo you'll need Globalize to be built in order that the `../../dist` 
+directory has been populated.  If you haven't already done this then go to the root
+and execute the following:
+
+```
+npm install
+bower install
+grunt
+```
 
 ## Running the demo
 
