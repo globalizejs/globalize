@@ -16,7 +16,8 @@ module Globalize
         if opts == :chain
           WhereChain.new(spawn)
         elsif parsed = parse_translated_conditions(opts)
-          join_translations(super(parsed, *rest))
+          #join_translations(super(parsed, *rest))
+          join_translations(super(parsed, *rest), opts)
         else
           super
         end
@@ -65,12 +66,13 @@ module Globalize
         }])
       end
 
-      def join_translations(relation = self)
+      def join_translations(relation = self, opts = {})
         if relation.joins_values.include?(:translations)
-          relation
+          rel = relation
         else
-          relation.with_translations_in_fallbacks
+          rel = relation.with_translations_in_fallbacks
         end
+        rel.with_where(opts)
       end
 
       private
