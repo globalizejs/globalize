@@ -45,10 +45,17 @@ Globalize("en").parseFloat("123,456.789")
 // > 123456.789
 ```
 
-You would now execute:
+You could now execute:
 
 ```js
 Globalize("en").parseNumber("123,456.789")
+// > 123456.789
+```
+
+Or: 
+
+```js
+Globalize("en").numberParser()("123,456.789")
 // > 123456.789
 ```
 
