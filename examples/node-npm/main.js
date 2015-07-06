@@ -1,5 +1,3 @@
-#! /usr/bin/node
-
 var like;
 var Globalize = require( "globalize" );
 
