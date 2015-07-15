@@ -27,7 +27,7 @@ define([
  */
 
 return function( options, cldr ) {
-	var dateSkeleton, result, skeleton, timeSkeleton, type, pattern;
+	var dateSkeleton, result, skeleton, timeSkeleton, type;
 
 	function combineDateTime( type, datePattern, timePattern ) {
 		return formatMessage(
@@ -40,45 +40,49 @@ return function( options, cldr ) {
 	}
 
 	function getBestMatchPattern( path, skeleton ) {
-		var availableFormats, ratedFormats, format;
+		var availableFormats, ratedFormats, format, pattern;
 
 		pattern = cldr.main([ path, skeleton ]);
 
-		if (skeleton && pattern === undefined) {
+		if ( skeleton && !pattern ) {
 			availableFormats = cldr.main([ path ]);
 			ratedFormats = [];
 
-			for (format in availableFormats) {
+			for ( format in availableFormats ) {
 				ratedFormats.push({
 					format: format,
 					pattern: availableFormats[format],
-					rate: compareFormats(skeleton, format)
+					rate: compareFormats( skeleton, format )
 				});
 			}
 
-			ratedFormats.sort(function(a, b) {
-				return a.rate - b.rate;
+			ratedFormats.sort( function( formatA, formatB ) {
+				return formatA.rate - formatB.rate;
 			});
 
-			if (ratedFormats.length) {
-				pattern = augmentFormat(skeleton, ratedFormats[0].pattern);
+			if ( ratedFormats.length ) {
+				pattern = augmentFormat( skeleton, ratedFormats[0].pattern );
 			}
 		}
 
 		return pattern;
 	}
 
-	function compareFormats( a, b ) {
-		var distance, minLength, i;
+	function compareFormats( formatA, formatB ) {
+		var distance, maxLength, minLength, index;
 
-		distance = 1;
-		a = a.match(datePatternRe);
-		b = b.match(datePatternRe);
-		minLength = Math.min(a.length, b.length);
+		maxLength = Math.max( formatA.length, formatB.length );
+		minLength = Math.min( formatA.length, formatB.length );
+		distance = maxLength / minLength;
 
-		for (i = 0; i < minLength; i++) {
-			if (a[i].charAt(0) === b[i].charAt(0)) {
-				if (a[i].length === b[i].length) {
+		formatA = formatA.match( datePatternRe );
+		formatB = formatB.match( datePatternRe );
+		maxLength = Math.max( formatA.length, formatB.length );
+		minLength = Math.min( formatA.length, formatB.length );
+
+		for ( index = 0; index < minLength; index++ ) {
+			if ( formatA[index].charAt( 0 ) === formatB[index].charAt( 0 ) ) {
+				if ( formatA[index].length === formatB[index].length ) {
 					distance *= 0.25;
 				} else {
 					distance *= 0.75;
@@ -88,7 +92,9 @@ return function( options, cldr ) {
 			}
 		}
 
-		if (a.length === b.length) {
+		distance *= 1.25 * (maxLength - minLength + 1);
+
+		if ( formatA.length === formatB.length ) {
 			distance *= 0.5;
 		}
 
@@ -96,27 +102,27 @@ return function( options, cldr ) {
 	}
 
 	function augmentFormat( requestedSkeleton, bestMatchFormat ) {
-		var originalBestMatchFormat, i, t, j, k, l;
+		var originalBestMatchFormat, index, type, tempIndex;
 
 		originalBestMatchFormat = bestMatchFormat;
-		requestedSkeleton = requestedSkeleton.match(datePatternRe);
-		bestMatchFormat = bestMatchFormat.match(datePatternRe);
+		requestedSkeleton = requestedSkeleton.match( datePatternRe );
+		bestMatchFormat = bestMatchFormat.match( datePatternRe );
 
-		for (i = 0, l = bestMatchFormat.length; i < l; i++) {
-			t = bestMatchFormat[i].charAt(0);
+		for ( index in bestMatchFormat ) {
+			type = bestMatchFormat[index].charAt( 0 );
 
-			for (j = 0, k = requestedSkeleton.length; j < k; j++) {
-				if (t === requestedSkeleton[j].charAt(0)) {
-					bestMatchFormat[i] = requestedSkeleton[j];
+			for ( tempIndex in requestedSkeleton ) {
+				if ( type === requestedSkeleton[tempIndex].charAt( 0 ) ) {
+					bestMatchFormat[index] = requestedSkeleton[tempIndex];
 					break;
 				}
 			}
 		}
 
-		bestMatchFormat = bestMatchFormat.join("");
+		bestMatchFormat = bestMatchFormat.join( "" );
 
-		if (bestMatchFormat === originalBestMatchFormat) {
-			bestMatchFormat = requestedSkeleton.join("");
+		if ( bestMatchFormat === originalBestMatchFormat ) {
+			bestMatchFormat = requestedSkeleton.join( "" );
 		}
 
 		return bestMatchFormat;
@@ -150,8 +156,8 @@ return function( options, cldr ) {
 					timeSkeleton
 				);
 
-				if (dateSkeleton && timeSkeleton) {
-					result = combineDateTime( type, dateSkeleton, timeSkeleton);
+				if ( dateSkeleton && timeSkeleton ) {
+					result = combineDateTime( type, dateSkeleton, timeSkeleton );
 				} else {
 					result = dateSkeleton || timeSkeleton;
 				}
