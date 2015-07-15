@@ -1,7 +1,8 @@
 define([
 	"../common/format-message",
-	"../common/create-error/invalid-parameter-value"
-], function( formatMessage, createErrorInvalidParameterValue ) {
+	"../common/create-error/invalid-parameter-value",
+	"./pattern-re"
+], function( formatMessage, createErrorInvalidParameterValue, datePatternRe ) {
 
 /**
  * expandPattern( options, cldr )
@@ -26,7 +27,7 @@ define([
  */
 
 return function( options, cldr ) {
-	var dateSkeleton, result, skeleton, timeSkeleton, type;
+	var dateSkeleton, result, skeleton, timeSkeleton, type, pattern;
 
 	function combineDateTime( type, datePattern, timePattern ) {
 		return formatMessage(
@@ -36,6 +37,89 @@ return function( options, cldr ) {
 			]),
 			[ timePattern, datePattern ]
 		);
+	}
+
+	function getBestMatchPattern( path, skeleton ) {
+		var availableFormats, ratedFormats, format;
+
+		pattern = cldr.main([ path, skeleton ]);
+
+		if (skeleton && pattern === undefined) {
+			availableFormats = cldr.main([ path ]);
+			ratedFormats = [];
+
+			for (format in availableFormats) {
+				ratedFormats.push({
+					format: format,
+					pattern: availableFormats[format],
+					rate: compareFormats(skeleton, format)
+				});
+			}
+
+			ratedFormats.sort(function(a, b) {
+				return a.rate - b.rate;
+			});
+
+			if (ratedFormats.length) {
+				pattern = augmentFormat(skeleton, ratedFormats[0].pattern);
+			}
+		}
+
+		return pattern;
+	}
+
+	function compareFormats( a, b ) {
+		var distance, minLength, i;
+
+		distance = 1;
+		a = a.match(datePatternRe);
+		b = b.match(datePatternRe);
+		minLength = Math.min(a.length, b.length);
+
+		for (i = 0; i < minLength; i++) {
+			if (a[i].charAt(0) === b[i].charAt(0)) {
+				if (a[i].length === b[i].length) {
+					distance *= 0.25;
+				} else {
+					distance *= 0.75;
+				}
+			} else {
+				distance *= 1.25;
+			}
+		}
+
+		if (a.length === b.length) {
+			distance *= 0.5;
+		}
+
+		return distance;
+	}
+
+	function augmentFormat( requestedSkeleton, bestMatchFormat ) {
+		var originalBestMatchFormat, i, t, j, k, l;
+
+		originalBestMatchFormat = bestMatchFormat;
+		requestedSkeleton = requestedSkeleton.match(datePatternRe);
+		bestMatchFormat = bestMatchFormat.match(datePatternRe);
+
+		for (i = 0, l = bestMatchFormat.length; i < l; i++) {
+			t = bestMatchFormat[i].charAt(0);
+
+			for (j = 0, k = requestedSkeleton.length; j < k; j++) {
+				if (t === requestedSkeleton[j].charAt(0)) {
+					bestMatchFormat[i] = requestedSkeleton[j];
+					break;
+				}
+			}
+		}
+
+		bestMatchFormat = bestMatchFormat.join("");
+
+		if (bestMatchFormat === originalBestMatchFormat) {
+			bestMatchFormat = requestedSkeleton.join("");
+		}
+
+		return bestMatchFormat;
 	}
 
 	switch ( true ) {
@@ -57,16 +141,20 @@ return function( options, cldr ) {
 				} else {
 					type = "short";
 				}
-				result = combineDateTime( type,
-					cldr.main([
-						"dates/calendars/gregorian/dateTimeFormats/availableFormats",
-						dateSkeleton
-					]),
-					cldr.main([
-						"dates/calendars/gregorian/dateTimeFormats/availableFormats",
-						timeSkeleton
-					])
+				dateSkeleton = getBestMatchPattern(
+					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+					dateSkeleton
 				);
+				timeSkeleton = getBestMatchPattern(
+					"dates/calendars/gregorian/dateTimeFormats/availableFormats",
+					timeSkeleton
+				);
+
+				if (dateSkeleton && timeSkeleton) {
+					result = combineDateTime( type, dateSkeleton, timeSkeleton);
+				} else {
+					result = dateSkeleton || timeSkeleton;
+				}
 			}
 			break;
 
