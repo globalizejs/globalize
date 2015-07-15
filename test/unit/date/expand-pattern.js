@@ -40,4 +40,11 @@ QUnit.test( "should expand {raw: \"<pattern>\"}", function( assert ) {
 	assert.equal( expandPattern( { raw: "MMM d" }, en ), "MMM d" );
 });
 
+QUnit.test( "should augment {skeleton: \"<skeleton>\"}", function( assert ) {
+	assert.equal( expandPattern( { skeleton: "yMMMMd" }, de ), "d. MMMM y" );
+	assert.equal( expandPattern( { skeleton: "MMMMd" }, de ), "d. MMMM" );
+	assert.equal( expandPattern( { skeleton: "MMMM" }, de ), "MMMM" );
+	assert.equal( expandPattern( { skeleton: "EEEE" }, de ), "EEEE" );
+});
+
 });
