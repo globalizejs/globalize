@@ -37,6 +37,7 @@ QUnit.module( ".plural( value )", {
 		Globalize.locale( "en" );
 	},
 	teardown: function() {
+		Globalize.cache = {};
 		util.resetCldrContent();
 	}
 });

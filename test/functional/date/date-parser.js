@@ -41,6 +41,7 @@ QUnit.module( ".dateParser( pattern )", {
 		Globalize.locale( "en" );
 	},
 	teardown: function() {
+		Globalize.cache = {};
 		util.resetCldrContent();
 	}
 });

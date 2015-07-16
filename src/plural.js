@@ -1,6 +1,8 @@
 define([
 	"cldr",
 	"make-plural",
+	"./common/cache-get",
+	"./common/cache-set",
 	"./common/runtime-bind",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
@@ -14,7 +16,7 @@ define([
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, MakePlural, runtimeBind, validateCldr, validateDefaultLocale,
+], function( Cldr, MakePlural, cacheGet, cacheSet, runtimeBind, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterType, validateParameterTypeNumber,
 	validateParameterTypePlainObject, validateParameterTypePluralType, Globalize,
 	pluralGeneratorFn ) {
@@ -62,6 +64,10 @@ Globalize.prototype.pluralGenerator = function( options ) {
 
 	validateDefaultLocale( cldr );
 
+	if ( returnFn = cacheGet( "pluralGenerator", args, cldr ) ) {
+		return returnFn;
+	}
+
 	isOrdinal = type === "ordinal";
 
 	cldr.on( "get", validateCldr );
@@ -77,6 +83,8 @@ Globalize.prototype.pluralGenerator = function( options ) {
 	});
 
 	returnFn = pluralGeneratorFn( plural );
+
+	cacheSet( args, cldr, returnFn );
 
 	runtimeBind( args, cldr, returnFn, [ plural ] );
 

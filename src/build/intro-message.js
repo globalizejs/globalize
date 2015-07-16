@@ -36,6 +36,8 @@
 }(this, function( Cldr, Globalize ) {
 
 var alwaysArray = Globalize._alwaysArray,
+	cacheGet = Globalize._cacheGet,
+	cacheSet = Globalize._cacheSet,
 	createError = Globalize._createError,
 	isPlainObject = Globalize._isPlainObject,
 	runtimeBind = Globalize._runtimeBind,

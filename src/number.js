@@ -1,5 +1,7 @@
 define([
 	"./core",
+	"./common/cache-get",
+	"./common/cache-set",
 	"./common/create-error/unsupported-feature",
 	"./common/runtime-bind",
 	"./common/validate/cldr",
@@ -20,8 +22,8 @@ define([
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Globalize, createErrorUnsupportedFeature, runtimeBind, validateCldr,
-	validateDefaultLocale, validateParameterPresence, validateParameterRange,
+], function( Globalize, cacheGet, cacheSet, createErrorUnsupportedFeature, runtimeBind,
+	validateCldr, validateDefaultLocale, validateParameterPresence, validateParameterRange,
 	validateParameterTypeNumber, validateParameterTypePlainObject, validateParameterTypeString,
 	numberFormatterFn, numberFormatProperties, numberNumberingSystem, numberParserFn,
 	numberParseProperties, numberPattern, numberSymbol, stringPad ) {
@@ -49,6 +51,10 @@ Globalize.prototype.numberFormatter = function( options ) {
 	args = [ options ];
 
 	validateDefaultLocale( cldr );
+
+	if ( returnFn = cacheGet( "numberFormatter", args, cldr ) ) {
+		return returnFn;
+	}
 
 	cldr.on( "get", validateCldr );
 
@@ -89,6 +95,8 @@ Globalize.prototype.numberFormatter = function( options ) {
 
 	returnFn = numberFormatterFn( properties );
 
+	cacheSet( args, cldr, returnFn );
+
 	runtimeBind( args, cldr, returnFn, [ properties ] );
 
 	return returnFn;
@@ -115,6 +123,10 @@ Globalize.prototype.numberParser = function( options ) {
 
 	validateDefaultLocale( cldr );
 
+	if ( returnFn = cacheGet( "numberParser", args, cldr ) ) {
+		return returnFn;
+	}
+
 	cldr.on( "get", validateCldr );
 
 	if ( options.raw ) {
@@ -128,6 +140,8 @@ Globalize.prototype.numberParser = function( options ) {
 	cldr.off( "get", validateCldr );
 
 	returnFn = numberParserFn( properties );
+
+	cacheSet( args, cldr, returnFn );
 
 	runtimeBind( args, cldr, returnFn, [ properties ] );
 

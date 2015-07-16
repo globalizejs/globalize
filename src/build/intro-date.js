@@ -37,7 +37,9 @@
 	}
 }(this, function( Cldr, Globalize ) {
 
-var createError = Globalize._createError,
+var cacheGet = Globalize._cacheGet,
+	cacheSet = Globalize._cacheSet,
+	createError = Globalize._createError,
 	createErrorUnsupportedFeature = Globalize._createErrorUnsupportedFeature,
 	formatMessage = Globalize._formatMessage,
 	numberSymbol = Globalize._numberSymbol,

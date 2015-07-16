@@ -1,5 +1,7 @@
 define([
 	"./core",
+	"./common/cache-get",
+	"./common/cache-set",
 	"./common/runtime-bind",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
@@ -12,9 +14,9 @@ define([
 	"./number",
 	"./plural",
 	"cldr/event"
-], function( Globalize, runtimeBind, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeNumber, validateParameterTypeString, relativeTimeFormatterFn,
-	relativeTimeProperties ) {
+], function( Globalize, cacheGet, cacheSet, runtimeBind, validateCldr, validateDefaultLocale,
+	validateParameterPresence, validateParameterTypeNumber, validateParameterTypeString,
+	relativeTimeFormatterFn, relativeTimeProperties ) {
 
 /**
  * .formatRelativeTime( value, unit [, options] )
@@ -60,6 +62,10 @@ Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 
 	validateDefaultLocale( cldr );
 
+	if ( returnFn = cacheGet( "relativeTimeFormatter", args, cldr ) ) {
+		return returnFn;
+	}
+
 	cldr.on( "get", validateCldr );
 	properties = relativeTimeProperties( unit, cldr, options );
 	cldr.off( "get", validateCldr );
@@ -68,6 +74,8 @@ Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 	pluralGenerator = this.pluralGenerator();
 
 	returnFn = relativeTimeFormatterFn( numberFormatter, pluralGenerator, properties );
+
+	cacheSet( args, cldr, returnFn );
 
 	runtimeBind( args, cldr, returnFn, [ numberFormatter, pluralGenerator, properties ] );
 

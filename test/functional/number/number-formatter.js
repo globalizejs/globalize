@@ -29,6 +29,7 @@ QUnit.module( ".numberFormatter( [options] )", {
 		Globalize.locale( "en" );
 	},
 	teardown: function() {
+		Globalize.cache = {};
 		util.resetCldrContent();
 	}
 });

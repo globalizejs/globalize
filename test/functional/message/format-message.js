@@ -21,6 +21,7 @@ QUnit.module( ".formatMessage( path [, variables] )", {
 		});
 	},
 	teardown: function() {
+		Globalize.cache = {};
 		util.resetCldrContent();
 	}
 });

@@ -34,6 +34,7 @@ QUnit.module( ".dateFormatter( pattern )", {
 		Globalize.locale( "en" );
 	},
 	teardown: function() {
+		Globalize.cache = {};
 		util.resetCldrContent();
 	}
 });
