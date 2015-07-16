@@ -41,6 +41,7 @@ return function( value, tokens, properties ) {
 		var century, chr, value, length;
 
 		if ( token.type === "literal" ) {
+
 			// continue
 			return true;
 		}
@@ -49,6 +50,7 @@ return function( value, tokens, properties ) {
 		length = token.type.length;
 
 		if ( chr === "j" ) {
+
 			// Locale preferred hHKk.
 			// http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Data
 			chr = properties.preferredTimeData;
@@ -69,6 +71,7 @@ return function( value, tokens, properties ) {
 					if ( outOfRange( value, 0, 99 ) ) {
 						return false;
 					}
+
 					// mimic dojo/date/locale: choose century to apply, according to a sliding
 					// window of 80 years before and 20 years after present year.
 					century = Math.floor( date.getFullYear() / 100 ) * 100;
@@ -123,6 +126,7 @@ return function( value, tokens, properties ) {
 				break;
 
 			case "F":
+
 				// Day of Week in month. eg. 2nd Wed in July.
 				// Skip
 				break;
@@ -131,6 +135,7 @@ return function( value, tokens, properties ) {
 			case "e":
 			case "c":
 			case "E":
+
 				// Skip.
 				// value = arrayIndexOf( dateWeekDays, token.value );
 				break;
@@ -237,6 +242,7 @@ return function( value, tokens, properties ) {
 	}
 
 	if ( era === 0 ) {
+
 		// 1 BC = year 0
 		date.setFullYear( date.getFullYear() * -1 + 1 );
 	}
@@ -250,7 +256,7 @@ return function( value, tokens, properties ) {
 		if ( outOfRange( daysOfYear, 1, dateIsLeapYear( date.getFullYear() ) ? 366 : 365 ) ) {
 			return null;
 		}
-		date.setMonth(0);
+		date.setMonth( 0 );
 		date.setDate( daysOfYear );
 	}
 

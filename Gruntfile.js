@@ -136,7 +136,7 @@ module.exports = function( grunt ) {
 					var name = camelCase( id.replace( /util\/|common\//, "" ) );
 
 					// MakePlural
-					if ( (/make-plural/).test( id ) ) {
+					if ( ( /make-plural/ ).test( id ) ) {
 						return contents
 
 							// Remove browserify wrappers.
@@ -149,7 +149,7 @@ module.exports = function( grunt ) {
 							.replace( "module.exports = exports['default'];", "" )
 
 							// Remove self-tests.
-							.replace( /var Tests =[\s\S]*?\n}\)\(\);/, "")
+							.replace( /var Tests =[\s\S]*?\n}\)\(\);/, "" )
 							.replace( "this.tests = new Tests(this);", "" )
 							.replace( /this.fn.test =[\s\S]*?bind\(this\);/, "" )
 							.replace( "this.tests.add(type, cat, examples);", "" )
@@ -168,6 +168,7 @@ module.exports = function( grunt ) {
 								"}());",
 								"/* jshint ignore:end */"
 							].join( "\n" ) )
+
 							// Wrap everything into a var assignment.
 							.replace( /^/, [
 								"var MakePlural;",
@@ -181,7 +182,7 @@ module.exports = function( grunt ) {
 							].join( "\n" ) );
 
 					// messageformat
-					} else if ( (/messageformat/).test( id ) ) {
+					} else if ( ( /messageformat/ ).test( id ) ) {
 						return contents
 
 							// Remove browserify wrappers.

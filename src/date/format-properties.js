@@ -39,6 +39,7 @@ return function( pattern, cldr ) {
 			length = current.length;
 
 		if ( chr === "j" ) {
+
 			// Locale preferred hHKk.
 			// http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Data
 			properties.preferredTime = chr = cldr.supplemental.timeData.preferred();
@@ -62,11 +63,13 @@ return function( pattern, cldr ) {
 
 			// Year
 			case "y":
+
 				// Plain year.
 				formatNumber = true;
 				break;
 
 			case "Y":
+
 				// Year in "Week of Year"
 				properties.firstDay = dateFirstDayOfWeek( cldr );
 				properties.minDays = cldr.supplemental.weekData.minDays();
@@ -135,6 +138,7 @@ return function( pattern, cldr ) {
 				break;
 
 			case "g":
+
 				// Modified Julian day. Need to be implemented.
 				throw createErrorUnsupportedFeature({
 					feature: "Julian day pattern `g`"
@@ -207,6 +211,7 @@ return function( pattern, cldr ) {
 			// Zone
 			case "z":
 			case "O":
+
 				// O: "{gmtFormat}+H;{gmtFormat}-H" or "{gmtZeroFormat}", eg. "GMT-8" or "GMT".
 				// OOOO: "{gmtFormat}{hourFormat}" or "{gmtZeroFormat}", eg. "GMT-08:00" or "GMT".
 				properties.gmtFormat = cldr.main( "dates/timeZoneNames/gmtFormat" );

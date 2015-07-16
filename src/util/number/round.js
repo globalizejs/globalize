@@ -75,7 +75,7 @@ return function( method ) {
 		value = value.toString().split( "e" );
 		value[ 0 ] = +value[ 0 ] / increment;
 		value[ 1 ] = value[ 1 ] ? ( +value[ 1 ] - exp ) : -exp;
-		value = method( +(value[ 0 ] + "e" + value[ 1 ] ) );
+		value = method( +( value[ 0 ] + "e" + value[ 1 ] ) );
 
 		// Shift back
 		value = value.toString().split( "e" );
