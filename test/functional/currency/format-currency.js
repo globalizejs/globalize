@@ -32,6 +32,7 @@ QUnit.module( ".formatCurrency( value, currency [, options] )", {
 		Globalize.locale( "en" );
 	},
 	teardown: function() {
+		Globalize.cache = {};
 		util.resetCldrContent();
 	}
 });

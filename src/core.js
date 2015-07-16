@@ -1,5 +1,7 @@
 define([
 	"cldr",
+	"./common/cache-get",
+	"./common/cache-set",
 	"./common/create-error",
 	"./common/format-message",
 	"./common/runtime-bind",
@@ -19,10 +21,10 @@ define([
 	"./util/string/pad",
 
 	"cldr/event"
-], function( Cldr, createError, formatMessage, runtimeBind, validate, validateCldr,
-	validateDefaultLocale, validateParameterPresence, validateParameterRange, validateParameterType,
-	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
-	isPlainObject, objectExtend, regexpEscape, stringPad ) {
+], function( Cldr, cacheGet, cacheSet, createError, formatMessage, runtimeBind, validate,
+	validateCldr, validateDefaultLocale, validateParameterPresence, validateParameterRange,
+	validateParameterType, validateParameterTypeLocale, validateParameterTypePlainObject,
+	alwaysArray, alwaysCldr, isPlainObject, objectExtend, regexpEscape, stringPad ) {
 
 function validateLikelySubtags( cldr ) {
 	cldr.once( "get", validateCldr );
@@ -50,6 +52,8 @@ function Globalize( locale ) {
 
 	validateLikelySubtags( this.cldr );
 }
+
+Globalize.cache = {};
 
 /**
  * Globalize.load( json, ... )
@@ -90,6 +94,8 @@ Globalize.locale = function( locale ) {
  * Optimization to avoid duplicating some internal functions across modules.
  */
 Globalize._alwaysArray = alwaysArray;
+Globalize._cacheGet = cacheGet;
+Globalize._cacheSet = cacheSet;
 Globalize._createError = createError;
 Globalize._formatMessage = formatMessage;
 Globalize._isPlainObject = isPlainObject;

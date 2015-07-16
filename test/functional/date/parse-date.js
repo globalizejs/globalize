@@ -48,6 +48,7 @@ QUnit.module( ".parseDate( value, options )", {
 		Globalize.locale( "en" );
 	},
 	teardown: function() {
+		Globalize.cache = {};
 		util.resetCldrContent();
 	}
 });

@@ -26,6 +26,7 @@ QUnit.module( ".relativeTimeFormatter( unit [, options] ) - no CLDR", {
 		Globalize.locale( "en" );
 	},
 	teardown: function() {
+		Globalize.cache = {};
 		util.resetCldrContent();
 	}
 });
@@ -46,6 +47,7 @@ QUnit.module( ".relativeTimeFormatter( unit [, options] )", {
 		de = new Globalize( "de" );
 	},
 	teardown: function() {
+		Globalize.cache = {};
 		util.resetCldrContent();
 	}
 });

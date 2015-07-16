@@ -34,6 +34,7 @@ QUnit.module( ".formatNumber( value [, options] )", {
 		Globalize.locale( "en" );
 	},
 	teardown: function() {
+		Globalize.cache = {};
 		util.resetCldrContent();
 	}
 });

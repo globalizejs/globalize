@@ -1,6 +1,8 @@
 define([
 	"cldr",
 	"messageformat",
+	"./common/cache-get",
+	"./common/cache-set",
 	"./common/create-error",
 	"./common/create-error/plural-module-presence",
 	"./common/runtime-bind",
@@ -17,10 +19,11 @@ define([
 	"./util/always-array",
 
 	"cldr/event"
-], function( Cldr, MessageFormat, createError, createErrorPluralModulePresence, runtimeBind,
-	validateDefaultLocale, validateMessageBundle, validateMessagePresence, validateMessageType,
-	validateParameterPresence, validateParameterType, validateParameterTypePlainObject, Globalize,
-	messageFormatterFn, messageFormatterRuntimeBind, alwaysArray ) {
+], function( Cldr, MessageFormat, cacheGet, cacheSet, createError, createErrorPluralModulePresence,
+	runtimeBind, validateDefaultLocale, validateMessageBundle, validateMessagePresence,
+	validateMessageType, validateParameterPresence, validateParameterType,
+	validateParameterTypePlainObject, Globalize, messageFormatterFn, messageFormatterRuntimeBind,
+	alwaysArray ) {
 
 var slice = [].slice;
 
@@ -73,6 +76,10 @@ Globalize.prototype.messageFormatter = function( path ) {
 	validateDefaultLocale( cldr );
 	validateMessageBundle( cldr );
 
+	if ( returnFn = cacheGet( "messageFormatter", args, cldr ) ) {
+		return returnFn;
+	}
+
 	message = cldr.get( [ "globalize-messages/{bundle}" ].concat( path ) );
 	validateMessagePresence( path, message );
 
@@ -90,6 +97,8 @@ Globalize.prototype.messageFormatter = function( path ) {
 	formatter = new MessageFormat( cldr.locale, pluralGenerator ).compile( message );
 
 	returnFn = messageFormatterFn( formatter );
+
+	cacheSet( args, cldr, returnFn );
 
 	runtimeBind( args, cldr, returnFn, [ messageFormatterRuntimeBind( cldr, formatter ) ] );
 

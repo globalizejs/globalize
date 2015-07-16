@@ -74,6 +74,7 @@ QUnit.module( ".messageFormatter( path )", {
 		});
 	},
 	teardown: function() {
+		Globalize.cache = {};
 		util.resetCldrContent();
 	}
 });

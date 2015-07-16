@@ -1,5 +1,7 @@
 define([
 	"./core",
+	"./common/cache-get",
+	"./common/cache-set",
 	"./common/runtime-bind",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
@@ -16,10 +18,10 @@ define([
 	"./number",
 	"cldr/event",
 	"cldr/supplemental"
-], function( Globalize, runtimeBind, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeNumber, validateParameterTypeCurrency, validateParameterTypePlainObject,
-	currencyCodeProperties, currencyFormatterFn, currencyNameProperties, currencySymbolProperties,
-	objectOmit ) {
+], function( Globalize, cacheGet, cacheSet, runtimeBind, validateCldr, validateDefaultLocale,
+	validateParameterPresence, validateParameterTypeNumber, validateParameterTypeCurrency,
+	validateParameterTypePlainObject, currencyCodeProperties, currencyFormatterFn,
+	currencyNameProperties, currencySymbolProperties, objectOmit ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -56,6 +58,10 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 
 	validateDefaultLocale( cldr );
 
+	if ( returnFn = cacheGet( "currencyFormatter", args, cldr ) ) {
+		return returnFn;
+	}
+
 	// Get properties given style ("symbol" default, "code" or "name").
 	cldr.on( "get", validateRequiredCldr );
 	properties = ({
@@ -87,6 +93,8 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 
 		runtimeBind( args, cldr, returnFn, [ numberFormatter, pluralGenerator, properties ] );
 	}
+
+	cacheSet( args, cldr, returnFn );
 
 	return returnFn;
 };

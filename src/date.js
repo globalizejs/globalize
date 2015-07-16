@@ -1,5 +1,7 @@
 define([
 	"cldr",
+	"./common/cache-get",
+	"./common/cache-set",
 	"./common/runtime-bind",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
@@ -18,10 +20,10 @@ define([
 	"cldr/event",
 	"cldr/supplemental",
 	"./number"
-], function( Cldr, runtimeBind, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeDate, validateParameterTypePlainObject, validateParameterTypeString,
-	Globalize, dateExpandPattern, dateFormatterFn, dateFormatProperties, dateParserFn,
-	dateParseProperties, dateTokenizerProperties ) {
+], function( Cldr, cacheGet, cacheSet, runtimeBind, validateCldr, validateDefaultLocale,
+	validateParameterPresence, validateParameterTypeDate, validateParameterTypePlainObject,
+	validateParameterTypeString, Globalize, dateExpandPattern, dateFormatterFn,
+	dateFormatProperties, dateParserFn, dateParseProperties, dateTokenizerProperties ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -62,6 +64,10 @@ Globalize.prototype.dateFormatter = function( options ) {
 
 	validateDefaultLocale( cldr );
 
+	if ( returnFn = cacheGet( "dateFormatter", args, cldr ) ) {
+		return returnFn;
+	}
+
 	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( options, cldr );
 	properties = dateFormatProperties( pattern, cldr );
@@ -77,6 +83,8 @@ Globalize.prototype.dateFormatter = function( options ) {
 	}
 
 	returnFn = dateFormatterFn( numberFormatters, properties );
+
+	cacheSet( args, cldr, returnFn );
 
 	runtimeBind( args, cldr, returnFn, [ numberFormatters, properties ] );
 
@@ -104,6 +112,10 @@ Globalize.prototype.dateParser = function( options ) {
 
 	validateDefaultLocale( cldr );
 
+	if ( returnFn = cacheGet( "dateParser", args, cldr ) ) {
+		return returnFn;
+	}
+
 	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( options, cldr );
 	tokenizerProperties = dateTokenizerProperties( pattern, cldr );
@@ -113,6 +125,8 @@ Globalize.prototype.dateParser = function( options ) {
 	numberParser = this.numberParser({ raw: "0" });
 
 	returnFn = dateParserFn( numberParser, parseProperties, tokenizerProperties );
+
+	cacheSet( args, cldr, returnFn );
 
 	runtimeBind( args, cldr, returnFn, [ numberParser, parseProperties, tokenizerProperties ] );
 

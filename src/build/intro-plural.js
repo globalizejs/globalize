@@ -36,7 +36,9 @@
 	}
 }(this, function( Cldr, Globalize ) {
 
-var runtimeBind = Globalize._runtimeBind,
+var cacheGet = Globalize._cacheGet,
+	cacheSet = Globalize._cacheSet,
+	runtimeBind = Globalize._runtimeBind,
 	validateCldr = Globalize._validateCldr,
 	validateDefaultLocale = Globalize._validateDefaultLocale,
 	validateParameterPresence = Globalize._validateParameterPresence,
