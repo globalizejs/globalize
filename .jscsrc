@@ -1,3 +1,7 @@
 {
-	"preset": "jquery"
+	"preset": "jquery",
+	"requireSpacesInsideParentheses": {
+		"all": true,
+		"except": [ "{", "}", "[", "]", "function", "(", ")" ]
+	}
 }

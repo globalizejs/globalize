@@ -59,6 +59,7 @@ function Globalize( locale ) {
  * Somewhat equivalent to previous Globalize.addCultureInfo(...).
  */
 Globalize.load = function() {
+
 	// validations are delegated to Cldr.load().
 	Cldr.load.apply( Cldr, arguments );
 };

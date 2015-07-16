@@ -131,7 +131,7 @@ module.exports = function( grunt ) {
 					var name = camelCase( id.replace( /util\/|common\//, "" ) );
 
 					// MakePlural
-					if ( (/make-plural/).test( id ) ) {
+					if ( ( /make-plural/ ).test( id ) ) {
 						return contents
 
 							// Replace its wrapper into var assignment.
@@ -159,7 +159,7 @@ module.exports = function( grunt ) {
 							.replace( /MakePlural.load = function\([\s\S]*?return MakePlural;\n};/, "" );
 
 					// messageformat
-					} else if ( (/messageformat/).test( id ) ) {
+					} else if ( ( /messageformat/ ).test( id ) ) {
 						return contents
 
 							// Replace its wrapper into var assignment.

@@ -8,7 +8,7 @@ define(function() {
  * Returns an indication whether the specified year is a leap year.
  */
 return function( year ) {
-	return new Date(year, 1, 29).getMonth() === 1;
+	return new Date( year, 1, 29 ).getMonth() === 1;
 };
 
 });

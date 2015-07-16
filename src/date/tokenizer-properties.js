@@ -71,6 +71,7 @@ return function( pattern, cldr ) {
 			// Month
 			case "M":
 			case "L":
+
 				// number l=1:{1,2}, l=2:{2}.
 				// lookup l=3...
 				if ( length > 2 ) {
@@ -84,6 +85,7 @@ return function( pattern, cldr ) {
 
 			// Day
 			case "g":
+
 				// Modified Julian day. Need to be implemented.
 				throw createErrorUnsupportedFeature({
 					feature: "Julian day pattern `g`"
@@ -92,6 +94,7 @@ return function( pattern, cldr ) {
 			// Week day
 			case "e":
 			case "c":
+
 				// lookup for length >=3.
 				if ( length <= 2 ) {
 					break;
@@ -100,6 +103,7 @@ return function( pattern, cldr ) {
 			/* falls through */
 			case "E":
 				if ( length === 6 ) {
+
 					// Note: if short day names are not explicitly specified, abbreviated day
 					// names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					cldr.main([
