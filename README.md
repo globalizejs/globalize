@@ -20,6 +20,8 @@ Node.js module.
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Performance](#performance)
+  - [Compilation and the Runtime modules](#compilation-and-the-runtime-modules)
 - [API](#api)
   - [Core](#core-module)
   - [Date module](#date-module)
