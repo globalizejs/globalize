@@ -1,7 +1,7 @@
 # Basic Globalize Compiler example
 
-On this example, we assume you know the Globalize usage basics. So, it focuses on
-the Globalize Compiler and on the Globalize runtime modules.
+This example focuses on the Globalize Compiler and the Globalize runtime
+modules. It assumes knowledge of Globalize usage basics.
 
 ## Running the example
 

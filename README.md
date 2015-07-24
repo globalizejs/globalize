@@ -257,12 +257,12 @@ to you in different flavors):
 
 ### Performance
 
-When formatting or parsing, there's actually a two step process: (a) the
-formatter (or parser) creation and (b) its execution, where creation takes
-considerably more time (more expensive) than execution. The difference is an
-order of magnitude. In the creation phase, Globalize traverses the CLDR tree,
-processes data (e.g., expands date patterns, parses plural rules, etc), and
-returns a function that actually executes the formatting or parsing.
+When formatting or parsing, there's actually a two-step process: (a) the
+formatter (or parser) *creation* and (b) its *execution*, where creation takes
+an order of magnitude more time (more expensive) than execution. In the creation
+phase, Globalize traverses the CLDR tree, processes data (e.g., expands date
+patterns, parses plural rules, etc), and returns a function that actually
+executes the formatting or parsing.
 
 ```js
 // Formatter creation.
@@ -280,10 +280,9 @@ requests arrive.
 
 ### Compilation and the Runtime modules
 
-You really should take advantage of compiling your formatters and/or parsers
-during build time when deploying to production. It's much faster than generating
-them in real-time and it's also much smaller (i.e., better loading
-performance).
+Take advantage of compiling your formatters and/or parsers during build time
+when deploying to production. It's much faster than generating them in real-time
+and it's also much smaller (i.e., better loading performance).
 
 To illustrate, a Globalize application looks like:
 
@@ -316,7 +315,7 @@ A precompiled Globalize application using the runtime modules looks like:
 ```
 
 Your compiled formatters and parsers allow you to skip a big part of the library
-and also allow you to skip loading CLDR data. Because, they have already been
+and also allow you to skip loading CLDR data, because they have already been
 created (see [Performance](#performance) above for more information).
 
 See our [Basic Globalize Compiler example](examples/basic-globalize-compiler/).
