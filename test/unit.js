@@ -12,8 +12,11 @@ require([
 
 	"./unit/currency/name-format",
 
+	// Gdate
+	"./unit/gdate/Gregorian-date",
+	"./unit/gdate/Hebrew-date",
+
 	// date
-	"src/gdate/Gregorian-date",
 	"./unit/date/expand-pattern",
 	"./unit/date/timezone-hour-format",
 
