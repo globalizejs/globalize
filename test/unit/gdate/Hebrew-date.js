@@ -3,7 +3,7 @@ define([
 	"src/gdate/Hebrew-date",
 ], function( GDate ) {
 
-var date, hebrew;
+var date, hebrew, i;
 date = new Date( 2016, 1, 11 ); // 2 Adar I 5776, to test leap years
 hebrew = new GDate.calendars.hebrew( date );
 
@@ -26,6 +26,8 @@ QUnit.test( "getDate correct", function( assert ) {
 	assert.equal( hebrew.getDate(), 2 );
 });
 
+/* jshint loopfunc:true */
+/* we need to tell jshint about the IIFE */
 for (i = -2; i < 3; ++i){
 	(function (j){
 		QUnit.test( "nextYear " + i, function( assert ) {

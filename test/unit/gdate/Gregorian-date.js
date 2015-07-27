@@ -26,6 +26,8 @@ QUnit.test( "getDate correct", function( assert ) {
 	assert.equal( gregorian.getDate(), 1 );
 });
 
+/* jshint loopfunc:true */
+/* we need to tell jshint about the IIFE */
 for (i = -2; i < 3; ++i){
 	(function (j){
 		QUnit.test( "nextYear " + i, function( assert ) {
