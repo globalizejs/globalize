@@ -1,11 +1,12 @@
 define([
 	"./first-day-of-week",
+	"./month-names",
 	"./pattern-re",
 	"../common/create-error/unsupported-feature",
 	"../gdate/calendar-for-locale",
 	"../number/symbol",
 	"../util/string/pad"
-], function( dateFirstDayOfWeek, datePatternRe, createErrorUnsupportedFeature,
+], function( dateFirstDayOfWeek, dateMonthNames, datePatternRe, createErrorUnsupportedFeature,
 	gdateCalendarForLocale,	numberSymbol,	stringPad ) {
 
 /**
@@ -107,13 +108,9 @@ return function( pattern, cldr ) {
 			// Month
 			case "M":
 			case "L":
+				properties.months = properties.months || {};
+				properties.months[ chr ] = properties.months[ chr ] || {};
 				if ( length > 2 ) {
-					if ( !properties.months ) {
-						properties.months = {};
-					}
-					if ( !properties.months[ chr ] ) {
-						properties.months[ chr ] = {};
-					}
 					properties.months[ chr ][ length ] = cldr.main([
 						"dates/calendars",
 						properties.calendar,
@@ -121,7 +118,15 @@ return function( pattern, cldr ) {
 						chr === "M" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
-				} else {
+				}
+				properties.months[ chr ][ length ] = dateMonthNames(
+					properties.months[ chr ][ length ],
+					chr,
+					length,
+					properties.calendar,
+					cldr
+				);
+				if ( length <= 2 ){
 					formatNumber = true;
 				}
 				break;

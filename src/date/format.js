@@ -25,7 +25,7 @@ return function( date, numberFormatters, properties ) {
 		gdate = new Gdate.calendars[ properties.calendar ]( date );
 
 	return properties.pattern.replace( datePatternRe, function( current ) {
-		var ret,
+		var ret, monthNumber,
 			chr = current.charAt( 0 ),
 			length = current.length;
 
@@ -106,10 +106,16 @@ return function( date, numberFormatters, properties ) {
 			case "M":
 			case "L":
 				ret = gdate.getMonth();
-				if ( length > 2 ) {
+				if (length <= 2 ) {
+					monthNumber = parseInt (ret, 10);
+				}
+				if ( properties.months[ chr ][ length ] ){
 					ret = properties.months[ chr ][ length ][ ret ];
+					if ( /\{0\}/.test( ret ) ){
+						ret = ret.replace( "{0}", numberFormatters[ length ]( monthNumber ) );
+					}
 				}else {
-          ret = parseInt(ret, 10); // month number
+          ret = monthNumber;
         }
 				break;
 

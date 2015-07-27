@@ -1,9 +1,11 @@
 define([
+	"./month-names",
 	"./pattern-re",
 	"../common/create-error/unsupported-feature",
 	"../number/symbol",
 	"../gdate/calendar-for-locale"
-], function( datePatternRe, createErrorUnsupportedFeature, numberSymbol, gdateCalendarForLocale ) {
+], function( dateMonthNames, datePatternRe, createErrorUnsupportedFeature,
+	numberSymbol, gdateCalendarForLocale ) {
 
 /**
  * tokenizerProperties( pattern, cldr )
@@ -31,7 +33,7 @@ return function( pattern, cldr ) {
 	cldr.on( "get", populateProperties );
 
 	pattern.match( datePatternRe ).forEach(function( current ) {
-		var chr, length;
+		var chr, key, length;
 
 		chr = current.charAt( 0 ),
 		length = current.length;
@@ -86,6 +88,27 @@ return function( pattern, cldr ) {
 						"months",
 						chr === "M" ? "format" : "stand-alone",
 						widths[ length - 3 ]
+					]);
+					// Augment the month names with the leap month names
+					key = [
+						properties.calendar,
+						"months",
+						chr === "M" ? "format" : "stand-alone",
+						widths[ length - 3 ]
+					].join( "/" );
+					properties[key] = dateMonthNames (
+						properties[key],
+						chr,
+						length,
+						properties.calendar,
+						cldr
+					);
+				} else {
+					// record the possible expansiond for numeric months
+					cldr.main([
+						"dates/calendars",
+						properties.calendar,
+						"monthPatterns/numeric/all"
 					]);
 				}
 				break;

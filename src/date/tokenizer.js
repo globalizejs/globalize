@@ -133,6 +133,29 @@ return function( value, numberParser, properties ) {
 			}
 		}
 
+		function monthNumber() {
+			var match, monthPatterns, reSource, type;
+			if ( length <= 2 ) {
+				// Unicode equivalent to \d+
+				reSource =  "((?:" + regexpN.source + ")+)";
+				// brute force search for a possible month. Return the first one found
+				monthPatterns = properties [ calendar + "/monthPatterns/numeric/all" ];
+				for ( type in monthPatterns || {} ) {
+					tokenRe = new RegExp (
+						"^" + monthPatterns[ type ]. replace( "{0}", reSource )
+					);
+					match = tokenRe.exec( value );
+					if ( match ){
+						token.value = numberParser( match[1] ) + "-" + type;
+						return tokenRe;
+					}
+				}
+				// no pattern found
+				numeric = true;
+				return tokenRe = new RegExp( reSource );
+			}
+		}
+
 		// Brute-force test every locale entry in an attempt to match the given value.
 		// Return the first found one (and set token accordingly), or null.
 		function lookup( path ) {
@@ -219,9 +242,7 @@ return function( value, numberParser, properties ) {
 			// Month
 			case "M":
 			case "L":
-				// number l=1:{1,2}, l=2:{2}.
-				// lookup l=3...
-				oneOrTwoDigitsIfLengthOne() || twoDigitsIfLengthTwo() || lookup([
+				monthNumber() || lookup([
 					calendar,
 					"months",
 					chr === "M" ? "format" : "stand-alone",

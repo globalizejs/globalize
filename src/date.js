@@ -27,6 +27,7 @@ function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
 		skip: [
 			/dates\/calendars\/[^\/]+\/dateTimeFormats\/availableFormats/,
+			/dates\/calendars\/[^\/]+\/monthPatterns/,
 			/dates\/calendars\/[^\/]+\/days\/.*\/short/,
 			/supplemental\/timeData\/(?!001)/,
 			/supplemental\/weekData\/(?!001)/,

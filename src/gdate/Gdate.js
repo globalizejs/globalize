@@ -46,9 +46,9 @@ Gdate.prototype = {
 	},
   _init: function( era, year, month, date ) {
     if (era instanceof Date){
-      this._setDate(era);
+      this._setDate( era );
     }else if ( era instanceof Gdate ){
-      this._setFields (era.getEra(), era.getYear(), era.getMonth(), era.getDate());
+      this._setDate( era.toDate() );
     }else {
       this._setFields (era, year, month, date);
     }
