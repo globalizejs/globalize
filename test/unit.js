@@ -15,6 +15,7 @@ require([
 	// Gdate
 	"./unit/gdate/Gregorian-date",
 	"./unit/gdate/Hebrew-date",
+	"./unit/gdate/Islamic-date",
 
 	// date
 	"./unit/date/expand-pattern",
@@ -25,6 +26,7 @@ require([
 	"./unit/date/tokenizer-properties",
 
 	"./unit/date/format",
+	"./unit/date/format-hebrew",
 	"./unit/date/tokenizer",
 
 	"./unit/date/parse",

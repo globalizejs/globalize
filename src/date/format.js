@@ -94,9 +94,11 @@ return function( date, numberFormatters, properties ) {
 			// Quarter
 			case "Q":
 			case "q":
-        // TODO: figure out how to make gdate handle this.
-				// We may have to have a Gdate.prototype.getQuarter
-				ret = Math.ceil( ( date.getMonth() + 1 ) / 3 ); //
+        // There's no good way to do this with a generalized date.
+				// We have to approximate this, assuming a 12-month year and
+				// month numbers that correspond to the correct period of the year
+				ret = Math.min( parseInt( gdate.getMonth(), 10 ), 12 );
+				ret = Math.ceil( ret / 3 );
 				if ( length > 2 ) {
 					ret = properties.quarters[ chr ][ length ][ ret ];
 				}
@@ -133,7 +135,7 @@ return function( date, numberFormatters, properties ) {
 				// Week of Month.
 				// wom = ceil( ( dom + dow of `1/month` ) / 7 ) - minDaysStuff ? 1 : 0.
 				ret = dateDayOfWeek( gdate.startOfMonth().toDate(), properties.firstDay );
-				ret = Math.ceil( ( date.getDate() + ret ) / 7 ) -
+				ret = Math.ceil( ( gdate.getDate() + ret ) / 7 ) -
 					( 7 - ret >= properties.minDays ? 0 : 1 );
 				break;
 
@@ -148,7 +150,7 @@ return function( date, numberFormatters, properties ) {
 
 			case "F":
 				// Day of Week in month. eg. 2nd Wed in July.
-				ret = Math.floor( gdate.getDate() / 7 ) + 1;
+				ret = Math.floor( ( gdate.getDate() - 1) / 7 ) + 1;
 				break;
 
 			// Week day
