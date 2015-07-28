@@ -27,9 +27,11 @@ require([
 
 	"./unit/date/format",
 	"./unit/date/format-hebrew",
-	"./unit/date/tokenizer",
 
+	"./unit/date/tokenizer",
+	"./unit/date/tokenizer-hebrew",
 	"./unit/date/parse",
+	"./unit/date/parse-hebrew",
 
 	// number
 	"./unit/number/pattern-properties",

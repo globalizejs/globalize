@@ -104,7 +104,7 @@ return function( pattern, cldr ) {
 						cldr
 					);
 				} else {
-					// record the possible expansiond for numeric months
+					// record the possible expansion for numeric months
 					cldr.main([
 						"dates/calendars",
 						properties.calendar,

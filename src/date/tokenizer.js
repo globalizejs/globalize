@@ -157,19 +157,21 @@ return function( value, numberParser, properties ) {
 		}
 
 		// Brute-force test every locale entry in an attempt to match the given value.
-		// Return the first found one (and set token accordingly), or null.
+		// Return the longest found one (and set token accordingly), or null.
 		function lookup( path ) {
-			var i, re,
+			var i, match, re,
+				bestmatch = "";
 				data = properties[ path.join( "/" ) ];
-
 			for ( i in data ) {
 				re = new RegExp( "^" + data[ i ] );
-				if ( re.test( value ) ) {
+				match = re.exec( value );
+				if ( match && match[0].length > bestmatch.length) {
+					bestmatch = match[0];
 					token.value = i;
-					return tokenRe = new RegExp( data[ i ] );
+					tokenRe = new RegExp( data[ i ] );
 				}
 			}
-			return null;
+			return bestmatch ? tokenRe : null;
 		}
 
 		token.type = current;
