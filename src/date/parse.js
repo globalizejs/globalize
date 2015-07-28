@@ -259,7 +259,7 @@ return function( value, tokens, properties ) {
 		day = gdate.getDate();
 	}
 	gdate = new Gdate.calendars[ properties.calendar ]( era, year, month, day );
-	if ( gdate.getMonth() !== month || gdate.getDate() !== day ) {
+	if ( isNaN( gdate.getYear() ) || gdate.getDate() !== day ) {
 		// Question: do we really need to do this check,
 		// or can we rely on Gdate to correct out-of-bounds values?
 		// Question: when should this return null and when false?

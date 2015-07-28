@@ -55,7 +55,7 @@ HebrewDate.prototype.nextMonth = function(n) {
 HebrewDate.prototype._coerceMonth = function( m, y ) {
 	var roshchodesh,
 		hd = civ2heb( this._d );
-	if (hd.m === m && hd.y === y ) {
+	if ( hd.m === correctedmonth ( m, y ) && hd.y === y ) {
 		return;
 	}
 	roshchodesh = civ2heb( heb2civ({ y: y, m: m, d:1 }) );
@@ -81,7 +81,6 @@ HebrewDate.prototype._setFields = function(era, year, month, date) {
 	var m,
 		htoday = civ2heb( new Date() );
 
-	era = 0; // only one era
 	if ( year == null ) {
 		year = htoday.y;
 	}else if ( year < 1 ) {
@@ -138,10 +137,26 @@ function pesach(year) {
 	return mar;
 }
 
-function leap(y) {
+function leap( y ) {
+	// civil leap year
 	return ( ( y % 400 === 0 ) || ( y % 100 !== 0 && y % 4 === 0 ) );
 }
 
+function hyearlength ( hy ){
+	// length of Hebrew year
+	return pesach( hy ) - pesach( hy - 1 ) + 365 + ( leap( hy - 3760 ) ? 1 : 0 );
+}
+
+function correctedmonth ( hm, hy ){
+	var isleap = hyearlength( hy ) > 360;
+	if ( isleap && hm === 11 ) {
+		return hm + 2;
+	} else if ( !isleap && hm > 11 ) {
+		return 11;
+	} else {
+		return hm;
+	}
+}
 // takes a Date object, returns an object with
 // { m: hebrewmonth, d: hebrewdate, y: hebrewyear,
 //   daysinmonth: number of days in this Hebrew month }
@@ -232,15 +247,10 @@ function heb2civ( h ){
 		return new Date ( h.y - 3761, 2, pesach( h.y - 1 ) - 15 + h.d + Math.ceil( h.m * 29.5 ) );
 	}
 	p = pesach( h.y - 1 );
-	yearlength = pesach( h.y ) - p + 365 + ( leap( h.y - 3760 ) ? 1 : 0 );
+	yearlength = hyearlength( h.y );
 	yeartype = yearlength % 30 - 24; // -1 is chaser, 0 is ksidrah, +1 is male
 	isleap = yearlength > 360;
-	m = h.m;
-	if ( isleap && m === 11 ) {
-		m += 2;
-	}else if ( !isleap && m > 11 ) {
-		m = 11;
-	}
+	m = correctedmonth( h.m, h.y );
 	day = p - 15 + h.d + Math.ceil( m * 29.5 ) + yeartype;
 	if (m > 11) {
 		day -= 29; // we added an extra month in there (in leap years, there is no plain Adar)

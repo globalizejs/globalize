@@ -160,7 +160,7 @@ return function( value, numberParser, properties ) {
 		// Return the longest found one (and set token accordingly), or null.
 		function lookup( path ) {
 			var i, match, re,
-				bestmatch = "";
+				bestmatch = "",
 				data = properties[ path.join( "/" ) ];
 			for ( i in data ) {
 				re = new RegExp( "^" + data[ i ] );
