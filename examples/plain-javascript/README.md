@@ -35,7 +35,7 @@ Then, you'll get this:
 │       ├── event.js
 │       └── supplemental.js
 │       └── unresolved.js
-└── index.html
+├── index.html
 └── README.md
 ```
 
@@ -54,15 +54,7 @@ No action needed here.
 
 **3. Globalize dist files**
 
-To run the demo you'll need Globalize to be built in order that the `../../dist` 
-directory has been populated.  If you haven't already done this then go to the root
-and execute the following:
-
-```
-npm install
-bower install
-grunt
-```
+If you haven't already done this then [install the development external dependencies](../../README.md#install-development-external-dependencies) and [build the distribution files](../../README.md#build).
 
 ## Running the demo
 
