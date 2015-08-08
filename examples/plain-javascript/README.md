@@ -22,7 +22,7 @@ you want. But, as an exercise of this demo, we'll download it ourselves. So:
 1. Click at [cldrjs releases tab](https://github.com/rxaviers/cldrjs/releases).
 1. Download the latest package.
 1. Unzip it.
-1. Move its `dist/` files into `cldrjs` of this directory.
+1. Create a `cldrjs` directory alongside `index.html` and `README.md` and move the cldrjs `dist/` files into it.
 
 Then, you'll get this:
 
@@ -30,10 +30,13 @@ Then, you'll get this:
 .
 ├── cldrjs
 │   ├── cldr.js
+│   ├── ...
 │   └── cldr
 │       ├── event.js
 │       └── supplemental.js
-└── index.html
+│       └── ...
+├── index.html
+└── README.md
 ```
 
 For more information read [cldrjs' usage and
@@ -49,6 +52,11 @@ data?](../../doc/cldr.md).
 
 No action needed here.
 
+**3. Globalize `dist` files **
+
+*This step only applies if you are building the source files. If you have downloaded a ZIP or a TAR.GZ or are using a package manager (such as bower or npm) to install then you can ignore this step.*
+
+If you haven't already done this then [install the development external dependencies](../../README.md#install-development-external-dependencies) and [build the distribution files](../../README.md#build).
 
 ## Running the demo
 
