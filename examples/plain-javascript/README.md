@@ -30,11 +30,11 @@ Then, you'll get this:
 .
 ├── cldrjs
 │   ├── cldr.js
-│   ├── node_main.js
+│   ├── ...
 │   └── cldr
 │       ├── event.js
 │       └── supplemental.js
-│       └── unresolved.js
+│       └── ...
 ├── index.html
 └── README.md
 ```
@@ -52,7 +52,9 @@ data?](../../doc/cldr.md).
 
 No action needed here.
 
-**3. Globalize dist files**
+**3. Globalize `dist` files **
+
+*This step only applies if you are building the source files. If you have downloaded a ZIP or a TAR.GZ or are using a package manager (such as bower or npm) to install then you can ignore this step.*
 
 If you haven't already done this then [install the development external dependencies](../../README.md#install-development-external-dependencies) and [build the distribution files](../../README.md#build).
 
