@@ -33,7 +33,7 @@ Then, you'll get this:
 │   ├── ...
 │   └── cldr
 │       ├── event.js
-│       └── supplemental.js
+│       ├── supplemental.js
 │       └── ...
 ├── index.html
 └── README.md
@@ -56,7 +56,7 @@ No action needed here.
 
 *This step only applies if you are building the source files. If you have downloaded a ZIP or a TAR.GZ or are using a package manager (such as bower or npm) to install then you can ignore this step.*
 
-If you haven't already done this then [install the development external dependencies](../../README.md#install-development-external-dependencies) and [build the distribution files](../../README.md#build).
+[Install the development external dependencies](../../README.md#install-development-external-dependencies) and [build the distribution files](../../README.md#build).
 
 ## Running the demo
 
