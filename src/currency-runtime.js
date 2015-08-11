@@ -3,7 +3,7 @@ define([
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/number",
 	"./core-runtime",
-	"./currency/formatter/fn",
+	"./currency/formatter-fn",
 	"./currency/name-format",
 
 	"./number-runtime"

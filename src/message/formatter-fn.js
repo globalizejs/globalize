@@ -1,5 +1,5 @@
 define([
-	"../../common/validate/parameter-type/message-variables"
+	"../common/validate/parameter-type/message-variables"
 ], function( validateParameterTypeMessageVariables ) {
 
 return function( formatter ) {

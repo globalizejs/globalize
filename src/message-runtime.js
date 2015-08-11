@@ -2,7 +2,7 @@ define([
 	"./common/runtime-key",
 	"./common/validate/parameter-type/message-variables",
 	"./core-runtime",
-	"./message/formatter/fn"
+	"./message/formatter-fn"
 ], function( runtimeKey, validateParameterTypeMessageVariables, Globalize, messageFormatterFn ) {
 
 Globalize._messageFormatterFn = messageFormatterFn;

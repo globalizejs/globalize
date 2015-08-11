@@ -3,7 +3,7 @@ define([
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/number",
 	"./core-runtime",
-	"./plural/generator/fn"
+	"./plural/generator-fn"
 ], function( runtimeKey, validateParameterPresence, validateParameterTypeNumber, Globalize,
 	pluralGeneratorFn ) {
 

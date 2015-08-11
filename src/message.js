@@ -12,7 +12,7 @@ define([
 	"./common/validate/parameter-type",
 	"./common/validate/parameter-type/plain-object",
 	"./core",
-	"./message/formatter/fn",
+	"./message/formatter-fn",
 	"./message/formatter-runtime-bind",
 	"./util/always-array",
 

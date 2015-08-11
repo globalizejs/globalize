@@ -1,6 +1,6 @@
 define([
-	"../../common/validate/parameter-presence",
-	"../../common/validate/parameter-type/number"
+	"../common/validate/parameter-presence",
+	"../common/validate/parameter-type/number"
 ], function( validateParameterPresence, validateParameterTypeNumber ) {
 
 return function( plural ) {

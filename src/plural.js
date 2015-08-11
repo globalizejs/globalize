@@ -10,7 +10,7 @@ define([
 	"./common/validate/parameter-type/plain-object",
 	"./common/validate/parameter-type/plural-type",
 	"./core",
-	"./plural/generator/fn",
+	"./plural/generator-fn",
 
 	"cldr/event",
 	"cldr/supplemental"

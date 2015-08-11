@@ -1,7 +1,7 @@
 define([
-	"../../common/validate/parameter-presence",
-	"../../common/validate/parameter-type/number",
-	"../format"
+	"../common/validate/parameter-presence",
+	"../common/validate/parameter-type/number",
+	"./format"
 ], function( validateParameterPresence, validateParameterTypeNumber, numberFormat ) {
 
 return function( properties ) {

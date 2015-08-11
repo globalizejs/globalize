@@ -8,7 +8,7 @@ define([
 	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/plain-object",
 	"./currency/code-properties",
-	"./currency/formatter/fn",
+	"./currency/formatter-fn",
 	"./currency/name-properties",
 	"./currency/symbol-properties",
 	"./util/object/omit",

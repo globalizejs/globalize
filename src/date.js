@@ -9,9 +9,9 @@ define([
 	"./common/validate/parameter-type/string",
 	"./core",
 	"./date/expand-pattern",
-	"./date/formatter/fn",
+	"./date/formatter-fn",
 	"./date/format-properties",
-	"./date/parser/fn",
+	"./date/parser-fn",
 	"./date/parse-properties",
 	"./date/tokenizer-properties",
 

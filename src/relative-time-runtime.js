@@ -3,7 +3,7 @@ define([
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/number",
 	"./core-runtime",
-	"./relative-time/formatter/fn",
+	"./relative-time/formatter-fn",
 
 	"./number-runtime",
 	"./plural-runtime"

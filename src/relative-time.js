@@ -6,7 +6,7 @@ define([
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/string",
-	"./relative-time/formatter/fn",
+	"./relative-time/formatter-fn",
 	"./relative-time/properties",
 
 	"./number",

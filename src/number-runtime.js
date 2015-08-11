@@ -6,9 +6,9 @@ define([
 	"./common/validate/parameter-type/string",
 	"./core-runtime",
 	"./number/format",
-	"./number/formatter/fn",
+	"./number/formatter-fn",
 	"./number/parse",
-	"./number/parser/fn",
+	"./number/parser-fn",
 	"./util/number/round"
 ], function( runtimeKey, createErrorUnsupportedFeature, validateParameterPresence,
 	validateParameterTypeNumber, validateParameterTypeString, Globalize, numberFormat,

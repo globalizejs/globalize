@@ -5,9 +5,9 @@ define([
 	"./common/validate/parameter-type/string",
 	"./core-runtime",
 	"./date/format",
-	"./date/formatter/fn",
+	"./date/formatter-fn",
 	"./date/parse",
-	"./date/parser/fn",
+	"./date/parser-fn",
 	"./date/tokenizer",
 
 	"./number-runtime"

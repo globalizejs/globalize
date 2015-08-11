@@ -1,7 +1,7 @@
 define([
-	"../../common/validate/parameter-presence",
-	"../../common/validate/parameter-type/number",
-	"../name-format"
+	"../common/validate/parameter-presence",
+	"../common/validate/parameter-type/number",
+	"./name-format"
 ], function( validateParameterPresence, validateParameterTypeNumber, currencyNameFormat ) {
 
 return function( numberFormatter, pluralGenerator, properties ) {
