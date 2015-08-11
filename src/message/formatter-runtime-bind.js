@@ -8,6 +8,7 @@ return function( cldr, messageformatter ) {
 		var argNames, argValues, output,
 			args = {};
 
+		// Properly adjust SlexAxton/messageformat.js compiled variables with Globalize variables:
 		output = origToString.call( messageformatter );
 
 		if ( /number\(/.test( output ) ) {
