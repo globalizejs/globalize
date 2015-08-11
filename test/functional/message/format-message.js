@@ -20,9 +20,7 @@ QUnit.module( ".formatMessage( path [, variables] )", {
 			}
 		});
 	},
-	teardown: function() {
-		util.resetCldrContent();
-	}
+	teardown: util.resetCldrContent
 });
 
 QUnit.test( "should validate parameters", function( assert ) {

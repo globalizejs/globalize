@@ -25,9 +25,7 @@ QUnit.module( ".fomatRelativeTime( value, unit [, options] ) - no CLDR", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: function() {
-		util.resetCldrContent();
-	}
+	teardown: util.resetCldrContent
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
@@ -45,9 +43,7 @@ QUnit.module( ".formatRelativeTime( value, unit [, options] )", {
 		de = new Globalize( "de" );
 		en = new Globalize( "en" );
 	},
-	teardown: function() {
-		util.resetCldrContent();
-	}
+	teardown: util.resetCldrContent
 });
 
 QUnit.test( "should validate value argument presence", function( assert ) {

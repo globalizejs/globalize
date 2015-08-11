@@ -33,9 +33,7 @@ QUnit.module( ".formatNumber( value [, options] )", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: function() {
-		util.resetCldrContent();
-	}
+	teardown: util.resetCldrContent
 });
 
 QUnit.test( "should validate parameters", function( assert ) {

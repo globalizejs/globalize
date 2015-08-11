@@ -25,9 +25,7 @@ QUnit.module( ".relativeTimeFormatter( unit [, options] ) - no CLDR", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: function() {
-		util.resetCldrContent();
-	}
+	teardown: util.resetCldrContent
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
@@ -45,9 +43,7 @@ QUnit.module( ".relativeTimeFormatter( unit [, options] )", {
 		en = new Globalize( "en" );
 		de = new Globalize( "de" );
 	},
-	teardown: function() {
-		util.resetCldrContent();
-	}
+	teardown: util.resetCldrContent
 });
 
 QUnit.test( "should validate unit argument presence", function( assert ) {

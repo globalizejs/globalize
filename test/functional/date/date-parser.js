@@ -40,9 +40,7 @@ QUnit.module( ".dateParser( pattern )", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: function() {
-		util.resetCldrContent();
-	}
+	teardown: util.resetCldrContent
 });
 
 QUnit.test( "should validate parameters", function( assert ) {

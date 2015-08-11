@@ -47,9 +47,7 @@ QUnit.module( ".formatDate( value, options )", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: function() {
-		util.resetCldrContent();
-	}
+	teardown: util.resetCldrContent
 });
 
 QUnit.test( "should validate parameters", function( assert ) {

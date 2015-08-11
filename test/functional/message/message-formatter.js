@@ -73,9 +73,7 @@ QUnit.module( ".messageFormatter( path )", {
 			}
 		});
 	},
-	teardown: function() {
-		util.resetCldrContent();
-	}
+	teardown: util.resetCldrContent
 });
 
 QUnit.test( "should pass test's prerequisites", function( assert ) {
