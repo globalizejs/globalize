@@ -11,7 +11,9 @@ Globalize._validateParameterTypeMessageVariables = validateParameterTypeMessageV
 
 Globalize.messageFormatter =
 Globalize.prototype.messageFormatter = function( /* path */ ) {
-	return Globalize[ runtimeKey( "messageFormatter", this._locale, [].slice.call( arguments, 0 ) ) ];
+	return Globalize[
+		runtimeKey( "messageFormatter", this._locale, [].slice.call( arguments, 0 ) )
+	];
 };
 
 Globalize.formatMessage =
