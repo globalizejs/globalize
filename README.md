@@ -305,9 +305,12 @@ Globalize.load({
 A precompiled Globalize application using the runtime modules looks like:
 
 ```html
+<!-- Globalize Runtime -->
 <script src="globalize-runtime.js"></script>
 <script src="globalize-runtime/number.js"></script>
 <script src="globalize-runtime/...js"></script>
+
+<!-- My precompiled formatters and parsers -->
 <script src="my-compiled-formatters-and-parsers.js"></script>
 <script>
 // Use Globalize formatters and parsers.
