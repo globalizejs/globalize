@@ -60,7 +60,7 @@ Globalize.loadMessages = function( json ) {
  */
 Globalize.messageFormatter =
 Globalize.prototype.messageFormatter = function( path ) {
-	var cldr, formatter, isPluralModulePresent, message, pluralGenerator, returnFn,
+	var cldr, formatter, message, pluralGenerator, returnFn,
 		args = slice.call( arguments, 0 );
 
 	validateParameterPresence( path, "path" );
@@ -82,8 +82,8 @@ Globalize.prototype.messageFormatter = function( path ) {
 	}
 	validateMessageType( path, message );
 
-	isPluralModulePresent = this.plural !== undefined;
-	pluralGenerator = isPluralModulePresent ?
+	// Is plural module present? Yes, use its generator. Nope, use an error generator.
+	pluralGenerator = this.plural !== undefined ?
 		this.pluralGenerator() :
 		createErrorPluralModulePresence;
 
