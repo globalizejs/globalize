@@ -25,7 +25,7 @@
 	} else if ( typeof exports === "object" ) {
 
 		// Node, CommonJS
-		module.exports = factory( require( "globalize/dist/globalize-runtime" ) );
+		module.exports = factory( require( "./globalize-runtime" ) );
 	} else {
 
 		// Extend global

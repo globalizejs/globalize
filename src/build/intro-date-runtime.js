@@ -27,8 +27,8 @@
 
 		// Node, CommonJS
 		module.exports = factory(
-			require( "globalize/dist/globalize-runtime" ),
-			require( "globalize/dist/globalize-runtime/number" )
+			require( "./globalize-runtime" ),
+			require( "./globalize-runtime/number" )
 		);
 	} else {
 
