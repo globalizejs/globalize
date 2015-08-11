@@ -3,15 +3,13 @@ define([
 ], function( runtimeKey ) {
 
 return function( args, cldr, fn, runtimeArgs ) {
-	var locale = cldr.locale;
+	var argsStr = JSON.stringify( args ),
+		locale = cldr.locale;
 
-	fn.runtimeKey = runtimeKey( fn.name, locale, args );
-
-	// Stringify arguments.
-	args = JSON.stringify( args ).slice( 1, -1 );
+	fn.runtimeKey = runtimeKey( fn.name, locale, argsStr );
 
 	fn.generatorString = function() {
-		return "Globalize(\"" + locale + "\")." + fn.name + "(" + args + ")";
+		return "Globalize(\"" + locale + "\")." + fn.name + "(" + argsStr.slice( 1, -1 ) + ")";
 	};
 
 	fn.runtimeArgs = runtimeArgs;
