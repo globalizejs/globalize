@@ -3,6 +3,7 @@ define([
 	"src/gdate/Islamic-date",
 ], function( GDate ) {
 
+console.log (GDate.ms2jd);
 var date, islamic, i;
 date = new Date( 2015, 0, 1 ); // 10 Rabiʻ I 1436
 islamic = new GDate.calendars.islamic( date );

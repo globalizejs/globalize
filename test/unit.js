@@ -13,6 +13,7 @@ require([
 	"./unit/currency/name-format",
 
 	// Gdate
+	"./unit/gdate/astronomy",
 	"./unit/gdate/Gregorian-date",
 	"./unit/gdate/Hebrew-date",
 	"./unit/gdate/Islamic-date",
