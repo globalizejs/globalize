@@ -169,6 +169,18 @@ return {
 	/**
 	 * Etc
 	 */
+	assertRuntimeBind: function( assert, formatter, runtimeKey, generatorString, runtimeArgsFn ) {
+		assert.ok( formatter );
+		assert.equal( typeof formatter, "function" );
+		assert.ok( "runtimeKey" in formatter );
+		assert.equal( formatter.runtimeKey, runtimeKey );
+		assert.ok( "generatorString" in formatter );
+		assert.equal( typeof formatter.generatorString, "function" );
+		assert.equal( formatter.generatorString(), generatorString );
+		assert.ok( "runtimeArgs" in formatter );
+		runtimeArgsFn( formatter.runtimeArgs );
+	},
+
 	resetCldrContent: function() {
 		Cldr._resolved = {};
 		Cldr._raw = {};

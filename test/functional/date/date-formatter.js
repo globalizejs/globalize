@@ -60,4 +60,154 @@ QUnit.test( "should return a formatter", function( assert ) {
 	assert.equal( Globalize.dateFormatter({ skeleton: "yQQQhm" })( date ), "Q3 2010, 5:35 PM" );
 });
 
+QUnit.test( "should allow for runtime compilation", function( assert ) {
+	extraSetup();
+
+	function pad1NumberFormatter( formatter ) {
+		util.assertRuntimeBind(
+			assert,
+			formatter,
+			"a1378886668",
+			"Globalize(\"en\").numberFormatter({\"raw\":\"0\"})",
+			function() {}
+		);
+	}
+
+	function pad2NumberFormatter( formatter ) {
+		util.assertRuntimeBind(
+			assert,
+			formatter,
+			"b203855544",
+			"Globalize(\"en\").numberFormatter({\"raw\":\"00\"})",
+			function() {}
+		);
+	}
+
+	util.assertRuntimeBind(
+		assert,
+		Globalize.dateFormatter({ time: "medium" }),
+		"a127047021",
+		"Globalize(\"en\").dateFormatter({\"time\":\"medium\"})",
+		function( runtimeArgs ) {
+			pad1NumberFormatter( runtimeArgs[ 0 ][ 1 ] );
+			pad2NumberFormatter( runtimeArgs[ 0 ][ 2 ] );
+			assert.deepEqual( runtimeArgs[ 1 ], {
+				"pattern": "h:mm:ss a",
+				"timeSeparator": ":",
+				"dayPeriods": {
+					"am": "AM",
+					"am-alt-variant": "am",
+					"noon": "noon",
+					"pm": "PM",
+					"pm-alt-variant": "pm"
+				}
+			});
+		}
+	);
+
+	util.assertRuntimeBind(
+		assert,
+		Globalize.dateFormatter({ date: "full" }),
+		"b641817676",
+		"Globalize(\"en\").dateFormatter({\"date\":\"full\"})",
+		function( runtimeArgs ) {
+			pad1NumberFormatter( runtimeArgs[ 0 ][ 1 ] );
+			assert.deepEqual( runtimeArgs[ 1 ], {
+				"pattern": "EEEE, MMMM d, y",
+				"timeSeparator": ":",
+				"days": {
+					"E": {
+						"4": {
+							"sun": "Sunday",
+							"mon": "Monday",
+							"tue": "Tuesday",
+							"wed": "Wednesday",
+							"thu": "Thursday",
+							"fri": "Friday",
+							"sat": "Saturday"
+						}
+					}
+				},
+				"months": {
+					"M": {
+						"4": {
+							"1": "January",
+							"2": "February",
+							"3": "March",
+							"4": "April",
+							"5": "May",
+							"6": "June",
+							"7": "July",
+							"8": "August",
+							"9": "September",
+							"10": "October",
+							"11": "November",
+							"12": "December"
+						}
+					}
+				}
+			});
+		}
+	);
+
+	util.assertRuntimeBind(
+		assert,
+		Globalize.dateFormatter({ skeleton: "GyMMMEdhms" }),
+		"a385327118",
+		"Globalize(\"en\").dateFormatter({\"skeleton\":\"GyMMMEdhms\"})",
+		function( runtimeArgs ) {
+			pad1NumberFormatter( runtimeArgs[ 0 ][ 1 ] );
+			pad2NumberFormatter( runtimeArgs[ 0 ][ 2 ] );
+			assert.deepEqual( runtimeArgs[ 1 ], {
+				"pattern": "E, MMM d, y G, h:mm:ss a",
+				"timeSeparator": ":",
+				"days": {
+					"E": {
+						"1": {
+							"sun": "Sun",
+							"mon": "Mon",
+							"tue": "Tue",
+							"wed": "Wed",
+							"thu": "Thu",
+							"fri": "Fri",
+							"sat": "Sat"
+						}
+					}
+				},
+				"months": {
+					"M": {
+						"3": {
+							"1": "Jan",
+							"2": "Feb",
+							"3": "Mar",
+							"4": "Apr",
+							"5": "May",
+							"6": "Jun",
+							"7": "Jul",
+							"8": "Aug",
+							"9": "Sep",
+							"10": "Oct",
+							"11": "Nov",
+							"12": "Dec"
+						}
+					}
+				},
+				"eras": {
+					"0": "BC",
+					"1": "AD",
+					"0-alt-variant": "BCE",
+					"1-alt-variant": "CE"
+				},
+				"dayPeriods": {
+					"am": "AM",
+					"am-alt-variant": "am",
+					"noon": "noon",
+					"pm": "PM",
+					"pm-alt-variant": "pm"
+				}
+			});
+		}
+	);
+});
+
 });
