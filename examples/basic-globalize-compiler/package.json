@@ -1,12 +1,12 @@
 {
   "name": "basic-globalize-compiler",
+  "private": true,
   "scripts": {
     "build": "globalize-compiler -l en -c cldr.json -m messages.json -o compiled-formatters.js app.js"
   },
-  "dependencies": {
-    "cldr-data": ">=25"
-  },
   "devDependencies": {
+    "cldr-data": ">=25",
+    "globalize": "latest",
     "globalize-compiler": "git://github.com/jquery-support/globalize-compiler#b0.0.1"
   }
 }
