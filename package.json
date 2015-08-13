@@ -56,6 +56,14 @@
     "Boris Moore <borismoore@gmail.com> (http://www.borismoore.com)"
   ],
   "main": "./dist/node-main.js",
+  "files": [
+    "CONTRIBUTING.md",
+    "dist/",
+    "doc/",
+    "examples/",
+    "LICENSE.txt",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/jquery/globalize.git"
