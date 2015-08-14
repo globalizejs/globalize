@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "devDependencies": {
+    "cldr-data": ">=25",
+    "globalize": "1.1.0-alpha - 1.1.x",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "globalize-webpack-plugin": "0.1.x",
+    "html-webpack-plugin": "^1.1.0",
+    "nopt": "^3.0.3",
+    "webpack": "^1.9.0",
+    "webpack-dev-server": "^1.9.0"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --config webpack-config.js --hot --progress --colors --inline",
+    "build": "./node_modules/.bin/webpack --production --config webpack-config.js"
+  }
+}

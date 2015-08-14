@@ -22,6 +22,7 @@ Node.js module.
   - [Usage](#usage)
   - [Performance](#performance)
   - [Compilation and the Runtime modules](#compilation-and-the-runtime-modules)
+  - [Examples](#examples)
 - [API](#api)
   - [Core](#core-module)
   - [Date module](#date-module)
@@ -248,12 +249,8 @@ can cherry-pick the pieces you need, eg. load `dist/globalize.js` to get
 Globalize core, load `dist/globalize/date.js` to extend Globalize with Date
 functionalities, etc.
 
-An example is worth a thousand words. Check out our Hello World demo (available
-to you in different flavors):
-- [Hello World (AMD + bower)](examples/amd-bower/).
-- [Hello World (Node.js + npm)](examples/node-npm/).
-- [Hello World (plain JavaScript)](examples/plain-javascript/).
-
+An example is worth a thousand words. Check out our [Examples](#examples)
+section below.
 
 ### Performance
 
@@ -290,7 +287,6 @@ created (see [Performance](#performance) above for more information).
 
 To illustrate, see our [Basic Globalize Compiler example][].
 
-[Basic Globalize Compiler example]: examples/globalize-compiler/
 
 #### Globalize Compiler
 
@@ -298,6 +294,36 @@ For information about the Globalize Compiler CLI or its JavaScript API, see the
 [Globalize Compiler documentation][].
 
 [Globalize Compiler documentation]: https://github.com/jquery-support/globalize-compiler#README
+
+### Examples
+
+The fastest and easiest way to use Globalize is by integrating it into your
+existing tools.
+
+- [Application example using webpack and npm](examples/app-npm-webpack/): easy to
+  get started, automated CLDR loading and precompilation for production, but
+  requires npm and webpack knowledge.
+
+If you're using a different tool than the one above, but you're comfortable
+using JavaScript modules (such as ES6 modules, CommonJS, or AMD) and package
+managers like npm or bower, you may want to check out the following examples.
+Note you'll need to compile your code for production yourself.
+
+- [Basic example using AMD and bower](examples/amd-bower/): feeding Globalize on
+  CLDR is not completely transparent.
+- [Basic example using Node.js and npm](examples/node-npm/): feeding Globalize
+  on CLDR is not completely transparent.
+- [Basic Globalize Compiler example][]: shows how to use Globalize Compiler CLI.
+
+[Basic Globalize Compiler example]: examples/globalize-compiler/
+
+If you're using none of the tools above, but instead you're using the plain and
+old script tags only, the following example may interest you. Note Globalize
+allows you to go low level like this. But, acknowledge that you'll need to
+handle dependencies and CLDR loading manually yourself.
+
+- [Basic example using plain JavaScript](examples/plain-javascript/): requires
+  loading CLDR and handling dependencies manually.
 
 ## API
 

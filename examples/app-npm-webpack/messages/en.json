@@ -1,0 +1,17 @@
+{
+	"en": {
+		"intro-1": "Use Globalize to internationalize your application.",
+		"number-label": "Number",
+		"currency-label": "Currency",
+		"date-label": "Date",
+		"relative-time-label": "Relative Time",
+		"message-1": "An example of a message using mixed numbers \"{number}\", currencies \"{currency}\", dates \"{date}\", and relative time \"{relativeTime}\".",
+		"message-2": [
+			"An example of a message with pluralization support:",
+			"{count, plural,",
+			"    one {You have one remaining task}",
+			"  other {You have # remaining tasks}",
+			"}."
+		]
+	}
+}
