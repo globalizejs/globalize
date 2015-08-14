@@ -1,0 +1,39 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Globalize App example using Webpack</title>
+</head>
+<body>
+    <h1>Globalize App example using Webpack</h1>
+
+    <div id="requirements">
+        <h2>Requirements</h2>
+        <ul>
+            <li>Read README.md for instructions on how to run the demo.
+            </li>
+        </ul>
+    </div>
+
+    <div id="demo" style="display: none">
+        <h2>Demo output</h2>
+        <p>Now: <span id="date"></span></p>
+        <p>A number: <span id="number"></span></p>
+        <p>A currency: <span id="currency"></span></p>
+        <p>Plural form of <span id="plural-number"></span> is <span id="plural-form"></span></p>
+        <p>Messages:</p>
+        <ul>
+            <li><span id="message-0"></span></li>
+            <li><span id="message-1"></span></li>
+            <li><span id="message-2"></span></li>
+            <li><span id="message-3"></span></li>
+        </ul>
+        <p>Something happened: <span id="relative-time"></span></p>
+    </div>
+
+    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+    <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
+    {% } %}
+
+</body>
+</html>
