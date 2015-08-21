@@ -7,6 +7,7 @@
   "devDependencies": {
     "cldr-data": ">=25",
     "globalize": "latest",
-    "globalize-compiler": "0.0.x"
+    "globalize-compiler": "0.0.x",
+    "jquery": "latest"
   }
 }
