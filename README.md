@@ -284,44 +284,13 @@ Take advantage of compiling your formatters and/or parsers during build time
 when deploying to production. It's much faster than generating them in real-time
 and it's also much smaller (i.e., better loading performance).
 
-To illustrate, a Globalize application looks like:
-
-```html
-<script src="cldrjs/cldr.js"></script>
-<script src="cldrjs/cldr/...js"></script>
-<script src="globalize.js"></script>
-<script src="globalize/number.js"></script>
-<script src="globalize/...js"></script>
-<script>
-// Feed Globalize on CLDR data and on translation messages.
-Globalize.load({
-  ... CLDR data ...
-});
-
-// Then, use Globalize formatters and parsers.
-</script>
-```
-
-A precompiled Globalize application using the runtime modules looks like:
-
-```html
-<!-- Globalize Runtime -->
-<script src="globalize-runtime.js"></script>
-<script src="globalize-runtime/number.js"></script>
-<script src="globalize-runtime/...js"></script>
-
-<!-- My precompiled formatters and parsers -->
-<script src="my-compiled-formatters-and-parsers.js"></script>
-<script>
-// Use Globalize formatters and parsers.
-</script>
-```
-
 Your compiled formatters and parsers allow you to skip a big part of the library
 and also allow you to skip loading CLDR data, because they have already been
 created (see [Performance](#performance) above for more information).
 
-See our [Basic Globalize Compiler example](examples/basic-globalize-compiler/).
+To illustrate, see our [Basic Globalize Compiler example][].
+
+[Basic Globalize Compiler example]: examples/basic-globalize-compiler/
 
 #### Globalize Compiler
 
