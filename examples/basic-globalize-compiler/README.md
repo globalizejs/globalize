@@ -3,10 +3,24 @@
 This example focuses on the Globalize Compiler and the Globalize runtime
 modules. It assumes knowledge of Globalize usage basics.
 
+## Requirements
+
+**1. Install Globalize dependencies and Globalize Compiler**
+
+This example uses `npm` to download Globalize dependencies (i.e., CLDR data and
+the cldrjs library) and the [Globalize Compiler][].
+
+```
+npm install
+```
+
+[Globalize Compiler]: https://github.com/jquery-support/globalize-compiler
+
 ## Running the example
 
 ### Development mode
 
+1. Install `globalize-compiler` by running `npm install`.
 1. Start a server by running `python -m SimpleHTTPServer` or other alternative
 servers such as [http-server][], [nginx][], [apache][].
 1. Point your browser at `http://localhost:8000/development.html`. Note that the

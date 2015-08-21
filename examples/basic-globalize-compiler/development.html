@@ -34,26 +34,26 @@
     First, we load Globalize's dependencies (`cldrjs` and its supplemental
     module).
     -->
-    <script src="cldrjs/cldr.js"></script>
-    <script src="cldrjs/cldr/event.js"></script>
-    <script src="cldrjs/cldr/supplemental.js"></script>
+    <script src="node_modules/globalize/node_modules/cldrjs/dist/cldr.js"></script>
+    <script src="node_modules/globalize/node_modules/cldrjs/dist/cldr/event.js"></script>
+    <script src="node_modules/globalize/node_modules/cldrjs/dist/cldr/supplemental.js"></script>
 
     <!--
     Next, we load Globalize and its modules. Note they are already available on
     this repository. If it's not, read Usage on Getting Started on the root's
     README.md.
     -->
-    <script src="../../dist/globalize.js"></script>
-    <script src="../../dist/globalize/message.js"></script>
-    <script src="../../dist/globalize/number.js"></script>
-    <script src="../../dist/globalize/plural.js"></script>
+    <script src="node_modules/globalize/dist/globalize.js"></script>
+    <script src="node_modules/globalize/dist/globalize/message.js"></script>
+    <script src="node_modules/globalize/dist/globalize/number.js"></script>
+    <script src="node_modules/globalize/dist/globalize/plural.js"></script>
 
     <!-- Load after globalize/number.js -->
-    <script src="../../dist/globalize/date.js"></script>
-    <script src="../../dist/globalize/currency.js"></script>
+    <script src="node_modules/globalize/dist/globalize/date.js"></script>
+    <script src="node_modules/globalize/dist/globalize/currency.js"></script>
 
     <!-- Load after globalize/number.js and globalize/plural.js-->
-    <script src="../../dist/globalize/relative-time.js"></script>
+    <script src="node_modules/globalize/dist/globalize/relative-time.js"></script>
 
     <!-- Load jQuery to fetch the CLDR and message JSONs -->
     <script src="jquery.js"></script>
