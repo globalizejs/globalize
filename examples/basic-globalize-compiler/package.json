@@ -7,6 +7,6 @@
   "devDependencies": {
     "cldr-data": ">=25",
     "globalize": "latest",
-    "globalize-compiler": "git://github.com/jquery-support/globalize-compiler#b0.0.1"
+    "globalize-compiler": "0.0.x"
   }
 }
