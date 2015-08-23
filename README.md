@@ -250,9 +250,9 @@ functionalities, etc.
 
 An example is worth a thousand words. Check out our Hello World demo (available
 to you in different flavors):
-- [Hello World (AMD + bower)](examples/hello-world-amd-bower/).
-- [Hello World (Node.js + npm)](examples/hello-world-node-npm/).
-- [Hello World (plain JavaScript)](examples/hello-world-plain-javascript/).
+- [Hello World (AMD + bower)](examples/amd-bower/).
+- [Hello World (Node.js + npm)](examples/node-npm/).
+- [Hello World (plain JavaScript)](examples/plain-javascript/).
 
 
 ### Performance
@@ -290,7 +290,7 @@ created (see [Performance](#performance) above for more information).
 
 To illustrate, see our [Basic Globalize Compiler example][].
 
-[Basic Globalize Compiler example]: examples/basic-globalize-compiler/
+[Basic Globalize Compiler example]: examples/globalize-compiler/
 
 #### Globalize Compiler
 
