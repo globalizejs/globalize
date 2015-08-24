@@ -175,4 +175,20 @@ QUnit.test( "should support ICU message format", function( assert ) {
 	assert.equal( like({ count: 3 }), "You and 2 others liked this" );
 });
 
+// Reference #473
+QUnit.test( "should NOT merge array data", function( assert ) {
+	// Re-loading a message that uses array syntax.
+	Globalize.loadMessages({
+		en: {
+			task: [
+				"You have {0, plural,",
+				"    one {one task}",
+				"  other {# tasks}",
+				"} remaining"
+			]
+		}
+	});
+	assert.messageFormatter( "en", "task", 123, "You have 123 tasks remaining" );
+});
+
 });
