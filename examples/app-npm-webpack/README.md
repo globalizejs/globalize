@@ -52,12 +52,10 @@ CPU clock is wasted to generate them and no CLDR or messages data needs to be
 dynamically loaded. It means fast to load code (small code) and fast to run
 code.
 1. Point your browser at `./dist/index.html` to run the application using the
-generated production files. 
+generated production files. Edit this file to display the application using a
+different locale (source code has instructions).
 1. Understand the demo by reading the source code. We have comments there for
 you.
-
-Observation: On this demo, loading the precompiled i18n data for all locales at
-once... .... 
 
 For more information about the plugin, see the [Globalize Webpack Plugin][]
 documentation.
