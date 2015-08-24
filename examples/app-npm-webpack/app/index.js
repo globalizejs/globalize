@@ -1,28 +1,53 @@
-var like, number;
-var Globalize = require( "globalize" );
+var currencyFormatter, dateFormatter, numberFormatter, relativeTimeFormatter, startTime,
+	Globalize = require( "globalize" );
 
-require("./another-module");
+startTime = new Date();
 
-// Use Globalize to format numbers.
-number = Globalize.numberFormatter();
-document.getElementById( "number" ).innerHTML = number( 12345.6789 );
+currencyFormatter = Globalize.currencyFormatter( "USD" );
+dateFormatter = Globalize.dateFormatter({ datetime: "medium" });
+numberFormatter = Globalize.numberFormatter({ maximumFractionDigits: 2 });
+relativeTimeFormatter = Globalize.relativeTimeFormatter( "second" );
 
-// Use Globalize to format currencies.
-document.getElementById( "currency" ).innerHTML = Globalize.formatCurrency( 69900, "USD" );
+document.getElementById( "intro-1" ).innerHTML = Globalize.formatMessage( "intro-1" );
 
-// Use Globalize to get the plural form of a numeric value.
-document.getElementById( "plural-number" ).innerHTML = number( 12345.6789 );
-document.getElementById( "plural-form" ).innerHTML = Globalize.plural( 12345.6789 );
+// Standalone table.
+document.getElementById( "currency-label" ).innerHTML = Globalize.formatMessage( "currency-label" );
+document.getElementById( "date-label" ).innerHTML = Globalize.formatMessage( "date-label" );
+document.getElementById( "number-label" ).innerHTML = Globalize.formatMessage( "number-label" );
+document.getElementById( "relative-time-label" ).innerHTML = Globalize.formatMessage( "relative-time-label" );
 
-// Use Globalize to format a message with plural inflection.
-like = Globalize.messageFormatter( "like" );
-document.getElementById( "message-0" ).innerHTML = like( 0 );
-document.getElementById( "message-1" ).innerHTML = like( 1 );
-document.getElementById( "message-2" ).innerHTML = like( 2 );
-document.getElementById( "message-3" ).innerHTML = like( 3 );
+document.getElementById( "currency" ).innerHTML = currencyFormatter( 69900 );
+document.getElementById( "date" ).innerHTML = dateFormatter( new Date() );
+document.getElementById( "number" ).innerHTML = numberFormatter( 12345.6789 );
+document.getElementById( "relative-time" ).innerHTML = relativeTimeFormatter( 0 );
 
-// Use Globalize to format a relative time.
-document.getElementById( "relative-time" ).innerText = Globalize.formatRelativeTime( -35, "second" );
+// Messages.
+document.getElementById( "message-1" ).innerHTML = Globalize.formatMessage( "message-1", {
+	number: currencyFormatter( 69900 ),
+	currency: dateFormatter( new Date() ),
+	date: numberFormatter( 12345.6789 ),
+	relativeTime: relativeTimeFormatter( 0 )
+});
 
+document.getElementById( "message-2" ).innerHTML = Globalize.formatMessage( "message-2", {
+	count: 3
+});
+
+// Display demo.
 document.getElementById( "requirements" ).style.display = "none";
 document.getElementById( "demo" ).style.display = "block";
+
+// Refresh elapsed time
+setInterval(function() {
+	var elapsedTime = +( ( startTime - new Date() ) / 1000 ).toFixed( 0 );
+	document.getElementById( "date" ).innerHTML = dateFormatter( new Date() );
+	document.getElementById( "relative-time" ).innerHTML = relativeTimeFormatter( elapsedTime );
+	document.getElementById( "message-1" ).innerHTML = Globalize.formatMessage( "message-1", {
+		number: currencyFormatter( 69900 ),
+		currency: dateFormatter( new Date() ),
+		date: numberFormatter( 12345.6789 ),
+		relativeTime: relativeTimeFormatter( elapsedTime )
+	});
+
+}, 1000);
+

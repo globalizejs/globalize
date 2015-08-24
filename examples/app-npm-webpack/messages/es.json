@@ -1,12 +1,17 @@
 {
 	"es": {
-		"like": [
-			"{0, plural, offset:1",
-			"     =0 {Be the first to like this}",
-			"     =1 {You liked this}",
-			"    one {You and someone else liked this}",
-			"  other {You and # others liked this}",
-			"}"
+		"intro-1": "Use Globalize to internationalize your application.",
+		"number-label": "Standalone Number",
+		"currency-label": "Standalone Currency",
+		"date-label": "Standalone Date",
+		"relative-time-label": "Standalone Relative Time",
+		"message-1": "An example of a message using mixed numbers \"{number}\", currencies \"{currency}\", dates \"{date}\", and relative time \"{relativeTime}\".",
+		"message-2": [
+			"An example of a message with pluralization support:",
+			"{count, plural,",
+			"    one {You have one remaining task}",
+			"  other {You have # remaining tasks}",
+			"}."
 		]
 	}
 }

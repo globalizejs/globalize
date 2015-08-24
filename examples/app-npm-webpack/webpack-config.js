@@ -38,9 +38,9 @@ module.exports = {
 		new globalizePlugin({
 			production: options.production,
 			developmentLocale: "en",
-			supportedLocales: [ "en", "es", "zh" ],
+			supportedLocales: [ "en", "es", "pt", "zh" ],
 			messages: "messages/[locale].json",
-			output: "globalize-compiled-data-[locale].[hash].js"
+			output: "i18n/[locale].[hash].js"
 		})
 	
 	].concat( options.production ? [
