@@ -1,5 +1,4 @@
 {
-  "name": "globalize-full-app-npm-webpack",
   "private": true,
   "devDependencies": {
     "cldr-data": ">=25",
