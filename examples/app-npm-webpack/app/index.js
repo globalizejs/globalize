@@ -12,13 +12,15 @@ document.getElementById( "intro-1" ).innerHTML = Globalize.formatMessage( "intro
 
 // Standalone table.
 document.getElementById( "currency-label" ).innerHTML = Globalize.formatMessage( "currency-label" );
-document.getElementById( "date-label" ).innerHTML = Globalize.formatMessage( "date-label" );
-document.getElementById( "number-label" ).innerHTML = Globalize.formatMessage( "number-label" );
-document.getElementById( "relative-time-label" ).innerHTML = Globalize.formatMessage( "relative-time-label" );
-
 document.getElementById( "currency" ).innerHTML = currencyFormatter( 69900 );
+
+document.getElementById( "date-label" ).innerHTML = Globalize.formatMessage( "date-label" );
 document.getElementById( "date" ).innerHTML = dateFormatter( new Date() );
+
+document.getElementById( "number-label" ).innerHTML = Globalize.formatMessage( "number-label" );
 document.getElementById( "number" ).innerHTML = numberFormatter( 12345.6789 );
+
+document.getElementById( "relative-time-label" ).innerHTML = Globalize.formatMessage( "relative-time-label" );
 document.getElementById( "relative-time" ).innerHTML = relativeTimeFormatter( 0 );
 
 // Messages.
