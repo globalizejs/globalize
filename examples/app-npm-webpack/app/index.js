@@ -23,10 +23,10 @@ document.getElementById( "relative-time" ).innerHTML = relativeTimeFormatter( 0 
 
 // Messages.
 document.getElementById( "message-1" ).innerHTML = Globalize.formatMessage( "message-1", {
-	number: currencyFormatter( 69900 ),
-	currency: dateFormatter( new Date() ),
-	date: numberFormatter( 12345.6789 ),
-	relativeTime: relativeTimeFormatter( 0 )
+	currency: currencyFormatter( 69900 ),
+	date: dateFormatter( new Date() ),
+	number: numberFormatter( 12345.6789 ),
+	relativeTime: relativeTimeFormatter( elapsedTime )
 });
 
 document.getElementById( "message-2" ).innerHTML = Globalize.formatMessage( "message-2", {
