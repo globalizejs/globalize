@@ -304,7 +304,7 @@ existing tools.
   get started, automated CLDR loading and precompilation for production, but
   requires npm and webpack knowledge.
 
-Considering you're using a different tooling than the one above. But, you're
+Considering you're using different tools than the one above. But, you're
 comfortable using JavaScript modules (such as ES6 modules, CommonJS, or AMD) and
 package managers like npm or bower, you may want to check out the following
 examples. Note you'll need to compile your code for production yourself.
