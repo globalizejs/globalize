@@ -22,6 +22,7 @@ Node.js module.
   - [Usage](#usage)
   - [Performance](#performance)
   - [Compilation and the Runtime modules](#compilation-and-the-runtime-modules)
+  - [Examples](#examples)
 - [API](#api)
   - [Core](#core-module)
   - [Date module](#date-module)
