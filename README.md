@@ -300,20 +300,20 @@ For information about the Globalize Compiler CLI or its JavaScript API, see the
 The fastest and easiest way to use Globalize is by integrating it into your
 existing toolings. Obviously, it requires knowledge of using each stack.
 
-- [Application example using webpack and npm](examples/app-npm-webpack/) (easy to
+- [Application example using webpack and npm](examples/app-npm-webpack/): easy to
   get started, automated CLDR loading and precompilation for production, but
-  requires webpack knowledge).
+  requires webpack knowledge.
 
 Considering you're using a different tooling than the one above. But, you're
 comfortable using JavaScript modules (such as ES6 modules, CommonJS, or AMD) and
 package managers like npm or bower, you may want to check out the following
 examples. Note you'll need to compile your code for production yourself.
 
-- [Basic examples using AMD and bower)](examples/amd-bower/) (requires loading
-  CLDR manually).
-- [Basic example using Node.js and npm)](examples/node-npm/) (requires loading
-  CLDR manually).
-- [Basic Globalize Compiler example][] (shows how to use Globalize Compiler CLI).
+- [Basic example using AMD and bower](examples/amd-bower/): feeding Globalize on
+  CLDR is not completely transparent.
+- [Basic example using Node.js and npm](examples/node-npm/): feeding Globalize
+  on CLDR is not completely transparent.
+- [Basic Globalize Compiler example][]: shows how to use Globalize Compiler CLI.
 
 [Basic Globalize Compiler example]: examples/globalize-compiler/
 
