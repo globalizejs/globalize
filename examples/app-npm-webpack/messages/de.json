@@ -1,0 +1,17 @@
+{
+	"de": {
+		"intro-1": "Verwenden Sie Globalize um Ihre Anwendung zu internationalisieren.",
+		"number-label": "Zahl",
+		"currency-label": "Währung",
+		"date-label": "Datum",
+		"relative-time-label": "Relative Zeit",
+		"message-1": "Ein Beispieltext der eine Mischung aus Zahl \"{number}\", Währung \"{currency}\", Datum \"{date}\", und relativer Zeit \"{relativeTime}\" verwendet.",
+		"message-2": [
+			"Ein Beispieltext mit Unterstützung von Plural Formen: ",
+			"{count, plural,",
+			"    one {Sie haben noch eine Aufgabe}",
+			"  other {Sie haben noch # verbliebende Aufgaben}",
+			"}."
+		]
+	}
+}
