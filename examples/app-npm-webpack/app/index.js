@@ -26,7 +26,7 @@ document.getElementById( "message-1" ).innerHTML = Globalize.formatMessage( "mes
 	currency: currencyFormatter( 69900 ),
 	date: dateFormatter( new Date() ),
 	number: numberFormatter( 12345.6789 ),
-	relativeTime: relativeTimeFormatter( elapsedTime )
+	relativeTime: relativeTimeFormatter( 0 )
 });
 
 document.getElementById( "message-2" ).innerHTML = Globalize.formatMessage( "message-2", {
