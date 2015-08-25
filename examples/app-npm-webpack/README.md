@@ -1,9 +1,12 @@
 # Globalize App example using webpack
 
-This example focuses on the [Globalize Webpack Plugin][], which automates data
-loading (CLDR and app messages) during development and automates Globalize
-compilation and the usage of Globalize runtime modules for production. It
-assumes knowledge of Globalize, npm package manager, and Webpack usage basics.
+This example demonstrates how to integrate Globalize with Webpack in your
+Application. If you already have an existing Application using Webpack stack,
+this example should as well provide you guidance on how to integrate Globalize.
+It focuses on the [Globalize Webpack Plugin][], which automates data loading
+(CLDR and app messages) during development and automates Globalize compilation
+and the usage of Globalize runtime modules for production. It assumes knowledge
+of Globalize, npm, and Webpack usage basics.
 
 ## Requirements
 
@@ -21,6 +24,10 @@ npm install
 
 ### Development mode
 
+```
+npm start
+```
+
 1. Start a server by running `npm start`, which uses webpack's live reload HMR
 (Hot Module Replacement). See `package.json` to understand the actual shell
 command that is used.
@@ -37,6 +44,10 @@ config file.
 you.
 
 ### Production mode
+
+```
+npm run build
+```
 
 1. Generate the compiled bundles by running `npm run build`, which will be
 created at `./dist`. Note the production bundles are split into three chunks:
