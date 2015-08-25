@@ -38,7 +38,7 @@ module.exports = {
 		new GlobalizePlugin({
 			production: options.production,
 			developmentLocale: "en",
-			supportedLocales: [ "en", "es", "pt", "zh" ],
+			supportedLocales: [ "de", "en", "es", "pt", "zh" ],
 			messages: "messages/[locale].json",
 			output: "i18n/[locale].[hash].js"
 		})
