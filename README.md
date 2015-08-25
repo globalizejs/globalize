@@ -298,7 +298,7 @@ For information about the Globalize Compiler CLI or its JavaScript API, see the
 ### Examples
 
 The fastest and easiest way to use Globalize is by integrating it into your
-existing toolings. Obviously, it requires knowledge of using each stack.
+existing tools. Obviously, it requires knowledge of using each stack.
 
 - [Application example using webpack and npm](examples/app-npm-webpack/): easy to
   get started, automated CLDR loading and precompilation for production, but
@@ -317,7 +317,7 @@ examples. Note you'll need to compile your code for production yourself.
 
 [Basic Globalize Compiler example]: examples/globalize-compiler/
 
-Considering you're using none of the toolings above, but instead you're using
+Considering you're using none of the tools above, but instead you're using
 the plain and old script tags only, the following example may interest you. Note
 Globalize allows you to go low level like this. But, acknowledge that you'll
 need to handle dependencies and CLDR loading manually yourself.
