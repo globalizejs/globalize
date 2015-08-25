@@ -322,8 +322,8 @@ the plain and old script tags only, the following example may interest you. Note
 Globalize allows you to go low level like this. But, acknowledge that you'll
 need to handle dependencies and CLDR loading manually yourself.
 
-- [Basic example using plain JavaScript](examples/plain-javascript/) (requires
-  loading CLDR and handling dependencies manually).
+- [Basic example using plain JavaScript](examples/plain-javascript/): requires
+  loading CLDR and handling dependencies manually.
 
 ## API
 
