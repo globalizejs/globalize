@@ -1,16 +1,16 @@
 {
 	"es": {
-		"intro-1": "Use Globalize to internationalize your application.",
-		"number-label": "Standalone Number",
-		"currency-label": "Standalone Currency",
-		"date-label": "Standalone Date",
-		"relative-time-label": "Standalone Relative Time",
-		"message-1": "An example of a message using mixed numbers \"{number}\", currencies \"{currency}\", dates \"{date}\", and relative time \"{relativeTime}\".",
+		"intro-1": "Usa Globalize para internacionalizar tu aplicación.",
+		"number-label": "Número",
+		"currency-label": "Moneda",
+		"date-label": "Fecha",
+		"relative-time-label": "Tiempo Relativo",
+		"message-1": "Un ejemplo de mensaje usando números mixtos \"{number}\", monedas \"{currency}\", fechas \"{date}\", y tiempo relativo \"{relativeTime}\".",
 		"message-2": [
-			"An example of a message with pluralization support:",
+			"Un ejemplo de mensaje con soporte de pluralizaciónt:",
 			"{count, plural,",
-			"    one {You have one remaining task}",
-			"  other {You have # remaining tasks}",
+			"    one {Tienes una tarea restante}",
+			"  other {Tienes # tareas restantes}",
 			"}."
 		]
 	}
