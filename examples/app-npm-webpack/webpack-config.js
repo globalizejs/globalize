@@ -1,7 +1,7 @@
 var webpack = require( "webpack" );
 var CommonsChunkPlugin = require( "webpack/lib/optimize/CommonsChunkPlugin" );
 var HtmlWebpackPlugin = require( "html-webpack-plugin" );
-var globalizePlugin = require( "globalize-webpack-plugin" );
+var GlobalizePlugin = require( "globalize-webpack-plugin" );
 var nopt = require( "nopt" );
 
 var options = nopt({
@@ -35,7 +35,7 @@ module.exports = {
 			production: options.production,
 			template: "./index-template.html",
 		}),
-		new globalizePlugin({
+		new GlobalizePlugin({
 			production: options.production,
 			developmentLocale: "en",
 			supportedLocales: [ "en", "es", "pt", "zh" ],
