@@ -43,9 +43,9 @@ setInterval(function() {
 	document.getElementById( "date" ).innerHTML = dateFormatter( new Date() );
 	document.getElementById( "relative-time" ).innerHTML = relativeTimeFormatter( elapsedTime );
 	document.getElementById( "message-1" ).innerHTML = Globalize.formatMessage( "message-1", {
-		number: currencyFormatter( 69900 ),
-		currency: dateFormatter( new Date() ),
-		date: numberFormatter( 12345.6789 ),
+		currency: currencyFormatter( 69900 ),
+		date: dateFormatter( new Date() ),
+		number: numberFormatter( 12345.6789 ),
 		relativeTime: relativeTimeFormatter( elapsedTime )
 	});
 
