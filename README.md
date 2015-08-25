@@ -302,7 +302,7 @@ existing tools.
 
 - [Application example using webpack and npm](examples/app-npm-webpack/): easy to
   get started, automated CLDR loading and precompilation for production, but
-  requires webpack knowledge.
+  requires npm and webpack knowledge.
 
 Considering you're using a different tooling than the one above. But, you're
 comfortable using JavaScript modules (such as ES6 modules, CommonJS, or AMD) and
