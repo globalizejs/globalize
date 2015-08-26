@@ -1,16 +1,15 @@
 {
 	"zh": {
-		"intro-1": "Use Globalize to internationalize your application.",
-		"number-label": "Standalone Number",
-		"currency-label": "Standalone Currency",
-		"date-label": "Standalone Date",
-		"relative-time-label": "Standalone Relative Time",
-		"message-1": "An example of a message using mixed numbers \"{number}\", currencies \"{currency}\", dates \"{date}\", and relative time \"{relativeTime}\".",
+		"intro-1": "使用Globalize的国际化应用程序",
+		"number-label": "独立编号",
+		"currency-label": "独立货币",
+		"date-label": "独立日",
+		"relative-time-label": "独立的相对时间",
+		"message-1": "使用混合数的消息的示例\"{number}\"，货币\"{currency}\"，日期\"{date}\"，和相对时间\"{relativeTime}\"。",
 		"message-2": [
-			"An example of a message with pluralization support:",
+			"与多元化支持消息的例子：",
 			"{count, plural,",
-			"    one {You have one remaining task}",
-			"  other {You have # remaining tasks}",
+			"  other {你有#剩下的任务}",
 			"}."
 		]
 	}
