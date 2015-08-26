@@ -304,10 +304,10 @@ existing tools.
   get started, automated CLDR loading and precompilation for production, but
   requires npm and webpack knowledge.
 
-Considering you're using a different tool than the one above. But, you're
-comfortable using JavaScript modules (such as ES6 modules, CommonJS, or AMD) and
-package managers like npm or bower, you may want to check out the following
-examples. Note you'll need to compile your code for production yourself.
+If you're using a different tool than the one above. But, you're comfortable
+using JavaScript modules (such as ES6 modules, CommonJS, or AMD) and package
+managers like npm or bower, you may want to check out the following examples.
+Note you'll need to compile your code for production yourself.
 
 - [Basic example using AMD and bower](examples/amd-bower/): feeding Globalize on
   CLDR is not completely transparent.
@@ -317,10 +317,10 @@ examples. Note you'll need to compile your code for production yourself.
 
 [Basic Globalize Compiler example]: examples/globalize-compiler/
 
-Considering you're using none of the tools above, but instead you're using
-the plain and old script tags only, the following example may interest you. Note
-Globalize allows you to go low level like this. But, acknowledge that you'll
-need to handle dependencies and CLDR loading manually yourself.
+If you're using none of the tools above, but instead you're using the plain and
+old script tags only, the following example may interest you. Note Globalize
+allows you to go low level like this. But, acknowledge that you'll need to
+handle dependencies and CLDR loading manually yourself.
 
 - [Basic example using plain JavaScript](examples/plain-javascript/): requires
   loading CLDR and handling dependencies manually.

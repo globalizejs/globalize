@@ -35,7 +35,7 @@ command that is used.
 automatically reload on any changes made to the application code (`app/*.js`
 files). Also note that for faster page reload, formatters are created
 dynamically and automatically by the [Globalize Webpack Plugin][].
-1. Note you can specify the development locale of your choice by setting up
+1. Note you can specify the development locale of your choice by setting the
 `developmentLocale` property of the Globalize Webpack Plugin on the Webpack
 config file.
 1. Note that CLDR data and your messages data are automatically loaded by the
