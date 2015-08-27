@@ -1,10 +1,10 @@
 {
 	"pt": {
 		"intro-1": "Use o Globalize para internacionalizar sua aplicação.",
-		"number-label": "Número independente",
-		"currency-label": "Moeda independente",
-		"date-label": "Data independente",
-		"relative-time-label": "Tempo relativo independente",
+		"number-label": "Número",
+		"currency-label": "Moeda",
+		"date-label": "Data",
+		"relative-time-label": "Tempo relativo",
 		"message-1": "Um exemplo de mensagem com mistura de números \"{number}\", moedas \"{currency}\", datas \"{date}\", e tempo relativo \"{relativeTime}\".",
 		"message-2": [
 			"Um exemplo de message com suporte a pluralização:",
