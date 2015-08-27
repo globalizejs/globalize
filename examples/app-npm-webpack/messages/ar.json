@@ -1,10 +1,10 @@
 {
 	"ar": {
 		"intro-1": "استخدام عولمة لتدويل طلبك.",
-		"number-label": "عدد مستقل",
-		"currency-label": "العملات مستقل",
-		"date-label": "مستقل التسجيل",
-		"relative-time-label": "مستقل الزمني النسبي",
+		"number-label": "عدد",
+		"currency-label": "عملة",
+		"date-label": "تاريخ",
+		"relative-time-label": "الوقت النسبي",
 		"message-1": "مثال على رسالة باستخدام أرقام مختلطة \"{number}\"، \"{currency}\" العملات، يعود \"{date}\"، ووقت النسبي \"{relativeTime}\".",
 		"message-2": [
 			"مثال على رسالة بدعم صيغة الجمع:",
