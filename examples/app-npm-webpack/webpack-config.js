@@ -42,7 +42,6 @@ module.exports = {
 			messages: "messages/[locale].json",
 			output: "i18n/[locale].[hash].js"
 		})
-
 	].concat( options.production ? [
 		new webpack.optimize.DedupePlugin(),
 		new CommonsChunkPlugin( "vendor", "vendor.[hash].js" ),
