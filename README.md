@@ -214,7 +214,7 @@ requirements. See table below.
 | Plural module | cldr/supplemental/plurals.json (for cardinals)<br>cldr/supplemental/ordinals.json (for ordinals) |
 | Relative time module | cldr/main/`locale`/dateFields.json<br>+CLDR JSON files from number and plural modules |
 
-As alternative to deducing this yourself you could try using a tool called [Globalize · So What'cha Want](http://johnnyreilly.github.io/globalize-so-what-cha-want/).  This allows you to select the modules you're interested in using and tell you the Globalize files *and* CLDR JSON that you need. 
+As an alternative to deducing this yourself, use this [online tool](http://johnnyreilly.github.io/globalize-so-what-cha-want/). The tool allows you to select the modules you're interested in using and tells you the Globalize files *and* CLDR JSON that you need. 
 
 *(b) How am I supposed to get and load CLDR content?*
 
