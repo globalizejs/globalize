@@ -134,6 +134,27 @@ class FallbacksTest < MiniTest::Spec
 
       assert_equal [:de], task.translations.map(&:locale).sort
     end
+    it "bug with same translations" do
+      I18n.fallbacks.map 'de-DE' => [ 'en-US' ]
+      post = Post.create(:title => 'Titel')
+      post.attributes = { :title => 'title', :locale => :'en-US' }
+      post.attributes = { :title => 'Titel', :locale => :'de-DE' }
+      post.save
+      post.reload
+
+      assert_equal 2, post.translations.size
+      assert_translated post, :'de-DE', :title, 'Titel'
+      assert_translated post, :'en-US', :title, 'title'
+
+      post.attributes = { :title => 'Titel', :locale => :'en-US' }
+      post.attributes = { :title => 'title', :locale => :'de-DE' }
+      post.save
+      post.reload
+
+      assert_equal 2, post.translations.size
+      assert_translated post, :'de-DE', :title, 'title'
+      assert_translated post, :'en-US', :title, 'Titel'
+    end
   end
 
   describe 'model with :fallbacks_for_empty_translations => true' do
