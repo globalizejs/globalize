@@ -260,7 +260,7 @@ return function( value, tokens, properties ) {
 		date.setDate( daysOfYear );
 	}
 
-	if ( hour12 && amPm === "pm" ) {
+	if ( hour12 && (amPm === "pm" || amPm === "afternoon") ) {
 		date.setHours( date.getHours() + 12 );
 	}
 
