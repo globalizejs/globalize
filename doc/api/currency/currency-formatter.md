@@ -81,7 +81,7 @@ locales.
 For the accounting variation of the symbol format, use `style: "accounting"`.
 
 ```javascript
-var formatter Globalize( "en" ).currencyFormatter( "USD", {
+var formatter = Globalize( "en" ).currencyFormatter( "USD", {
   style: "accounting"
 });
 
