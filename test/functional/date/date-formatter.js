@@ -92,15 +92,20 @@ QUnit.test( "should allow for runtime compilation", function( assert ) {
 			pad1NumberFormatter( runtimeArgs[ 0 ][ 1 ] );
 			pad2NumberFormatter( runtimeArgs[ 0 ][ 2 ] );
 			assert.deepEqual( runtimeArgs[ 1 ], {
-				"pattern": "h:mm:ss a",
-				"timeSeparator": ":",
 				"dayPeriods": {
+					"afternoon1": "in the afternoon",
 					"am": "AM",
 					"am-alt-variant": "am",
+					"evening1": "in the evening",
+					"midnight": "midnight",
+					"morning1": "in the morning",
+					"night1": "at night",
 					"noon": "noon",
 					"pm": "PM",
 					"pm-alt-variant": "pm"
-				}
+				},
+				"pattern": "h:mm:ss a",
+				"timeSeparator": ":"
 			});
 		}
 	);
@@ -159,25 +164,44 @@ QUnit.test( "should allow for runtime compilation", function( assert ) {
 			pad1NumberFormatter( runtimeArgs[ 0 ][ 1 ] );
 			pad2NumberFormatter( runtimeArgs[ 0 ][ 2 ] );
 			assert.deepEqual( runtimeArgs[ 1 ], {
-				"pattern": "E, MMM d, y G, h:mm:ss a",
-				"timeSeparator": ":",
+				"dayPeriods": {
+					"afternoon1": "in the afternoon",
+					"am": "AM",
+					"am-alt-variant": "am",
+					"evening1": "in the evening",
+					"midnight": "midnight",
+					"morning1": "in the morning",
+					"night1": "at night",
+					"noon": "noon",
+					"pm": "PM",
+					"pm-alt-variant": "pm"
+				},
 				"days": {
 					"E": {
 						"1": {
-							"sun": "Sun",
-							"mon": "Mon",
-							"tue": "Tue",
-							"wed": "Wed",
-							"thu": "Thu",
 							"fri": "Fri",
-							"sat": "Sat"
+							"mon": "Mon",
+							"sat": "Sat",
+							"sun": "Sun",
+							"thu": "Thu",
+							"tue": "Tue",
+							"wed": "Wed"
 						}
 					}
+				},
+				"eras": {
+					"0": "BC",
+					"0-alt-variant": "BCE",
+					"1": "AD",
+					"1-alt-variant": "CE"
 				},
 				"months": {
 					"M": {
 						"3": {
 							"1": "Jan",
+							"10": "Oct",
+							"11": "Nov",
+							"12": "Dec",
 							"2": "Feb",
 							"3": "Mar",
 							"4": "Apr",
@@ -185,26 +209,12 @@ QUnit.test( "should allow for runtime compilation", function( assert ) {
 							"6": "Jun",
 							"7": "Jul",
 							"8": "Aug",
-							"9": "Sep",
-							"10": "Oct",
-							"11": "Nov",
-							"12": "Dec"
+							"9": "Sep"
 						}
 					}
 				},
-				"eras": {
-					"0": "BC",
-					"1": "AD",
-					"0-alt-variant": "BCE",
-					"1-alt-variant": "CE"
-				},
-				"dayPeriods": {
-					"am": "AM",
-					"am-alt-variant": "am",
-					"noon": "noon",
-					"pm": "PM",
-					"pm-alt-variant": "pm"
-				}
+				"pattern": "E, MMM d, y G, h:mm:ss a",
+				"timeSeparator": ":"
 			});
 		}
 	);

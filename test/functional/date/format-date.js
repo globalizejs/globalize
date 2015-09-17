@@ -98,10 +98,10 @@ QUnit.test( "should format time presets", function( assert ) {
 	ar = Globalize( "ar" );
 
 	assert.equal( Globalize.formatDate( date, { time: "medium" } ), "5:35:07 PM" );
-	assert.equal( ar.formatDate( date, { time: "medium" } ), "٥،٣٥،٠٧ م" );
+	assert.equal( ar.formatDate( date, { time: "medium" } ), "٥:٣٥:٠٧ م" );
 
 	assert.equal( Globalize.formatDate( date, { time: "short" } ), "5:35 PM" );
-	assert.equal( ar.formatDate( date, { time: "short" } ), "٥،٣٥ م" );
+	assert.equal( ar.formatDate( date, { time: "short" } ), "٥:٣٥ م" );
 });
 
 QUnit.test( "should format date presets", function( assert ) {
