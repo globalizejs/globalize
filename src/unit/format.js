@@ -1,19 +1,17 @@
 define([
-	"./get",
 	"../common/format-message"
-], function( unitGet, formatMessage ) {
+], function( formatMessage ) {
 
 /**
- * format( value, unit, options, cldr, globalize )
+ * format( value, unit, pluralGenerator, numberFormatter )
  *
  * @value [Number]
  *
- * @unit [String]:
+ * @unitProperies [Object]: localized unit data from cldr.
  *
- * @options [Object]
- * - form: [String] "long", "short" (default), or "narrow".
+ * @numberFormatter [Object]: A numberFormatter from Globalize.numberFormatter.
  *
- * FIXME
+ * @pluralGenerator [Object]: A pluralGenerator from Globalize.pluralGenerator.
  *
  * Format units such as seconds, minutes, days, weeks, etc.
  *
@@ -25,35 +23,28 @@ define([
  * Duration Unit (for composed time unit durations) is not implemented.
  * http://www.unicode.org/reports/tr35/tr35-35/tr35-general.html#durationUnit
  */
-return function( value, unit, options, cldr, globalize ) {
-	var dividend, divisor, form, ret;
-	options = options || {};
-	form = options.form || "long";
+return function( value, unitProperties, numberFormatter, pluralGenerator ) {
+	var compoundUnitPattern = unitProperties.compoundUnitPattern, dividend, dividendProperties,
+			formattedValue, divisor, divisorProperties, message, pluralValue;
 
-	ret = unitGet( unit, form, cldr );
+	unitProperties = unitProperties.unitProperties;
+	formattedValue = numberFormatter( value );
+	pluralValue = pluralGenerator( value );
 
-	if ( !ret ) {
-		return;
+	// computed compound unit, eg. "megabyte-per-second".
+	if ( unitProperties instanceof Array ) {
+		dividendProperties = unitProperties[ 0 ];
+		divisorProperties = unitProperties[ 1 ];
+
+		dividend = formatMessage( dividendProperties[ pluralValue ], [ value ] );
+		divisor = formatMessage( divisorProperties.one, [ "" ] ).trim();
+
+		return formatMessage( compoundUnitPattern, [ dividend, divisor ] );
 	}
 
-	// Compound Unit, eg. "foot-per-second" or "foot/second".
-	if ( ( /-per-|\// ).test( unit ) ) {
+	message = unitProperties[ pluralValue ];
 
-		// "For the divisor, the 'one' plural category should be used, while for the
-		// dividend the appropriate plural form according the placeholder number
-		// should be used" UTS#35
-		//
-		// "There is a known problem with some languages in the long form in that
-		// the divisor should be inflected. This will probably require the future
-		// addition of a special 'divisor' form of units commonly used in the
-		// divisor." UTS#35
-		dividend = globalize.formatPlural( value, ret[ 0 ] );
-		divisor = globalize.formatPlural( 1, ret[ 1 ], "" ).trim();
-		return formatMessage( cldr.main( [ "units", form, "per/compoundUnitPattern" ] ),
-        [ dividend, divisor ] );
-	}
-
-	return globalize.formatPlural( value, ret );
+	return formatMessage( message, [ formattedValue ] );
 };
 
 });

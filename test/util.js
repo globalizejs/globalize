@@ -170,7 +170,6 @@ return {
 	 * Etc
 	 */
 	assertRuntimeBind: function( assert, formatterOrParser, runtimeKey, generatorString, runtimeArgsFn ) {
-		assert.ok( formatterOrParser );
 		assert.equal( typeof formatterOrParser, "function" );
 		assert.ok( "runtimeKey" in formatterOrParser );
 		assert.equal( formatterOrParser.runtimeKey, runtimeKey );

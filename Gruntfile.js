@@ -378,6 +378,23 @@ module.exports = function( grunt ) {
 							}
 						},
 						{
+							name: "globalize.unit",
+							include: [ "unit" ],
+							exclude: [
+								"cldr",
+								"./core",
+								"./number",
+								"./plural"
+							],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-unit.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
 							name: "globalize-runtime",
 							include: [ "core-runtime" ],
 							create: true,
@@ -473,6 +490,22 @@ module.exports = function( grunt ) {
 									endFile: "src/build/outro.js"
 								}
 							}
+						},
+						{
+							name: "globalize.unit-runtime",
+							include: [ "unit-runtime" ],
+							exclude: [
+								"./core-runtime",
+								"./number-runtime",
+								"./plural-runtime"
+							],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-unit-runtime.js",
+									endFile: "src/build/outro.js"
+								}
+							}
 						}
 					]
 				}
@@ -535,6 +568,7 @@ module.exports = function( grunt ) {
 					"tmp/globalize/plural.min.js": [ "dist/globalize/plural.js" ],
 					"tmp/globalize/message.min.js": [ "dist/globalize/message.js" ],
 					"tmp/globalize/relative-time.min.js": [ "dist/globalize/relative-time.js" ],
+					"tmp/globalize/unit.min.js": [ "dist/globalize/unit.js" ],
 
 					"tmp/globalize-runtime.min.js": [ "dist/globalize-runtime.js" ],
 					"tmp/globalize-runtime/currency.min.js": [
@@ -546,7 +580,8 @@ module.exports = function( grunt ) {
 					"tmp/globalize-runtime/plural.min.js": [ "dist/globalize-runtime/plural.js" ],
 					"tmp/globalize-runtime/relative-time.min.js": [
 						"dist/globalize-runtime/relative-time.js"
-					]
+					],
+					"tmp/globalize-runtime/unit.min.js": [ "dist/globalize-runtime/unit.js" ]
 				}
 			}
 		},

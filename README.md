@@ -31,6 +31,7 @@ Node.js module.
     - [Currency module](#currency-module)
   - [Plural module](#plural-module)
   - [Relative time module](#relative-time-module)
+  - [Unit module](#unit-module)
   - more to come...
 - [Error reference](#error-reference)
 - [Development](#development)
@@ -148,6 +149,7 @@ information on its usage.
 | globalize/number.js | 3.1KB | 1.8KB | [Number module](#number-module) provides number formatting and parsing |
 | globalize/plural.js | 2.3KB | 0.4KB | [Plural module](#plural-module) provides pluralization support |
 | globalize/relative-time.js | 0.8KB | 0.6KB | [Relative time module](#relative-time-module) provides relative time formatting support |
+| globalize/unit.js | 0.9KB | 0.5KB | [Unit module](#unit-module) provides unit formatting support |
 
 ### Browser Support
 
@@ -213,8 +215,9 @@ requirements. See table below.
 | Number module | cldr/main/`locale`/numbers.json<br>cldr/supplemental/numberingSystems.json |
 | Plural module | cldr/supplemental/plurals.json (for cardinals)<br>cldr/supplemental/ordinals.json (for ordinals) |
 | Relative time module | cldr/main/`locale`/dateFields.json<br>+CLDR JSON files from number and plural modules |
+| Unit module | cldr/main/`locale`/units.json<br>+CLDR JSON files from number and plural module |
 
-As an alternative to deducing this yourself, use this [online tool](http://johnnyreilly.github.io/globalize-so-what-cha-want/). The tool allows you to select the modules you're interested in using and tells you the Globalize files *and* CLDR JSON that you need. 
+As an alternative to deducing this yourself, use this [online tool](http://johnnyreilly.github.io/globalize-so-what-cha-want/). The tool allows you to select the modules you're interested in using and tells you the Globalize files *and* CLDR JSON that you need.
 
 *(b) How am I supposed to get and load CLDR content?*
 
@@ -571,6 +574,29 @@ handle dependencies and CLDR loading manually yourself.
 
   Alias for `.relativeTimeFormatter( unit, options )( value )`.
 
+## Unit module
+
+- **`.unitFormatter( unit, options )`**
+
+  Returns a function that formats a unit according to the given unit, options, and the
+  default/instance locale.
+
+  ```javascript
+  .unitFormatter( "second", { form: "long" } )( 10 )
+  // > "10 seconds"
+
+  .unitFormatter( "second", { form: "short" } )( 10 )
+  // > "10 secs"
+
+  .unitFormatter( "second", { form: "narrow" } )( 10 )
+  // > "10s"
+  ```
+
+  [Read more...](doc/api/unit/unit-formatter.md)
+
+- **`.formatUnit( value, unit, options )`**
+
+  Alias for `.unitFormatter( unit, options )( value )`.
 
 ## Error reference
 
@@ -663,6 +689,8 @@ handle dependencies and CLDR loading manually yourself.
 │   ├── plural/ (plural source code)
 │   ├── relative-time.js (relative time module)
 │   ├── relative-time/ (relative time source code)
+│   ├── unit.js (unit module)
+│   ├── unit/ (unit source code)
 │   └── util/ (basic JavaScript helpers polyfills, eg array.map)
 └── test/ (unit and functional test files)
     ├── fixtures/ (CLDR fixture data)
@@ -727,4 +755,3 @@ dependencies (for more details, see above).
 ```bash
 grunt
 ```
-
