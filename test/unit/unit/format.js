@@ -2,9 +2,8 @@ define([
 	"cldr",
 	"src/core",
 	"src/unit/format",
-	"json!fixtures/cldr/main/en/units.json",
-	"json!fixtures/cldr/supplemental/likelySubtags.json",
-	"src/plural"
+	"json!cldr-data/main/en/units.json",
+	"json!cldr-data/supplemental/likelySubtags.json"
 ], function( Cldr, Globalize, formatUnit, enUnits, likelySubtags ) {
 
 var cldr, globalize;
