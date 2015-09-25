@@ -25,8 +25,8 @@ define([
  * Duration Unit (for composed time unit durations) is not implemented.
  * http://www.unicode.org/reports/tr35/tr35-35/tr35-general.html#durationUnit
  */
-return function( value, unit, options, cldr, globalize ) {
-	var dividend, divisor, form, ret;
+return function( value, unit, options, pluralGenerator, cldr, globalize ) {
+	var dividend, divisor, form, message, ret;
 	options = options || {};
 	form = options.form || "long";
 
@@ -53,7 +53,9 @@ return function( value, unit, options, cldr, globalize ) {
         [ dividend, divisor ] );
 	}
 
-	return globalize.formatPlural( value, ret );
+  message = ret[ pluralGenerator( value ) ];
+
+	return formatMessage( message, [ value ] );
 };
 
 });

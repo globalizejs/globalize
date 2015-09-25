@@ -1,6 +1,8 @@
 define([
 	"./core",
-	"./unit/format"
+	"./unit/format",
+
+  "./plural"
 ], function( Globalize, unitFormat ) {
 
 /**
@@ -15,7 +17,9 @@ define([
  *
  * Format units such as seconds, minutes, days, weeks, etc.
  */
-Globalize.formatUnit = function( value, unit, options ) {
+Globalize.prototype.formatUnit = function( value, unit, options ) {
+  var pluralGenerator;
+
 	if ( typeof value !== "number" ) {
 		throw new Error( "Value is not a number" );
 	}
@@ -24,7 +28,9 @@ Globalize.formatUnit = function( value, unit, options ) {
 		throw new Error( "Missing unit" );
 	}
 
-	return unitFormat( value, unit, options, this.cldr, this );
+	pluralGenerator = this.pluralGenerator();
+
+	return unitFormat( value, unit, options, pluralGenerator, this.cldr, this );
 };
 
 return Globalize;
