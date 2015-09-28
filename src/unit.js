@@ -1,9 +1,11 @@
 define([
 	"./core",
+	"./common/validate/parameter-presence",
+	"./common/validate/parameter-type/number",
 	"./unit/format",
 
   "./plural"
-], function( Globalize, unitFormat ) {
+], function( Globalize, validateParameterPresence, validateParameterTypeNumber, unitFormat ) {
 
 /**
  * Globalize.formatUnit( value, unit, options )
@@ -17,16 +19,12 @@ define([
  *
  * Format units such as seconds, minutes, days, weeks, etc.
  */
+Globalize.formatUnit =
 Globalize.prototype.formatUnit = function( value, unit, options ) {
   var pluralGenerator;
 
-	if ( typeof value !== "number" ) {
-		throw new Error( "Value is not a number" );
-	}
-
-	if ( !unit ) {
-		throw new Error( "Missing unit" );
-	}
+  validateParameterTypeNumber( value );
+  validateParameterPresence( unit );
 
 	pluralGenerator = this.pluralGenerator();
 
