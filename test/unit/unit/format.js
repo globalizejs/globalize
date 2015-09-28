@@ -24,272 +24,87 @@ function oneOrOtherPluralGenerator( plural ) {
   }
 }
 
+QUnit.assert.unitFormat = function ( value, unit, options, expected ) {
+	this.equal(
+    formatUnit( value, unit, options, oneOrOtherPluralGenerator, cldr, globalize ),
+    expected
+	);
+};
+
 QUnit.test( "Default form (long)", function( assert ) {
-	assert.equal(
-    formatUnit( 1, "millisecond", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 millisecond"
-	);
-	assert.equal(
-    formatUnit( 2, "millisecond", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 milliseconds"
-	);
-	assert.equal(
-    formatUnit( 1, "second", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 second"
-	);
-	assert.equal(
-    formatUnit( 2, "second", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 seconds"
-	);
-	assert.equal(
-    formatUnit( 1, "minute", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 minute"
-	);
-	assert.equal(
-    formatUnit( 2, "minute", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 minutes"
-	);
-	assert.equal(
-    formatUnit( 1, "hour", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 hour"
-	);
-	assert.equal(
-    formatUnit( 2, "hour", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 hours"
-	);
-	assert.equal(
-    formatUnit( 1, "day", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 day"
-	);
-	assert.equal(
-    formatUnit( 2, "day", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 days"
-	);
-	assert.equal(
-    formatUnit( 1, "week", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 week"
-	);
-	assert.equal(
-    formatUnit( 2, "week", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 weeks"
-	);
-	assert.equal(
-    formatUnit( 1, "month", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 month"
-	);
-	assert.equal(
-    formatUnit( 2, "month", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 months"
-	);
-	assert.equal(
-    formatUnit( 1, "year", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 year"
-	);
-	assert.equal(
-    formatUnit( 2, "year", {}, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 years"
-	);
+	assert.unitFormat( 1, "millisecond", {}, "1 millisecond" );
+	assert.unitFormat( 2, "millisecond", {}, "2 milliseconds" );
+	assert.unitFormat( 1, "second", {}, "1 second" );
+	assert.unitFormat( 2, "second", {}, "2 seconds" );
+	assert.unitFormat( 1, "minute", {}, "1 minute" );
+	assert.unitFormat( 2, "minute", {}, "2 minutes" );
+	assert.unitFormat( 1, "hour", {}, "1 hour" );
+	assert.unitFormat( 2, "hour", {}, "2 hours" );
+	assert.unitFormat( 1, "day", {}, "1 day" );
+	assert.unitFormat( 2, "day", {}, "2 days" );
+	assert.unitFormat( 1, "week", {}, "1 week" );
+	assert.unitFormat( 2, "week", {}, "2 weeks" );
+	assert.unitFormat( 1, "month", {}, "1 month" );
+	assert.unitFormat( 2, "month", {}, "2 months" );
+	assert.unitFormat( 1, "year", {}, "1 year" );
+	assert.unitFormat( 2, "year", {}, "2 years" );
 });
 
 QUnit.test( "Long form", function( assert ) {
-	assert.equal(
-    formatUnit( 1, "millisecond", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 millisecond"
-	);
-	assert.equal(
-    formatUnit( 2, "millisecond", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 milliseconds"
-	);
-	assert.equal(
-    formatUnit( 1, "second", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 second"
-	);
-	assert.equal(
-    formatUnit( 2, "second", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 seconds"
-	);
-	assert.equal(
-    formatUnit( 1, "minute", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 minute"
-	);
-	assert.equal(
-    formatUnit( 2, "minute", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 minutes"
-	);
-	assert.equal(
-    formatUnit( 1, "hour", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 hour"
-	);
-	assert.equal(
-    formatUnit( 2, "hour", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 hours"
-	);
-	assert.equal(
-    formatUnit( 1, "day", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 day"
-	);
-	assert.equal(
-    formatUnit( 2, "day", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 days"
-	);
-	assert.equal(
-    formatUnit( 1, "week", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 week"
-	);
-	assert.equal(
-    formatUnit( 2, "week", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 weeks"
-	);
-	assert.equal(
-    formatUnit( 1, "month", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 month"
-	);
-	assert.equal(
-    formatUnit( 2, "month", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 months"
-	);
-	assert.equal(
-    formatUnit( 1, "year", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 year"
-	);
-	assert.equal(
-    formatUnit( 2, "year", { form: "long" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 years"
-	);
+	assert.unitFormat( 1, "millisecond", { form: "long" }, "1 millisecond" );
+	assert.unitFormat( 2, "millisecond", { form: "long" }, "2 milliseconds" );
+	assert.unitFormat( 1, "second", { form: "long" }, "1 second" );
+	assert.unitFormat( 2, "second", { form: "long" }, "2 seconds" );
+	assert.unitFormat( 1, "minute", { form: "long" }, "1 minute" );
+	assert.unitFormat( 2, "minute", { form: "long" }, "2 minutes" );
+	assert.unitFormat( 1, "hour", { form: "long" }, "1 hour" );
+	assert.unitFormat( 2, "hour", { form: "long" }, "2 hours" );
+	assert.unitFormat( 1, "day", { form: "long" }, "1 day" );
+	assert.unitFormat( 2, "day", { form: "long" }, "2 days" );
+	assert.unitFormat( 1, "week", { form: "long" }, "1 week" );
+	assert.unitFormat( 2, "week", { form: "long" }, "2 weeks" );
+	assert.unitFormat( 1, "month", { form: "long" }, "1 month" );
+	assert.unitFormat( 2, "month", { form: "long" }, "2 months" );
+	assert.unitFormat( 1, "year", { form: "long" }, "1 year" );
+	assert.unitFormat( 2, "year", { form: "long" }, "2 years" );
 });
 
 QUnit.test( "Short form", function( assert ) {
-	assert.equal(
-    formatUnit( 1, "millisecond", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 ms"
-	);
-	assert.equal(
-    formatUnit( 2, "millisecond", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 ms"
-	);
-	assert.equal(
-    formatUnit( 1, "second", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 sec"
-	);
-	assert.equal(
-    formatUnit( 2, "second", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 sec"
-	);
-	assert.equal(
-    formatUnit( 1, "minute", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 min"
-	);
-	assert.equal(
-    formatUnit( 2, "minute", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 min"
-	);
-	assert.equal(
-    formatUnit( 1, "hour", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 hr"
-	);
-	assert.equal(
-    formatUnit( 2, "hour", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 hr"
-	);
-	assert.equal(
-    formatUnit( 1, "day", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 day"
-	);
-	assert.equal(
-    formatUnit( 2, "day", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 days"
-	);
-	assert.equal(
-    formatUnit( 1, "week", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 wk"
-	);
-	assert.equal(
-    formatUnit( 2, "week", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 wks"
-	);
-	assert.equal(
-    formatUnit( 1, "month", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 mth"
-	);
-	assert.equal(
-    formatUnit( 2, "month", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 mths"
-	);
-	assert.equal(
-    formatUnit( 1, "year", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1 yr"
-	);
-	assert.equal(
-    formatUnit( 2, "year", { form: "short" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2 yrs"
-	);
+	assert.unitFormat( 1, "millisecond", { form: "short" }, "1 ms" );
+	assert.unitFormat( 2, "millisecond", { form: "short" }, "2 ms" );
+	assert.unitFormat( 1, "second", { form: "short" }, "1 sec" );
+	assert.unitFormat( 2, "second", { form: "short" }, "2 sec" );
+	assert.unitFormat( 1, "minute", { form: "short" }, "1 min" );
+	assert.unitFormat( 2, "minute", { form: "short" }, "2 min" );
+	assert.unitFormat( 1, "hour", { form: "short" }, "1 hr" );
+	assert.unitFormat( 2, "hour", { form: "short" }, "2 hr" );
+	assert.unitFormat( 1, "day", { form: "short" }, "1 day" );
+	assert.unitFormat( 2, "day", { form: "short" }, "2 days" );
+	assert.unitFormat( 1, "week", { form: "short" }, "1 wk" );
+	assert.unitFormat( 2, "week", { form: "short" }, "2 wks" );
+	assert.unitFormat( 1, "month", { form: "short" }, "1 mth" );
+	assert.unitFormat( 2, "month", { form: "short" }, "2 mths" );
+	assert.unitFormat( 1, "year", { form: "short" }, "1 yr" );
+	assert.unitFormat( 2, "year", { form: "short" }, "2 yrs" );
 });
 
 QUnit.test( "Narrow form", function( assert ) {
-	assert.equal(
-    formatUnit( 1, "millisecond", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1ms"
-	);
-	assert.equal(
-    formatUnit( 2, "millisecond", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2ms"
-	);
-	assert.equal(
-    formatUnit( 1, "second", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1s"
-	);
-	assert.equal(
-    formatUnit( 2, "second", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2s"
-	);
-	assert.equal(
-    formatUnit( 1, "minute", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1m"
-	);
-	assert.equal(
-    formatUnit( 2, "minute", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2m"
-	);
-	assert.equal(
-    formatUnit( 1, "hour", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1h"
-	);
-	assert.equal(
-    formatUnit( 2, "hour", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2h"
-	);
-	assert.equal(
-    formatUnit( 1, "day", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1d"
-	);
-	assert.equal(
-    formatUnit( 2, "day", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2d"
-	);
-	assert.equal(
-    formatUnit( 1, "week", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1w"
-	);
-	assert.equal(
-    formatUnit( 2, "week", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2w"
-	);
-	assert.equal(
-    formatUnit( 1, "month", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1m"
-	);
-	assert.equal(
-    formatUnit( 2, "month", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2m"
-	);
-	assert.equal(
-    formatUnit( 1, "year", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "1y"
-	);
-	assert.equal(
-    formatUnit( 2, "year", { form: "narrow" }, oneOrOtherPluralGenerator, cldr, globalize ),
-    "2y"
-	);
+	assert.unitFormat( 1, "millisecond", { form: "narrow" }, "1ms" );
+	assert.unitFormat( 2, "millisecond", { form: "narrow" }, "2ms" );
+	assert.unitFormat( 1, "second", { form: "narrow" }, "1s" );
+	assert.unitFormat( 2, "second", { form: "narrow" }, "2s" );
+	assert.unitFormat( 1, "minute", { form: "narrow" }, "1m" );
+	assert.unitFormat( 2, "minute", { form: "narrow" }, "2m" );
+	assert.unitFormat( 1, "hour", { form: "narrow" }, "1h" );
+	assert.unitFormat( 2, "hour", { form: "narrow" }, "2h" );
+	assert.unitFormat( 1, "day", { form: "narrow" }, "1d" );
+	assert.unitFormat( 2, "day", { form: "narrow" }, "2d" );
+	assert.unitFormat( 1, "week", { form: "narrow" }, "1w" );
+	assert.unitFormat( 2, "week", { form: "narrow" }, "2w" );
+	assert.unitFormat( 1, "month", { form: "narrow" }, "1m" );
+	assert.unitFormat( 2, "month", { form: "narrow" }, "2m" );
+	assert.unitFormat( 1, "year", { form: "narrow" }, "1y" );
+	assert.unitFormat( 2, "year", { form: "narrow" }, "2y" );
 });
 
 });
