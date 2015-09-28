@@ -107,4 +107,25 @@ QUnit.test( "Narrow form", function( assert ) {
 	assert.unitFormat( 2, "year", { form: "narrow" }, "2y" );
 });
 
+QUnit.test( "Compound form (long)", function ( assert ) {
+	assert.unitFormat( 1, "speed-mile-per-hour", {}, "1 mile per hour" );
+	assert.unitFormat( 100, "speed-mile-per-hour", {}, "100 miles per hour" );
+	assert.unitFormat( 1, "consumption-mile-per-gallon", {}, "1 mile per gallon" );
+	assert.unitFormat( 100, "consumption-mile-per-gallon", {}, "100 miles per gallon" );
+});
+
+QUnit.test( "Compound form (short)", function ( assert ) {
+	assert.unitFormat( 1, "speed-mile-per-hour", { form: "short" }, "1 mph" );
+	assert.unitFormat( 100, "speed-mile-per-hour", { form: "short" }, "100 mph" );
+	assert.unitFormat( 1, "consumption-mile-per-gallon", { form: "short" }, "1 mpg" );
+	assert.unitFormat( 100, "consumption-mile-per-gallon", { form: "short" }, "100 mpg" );
+});
+
+QUnit.test( "Compound form (narrow)", function ( assert ) {
+	assert.unitFormat( 1, "speed-mile-per-hour", { form: "narrow" }, "1mph" );
+	assert.unitFormat( 100, "speed-mile-per-hour", { form: "narrow" }, "100mph" );
+	assert.unitFormat( 1, "consumption-mile-per-gallon", { form: "narrow" }, "1mpg" );
+	assert.unitFormat( 100, "consumption-mile-per-gallon", { form: "narrow" }, "100mpg" );
+});
+
 });

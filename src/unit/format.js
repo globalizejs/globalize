@@ -4,7 +4,7 @@ define([
 ], function( unitGet, formatMessage ) {
 
 /**
- * format( value, unit, options, cldr, globalize )
+ * format( value, unit, options, cldr )
  *
  * @value [Number]
  *
@@ -13,7 +13,7 @@ define([
  * @options [Object]
  * - form: [String] "long", "short" (default), or "narrow".
  *
- * FIXME
+ * TODO pass along numberFormatter
  *
  * Format units such as seconds, minutes, days, weeks, etc.
  *
@@ -25,8 +25,8 @@ define([
  * Duration Unit (for composed time unit durations) is not implemented.
  * http://www.unicode.org/reports/tr35/tr35-35/tr35-general.html#durationUnit
  */
-return function( value, unit, options, pluralGenerator, cldr, globalize ) {
-	var dividend, divisor, form, message, ret;
+return function( value, unit, options, pluralGenerator, cldr ) {
+	var form, message, ret;
 	options = options || {};
 	form = options.form || "long";
 
@@ -34,23 +34,6 @@ return function( value, unit, options, pluralGenerator, cldr, globalize ) {
 
 	if ( !ret ) {
 		return;
-	}
-
-	// Compound Unit, eg. "foot-per-second" or "foot/second".
-	if ( ( /-per-|\// ).test( unit ) ) {
-
-		// "For the divisor, the 'one' plural category should be used, while for the
-		// dividend the appropriate plural form according the placeholder number
-		// should be used" UTS#35
-		//
-		// "There is a known problem with some languages in the long form in that
-		// the divisor should be inflected. This will probably require the future
-		// addition of a special 'divisor' form of units commonly used in the
-		// divisor." UTS#35
-		dividend = globalize.formatPlural( value, ret[ 0 ] );
-		divisor = globalize.formatPlural( 1, ret[ 1 ], "" ).trim();
-		return formatMessage( cldr.main( [ "units", form, "per/compoundUnitPattern" ] ),
-        [ dividend, divisor ] );
 	}
 
   message = ret[ pluralGenerator( value ) ];
