@@ -70,12 +70,14 @@ module.exports = function( grunt ) {
 			},
 			unitLocal: {
 				options: {
+					runType: "client",
 					config: "test/intern-local",
 					suites: [ "test/unit/all" ]
 				}
 			},
 			functionalLocal: {
 				options: {
+					runType: "client",
 					config: "test/intern-local",
 					suites: [ "test/functional/all" ]
 				}
@@ -598,20 +600,6 @@ module.exports = function( grunt ) {
 					packageManager: "npm"
 				}
 			}
-		},
-		"start-selenium-server": {
-			dev: {
-				options: {
-					downloadUrl: "https://selenium-release.storage.googleapis.com/2.45/" +
-						"selenium-server-standalone-2.45.0.jar",
-					downloadLocation: "node_modules/grunt-selenium-server/",
-					serverOptions: serverOptions,
-					systemProperties: {}
-				}
-			}
-		},
-		"stop-selenium-server": {
-			dev: {}
 		}
 	});
 
@@ -642,17 +630,28 @@ module.exports = function( grunt ) {
 		"commitplease"
 	]);
 
-	grunt.registerTask( "default", [
+	grunt.registerTask( "test:unit", [
 		"pre-unit",
-		"start-selenium-server",
 		"intern:unitLocal",
-		"pre-functional",
-		"intern:functionalLocal",
-		"stop-selenium-server",
 		"post-functional"
 	]);
 
-	grunt.registerTask( "test-ci", [
+	grunt.registerTask( "test:functional", [
+		"pre-unit",
+		"pre-functional",
+		"intern:unitFunctional",
+		"post-functional"
+	]);
+
+	grunt.registerTask( "default", [
+		"pre-unit",
+		"intern:unitLocal",
+		"pre-functional",
+		"intern:functionalLocal",
+		"post-functional"
+	]);
+
+	grunt.registerTask( "test:ci", [
 		"pre-unit",
 		"intern:unitCi",
 		"pre-functional",

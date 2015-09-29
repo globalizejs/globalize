@@ -78,7 +78,6 @@
     "cldr-data": ">=25"
   },
   "devDependencies": {
-    "chromedriver": "2.13.0",
     "grunt": "0.4.5",
     "grunt-check-dependencies": "0.6.0",
     "grunt-commitplease": "0.0.5",
@@ -93,7 +92,7 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-jscs": "1.8.0",
     "gzip-js": "0.3.2",
-    "intern": "git://github.com/apsdehal/intern.git#globalize",
+    "intern": "3.0.0",
     "matchdep": "0.3.0",
     "requirejs": "2.1.17"
   },
