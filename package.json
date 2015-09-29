@@ -98,6 +98,6 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "grunt test-ci"
+    "test": "grunt test:ci"
   }
 }
