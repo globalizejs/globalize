@@ -2,17 +2,21 @@ define([
 	"./core",
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/number",
+	"./common/validate/parameter-type/plain-object",
 	"./unit/format",
+	"./unit/formatter-fn",
+	"./unit/get",
 
   "./plural"
-], function( Globalize, validateParameterPresence, validateParameterTypeNumber, unitFormat ) {
+], function( Globalize, validateParameterPresence, validateParameterTypeNumber,
+  validateParameterTypePlainObject, unitFormat, unitFormatterFn, unitGet ) {
 
 /**
  * Globalize.formatUnit( value, unit, options )
  *
  * @value [Number]
  *
- * @unit [String]:
+ * @unit [String]: The unit (e.g "second", "day", "year")
  *
  * @options [Object]
  * - form: [String] "long", "short" (default), or "narrow".
@@ -21,16 +25,33 @@ define([
  */
 Globalize.formatUnit =
 Globalize.prototype.formatUnit = function( value, unit, options ) {
-  var pluralGenerator;
+  validateParameterTypeNumber( value, "value" );
 
-  validateParameterTypeNumber( value );
-  validateParameterPresence( unit );
+  return this.unitFormatter( unit, options )( value );
+};
 
-	pluralGenerator = this.pluralGenerator();
+/**
+ * Globalize.unitFormatter( unit, options )
+ *
+ * @unit [String]: The unit (e.g "second", "day", "year")
+ *
+ * @options [Object]
+ * - form: [String] "long", "short" (default), or "narrow".
+ */
+Globalize.unitFormatter =
+Globalize.prototype.unitFormatter = function( unit, options ) {
+  var unitProperties, form;
 
-	return unitFormat( value, unit, options, pluralGenerator, this.cldr, this );
+  validateParameterPresence( unit, "unit" );
+	validateParameterTypePlainObject( options, "options" );
+
+	form = options.form || "long";
+	unitProperties = unitGet( unit, form, this.cldr );
+
+  return unitFormatterFn( unitProperties, this.pluralGenerator() );
 };
 
 return Globalize;
 
 });
+

@@ -2,9 +2,10 @@ define([
 	"cldr",
 	"src/core",
 	"src/unit/format",
+	"src/unit/get",
 	"json!cldr-data/main/en/units.json",
 	"json!cldr-data/supplemental/likelySubtags.json"
-], function( Cldr, Globalize, formatUnit, enUnits, likelySubtags ) {
+], function( Cldr, Globalize, formatUnit, unitGet, enUnits, likelySubtags ) {
 
 var cldr, globalize;
 
@@ -25,8 +26,13 @@ function oneOrOtherPluralGenerator( plural ) {
 }
 
 QUnit.assert.unitFormat = function ( value, unit, options, expected ) {
+  var form, unitProperties;
+
+	form = options.form || "long";
+	unitProperties = unitGet( unit, form, cldr );
+
 	this.equal(
-    formatUnit( value, unit, options, oneOrOtherPluralGenerator, cldr, globalize ),
+    formatUnit( value, unitProperties, oneOrOtherPluralGenerator ),
     expected
 	);
 };

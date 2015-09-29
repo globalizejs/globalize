@@ -1,17 +1,15 @@
 define([
-	"./get",
 	"../common/format-message"
-], function( unitGet, formatMessage ) {
+], function( formatMessage ) {
 
 /**
- * format( value, unit, options, cldr )
+ * format( value, unit, pluralGenerator )
  *
  * @value [Number]
  *
- * @unit [String]:
+ * @unitProperies [Object]: localized unit data from cldr
  *
- * @options [Object]
- * - form: [String] "long", "short" (default), or "narrow".
+ * @pluralGenerator [Object]: A pluralGenerator from Globalize.pluralGenerator
  *
  * TODO pass along numberFormatter
  *
@@ -25,18 +23,10 @@ define([
  * Duration Unit (for composed time unit durations) is not implemented.
  * http://www.unicode.org/reports/tr35/tr35-35/tr35-general.html#durationUnit
  */
-return function( value, unit, options, pluralGenerator, cldr ) {
-	var form, message, ret;
-	options = options || {};
-	form = options.form || "long";
+return function( value, unitProperties, pluralGenerator ) {
+	var message;
 
-	ret = unitGet( unit, form, cldr );
-
-	if ( !ret ) {
-		return;
-	}
-
-  message = ret[ pluralGenerator( value ) ];
+  message = unitProperties[ pluralGenerator( value ) ];
 
 	return formatMessage( message, [ value ] );
 };
