@@ -50,8 +50,8 @@ A JSON object including one of the following.
 > **raw**
 >
 > String value indicating a machine
-> [raw pattern](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)
-> eg. `{ pattern: "dd/mm" }`. Note this is NOT recommended for i18n in general.
+> [raw pattern (anything in the "Sym." column)](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)
+> eg. `{ raw: "dd/mm" }`. Note this is NOT recommended for i18n in general.
 > Use `skeleton` instead.
 
 **value**
