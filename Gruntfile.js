@@ -2,12 +2,8 @@ module.exports = function( grunt ) {
 
 	"use strict";
 
-	var serverOptions = {},
-		binPath = require( "chromedriver" ).path,
-		rdefineEnd = /\}\);[^}\w]*$/,
+	var rdefineEnd = /\}\);[^}\w]*$/,
 		pkg = grunt.file.readJSON( "package.json" );
-
-	serverOptions[ "Dwebdriver.chrome.driver=" + binPath ] = "";
 
 	function camelCase( input ) {
 		return input.toLowerCase().replace( /[-/](.)/g, function( match, group1 ) {
@@ -614,6 +610,7 @@ module.exports = function( grunt ) {
 	]);
 
 	grunt.registerTask( "pre-functional", [
+
 		// TODO fix issues, enable
 		//"jscs:test",
 		"clean",
@@ -623,6 +620,7 @@ module.exports = function( grunt ) {
 	]);
 
 	grunt.registerTask( "post-functional", [
+
 		// TODO fix issues, enable
 		// "jscs:dist",
 		"uglify",
@@ -639,7 +637,7 @@ module.exports = function( grunt ) {
 	grunt.registerTask( "test:functional", [
 		"pre-unit",
 		"pre-functional",
-		"intern:unitFunctional",
+		"intern:functionalLocal",
 		"post-functional"
 	]);
 
