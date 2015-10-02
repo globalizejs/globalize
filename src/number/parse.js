@@ -62,6 +62,11 @@ return function( value, properties ) {
 			});
 		}
 
+		// Ad padding zero to leading decimal
+		if ( value.charAt( 0 ) === "." ) {
+			value = "0" + value;
+		}
+
 		// Is it a valid number?
 		value = value.match( numberNumberRe );
 		if ( !value ) {

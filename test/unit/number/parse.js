@@ -78,13 +78,18 @@ QUnit.test( "should parse zero-padded decimals", function( assert ) {
 	assert.equal( parse( "0.10", properties( "0.00", en ) ), 0.1 );
 });
 
+QUnit.test( "should parse non-padded decimals", function( assert ) {
+	assert.equal( parse( ".14159", properties( "0.0", en ) ), 0.14159 );
+	assert.equal( parse( ".752", properties( "0.0", en ) ), 0.752 );
+});
+
 QUnit.test( "should parse negative decimal", function( assert ) {
 	assert.equal( parse( "-3.14", properties( "0.##", en ) ), -3.14 );
 	assert.equal( parse( "(3.14)", properties( "0.##;(0.##)", en ) ), -3.14 );
 });
 
 QUnit.test( "should not parse too permissive", function( assert ) {
-	assert.deepEqual( parse( "3.14", properties( "0.##", ru ) ), NaN ); 
+	assert.deepEqual( parse( "3.14", properties( "0.##", ru ) ), NaN );
 });
 
 /**
