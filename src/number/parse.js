@@ -62,7 +62,7 @@ return function( value, properties ) {
 			});
 		}
 
-		// Ad padding zero to leading decimal
+		// Add padding zero to leading decimal
 		if ( value.charAt( 0 ) === "." ) {
 			value = "0" + value;
 		}
