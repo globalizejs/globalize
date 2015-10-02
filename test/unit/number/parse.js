@@ -5,6 +5,7 @@ define([
 	"json!cldr-data/main/ar/numbers.json",
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/es/numbers.json",
+	"json!cldr-data/main/pt/numbers.json",
 	"json!cldr-data/main/ru/numbers.json",
 	"json!cldr-data/main/sv/numbers.json",
 	"json!cldr-data/main/zh/numbers.json",
@@ -13,15 +14,16 @@ define([
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, parse, properties, arNumbers, enNumbers, esNumbers, ruNumbers, svNumbers,
-	zhNumbers, likelySubtags, numberingSystems ) {
+], function( Cldr, parse, properties, arNumbers, enNumbers, esNumbers, ptNumbers, ruNumbers,
+	svNumbers, zhNumbers, likelySubtags, numberingSystems ) {
 
-var ar, en, es, ru, sv, zh;
+var ar, en, es, pt, ru, sv, zh;
 
 Cldr.load(
 	arNumbers,
 	enNumbers,
 	esNumbers,
+	ptNumbers,
 	ruNumbers,
 	svNumbers,
 	zhNumbers,
@@ -32,6 +34,7 @@ Cldr.load(
 ar = new Cldr( "ar" );
 en = new Cldr( "en" );
 es = new Cldr( "es" );
+pt = new Cldr( "pt" );
 ru = new Cldr( "sv" );
 sv = new Cldr( "sv" );
 zh = new Cldr( "zh-u-nu-native" );
@@ -81,6 +84,8 @@ QUnit.test( "should parse zero-padded decimals", function( assert ) {
 QUnit.test( "should parse non-padded decimals", function( assert ) {
 	assert.equal( parse( ".14159", properties( "0.0", en ) ), 0.14159 );
 	assert.equal( parse( ".752", properties( "0.0", en ) ), 0.752 );
+	assert.equal( parse( "٫١٤١٥٩", properties( "0.0", ar ) ), 0.14159 );
+	assert.equal( parse( ",752", properties( "0.0", pt ) ), 0.752 );
 });
 
 QUnit.test( "should parse negative decimal", function( assert ) {
