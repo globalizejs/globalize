@@ -92,7 +92,7 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-jscs": "1.8.0",
     "gzip-js": "0.3.2",
-    "intern": "3.0.0",
+    "intern": "3.0.6",
     "matchdep": "0.3.0",
     "requirejs": "2.1.17"
   },
