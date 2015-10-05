@@ -122,6 +122,31 @@ formatter( 0.00012345 );
 // > "0.000123"
 ```
 
+Format percentages:
+
+```javascript
+var enFormatter = Globalize( "en" ).numberFormatter({
+  style: "percent",
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1
+});
+
+var frFormatter = Globalize( "fr" ).numberFormatter({
+  style: "percent",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+});
+
+enFormatter( 0.0016 );
+// > "0.2%"
+
+enFormatter( 0.0014 );
+// > "0.1%"
+
+frFormatter( 0.0005 );
+// > "0,05 %"
+```
+
 Using different rounding functions example:
 
 ```javascript
