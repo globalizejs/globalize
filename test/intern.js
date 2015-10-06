@@ -23,7 +23,8 @@ define({
       globalize: "dist/globalize",
       json: "external/requirejs-plugins/src/json",
       src: "src",
-      text: "external/requirejs-text/text"
+      text: "external/requirejs-text/text",
+      "intern/main": "node_modules/intern/main"
     }
   },
   suites: [
