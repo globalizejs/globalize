@@ -16,6 +16,7 @@ define({
     "host-browser": "external/requirejs/require.js"
   },
   loaderOptions: {
+    waitSeconds: 8,
     paths: {
       qunit: "external/qunit/qunit/qunit",
       cldr: "external/cldrjs/dist/cldr",
@@ -31,6 +32,7 @@ define({
     "test/unit/all",
     "test/functional/all"
   ],
+  proxyOnly: true,
   unitTestsWaitForReporter: false,
   excludeInstrumentation: /^(?:node_modules|test)\//
 });
