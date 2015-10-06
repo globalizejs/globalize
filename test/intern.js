@@ -32,7 +32,6 @@ define({
     "test/unit/all",
     "test/functional/all"
   ],
-  proxyOnly: true,
   unitTestsWaitForReporter: false,
   excludeInstrumentation: /^(?:node_modules|test)\//
 });
