@@ -39,16 +39,6 @@ module.exports = function( grunt ) {
 				port: 9001,
 				hostname: "localhost"
 			},
-			test: {
-				options: {
-					middleware: function( connect ) {
-						return [
-							mountFolder( connect, "." ),
-							mountFolder( connect, "test" )
-						];
-					}
-				}
-			},
 			keepalive: {
 				options: {
 					keepalive: true,
@@ -647,6 +637,12 @@ module.exports = function( grunt ) {
 		"pre-functional",
 		"intern:functionalLocal",
 		"post-functional"
+	]);
+
+	grunt.registerTask( "test:local", [
+		"pre-unit",
+		"pre-functional",
+		"connect:keepalive"
 	]);
 
 	// Since test:ci will always run after nodejs tests (grunt test)
