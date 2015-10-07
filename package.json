@@ -94,7 +94,7 @@
     "gzip-js": "0.3.2",
     "intern": "3.0.6",
     "matchdep": "0.3.0",
-    "requirejs": "2.1.17"
+    "requirejs": "2.1.20"
   },
   "license": "MIT",
   "scripts": {
