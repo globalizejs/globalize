@@ -649,12 +649,11 @@ module.exports = function( grunt ) {
 		"post-functional"
 	]);
 
+	// Since test:ci will always run after nodejs tests (grunt test)
+	// We don't need to do all the build steps again
 	grunt.registerTask( "test:ci", [
-		"pre-unit",
 		"intern:unitCi",
-		"pre-functional",
 		"intern:functionalCi",
-		"post-functional"
 	]);
 
 	grunt.registerTask( "test", [
