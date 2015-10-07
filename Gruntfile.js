@@ -653,7 +653,7 @@ module.exports = function( grunt ) {
 	// We don't need to do all the build steps again
 	grunt.registerTask( "test:ci", [
 		"intern:unitCi",
-		"intern:functionalCi",
+		"intern:functionalCi"
 	]);
 
 	grunt.registerTask( "test", [
