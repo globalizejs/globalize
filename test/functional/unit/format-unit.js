@@ -2,17 +2,18 @@ define( [
 	"globalize",
 	"json!cldr-data/main/en/units.json",
 	"json!cldr-data/main/de/units.json",
+	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
 	"../../util",
 
 	"globalize/unit"
-], function( Globalize, enUnitFields, deUnitFields, plurals, util ) {
+], function( Globalize, enUnitFields, deUnitFields, likelySubtags, plurals, util ) {
 
 var de, en;
 
 QUnit.module( ".formatUnit( value, unit, options ) - no CLDR", {
 	setup: function( ) {
-		Globalize.load( plurals );
+		Globalize.load( enUnitFields, likelySubtags );
 		Globalize.locale( "en" );
 	},
 	teardown: util.resetCldrContent
@@ -26,7 +27,7 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 
 QUnit.module( ".formatUnit( value, unit, options )", {
 	setup: function( ) {
-		Globalize.load( enUnitFields, deUnitFields, plurals );
+		Globalize.load( enUnitFields, deUnitFields, likelySubtags, plurals );
 		de = new Globalize( "de" );
 		en = new Globalize( "en" );
 	},
@@ -69,7 +70,9 @@ QUnit.test( "should validate options argument presence", function( assert ) {
 
 QUnit.test( "should validate options argument is object", function( assert ) {
 	util.assertPlainObjectParameter( assert, "options", function( invalidValue ) {
-		Globalize.formatUnit( 1, "day", invalidValue );
+		return function() {
+			Globalize.formatUnit( 1, "day", invalidValue );
+		};
 	});
 });
 
@@ -82,13 +85,13 @@ QUnit.test( "should format long form units", function( assert ) {
 });
 
 QUnit.test( "should format short form units", function( assert ) {
-	assert.equal( en.formatUnit( 1, "day", { form: "short" } ), "1 d" );
-	assert.equal( en.formatUnit( 100, "day", { form: "short" } ), "100 d" );
+	assert.equal( en.formatUnit( 1, "second", { form: "short" } ), "1 sec" );
+	assert.equal( en.formatUnit( 100, "second", { form: "short" } ), "100 sec" );
 });
 
 QUnit.test( "should format narrow form units", function( assert ) {
-	assert.equal( en.formatUnit( 1, "day", { form: "narrow" } ), "1d" );
-	assert.equal( en.formatUnit( 100, "day", { form: "narrow" } ), "100d" );
+	assert.equal( en.formatUnit( 1, "second", { form: "narrow" } ), "1s" );
+	assert.equal( en.formatUnit( 100, "second", { form: "narrow" } ), "100s" );
 });
 
 QUnit.test( "should format precomputed compound units", function( assert ) {
@@ -96,7 +99,7 @@ QUnit.test( "should format precomputed compound units", function( assert ) {
 });
 
 QUnit.test( "should format computed compound units", function( assert ) {
-	assert.equal( en.formatUnit( 5, "mile-per-second", { form: "narrow" } ), "5m/s" );
+	assert.equal( en.formatUnit( 5, "mile-per-second", { form: "narrow" } ), "5mi/s" );
 });
 
 QUnit.test( "should format precomputed compound units with '/'", function( assert ) {
@@ -104,7 +107,7 @@ QUnit.test( "should format precomputed compound units with '/'", function( asser
 });
 
 QUnit.test( "should format computed compound units with '/'", function( assert ) {
-	assert.equal( en.formatUnit( 5, "mile/second", { form: "narrow" } ), "5m/s" );
+	assert.equal( en.formatUnit( 5, "mile/second", { form: "narrow" } ), "5mi/s" );
 });
 
 });

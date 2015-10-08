@@ -489,6 +489,21 @@ module.exports = function( grunt ) {
 									endFile: "src/build/outro.js"
 								}
 							}
+						},
+						{
+							name: "globalize.unit-runtime",
+							include: [ "unit-runtime" ],
+							exclude: [
+								"./core-runtime",
+								"./plural-runtime"
+							],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-unit-runtime.js",
+									endFile: "src/build/outro.js"
+								}
+							}
 						}
 					]
 				}

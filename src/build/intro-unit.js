@@ -36,6 +36,7 @@
 }(this, function( Cldr, Globalize ) {
 
 var formatMessage = Globalize._formatMessage,
+	runtimeBind = Globalize._runtimeBind,
 	validateParameterPresence = Globalize._validateParameterPresence,
 	validateParameterType = Globalize._validateParameterType,
 	validateParameterTypePlainObject = Globalize._validateParameterTypePlainObject,

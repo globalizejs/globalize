@@ -1,5 +1,6 @@
 define([
 	"./core",
+	"./common/runtime-bind",
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/plain-object",
@@ -8,7 +9,7 @@ define([
 	"./unit/properties",
 
 	"./plural"
-], function( Globalize, validateParameterPresence, validateParameterTypeNumber,
+], function( Globalize, runtimeBind, validateParameterPresence, validateParameterTypeNumber,
 	validateParameterTypePlainObject, validateParameterTypeString, unitFormatterFn,
 	unitProperties ) {
 
@@ -42,7 +43,7 @@ Globalize.prototype.formatUnit = function( value, unit, options ) {
  */
 Globalize.unitFormatter =
 Globalize.prototype.unitFormatter = function( unit, options ) {
-	var form, unitProps;
+	var args, form, pluralGenerator, returnFn, properties;
 
 	validateParameterPresence( unit, "unit" );
 	validateParameterTypeString( unit, "unit" );
@@ -50,11 +51,16 @@ Globalize.prototype.unitFormatter = function( unit, options ) {
 	validateParameterPresence( options, "options" );
 	validateParameterTypePlainObject( options, "options" );
 
+	args = [ unit, options ];
 	form = options.form || "long";
+	properties = unitProperties( unit, form, this.cldr );
 
-	unitProps = unitProperties( unit, form, this.cldr );
+	pluralGenerator = this.pluralGenerator();
+	returnFn = unitFormatterFn( properties, pluralGenerator );
 
-	return unitFormatterFn( unitProps, this.pluralGenerator() );
+	runtimeBind( args, this.cldr, returnFn, [ pluralGenerator, properties ] );
+
+	return returnFn;
 };
 
 return Globalize;
