@@ -45,7 +45,9 @@ A JSON object including none or any of the following options.
 > Boolean (default is true) value indicating whether a grouping separator should
 > be used.
 
-### Example
+### Examples
+
+#### Static Formatter
 
 Prior to using any number methods, you must load
 `cldr/main/{locale}/numbers.json` and `cldr/supplemental/numberingSystems.json`.
@@ -66,6 +68,8 @@ formatter( 3.141592 );
 // > "3.142"
 ```
 
+#### Instance Formatter
+
 You can use the instance method `.numberFormatter()`, which uses the instance
 locale.
 
@@ -84,7 +88,9 @@ zhFormatter( 3.141592 );
 // > "三.一四二"
 ```
 
-Controlling digits by specifying integer and fraction digits counts:
+#### Configuring decimal places
+
+The number of decimal places can be decreased or increased using `minimumFractionDigits` and `maximumFractionDigits`.
 
 ```javascript
 Globalize.numberFormatter({ maximumFractionDigits: 2 })( 3.141592 );
@@ -94,7 +100,9 @@ Globalize.numberFormatter({ minimumFractionDigits: 2 })( 1.5 );
 // > "1.50"
 ```
 
-Controlling digits by specifying significant digits counts:
+#### Configuring significant digits
+
+The number of significant (non-zero) digits can be decreased or increased using `minimumSignificantDigits` and `maximumSignificantDigits`.
 
 ```javascript
 var formatter = Globalize.numberFormatter({
@@ -122,7 +130,9 @@ formatter( 0.00012345 );
 // > "0.000123"
 ```
 
-Format percentages:
+#### Formatting Percentages
+
+Numbers can be formatted as percentages.
 
 ```javascript
 var enFormatter = Globalize( "en" ).numberFormatter({
@@ -147,7 +157,9 @@ frFormatter( 0.0005 );
 // > "0,05 %"
 ```
 
-Using different rounding functions example:
+#### Configuring Rounding
+
+Numbers with a decreased amount of decimal places can be rounded up, rounded down, rounded arithmetically, or truncated by setting the `round` option to `ceil`, `floor`, `round` (default), or `truncate`.
 
 ```javascript
 var formatter = Globalize.numberFormatter({
@@ -159,8 +171,9 @@ formatter( 3.141592 );
 // > "3.15"
 ```
 
-For improved performance on iterations, first create the formatter. Then, reuse
-it on each loop.
+#### Performance Suggestions
+
+For improved performance on iterations, the formatter should be created before the loop.  Then, it can be reused in each iteration.
 
 ```javascript
 var numbers = [ 1, 1, 2, 3, ... ];
