@@ -76,4 +76,12 @@ QUnit.test( "should compute compound-unit", function( assert ) {
 	}]);
 });
 
+QUnit.test( "should get precomputed compount-unit with '/'", function ( assert ) {
+	assert.deepEqual( unitGet( "meter/second", "short", cldr ), {
+		"displayName": "meters/sec",
+		"one": "{0} m/s",
+		"other": "{0} m/s"
+	});
+});
+
 });

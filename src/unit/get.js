@@ -42,6 +42,9 @@ function stripPluralGarbage( data ) {
 var get = function( unit, form, cldr ) {
 	var ret;
 
+	// Ensure that we get the 'precomputed' form, if present.
+	unit = unit.replace( /\//, "-per-" );
+
 	// Get unit or <type>-unit (eg. "duration-second").
 	[ "" ].concat( unitCategories ).some(function( category ) {
 		return ret = cldr.main([
@@ -55,14 +58,14 @@ var get = function( unit, form, cldr ) {
 	ret = stripPluralGarbage( ret );
 
 	// Compound Unit, eg. "foot-per-second" or "foot/second".
-	if ( !ret && ( /-per-|\// ).test( unit ) ) {
+	if ( !ret && ( /-per-/ ).test( unit ) ) {
 
 		// "Some units already have 'precomputed' forms, such as kilometer-per-hour;
 		// where such units exist, they should be used in preference" UTS#35.
 		// Note that precomputed form has already been handled above (!ret).
 
 		// Get both recursively.
-		unit = unit.split( /-per-|\// );
+		unit = unit.split( "-per-" );
 		ret = unit.map(function( unit ) {
 			return get( unit, form, cldr );
 		});
