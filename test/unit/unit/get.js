@@ -27,6 +27,11 @@ QUnit.test( "should get type-unit", function( assert ) {
 		"other": "{0} seconds",
 		"perUnitPattern": "{0} per second"
 	});
+	assert.deepEqual( unitGet( "digital-megabyte", "long", cldr ), {
+		"displayName": "megabytes",
+		"one": "{0} megabyte",
+		"other": "{0} megabytes"
+	});
 });
 
 QUnit.test( "should get unit (when no type is provided)", function( assert ) {
@@ -42,6 +47,11 @@ QUnit.test( "should get unit (when no type is provided)", function( assert ) {
 		"other": "{0} seconds",
 		"perUnitPattern": "{0} per second"
 	});
+	assert.deepEqual( unitGet( "megabyte", "long", cldr ), {
+		"displayName": "megabytes",
+		"one": "{0} megabyte",
+		"other": "{0} megabytes"
+	});
 });
 
 QUnit.test( "should get precomputed compound-unit", function( assert ) {
@@ -53,7 +63,7 @@ QUnit.test( "should get precomputed compound-unit", function( assert ) {
 });
 
 QUnit.test( "should compute compound-unit", function( assert ) {
-	assert.deepEqual( unitGet( "length-foot-per-second", "short", cldr ), [{
+	assert.deepEqual( unitGet( "foot-per-second", "short", cldr ), [{
 		"displayName": "feet",
 		"one": "{0} ft",
 		"other": "{0} ft",

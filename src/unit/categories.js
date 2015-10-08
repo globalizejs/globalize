@@ -5,7 +5,7 @@ define(function() {
  *
  * Return all unit categories.
  */
-return [ "acceleration", "angle", "area", "duration", "length", "mass", "power", "pressure",
-"speed", "temperature", "volume" ];
+return [ "acceleration", "angle", "area", "digital", "duration", "length", "mass", "power",
+"pressure", "speed", "temperature", "volume" ];
 
 });

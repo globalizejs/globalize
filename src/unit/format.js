@@ -7,9 +7,12 @@ define([
  *
  * @value [Number]
  *
- * @unitProperies [Object]: localized unit data from cldr
+ * @unitProperies [Object]: localized unit data from cldr.
  *
- * @pluralGenerator [Object]: A pluralGenerator from Globalize.pluralGenerator
+ * @pluralGenerator [Object]: A pluralGenerator from Globalize.pluralGenerator.
+ *
+ * @compoundUnitPattern [String]: localized compount unit pattern for computed compound
+ * units.
  *
  * TODO pass along numberFormatter
  *
@@ -23,10 +26,23 @@ define([
  * Duration Unit (for composed time unit durations) is not implemented.
  * http://www.unicode.org/reports/tr35/tr35-35/tr35-general.html#durationUnit
  */
-return function( value, unitProperties, pluralGenerator ) {
-	var message;
+return function( value, unitProperties, pluralGenerator, compoundUnitPattern ) {
+	var dividend, dividendProperties, divisor, divisorProperties, message, pluralValue;
 
-	message = unitProperties[ pluralGenerator( value ) ];
+	pluralValue = pluralGenerator( value );
+
+	// computed compound unit, eg. "megabyte-per-second".
+	if ( unitProperties instanceof Array ) {
+		dividendProperties = unitProperties[ 0 ];
+		divisorProperties = unitProperties[ 1 ];
+
+		dividend = formatMessage( dividendProperties[ pluralValue ], [ value ] );
+		divisor = formatMessage( divisorProperties.one, [ "" ] ).trim();
+
+		return formatMessage( compoundUnitPattern, [ dividend, divisor ] );
+	}
+
+	message = unitProperties[ pluralValue ];
 
 	return formatMessage( message, [ value ] );
 };

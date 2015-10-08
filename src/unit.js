@@ -39,15 +39,16 @@ Globalize.prototype.formatUnit = function( value, unit, options ) {
  */
 Globalize.unitFormatter =
 Globalize.prototype.unitFormatter = function( unit, options ) {
-	var unitProperties, form;
+	var compoundUnitPattern, form, unitProperties;
 
 	validateParameterPresence( unit, "unit" );
 	validateParameterTypePlainObject( options, "options" );
 
 	form = options.form || "long";
+	compoundUnitPattern = unitGet( "per", form, this.cldr ).compoundUnitPattern;
 	unitProperties = unitGet( unit, form, this.cldr );
 
-	return unitFormatterFn( unitProperties, this.pluralGenerator() );
+	return unitFormatterFn( unitProperties, this.pluralGenerator(), compoundUnitPattern );
 };
 
 return Globalize;

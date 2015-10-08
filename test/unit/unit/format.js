@@ -26,14 +26,15 @@ function oneOrOtherPluralGenerator( plural ) {
 }
 
 QUnit.assert.unitFormat = function ( value, unit, options, expected ) {
-  var form, unitProperties;
+	var compoundUnitPattern, form, unitProperties;
 
 	form = options.form || "long";
 	unitProperties = unitGet( unit, form, cldr );
+	compoundUnitPattern = unitGet( "per", form, cldr ).compoundUnitPattern;
 
 	this.equal(
-    formatUnit( value, unitProperties, oneOrOtherPluralGenerator ),
-    expected
+		formatUnit( value, unitProperties, oneOrOtherPluralGenerator, compoundUnitPattern ),
+		expected
 	);
 };
 
@@ -118,6 +119,18 @@ QUnit.test( "Compound form (long)", function ( assert ) {
 	assert.unitFormat( 100, "speed-mile-per-hour", {}, "100 miles per hour" );
 	assert.unitFormat( 1, "consumption-mile-per-gallon", {}, "1 mile per gallon" );
 	assert.unitFormat( 100, "consumption-mile-per-gallon", {}, "100 miles per gallon" );
+});
+
+QUnit.test( "Compound form (without category)", function ( assert ) {
+	assert.unitFormat( 1, "mile-per-hour", {}, "1 mile per hour" );
+	assert.unitFormat( 100, "mile-per-hour", {}, "100 miles per hour" );
+});
+
+QUnit.test( "Compund form (wihout precomputed)", function ( assert ) {
+	assert.unitFormat( 1, "length-foot-per-second", {}, "1 foot per second" );
+	assert.unitFormat( 100, "length-foot-per-second", {}, "100 feet per second" );
+	assert.unitFormat( 1, "megabyte-per-second", { form: "narrow" }, "1MB/s" );
+	assert.unitFormat( 100, "megabyte-per-second", { form: "narrow" }, "100MB/s" );
 });
 
 QUnit.test( "Compound form (short)", function ( assert ) {

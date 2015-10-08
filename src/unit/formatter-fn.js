@@ -4,12 +4,12 @@ define([
 	"./format"
 ], function( validateParameterPresence, validateParameterTypeNumber, unitFormat ) {
 
-return function( unitProperties, pluralGenerator ) {
+return function( unitProperties, pluralGenerator, compoundUnitPattern ) {
 	return function unitFormatter( value ) {
 		validateParameterPresence( value, "value" );
 		validateParameterTypeNumber( value, "value" );
 
-		return unitFormat( value, unitProperties, pluralGenerator );
+		return unitFormat( value, unitProperties, pluralGenerator, compoundUnitPattern );
 	};
 
 };
