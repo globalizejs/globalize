@@ -3,13 +3,12 @@ define([
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/plain-object",
-	"./unit/format",
 	"./unit/formatter-fn",
 	"./unit/get",
 
-  "./plural"
+	"./plural"
 ], function( Globalize, validateParameterPresence, validateParameterTypeNumber,
-  validateParameterTypePlainObject, unitFormat, unitFormatterFn, unitGet ) {
+	validateParameterTypePlainObject, unitFormatterFn, unitGet ) {
 
 /**
  * Globalize.formatUnit( value, unit, options )
@@ -25,9 +24,9 @@ define([
  */
 Globalize.formatUnit =
 Globalize.prototype.formatUnit = function( value, unit, options ) {
-  validateParameterTypeNumber( value, "value" );
+	validateParameterTypeNumber( value, "value" );
 
-  return this.unitFormatter( unit, options )( value );
+	return this.unitFormatter( unit, options )( value );
 };
 
 /**
@@ -40,18 +39,17 @@ Globalize.prototype.formatUnit = function( value, unit, options ) {
  */
 Globalize.unitFormatter =
 Globalize.prototype.unitFormatter = function( unit, options ) {
-  var unitProperties, form;
+	var unitProperties, form;
 
-  validateParameterPresence( unit, "unit" );
+	validateParameterPresence( unit, "unit" );
 	validateParameterTypePlainObject( options, "options" );
 
 	form = options.form || "long";
 	unitProperties = unitGet( unit, form, this.cldr );
 
-  return unitFormatterFn( unitProperties, this.pluralGenerator() );
+	return unitFormatterFn( unitProperties, this.pluralGenerator() );
 };
 
 return Globalize;
 
 });
-

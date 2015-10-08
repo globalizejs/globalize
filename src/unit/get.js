@@ -21,7 +21,10 @@ function stripPluralGarbage( data ) {
  * @unit [String] The full type-unit name (eg. duration-second), or the short unit name
  * (eg. second).
  *
- * FIXME
+ * @form [String] A string describing the form of the unit representation (eg. long,
+ * short, narrow).
+ *
+ * @cldr [Cldr instance].
  *
  * Return the plural map of a unit, eg: "second"
  * { "one": "{0} second",

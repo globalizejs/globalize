@@ -26,7 +26,7 @@ define([
 return function( value, unitProperties, pluralGenerator ) {
 	var message;
 
-  message = unitProperties[ pluralGenerator( value ) ];
+	message = unitProperties[ pluralGenerator( value ) ];
 
 	return formatMessage( message, [ value ] );
 };
