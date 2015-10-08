@@ -578,7 +578,8 @@ module.exports = function( grunt ) {
 					"tmp/globalize-runtime/plural.min.js": [ "dist/globalize-runtime/plural.js" ],
 					"tmp/globalize-runtime/relative-time.min.js": [
 						"dist/globalize-runtime/relative-time.js"
-					]
+					],
+					"tmp/globalize-runtime/unit.min.js": [ "dist/globalize-runtime/unit.js" ]
 				}
 			}
 		},
