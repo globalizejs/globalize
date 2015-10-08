@@ -55,6 +55,8 @@ QUnit.test( "Default form (long)", function( assert ) {
 	assert.unitFormat( 2, "month", {}, "2 months" );
 	assert.unitFormat( 1, "year", {}, "1 year" );
 	assert.unitFormat( 2, "year", {}, "2 years" );
+	assert.unitFormat( 1, "duration-year", {}, "1 year" );
+	assert.unitFormat( 2, "duration-year", {}, "2 years" );
 });
 
 QUnit.test( "Long form", function( assert ) {
