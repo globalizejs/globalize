@@ -4,11 +4,11 @@ define([
 	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/plain-object",
 	"./unit/formatter-fn",
-	"./unit/get",
+	"./unit/properties",
 
 	"./plural"
 ], function( Globalize, validateParameterPresence, validateParameterTypeNumber,
-	validateParameterTypePlainObject, unitFormatterFn, unitGet ) {
+	validateParameterTypePlainObject, unitFormatterFn, unitProperties ) {
 
 /**
  * Globalize.formatUnit( value, unit, options )
@@ -39,16 +39,16 @@ Globalize.prototype.formatUnit = function( value, unit, options ) {
  */
 Globalize.unitFormatter =
 Globalize.prototype.unitFormatter = function( unit, options ) {
-	var compoundUnitPattern, form, unitProperties;
+	var form, unitProps;
 
 	validateParameterPresence( unit, "unit" );
 	validateParameterTypePlainObject( options, "options" );
 
 	form = options.form || "long";
-	compoundUnitPattern = unitGet( "per", form, this.cldr ).compoundUnitPattern;
-	unitProperties = unitGet( unit, form, this.cldr );
 
-	return unitFormatterFn( unitProperties, this.pluralGenerator(), compoundUnitPattern );
+	unitProps = unitProperties( unit, form, this.cldr );
+
+	return unitFormatterFn( unitProps, this.pluralGenerator() );
 };
 
 return Globalize;

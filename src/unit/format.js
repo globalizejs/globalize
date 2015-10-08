@@ -11,9 +11,6 @@ define([
  *
  * @pluralGenerator [Object]: A pluralGenerator from Globalize.pluralGenerator.
  *
- * @compoundUnitPattern [String]: localized compount unit pattern for computed compound
- * units.
- *
  * TODO pass along numberFormatter
  *
  * Format units such as seconds, minutes, days, weeks, etc.
@@ -26,9 +23,11 @@ define([
  * Duration Unit (for composed time unit durations) is not implemented.
  * http://www.unicode.org/reports/tr35/tr35-35/tr35-general.html#durationUnit
  */
-return function( value, unitProperties, pluralGenerator, compoundUnitPattern ) {
-	var dividend, dividendProperties, divisor, divisorProperties, message, pluralValue;
+return function( value, unitProperties, pluralGenerator ) {
+	var compoundUnitPattern = unitProperties.compoundUnitPattern,
+			dividend, dividendProperties, divisor, divisorProperties, message, pluralValue;
 
+	unitProperties = unitProperties.unitProperties;
 	pluralValue = pluralGenerator( value );
 
 	// computed compound unit, eg. "megabyte-per-second".

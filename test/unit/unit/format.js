@@ -2,10 +2,10 @@ define([
 	"cldr",
 	"src/core",
 	"src/unit/format",
-	"src/unit/get",
+	"src/unit/properties",
 	"json!cldr-data/main/en/units.json",
 	"json!cldr-data/supplemental/likelySubtags.json"
-], function( Cldr, Globalize, formatUnit, unitGet, enUnits, likelySubtags ) {
+], function( Cldr, Globalize, formatUnit, unitProperties, enUnits, likelySubtags ) {
 
 var cldr, globalize;
 
@@ -26,38 +26,13 @@ function oneOrOtherPluralGenerator( plural ) {
 }
 
 QUnit.assert.unitFormat = function ( value, unit, options, expected ) {
-	var compoundUnitPattern, form, unitProperties;
-
-	form = options.form || "long";
-	unitProperties = unitGet( unit, form, cldr );
-	compoundUnitPattern = unitGet( "per", form, cldr ).compoundUnitPattern;
+	var unitProps = unitProperties( unit, options.form, cldr );
 
 	this.equal(
-		formatUnit( value, unitProperties, oneOrOtherPluralGenerator, compoundUnitPattern ),
+		formatUnit( value, unitProps, oneOrOtherPluralGenerator ),
 		expected
 	);
 };
-
-QUnit.test( "Default form (long)", function( assert ) {
-	assert.unitFormat( 1, "millisecond", {}, "1 millisecond" );
-	assert.unitFormat( 2, "millisecond", {}, "2 milliseconds" );
-	assert.unitFormat( 1, "second", {}, "1 second" );
-	assert.unitFormat( 2, "second", {}, "2 seconds" );
-	assert.unitFormat( 1, "minute", {}, "1 minute" );
-	assert.unitFormat( 2, "minute", {}, "2 minutes" );
-	assert.unitFormat( 1, "hour", {}, "1 hour" );
-	assert.unitFormat( 2, "hour", {}, "2 hours" );
-	assert.unitFormat( 1, "day", {}, "1 day" );
-	assert.unitFormat( 2, "day", {}, "2 days" );
-	assert.unitFormat( 1, "week", {}, "1 week" );
-	assert.unitFormat( 2, "week", {}, "2 weeks" );
-	assert.unitFormat( 1, "month", {}, "1 month" );
-	assert.unitFormat( 2, "month", {}, "2 months" );
-	assert.unitFormat( 1, "year", {}, "1 year" );
-	assert.unitFormat( 2, "year", {}, "2 years" );
-	assert.unitFormat( 1, "duration-year", {}, "1 year" );
-	assert.unitFormat( 2, "duration-year", {}, "2 years" );
-});
 
 QUnit.test( "Long form", function( assert ) {
 	assert.unitFormat( 1, "millisecond", { form: "long" }, "1 millisecond" );
@@ -117,20 +92,20 @@ QUnit.test( "Narrow form", function( assert ) {
 });
 
 QUnit.test( "Compound form (long)", function ( assert ) {
-	assert.unitFormat( 1, "speed-mile-per-hour", {}, "1 mile per hour" );
-	assert.unitFormat( 100, "speed-mile-per-hour", {}, "100 miles per hour" );
-	assert.unitFormat( 1, "consumption-mile-per-gallon", {}, "1 mile per gallon" );
-	assert.unitFormat( 100, "consumption-mile-per-gallon", {}, "100 miles per gallon" );
+	assert.unitFormat( 1, "speed-mile-per-hour", { form: "long" }, "1 mile per hour" );
+	assert.unitFormat( 100, "speed-mile-per-hour", { form: "long" }, "100 miles per hour" );
+	assert.unitFormat( 1, "consumption-mile-per-gallon", { form: "long" }, "1 mile per gallon" );
+	assert.unitFormat( 100, "consumption-mile-per-gallon", { form: "long" }, "100 miles per gallon" );
 });
 
 QUnit.test( "Compound form (without category)", function ( assert ) {
-	assert.unitFormat( 1, "mile-per-hour", {}, "1 mile per hour" );
-	assert.unitFormat( 100, "mile-per-hour", {}, "100 miles per hour" );
+	assert.unitFormat( 1, "mile-per-hour", { form: "long" }, "1 mile per hour" );
+	assert.unitFormat( 100, "mile-per-hour", { form: "long" }, "100 miles per hour" );
 });
 
 QUnit.test( "Compund form (wihout precomputed)", function ( assert ) {
-	assert.unitFormat( 1, "length-foot-per-second", {}, "1 foot per second" );
-	assert.unitFormat( 100, "length-foot-per-second", {}, "100 feet per second" );
+	assert.unitFormat( 1, "length-foot-per-second", { form: "long" }, "1 foot per second" );
+	assert.unitFormat( 100, "length-foot-per-second", { form: "long" }, "100 feet per second" );
 	assert.unitFormat( 1, "megabyte-per-second", { form: "narrow" }, "1MB/s" );
 	assert.unitFormat( 100, "megabyte-per-second", { form: "narrow" }, "100MB/s" );
 });

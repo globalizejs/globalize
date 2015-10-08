@@ -37,6 +37,21 @@ function stripPluralGarbage( data ) {
  *   { "one": "{0} second",
  *     "other": "{0} seconds" } ]
  *
+ * Uses the precomputed form of a compound-unit if available, eg: "mile-per-hour"
+ * { "displayName": "miles per hour",
+ *    "unitPattern-count-one": "{0} mile per hour",
+ *    "unitPattern-count-other": "{0} miles per hour"
+ * },
+ *
+ * Also supports "/" instead of "-per", eg. "foot/second", using the precomputed form if
+ * available.
+ *
+ * Or the Array of plural maps of a compound-unit, eg: "foot-per-second"
+ * [ { "one": "{0} foot",
+ *     "other": "{0} feet" },
+ *   { "one": "{0} second",
+ *     "other": "{0} seconds" } ]
+ *
  * Or undefined in case the unit (or a unit of the compound-unit) doesn't exist.
  */
 var get = function( unit, form, cldr ) {
@@ -45,7 +60,7 @@ var get = function( unit, form, cldr ) {
 	// Ensure that we get the 'precomputed' form, if present.
 	unit = unit.replace( /\//, "-per-" );
 
-	// Get unit or <type>-unit (eg. "duration-second").
+	// Get unit or <category>-unit (eg. "duration-second").
 	[ "" ].concat( unitCategories ).some(function( category ) {
 		return ret = cldr.main([
 			"units",
