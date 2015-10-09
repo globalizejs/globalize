@@ -215,7 +215,7 @@ requirements. See table below.
 | Number module | cldr/main/`locale`/numbers.json<br>cldr/supplemental/numberingSystems.json |
 | Plural module | cldr/supplemental/plurals.json (for cardinals)<br>cldr/supplemental/ordinals.json (for ordinals) |
 | Relative time module | cldr/main/`locale`/dateFields.json<br>+CLDR JSON files from number and plural modules |
-| Unit module | cldr/main/`locale`/units.json<br>+CLDR JSON files from plural module |
+| Unit module | cldr/main/`locale`/units.json<br>+CLDR JSON files from number and plural module |
 
 As an alternative to deducing this yourself, use this [online tool](http://johnnyreilly.github.io/globalize-so-what-cha-want/). The tool allows you to select the modules you're interested in using and tells you the Globalize files *and* CLDR JSON that you need.
 
@@ -689,6 +689,8 @@ handle dependencies and CLDR loading manually yourself.
 │   ├── plural/ (plural source code)
 │   ├── relative-time.js (relative time module)
 │   ├── relative-time/ (relative time source code)
+│   ├── unit.js (unit module)
+│   ├── unit/ (unit source code)
 │   └── util/ (basic JavaScript helpers polyfills, eg array.map)
 └── test/ (unit and functional test files)
     ├── fixtures/ (CLDR fixture data)

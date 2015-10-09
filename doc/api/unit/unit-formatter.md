@@ -17,6 +17,9 @@ Could also be a compound unit, eg. "mile-per-hour" or "mile/hour"
 
 - form: [String] eg. "long", "short" or "narrow".
 
+- numberFormatter: [Object] `Globalize.numberFormatter` instance. Defaults to the
+	default numberFormatter for the current locale.
+
 **value**
 
 The number to be formatted.
@@ -33,7 +36,7 @@ You can use the static method `Globalize.unitFormatter()`, which uses the defaul
 locale.
 
 ```javascript
-var formatter;
+var customNumberFormatter, formatter;
 
 Globalize.locale( "en" );
 formatter = Globalize.unitFormatter( "month", { form: "long" } );
@@ -43,6 +46,24 @@ formatter( 1 );
 
 formatter( 3 );
 // > "3 months"
+
+formatter( 3000 );
+// > "3,000 months"
+```
+
+You can pass a custom number formatter to format the number of units.
+
+```javascript
+var customNumberFormatter, formatter;
+
+Globalize.locale( "en" );
+customNumberFormatter = Globalize.numberFormatter({ useGrouping = false })
+formatter = Globalize.unitFormatter( "mile-per-hour", {
+	form: "narrow", numberFormatter: customNumberFormatter
+} );
+
+formatter(5000)
+// > "5000mph"
 ```
 
 You can use the instance method `.unitFormatter()`, which uses the instance locale.
