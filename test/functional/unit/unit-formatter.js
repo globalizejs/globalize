@@ -79,6 +79,28 @@ QUnit.test( "should format long form units", function( assert ) {
 	assert.equal( deFormatter( 100 ), "100 Tage" );
 });
 
+QUnit.test( "should format numbers correctly", function( assert ) {
+	var enFormatter = en.unitFormatter( "day", { form: "long" } ),
+			deFormatter = de.unitFormatter( "day", { form: "long" } );
+
+	assert.equal( enFormatter( 10000 ), "10,000 days" );
+	assert.equal( deFormatter( 10000 ), "10.000 Tage" );
+});
+
+QUnit.test( "should accept custom number formatter", function( assert ) {
+	var enCustomFormatter = en.numberFormatter({ maximumFractionDigits: 2 }),
+			deCustomFormatter = de.numberFormatter({ maximumFractionDigits: 2 }),
+			enUnitFormatter = en.unitFormatter( "meter", {
+				form: "long", numberFormatter: enCustomFormatter
+			} ),
+			deUnitFormatter = de.unitFormatter( "meter", {
+				form: "long", numberFormatter: deCustomFormatter
+			} );
+
+	assert.equal( enUnitFormatter( 3.14159 ), "3.14 meters" );
+	assert.equal( deUnitFormatter( 3.14159 ), "3,14 Meter" );
+});
+
 QUnit.test( "should allow for runtime compilation", function( assert ) {
 	util.assertRuntimeBind(
 		assert,
@@ -89,11 +111,18 @@ QUnit.test( "should allow for runtime compilation", function( assert ) {
 			util.assertRuntimeBind(
 				assert,
 				runtimeArgs[ 0 ],
+				"b468386326",
+				"Globalize(\"en\").numberFormatter({})",
+				function() {}
+			);
+			util.assertRuntimeBind(
+				assert,
+				runtimeArgs[ 1 ],
 				"a1662346136",
 				"Globalize(\"en\").pluralGenerator({})",
 				function() {}
 			);
-			assert.deepEqual( runtimeArgs[ 1 ], {
+			assert.deepEqual( runtimeArgs[ 2 ], {
 				"compoundUnitPattern": "{0} per {1}",
 				"unitProperties": {
 					"displayName": "days",

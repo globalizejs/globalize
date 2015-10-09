@@ -25,11 +25,15 @@ function oneOrOtherPluralGenerator( plural ) {
   }
 }
 
+function stubNumberFormatter( number ) {
+	return number.toString();
+}
+
 QUnit.assert.unitFormat = function ( value, unit, options, expected ) {
 	var unitProps = unitProperties( unit, options.form, cldr );
 
 	this.equal(
-		formatUnit( value, unitProps, oneOrOtherPluralGenerator ),
+		formatUnit( value, unitProps, stubNumberFormatter, oneOrOtherPluralGenerator ),
 		expected
 	);
 };

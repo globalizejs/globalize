@@ -41,6 +41,9 @@ Globalize.prototype.formatUnit = function( value, unit, options ) {
  *
  * @options [Object]
  * - form: [String] "long", "short" (default), or "narrow".
+ *
+ * - numberFormatter: [Object] Globalize.numberFormatter object. The default value is the
+ *   default numberFormatter for the current locale.
  */
 Globalize.unitFormatter =
 Globalize.prototype.unitFormatter = function( unit, options ) {
@@ -58,9 +61,9 @@ Globalize.prototype.unitFormatter = function( unit, options ) {
 
 	numberFormatter = options.numberFormatter || this.numberFormatter();
 	pluralGenerator = this.pluralGenerator();
-	returnFn = unitFormatterFn( properties, pluralGenerator );
+	returnFn = unitFormatterFn( properties, numberFormatter, pluralGenerator );
 
-	runtimeBind( args, this.cldr, returnFn, [ pluralGenerator, properties ] );
+	runtimeBind( args, this.cldr, returnFn, [ numberFormatter, pluralGenerator, properties ] );
 
 	return returnFn;
 };

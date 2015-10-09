@@ -115,4 +115,21 @@ QUnit.test( "should format computed compound units with '/'", function( assert )
 	assert.equal( en.formatUnit( 5, "mile/second", { form: "narrow" } ), "5mi/s" );
 });
 
+QUnit.test( "should format numbers correctly", function( assert ) {
+	assert.equal( en.formatUnit( 55000, "mile/hour", { form: "short" } ), "55,000 mph" );
+	assert.equal( de.formatUnit( 55000, "mile/hour", { form: "short" } ), "55.000 mi/h" );
+});
+
+QUnit.test( "should accept custom number formatters", function( assert ) {
+	var enCustomFormatter = en.numberFormatter({ useGrouping: false }),
+			deCustomFormatter = de.numberFormatter({ useGrouping: false });
+
+	assert.equal( en.formatUnit( 55000, "mile/hour", {
+		form: "short", numberFormatter: enCustomFormatter
+	} ), "55000 mph" );
+	assert.equal( de.formatUnit( 55000, "mile/hour", {
+		form: "short", numberFormatter: deCustomFormatter
+	} ), "55000 mi/h" );
+});
+
 });

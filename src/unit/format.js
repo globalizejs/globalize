@@ -9,9 +9,9 @@ define([
  *
  * @unitProperies [Object]: localized unit data from cldr.
  *
- * @pluralGenerator [Object]: A pluralGenerator from Globalize.pluralGenerator.
- *
  * @numberFormatter [Object]: A numberFormatter from Globalize.numberFormatter.
+ *
+ * @pluralGenerator [Object]: A pluralGenerator from Globalize.pluralGenerator.
  *
  * Format units such as seconds, minutes, days, weeks, etc.
  *
@@ -23,11 +23,12 @@ define([
  * Duration Unit (for composed time unit durations) is not implemented.
  * http://www.unicode.org/reports/tr35/tr35-35/tr35-general.html#durationUnit
  */
-return function( value, unitProperties, pluralGenerator ) {
-	var compoundUnitPattern = unitProperties.compoundUnitPattern,
-			dividend, dividendProperties, divisor, divisorProperties, message, pluralValue;
+return function( value, unitProperties, numberFormatter, pluralGenerator ) {
+	var compoundUnitPattern = unitProperties.compoundUnitPattern, dividend, dividendProperties,
+			formattedValue, divisor, divisorProperties, message, pluralValue;
 
 	unitProperties = unitProperties.unitProperties;
+	formattedValue = numberFormatter( value );
 	pluralValue = pluralGenerator( value );
 
 	// computed compound unit, eg. "megabyte-per-second".
@@ -43,7 +44,7 @@ return function( value, unitProperties, pluralGenerator ) {
 
 	message = unitProperties[ pluralValue ];
 
-	return formatMessage( message, [ value ] );
+	return formatMessage( message, [ formattedValue ] );
 };
 
 });
