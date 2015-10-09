@@ -45,11 +45,11 @@ formatter( 3 );
 // > "3 months"
 ```
 
-You can use the instance method `.relativeTimeFormatter()`, which uses the instance locale.
+You can use the instance method `.unitFormatter()`, which uses the instance locale.
 
 ```javascript
 var globalize = new Globalize( "en" ),
-	formatter = globalize.relativeTimeFormatter( "mile-per-hour", { form: "narrow" } );
+	formatter = globalize.unitFormatter( "mile-per-hour", { form: "narrow" } );
 
 formatter( 10 );
 // > "10mph"
