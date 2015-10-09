@@ -1,13 +1,17 @@
 define( [
 	"globalize",
+	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/de/numbers.json",
 	"json!cldr-data/main/en/units.json",
 	"json!cldr-data/main/de/units.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/numberingSystems.json",
 	"json!cldr-data/supplemental/plurals.json",
 	"../../util",
 
 	"globalize/unit"
-], function( Globalize, enUnitFields, deUnitFields, likelySubtags, plurals, util ) {
+], function( Globalize, enNumbers, deNumbers, enUnitFields, deUnitFields, likelySubtags,
+	numberingSystems, plurals, util ) {
 
 var de, en;
 
@@ -27,7 +31,8 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 
 QUnit.module( ".unitFormatter( unit, options )", {
 	setup: function( ) {
-		Globalize.load( enUnitFields, deUnitFields, likelySubtags, plurals );
+		Globalize.load( enNumbers, deNumbers, enUnitFields, deUnitFields, likelySubtags,
+			numberingSystems, plurals );
 		Globalize.locale( "en" );
 		de = new Globalize( "de" );
 		en = new Globalize( "en" );

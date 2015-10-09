@@ -383,6 +383,7 @@ module.exports = function( grunt ) {
 							exclude: [
 								"cldr",
 								"./core",
+								"./number",
 								"./plural"
 							],
 							create: true,
@@ -495,6 +496,7 @@ module.exports = function( grunt ) {
 							include: [ "unit-runtime" ],
 							exclude: [
 								"./core-runtime",
+								"./number-runtime",
 								"./plural-runtime"
 							],
 							create: true,

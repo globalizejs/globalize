@@ -3,6 +3,7 @@ define([
 	"./core-runtime",
 	"./unit/formatter-fn",
 
+	"./number-runtime",
 	"./plural-runtime"
 ], function( runtimeKey, Globalize, unitFormatterFn ) {
 
@@ -10,7 +11,7 @@ Globalize._unitFormatterFn = unitFormatterFn;
 
 Globalize.formatUnit =
 Globalize.prototype.formatUnit = function( value, unit, options ) {
-	return this.relativeTimeFormatter( unit, options )( value );
+	return this.unitFormatter( unit, options )( value );
 };
 
 Globalize.unitFormatter =

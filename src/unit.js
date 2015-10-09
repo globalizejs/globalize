@@ -8,6 +8,7 @@ define([
 	"./unit/formatter-fn",
 	"./unit/properties",
 
+	"./number",
 	"./plural"
 ], function( Globalize, runtimeBind, validateParameterPresence, validateParameterTypeNumber,
 	validateParameterTypePlainObject, validateParameterTypeString, unitFormatterFn,
@@ -43,7 +44,7 @@ Globalize.prototype.formatUnit = function( value, unit, options ) {
  */
 Globalize.unitFormatter =
 Globalize.prototype.unitFormatter = function( unit, options ) {
-	var args, form, pluralGenerator, returnFn, properties;
+	var args, form, numberFormatter, pluralGenerator, returnFn, properties;
 
 	validateParameterPresence( unit, "unit" );
 	validateParameterTypeString( unit, "unit" );
@@ -55,6 +56,7 @@ Globalize.prototype.unitFormatter = function( unit, options ) {
 	form = options.form || "long";
 	properties = unitProperties( unit, form, this.cldr );
 
+	numberFormatter = options.numberFormatter || this.numberFormatter();
 	pluralGenerator = this.pluralGenerator();
 	returnFn = unitFormatterFn( properties, pluralGenerator );
 

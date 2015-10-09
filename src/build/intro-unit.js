@@ -22,6 +22,7 @@
 		define([
 			"cldr",
 			"../globalize",
+			"./number",
 			"./plural"
 		], factory );
 	} else if ( typeof exports === "object" ) {
@@ -38,6 +39,6 @@
 var formatMessage = Globalize._formatMessage,
 	runtimeBind = Globalize._runtimeBind,
 	validateParameterPresence = Globalize._validateParameterPresence,
-	validateParameterType = Globalize._validateParameterType,
 	validateParameterTypePlainObject = Globalize._validateParameterTypePlainObject,
-	validateParameterTypeNumber = Globalize._validateParameterTypeNumber;
+	validateParameterTypeNumber = Globalize._validateParameterTypeNumber,
+	validateParameterTypeString = Globalize._validateParameterTypeString;

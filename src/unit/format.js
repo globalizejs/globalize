@@ -3,7 +3,7 @@ define([
 ], function( formatMessage ) {
 
 /**
- * format( value, unit, pluralGenerator )
+ * format( value, unit, pluralGenerator, numberFormatter )
  *
  * @value [Number]
  *
@@ -11,7 +11,7 @@ define([
  *
  * @pluralGenerator [Object]: A pluralGenerator from Globalize.pluralGenerator.
  *
- * TODO pass along numberFormatter
+ * @numberFormatter [Object]: A numberFormatter from Globalize.numberFormatter.
  *
  * Format units such as seconds, minutes, days, weeks, etc.
  *
