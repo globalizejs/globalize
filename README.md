@@ -34,6 +34,8 @@ Node.js module.
   - [Unit module](#unit-module)
   - more to come...
 - [Error reference](#error-reference)
+- [Contributing](#contributing)
+  - [Roadmap](#roadmap)
 - [Development](#development)
   - [File structure](#file-structure)
   - [Source files](#source-files)
@@ -663,6 +665,54 @@ handle dependencies and CLDR loading manually yourself.
 
   [Read more...](doc/error/e-unsupported.md)
 
+
+## Contributing
+
+If you are having trouble using Globalize after reading the documentation
+carefully, please post a question to [StackOverflow with the
+"javascript-globalize" tag][]. Questions that include a minimal demo are more
+likely to receive responses.
+
+In the spirit of open source software development, we always encourage
+community code contribution. To help you get started and before you jump into
+writing code, be sure to read [CONTRIBUTING.md](CONTRIBUTING.md).
+
+[StackOverflow with the "javascript-globalize" tag]: http://stackoverflow.com/tags/javascript-globalize
+
+For ideas where to start contributing, see the following queries to find what
+best suites your interest: [quick changes][], [new features][], [bug fixes][],
+[documentation improvements][], [date module][], [currency module][], [message
+module][], [number module][], [plural module][], [relative time module][]. Last
+but not least, feel free to [get in touch](http://irc.jquery.org/).
+
+[bug fixes]: https://github.com/jquery/globalize/labels/bug
+[documentation improvements]: https://github.com/jquery/globalize/labels/docs
+[new features]: https://github.com/jquery/globalize/labels/new%20feature
+[quick changes]: https://github.com/jquery/globalize/labels/quick%20changes
+
+[currency module]: https://github.com/jquery/globalize/labels/currency%20module
+[date module]: https://github.com/jquery/globalize/labels/date%20module
+[message module]: https://github.com/jquery/globalize/labels/message%20module
+[number module]: https://github.com/jquery/globalize/labels/number%20module
+[plural module]: https://github.com/jquery/globalize/labels/plural%20module
+[relative time module]: https://github.com/jquery/globalize/labels/relative%20time%20module
+
+### Roadmap
+
+Our roadmap is the collection of all open issues and pull requests where you can
+find:
+
+- [Ongoing work][] lists our current sprint. Here you find where we're actively
+  working on at this very moment. Priority is determined by the community needs
+  and volunteering. If there is anything you want to be done, share your
+  thoughts with us on any existing or new issue and especially volunteer to do
+  it.
+- [Everything else][] is potential next work that you could help us to
+  accomplish now. Releases are published following semver rules as often as
+  possible.
+
+[Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
+[Everything else]: https://github.com/jquery/globalize/issues?utf8=%E2%9C%93&q=is%3Aopen+-label%3A%22Current+Sprint%22+
 
 ## Development
 
