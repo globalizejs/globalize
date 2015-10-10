@@ -1,4 +1,4 @@
-# Globalize
+t# Globalize
 
 [![Build Status](https://secure.travis-ci.org/jquery/globalize.svg?branch=master)](http://travis-ci.org/jquery/globalize)
 [![devDependency Status](https://david-dm.org/jquery/globalize/status.svg)](https://david-dm.org/jquery/globalize#info=dependencies)
@@ -33,6 +33,7 @@ Node.js module.
   - [Relative time module](#relative-time-module)
   - more to come...
 - [Error reference](#error-reference)
+- [Contribution](#contribution)
 - [Development](#development)
   - [File structure](#file-structure)
   - [Source files](#source-files)
@@ -637,6 +638,13 @@ handle dependencies and CLDR loading manually yourself.
 
   [Read more...](doc/error/e-unsupported.md)
 
+
+## Contribution
+
+If you are having trouble using Globalize after reading the documentation
+carefully, please post a question to [StackOverflow with the
+`javascript-globalize` tag](http://stackoverflow.com/tags/javascript-globalize).
+Questions that include a minimal demo are more likely to receive responses.
 
 ## Development
 
