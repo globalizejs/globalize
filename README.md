@@ -643,7 +643,7 @@ handle dependencies and CLDR loading manually yourself.
 
 If you are having trouble using Globalize after reading the documentation
 carefully, please post a question to [StackOverflow with the
-`javascript-globalize` tag](http://stackoverflow.com/tags/javascript-globalize).
+"javascript-globalize" tag](http://stackoverflow.com/tags/javascript-globalize).
 Questions that include a minimal demo are more likely to receive responses.
 
 ## Development
