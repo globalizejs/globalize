@@ -1,4 +1,4 @@
-t# Globalize
+# Globalize
 
 [![Build Status](https://secure.travis-ci.org/jquery/globalize.svg?branch=master)](http://travis-ci.org/jquery/globalize)
 [![devDependency Status](https://david-dm.org/jquery/globalize/status.svg)](https://david-dm.org/jquery/globalize#info=dependencies)
