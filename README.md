@@ -668,7 +668,7 @@ following:
 - [Next work][] lists what we're going to work next or what we dream of.
 
 [Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
-[Next work]: https://github.com/jquery/globalize/labels/new%20feature
+[Next work]: https://github.com/jquery/globalize/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22new+feature%22+-label%3A%22Current+Sprint%22+
 
 For ideas where to start contributing, find what you like best: [quick
 changes][], [new features][], [bug fixes][], or [documentation improvements][];
