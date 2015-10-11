@@ -654,22 +654,6 @@ writing code, be sure to read [Writing Code for jQuery Foundation Projects][].
 [StackOverflow with the "javascript-globalize" tag]: http://stackoverflow.com/tags/javascript-globalize
 [Writing Code for jQuery Foundation Projects]: http://contribute.jquery.org/code/
 
-### Roadmap
-
-To avoid manual maintenance we avoid duplicating information elsewhere, so our
-roadmap is actually the collection of all open issues and pull requests. Having
-said that, we believe it's important to facilitate that the community knows the
-following:
-
-- [Ongoing work][] lists our current sprint. Here you find what we're actively
-  working on at this very moment. Priority is determined by the community needs.
-  If there's anything you want done, feel free to weigh in on a new or existing
-  issue or pull request. Pro activity is your best bet.
-- [Next work][] lists what we're going to work next or what we dream of.
-
-[Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
-[Next work]: https://github.com/jquery/globalize/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22new+feature%22+-label%3A%22Current+Sprint%22+
-
 For ideas where to start contributing, find what you like best: [quick
 changes][], [new features][], [bug fixes][], or [documentation improvements][];
 or by modules: [date module][], [currency module][], [message module][], [number
@@ -686,6 +670,22 @@ module][], [plural module][], or [relative time module][].
 [number module]: https://github.com/jquery/globalize/labels/number%20module
 [plural module]: https://github.com/jquery/globalize/labels/plural%20module
 [relative time module]: https://github.com/jquery/globalize/labels/relative%20time%20module
+
+### Roadmap
+
+To avoid manual maintenance we avoid duplicating information elsewhere, so our
+roadmap is actually the collection of all open issues and pull requests. Having
+said that, we believe it's important to facilitate that the community knows the
+following:
+
+- [Ongoing work][] lists our current sprint. Here you find what we're actively
+  working on at this very moment. Priority is determined by the community needs.
+  If there's anything you want done, feel free to weigh in on a new or existing
+  issue or pull request. Pro activity is your best bet.
+- [Next work][] lists what we're going to work next or what we dream of.
+
+[Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
+[Next work]: https://github.com/jquery/globalize/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22new+feature%22+-label%3A%22Current+Sprint%22+
 
 ## Development
 
