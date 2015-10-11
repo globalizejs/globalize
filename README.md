@@ -34,6 +34,7 @@ Node.js module.
   - more to come...
 - [Error reference](#error-reference)
 - [Contribution](#contribution)
+  - [Roadmap](#roadmap)
 - [Development](#development)
   - [File structure](#file-structure)
   - [Source files](#source-files)
@@ -643,8 +644,47 @@ handle dependencies and CLDR loading manually yourself.
 
 If you are having trouble using Globalize after reading the documentation
 carefully, please post a question to [StackOverflow with the
-"javascript-globalize" tag](http://stackoverflow.com/tags/javascript-globalize).
-Questions that include a minimal demo are more likely to receive responses.
+"javascript-globalize" tag][]. Questions that include a minimal demo are more
+likely to receive responses.
+
+In the spirit of open source software development, we always encourage
+community code contribution. To help you get started and before you jump into
+writing code, be sure to read [Writing Code for jQuery Foundation Projects][].
+
+[StackOverflow with the "javascript-globalize" tag]: http://stackoverflow.com/tags/javascript-globalize
+[Writing Code for jQuery Foundation Projects]: http://contribute.jquery.org/code/
+
+### Roadmap
+
+To avoid manual maintenance, we avoid duplicating information elsewhere. So, our
+Roadmap is actually the collection of all open issues and pull requests. Having
+said that, we believe it's important to facilitate that the community knows the
+following:
+
+- [Ongoing work][] lists our current sprint. Here you find what we're actively
+  working on at this very moment. Priority is determined by the community needs.
+  If there's anything you want done, feel free to weigh in on a new or existing
+  issue or pull request. Pro activity is your best bet.
+- [New features][] lists what we dream of.
+- For ideas where to start contributing, find what you like best: [quick
+  changes][], [new features][], [bug fixes][], or [documentation
+  improvements][]; or by specific modules: [date module][], [currency module][],
+  [message module][], [number module][], [plural module][], or [relative time
+  module][].
+
+[Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
+
+[bug fixes]: https://github.com/jquery/globalize/labels/bug
+[documentation improvements]: https://github.com/jquery/globalize/labels/docs
+[New features]: https://github.com/jquery/globalize/labels/new%20feature
+[new features]: https://github.com/jquery/globalize/labels/new%20feature
+
+[currency module]: https://github.com/jquery/globalize/labels/currency%20module
+[date module]: https://github.com/jquery/globalize/labels/date%20module
+[message module]: https://github.com/jquery/globalize/labels/message%20module
+[number module]: https://github.com/jquery/globalize/labels/number%20module
+[plural module]: https://github.com/jquery/globalize/labels/plural%20module
+[relative time module]: https://github.com/jquery/globalize/labels/relative%20time%20module
 
 ## Development
 
