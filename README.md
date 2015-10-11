@@ -665,19 +665,20 @@ following:
   working on at this very moment. Priority is determined by the community needs.
   If there's anything you want done, feel free to weigh in on a new or existing
   issue or pull request. Pro activity is your best bet.
-- [New features][] lists what we dream of.
 - For ideas where to start contributing, find what you like best: [quick
   changes][], [new features][], [bug fixes][], or [documentation
   improvements][]; or by specific modules: [date module][], [currency module][],
   [message module][], [number module][], [plural module][], or [relative time
   module][].
+- [Next work][] lists what we're going to work next or what we dream of.
 
 [Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
+[Next work]: https://github.com/jquery/globalize/labels/new%20feature
 
 [bug fixes]: https://github.com/jquery/globalize/labels/bug
 [documentation improvements]: https://github.com/jquery/globalize/labels/docs
-[New features]: https://github.com/jquery/globalize/labels/new%20feature
 [new features]: https://github.com/jquery/globalize/labels/new%20feature
+[quick changes]: https://github.com/jquery/globalize/labels/quick%20changes
 
 [currency module]: https://github.com/jquery/globalize/labels/currency%20module
 [date module]: https://github.com/jquery/globalize/labels/date%20module
