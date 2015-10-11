@@ -4,10 +4,14 @@ define({
   proxyUrl: "http://localhost:9000/",
   capabilities: {},
   environments: [
-    { browserName: "chrome" },
+    { browserName: "safari", version: [ "5.1" ], platform: [ "WINDOWS" ] },
+    { browserName: "chrome", version: [ "45", "44" ] },
     { browserName: "internet explorer", version: [ "11", "10", "9" ] },
-    // TODO: Firefox 35 is broken for Browserstack, fix when they have Selenium 2.46
-    { browserName: "firefox", version: [ "34" ] }
+    { browserName: "firefox", version: [ "41", "40" ] },
+    { browserName: "opera", version: [ "12.16", "12.15" ] },
+    { browserName: "iPad", platform: [ "ios" ] },
+    { browserName: "iPhone", platform: [ "ios" ] },
+    { browserName: "Android", platform: [ "android" ] }
   ],
   maxConcurrency: 2,
   tunnel: "BrowserStackTunnel",
