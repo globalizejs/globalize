@@ -664,15 +664,16 @@ following:
 - [Ongoing work][] lists our current sprint. Here you find what we're actively
   working on at this very moment. Priority is determined by the community needs.
   If there's anything you want done, feel free to weigh in on a new or existing
-  issue or pull request. Pro activity is your best bet. For ideas where to start
-  contributing, find what you like best: [quick changes][], [new features][],
-  [bug fixes][], or [documentation improvements][]; or by specific modules:
-  [date module][], [currency module][], [message module][], [number module][],
-  [plural module][], or [relative time module][].
+  issue or pull request. Pro activity is your best bet.
 - [Next work][] lists what we're going to work next or what we dream of.
 
 [Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
 [Next work]: https://github.com/jquery/globalize/labels/new%20feature
+
+For ideas where to start contributing, find what you like best: [quick
+changes][], [new features][], [bug fixes][], or [documentation improvements][];
+or by specific modules: [date module][], [currency module][], [message
+module][], [number module][], [plural module][], or [relative time module][].
 
 [bug fixes]: https://github.com/jquery/globalize/labels/bug
 [documentation improvements]: https://github.com/jquery/globalize/labels/docs
