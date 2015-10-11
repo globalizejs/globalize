@@ -4,7 +4,7 @@ define({
   proxyUrl: "http://localhost:9000/",
   capabilities: {},
   environments: [
-    { browserName: "safari", version: [ "5.1" ], platform: [ "WINDOWS" ] },
+    { browserName: "safari", version: [ "6" ], platform: [ "Mac 10.8" ] },
     { browserName: "chrome", version: [ "45", "44" ] },
     { browserName: "internet explorer", version: [ "11", "10", "9" ] },
     { browserName: "firefox", version: [ "41", "40" ] },
