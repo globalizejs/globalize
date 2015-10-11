@@ -672,8 +672,8 @@ following:
 
 For ideas where to start contributing, find what you like best: [quick
 changes][], [new features][], [bug fixes][], or [documentation improvements][];
-or by specific modules: [date module][], [currency module][], [message
-module][], [number module][], [plural module][], or [relative time module][].
+or by modules: [date module][], [currency module][], [message module][], [number
+module][], [plural module][], or [relative time module][].
 
 [bug fixes]: https://github.com/jquery/globalize/labels/bug
 [documentation improvements]: https://github.com/jquery/globalize/labels/docs
