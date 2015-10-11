@@ -656,8 +656,8 @@ writing code, be sure to read [Writing Code for jQuery Foundation Projects][].
 
 ### Roadmap
 
-To avoid manual maintenance, we avoid duplicating information elsewhere. So, our
-Roadmap is actually the collection of all open issues and pull requests. Having
+To avoid manual maintenance we avoid duplicating information elsewhere, so our
+roadmap is actually the collection of all open issues and pull requests. Having
 said that, we believe it's important to facilitate that the community knows the
 following:
 
