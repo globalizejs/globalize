@@ -680,7 +680,7 @@ find:
   working on at this very moment. Priority is determined by the community needs.
   If there's anything you want to be done, feel free to weigh in on a new or
   existing issue or pull request. Being proactive is your best bet.
-- [Help wanted][] lists potential next work you could help us do now.
+- [Help wanted][] lists potential next work that you could help us to accomplish now.
 
 [Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
 [Help wanted]: https://github.com/jquery/globalize/labels/help%20wanted
