@@ -680,8 +680,8 @@ following:
 
 - [Ongoing work][] lists our current sprint. Here you find what we're actively
   working on at this very moment. Priority is determined by the community needs.
-  If there's anything you want done, feel free to weigh in on a new or existing
-  issue or pull request. Pro activity is your best bet.
+  If there's anything you want to be done, feel free to weigh in on a new or
+  existing issue or pull request. Pro activity is your best bet.
 - [Next work][] lists what we're going to work next or what we dream of.
 
 [Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
