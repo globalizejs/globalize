@@ -649,10 +649,9 @@ likely to receive responses.
 
 In the spirit of open source software development, we always encourage
 community code contribution. To help you get started and before you jump into
-writing code, be sure to read [Writing Code for jQuery Foundation Projects][].
+writing code, be sure to read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 [StackOverflow with the "javascript-globalize" tag]: http://stackoverflow.com/tags/javascript-globalize
-[Writing Code for jQuery Foundation Projects]: http://contribute.jquery.org/code/
 
 For ideas where to start contributing, find what you like best: [quick
 changes][], [new features][], [bug fixes][], or [documentation improvements][];
