@@ -673,19 +673,17 @@ module][], [plural module][], or [relative time module][].
 
 ### Roadmap
 
-To avoid manual maintenance we avoid duplicating information elsewhere, so our
-roadmap is actually the collection of all open issues and pull requests. Having
-said that, we believe it's important to facilitate that the community knows the
-following:
+Our roadmap is the collection of all open issues and pull requests where you can
+find:
 
 - [Ongoing work][] lists our current sprint. Here you find what we're actively
   working on at this very moment. Priority is determined by the community needs.
   If there's anything you want to be done, feel free to weigh in on a new or
   existing issue or pull request. Pro activity is your best bet.
-- [Next work][] lists what we're going to work next or what we dream of.
+- [Help wanted][] lists potential next work you could help us do now.
 
 [Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
-[Next work]: https://github.com/jquery/globalize/issues?utf8=%E2%9C%93&q=is%3Aopen+label%3A%22new+feature%22+-label%3A%22Current+Sprint%22+
+[Help wanted]: https://github.com/jquery/globalize/labels/help%20wanted
 
 ## Development
 
