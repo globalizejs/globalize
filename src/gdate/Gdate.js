@@ -12,6 +12,7 @@ Gdate.prototype = {
 	getEra: function() { return this._era; },
 	getYear: function() { return this._year; },
 	getMonth: function() { return this._month; },
+	getMonthType: function() { return this._monthType; },
 	getDate: function() { return this._date; },
 	nextDate: function( n ) {
 		if (arguments.length === 0){
@@ -44,13 +45,13 @@ Gdate.prototype = {
 		d.setFullYear( this._d.getFullYear() ); // deal with Y2K bug in Javascript
 		return d;
 	},
-	_init: function( era, year, month, date ) {
+	_init: function( era, year, month, date, monthType ) {
 		if (era instanceof Date){
 			this._setDate( era );
 		}else if ( era instanceof Gdate ){
 			this._setDate( era.toDate() );
 		}else {
-			this._setFields( era, year, month, date );
+			this._setFields( era, year, month, date, monthType );
 		}
 	},
 	constructor: Gdate, // allow the new this.constructor idiom
@@ -58,7 +59,8 @@ Gdate.prototype = {
 	_setFields: undefined, // virtual function
 	_era: NaN,
 	_year: NaN,
-	_month: undefined,
+	_month: NaN,
+	_monthType: undefined,
 	_date: NaN,
 	_d: new Date(NaN)
 };
