@@ -22,6 +22,7 @@ HebrewDate.prototype.nextYear = function(n) {
   if (arguments.length === 0){
 		n = 1;
 	}
+	// don't coerce monthType; each year is different
 	return new HebrewDate( this._era, this._year + n, this._month, this._date );
 };
 HebrewDate.prototype.nextMonth = function(n) {
@@ -66,13 +67,18 @@ HebrewDate.prototype._setDate = function(d) {
   if ( hd.y < 1 || isNaN(d.getTime()) ){ // no dates before Creation
     this._era = NaN;
     this._year = NaN;
-    this._month = undefined;
+    this._month = NaN;
+	this._monthType = undefined;
     this._date = NaN;
 		this._d = new Date( NaN );
   }else {
 		this._era = 0;
 		this._year = hd.y;
 		this._month = months[ hd.m ];
+		if ( this._month === "7-leap" ) {
+			this._month = 7;
+			this._monthType = "leap";
+		}
 		this._date = hd.d;
 		this._d = d;
   }

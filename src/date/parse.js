@@ -97,6 +97,7 @@ return function( value, tokens, properties ) {
 			// Month
 			case "M":
 			case "L":
+				 // token.value will include the month type as a "-" delimited suffix, so force it to be a string
 				month = "" + token.value;
 				truncateAt.push( MONTH );
 				break;
@@ -253,12 +254,14 @@ return function( value, tokens, properties ) {
 		}
 	}
 	if ( month == null ) {
-		month = gdate.getMonth();
+		month = [ gdate.getMonth(), gdate.getMonthType() ];
+	} else {
+		month = month.split( "-" );
 	}
 	if ( day == null ) {
 		day = gdate.getDate();
 	}
-	gdate = new Gdate.calendars[ properties.calendar ]( era, year, month, day );
+	gdate = new Gdate.calendars[ properties.calendar ]( era, year, month[0], day, month[1] );
 	if ( isNaN( gdate.getYear() ) || gdate.getDate() !== day ) {
 		// Question: do we really need to do this check,
 		// or can we rely on Gdate to correct out-of-bounds values?
