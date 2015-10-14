@@ -3,7 +3,6 @@ define([
 	"src/gdate/astronomy"
 ], function( Gdate) {
 	function equalDate( assert, date1, date2 ){
-		console.error(date1, date2)
 		assert.ok( 
 			date1.getUTCFullYear() === date2.getUTCFullYear() &&
 			date1.getUTCMonth() === date2.getUTCMonth() &&
@@ -31,6 +30,7 @@ define([
 		newMoon2_2015 = realDate ( 2015, 1, 18 ),
 		winterSolstice2015 = realDate ( 2015, 11, 22 ),
 		winterSolstice2014 = realDate ( 2014, 11, 21 );
+		winterSolstice1970 = realDate ( 1970, 11, 22 );
 
 	QUnit.module( "Gdate astronomy package" );
 	QUnit.test( "equalDate works", function( assert ) {
@@ -50,6 +50,7 @@ define([
 		equalDate( assert, new Date( Gdate.winterSolstice( date.getTime(), false ) ), winterSolstice2014 );
 		// check for convergence if starting on the solstice
 		equalDate( assert, new Date( Gdate.winterSolstice( winterSolstice2014.getTime(), true ) ), winterSolstice2014 );
+		equalDate( assert, new Date( Gdate.winterSolstice( winterSolstice1970.getTime(), true ) ), winterSolstice1970 );
 	});
 
 	QUnit.test( "newMoon", function (assert) {
