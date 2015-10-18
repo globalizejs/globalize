@@ -91,7 +91,8 @@ Globalize.prototype.messageFormatter = function( path ) {
 
 	returnFn = messageFormatterFn( formatter );
 
-	runtimeBind( args, cldr, returnFn, [ messageFormatterRuntimeBind( cldr, formatter ) ] );
+	runtimeBind( args, cldr, returnFn,
+		[ messageFormatterRuntimeBind( cldr, formatter ), pluralGenerator ] );
 
 	return returnFn;
 };
