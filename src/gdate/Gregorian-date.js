@@ -45,7 +45,7 @@ GregorianDate.prototype._setDate = function(d) {
 		if (this._era === 0) {
 			++this._year; // Date year == -4 corresponds to 5 BCE
 		}
-    this._month = "" + (d.getMonth() + 1);  // quickie stringify
+    this._month = d.getMonth() + 1;
     this._date = d.getDate();
   }
 };
