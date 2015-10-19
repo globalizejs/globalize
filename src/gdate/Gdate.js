@@ -1,8 +1,10 @@
 define(function() {
-// a generalized (Globalized?) date. While eras, years and dates are numbers,
-// month indices in CLDR are strings (numbers plus a possible modifier)
+// a generalized (Globalized?) date. Eras, years, months and dates are numbers,
+// but months may also have a type ("leap" is the only one defined in CLDR now).
 // There is no concept of month or year order built into CLDR (thus the month after "1" isn't
 // necessarily "2", and the year before 1000 isn't necessarily 999.
+// There may be two months with the same number; the Chinese calendar does this,
+// with one month having an undefined type and the next, the "leap" type.
 // Dates are assumed to go in order,
 // so the native Date implementation is valid.
 // These objects are designed to be immutable.

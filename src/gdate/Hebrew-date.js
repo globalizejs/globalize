@@ -3,8 +3,8 @@ define([
 ], function( Gdate ) {
 
 // convert from Unicode month indices to algorithmically friendly numbers
-var months = [ "8", "9", "10", "11", "12", "13", "1", "2", "3",
-	"4", "5", "7", "6", "7-leap" ],
+var months = [ 8, 9, 10, 11, 12, 13, 1, 2, 3,
+	4, 5, 7, 6, "7-leap" ],
 	monthsReversed = {};
 months.forEach( function( value, i ) { monthsReversed[value] = i; } );
 

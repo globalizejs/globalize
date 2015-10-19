@@ -97,7 +97,8 @@ return function( value, tokens, properties ) {
 			// Month
 			case "M":
 			case "L":
-				 // token.value will include the month type as a "-" delimited suffix, so force it to be a string
+				 // token.value may include the month type as a "-"
+				 // delimited suffix, so force it to be a string
 				month = "" + token.value;
 				truncateAt.push( MONTH );
 				break;

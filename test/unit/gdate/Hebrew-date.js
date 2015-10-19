@@ -38,11 +38,9 @@ for (i = -2; i < 3; ++i){
 for (i = -2; i < 3; ++i){
 	(function (j){
 		QUnit.test( "nextMonth " + i, function( assert ) {
-			var expected = 1 + ( j + 17 ) % 12;
-			if (expected === 7 ) {
-				expected = "7-leap";
-			}
+			var expected = 1 + ( j + 17 ) % 12, expectedType = ( expected === 7 ? "leap" : undefined );
 			assert.equal( hebrew.nextMonth(j).getMonth(), expected );
+			assert.equal( hebrew.nextMonth(j).getMonthType(), expectedType );
 		});
 	})(i);
 }
@@ -70,6 +68,6 @@ QUnit.test( "startOfYear", function( assert ) {
 	assert.equal( hebrew.nextMonth(-1).startOfYear().getYear(), 5776 );
 });
 QUnit.test( "startOfMonth", function( assert ) {
-	assert.equal( hebrew.nextMonth().nextDate().startOfMonth().getMonth(), "7-leap" );
+	assert.equal( hebrew.nextMonth().nextDate().startOfMonth().getMonth(), 7 );
 });
 });
