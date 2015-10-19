@@ -9,15 +9,12 @@ var EPSILON = 60000, // one minute accuracy
 	DAY_MS = 86400000, // ms in a day
 	JD_EPOCH_MS = -210866760000000, // time of the julian day epoch, January 1, 4713 BCE
 	JD_SUN_EPOCH = 2447891.5, // Julian day of the calculation epoch (December 31, 1989)
-	SUN_ETA_G = 4.89078, // Ecliptic longitude at epoch
+	SUN_ETA_G = 4.89078, // Ecliptic longitude at epoch, from 
+	// https://www.nrel.gov/midc/solpos/spa.html for 1970-01-01 at 00:00
 	SUN_OMEGA_G = 282.9372 * Math.PI / 180, // Ecliptic longitude at perigee
 	TROPICAL_YEAR = 365.242191, //  days of a year, from vernal equinox to vernal equinox
 	TAU = 2 * Math.PI; // http://tauday.com/
-
-/* From: http://www.nrel.gov/midc/apps/spa.pl?syear=1970&smonth=1&sday=1&eyear=1970&emonth=1&eday=1&step=10&stepunit=1&latitude=39.743&longitude=-105.178&timezone=0&elev=1829&press=835&temp=10&dut1=0.0&deltat=64.797&azmrot=180&slope=0&refract=0.5667&field=27&zip=0
- * note: Date,Time,Apparent sun longitude
- * 1/1/1970,0:00:00,280.156553
-  */
+	
 
 /* returns the time of the next (if next is true) or
 	last (if next is false) winter solstice from the time now */
@@ -115,5 +112,4 @@ function normTAU( angle ) {
 	return angle - TAU * Math.floor( angle / TAU );
 }
 
-console.log(sunLongitude(0));
 });
