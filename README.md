@@ -582,7 +582,7 @@ handle dependencies and CLDR loading manually yourself.
   default/instance locale.
 
   ```javascript
-  .unitFormatter( "second", { form: "long" } )( 10 )
+  .unitFormatter( "second" )( 10 )
   // > "10 seconds"
 
   .unitFormatter( "second", { form: "short" } )( 10 )

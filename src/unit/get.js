@@ -43,7 +43,7 @@ function stripPluralGarbage( data ) {
  *    "unitPattern-count-other": "{0} miles per hour"
  * },
  *
- * Also supports "/" instead of "-per", eg. "foot/second", using the precomputed form if
+ * Also supports "/" instead of "-per-", eg. "foot/second", using the precomputed form if
  * available.
  *
  * Or the Array of plural maps of a compound-unit, eg: "foot-per-second"

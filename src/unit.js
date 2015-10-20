@@ -42,8 +42,8 @@ Globalize.prototype.formatUnit = function( value, unit, options ) {
  * @options [Object]
  * - form: [String] "long", "short" (default), or "narrow".
  *
- * - numberFormatter: [Object] Globalize.numberFormatter object. The default value is the
- *   default numberFormatter for the current locale.
+ * - numberFormatter: [Function] a number formatter function. Defaults to Globalize
+ *   `.numberFormatter()` for the current locale using the default options.
  */
 Globalize.unitFormatter =
 Globalize.prototype.unitFormatter = function( unit, options ) {
@@ -52,8 +52,9 @@ Globalize.prototype.unitFormatter = function( unit, options ) {
 	validateParameterPresence( unit, "unit" );
 	validateParameterTypeString( unit, "unit" );
 
-	validateParameterPresence( options, "options" );
 	validateParameterTypePlainObject( options, "options" );
+
+	options = options || {};
 
 	args = [ unit, options ];
 	form = options.form || "long";

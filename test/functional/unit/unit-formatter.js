@@ -16,7 +16,7 @@ define( [
 var de, en;
 
 QUnit.module( ".unitFormatter( unit, options ) - no CLDR", {
-	setup: function( ) {
+	setup: function() {
 		Globalize.load( enUnitFields, likelySubtags );
 		Globalize.locale( "en" );
 	},
@@ -24,13 +24,13 @@ QUnit.module( ".unitFormatter( unit, options ) - no CLDR", {
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
-	util.assertCldrContent( assert, function( ) {
+	util.assertCldrContent( assert, function() {
 		Globalize.unitFormatter( "day", { form: "long" } );
 	});
 });
 
 QUnit.module( ".unitFormatter( unit, options )", {
-	setup: function( ) {
+	setup: function() {
 		Globalize.load( enNumbers, deNumbers, enUnitFields, deUnitFields, likelySubtags,
 			numberingSystems, plurals );
 		Globalize.locale( "en" );
@@ -41,22 +41,16 @@ QUnit.module( ".unitFormatter( unit, options )", {
 });
 
 QUnit.test( "should validate unit argument presence", function( assert ) {
-	util.assertParameterPresence( assert, "unit", function( ) {
+	util.assertParameterPresence( assert, "unit", function() {
 		Globalize.unitFormatter();
 	});
 });
 
 QUnit.test( "should validate unit argument is string", function( assert ) {
 	util.assertStringParameter( assert, "unit", function( invalidValue ) {
-		return function( ) {
+		return function() {
 			Globalize.unitFormatter( invalidValue );
 		};
-	});
-});
-
-QUnit.test( "should validate options argument presence", function( assert ) {
-	util.assertParameterPresence( assert, "options", function( ) {
-		Globalize.unitFormatter( "day" );
 	});
 });
 
@@ -70,7 +64,7 @@ QUnit.test( "should validate options argument is object", function( assert ) {
 
 QUnit.test( "should format long form units", function( assert ) {
 	var enFormatter = en.unitFormatter( "day", { form: "long" } ),
-			deFormatter = de.unitFormatter( "day", { form: "long" } );
+		deFormatter = de.unitFormatter( "day", { form: "long" } );
 
 	assert.equal( enFormatter( 1 ), "1 day" );
 	assert.equal( enFormatter( 100 ), "100 days" );
@@ -81,7 +75,7 @@ QUnit.test( "should format long form units", function( assert ) {
 
 QUnit.test( "should format numbers correctly", function( assert ) {
 	var enFormatter = en.unitFormatter( "day", { form: "long" } ),
-			deFormatter = de.unitFormatter( "day", { form: "long" } );
+		deFormatter = de.unitFormatter( "day", { form: "long" } );
 
 	assert.equal( enFormatter( 10000 ), "10,000 days" );
 	assert.equal( deFormatter( 10000 ), "10.000 Tage" );
@@ -89,13 +83,13 @@ QUnit.test( "should format numbers correctly", function( assert ) {
 
 QUnit.test( "should accept custom number formatter", function( assert ) {
 	var enCustomFormatter = en.numberFormatter({ maximumFractionDigits: 2 }),
-			deCustomFormatter = de.numberFormatter({ maximumFractionDigits: 2 }),
-			enUnitFormatter = en.unitFormatter( "meter", {
-				form: "long", numberFormatter: enCustomFormatter
-			} ),
-			deUnitFormatter = de.unitFormatter( "meter", {
-				form: "long", numberFormatter: deCustomFormatter
-			} );
+		deCustomFormatter = de.numberFormatter({ maximumFractionDigits: 2 }),
+		enUnitFormatter = en.unitFormatter( "meter", {
+			form: "long", numberFormatter: enCustomFormatter
+		}),
+		deUnitFormatter = de.unitFormatter( "meter", {
+			form: "long", numberFormatter: deCustomFormatter
+		});
 
 	assert.equal( enUnitFormatter( 3.14159 ), "3.14 meters" );
 	assert.equal( deUnitFormatter( 3.14159 ), "3,14 Meter" );

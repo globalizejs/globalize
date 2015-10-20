@@ -17,8 +17,8 @@ Could also be a compound unit, eg. "mile-per-hour" or "mile/hour"
 
 - form: [String] eg. "long", "short" or "narrow".
 
-- numberFormatter: [Object] `Globalize.numberFormatter` instance. Defaults to the
-	default numberFormatter for the current locale.
+- numberFormatter: [Function] a number formatter function. Defaults to Globalize
+  `.numberFormatter()` for the current locale using the default options.
 
 **value**
 

@@ -25,7 +25,7 @@ define([
  */
 return function( value, unitProperties, numberFormatter, pluralGenerator ) {
 	var compoundUnitPattern = unitProperties.compoundUnitPattern, dividend, dividendProperties,
-			formattedValue, divisor, divisorProperties, message, pluralValue;
+		formattedValue, divisor, divisorProperties, message, pluralValue;
 
 	unitProperties = unitProperties.unitProperties;
 	formattedValue = numberFormatter( value );

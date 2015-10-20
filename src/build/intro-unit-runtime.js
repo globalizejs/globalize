@@ -21,6 +21,7 @@
 		// AMD
 		define([
 			"../globalize-runtime",
+			"./number",
 			"./plural"
 		], factory );
 	} else if ( typeof exports === "object" ) {
@@ -28,6 +29,7 @@
 		// Node, CommonJS
 		module.exports = factory(
 			require( "../globalize-runtime" ),
+			require( "./number" ),
 			require( "./plural" )
 		);
 	} else {
@@ -37,4 +39,6 @@
 	}
 }(this, function( Globalize ) {
 
-var runtimeKey = Globalize._runtimeKey;
+var runtimeKey = Globalize._runtimeKey,
+	validateParameterPresence = Globalize._validateParameterPresence,
+	validateParameterTypeNumber = Globalize._validateParameterTypeNumber;
