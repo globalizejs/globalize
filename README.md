@@ -576,7 +576,7 @@ handle dependencies and CLDR loading manually yourself.
 
 ## Unit module
 
-- **`.unitFormatter( unit, options )`**
+- **`.unitFormatter( unit [, options] )`**
 
   Returns a function that formats a unit according to the given unit, options, and the
   default/instance locale.
@@ -594,7 +594,7 @@ handle dependencies and CLDR loading manually yourself.
 
   [Read more...](doc/api/unit/unit-formatter.md)
 
-- **`.formatUnit( value, unit, options )`**
+- **`.formatUnit( value, unit [, options] )`**
 
   Alias for `.unitFormatter( unit, options )( value )`.
 
