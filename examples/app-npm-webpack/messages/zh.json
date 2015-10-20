@@ -5,7 +5,8 @@
 		"currency-label": "币",
 		"date-label": "迄今",
 		"relative-time-label": "相对时间",
-		"message-1": "使用混合数的消息的示例\"{number}\"，货币\"{currency}\"，日期\"{date}\"，和相对时间\"{relativeTime}\"。",
+		"unit-label": "单元",
+		"message-1": "使用混合数\"{number}\"，货币\"{currency}\"，日期\"{date}\"，相对时间\"{relativeTime}\"和单元\"{unit}\"的消息的例子。",
 		"message-2": [
 			"与多元化支持消息的例子：",
 			"{count, plural,",

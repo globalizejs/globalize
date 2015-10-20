@@ -14,17 +14,22 @@ document.getElementById( "date" ).textContent = dateFormatter( new Date() );
 var relativeTimeFormatter = Globalize.relativeTimeFormatter( "second" );
 document.getElementById( "relative-time" ).textContent = relativeTimeFormatter( 0 );
 
+var unitFormatter = Globalize.unitFormatter( "mile/hour", { form: "short" } );
+document.getElementById( "unit" ).textContent = unitFormatter( 60 );
+
 // Messages.
 document.getElementById( "intro-1" ).textContent = Globalize.formatMessage( "intro-1" );
 document.getElementById( "number-label" ).textContent = Globalize.formatMessage( "number-label" );
 document.getElementById( "currency-label" ).textContent = Globalize.formatMessage( "currency-label" );
 document.getElementById( "date-label" ).textContent = Globalize.formatMessage( "date-label" );
 document.getElementById( "relative-time-label" ).textContent = Globalize.formatMessage( "relative-time-label" );
+document.getElementById( "unit-label" ).textContent = Globalize.formatMessage( "unit-label" );
 document.getElementById( "message-1" ).textContent = Globalize.formatMessage( "message-1", {
 	currency: currencyFormatter( 69900 ),
 	date: dateFormatter( new Date() ),
 	number: numberFormatter( 12345.6789 ),
-	relativeTime: relativeTimeFormatter( 0 )
+	relativeTime: relativeTimeFormatter( 0 ),
+	unit: unitFormatter( 60 )
 });
 
 document.getElementById( "message-2" ).textContent = Globalize.formatMessage( "message-2", {
@@ -44,7 +49,8 @@ setInterval(function() {
 		currency: currencyFormatter( 69900 ),
 		date: dateFormatter( new Date() ),
 		number: numberFormatter( 12345.6789 ),
-		relativeTime: relativeTimeFormatter( elapsedTime )
+		relativeTime: relativeTimeFormatter( elapsedTime ),
+		unit: unitFormatter( 60 )
 	});
 
 }, 1000);

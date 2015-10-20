@@ -29,13 +29,15 @@
             <li><span id="message-3"></span></li>
         </ul>
         <p>Something happened: <span id="relative-time"></span></p>
+        <p>Speed limit: <span id="unit"></span></p>
     </div>
 
     <!--
-    Load Globalize runtime and its runtime modules. Note they are already
-    available on this repository. If it's not, read Usage on Getting Started on
-    the root's README.md.
+    Note, we don't need cldrjs library anymore because the formatters have
+    already been created by the compilation step. More info below.
     -->
+
+    <!-- Load Globalize runtime and its runtime modules -->
     <script src="node_modules/globalize/dist/globalize-runtime.js"></script>
     <script src="node_modules/globalize/dist/globalize-runtime/message.js"></script>
     <script src="node_modules/globalize/dist/globalize-runtime/number.js"></script>
@@ -49,11 +51,12 @@
     Load after globalize-runtime/number.js and globalize-runtime/plural.js
     -->
     <script src="node_modules/globalize/dist/globalize-runtime/relative-time.js"></script>
+    <script src="node_modules/globalize/dist/globalize-runtime/unit.js"></script>
 
     <!--
     Then, load the compiled formatters.
 
-    Note, we don't need to feed Globalize on CLDR data anymore. Because, the
+    Note, we don't need to feed Globalize on CLDR data anymore because the
     formatters have already been created by the compilation step and their
     "snapshots" are available below.
     -->

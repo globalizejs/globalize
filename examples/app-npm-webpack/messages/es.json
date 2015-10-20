@@ -5,7 +5,8 @@
 		"currency-label": "Moneda",
 		"date-label": "Fecha",
 		"relative-time-label": "Tiempo Relativo",
-		"message-1": "Un ejemplo de mensaje usando números mixtos \"{number}\", monedas \"{currency}\", fechas \"{date}\", y tiempo relativo \"{relativeTime}\".",
+		"unit-label": "Unidad",
+		"message-1": "Un ejemplo de mensaje usando números mixtos \"{number}\", monedas \"{currency}\", fechas \"{date}\", tiempo relativo \"{relativeTime}\", y unidades \"{unit}\".",
 		"message-2": [
 			"Un ejemplo de mensaje con soporte de pluralización:",
 			"{count, plural,",

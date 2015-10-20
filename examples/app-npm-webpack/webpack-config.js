@@ -14,11 +14,12 @@ module.exports = {
 		vendor: [
 			"globalize",
 			"globalize/dist/globalize-runtime/number",
-			"globalize/dist/globalize-runtime/plural",
-			"globalize/dist/globalize-runtime/message",
 			"globalize/dist/globalize-runtime/currency",
 			"globalize/dist/globalize-runtime/date",
-			"globalize/dist/globalize-runtime/relative-time"
+			"globalize/dist/globalize-runtime/message",
+			"globalize/dist/globalize-runtime/plural",
+			"globalize/dist/globalize-runtime/relative-time",
+			"globalize/dist/globalize-runtime/unit"
 		]
 	} : "./app/index.js",
 	debug: !options.production,
