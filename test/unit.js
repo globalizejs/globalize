@@ -37,7 +37,11 @@ require([
 
 	// relative time
 	"./unit/relative-time/properties",
-	"./unit/relative-time/format"
+	"./unit/relative-time/format",
+
+	/* unit */
+	"./unit/unit/get",
+	"./unit/unit/format"
 
 ], function() {
 	QUnit.start();

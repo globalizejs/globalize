@@ -32,7 +32,11 @@ require([
 
 	// relative-time
 	"./functional/relative-time/format-relative-time",
-	"./functional/relative-time/relative-time-formatter"
+	"./functional/relative-time/relative-time-formatter",
+
+	// unit
+	"./functional/unit/format-unit",
+	"./functional/unit/unit-formatter"
 
 ], function() {
 	QUnit.start();
