@@ -14,27 +14,40 @@ Before running it, execute the requirements below.
 
 **1. Dependencies**
 
-Globalize's dependencies are listed on [Getting
+The demo requires Globalize and its dependencies. Globalize's dependencies are listed on [Getting
 Started](../../README.md#dependencies), and the only one is
-[cldrjs](https://github.com/rxaviers/cldrjs). You are free to fetch it the way
-you want. But, as an exercise of this demo, we'll download it ourselves. So:
+[cldrjs](https://github.com/rxaviers/cldrjs). You are free to fetch it the way you want. But, as an
+exercise of this demo, we'll download it ourselves. So:
 
+1. Click at [Globalize releases tab](https://github.com/rxaviers/globalize/releases).
+1. Download the latest package.
+1. Unzip it.
+1. Rename the extracted directory `globalize` and move it alongside `index.html` and `README.md`.
 1. Click at [cldrjs releases tab](https://github.com/rxaviers/cldrjs/releases).
 1. Download the latest package.
 1. Unzip it.
-1. Create a `cldrjs` directory alongside `index.html` and `README.md` and move the cldrjs `dist/` files into it.
+1. Rename the extracted directory `cldrjs` and move it alongside `index.html` and `README.md`.
 
 Then, you'll get this:
 
 ```
 .
 ├── cldrjs
-│   ├── cldr.js
-│   ├── ...
-│   └── cldr
-│       ├── event.js
-│       ├── supplemental.js
-│       └── ...
+│   └── dist
+│       ├── cldr.js
+│       ├── ...
+│       └── cldr
+│           ├── event.js
+│           ├── supplemental.js
+│           └── ...
+├── globalize
+│   └── dist
+│       ├── globalize.js
+│       ├── ...
+│       └── globalize
+│           ├── currency.js
+│           ├── date.js
+│           └── ...
 ├── index.html
 └── README.md
 ```
