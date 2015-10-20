@@ -106,6 +106,18 @@
 					},
 					"standard": "¤#,##0.00"
 				}
+			},
+			"units": {
+				"short": {
+					"per": {
+						"compoundUnitPattern": "{0}/{1}"
+					},
+					"speed-mile-per-hour": {
+						"displayName": "miles/hour",
+						"unitPattern-count-one": "{0} mph",
+						"unitPattern-count-other": "{0} mph"
+					}
+				}
 			}
 		}
 	},

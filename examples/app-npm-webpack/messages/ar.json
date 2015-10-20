@@ -5,7 +5,8 @@
 		"currency-label": "عملة",
 		"date-label": "تاريخ",
 		"relative-time-label": "الوقت النسبي",
-		"message-1": "‫مثال علي رسالة باستخدام أرقام مختلطة ‭\"{number}\"‬, عملات ‭\"{currency}\"‬ , تواريخ ‭\"{date}\"‬‬ , ووقت نسبي ‭\"{relativeTime}\"‬.‬",
+		"unit-label": "Unit",
+		"message-1": "An example of a message using mixed number \"{number}\", currency \"{currency}\", date \"{date}\", relative time \"{relativeTime}\", and unit \"{unit}\".",
 		"message-2": [
 			"مثال على رسالة بدعم صيغة الجمع:",
 			"{count, plural,",

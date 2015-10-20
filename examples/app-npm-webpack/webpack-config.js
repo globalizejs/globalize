@@ -14,26 +14,27 @@ module.exports = {
 		vendor: [
 			"globalize",
 			"globalize/dist/globalize-runtime/number",
-			"globalize/dist/globalize-runtime/plural",
-			"globalize/dist/globalize-runtime/message",
 			"globalize/dist/globalize-runtime/currency",
 			"globalize/dist/globalize-runtime/date",
-			"globalize/dist/globalize-runtime/relative-time"
+			"globalize/dist/globalize-runtime/message",
+			"globalize/dist/globalize-runtime/plural",
+			"globalize/dist/globalize-runtime/relative-time",
+			"globalize/dist/globalize-runtime/unit"
 		]
 	} : "./app/index.js",
 	debug: !options.production,
 	output: {
 		path: options.production ? "./dist" : "./tmp",
 		publicPath: options.production ? "" : "http://localhost:8080/",
-		filename: options.production ? "app.[hash].js" : "app.js",
+		filename: options.production ? "app.[hash].js" : "app.js"
 	},
 	resolve: {
-		extensions: [ "", ".js" ],
+		extensions: [ "", ".js" ]
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			production: options.production,
-			template: "./index-template.html",
+			template: "./index-template.html"
 		}),
 		new GlobalizePlugin({
 			production: options.production,
@@ -47,8 +48,8 @@ module.exports = {
 		new CommonsChunkPlugin( "vendor", "vendor.[hash].js" ),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {
-				warnings: false,
-			},
+				warnings: false
+			}
 		})
 	] : [] )
 };

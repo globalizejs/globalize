@@ -27,7 +27,12 @@ document.getElementById( "message-2" ).textContent = like( 2 );
 document.getElementById( "message-3" ).textContent = like( 3 );
 
 // Use Globalize to format a relative time.
-document.getElementById( "relative-time" ).innerText = Globalize.formatRelativeTime( -35, "second" );
+document.getElementById( "relative-time" ).textContent = Globalize.formatRelativeTime( -35, "second" );
+
+// Use Globalize to format a unit.
+document.getElementById( "unit" ).textContent = Globalize.formatUnit( 60, "mile/hour", {
+	form: "short"
+});
 
 document.getElementById( "requirements" ).style.display = "none";
 document.getElementById( "demo" ).style.display = "block";
