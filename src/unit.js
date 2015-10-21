@@ -62,7 +62,7 @@ Globalize.prototype.unitFormatter = function( unit, options ) {
 
 	numberFormatter = options.numberFormatter || this.numberFormatter();
 	pluralGenerator = this.pluralGenerator();
-	returnFn = unitFormatterFn( properties, numberFormatter, pluralGenerator );
+	returnFn = unitFormatterFn( numberFormatter, pluralGenerator, properties );
 
 	runtimeBind( args, this.cldr, returnFn, [ numberFormatter, pluralGenerator, properties ] );
 

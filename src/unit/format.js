@@ -3,15 +3,15 @@ define([
 ], function( formatMessage ) {
 
 /**
- * format( value, unit, pluralGenerator, numberFormatter )
+ * format( value, numberFormatter, pluralGenerator, unitProperies )
  *
  * @value [Number]
- *
- * @unitProperies [Object]: localized unit data from cldr.
  *
  * @numberFormatter [Object]: A numberFormatter from Globalize.numberFormatter.
  *
  * @pluralGenerator [Object]: A pluralGenerator from Globalize.pluralGenerator.
+ *
+ * @unitProperies [Object]: localized unit data from cldr.
  *
  * Format units such as seconds, minutes, days, weeks, etc.
  *
@@ -23,7 +23,7 @@ define([
  * Duration Unit (for composed time unit durations) is not implemented.
  * http://www.unicode.org/reports/tr35/tr35-35/tr35-general.html#durationUnit
  */
-return function( value, unitProperties, numberFormatter, pluralGenerator ) {
+return function( value, numberFormatter, pluralGenerator, unitProperties ) {
 	var compoundUnitPattern = unitProperties.compoundUnitPattern, dividend, dividendProperties,
 		formattedValue, divisor, divisorProperties, message, pluralValue;
 

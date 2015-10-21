@@ -39,6 +39,7 @@
 	}
 }(this, function( Globalize ) {
 
-var runtimeKey = Globalize._runtimeKey,
+var formatMessage = Globalize._formatMessage,
+	runtimeKey = Globalize._runtimeKey,
 	validateParameterPresence = Globalize._validateParameterPresence,
 	validateParameterTypeNumber = Globalize._validateParameterTypeNumber;

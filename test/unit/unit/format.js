@@ -33,7 +33,7 @@ QUnit.assert.unitFormat = function ( value, unit, options, expected ) {
 	var unitProps = unitProperties( unit, options.form, cldr );
 
 	this.equal(
-		formatUnit( value, unitProps, stubNumberFormatter, oneOrOtherPluralGenerator ),
+		formatUnit( value, stubNumberFormatter, oneOrOtherPluralGenerator, unitProps ),
 		expected
 	);
 };
