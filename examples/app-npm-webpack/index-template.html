@@ -19,31 +19,40 @@
 
 <div id="demo" style="display: none">
 	<p id="intro-1">Use Globalize to internationalize your application.</p>
+
 	<table border="1" style="marginBottom: 1em;">
 		<tbody>
 			<tr>
 				<td><span id="number-label">Standalone Number</span></td>
 				<td>"<span id="number"></span>"</td>
+				<td><input type="text" id="number-input"><button id="number-button">Change number</button></td>
 			</tr>
 			<tr>
 				<td><span id="currency-label">Standalone Currency</span></td>
 				<td>"<span id="currency"></span>"</td>
+				<td><input type="text" id="currency-input"><button id="currency-button">Change money</button></td>
 			</tr>
 			<tr>
 				<td><span id="date-label">Standalone Date</span></td>
 				<td>"<span id="date"></span>"</td>
+				<td><input type="text" id="date-input"><button id="date-button">Change date</button></td>
 			</tr>
 			<tr>
 				<td><span id="relative-time-label">Standalone Relative Time</span></td>
 				<td>"<span id="relative-time"></span>"</td>
+				<td><input type="text" id="time-input"><button id="time-button">Increase time</button></td>
 			</tr>
 		</tbody>
 	</table>
+	<p>To change the time, enter a positive or negative amount of seconds (e.g. -10).</p>
 	<p id="message-1">
 		An example of a message using mixed numbers "{number}", currencies "{currency}", dates "{date}", and relative time "{relativeTime}".
 	</p>
+
+	<input type="text" name="count" id="count">
+	<button id="count-button">Change quantity</button>
 	<p id="message-2">
-		An example of a message with pluralization support: 
+		An example of a message with pluralization support:
 		{count, plural,
 			one {You have one remaining task}
 			other {You have # remaining tasks}
