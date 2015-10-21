@@ -6,7 +6,7 @@
 		"date-label": "Data",
 		"relative-time-label": "Tempo relativo",
 		"unit-label": "Unit",
-		"message-1": "An example of a message using mixed number \"{number}\", currency \"{currency}\", date \"{date}\", relative time \"{relativeTime}\", and unit \"{unit}\".",
+		"message-1": "Um exemplo de mensagem com mistura de número \"{number}\", moeda \"{currency}\", data \"{date}\", tempo relativo \"{relativeTime}\", e unidade \"{unit}\".",
 		"message-2": [
 			"Um exemplo de message com suporte a pluralização:",
 			"{count, plural,",
