@@ -653,10 +653,10 @@ writing code, be sure to read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 [StackOverflow with the "javascript-globalize" tag]: http://stackoverflow.com/tags/javascript-globalize
 
-For ideas where to start contributing, we've grouped where we need help by
-category: [quick changes][], [new features][], [bug fixes][], [documentation
-improvements][], [date module][], [currency module][], [message module][],
-[number module][], [plural module][], [relative time module][].
+For ideas where to start contributing, see the following queries: [quick
+changes][], [new features][], [bug fixes][], [documentation improvements][],
+[date module][], [currency module][], [message module][], [number module][],
+[plural module][], [relative time module][]. We hope this could be of help.
 
 [bug fixes]: https://github.com/jquery/globalize/labels/bug
 [documentation improvements]: https://github.com/jquery/globalize/labels/docs
@@ -677,8 +677,9 @@ find:
 
 - [Ongoing work][] lists our current sprint. Here you find what we're actively
   working on at this very moment. Priority is determined by the community needs.
-  If there's anything you want to be done, feel free to weigh in on a new or
-  existing issue or pull request. Being proactive is your best bet.
+  If there's anything you want to be done, feel free to weigh in on any existing
+  issue or pull request, or go ahead and create a new one. Let us know what you
+  think.
 - [Help wanted][] lists potential next work that you could help us to accomplish now.
 
 [Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
