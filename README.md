@@ -681,12 +681,12 @@ find:
 - [Ongoing work][] lists our current sprint. Here you find what we're actively
   working on at this very moment. Priority is determined by the community needs.
   If there's anything you want to be done, feel free to weigh in on any existing
-  issue or pull request, or go ahead and create a new one. Let us know what you
-  think.
-- [Help wanted][] lists potential next work that you could help us to accomplish now.
+  issue or pull request, or go ahead and create a new one. Share your thoughts
+  with us.
+- [Everything else][] is potential next work that you could help us to accomplish now.
 
 [Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
-[Help wanted]: https://github.com/jquery/globalize/labels/help%20wanted
+[Everything else]: https://github.com/jquery/globalize/issues?utf8=%E2%9C%93&q=is%3Aopen+-label%3A%22Current+Sprint%22+
 
 ## Development
 
