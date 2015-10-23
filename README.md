@@ -681,7 +681,8 @@ find:
 - [Ongoing work][] lists our current sprint. Here you find where we're actively
   working on at this very moment. Priority is determined by the community needs
   and volunteering. If there is anything you want to be done, share your
-  thoughts with us on any existing or new issues and especially volunteer to do it.
+  thoughts with us on any existing or new issue and especially volunteer to do
+  it.
 - [Everything else][] is potential next work that you could help us to
   accomplish now. Releases are published following semver rules as often as
   possible.
