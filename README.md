@@ -653,10 +653,10 @@ writing code, be sure to read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 [StackOverflow with the "javascript-globalize" tag]: http://stackoverflow.com/tags/javascript-globalize
 
-For ideas where to start contributing, find what you like best: [quick
-changes][], [new features][], [bug fixes][], or [documentation improvements][];
-or by modules: [date module][], [currency module][], [message module][], [number
-module][], [plural module][], or [relative time module][].
+For ideas where to start contributing, we've grouped where we need help by
+category: [quick changes][], [new features][], [bug fixes][], [documentation
+improvements][], [date module][], [currency module][], [message module][],
+[number module][], [plural module][], [relative time module][].
 
 [bug fixes]: https://github.com/jquery/globalize/labels/bug
 [documentation improvements]: https://github.com/jquery/globalize/labels/docs
