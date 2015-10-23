@@ -680,10 +680,11 @@ find:
 
 - [Ongoing work][] lists our current sprint. Here you find where we're actively
   working on at this very moment. Priority is determined by the community needs
-  and availability to address them. If there's anything you want to be done,
-  feel free to weigh in on any existing issue or pull request, or go ahead and
-  file a new issue. Share your thoughts with us.
-- [Everything else][] is potential next work that you could help us to accomplish now.
+  and volunteering. If there is anything you want to be done, share your
+  thoughts with us on any existing or new issues and especially volunteer to do it.
+- [Everything else][] is potential next work that you could help us to
+  accomplish now. Releases are published following semver rules as often as
+  possible.
 
 [Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
 [Everything else]: https://github.com/jquery/globalize/issues?utf8=%E2%9C%93&q=is%3Aopen+-label%3A%22Current+Sprint%22+
