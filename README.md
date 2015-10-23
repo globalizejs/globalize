@@ -678,11 +678,11 @@ touch](http://irc.jquery.org/).
 Our roadmap is the collection of all open issues and pull requests where you can
 find:
 
-- [Ongoing work][] lists our current sprint. Here you find what we're actively
-  working on at this very moment. Priority is determined by the community needs.
-  If there's anything you want to be done, feel free to weigh in on any existing
-  issue or pull request, or go ahead and create a new one. Share your thoughts
-  with us.
+- [Ongoing work][] lists our current sprint. Here you find where we're actively
+  working on at this very moment. Priority is determined by the community needs
+  and availability to address them. If there's anything you want to be done,
+  feel free to weigh in on any existing issue or pull request, or go ahead and
+  file a new issue. Share your thoughts with us.
 - [Everything else][] is potential next work that you could help us to accomplish now.
 
 [Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
