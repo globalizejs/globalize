@@ -33,7 +33,7 @@ Node.js module.
   - [Relative time module](#relative-time-module)
   - more to come...
 - [Error reference](#error-reference)
-- [Contribution](#contribution)
+- [Contributing](#contributing)
   - [Roadmap](#roadmap)
 - [Development](#development)
   - [File structure](#file-structure)
@@ -640,7 +640,7 @@ handle dependencies and CLDR loading manually yourself.
   [Read more...](doc/error/e-unsupported.md)
 
 
-## Contribution
+## Contributing
 
 If you are having trouble using Globalize after reading the documentation
 carefully, please post a question to [StackOverflow with the
