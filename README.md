@@ -656,8 +656,8 @@ writing code, be sure to read [CONTRIBUTING.md](CONTRIBUTING.md).
 For ideas where to start contributing, see the following queries: [quick
 changes][], [new features][], [bug fixes][], [documentation improvements][],
 [date module][], [currency module][], [message module][], [number module][],
-[plural module][], [relative time module][]. Some people like to begin with
-documentation or quick changes, but each one likes different things. We hope
+[plural module][], [relative time module][]. New contributors like to begin with
+documentation or quick changes, but we all like different things, so we hope
 this could be of help.
 
 [bug fixes]: https://github.com/jquery/globalize/labels/bug
