@@ -6,8 +6,8 @@
   },
   "devDependencies": {
     "cldr-data": ">=25",
-    "globalize": "latest",
-    "globalize-compiler": "0.0.x",
+    "globalize": "^1.1.x-rc.5",
+    "globalize-compiler": "0.1.x",
     "jquery": "latest"
   }
 }

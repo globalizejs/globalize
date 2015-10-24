@@ -5,7 +5,8 @@
 		"currency-label": "Währung",
 		"date-label": "Datum",
 		"relative-time-label": "Relative Zeit",
-		"message-1": "Ein Beispieltext der eine Mischung aus Zahl \"{number}\", Währung \"{currency}\", Datum \"{date}\", und relativer Zeit \"{relativeTime}\" verwendet.",
+		"unit-label": "Unit",
+		"message-1": "An example of a message using mixed number \"{number}\", currency \"{currency}\", date \"{date}\", relative time \"{relativeTime}\", and unit \"{unit}\".",
 		"message-2": [
 			"Ein Beispieltext mit Unterstützung von Plural Formen: ",
 			"{count, plural,",

@@ -5,7 +5,8 @@
 		"currency-label": "Moeda",
 		"date-label": "Data",
 		"relative-time-label": "Tempo relativo",
-		"message-1": "Um exemplo de mensagem com mistura de números \"{number}\", moedas \"{currency}\", datas \"{date}\", e tempo relativo \"{relativeTime}\".",
+		"unit-label": "Unit",
+		"message-1": "Um exemplo de mensagem com mistura de número \"{number}\", moeda \"{currency}\", data \"{date}\", tempo relativo \"{relativeTime}\", e unidade \"{unit}\".",
 		"message-2": [
 			"Um exemplo de message com suporte a pluralização:",
 			"{count, plural,",

@@ -94,6 +94,11 @@ require([
 	// Use Globalize to format a relative time.
 	document.getElementById( "relative-time" ).textContent = en.formatRelativeTime( -35, "second" );
 
+	// Use Globalize to format a unit.
+	document.getElementById( "unit" ).textContent = en.formatUnit( 60, "mile/hour", {
+		form: "short"
+	});
+
 	document.getElementById( "requirements" ).style.display = "none";
 	document.getElementById( "demo" ).style.display = "block";
 

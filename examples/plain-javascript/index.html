@@ -29,32 +29,34 @@
             <li><span id="message-3"></span></li>
         </ul>
         <p>Something happened: <span id="relative-time"></span></p>
+        <p>Speed limit: <span id="unit"></span></p>
     </div>
 
     <!--
     First, we load Globalize's dependencies (`cldrjs` and its supplemental
     module).
     -->
-    <script src="cldrjs/cldr.js"></script>
-    <script src="cldrjs/cldr/event.js"></script>
-    <script src="cldrjs/cldr/supplemental.js"></script>
+    <script src="cldrjs/dist/cldr.js"></script>
+    <script src="cldrjs/dist/cldr/event.js"></script>
+    <script src="cldrjs/dist/cldr/supplemental.js"></script>
 
     <!--
     Next, we load Globalize and its modules. Note they are already available on
     this repository. If it's not, read Usage on Getting Started on the root's
     README.md.
     -->
-    <script src="../../dist/globalize.js"></script>
-    <script src="../../dist/globalize/message.js"></script>
-    <script src="../../dist/globalize/number.js"></script>
-    <script src="../../dist/globalize/plural.js"></script>
+    <script src="globalize/dist/globalize.js"></script>
+    <script src="globalize/dist/globalize/message.js"></script>
+    <script src="globalize/dist/globalize/number.js"></script>
+    <script src="globalize/dist/globalize/plural.js"></script>
 
     <!-- Load after globalize/number.js -->
-    <script src="../../dist/globalize/date.js"></script>
-    <script src="../../dist/globalize/currency.js"></script>
+    <script src="globalize/dist/globalize/date.js"></script>
+    <script src="globalize/dist/globalize/currency.js"></script>
 
     <!-- Load after globalize/number.js and globalize/plural.js-->
-    <script src="../../dist/globalize/relative-time.js"></script>
+    <script src="globalize/dist/globalize/relative-time.js"></script>
+    <script src="globalize/dist/globalize/unit.js"></script>
 
     <script>
 
@@ -171,6 +173,18 @@
               },
               "standard": "¤#,##0.00"
             }
+          },
+          "units": {
+            "short": {
+              "per": {
+                "compoundUnitPattern": "{0}/{1}"
+              },
+              "speed-mile-per-hour": {
+                "displayName": "miles/hour",
+                "unitPattern-count-one": "{0} mph",
+                "unitPattern-count-other": "{0} mph"
+              }
+            }
           }
         }
       },
@@ -241,6 +255,11 @@
 
     // Use Globalize to format a relative time.
     document.getElementById( "relative-time" ).textContent = en.formatRelativeTime( -35, "second" );
+
+    // Use Globalize to format a unit.
+    document.getElementById( "unit" ).textContent = en.formatUnit( 60, "mile/hour", {
+      form: "short"
+    });
 
     document.getElementById( "requirements" ).style.display = "none";
     document.getElementById( "demo" ).style.display = "block";

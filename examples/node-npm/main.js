@@ -7,6 +7,7 @@ Globalize.load(
 	require( "cldr-data/main/en/currencies" ),
 	require( "cldr-data/main/en/dateFields" ),
 	require( "cldr-data/main/en/numbers" ),
+	require( "cldr-data/main/en/units" ),
 	require( "cldr-data/supplemental/currencyData" ),
 	require( "cldr-data/supplemental/likelySubtags" ),
 	require( "cldr-data/supplemental/plurals" ),
@@ -39,3 +40,6 @@ console.log( like( 3 ) );
 
 // Use Globalize to format relative time.
 console.log( Globalize.formatRelativeTime( -35, "second" ) );
+
+// Use Globalize to format unit.
+console.log( Globalize.formatUnit( 60, "mile/hour", { form: "short" } ) );
