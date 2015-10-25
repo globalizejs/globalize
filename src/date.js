@@ -203,6 +203,24 @@ Globalize.prototype.dateToPartsFormatter = function( options ) {
 		});
 	}
 
+	// only add setPeriods if dayPeriod defined
+	if ( options.dayPeriod ) {
+		properties.dayPeriod = options.dayPeriod || "";
+		if ( "setPeriods" in options ) {
+			properties.setPeriods = options.setPeriods;
+		} else {
+			properties.setPeriods = {
+				"00:00": "midnight",
+				"00:01": "night1",
+				"06:00": "morning1",
+				"12:00": "noon",
+				"12:01": "afternoon1",
+				"18:00": "evening1",
+				"21:00": "night1"
+			};
+		}
+	}
+
 	returnFn = dateToPartsFormatterFn( numberFormatters, properties );
 
 	runtimeBind( args, cldr, returnFn, [ numberFormatters, properties ] );

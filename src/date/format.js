@@ -33,6 +33,22 @@ return function( date, numberFormatters, properties ) {
 		date = new ZonedDateTime( date, properties.timeZoneData() );
 	}
 
+	var findDayPeriodValue = function( date, properties ) {
+		var p, period, last,
+			time = date.getHours() + ( date.getMinutes() / 100 );
+
+		for ( p in properties.setPeriods ) {
+
+			// convert 'hh:mm' to hh.mm (easier comparisons)
+			period = parseFloat( p.replace( ":", "." ) );
+			if ( period >= time ) {
+				return properties.setPeriods[ period > time ? last : p ];
+			}
+			last = p;
+		}
+		return last ? properties.setPeriods[ last ] : null;
+	};
+
 	properties.pattern.replace( datePatternRe, function( current ) {
 		var aux, dateField, type, value,
 			chr = current.charAt( 0 ),
@@ -193,7 +209,11 @@ return function( date, numberFormatters, properties ) {
 
 			// Period (AM or PM)
 			case "a":
-				value = properties.dayPeriods[ date.getHours() < 12 ? "am" : "pm" ];
+				value = "";
+				if ( /(B|C)/.test( properties.dayPeriod ) ) {
+					value = properties.dayPeriods[ findDayPeriodValue( date, properties ) ];
+				}
+				value = value || properties.dayPeriods[ date.getHours() < 12 ? "am" : "pm" ];
 				break;
 
 			// Hour
