@@ -1,29 +1,25 @@
-var currencyFormatter, dateFormatter, numberFormatter, relativeTimeFormatter, startTime,
-	Globalize = require( "globalize" );
-
-startTime = new Date();
-
-currencyFormatter = Globalize.currencyFormatter( "USD" );
-dateFormatter = Globalize.dateFormatter({ datetime: "medium" });
-numberFormatter = Globalize.numberFormatter({ maximumFractionDigits: 2 });
-relativeTimeFormatter = Globalize.relativeTimeFormatter( "second" );
-
-document.getElementById( "intro-1" ).textContent = Globalize.formatMessage( "intro-1" );
+var Globalize = require( "globalize" );
+var startTime = new Date();
 
 // Standalone table.
-document.getElementById( "currency-label" ).textContent = Globalize.formatMessage( "currency-label" );
-document.getElementById( "currency" ).textContent = currencyFormatter( 69900 );
-
-document.getElementById( "date-label" ).textContent = Globalize.formatMessage( "date-label" );
-document.getElementById( "date" ).textContent = dateFormatter( new Date() );
-
-document.getElementById( "number-label" ).textContent = Globalize.formatMessage( "number-label" );
+var numberFormatter = Globalize.numberFormatter({ maximumFractionDigits: 2 });
 document.getElementById( "number" ).textContent = numberFormatter( 12345.6789 );
 
-document.getElementById( "relative-time-label" ).textContent = Globalize.formatMessage( "relative-time-label" );
+var currencyFormatter = Globalize.currencyFormatter( "USD" );
+document.getElementById( "currency" ).textContent = currencyFormatter( 69900 );
+
+var dateFormatter = Globalize.dateFormatter({ datetime: "medium" });
+document.getElementById( "date" ).textContent = dateFormatter( new Date() );
+
+var relativeTimeFormatter = Globalize.relativeTimeFormatter( "second" );
 document.getElementById( "relative-time" ).textContent = relativeTimeFormatter( 0 );
 
 // Messages.
+document.getElementById( "intro-1" ).textContent = Globalize.formatMessage( "intro-1" );
+document.getElementById( "number-label" ).textContent = Globalize.formatMessage( "number-label" );
+document.getElementById( "currency-label" ).textContent = Globalize.formatMessage( "currency-label" );
+document.getElementById( "date-label" ).textContent = Globalize.formatMessage( "date-label" );
+document.getElementById( "relative-time-label" ).textContent = Globalize.formatMessage( "relative-time-label" );
 document.getElementById( "message-1" ).textContent = Globalize.formatMessage( "message-1", {
 	currency: currencyFormatter( 69900 ),
 	date: dateFormatter( new Date() ),
