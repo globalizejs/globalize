@@ -72,9 +72,7 @@
     "url": "http://github.com/jquery/globalize/issues"
   },
   "dependencies": {
-    "cldrjs": "0.4.3"
-  },
-  "peerDependencies": {
+    "cldrjs": "0.4.3",
     "cldr-data": ">=25"
   },
   "devDependencies": {
