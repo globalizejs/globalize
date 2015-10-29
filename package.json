@@ -72,7 +72,9 @@
     "url": "http://github.com/jquery/globalize/issues"
   },
   "dependencies": {
-    "cldrjs": "0.4.3",
+    "cldrjs": "0.4.3"
+  },
+  "peerDependencies": {
     "cldr-data": ">=25"
   },
   "devDependencies": {
@@ -90,7 +92,8 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-jscs": "1.8.0",
     "gzip-js": "0.3.2",
-    "matchdep": "0.3.0"
+    "matchdep": "0.3.0",
+    "cldr-data": ">=25"
   },
   "license": "MIT",
   "scripts": {
