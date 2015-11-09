@@ -16,6 +16,8 @@ define([
 	"./number/parse-properties",
 	"./number/pattern",
 	"./number/symbol",
+	"./number/shape-properties",
+	"./number/shaper-fn",
 	"./util/string/pad",
 
 	"cldr/event",
@@ -24,7 +26,8 @@ define([
 	validateDefaultLocale, validateParameterPresence, validateParameterRange,
 	validateParameterTypeNumber, validateParameterTypePlainObject, validateParameterTypeString,
 	numberFormatterFn, numberFormatProperties, numberNumberingSystem, numberParserFn,
-	numberParseProperties, numberPattern, numberSymbol, stringPad ) {
+	numberParseProperties, numberPattern, numberSymbol, numberShapeProperties,
+	numberShaperFn, stringPad ) {
 
 function validateDigits( properties ) {
 	var minimumIntegerDigits = properties[ 2 ],
@@ -137,6 +140,45 @@ Globalize.prototype.numberParser = function( options ) {
 };
 
 /**
+ * .numberShaper( [options] )
+ *
+ * @options [Object]:
+ * - shaperType: [String] "National" (default), "Contextual" or "None".
+ * - textDir: [String] "ltr", "rtl", or "auto" (default).
+ *
+ * Return a function that shapes a number according to the given options and default/instance
+ * locale.
+ */
+Globalize.numberShaper =
+Globalize.prototype.numberShaper = function( options ) {
+	var args, cldr, properties, returnFn;
+
+	validateParameterTypePlainObject( options, "options" );
+
+	options = options || {};
+	cldr = this.cldr;
+
+	args = [ options ];
+
+	validateDefaultLocale( cldr );
+
+	cldr.on( "get", validateCldr );
+
+	options.shaperType = options.shaperType || "National";
+	options.textDir = options.textDir || "auto";
+
+	properties = numberShapeProperties( cldr, options );
+
+	cldr.off( "get", validateCldr );
+
+	returnFn = numberShaperFn( properties );
+
+	runtimeBind( args, cldr, returnFn, [ properties ] );
+
+	return returnFn;
+};
+
+/**
  * .formatNumber( value [, options] )
  *
  * @value [Number] number to be formatted.
@@ -168,6 +210,23 @@ Globalize.prototype.parseNumber = function( value, options ) {
 	validateParameterTypeString( value, "value" );
 
 	return this.numberParser( options )( value );
+};
+
+/**
+ * .shapeNumber( value [, options] )
+ *
+ * @value [String] text with digits to be shaped.
+ *
+ * @options [Object]: See numberShaper().
+ *
+ * Return string with shaped digits according to the context.
+ */
+Globalize.shapeNumber =
+Globalize.prototype.shapeNumber = function( value, options ) {
+	validateParameterPresence( value, "value" );
+	validateParameterTypeString( value, "value" );
+
+	return this.numberShaper( options )( value );
 };
 
 /**
