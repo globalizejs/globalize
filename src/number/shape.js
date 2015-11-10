@@ -26,7 +26,10 @@ return function( value, properties ) {
 		case "National":
 			return shapeFromLatinToNational( value );
 		case "Contextual":
-			return numberShapeContextualAr( value, nuDigitsMap, textDir === "rtl" ? 2 : 1 );
+			if ( locale.indexOf( "ar" ) === 0 ) {
+				return numberShapeContextualAr( value, nuDigitsMap, textDir === "rtl" ? 2 : 1 );
+			}
+			/* falls through */
 		default: return value;
 	}
 

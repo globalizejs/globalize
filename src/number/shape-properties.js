@@ -16,7 +16,7 @@ define([
 return function( cldr, options ) {
 	var properties, nuDigitsMap, nationalDigits;
 
-	nationalDigits = numberNumberingSystemDigitsMap( cldr );
+	nationalDigits = numberNumberingSystemDigitsMap( cldr ) || "0123456789";
 
 	nuDigitsMap = nationalDigits.split( "" ).reduce(function( object, localizedDigit, i ) {
 		object[ i ] = localizedDigit;
@@ -31,7 +31,7 @@ return function( cldr, options ) {
 	// @shaperType [String] "National" (default), "Contextual" or "Latin".
 	// @textDir [String] "ltr", "rtl", or "auto" (default).
 	// @locale [String] The target locale to convert digits to.
-	// @nuDigitsMap [Object] Digits map for both localized & Latin digits.
+	// @nuDigitsMap [Object] Digits map for localized digits.
 	return properties;
 };
 
