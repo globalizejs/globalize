@@ -326,6 +326,7 @@ existing tools.
 - [Application example using webpack and npm](examples/app-npm-webpack/): easy to
   get started, automated CLDR loading and precompilation for production, but
   requires npm and webpack knowledge.
+- [Application example using globalize-express middleware with any express web app](https://github.com/devangnegandhi/globalize-express/tree/master/example): easy to incorporate globalize as a middleware within your express web add. (also checkout [globalize-express](https://github.com/devangnegandhi/globalize))
 
 If you're using a different tool than the one above, but you're comfortable
 using JavaScript modules (such as ES6 modules, CommonJS, or AMD) and package
