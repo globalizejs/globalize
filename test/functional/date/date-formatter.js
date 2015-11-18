@@ -218,6 +218,39 @@ QUnit.test( "should allow for runtime compilation", function( assert ) {
 			});
 		}
 	);
+
+	util.assertRuntimeBind(
+		assert,
+		Globalize.dateFormatter({ skeleton: "MMM" }),
+		"b664461195",
+		"Globalize(\"en\").dateFormatter({\"skeleton\":\"MMM\"})",
+		function( runtimeArgs ) {
+			assert.deepEqual( runtimeArgs[ 0 ], {} );
+			assert.deepEqual( runtimeArgs[ 1 ], {
+				"months": {
+					"L": {
+						"3": {
+							"1": "Jan",
+							"10": "Oct",
+							"11": "Nov",
+							"12": "Dec",
+							"2": "Feb",
+							"3": "Mar",
+							"4": "Apr",
+							"5": "May",
+							"6": "Jun",
+							"7": "Jul",
+							"8": "Aug",
+							"9": "Sep"
+						}
+					}
+				},
+				"pattern": "LLL",
+				"timeSeparator": ":"
+			});
+		}
+	);
+
 });
 
 });
