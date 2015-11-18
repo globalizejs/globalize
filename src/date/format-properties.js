@@ -21,15 +21,13 @@ define([
  */
 return function( pattern, cldr ) {
 	var properties = {
+			numberFormatters: {},
 			pattern: pattern,
 			timeSeparator: numberSymbol( "timeSeparator", cldr )
 		},
 		widths = [ "abbreviated", "wide", "narrow" ];
 
 	function setNumberFormatterPattern( pad ) {
-		if ( !properties.numberFormatters ) {
-			properties.numberFormatters = {};
-		}
 		properties.numberFormatters[ pad ] = stringPad( "", pad );
 	}
 
