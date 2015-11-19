@@ -6,12 +6,9 @@ Tobie Langel <tobie.langel@gmail.com>
 jeresig <jeresig@gmail.com>
 Eric Bréchemier <legalbox@eric.brechemier.name>
 Nikolaus Graf <nik@deck.cc>
-jzaefferer <joern.zaefferer@gmail.com>
-BorisMoore <BorisMoore@gmail.com>
-Richard Worth <rdworth@gmail.com>
-Richard D. Worth <rdworth@gmail.com>
 Jörn Zaefferer <joern.zaefferer@gmail.com>
-Jörn Zaefferer <joern.zaefferer@gmail.com>
+BorisMoore <BorisMoore@gmail.com>
+Richard D. Worth <rdworth@gmail.com>
 Kyle Florence <kyle.florence@gmail.com>
 David De Sloovere <david.desloovere@hotmail.com>
 Christian Vuerings <vueringschristian@gmail.com>
@@ -50,3 +47,4 @@ Wes Cravens <wesley.r.cravens@gmail.com>
 Amanpreet Singh <apsdehal@gmail.com>
 Brahim Arkni <brahim.arkni@gmail.com>
 Andrew Lunny <alunny@twitter.com>
+Karan Sharma <karan1276@gmail.com>
