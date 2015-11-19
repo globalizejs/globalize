@@ -1,0 +1,52 @@
+Authors ordered by first contribution
+
+InfinitiesLoop <dareed@microsoft.com>
+.NET jQuery Extensions <Swalther@Microsoft.com>
+Tobie Langel <tobie.langel@gmail.com>
+jeresig <jeresig@gmail.com>
+Eric Bréchemier <legalbox@eric.brechemier.name>
+Nikolaus Graf <nik@deck.cc>
+jzaefferer <joern.zaefferer@gmail.com>
+BorisMoore <BorisMoore@gmail.com>
+Richard Worth <rdworth@gmail.com>
+Richard D. Worth <rdworth@gmail.com>
+Jörn Zaefferer <joern.zaefferer@gmail.com>
+Jörn Zaefferer <joern.zaefferer@gmail.com>
+Kyle Florence <kyle.florence@gmail.com>
+David De Sloovere <david.desloovere@hotmail.com>
+Christian Vuerings <vueringschristian@gmail.com>
+blq <fblomqvist@gmail.com>
+Robert Plummer <robertleeplummerjr@gmail.com>
+Tomasz Peczek <tpeczek@gmail.com>
+Sean Cady <sean.cady@ge.com>
+Oleg Gulverdashvili <ctapbiumabp@gmail.com>
+Scott González <scott.gonzalez@gmail.com>
+Nick Schonning <nschonni@gmail.com>
+Rafael Xavier de Souza <rxaviers@gmail.com>
+Blixt <me@blixt.org>
+Leonardo Balter <leonardo.balter@gmail.com>
+Bao Ngo <bingo@planwise.com>
+Peter Dave Hello <hsu@peterdavehello.org>
+Raphael Amorim <rapha850@gmail.com>
+Yasuhiro Yoshida <yasuhiro.yoppu@gmail.com>
+Anne-Gaelle Colom <coloma@westminster.ac.uk>
+RikeCreates <rikunieminen@gmail.com>
+Arthur Verschaeve <contact@arthurverschaeve.be>
+Mateusz Bożyk <mateusz.bozyk@gmail.com>
+Michael Birtwell <michael.birtwell@starleaf.com>
+Kris Borchers <kris.borchers@gmail.com>
+Luke Page <luke.a.page@gmail.com>
+Manraj Singh <manrajsinghgrover@gmail.com>
+Juan Soto <juansoto@fastmail.fm>
+Arvind Kalyan <arvchamp@gmail.com>
+Tobias Nießen <tniessen@tnie.de>
+Kevin Kirsche <Kev.Kirsche+GitHub@gmail.com>
+Ed S <ejsanders@gmail.com>
+John Reilly <johnny_reilly@hotmail.com>
+Isaac Durazo <isaacdurazo@gmail.com>
+Oleg Gaidarenko <markelog@gmail.com>
+Rob Garrison <wowmotty@gmail.com>
+Wes Cravens <wesley.r.cravens@gmail.com>
+Amanpreet Singh <apsdehal@gmail.com>
+Brahim Arkni <brahim.arkni@gmail.com>
+Andrew Lunny <alunny@twitter.com>
