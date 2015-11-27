@@ -199,7 +199,7 @@ Globalize("es").formatDate(new Date());
 // > "27/11/2015"
 ```
 
-For AMD, bower and other usage examples, see [Examples section](#examples).
+Read the [Locales section](#locales) for more information about supported locales. For AMD, bower and other usage examples, see [Examples section](#examples).
 
 ### Installation
 
@@ -274,51 +274,6 @@ functionalities, etc.
 
 An example is worth a thousand words. Check out our [Examples](#examples)
 section below.
-
-#### Locale
-
-A locale is an identifier (id) that refers to a set of user preferences that
-tend to be shared across significant swaths of the world. In technical terms,
-it's a String composed of three parts: language, script, and region. For
-example:
-
-| locale | description |
-| --- | --- |
-| *en-Latn-US* | English as spoken in the Unites States in the Latin script. |
-| *en-US* | English as spoken in the Unites States (Latin script is deduced given it's the most likely script used in this place). |
-| *en* | English (United States region and Latin script are deduced given they are respectivelly the most likely region and script used in this place). |
-| *en-GB* | English as spoken in the Grain Britain (Latin script is deduced given it's the most likely script used in this place). |
-| *en-IN* | English as spoken in India (Latin script is deduced). |
-| *es* | Spanish (Spain region and Latin script are deduced). |
-| *es-MX* | Spanish as spoken in Mexico (Latin script is deduced). |
-| *zh* | Chinese (China region and Hans script are deduced). |
-| *zh-TW* | Chinese as spoken in Taiwan (Hant script is deduced). |
-| *ja* | Japanese (Japan region and Japan script are deduced). |
-| *de* | German (Germany region and Latin script are deduced). |
-| *pt* | Portuguese (Brazil region and Latin script are deduced). |
-| *pt-PT* | Portuguese as spoken in Portugal (Latin script is deduced). |
-| *fr* | French (France region and Latin script are deduced). |
-| *ru* | Russian (Russia region and Cyril script are deduced). |
-| *ar* | Arabic (Egypt region and Arabic script are deduced). |
-
-The likely deductibility is computed using CLDR data, which is based on the
-population and the suppress-script data in BCP47 (among others). The data is
-heuristically derived, and may change over time.
-
-Figure out deduced information by looking `cldr.attributes.maxLanguageId` of a
-Globalize instance:
-
-```js
-var Globalize = require( "globalize" );
-Globalize.load( require( "cldr-data" ).entireSupplemental() );
-Globalize("en").cldr.attributes.maxLanguageId;
-// > "en-Latn-US"
-```
-
-Read more details about locale at [UTS#35 locale][].
-
-[UTS#35 locale]: http://www.unicode.org/reports/tr35/#Locale
-
 
 ### Performance
 
@@ -415,6 +370,54 @@ handle dependencies and CLDR loading manually yourself.
   Create a Globalize instance.
 
   [Read more...](doc/api/core/constructor.md)
+
+#### Locale
+
+A locale is an identifier (id) that refers to a set of user preferences that
+tend to be shared across significant swaths of the world. In technical terms,
+it's a String composed of three parts: language, script, and region. For
+example:
+
+| locale | description |
+| --- | --- |
+| *en-Latn-US* | English as spoken in the Unites States in the Latin script. |
+| *en-US* | English as spoken in the Unites States (Latin script is deduced given it's the most likely script used in this place). |
+| *en* | English (United States region and Latin script are deduced given they are respectivelly the most likely region and script used in this place). |
+| *en-GB* | English as spoken in the Grain Britain (Latin script is deduced given it's the most likely script used in this place). |
+| *en-IN* | English as spoken in India (Latin script is deduced). |
+| *es* | Spanish (Spain region and Latin script are deduced). |
+| *es-MX* | Spanish as spoken in Mexico (Latin script is deduced). |
+| *zh* | Chinese (China region and Hans script are deduced). |
+| *zh-TW* | Chinese as spoken in Taiwan (Hant script is deduced). |
+| *ja* | Japanese (Japan region and Japan script are deduced). |
+| *de* | German (Germany region and Latin script are deduced). |
+| *pt* | Portuguese (Brazil region and Latin script are deduced). |
+| *pt-PT* | Portuguese as spoken in Portugal (Latin script is deduced). |
+| *fr* | French (France region and Latin script are deduced). |
+| *ru* | Russian (Russia region and Cyril script are deduced). |
+| *ar* | Arabic (Egypt region and Arabic script are deduced). |
+
+The likely deductibility is computed using CLDR data, which is based on the
+population and the suppress-script data in BCP47 (among others). The data is
+heuristically derived, and may change over time.
+
+Figure out deduced information by looking `cldr.attributes.maxLanguageId` of a
+Globalize instance:
+
+```js
+var Globalize = require( "globalize" );
+Globalize.load( require( "cldr-data" ).entireSupplemental() );
+Globalize("en").cldr.attributes.maxLanguageId;
+// > "en-Latn-US"
+```
+
+Globalize supports all the locales available in CLDR, which is around 740.
+Coverage charts of CLDR v28 at http://cldr.unicode.org/index/downloads/cldr-28
+(FIXME I don't want to maintain this link. Ideas?).
+
+Read more details about locale at [UTS#35 locale][].
+
+[UTS#35 locale]: http://www.unicode.org/reports/tr35/#Locale
 
 ### Date module
 
