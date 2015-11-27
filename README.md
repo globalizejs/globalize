@@ -185,6 +185,23 @@ information can be found at
 
 ## Getting Started
 
+    npm install globalize cldr-data
+
+```js
+var Globalize = require( "globalize" );
+Globalize.load( require( "cldr-data" ).entireSupplemental() );
+Globalize.load( require( "cldr-data" ).entireMainFor( "en", "es" ) );
+
+Globalize("en").formatDate(new Date());
+// > "11/27/2015"
+
+Globalize("es").formatDate(new Date());
+// > "27/11/2015"
+```
+
+For AMD, bower and other usage examples, see [Examples section](#examples).
+
+
 ### Requirements
 
 #### 1. Dependencies
