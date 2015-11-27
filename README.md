@@ -371,7 +371,7 @@ handle dependencies and CLDR loading manually yourself.
 
   [Read more...](doc/api/core/constructor.md)
 
-#### Locale
+#### Locales
 
 A locale is an identifier (id) that refers to a set of user preferences that
 tend to be shared across significant swaths of the world. In technical terms,
