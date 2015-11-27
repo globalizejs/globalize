@@ -201,6 +201,21 @@ Globalize("es").formatDate(new Date());
 
 For AMD, bower and other usage examples, see [Examples section](#examples).
 
+### Installation
+
+*By downloading a ZIP or a TAR.GZ...*
+
+Click the github [releases tab](https://github.com/jquery/globalize/releases)
+and download the latest available Globalize package.
+
+*By using a package manager...*
+
+Use bower `bower install globalize`, or npm `npm install globalize cldr-data`.
+
+*By using source files...*
+
+1. `git clone https://github.com/jquery/globalize.git`.
+1. [Build the distribution files](#build).
 
 ### Requirements
 
@@ -241,22 +256,6 @@ As an alternative to deducing this yourself, use this [online tool](http://johnn
 *(b) How am I supposed to get and load CLDR content?*
 
 Learn [how to get and load CLDR content...](doc/cldr.md).
-
-### Installation
-
-*By downloading a ZIP or a TAR.GZ...*
-
-Click the github [releases tab](https://github.com/jquery/globalize/releases)
-and download the latest available Globalize package.
-
-*By using a package manager...*
-
-Use bower `bower install globalize`, or npm `npm install globalize cldr-data`.
-
-*By using source files...*
-
-1. `git clone https://github.com/jquery/globalize.git`.
-1. [Build the distribution files](#build).
 
 ### Usage
 
