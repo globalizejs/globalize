@@ -17,7 +17,7 @@ define([
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Globalize, runtimeBind, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeNumber, validateParameterTypeCurrency, validateParameterTypePlainObject,
+	validateParameterTypeCurrency, validateParameterTypeNumber, validateParameterTypePlainObject,
 	currencyCodeProperties, currencyFormatterFn, currencyNameProperties, currencySymbolProperties,
 	objectOmit ) {
 
