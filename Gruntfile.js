@@ -28,6 +28,9 @@ module.exports = function( grunt ) {
 
 	grunt.initConfig({
 		pkg: pkg,
+		authors: {
+			order: "count"
+		},
 		commitplease: {
 			last50: {
 				options: {
