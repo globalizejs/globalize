@@ -11,20 +11,20 @@ Scott González <scott.gonzalez@gmail.com>
 Kyle Florence <kyle.florence@gmail.com>
 Tobie Langel <tobie.langel@gmail.com>
 Manraj Singh <manrajsinghgrover@gmail.com>
-Karan Sharma <karan1276@gmail.com>
 John Reilly <johnny_reilly@hotmail.com>
+Andrew Lunny <alunny@twitter.com>
 Yasuhiro Yoshida <yasuhiro.yoppu@gmail.com>
 Michael Birtwell <michael.birtwell@starleaf.com>
 Oleg Gulverdashvili <ctapbiumabp@gmail.com>
 Wes Cravens <wesley.r.cravens@gmail.com>
 Sean Cady <sean.cady@ge.com>
-Andrew Lunny <alunny@twitter.com>
 Kris Borchers <kris.borchers@gmail.com>
-Ed Sanders <ejsanders@gmail.com>
+Kevin Kirsche <Kev.Kirsche+GitHub@gmail.com>
 Luke Page <luke.a.page@gmail.com>
+Mateusz Bożyk <mateusz.bozyk@gmail.com>
 Arthur Verschaeve <contact@arthurverschaeve.be>
 Riku Nieminen <rikunieminen@gmail.com>
-Juan Soto <juansoto@fastmail.fm>
+Karan Sharma <karan1276@gmail.com>
 Anne-Gaelle Colom <coloma@westminster.ac.uk>
 Raphael Amorim <rapha850@gmail.com>
 Peter Dave Hello <hsu@peterdavehello.org>
@@ -33,8 +33,8 @@ Leonardo Balter <leonardo.balter@gmail.com>
 Andreas Blixt <me@blixt.org>
 Arvind Kalyan <arvchamp@gmail.com>
 Tobias Nießen <tniessen@tnie.de>
-Kevin Kirsche <Kev.Kirsche+GitHub@gmail.com>
-Mateusz Bożyk <mateusz.bozyk@gmail.com>
+Juan Soto <juansoto@fastmail.fm>
+Ed Sanders <ejsanders@gmail.com>
 Tomasz Peczek <tpeczek@gmail.com>
 Robert Plummer <robertleeplummerjr@gmail.com>
 Fredrik Blomqvist <fblomqvist@gmail.com>
