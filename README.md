@@ -397,12 +397,12 @@ example:
 | *ru* | Russian (Russia region and Cyril script are deduced). |
 | *ar* | Arabic (Egypt region and Arabic script are deduced). |
 
-The likely deductibility is computed using CLDR data, which is based on the
+The likely deductibility is computed by using CLDR data, which is based on the
 population and the suppress-script data in BCP47 (among others). The data is
 heuristically derived, and may change over time.
 
-Figure out deduced information by looking `cldr.attributes.maxLanguageId` of a
-Globalize instance:
+Figure out the deduced information by looking at the
+`cldr.attributes.maxLanguageId` property of a Globalize instance:
 
 ```js
 var Globalize = require( "globalize" );
@@ -411,9 +411,9 @@ Globalize("en").cldr.attributes.maxLanguageId;
 // > "en-Latn-US"
 ```
 
-Globalize supports all the locales available in CLDR, which is around 740.
-Coverage charts of CLDR v28 at http://cldr.unicode.org/index/downloads/cldr-28
-(FIXME I don't want to maintain this link. Ideas?).
+Globalize supports all the locales available in CLDR, which are around 740.
+For more information, search for coverage charts at the downloads section of
+http://cldr.unicode.org/.
 
 Read more details about locale at [UTS#35 locale][].
 
