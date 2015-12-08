@@ -1,11 +1,11 @@
 define([
 	"cldr",
-	"src/number/shape",
-	"src/number/shape-properties",
+	"src/digit-shaper/shape",
+	"src/digit-shaper/properties",
 	"json!cldr-data/main/ar/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/numberingSystems.json",
-	"../../functional/number/shaper-testCases"
+	"../../functional/digit-shaper/shaper-testCases"
 ], function( Cldr, shape, properties, arNumbers, likelySubtags,	numberingSystems, testCases ) {
 
 var ar;
@@ -18,7 +18,7 @@ Cldr.load(
 
 ar = new Cldr( "ar" );
 
-QUnit.module( "Number Shape" );
+QUnit.module( "Digit Shape" );
 
 QUnit.test( "should shape digits according to the context", function( assert ) {
 	testCases.forEach( function( testCase ) {

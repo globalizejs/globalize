@@ -1,31 +1,31 @@
 define( [], function() {
 	return [ {
-		"shape" : "Nominal",
+		"shape" : "None",
 		"textDir" : "ltr",
 		"value" : "abc 123",
 		"expected" : "abc 123"
 	}, {
-		"shape" : "Nominal",
+		"shape" : "None",
 		"textDir" : "ltr",
 		"value" : "اول 123",
 		"expected" : "اول 123"
 	}, {
-		"shape" : "Nominal",
+		"shape" : "None",
 		"textDir" : "rtl",
 		"value" : "اول 123",
 		"expected" : "اول 123"
 	}, {
-		"shape" : "Nominal",
+		"shape" : "None",
 		"textDir" : "ltr",
 		"value" : "اول 123 abc 123",
 		"expected" : "اول 123 abc 123"
 	}, {
-		"shape" : "Nominal",
+		"shape" : "None",
 		"textDir" : "ltr",
 		"value" : "123",
 		"expected" : "123"
 	}, {
-		"shape" : "Nominal",
+		"shape" : "None",
 		"textDir" : "rtl",
 		"value" : "123",
 		"expected" : "123"

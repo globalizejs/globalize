@@ -15,6 +15,10 @@ require([
 	"./functional/date/date-parser",
 	"./functional/date/format-date",
 	"./functional/date/parse-date",
+	
+	// digit-shaper
+	"./functional/digit-shaper/digit-shaper",
+	"./functional/digit-shaper/shape-digit",
 
 	// message
 	"./functional/message/message-formatter",
@@ -23,11 +27,9 @@ require([
 	// number
 	"./functional/number/number-formatter",
 	"./functional/number/number-parser",
-	"./functional/number/number-shaper",
 	"./functional/number/format-number",
 	"./functional/number/parse-number",
-	"./functional/number/shape-number",
-
+	
 	// plural
 	"./functional/plural/plural",
 	"./functional/plural/plural-generator",

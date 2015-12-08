@@ -1,6 +1,6 @@
 define([
 	"cldr",
-	"src/number/shape-properties",
+	"src/digit-shaper/properties",
 	"json!cldr-data/main/ar/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json"
 ], function( Cldr, properties, arNumbers, likelySubtags ) {
@@ -14,7 +14,7 @@ Cldr.load(
 
 ar = new Cldr( "ar" );
 
-QUnit.module( "Number Shape Properties" );
+QUnit.module( "Digit Shape Properties" );
 
 QUnit.test( "should return shaperType", function( assert ) {
 	assert.equal( properties( ar, { "shaperType": "National", "textDir": "rtl" } ).shaperType, "National" );
@@ -42,7 +42,17 @@ QUnit.test( "should return digits map for both Arabic digits", function( assert 
 		"6": "٦",
 		"7": "٧",
 		"8": "٨",
-		"9": "٩"
+		"9": "٩",
+		"٠": "0",
+		"١": "1",
+		"٢": "2",
+		"٣": "3",
+		"٤": "4",
+		"٥": "5",
+		"٦": "6",
+		"٧": "7",
+		"٨": "8",
+		"٩": "9"
 	});
 });
 

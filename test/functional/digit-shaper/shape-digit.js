@@ -15,7 +15,7 @@ function extraSetup() {
 	);
 }
 
-QUnit.module( ".shapeNumber( value [, options] )", {
+QUnit.module( ".shapeDigit( value [, options] )", {
 	setup: function() {
 		Globalize.load( likelySubtags, {
 			main: {
@@ -29,25 +29,25 @@ QUnit.module( ".shapeNumber( value [, options] )", {
 
 QUnit.test( "should validate parameters", function( assert ) {
 	util.assertParameterPresence( assert, "value", function() {
-		Globalize.shapeNumber();
+		Globalize.shapeDigit();
 	});
 
 	util.assertStringParameter( assert, "value", function( invalidValue ) {
 		return function() {
-			Globalize.shapeNumber( invalidValue );
+			Globalize.shapeDigit( invalidValue );
 		};
 	});
 
 	util.assertPlainObjectParameter( assert, "options", function( invalidValue ) {
 		return function() {
-			Globalize.shapeNumber( "123", invalidValue );
+			Globalize.shapeDigit( "123", invalidValue );
 		};
 	});
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
 	util.assertCldrContent( assert, function() {
-		Globalize.shapeNumber( "123" );
+		Globalize.shapeDigit( "123" );
 	});
 });
 
@@ -55,7 +55,7 @@ QUnit.test( "should shape digits", function( assert ) {
 	extraSetup();
 	testCases.forEach( function( testCase ) {
 		assert.strictEqual( testCase.expected,
-				Globalize.shapeNumber( testCase.value, { "shaperType": testCase.shape, "textDir": testCase.textDir } ),
+				Globalize.shapeDigit( testCase.value, { "shaperType": testCase.shape, "textDir": testCase.textDir } ),
 				testCase.shape + "-" + testCase.textDir );
 	});
 });

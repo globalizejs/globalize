@@ -4,14 +4,14 @@ define([
 	"../common/validate/parameter-type/plain-object",
 	"./shape"
 ], function( validateParameterPresence, validateParameterTypeString,
-		validateParameterTypePlainObject, numberShape ) {
+		validateParameterTypePlainObject, digitShaperShape ) {
 
 return function( properties ) {
-	return function numberShaper( value ) {
+	return function digitShaper( value ) {
 		validateParameterPresence( value, "value" );
 		validateParameterTypeString( value, "value" );
 
-		return numberShape( value, properties );
+		return digitShaperShape( value, properties );
 	};
 
 };

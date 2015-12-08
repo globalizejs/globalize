@@ -25,6 +25,11 @@ require([
 
 	"./unit/date/parse",
 
+	// digit-shaper
+	"./unit/digit-shaper/shape/contextual-ar",
+	"./unit/digit-shaper/shape-properties",
+	"./unit/digit-shaper/shape",
+	
 	// number
 	"./unit/number/pattern-properties",
 	"./unit/number/format/integer-fraction-digits",
@@ -34,10 +39,7 @@ require([
 	"./unit/number/format",
 	"./unit/number/parse-properties",
 	"./unit/number/parse",
-	"./unit/number/shape/contextual-ar",
-	"./unit/number/shape-properties",
-	"./unit/number/shape",
-
+	
 	// relative time
 	"./unit/relative-time/properties",
 	"./unit/relative-time/format"

@@ -1,10 +1,10 @@
 define([
 	"cldr",
-	"src/number/shape/contextual-ar",
+	"src/digit-shaper/shape/contextual-ar",
 	"json!cldr-data/main/ar/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/numberingSystems.json",
-	"../../../functional/number/shaper-testCases"
+	"../../../functional/digit-shaper/shaper-testCases"
 ], function( Cldr, shapeContextual, arNumbers, likelySubtags,	numberingSystems, testCases ) {
 
 var ar, nuDigitsMap, context;
@@ -29,7 +29,7 @@ nuDigitsMap = {
 		"9": "٩"
 	};
 
-QUnit.module( "Number Contextual Shaping" );
+QUnit.module( "Digit Contextual Shaping" );
 
 QUnit.test( "should shape digits according to the context", function( assert ) {
 	testCases.forEach( function( testCase ) {
