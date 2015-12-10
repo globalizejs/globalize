@@ -20,9 +20,11 @@ A JSON object including one of the following.
 > Skeleton provides a more flexible formatting mechanism than the predefined
 > list `full`, `long`, `medium`, or `short` represented by date, time, or
 > datetime.  Instead, they are an open-ended list of patterns containing
-> only [date
-> field](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)
-> information, and in a canonical order. For example:
+> only date field information, and in a canonical order. For a complete list of 
+> skeleton patterns [check the unicode CLDR documentation](http://www.unicode.o
+> rg/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table).
+> 
+> For example:
 >
 > | locale | `"GyMMMd"` skeleton |
 > | --- | --- |
