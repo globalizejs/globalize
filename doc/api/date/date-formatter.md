@@ -22,7 +22,7 @@ A JSON object including one of the following.
 > datetime.  Instead, they are an open-ended list of patterns containing
 > only [date
 > field](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)
-> information, and in a canonical order. For example:
+> information, and in a canonical order. For a complete list of skeleton patterns [refer this](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table). For example:
 >
 > | locale | `"GyMMMd"` skeleton |
 > | --- | --- |
