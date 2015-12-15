@@ -153,8 +153,6 @@ information on its usage.
 | globalize/relative-time.js | 0.8KB | 0.6KB | [Relative time module](#relative-time-module) provides relative time formatting support |
 | globalize/unit.js | 0.9KB | 0.5KB | [Unit module](#unit-module) provides unit formatting support |
 
-Use [this page](http://johnnyreilly.github.io/globalize-so-what-cha-want/) for more details on which Cldrjs file & CLDR data to include.
-
 ### Browser Support
 
 Globalize 1.x supports the following browsers:
@@ -201,14 +199,16 @@ yourself. Check the [Hello World examples](#usage) for more information.
 
 | Module | Dependencies (load in order) |
 |---|---|
-| Core module | Cldrjs & CLDR-data |
-| Currency module | Core, Number & Plural modules |
-| Date module | Core & Number modules |
-| Message module | Core module |
-| Number module | Core module |
-| Plural | Core module |
-| Relative time module | Core, Number & Plural modules |
-| Unit module | Core, Number & Plural modules |
+| Core module | Cldrjs |
+| Currency module | globalize.js (core), globalize/number.js, and globalize/plural.js (only required for "code" or "name" styles) |
+| Date module | globalize.js (core) and globalize/number.js |
+| Message module | globalize.js (core) and globalize/plural.js (if using messages that need pluralization support) |
+| Number module | globalize.js (core) |
+| Plural | globalize.js (core) |
+| Relative time module | globalize.js (core), globalize/number.js, and globalize/plural.js |
+| Unit module | globalize.js (core), globalize/number.js, and globalize/plural.js |
+
+Use [this page](http://johnnyreilly.github.io/globalize-so-what-cha-want/) for more details on which Cldrjs file and CLDR data to include.
 
 #### 2. CLDR content
 
