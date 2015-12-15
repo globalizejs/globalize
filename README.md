@@ -142,16 +142,16 @@ information on its usage.
 
 ### Pick the modules you need
 
-| File | Minified + gzipped size | Runtime minified + gzipped size | Dependencies (load in order) | Summary |
-|---|--:|--:|---|---|
-| globalize.js | 1.5KB | 1.0KB | Cldrjs & CLDR-data | [Core library](#core-module) |
-| globalize/currency.js | 2.6KB | 0.6KB | core, number.js & plural.js | [Currency module](#currency-module) provides currency formatting and parsing |
-| globalize/date.js | 5.1KB | 3.8KB | core & number.js | [Date module](#date-module) provides date formatting and parsing |
-| globalize/message.js | 5.4KB | 0.7KB | core | [Message module](#message-module) provides ICU message format support |
-| globalize/number.js | 3.1KB | 1.8KB | core | [Number module](#number-module) provides number formatting and parsing |
-| globalize/plural.js | 2.3KB | 0.4KB | core | [Plural module](#plural-module) provides pluralization support |
-| globalize/relative-time.js | 0.8KB | 0.6KB | core, number.js & plural.js | [Relative time module](#relative-time-module) provides relative time formatting support |
-| globalize/unit.js | 0.9KB | 0.5KB | core, number.js & plural.js | [Unit module](#unit-module) provides unit formatting support |
+| File | Minified + gzipped size | Runtime minified + gzipped size | Summary |
+|---|--:|--:|---|
+| globalize.js | 1.5KB | 1.0KB | [Core library](#core-module) |
+| globalize/currency.js | 2.6KB | 0.6KB | [Currency module](#currency-module) provides currency formatting and parsing |
+| globalize/date.js | 5.1KB | 3.8KB | [Date module](#date-module) provides date formatting and parsing |
+| globalize/message.js | 5.4KB | 0.7KB | [Message module](#message-module) provides ICU message format support |
+| globalize/number.js | 3.1KB | 1.8KB | [Number module](#number-module) provides number formatting and parsing |
+| globalize/plural.js | 2.3KB | 0.4KB | [Plural module](#plural-module) provides pluralization support |
+| globalize/relative-time.js | 0.8KB | 0.6KB | [Relative time module](#relative-time-module) provides relative time formatting support |
+| globalize/unit.js | 0.9KB | 0.5KB | [Unit module](#unit-module) provides unit formatting support |
 
 Use [this page](http://johnnyreilly.github.io/globalize-so-what-cha-want/) for more details on which Cldrjs file & CLDR data to include.
 
@@ -198,6 +198,17 @@ which is a CLDR low level manipulation tool.
 If you use a package manager like bower or npm, you don't need to worry about
 it. If this isn't the case, then you need to manually download cldr.js
 yourself. Check the [Hello World examples](#usage) for more information.
+
+| Module | Dependencies (load in order) |
+|---|---|
+| Core module | Cldrjs & CLDR-data |
+| Currency module | Core, Number & Plural modules |
+| Date module | Core & Number modules |
+| Message module | Core module |
+| Number module | Core module |
+| Plural | Core module |
+| Relative time module | Core, Number & Plural modules |
+| Unit module | Core, Number & Plural modules |
 
 #### 2. CLDR content
 
