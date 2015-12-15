@@ -221,17 +221,16 @@ Use bower `bower install globalize`, or npm `npm install globalize cldr-data`.
 
 #### 1. Dependencies
 
-You need to satisfy Globalize dependencies prior to using it. The good news
-is, there is only one. It's the [cldr.js](https://github.com/rxaviers/cldrjs),
-which is a CLDR low level manipulation tool.
-
-If you use a package manager like bower or npm, you don't need to worry about
-it. If this isn't the case, then you need to manually download cldr.js
-yourself. Check the [Hello World examples](#usage) for more information.
+If you use module loading like ES6 import, CommonJS, or AMD and fetch your code
+using package managers like *npm* or *bower*, you don't need to worry about this
+and can skip reading this section. Otherwise, you need to satisfy Globalize
+dependencies prior to using it. There is only one external dependency:
+[cldr.js][], which is a CLDR low level manipulation tool. Additionally, you need
+to satisfy the cross-dependencies between modules.
 
 | Module | Dependencies (load in order) |
 |---|---|
-| Core module | Cldrjs |
+| Core module | [cldr.js][] |
 | Currency module | globalize.js (core), globalize/number.js, and globalize/plural.js (only required for "code" or "name" styles) |
 | Date module | globalize.js (core) and globalize/number.js |
 | Message module | globalize.js (core) and globalize/plural.js (if using messages that need pluralization support) |
@@ -240,7 +239,9 @@ yourself. Check the [Hello World examples](#usage) for more information.
 | Relative time module | globalize.js (core), globalize/number.js, and globalize/plural.js |
 | Unit module | globalize.js (core), globalize/number.js, and globalize/plural.js |
 
-Use [this page](http://johnnyreilly.github.io/globalize-so-what-cha-want/) for more details on which Cldrjs file and CLDR data to include.
+As an alternative to deducing this yourself, use this [online tool](http://johnnyreilly.github.io/globalize-so-what-cha-want/). The tool allows you to select the modules you're interested in using and tells you the Globalize files *and* CLDR JSON that you need.
+
+[cldr.js]: https://github.com/rxaviers/cldrjs
 
 #### 2. CLDR content
 
