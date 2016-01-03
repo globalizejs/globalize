@@ -1,9 +1,25 @@
-language: node_js
-node_js:
-- '0.10'
-before_install:
-- npm install -g grunt-cli
-- npm install -g bower
+language: ruby
+sudo: false
+script: "bundle exec rake"
+# Per https://github.com/travis-ci/travis-ci/issues/2821
 install:
-- npm install
-- bower install
+  - bundle install --retry=3
+env:
+  - DB=sqlite3
+  - DB=postgres
+  - DB=mysql
+rvm:
+  - 2.2
+  - 2.1
+  - 2.0.0
+  - rbx-2
+  # - jruby-19mode
+matrix:
+  allow_failures:
+    - rvm: rbx-2
+    - env: RAILS_4_2=true DB=sqlite3
+    - env: RAILS_4_2=true DB=postgres
+    - env: RAILS_4_2=true DB=mysql
+notifications:
+  webhooks:
+    - https://webhooks.gitter.im/e/40dc875af26f64f39090
