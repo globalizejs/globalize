@@ -509,6 +509,25 @@ module.exports = function( grunt ) {
 									endFile: "src/build/outro.js"
 								}
 							}
+						},
+						{
+							name: "globalize.bidi-engine",
+							include: [ "bidi-engine" ],
+							exclude: [
+								"cldr",
+								"cldr/event",
+								"cldr/supplemental",
+								"./core",
+								"./number",
+								"./plural"
+							],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-bidi-engine.js",
+									endFile: "src/build/outro.js"
+								}
+							}
 						}
 					]
 				}
