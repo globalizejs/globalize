@@ -88,6 +88,9 @@
     "gzip-js": "0.3.2",
     "matchdep": "0.3.0"
   },
+  "commitplease": {
+    "nohook": true
+  },
   "license": "MIT",
   "scripts": {
     "test": "grunt"
