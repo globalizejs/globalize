@@ -1,5 +1,5 @@
 define([
-	"./Gdate",
+	"./Gdate"
 //	"./astronomy.js" // this creates errors in testing, but it is clearly required.
 ], function( Gdate ) {
 

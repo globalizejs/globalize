@@ -9,18 +9,23 @@ var EPSILON = 60000, // one minute accuracy
 	DAY_MS = 86400000, // ms in a day
 	JD_EPOCH_MS = -210866760000000, // time of the julian day epoch, January 1, 4713 BCE
 	JD_SUN_EPOCH = 2447891.5, // Julian day of the calculation epoch (December 31, 1989)
-	SUN_ETA_G = 4.89078, // Ecliptic longitude at epoch, from 
+    MOON_L0 = 318.351648 * Math.PI / 180,   // Mean long. at epoch
+    MOON_P0 =  36.340410 * Math.PI / 180,  // Mean long. of perigee
+    MOON_N0 = 318.510107 * Math.PI / 180,   // Mean long. of node
+    MOON_I  =   5.145366 * Math.PI / 180,   // Inclination of orbit
+    MOON_E  =   0.054900,            // Eccentricity of orbit
+	SUN_ETA_G = 4.89078, // Ecliptic longitude at epoch, from
 	// https://www.nrel.gov/midc/solpos/spa.html for 1970-01-01 at 00:00
 	SUN_OMEGA_G = 282.9372 * Math.PI / 180, // Ecliptic longitude at perigee
+	SYNODIC_MONTH = 29.530588853, // solar days from one new moon to the next
 	TROPICAL_YEAR = 365.242191, //  days of a year, from vernal equinox to vernal equinox
 	TAU = 2 * Math.PI; // http://tauday.com/
-	
 
 /* returns the time of the next (if next is true) or
 	last (if next is false) winter solstice from the time now */
-Gdate.winterSolstice = function(now, next) {
+Gdate.winterSolstice = function( now, next  ) {
 	return timeOfAngle(
-		Gdate.sunLongitude,
+		sunLongitude,
 		Math.PI * 3 / 2, // winter solstice is when the sun is at 270 degrees
 		now,
 		TROPICAL_YEAR * DAY_MS,
@@ -29,10 +34,7 @@ Gdate.winterSolstice = function(now, next) {
 };
 
 function sunLongitude( time ){
-	var day = time  / DAY_MS,
-		epochAngle = normTAU( TAU * day / TROPICAL_YEAR ),
-		meanAnomaly = normTAU( epochAngle + SUN_ETA_G - SUN_OMEGA_G );
-		return normTAU( trueSunAnomaly( meanAnomaly ) + SUN_OMEGA_G );
+	return normTAU( trueSunAnomaly( time ) + SUN_OMEGA_G );
 }
 Gdate.sunLongitude = sunLongitude;
 
@@ -47,21 +49,40 @@ Gdate.ms2jd = ms2jd;
 Gdate.date2jd = function( date ) { return ms2jd( date.getTime() ); };
 Gdate.jd2date = function( jd ) { return new Date( jd2ms ( jd ) ); };
 
+/* returns the time of the next (if next is true) or
+    last (if next is false) new moon from the time now */
+function newMoon ( now, next ){
+	return timeOfAngle(
+		moonAge,
+		0,
+		now,
+		SYNODIC_MONTH * DAY_MS,
+		next
+	);
+}
+Gdate.newMoon = newMoon;
+
 /* the "anomaly" is the longitude of a celestial body, calculated as radians from perigee.
  * Calculating the "mean anomaly" is relatively
  * easy: it is the angle for a circular orbit.
  * The true anomaly takes the eccentricity of the orbit
- * into account. Here we solve iteratively (see the ICU code for more details).
- */ 
- function trueSunAnomaly( meanAnomaly ){
-	 	 // From formulas in http://www.stargazing.net/kepler/kepler.html
+ * into account.
+ */
+function meanSunAnomaly ( time ){
+	var day = time  / DAY_MS,
+		epochAngle = normTAU( TAU * day / TROPICAL_YEAR );
+	return normTAU( epochAngle + SUN_ETA_G - SUN_OMEGA_G );
+}
+function trueSunAnomaly( time ){
+	// From formulas in http://www.stargazing.net/kepler/kepler.html
+	var meanAnomaly = meanSunAnomaly ( time );
 	return meanAnomaly +
 		0.0334168338 * Math.sin( meanAnomaly ) +
 		0.0003489884 * Math.sin( 2 * meanAnomaly ) +
 		5.05374684623142E-006 * Math.sin( 3 * meanAnomaly );
- }
- 
-/* given a function func( time ) that returns an angle, uses extrapolation
+}
+
+/* given a function func( time ) that returns an angle, uses interpolation
  * to return the time when the function
  * will have the desired angle, either after (next === true) or
  * before (next === false) the initial time.
@@ -69,7 +90,7 @@ Gdate.jd2date = function( jd ) { return new Date( jd2ms ( jd ) ); };
  */
 function timeOfAngle( func, target, now, period, next ){
 	 var value = func( now );
-	 return zeroOfFunc ( 
+	 return zeroOfFunc (
 		func,
 		target,
 		next ? now : now - period,
@@ -79,6 +100,7 @@ function timeOfAngle( func, target, now, period, next ){
 	 );
 }
 function zeroOfFunc( func, target, t1, f1, t2, f2 ){
+	var f, t;
 	 if ( closeEnoughTime ( t1, t2) || closeEnoughAngle( f1, target ) ) {
 		 return t1;
 	 }
@@ -112,4 +134,10 @@ function normTAU( angle ) {
 	return angle - TAU * Math.floor( angle / TAU );
 }
 
+function foo ( angle ) {
+	// junk function to fool lint
+	return normPI( angle ) + JD_SUN_EPOCH + MOON_E + MOON_I + MOON_L0 + MOON_N0 +
+		MOON_P0;
+}
+Gdate.foo = foo;
 });

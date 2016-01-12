@@ -29,7 +29,7 @@ define([
 		newMoon1_2015 = realDate ( 2015, 0, 20 ),
 		newMoon2_2015 = realDate ( 2015, 1, 18 ),
 		winterSolstice2015 = realDate ( 2015, 11, 22 ),
-		winterSolstice2014 = realDate ( 2014, 11, 21 );
+		winterSolstice2014 = realDate ( 2014, 11, 21 ),
 		winterSolstice1970 = realDate ( 1970, 11, 22 );
 
 	QUnit.module( "Gdate astronomy package" );
