@@ -5,14 +5,14 @@ define([
 	"./tokenizer"
 ], function( validateParameterPresence, validateParameterTypeString, dateParse, dateTokenizer ) {
 
-return function( numberParser, parseProperties, tokenizerProperties ) {
+return function( numberParser, parseProperties, tokenizerProperties, strict ) {
 	return function dateParser( value ) {
 		var tokens;
 
 		validateParameterPresence( value, "value" );
 		validateParameterTypeString( value, "value" );
 
-		tokens = dateTokenizer( value, numberParser, tokenizerProperties );
+		tokens = dateTokenizer( value, numberParser, tokenizerProperties, strict );
 		return dateParse( value, tokens, parseProperties ) || null;
 	};
 };

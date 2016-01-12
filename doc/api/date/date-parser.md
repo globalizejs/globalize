@@ -1,4 +1,4 @@
-## .dateParser( [options] ) ➜ function( value )
+## .dateParser( [options, strict] ) ➜ function( value )
 
 Return a function that parses a string representing a date into a JavaScript
 Date object according to the given `options`. The default parsing assumes numeric year, month, and
@@ -12,6 +12,11 @@ parsed.
 **options**
 
 See [.dateFormatter( [options] )](./date-formatter.md).
+
+**strict**
+
+Set to `true` to force strict parsing of dates. This will prevent parsing date `"01/01/2012"` when using
+pattern `"M/d/yy"`. Without `strict` this date will be parsed as `"01/01/20"`.
 
 **value**
 
