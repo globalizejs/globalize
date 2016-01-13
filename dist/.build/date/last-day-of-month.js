@@ -1,0 +1,13 @@
+
+
+/**
+ * lastDayOfMonth( date )
+ *
+ * @date [Date]
+ *
+ * Return the last day of the given date's month
+ */
+var dateLastDayOfMonth = function( date ) {
+	return new Date( date.getFullYear(), date.getMonth() + 1, 0 ).getDate();
+};
+
