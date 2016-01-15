@@ -401,7 +401,11 @@ return function( value, numberParser, properties ) {
 		return true;
 	});
 
-	return valid && value === "" ? tokens : [];
+    if ( value !== "" ) {
+        valid = false;
+    }
+
+	return valid ? tokens : [];
 };
 
 });
