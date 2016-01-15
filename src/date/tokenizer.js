@@ -35,7 +35,7 @@ define([
  *
  * Return an empty Array when not successfully parsed.
  */
-return function( value, numberParser, properties, strict ) {
+return function( value, numberParser, properties ) {
 	var valid,
 		timeSeparator = properties.timeSeparator,
 		tokens = [],
@@ -401,11 +401,7 @@ return function( value, numberParser, properties, strict ) {
 		return true;
 	});
 
-	if ( strict && value !== "" ) {
-		valid = false;
-	}
-
-	return valid ? tokens : [];
+	return valid && value === "" ? tokens : [];
 };
 
 });

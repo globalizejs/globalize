@@ -18,11 +18,11 @@ define([
 
 var cldr, date1, date2, FakeDate, midnight;
 
-function assertParse( assert, stringDate, pattern, cldr, date, strict ) {
+function assertParse( assert, stringDate, pattern, cldr, date ) {
 	var tokenizerProperties, tokens;
 
 	tokenizerProperties = numberTokenizerProperties( pattern, cldr );
-	tokens = tokenizer( stringDate, simpleNumberParser, tokenizerProperties, strict );
+	tokens = tokenizer( stringDate, simpleNumberParser, tokenizerProperties );
 
 	assert.deepEqual( parse( stringDate, tokens, parseProperties( cldr ) ), date );
 }
@@ -469,12 +469,6 @@ QUnit.test( "should parse milliseconds in a day (A+)", function( assert ) {
 	assertParse( assert, "63307369", "AAA", cldr, date1 );
 	assertParse( assert, "633073690", "AAAA", cldr, date1 );
 	assertParse( assert, "6330736900", "AAAAA", cldr, date1 );
-});
-
-QUnit.test( "should allow strict parsing of the date", function( assert ) {
-	date1 = new Date(2001,0,1);
-	assertParse( assert, "1/1/01", "M/d/yy", cldr, date1, true );
-	assertParse( assert, "1/1/2001", "M/d/yy", cldr, null, true );
 });
 
 /**

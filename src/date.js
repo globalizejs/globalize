@@ -88,13 +88,11 @@ Globalize.prototype.dateFormatter = function( options ) {
  *
  * @options [Object] see date/expand_pattern for more info.
  *
- * @strict [Boolean] Set to `true` to force strict parsing of dates.
- *
  * Return a function that parses a string date according to the given `formats` and the
  * default/instance locale.
  */
 Globalize.dateParser =
-Globalize.prototype.dateParser = function( options, strict ) {
+Globalize.prototype.dateParser = function( options ) {
 	var args, cldr, numberParser, parseProperties, pattern, tokenizerProperties, returnFn;
 
 	validateParameterTypePlainObject( options, "options" );
@@ -114,7 +112,7 @@ Globalize.prototype.dateParser = function( options, strict ) {
 
 	numberParser = this.numberParser({ raw: "0" });
 
-	returnFn = dateParserFn( numberParser, parseProperties, tokenizerProperties, strict );
+	returnFn = dateParserFn( numberParser, parseProperties, tokenizerProperties );
 
 	runtimeBind( args, cldr, returnFn, [ numberParser, parseProperties, tokenizerProperties ] );
 
@@ -145,16 +143,14 @@ Globalize.prototype.formatDate = function( value, options ) {
  *
  * @options [Object] see date/expand_pattern for more info.
  *
- * @strict [Boolean] Set to `true` to force strict parsing of date.
- *
  * Return a Date instance or null.
  */
 Globalize.parseDate =
-Globalize.prototype.parseDate = function( value, options, strict ) {
+Globalize.prototype.parseDate = function( value, options ) {
 	validateParameterPresence( value, "value" );
 	validateParameterTypeString( value, "value" );
 
-	return this.dateParser( options, strict )( value );
+	return this.dateParser( options )( value );
 };
 
 return Globalize;
