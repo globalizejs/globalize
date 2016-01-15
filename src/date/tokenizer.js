@@ -401,9 +401,9 @@ return function( value, numberParser, properties ) {
 		return true;
 	});
 
-    if ( value !== "" ) {
-        valid = false;
-    }
+	if ( value !== "" ) {
+		valid = false;
+	}
 
 	return valid ? tokens : [];
 };
