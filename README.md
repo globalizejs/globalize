@@ -318,7 +318,7 @@ example:
 | *en-Latn-US* | English as spoken in the Unites States in the Latin script. |
 | *en-US* | English as spoken in the Unites States (Latin script is deduced given it's the most likely script used in this place). |
 | *en* | English (United States region and Latin script are deduced given they are respectivelly the most likely region and script used in this place). |
-| *en-GB* | English as spoken in the Grain Britain (Latin script is deduced given it's the most likely script used in this place). |
+| *en-GB* | English as spoken in the United Kingdom (Latin script is deduced given it's the most likely script used in this place). |
 | *en-IN* | English as spoken in India (Latin script is deduced). |
 | *es* | Spanish (Spain region and Latin script are deduced). |
 | *es-MX* | Spanish as spoken in Mexico (Latin script is deduced). |
