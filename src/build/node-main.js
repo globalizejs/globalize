@@ -24,3 +24,4 @@ require( "./globalize/date" );
 
 // Load after globalize/number and globalize/plural
 require( "./globalize/relative-time" );
+require( "./globalize/unit" );

@@ -20,9 +20,11 @@ A JSON object including one of the following.
 > Skeleton provides a more flexible formatting mechanism than the predefined
 > list `full`, `long`, `medium`, or `short` represented by date, time, or
 > datetime.  Instead, they are an open-ended list of patterns containing
-> only [date
-> field](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)
-> information, and in a canonical order. For example:
+> only date field information, and in a canonical order. For a complete list of 
+> skeleton patterns [check the unicode CLDR documentation](http://www.unicode.o
+> rg/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table).
+> 
+> For example:
 >
 > | locale | `"GyMMMd"` skeleton |
 > | --- | --- |
@@ -50,8 +52,8 @@ A JSON object including one of the following.
 > **raw**
 >
 > String value indicating a machine
-> [raw pattern](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)
-> eg. `{ pattern: "dd/mm" }`. Note this is NOT recommended for i18n in general.
+> [raw pattern (anything in the "Sym." column)](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)
+> eg. `{ raw: "dd/mm" }`. Note this is NOT recommended for i18n in general.
 > Use `skeleton` instead.
 
 **value**
@@ -162,6 +164,12 @@ Use skeletons for more flexibility (see its description [above](#parameters)).
 | `{ skeleton: "yMd" }` | `"11/30/2010"` |
 | `{ skeleton: "yQQQ" }` | `"Q4 2010"` |
 | `{ skeleton: "yQQQQ" }` | `"4th quarter 2010"` |
+| `{ skeleton: "GyMMMEdhms" }` | `"Tue, Nov 30, 2010 AD, 5:55:00 PM"` |
+| `{ skeleton: "Ehms" }` | `"Tue 5:55:00 PM"` |
+| `{ skeleton: "yQQQHm" }` | `"Q4 2010, 17:55"` |
+| `{ skeleton: "MMMEdhm" }` | `"Tue, Nov 30, 5:55 PM"` |
+| `{ skeleton: "yMMMdhm" }` | `"Nov 30, 2010, 5:55 PM"` |
+
 
 ```javascript
 var globalize = Globalize( "en" ),

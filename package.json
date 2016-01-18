@@ -1,7 +1,7 @@
 {
   "name": "globalize",
-  "version": "1.0.0",
-  "description": "A JavaScript library for internationalization and localization that leverage the official Unicode CLDR JSON data.",
+  "version": "1.1.0-rc.8",
+  "description": "A JavaScript library for internationalization and localization that leverages the official Unicode CLDR JSON data.",
   "keywords": [
     "utility",
     "globalization",
@@ -32,7 +32,10 @@
     "JSON"
   ],
   "homepage": "https://github.com/jquery/globalize",
-  "author": "The jQuery Project",
+  "author": {
+    "name": "jQuery Foundation and other contributors",
+    "url": "https://github.com/jquery/jquery/blob/master/AUTHORS.txt"
+  },
   "maintainers": [
     {
       "name": "Jörn Zaefferer",
@@ -45,17 +48,15 @@
       "url": "http://rafael.xavier.blog.br"
     }
   ],
-  "contributors": [
-    "Dave Reed <dareed@microsoft.com> (http://weblogs.asp.net/infinitiesloop)",
-    "Richard D. Worth <rdworth@gmail.com> (http://rdworth.org)",
-    "Jörn Zaefferer <joern.zaefferer@gmail.com> (http://bassistance.de)",
-    "Rafael Xavier de Souza <rxaviers@gmail.com> (http://rafael.xavier.blog.br)",
-    "Legal-Box <legalbox@eric.brechemier.name> (http://www.legal-box.com)",
-    "Nikolaus Graf (http://www.nikgraf.com)",
-    "Tobie Langel <tobie.langel@gmail.com> (http://tobielangel.com)",
-    "Boris Moore <borismoore@gmail.com> (http://www.borismoore.com)"
-  ],
   "main": "./dist/node-main.js",
+  "files": [
+    "CONTRIBUTING.md",
+    "dist/",
+    "doc/",
+    "examples/",
+    "LICENSE.txt",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/jquery/globalize.git"
@@ -64,7 +65,7 @@
     "url": "http://github.com/jquery/globalize/issues"
   },
   "dependencies": {
-    "cldrjs": "0.4.1"
+    "cldrjs": "0.4.4"
   },
   "peerDependencies": {
     "cldr-data": ">=25"
@@ -82,16 +83,15 @@
     "grunt-contrib-requirejs": "0.4.4",
     "grunt-contrib-uglify": "0.6.0",
     "grunt-contrib-watch": "0.6.1",
-    "grunt-jscs": "0.7.1",
+    "grunt-git-authors": "^3.1.0",
+    "grunt-jscs": "1.8.0",
     "gzip-js": "0.3.2",
     "matchdep": "0.3.0"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/jquery/globalize/blob/master/LICENSE.txt"
-    }
-  ],
+  "commitplease": {
+    "nohook": true
+  },
+  "license": "MIT",
   "scripts": {
     "test": "grunt"
   }

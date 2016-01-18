@@ -82,7 +82,7 @@ QUnit.test( "should return a currency formatter", function( assert ) {
 
 	assert.equal( Globalize.currencyFormatter( "USD" )( teslaS ), "$69,900.00" );
 	assert.equal( de.currencyFormatter( "USD" )( teslaS ), "69.900,00 $" );
-	assert.equal( zh.currencyFormatter( "USD" )( teslaS ), "US$ 69,900.00" );
+	assert.equal( zh.currencyFormatter( "USD" )( teslaS ), "US$69,900.00" );
 
 	assert.equal( Globalize.currencyFormatter( "USD", code )( teslaS ), "69,900.00 USD" );
 	assert.equal( de.currencyFormatter( "USD", code )( teslaS ), "69.900,00 USD" );
@@ -132,6 +132,26 @@ QUnit.test( "should return a currency formatter, overriden by user options",
 		style: "name",
 		minimumFractionDigits: 0
 	})( 12345 ), "12,345 Chilean units of account (UF)" );
+});
+
+QUnit.test( "should allow for runtime compilation", function( assert ) {
+	extraSetup();
+
+	util.assertRuntimeBind(
+		assert,
+		Globalize.currencyFormatter( "USD" ),
+		"b1223214380",
+		"Globalize(\"en\").currencyFormatter(\"USD\",{})",
+		function( runtimeArgs ) {
+			util.assertRuntimeBind(
+				assert,
+				runtimeArgs[ 0 ],
+				"b957349717",
+				"Globalize(\"en\").numberFormatter({\"raw\":\"\'$\'#,##0.00\"})",
+				function() {}
+			);
+		}
+	);
 });
 
 });

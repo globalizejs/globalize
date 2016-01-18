@@ -1,4 +1,4 @@
-Welcome! Thanks for your interest in contributing to Globalize. You're **almost** in the right place. More information on how to contribute to this and all other jQuery Foundation projects is over at [contribute.jquery.org](http://contribute.jquery.org). You'll definitely want to take a look at the articles on contributing [code](http://contribute.jquery.org/code).
+Welcome! Thanks for your interest in contributing to Globalize. More information on how to contribute to this and all other jQuery Foundation projects is over at [contribute.jquery.org](http://contribute.jquery.org). Before writing code for this project, be sure to read [Writing Code for jQuery Foundation Projects](http://contribute.jquery.org/code/).
 
 You may also want to take a look at our [commit & pull request guide](http://contribute.jquery.org/commits-and-pull-requests/) and [style guides](http://contribute.jquery.org/style-guide/) for instructions on how to maintain your fork and submit your code. Before we can merge any pull request, we'll also need you to sign our [contributor license agreement](http://contribute.jquery.org/cla).
 

@@ -179,6 +179,7 @@ return function( value, numberParser, properties ) {
 		length = current.length;
 
 		if ( chr === "Z" ) {
+
 			// Z..ZZZ: same as "xxxx".
 			if ( length < 4 ) {
 				chr = "x";
@@ -231,6 +232,7 @@ return function( value, numberParser, properties ) {
 			// Quarter
 			case "Q":
 			case "q":
+
 				// number l=1:{1}, l=2:{2}.
 				// lookup l=3...
 				oneDigitIfLengthOne() || twoDigitsIfLengthTwo() || lookup([
@@ -254,6 +256,7 @@ return function( value, numberParser, properties ) {
 
 			// Day
 			case "D":
+
 				// number {l,3}.
 				if ( length <= 3 ) {
 
@@ -265,6 +268,7 @@ return function( value, numberParser, properties ) {
 
 			case "W":
 			case "F":
+
 				// number l=1:{1}.
 				oneDigitIfLengthOne();
 				break;
@@ -272,6 +276,7 @@ return function( value, numberParser, properties ) {
 			// Week day
 			case "e":
 			case "c":
+
 				// number l=1:{1}, l=2:{2}.
 				// lookup for length >=3.
 				if ( length <= 2 ) {
@@ -282,6 +287,7 @@ return function( value, numberParser, properties ) {
 			/* falls through */
 			case "E":
 				if ( length === 6 ) {
+
 					// Note: if short day names are not explicitly specified, abbreviated day
 					// names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
 					lookup([
@@ -323,11 +329,13 @@ return function( value, numberParser, properties ) {
 			case "j":
 			case "m":
 			case "s":
+
 				// number l1:{1,2}, l2:{2}.
 				oneOrTwoDigitsIfLengthOne() || twoDigitsIfLengthTwo();
 				break;
 
 			case "S":
+
 				// number {l}.
 
 				// Unicode equivalent to /\d{length}/
@@ -336,6 +344,7 @@ return function( value, numberParser, properties ) {
 				break;
 
 			case "A":
+
 				// number {l+5}.
 
 				// Unicode equivalent to /\d{length+5}/
@@ -346,6 +355,7 @@ return function( value, numberParser, properties ) {
 			// Zone
 			case "z":
 			case "O":
+
 				// O: "{gmtFormat}+H;{gmtFormat}-H" or "{gmtZeroFormat}", eg. "GMT-8" or "GMT".
 				// OOOO: "{gmtFormat}{hourFormat}" or "{gmtZeroFormat}", eg. "GMT-08:00" or "GMT".
 				if ( value === properties[ "timeZoneNames/gmtZeroFormat" ] ) {
@@ -364,6 +374,7 @@ return function( value, numberParser, properties ) {
 				break;
 
 			case "X":
+
 				// Same as x*, except it uses "Z" for zero offset.
 				if ( value === "Z" ) {
 					token.value = 0;
@@ -373,6 +384,7 @@ return function( value, numberParser, properties ) {
 
 			/* falls through */
 			case "x":
+
 				// x: hourFormat("+HH;-HH")
 				// xx or xxxx: hourFormat("+HHmm;-HHmm")
 				// xxx or xxxxx: hourFormat("+HH:mm;-HH:mm")
@@ -418,6 +430,10 @@ return function( value, numberParser, properties ) {
 		tokens.push( token );
 		return true;
 	});
+
+	if ( value !== "" ) {
+		valid = false;
+	}
 
 	return valid ? tokens : [];
 };

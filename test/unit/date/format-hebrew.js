@@ -14,7 +14,6 @@ define([
 	"src/gdate/Hebrew-date"
 ], function( Cldr, format, formatProperties, Gdate, stringPad, heCaHebrew,
 	likelySubtags, timeData, weekData ) {
-
 var cldr,
 	date1 = new Date( 2016, 1, 23 ), // 14 Adar I 5776 (to test leap year formatting)
 	date2 = new Date( 2015, 2, 5 ), // 14 Adar 5775 (to test non-leap year formatting)

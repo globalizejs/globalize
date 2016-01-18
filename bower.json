@@ -1,6 +1,5 @@
 {
   "name": "globalize",
-  "version": "1.0.0",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -9,7 +8,7 @@
     "bower.json"
   ],
   "dependencies": {
-    "cldrjs": "0.4.1",
+    "cldrjs": "0.4.4",
     "cldr-data": ">=25"
   },
   "devDependencies": {
@@ -17,7 +16,7 @@
     "make-plural": "eemeli/make-plural.js#3.0.0",
     "messageformat": "SlexAxton/messageformat.js#v0.3.0-1",
     "qunit": "1.18.0",
-    "requirejs": "2.1.9",
+    "requirejs": "2.1.20",
     "requirejs-plugins": "1.0.2",
     "requirejs-text": "2.0.10"
   }

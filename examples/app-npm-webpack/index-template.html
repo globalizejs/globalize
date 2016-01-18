@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Globalize App example using Webpack</title>
+</head>
+<body>
+
+<h1>Globalize App example using Webpack</h1>
+
+<div id="requirements">
+	<h2>Requirements</h2>
+	<ul>
+		<li>Read README.md for instructions on how to run the demo.
+		</li>
+	</ul>
+</div>
+
+<div id="demo" style="display: none">
+	<p id="intro-1">Use Globalize to internationalize your application.</p>
+	<table border="1" style="marginBottom: 1em;">
+		<tbody>
+			<tr>
+				<td><span id="number-label">Standalone Number</span></td>
+				<td>"<span id="number"></span>"</td>
+			</tr>
+			<tr>
+				<td><span id="currency-label">Standalone Currency</span></td>
+				<td>"<span id="currency"></span>"</td>
+			</tr>
+			<tr>
+				<td><span id="date-label">Standalone Date</span></td>
+				<td>"<span id="date"></span>"</td>
+			</tr>
+			<tr>
+				<td><span id="relative-time-label">Standalone Relative Time</span></td>
+				<td>"<span id="relative-time"></span>"</td>
+			</tr>
+		</tbody>
+	</table>
+	<p id="message-1">
+		An example of a message using mixed numbers "{number}", currencies "{currency}", dates "{date}", and relative time "{relativeTime}".
+	</p>
+	<p id="message-2">
+		An example of a message with pluralization support: 
+		{count, plural,
+			one {You have one remaining task}
+			other {You have # remaining tasks}
+		}.
+	</p>
+</div>
+
+{%
+var hasShownLocaleHelp;
+for ( var chunk in o.htmlWebpackPlugin.files.chunks ) {
+	if ( /globalize-compiled-data-/.test( chunk ) && chunk !== "globalize-compiled-data-en" ) {
+		if ( !hasShownLocaleHelp ) {
+			hasShownLocaleHelp = true;
+%}
+<!--
+Load support for the `en` (English) locale.
+
+For displaying the application in a different locale, replace `en` with
+whatever other supported locale you want, e.g., `pt` (Portuguese).
+
+For supporting additional locales simultaneously and then having your
+application to change it dynamically, load the multiple files here. Then,
+use `Globalize.locale( <locale> )` in your application to dynamically set
+it.
+-->
+{%		} %}
+<!-- <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script> -->
+{%	} else { %}
+<script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
+{%
+	}
+}
+%}
+
+</body>
+</html>

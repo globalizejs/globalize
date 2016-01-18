@@ -175,4 +175,48 @@ QUnit.test( "should support ICU message format", function( assert ) {
 	assert.equal( like({ count: 3 }), "You and 2 others liked this" );
 });
 
+// Reference #473
+QUnit.test( "should NOT merge array data", function( assert ) {
+	// Re-loading a message that uses array syntax.
+	Globalize.loadMessages({
+		en: {
+			task: [
+				"You have {0, plural,",
+				"    one {one task}",
+				"  other {# tasks}",
+				"} remaining"
+			]
+		}
+	});
+	assert.messageFormatter( "en", "task", 123, "You have 123 tasks remaining" );
+});
+
+QUnit.test( "should allow for runtime compilation", function( assert ) {
+	util.assertRuntimeBind(
+		assert,
+		Globalize( "en" ).messageFormatter( "amen" ),
+		"b639686813",
+		"Globalize(\"en\").messageFormatter(\"amen\")",
+		function( runtimeArgs ) {
+			assert.equal(
+				runtimeArgs[ 0 ].toString(),
+				"(function(  ) {\n  return function (d) { return \"Amen\"; }\n})()"
+			);
+		}
+	);
+
+	util.assertRuntimeBind(
+		assert,
+		Globalize( "en" ).messageFormatter( "like" ),
+		"b328290139",
+		"Globalize(\"en\").messageFormatter(\"like\")",
+		function( runtimeArgs ) {
+			assert.equal(
+				runtimeArgs[ 0 ].toString(),
+				"(function( number, plural, pluralFuncs ) {\n  return function (d) { return plural(d.count, 1, pluralFuncs.en, { 0: function() { return \"Be the first to like this\";}, 1: function() { return \"You liked this\";}, one: function() { return \"You and \" + d.someone + \" liked this\";}, other: function() { return \"You and \" + number(d.count, 1) + \" others liked this\";} }); }\n})(messageFormat.number, messageFormat.plural, {\"en\": Globalize(\"en\").pluralGenerator()})"
+			);
+		}
+	);
+});
+
 });

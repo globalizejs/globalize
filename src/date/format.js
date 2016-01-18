@@ -1,16 +1,14 @@
 define([
 	"./day-of-week",
 	"./day-of-year",
-	"./first-day-of-week",
 	"./milliseconds-in-day",
 	"./pattern-re",
 	"./start-of",
 	"./timezone-hour-format",
 	"./week-days",
 	"../gdate/Gdate"
-], function( dateDayOfWeek, dateDayOfYear, dateFirstDayOfWeek, dateMillisecondsInDay,
+], function( dateDayOfWeek, dateDayOfYear, dateMillisecondsInDay,
 	datePatternRe, dateStartOf, dateTimezoneHourFormat, dateWeekDays, Gdate ) {
-
 /**
  * format( date, properties )
  *
@@ -30,12 +28,14 @@ return function( date, numberFormatters, properties ) {
 			length = current.length;
 
 		if ( chr === "j" ) {
+
 			// Locale preferred hHKk.
 			// http://www.unicode.org/reports/tr35/tr35-dates.html#Time_Data
 			chr = properties.preferredTime;
 		}
 
 		if ( chr === "Z" ) {
+
 			// Z..ZZZ: same as "xxxx".
 			if ( length < 4 ) {
 				chr = "x";
@@ -62,6 +62,7 @@ return function( date, numberFormatters, properties ) {
 
 			// Year
 			case "y":
+
 				// Plain year.
 				// The length specifies the padding, but for two letters it also specifies the
 				// maximum length.
@@ -73,6 +74,7 @@ return function( date, numberFormatters, properties ) {
 				break;
 
 			case "Y":
+
 				// Year in "Week of Year"
 				// The length specifies the padding, but for two letters it also specifies the
 				// maximum length.
@@ -122,6 +124,7 @@ return function( date, numberFormatters, properties ) {
 
 			// Week
 			case "w":
+
 				// Week of Year.
 				// woy = ceil( ( doy + dow of 1/1 ) / 7 ) - minDaysStuff ? 1 : 0.
 				// TODO should pad on ww? Not documented, but I guess so.
@@ -131,6 +134,7 @@ return function( date, numberFormatters, properties ) {
 				break;
 
 			case "W":
+
 				// Week of Month.
 				// wom = ceil( ( dom + dow of `1/month` ) / 7 ) - minDaysStuff ? 1 : 0.
 				ret = dateDayOfWeek( gdate.startOfMonth().toDate(), properties.firstDay );
@@ -148,6 +152,7 @@ return function( date, numberFormatters, properties ) {
 				break;
 
 			case "F":
+
 				// Day of Week in month. eg. 2nd Wed in July.
 				ret = Math.floor( ( gdate.getDate() - 1) / 7 ) + 1;
 				break;
@@ -156,6 +161,7 @@ return function( date, numberFormatters, properties ) {
 			case "e":
 			case "c":
 				if ( length <= 2 ) {
+
 					// Range is [1-7] (deduced by example provided on documentation)
 					// TODO Should pad with zeros (not specified in the docs)?
 					ret = dateDayOfWeek( date, properties.firstDay ) + 1;
@@ -211,6 +217,7 @@ return function( date, numberFormatters, properties ) {
 			// Zone
 			case "z":
 			case "O":
+
 				// O: "{gmtFormat}+H;{gmtFormat}-H" or "{gmtZeroFormat}", eg. "GMT-8" or "GMT".
 				// OOOO: "{gmtFormat}{hourFormat}" or "{gmtZeroFormat}", eg. "GMT-08:00" or "GMT".
 				if ( date.getTimezoneOffset() === 0 ) {
@@ -227,6 +234,7 @@ return function( date, numberFormatters, properties ) {
 				break;
 
 			case "X":
+
 				// Same as x*, except it uses "Z" for zero offset.
 				if ( date.getTimezoneOffset() === 0 ) {
 					ret = "Z";
@@ -235,6 +243,7 @@ return function( date, numberFormatters, properties ) {
 
 			/* falls through */
 			case "x":
+
 				// x: hourFormat("+HH;-HH")
 				// xx or xxxx: hourFormat("+HHmm;-HHmm")
 				// xxx or xxxxx: hourFormat("+HH:mm;-HH:mm")

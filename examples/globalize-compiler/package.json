@@ -1,0 +1,13 @@
+{
+  "name": "basic-globalize-compiler",
+  "private": true,
+  "scripts": {
+    "build": "globalize-compiler -l en -c cldr.json -m messages.json -o compiled-formatters.js app.js"
+  },
+  "devDependencies": {
+    "cldr-data": ">=25",
+    "globalize": "latest",
+    "globalize-compiler": "0.0.x",
+    "jquery": "latest"
+  }
+}

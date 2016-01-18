@@ -20,6 +20,9 @@ Node.js module.
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Performance](#performance)
+  - [Compilation and the Runtime modules](#compilation-and-the-runtime-modules)
+  - [Examples](#examples)
 - [API](#api)
   - [Core](#core-module)
   - [Date module](#date-module)
@@ -28,8 +31,11 @@ Node.js module.
     - [Currency module](#currency-module)
   - [Plural module](#plural-module)
   - [Relative time module](#relative-time-module)
+  - [Unit module](#unit-module)
   - more to come...
 - [Error reference](#error-reference)
+- [Contributing](#contributing)
+  - [Roadmap](#roadmap)
 - [Development](#development)
   - [File structure](#file-structure)
   - [Source files](#source-files)
@@ -136,15 +142,16 @@ information on its usage.
 
 ### Pick the modules you need
 
-| File | Minified + gzipped size | Summary |
-|---|--:|---|
-| globalize.js | 1.3KB | [Core library](#core-module) |
-| globalize/currency.js | +2.6KB | [Currency module](#currency-module) provides currency formatting and parsing |
-| globalize/date.js | +4.9KB | [Date module](#date-module) provides date formatting and parsing |
-| globalize/message.js | +5.4KB | [Message module](#message-module) provides ICU message format support |
-| globalize/number.js | +2.9KB | [Number module](#number-module) provides number formatting and parsing |
-| globalize/plural.js | +1.7KB | [Plural module](#plural-module) provides pluralization support |
-| globalize/relative-time.js | +0.7KB | [Relative time module](#relative-time-module) provides relative time formatting support |
+| File | Minified + gzipped size | Runtime minified + gzipped size | Summary |
+|---|--:|--:|---|
+| globalize.js | 1.5KB | 1.0KB | [Core library](#core-module) |
+| globalize/currency.js | 2.6KB | 0.6KB | [Currency module](#currency-module) provides currency formatting and parsing |
+| globalize/date.js | 5.1KB | 3.8KB | [Date module](#date-module) provides date formatting and parsing |
+| globalize/message.js | 5.4KB | 0.7KB | [Message module](#message-module) provides ICU message format support |
+| globalize/number.js | 3.1KB | 1.8KB | [Number module](#number-module) provides number formatting and parsing |
+| globalize/plural.js | 2.3KB | 0.4KB | [Plural module](#plural-module) provides pluralization support |
+| globalize/relative-time.js | 0.8KB | 0.6KB | [Relative time module](#relative-time-module) provides relative time formatting support |
+| globalize/unit.js | 0.9KB | 0.5KB | [Unit module](#unit-module) provides unit formatting support |
 
 ### Browser Support
 
@@ -178,17 +185,63 @@ information can be found at
 
 ## Getting Started
 
+    npm install globalize cldr-data
+
+```js
+var Globalize = require( "globalize" );
+Globalize.load( require( "cldr-data" ).entireSupplemental() );
+Globalize.load( require( "cldr-data" ).entireMainFor( "en", "es" ) );
+
+Globalize("en").formatDate(new Date());
+// > "11/27/2015"
+
+Globalize("es").formatDate(new Date());
+// > "27/11/2015"
+```
+
+Read the [Locales section](#locales) for more information about supported locales. For AMD, bower and other usage examples, see [Examples section](#examples).
+
+### Installation
+
+*By downloading a ZIP or a TAR.GZ...*
+
+Click the github [releases tab](https://github.com/jquery/globalize/releases)
+and download the latest available Globalize package.
+
+*By using a package manager...*
+
+Use bower `bower install globalize`, or npm `npm install globalize cldr-data`.
+
+*By using source files...*
+
+1. `git clone https://github.com/jquery/globalize.git`.
+1. [Build the distribution files](#build).
+
 ### Requirements
 
 #### 1. Dependencies
 
-You need to satisfy Globalize dependencies prior to using it. The good news
-is, there is only one. It's the [cldr.js](https://github.com/rxaviers/cldrjs),
-which is a CLDR low level manipulation tool.
+If you use module loading like ES6 import, CommonJS, or AMD and fetch your code
+using package managers like *npm* or *bower*, you don't need to worry about this
+and can skip reading this section. Otherwise, you need to satisfy Globalize
+dependencies prior to using it. There is only one external dependency:
+[cldr.js][], which is a CLDR low level manipulation tool. Additionally, you need
+to satisfy the cross-dependencies between modules.
 
-If you use a package manager like bower or npm, you don't need to worry about
-it. If this isn't the case, then you need to manually download cldr.js
-yourself. Check the [Hello World examples](#usage) for more information.
+| Module | Dependencies (load in order) |
+|---|---|
+| Core module | [cldr.js][] |
+| Currency module | globalize.js (core), globalize/number.js, and globalize/plural.js (only required for "code" or "name" styles) |
+| Date module | globalize.js (core) and globalize/number.js |
+| Message module | globalize.js (core) and globalize/plural.js (if using messages that need pluralization support) |
+| Number module | globalize.js (core) |
+| Plural | globalize.js (core) |
+| Relative time module | globalize.js (core), globalize/number.js, and globalize/plural.js |
+| Unit module | globalize.js (core), globalize/number.js, and globalize/plural.js |
+
+As an alternative to deducing this yourself, use this [online tool](http://johnnyreilly.github.io/globalize-so-what-cha-want/). The tool allows you to select the modules you're interested in using and tells you the Globalize files *and* CLDR JSON that you need.
+
+[cldr.js]: https://github.com/rxaviers/cldrjs
 
 #### 2. CLDR content
 
@@ -210,26 +263,13 @@ requirements. See table below.
 | Number module | cldr/main/`locale`/numbers.json<br>cldr/supplemental/numberingSystems.json |
 | Plural module | cldr/supplemental/plurals.json (for cardinals)<br>cldr/supplemental/ordinals.json (for ordinals) |
 | Relative time module | cldr/main/`locale`/dateFields.json<br>+CLDR JSON files from number and plural modules |
+| Unit module | cldr/main/`locale`/units.json<br>+CLDR JSON files from number and plural module |
+
+As an alternative to deducing this yourself, use this [online tool](http://johnnyreilly.github.io/globalize-so-what-cha-want/). The tool allows you to select the modules you're interested in using and tells you the Globalize files *and* CLDR JSON that you need.
 
 *(b) How am I supposed to get and load CLDR content?*
 
 Learn [how to get and load CLDR content...](doc/cldr.md).
-
-### Installation
-
-*By downloading a ZIP or a TAR.GZ...*
-
-Click the github [releases tab](https://github.com/jquery/globalize/releases)
-and download the latest available Globalize package.
-
-*By using a package manager...*
-
-Use bower `bower install globalize`, or npm `npm install globalize cldr-data`.
-
-*By using source files...*
-
-1. `git clone https://github.com/jquery/globalize.git`.
-1. [Build the distribution files](#build).
 
 ### Usage
 
@@ -246,12 +286,81 @@ can cherry-pick the pieces you need, eg. load `dist/globalize.js` to get
 Globalize core, load `dist/globalize/date.js` to extend Globalize with Date
 functionalities, etc.
 
-An example is worth a thousand words. Check out our Hello World demo (available
-to you in different flavors):
-- [Hello World (AMD + bower)](examples/amd-bower/).
-- [Hello World (Node.js + npm)](examples/node-npm/).
-- [Hello World (plain JavaScript)](examples/plain-javascript/).
+An example is worth a thousand words. Check out our [Examples](#examples)
+section below.
 
+### Performance
+
+When formatting or parsing, there's actually a two-step process: (a) the
+formatter (or parser) *creation* and (b) its *execution*, where creation takes
+an order of magnitude more time (more expensive) than execution. In the creation
+phase, Globalize traverses the CLDR tree, processes data (e.g., expands date
+patterns, parses plural rules, etc), and returns a function that actually
+executes the formatting or parsing.
+
+```js
+// Formatter creation.
+var formatter = Globalize.numberFormatter();
+
+// Formatter execution (roughly 10x faster than above).
+formatter( Math.PI );
+// > 3.141
+```
+
+As a rule of thumb for optimal performance, cache your formatters and parsers.
+For example: (a) on iterations, generate them outside the loop and reuse while
+looping; (b) on server applications, generate them in advance and execute when
+requests arrive.
+
+### Compilation and the Runtime modules
+
+Take advantage of compiling your formatters and/or parsers during build time
+when deploying to production. It's much faster than generating them in real-time
+and it's also much smaller (i.e., better loading performance).
+
+Your compiled formatters and parsers allow you to skip a big part of the library
+and also allow you to skip loading CLDR data, because they have already been
+created (see [Performance](#performance) above for more information).
+
+To illustrate, see our [Basic Globalize Compiler example][].
+
+
+#### Globalize Compiler
+
+For information about the Globalize Compiler CLI or its JavaScript API, see the
+[Globalize Compiler documentation][].
+
+[Globalize Compiler documentation]: https://github.com/jquery-support/globalize-compiler#README
+
+### Examples
+
+The fastest and easiest way to use Globalize is by integrating it into your
+existing tools.
+
+- [Application example using webpack and npm](examples/app-npm-webpack/): easy to
+  get started, automated CLDR loading and precompilation for production, but
+  requires npm and webpack knowledge.
+
+If you're using a different tool than the one above, but you're comfortable
+using JavaScript modules (such as ES6 modules, CommonJS, or AMD) and package
+managers like npm or bower, you may want to check out the following examples.
+Note you'll need to compile your code for production yourself.
+
+- [Basic example using AMD and bower](examples/amd-bower/): feeding Globalize on
+  CLDR is not completely transparent.
+- [Basic example using Node.js and npm](examples/node-npm/): feeding Globalize
+  on CLDR is not completely transparent.
+- [Basic Globalize Compiler example][]: shows how to use Globalize Compiler CLI.
+
+[Basic Globalize Compiler example]: examples/globalize-compiler/
+
+If you're using none of the tools above, but instead you're using the plain and
+old script tags only, the following example may interest you. Note Globalize
+allows you to go low level like this. But, acknowledge that you'll need to
+handle dependencies and CLDR loading manually yourself.
+
+- [Basic example using plain JavaScript](examples/plain-javascript/): requires
+  loading CLDR and handling dependencies manually.
 
 ## API
 
@@ -275,6 +384,54 @@ to you in different flavors):
   Create a Globalize instance.
 
   [Read more...](doc/api/core/constructor.md)
+
+#### Locales
+
+A locale is an identifier (id) that refers to a set of user preferences that
+tend to be shared across significant swaths of the world. In technical terms,
+it's a String composed of three parts: language, script, and region. For
+example:
+
+| locale | description |
+| --- | --- |
+| *en-Latn-US* | English as spoken in the Unites States in the Latin script. |
+| *en-US* | English as spoken in the Unites States (Latin script is deduced given it's the most likely script used in this place). |
+| *en* | English (United States region and Latin script are deduced given they are respectivelly the most likely region and script used in this place). |
+| *en-GB* | English as spoken in the Grain Britain (Latin script is deduced given it's the most likely script used in this place). |
+| *en-IN* | English as spoken in India (Latin script is deduced). |
+| *es* | Spanish (Spain region and Latin script are deduced). |
+| *es-MX* | Spanish as spoken in Mexico (Latin script is deduced). |
+| *zh* | Chinese (China region and Hans script are deduced). |
+| *zh-TW* | Chinese as spoken in Taiwan (Hant script is deduced). |
+| *ja* | Japanese (Japan region and Japan script are deduced). |
+| *de* | German (Germany region and Latin script are deduced). |
+| *pt* | Portuguese (Brazil region and Latin script are deduced). |
+| *pt-PT* | Portuguese as spoken in Portugal (Latin script is deduced). |
+| *fr* | French (France region and Latin script are deduced). |
+| *ru* | Russian (Russia region and Cyril script are deduced). |
+| *ar* | Arabic (Egypt region and Arabic script are deduced). |
+
+The likely deductibility is computed by using CLDR data, which is based on the
+population and the suppress-script data in BCP47 (among others). The data is
+heuristically derived, and may change over time.
+
+Figure out the deduced information by looking at the
+`cldr.attributes.maxLanguageId` property of a Globalize instance:
+
+```js
+var Globalize = require( "globalize" );
+Globalize.load( require( "cldr-data" ).entireSupplemental() );
+Globalize("en").cldr.attributes.maxLanguageId;
+// > "en-Latn-US"
+```
+
+Globalize supports all the locales available in CLDR, which are around 740.
+For more information, search for coverage charts at the downloads section of
+http://cldr.unicode.org/.
+
+Read more details about locale at [UTS#35 locale][].
+
+[UTS#35 locale]: http://www.unicode.org/reports/tr35/#Locale
 
 ### Date module
 
@@ -497,6 +654,29 @@ to you in different flavors):
 
   Alias for `.relativeTimeFormatter( unit, options )( value )`.
 
+## Unit module
+
+- **`.unitFormatter( unit [, options] )`**
+
+  Returns a function that formats a unit according to the given unit, options, and the
+  default/instance locale.
+
+  ```javascript
+  .unitFormatter( "second" )( 10 )
+  // > "10 seconds"
+
+  .unitFormatter( "second", { form: "short" } )( 10 )
+  // > "10 secs"
+
+  .unitFormatter( "second", { form: "narrow" } )( 10 )
+  // > "10s"
+  ```
+
+  [Read more...](doc/api/unit/unit-formatter.md)
+
+- **`.formatUnit( value, unit [, options] )`**
+
+  Alias for `.unitFormatter( unit, options )( value )`.
 
 ## Error reference
 
@@ -564,6 +744,54 @@ to you in different flavors):
   [Read more...](doc/error/e-unsupported.md)
 
 
+## Contributing
+
+If you are having trouble using Globalize after reading the documentation
+carefully, please post a question to [StackOverflow with the
+"javascript-globalize" tag][]. Questions that include a minimal demo are more
+likely to receive responses.
+
+In the spirit of open source software development, we always encourage
+community code contribution. To help you get started and before you jump into
+writing code, be sure to read [CONTRIBUTING.md](CONTRIBUTING.md).
+
+[StackOverflow with the "javascript-globalize" tag]: http://stackoverflow.com/tags/javascript-globalize
+
+For ideas where to start contributing, see the following queries to find what
+best suites your interest: [quick changes][], [new features][], [bug fixes][],
+[documentation improvements][], [date module][], [currency module][], [message
+module][], [number module][], [plural module][], [relative time module][]. Last
+but not least, feel free to [get in touch](http://irc.jquery.org/).
+
+[bug fixes]: https://github.com/jquery/globalize/labels/bug
+[documentation improvements]: https://github.com/jquery/globalize/labels/docs
+[new features]: https://github.com/jquery/globalize/labels/new%20feature
+[quick changes]: https://github.com/jquery/globalize/labels/quick%20changes
+
+[currency module]: https://github.com/jquery/globalize/labels/currency%20module
+[date module]: https://github.com/jquery/globalize/labels/date%20module
+[message module]: https://github.com/jquery/globalize/labels/message%20module
+[number module]: https://github.com/jquery/globalize/labels/number%20module
+[plural module]: https://github.com/jquery/globalize/labels/plural%20module
+[relative time module]: https://github.com/jquery/globalize/labels/relative%20time%20module
+
+### Roadmap
+
+Our roadmap is the collection of all open issues and pull requests where you can
+find:
+
+- [Ongoing work][] lists our current sprint. Here you find where we're actively
+  working on at this very moment. Priority is determined by the community needs
+  and volunteering. If there is anything you want to be done, share your
+  thoughts with us on any existing or new issue and especially volunteer to do
+  it.
+- [Everything else][] is potential next work that you could help us to
+  accomplish now. Releases are published following semver rules as often as
+  possible.
+
+[Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
+[Everything else]: https://github.com/jquery/globalize/issues?utf8=%E2%9C%93&q=is%3Aopen+-label%3A%22Current+Sprint%22+
+
 ## Development
 
 ### File structure
@@ -589,6 +817,8 @@ to you in different flavors):
 │   ├── plural/ (plural source code)
 │   ├── relative-time.js (relative time module)
 │   ├── relative-time/ (relative time source code)
+│   ├── unit.js (unit module)
+│   ├── unit/ (unit source code)
 │   └── util/ (basic JavaScript helpers polyfills, eg array.map)
 └── test/ (unit and functional test files)
     ├── fixtures/ (CLDR fixture data)
@@ -653,4 +883,3 @@ dependencies (for more details, see above).
 ```bash
 grunt
 ```
-

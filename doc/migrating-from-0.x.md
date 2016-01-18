@@ -2,7 +2,7 @@
 
 Globalize 0.x came with a bundled locale for US English, and optional files for various other locales. Globalize 1.x uses CLDR for the locale data, and it doesn't bundle any locale data. Check out the documentation for loading CLDR data in 1.x to learn more about that. If you were only using the bundle locale, you only need to load CLDR data for US English. If you were loading other locales, make sure you load those from CLDR as well.
 
-On the API side, things have also changed, to simplify usage, remove ambiguity and add features. The rest of this document provies a brief function-by-function list.
+On the API side, things have also changed, to simplify usage, remove ambiguity and add features. The rest of this document provides a brief function-by-function list.
 
 If you still need help with migration, let us know. We may extend this guide later as necessary.
 
@@ -38,7 +38,26 @@ Replaced by `.formatMessage( path [, variables ] )`. The new API is quite differ
 
 ## Globalize.parseInt/parseFloat
 
-Replaced by `.parseNumber( value [, options] )`.
+Replaced by `.parseNumber( value [, options] )`.  So where you might have previously executed:
+
+```js
+Globalize( "en" ).parseFloat( "123,456.789" )
+// > 123456.789
+```
+
+You could now execute:
+
+```js
+Globalize( "en" ).parseNumber( "123,456.789" )
+// > 123456.789
+```
+
+`parseNumber` is an alias for [`.numberParser( [options] )( value )`](api/number/number-parser.md).  So you could also do this:
+
+```js
+Globalize( "en" ).numberParser()( "123,456.789" )
+// > 123456.789
+```
 
 ## Globalize.parseDate
 

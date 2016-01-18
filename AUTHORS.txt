@@ -1,0 +1,40 @@
+Authors ordered by number of contributions
+
+Rafael Xavier de Souza <rxaviers@gmail.com>
+Richard D. Worth <rdworth@gmail.com>
+Eric Bréchemier <legalbox@eric.brechemier.name>
+Jörn Zaefferer <joern.zaefferer@gmail.com>
+Dave Reed <dareed@microsoft.com>
+Danny Wachsstock <d.wachss@prodigy.net>
+Nikolaus Graf <nik@deck.cc>
+Scott González <scott.gonzalez@gmail.com>
+Nick Schonning <nschonni@gmail.com>
+Kyle Florence <kyle.florence@gmail.com>
+Tobie Langel <tobie.langel@gmail.com>
+Manraj Singh <manrajsinghgrover@gmail.com>
+Oleg Gulverdashvili <ctapbiumabp@gmail.com>
+Sean Cady <sean.cady@ge.com>
+Yasuhiro Yoshida <yasuhiro.yoppu@gmail.com>
+Kris Borchers <kris.borchers@gmail.com>
+Michael Birtwell <michael.birtwell@starleaf.com>
+Peter Dave Hello <hsu@peterdavehello.org>
+Bao Ngo <bingo@planwise.com>
+Juan Soto <juansoto@fastmail.fm>
+Andreas Blixt <me@blixt.org>
+Luke Page <luke.a.page@gmail.com>
+Stephen Walther <Swalther@Microsoft.com>
+Tobias Nießen <tniessen@tnie.de>
+Mateusz Bożyk <mateusz.bozyk@gmail.com>
+Tomasz Peczek <tpeczek@gmail.com>
+Robert Plummer <robertleeplummerjr@gmail.com>
+Fredrik Blomqvist <fblomqvist@gmail.com>
+Christian Vuerings <vueringschristian@gmail.com>
+David De Sloovere <david.desloovere@hotmail.com>
+Arthur Verschaeve <contact@arthurverschaeve.be>
+Boris Moore <BorisMoore@gmail.com>
+Riku Nieminen <rikunieminen@gmail.com>
+Arvind Kalyan <arvchamp@gmail.com>
+John Resig <jeresig@gmail.com>
+Anne-Gaelle Colom <coloma@westminster.ac.uk>
+Raphael Amorim <rapha850@gmail.com>
+Leonardo Balter <leonardo.balter@gmail.com>

@@ -1,18 +1,19 @@
 define([
 	"./core",
+	"./common/runtime-bind",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
 	"./common/validate/parameter-presence",
 	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/string",
-	"./relative-time/format",
+	"./relative-time/formatter-fn",
 	"./relative-time/properties",
 
 	"./number",
 	"./plural",
 	"cldr/event"
-], function( Globalize, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeNumber, validateParameterTypeString, relativeTimeFormat,
+], function( Globalize, runtimeBind, validateCldr, validateDefaultLocale, validateParameterPresence,
+	validateParameterTypeNumber, validateParameterTypeString, relativeTimeFormatterFn,
 	relativeTimeProperties ) {
 
 /**
@@ -28,7 +29,6 @@ define([
  */
 Globalize.formatRelativeTime =
 Globalize.prototype.formatRelativeTime = function( value, unit, options ) {
-
 	validateParameterPresence( value, "value" );
 	validateParameterTypeNumber( value, "value" );
 
@@ -48,13 +48,15 @@ Globalize.prototype.formatRelativeTime = function( value, unit, options ) {
  */
 Globalize.relativeTimeFormatter =
 Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
-	var cldr, numberFormatter, pluralGenerator, properties;
+	var args, cldr, numberFormatter, pluralGenerator, properties, returnFn;
 
 	validateParameterPresence( unit, "unit" );
 	validateParameterTypeString( unit, "unit" );
 
 	cldr = this.cldr;
 	options = options || {};
+
+	args = [ unit, options ];
 
 	validateDefaultLocale( cldr );
 
@@ -65,12 +67,11 @@ Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 	numberFormatter = this.numberFormatter( options );
 	pluralGenerator = this.pluralGenerator();
 
-	return function( value ) {
-		validateParameterPresence( value, "value" );
-		validateParameterTypeNumber( value, "value" );
+	returnFn = relativeTimeFormatterFn( numberFormatter, pluralGenerator, properties );
 
-		return relativeTimeFormat( value, numberFormatter, pluralGenerator, properties );
-	};
+	runtimeBind( args, cldr, returnFn, [ numberFormatter, pluralGenerator, properties ] );
+
+	return returnFn;
 };
 
 return Globalize;

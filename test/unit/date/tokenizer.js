@@ -40,6 +40,14 @@ QUnit.assert.dateTokenizer = function( value, pattern, cldr, expected ) {
 QUnit.module( "Date Tokenizer" );
 
 /**
+ *  Correctness
+ */
+
+QUnit.test( "should not tokenize when extra characters present at the end", function( assert ) {
+	assert.dateTokenizer( "2016", "yy", cldr, [] );
+});
+
+/**
  *  Era
  */
 

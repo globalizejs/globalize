@@ -39,8 +39,8 @@ QUnit.test( "should return pattern replacing `¤` with the appropriate currency 
 	assert.deepEqual( symbolProperties( "EUR", en, {} ), { pattern: "'€'#,##0.00" } );
 	assert.deepEqual( symbolProperties( "USD", de, {} ), { pattern: "#,##0.00 '$'" } );
 	assert.deepEqual( symbolProperties( "EUR", de, {} ), { pattern: "#,##0.00 '€'" } );
-	assert.deepEqual( symbolProperties( "USD", zh, {} ), { pattern: "'US$' #,##0.00" } );
-	assert.deepEqual( symbolProperties( "EUR", zh, {} ), { pattern: "'€' #,##0.00" } );
+	assert.deepEqual( symbolProperties( "USD", zh, {} ), { pattern: "'US$'#,##0.00" } );
+	assert.deepEqual( symbolProperties( "EUR", zh, {} ), { pattern: "'€'#,##0.00" } );
 
 	assert.deepEqual( symbolProperties( "USD", en, {
 		style: "accounting"

@@ -2,6 +2,7 @@ define([
 	"cldr",
 	"./common/create-error",
 	"./common/format-message",
+	"./common/runtime-bind",
 	"./common/validate",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
@@ -18,8 +19,8 @@ define([
 	"./util/string/pad",
 
 	"cldr/event"
-], function( Cldr, createError, formatMessage, validate, validateCldr, validateDefaultLocale,
-	validateParameterPresence, validateParameterRange, validateParameterType,
+], function( Cldr, createError, formatMessage, runtimeBind, validate, validateCldr,
+	validateDefaultLocale, validateParameterPresence, validateParameterRange, validateParameterType,
 	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
 	isPlainObject, objectExtend, regexpEscape, stringPad ) {
 
@@ -59,6 +60,7 @@ function Globalize( locale ) {
  * Somewhat equivalent to previous Globalize.addCultureInfo(...).
  */
 Globalize.load = function() {
+
 	// validations are delegated to Cldr.load().
 	Cldr.load.apply( Cldr, arguments );
 };
@@ -93,6 +95,7 @@ Globalize._formatMessage = formatMessage;
 Globalize._isPlainObject = isPlainObject;
 Globalize._objectExtend = objectExtend;
 Globalize._regexpEscape = regexpEscape;
+Globalize._runtimeBind = runtimeBind;
 Globalize._stringPad = stringPad;
 Globalize._validate = validate;
 Globalize._validateCldr = validateCldr;
