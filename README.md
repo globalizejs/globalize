@@ -322,14 +322,14 @@ example:
 | *en-IN* | English as spoken in India (Latin script is deduced). |
 | *es* | Spanish (Spain region and Latin script are deduced). |
 | *es-MX* | Spanish as spoken in Mexico (Latin script is deduced). |
-| *zh* | Chinese (China region and Hans script are deduced). |
-| *zh-TW* | Chinese as spoken in Taiwan (Hant script is deduced). |
-| *ja* | Japanese (Japan region and Japan script are deduced). |
+| *zh* | Chinese (China region and Simplified Han script are deduced). |
+| *zh-TW* | Chinese as spoken in Taiwan (Traditional Han script is deduced). |
+| *ja* | Japanese (Japan region and Japanese script are deduced). |
 | *de* | German (Germany region and Latin script are deduced). |
 | *pt* | Portuguese (Brazil region and Latin script are deduced). |
 | *pt-PT* | Portuguese as spoken in Portugal (Latin script is deduced). |
 | *fr* | French (France region and Latin script are deduced). |
-| *ru* | Russian (Russia region and Cyril script are deduced). |
+| *ru* | Russian (Russia region and Cyrillic script are deduced). |
 | *ar* | Arabic (Egypt region and Arabic script are deduced). |
 
 The likely deductibility is computed by using CLDR data, which is based on the
