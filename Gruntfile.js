@@ -439,8 +439,7 @@ module.exports = function( grunt ) {
 		"test:functional",
 		"uglify",
 		"compare_size",
-		"commitplease",
-		"update-authors"
+		"commitplease"
 	]);
 
 };
