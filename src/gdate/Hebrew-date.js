@@ -83,10 +83,13 @@ HebrewDate.prototype._setDate = function(d) {
 		this._d = d;
   }
 };
-HebrewDate.prototype._setFields = function(era, year, month, date) {
+HebrewDate.prototype._setFields = function(era, year, month, date, monthType) {
 	var m,
 		htoday = civ2heb( new Date() );
 
+	if ( monthType !== undefined ){
+		month = month + "-leap";
+	}
 	if ( year == null ) {
 		year = htoday.y;
 	}else if ( year < 1 ) {

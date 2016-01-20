@@ -13,7 +13,7 @@ var EPSILON = 60000, // one minute accuracy
 	MOON_P0 =  36.340410 * Math.PI / 180,  // Mean long. of perigee
 	MOON_N0 = 318.510107 * Math.PI / 180,   // Mean long. of node
 	MOON_I  =   5.145366 * Math.PI / 180,   // Inclination of orbit
-	MOON_E  =   0.054900,            // Eccentricity of orbit
+	/* MOON_E  =   0.054900,            // Eccentricity of orbit. Defined in ICU but not used */
 	DEG2RAD = Math.PI / 180, // convert degrees to radians
 	SUN_ETA_G = 4.89078, // Ecliptic longitude at epoch, from
 	// https://www.nrel.gov/midc/solpos/spa.html for 1970-01-01 at 00:00
@@ -87,9 +87,12 @@ function trueSunAnomaly( time ){
 
 /* returns the angle between the ecliptic longitude of the sun and the moon */
 /* see the ICU CalendarAstronomer method getMoonPosition */
-/* unfortunately, their source used degrees for the constants, 
+/* unfortunately, their source used degrees for the constants,
    so there's a lot of conversions here */
 function moonAge( time ){
+	var  annual, center, day, evection, meanAnomalySun,
+		meanLongitude, meanAnomalyMoon, moonEclipLong,
+		moonLongitude, nodeLongitude, sunLong, x, y, variation;
 	sunLong = sunLongitude ( time );
 	meanAnomalySun = meanSunAnomaly( time );
 	day = ms2jd ( time ) - JD_SUN_EPOCH; // days since the calculation epoch
@@ -109,7 +112,7 @@ function moonAge( time ){
 	x = Math.cos ( moonLongitude - nodeLongitude );
 	y = Math.sin ( moonLongitude - nodeLongitude );
 	moonEclipLong = Math.atan2( y * Math.cos( MOON_I ), x) + nodeLongitude;
-	return normTAU( moonEclipLong - sunLong)
+	return normTAU( moonEclipLong - sunLong);
 }
 
 /* given a function func( time ) that returns an angle, uses interpolation
@@ -154,13 +157,6 @@ function closeEnoughTime( t1, t2 ) {
 function closeEnoughAngle( f1, f2 ) {
 	return Math.abs( f1 - f2 ) < 1e-5;
 }
-
-/* not used currently 
-function normPI( angle ) {
-	// constrain to [-PI..PI)
-	return normTAU( angle + Math.PI) - Math.PI;
-}
-*/
 
 function normTAU( angle ) {
 	// constrain to [0..TAU)
