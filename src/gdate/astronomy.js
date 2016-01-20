@@ -22,6 +22,8 @@ var EPSILON = 60000, // one minute accuracy
 	TROPICAL_YEAR = 365.242191, //  days of a year, from vernal equinox to vernal equinox
 	TAU = 2 * Math.PI; // http://tauday.com/
 
+Gdate.TAU = TAU;
+
 /* returns the time of the next (if next is true) or
 	last (if next is false) winter solstice from the time now */
 Gdate.winterSolstice = function( now, next  ) {

@@ -47,7 +47,7 @@ negative numbers correctly, so the actual algorithm is
 
 Exactly when this cycle started (which cycle the year is in, here called the era by analogy to
 the Gregorian BCE/CE) is a matter of some controversy. ICU uses 2637 BCE, so the era is
-Math.floor((date.getFullYear() + 2696) / 60 ). 2
+Math.floor((date.getFullYear() + 2696) / 60 ). 
 This is right because 2637 BCE means getFullYear -2636 (there is no 0 BCE), and we want the 
 first cycle to be era 1 not era 0, so we go back another 60 years.
 
@@ -56,7 +56,184 @@ define([
 	"./Gdate"
 //	"./astronomy.js" // this creates errors in testing, but it is clearly required.
 ], function( Gdate ) {
-	// caches
-	var solstices = {}; // chinese day of the winter solstice, indexed by Gregorian year
-	var nains = {}; // chinese lunar years, indexed by the Gregorian year of New Years Day
+	// cache of solar years. Each field is indexed by Gregorian year
+	// and is an array of new moons:
+	// {
+	// 	newMoon: Integer,
+	// 	m: Integer,
+	// 	leap: undefined || "leap",
+	// 	y: Integer
+	// 	e: Integer
+	// },
+	// starting from
+	// the day after the winter solstice of the previous year through the winter solstice
+	// of this year. New Moon is the chinese day number (days from New Year 2016, 2016-02-08) of
+	// the new moon, m and leap give the name of the month. y is the chinese year number for that
+	// month (1..60). Months 1 through 11 belong to that year;
+	// months 11-leap, 12 and 12-leap (if they exist) belong to the previous year.
+	// e is the era number (as defined above).
+	// The array also has a field solstice that is the chinese day number of the winter solstice
+	var sui = {};
+	
+	function ChineseDate() { this._init.apply(this, arguments); }
+	ChineseDate.prototype = new Gdate();
+
+	ChineseDate.prototype.constructor = Gdate.calendars.chinese = ChineseDate;
+	ChineseDate.prototype.nextYear = function(n) {
+		if (arguments.length === 0){
+			n = 1;
+		}
+		return new ChineseDate( this._era, this._year + n, this._month, this._date, this._monthType );
+	};
+
+	ChineseDate.prototype.nextMonth = function(n) {
+		var i, m, ret,
+			gy = cy2sui ( this._era, this._year, this._month, this._monthType ),
+			months = getMonths( gy );
+			
+		// find the current month
+		for ( i = 0; i < months.length; ++i ){
+			if (this._month === months[i].m && this._monthType === months[i].leap ){
+				break;
+			}
+		}
+		// if i is undefined here, there's a bug. Should we check for it?
+
+		if (n === 0 ){
+			return new ChineseDate ( this );
+		}else if ( n === 1 ){
+			m = months[ i + 1 ];
+			if ( m === undefined ){
+				months = getMonths( gy + 1 );
+				m = months[ 0 ];
+			}
+			return new ChineseDate( m.e, m.y, m.m, this._date, m.leap );
+		}else if ( n === -1 ){
+			m = months[ i - 1 ];
+			if ( m === undefined ){
+				months = getMonths( gy - 1 );
+				m = months[ months.length - 1 ];
+			}
+			return new ChineseDate( m.e, m.y, m.m, this._date, m.leap );
+		}else if ( n > 0 ) {
+			ret = this.nextMonth( 1 ).nextMonth( n - 1 ); // anything wrong with tail recursion?
+		}else /*  n < 0 */ {
+			ret = this.nextMonth( -1 ).nextMonth( n + 1 );
+		}
+		if ( ret._date === this._date ) {
+			return ret;
+		}
+		// have to deal with dates that were coerced too far back by going through short months
+		return new ChineseDate ( this._era, ret._year, ret._month, this._date, ret._monthType );
+	};
+
+	function winterSolstice( y ){
+		if ( sui[y] === undefined ){
+			sui[y] = [];
+			sui[y].solstice = Gdate.winterSolstice( new Date(y, 11,20).getTime(), true );
+		}
+		return sui[y];
+	}
+	
+	function getMonths( y ){
+		fillMonths( y );
+		return sui[y];
+	}
+	
+	function fillMonths( y ){
+		var d, foundLeap, i, m, newMoon,
+			cy = gy2cy( y );
+			lastcy = gy2cy ( y - 1 );
+			endYear = winterSolstice( y );
+		if ( sui[y].length > 0 ){
+			return; // already done
+		}
+		
+		// fill in the new moons
+		for ( d = winterSolstice( y - 1 ) + 1;;){
+			newMoon = ms2cd ( newMoon( cd2ms( d ) ), true );
+			if ( newMoon > endYear ){
+				break;
+			}
+			sui[y].push( { newMoon: newMoon, leap: undefined } );
+			d = newMoon + 28; // almost to the next new moon
+		}
+		
+		// name the months
+		if ( sui[y].length === 12 ){
+			// not a leap year
+			sui[y][0].m = 12;
+			sui[y][0].y = lastcy.y;
+			sui[y][0].e = lastcy.e;
+			for ( i = 1; i < 12; ++i ){
+				sui[y][i].m = i;
+				sui[y][i].y = cy.y;
+				sui[y][i].y = cy.e;
+			}
+		} else {
+			// a leap year; 13 months
+			m = 11;
+			foundLeap = false;
+			for ( i = 0; i < 13; ++i ){
+				// last month is always 11, not a leap month
+				if ( !foundLeap && m < 12 && noSolarTerm(sui[y][i].newMoon, sui[y][i+1].newMoon) ){
+					sui[y][i].m = m;
+					sui[y][i].leap = "leap";
+					sui[y][i].y = ( m == 11 || m == 12 ) ? lastcy.y : cy.y;
+					sui[y][i].e = ( m == 11 || m == 12 ) ? lastcy.e : cy.e;
+					foundLeap = true;
+				}
+				++m;
+				if ( m > 12 ){
+					m = 1;
+				}
+				if ( sui[y][i].leap === undefined ) {
+					sui[y][i].m = m;
+					sui[y][i].y = m == 12 ? lastcy.y : cy.y;
+					sui[y][i].e = m == 12 ? lastcy.e : cy.e;
+				}
+			}
+		}
+	}
+	
+	function noSolarTerm( d1, d2 ){
+		// returns true if there is no solar term in [d1,d2),
+		// meaning the next solar term on or after d1 is also on or after d2
+		return nextSolarTerm( d1 ) == nextSolarTerm( d2 );
+	}
+	
+	function nextSolarTerm( d ){
+		var sunLongitude = Gdate.sunLongitude( cd2ms( d ) );
+		// solar terms are every 30 degrees or TAU/12
+		return Math.ceil ( sunLongitude * 12 / Gdate.TAU );
+	}
+	
+	function ms2cd ( t ){
+		// convert unix timestamp to Chinese days from New Year 2016
+		return Math.floor ( ( t - 1454860800000 ) / 86400000;
+	}
+	
+	function cd2ms ( d ){
+		return d * 86400000 + 1454860800000;
+	}
+	
+	function gy2cy( y ){
+		return {
+			y: (( y - 1984 ) % 60 + 61) % 60,
+			e: Math.floor(( y + 2696 ) / 60 )
+		}
+	}
+	
+	function cy2gy ( e, y ){
+		return e * 60 - 2697 + y;
+	}
+	
+	function cy2sui ( e, y, m, leap ){
+		// the last months are actually recorded in the next year. 
+		var gy = cy2gy ( e, y) ;
+		if ( m === 11 && leap === "leap" || m === 12 ){
+			++gy;
+		}
+		return gy;
+	}
 });
