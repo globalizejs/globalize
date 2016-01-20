@@ -11,6 +11,7 @@ Nick Schonning <nschonni@gmail.com>
 Kyle Florence <kyle.florence@gmail.com>
 Tobie Langel <tobie.langel@gmail.com>
 Manraj Singh <manrajsinghgrover@gmail.com>
+Nova Patch <patch.nova@gmail.com>
 Karan Sharma <karan1276@gmail.com>
 Oleg Gulverdashvili <ctapbiumabp@gmail.com>
 Kris Borchers <kris.borchers@gmail.com>
@@ -21,14 +22,14 @@ Wes Cravens <wesley.r.cravens@gmail.com>
 Rob Garrison <wowmotty@gmail.com>
 Yasuhiro Yoshida <yasuhiro.yoppu@gmail.com>
 Riku Nieminen <rikunieminen@gmail.com>
+Amanpreet Singh <apsdehal@gmail.com>
 Kevin Kirsche <Kev.Kirsche+GitHub@gmail.com>
-Pavel Karoukin <pavel@karoukin.us>
 Raphael Amorim <rapha850@gmail.com>
 Peter Dave Hello <hsu@peterdavehello.org>
 Bao Ngo <bingo@planwise.com>
 Leonardo Balter <leonardo.balter@gmail.com>
 Andreas Blixt <me@blixt.org>
-Amanpreet Singh <apsdehal@gmail.com>
+Pavel Karoukin <pavel@karoukin.us>
 Tobias Nießen <tniessen@tnie.de>
 Arvind Kalyan <arvchamp@gmail.com>
 Juan Soto <juansoto@fastmail.fm>
@@ -39,8 +40,8 @@ Christian Vuerings <vueringschristian@gmail.com>
 David De Sloovere <david.desloovere@hotmail.com>
 Luke Page <luke.a.page@gmail.com>
 Boris Moore <BorisMoore@gmail.com>
-Ed Sanders <ejsanders@gmail.com>
 Stephen Walther <Swalther@Microsoft.com>
+Ed Sanders <ejsanders@gmail.com>
 John Resig <jeresig@gmail.com>
 Mateusz Bożyk <mateusz.bozyk@gmail.com>
 Arthur Verschaeve <contact@arthurverschaeve.be>
