@@ -90,6 +90,7 @@ return function( pattern, cldr ) {
 						chr === "M" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
+
 					// Augment the month names with the leap month names
 					key = [
 						properties.calendar,
@@ -105,7 +106,8 @@ return function( pattern, cldr ) {
 						cldr
 					);
 				} else {
-					// record the possible expansion for numeric months
+
+				// record the possible expansion for numeric months
 					cldr.main([
 						"dates/calendars",
 						properties.calendar,

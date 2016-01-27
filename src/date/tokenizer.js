@@ -136,8 +136,10 @@ return function( value, numberParser, properties ) {
 		function monthNumber() {
 			var match, monthPatterns, reSource, type;
 			if ( length <= 2 ) {
-				// Unicode equivalent to \d+
+
+			// Unicode equivalent to \d+
 				reSource =  "((?:" + regexpN.source + ")+)";
+
 				// brute force search for a possible month. Return the first one found
 				monthPatterns = properties [ calendar + "/monthPatterns/numeric/all" ];
 				for ( type in monthPatterns || {} ) {
@@ -145,11 +147,12 @@ return function( value, numberParser, properties ) {
 						"^" + monthPatterns[ type ]. replace( "{0}", reSource )
 					);
 					match = tokenRe.exec( value );
-					if ( match ){
+					if ( match ) {
 						token.value = numberParser( match[1] ) + "-" + type;
 						return tokenRe;
 					}
 				}
+
 				// no pattern found
 				numeric = true;
 				return tokenRe = new RegExp( reSource );
@@ -165,7 +168,7 @@ return function( value, numberParser, properties ) {
 			for ( i in data ) {
 				re = new RegExp( "^" + data[ i ] );
 				match = re.exec( value );
-				if ( match && match[0].length > bestmatch.length) {
+				if ( match && match[0].length > bestmatch.length ) {
 					bestmatch = match[0];
 					token.value = i;
 					tokenRe = new RegExp( data[ i ] );

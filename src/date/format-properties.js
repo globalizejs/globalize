@@ -127,7 +127,7 @@ return function( pattern, cldr ) {
 					properties.calendar,
 					cldr
 				);
-				if ( length <= 2 ){
+				if ( length <= 2 ) {
 					formatNumber = true;
 				}
 				break;

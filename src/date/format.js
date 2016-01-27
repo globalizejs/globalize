@@ -86,7 +86,7 @@ return function( date, numberFormatters, properties ) {
 					properties.firstDay -
 					properties.minDays
 				);
-				ret = (new Gdate.calendars[ properties.calendar ]( ret )).getYear();
+				ret = ( new Gdate.calendars[ properties.calendar ]( ret ) ).getYear();
 				if ( length === 2 ) {
 					ret = String( ret );
 					ret = +ret.substr( ret.length - 2 );
@@ -96,6 +96,7 @@ return function( date, numberFormatters, properties ) {
 			// Quarter
 			case "Q":
 			case "q":
+
         // There's no good way to do this with a generalized date.
 				// We have to approximate this, assuming a 12-month year and
 				// month numbers that correspond to the correct period of the year
@@ -112,9 +113,9 @@ return function( date, numberFormatters, properties ) {
 				monthNumber = gdate.getMonth();
 				monthType = gdate.getMonthType();
 				ret = monthNumber + ( monthType ? "-" + monthType : "" );
-				if ( properties.months[ chr ][ length ] ){
+				if ( properties.months[ chr ][ length ] ) {
 					ret = properties.months[ chr ][ length ][ ret ];
-					if ( /\{0\}/.test( ret ) ){
+					if ( /\{0\}/.test( ret ) ) {
 						ret = ret.replace( "{0}", numberFormatters[ length ]( monthNumber ) );
 					}
 				}else {
@@ -154,7 +155,7 @@ return function( date, numberFormatters, properties ) {
 			case "F":
 
 				// Day of Week in month. eg. 2nd Wed in July.
-				ret = Math.floor( ( gdate.getDate() - 1) / 7 ) + 1;
+				ret = Math.floor( ( gdate.getDate() - 1 ) / 7 ) + 1;
 				break;
 
 			// Week day

@@ -1,4 +1,5 @@
 define(function() {
+
 // a generalized (Globalized?) date. Eras, years, months and dates are numbers,
 // but months may also have a type ("leap" is the only one defined in CLDR now).
 // There is no concept of month or year order built into CLDR (thus the month after "1" isn't
@@ -9,7 +10,7 @@ define(function() {
 // so the native Date implementation is valid.
 // These objects are designed to be immutable.
 
-function Gdate(){}
+function Gdate() { }
 Gdate.prototype = {
 	getEra: function() { return this._era; },
 	getYear: function() { return this._year; },
@@ -17,13 +18,12 @@ Gdate.prototype = {
 	getMonthType: function() { return this._monthType; },
 	getDate: function() { return this._date; },
 	nextDate: function( n ) {
-		if (arguments.length === 0){
+		if ( arguments.length === 0 ) {
 			n = 1;
 		}
-		// I'm getting errors with new Date(this._d)
-		var d = new Date(this._d.getTime());
-		d.setDate(this._d.getDate() + n);
-		return new this.constructor(d);
+		var d = new Date( this._d.getTime() ); // I'm getting errors with new Date(this._d)
+		d.setDate( this._d.getDate() + n );
+		return new this.constructor( d );
 	},
 	nextYear: undefined, // virtual function
 	nextMonth: undefined, // virtual function
@@ -31,16 +31,18 @@ Gdate.prototype = {
 		return this.nextDate( 1 - this._date );
 	},
 	startOfYear: function() {
+
 		// no choice but to go through each month one at a time
 		var thisMonth = this,
-			lastMonth = thisMonth.nextMonth(-1);
-		while ( lastMonth.getYear() === thisMonth._year ){
+			lastMonth = thisMonth.nextMonth( -1 );
+		while ( lastMonth.getYear() === thisMonth._year ) {
 			thisMonth = lastMonth;
-			lastMonth = thisMonth.nextMonth(-1);
+			lastMonth = thisMonth.nextMonth( -1 );
 		}
 		return thisMonth.startOfMonth();
 	},
 	toDate: function() {
+
 		// we need to make sure that an arbitrary time doesn't leak through
 		var d = new Date( this._d.getFullYear(), this._d.getMonth(), this._d.getDate(),
 			0, 0, 0, 0 );
@@ -48,9 +50,9 @@ Gdate.prototype = {
 		return d;
 	},
 	_init: function( era, year, month, date, monthType ) {
-		if (era instanceof Date){
+		if ( era instanceof Date ) {
 			this._setDate( era );
-		}else if ( era instanceof Gdate ){
+		}else if ( era instanceof Gdate ) {
 			this._setDate( era.toDate() );
 		}else {
 			this._setFields( era, year, month, date, monthType );
@@ -64,7 +66,7 @@ Gdate.prototype = {
 	_month: NaN,
 	_monthType: undefined,
 	_date: NaN,
-	_d: new Date(NaN)
+	_d: new Date( NaN )
 };
 
 Gdate.calendars = {}; // this will store the calendar algorithms (the Gdate subclass constructors)

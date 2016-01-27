@@ -3,8 +3,7 @@ define([
 	"./start-of",
 	"../common/create-error/unsupported-feature",
 	"../util/out-of-range",
-	"../gdate/Gdate",
-	// Question: how can I allow these to be loaded conditionally (as needed?)
+	"../gdate/Gdate", // Question: how can I allow these to be loaded conditionally (as needed?)
 	"../gdate/Gregorian-date",
 	"../gdate/Hebrew-date",
 	"../gdate/Islamic-date"
@@ -100,8 +99,9 @@ return function( value, tokens, properties ) {
 			// Month
 			case "M":
 			case "L":
-				 // token.value may include the month type as a "-"
-				 // delimited suffix, so force it to be a string
+
+				// token.value may include the month type as a "-"
+				// delimited suffix, so force it to be a string
 				month = "" + token.value;
 				truncateAt.push( MONTH );
 				break;
@@ -254,7 +254,7 @@ return function( value, tokens, properties ) {
 	}
 	if ( daysOfYear !== undefined ) {
 		gdate = new Gdate.calendars[ properties.calendar ]( era, year, gdate.getMonth(), 1 );
-		gdate = gdate.startOfYear().nextDate( daysOfYear - 1);
+		gdate = gdate.startOfYear().nextDate( daysOfYear - 1 );
 		if ( gdate.getYear() !== year ) {
 			return null;
 		}
@@ -269,6 +269,7 @@ return function( value, tokens, properties ) {
 	}
 	gdate = new Gdate.calendars[ properties.calendar ]( era, year, month[0], day, month[1] );
 	if ( isNaN( gdate.getYear() ) || gdate.getDate() !== day ) {
+
 		// Question: do we really need to do this check,
 		// or can we rely on Gdate to correct out-of-bounds values?
 		// Question: when should this return null and when false?

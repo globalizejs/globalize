@@ -14,9 +14,9 @@ define([
  * Returns the modified date
  */
 return function( date, unit, calendar ) {
-	if ( unit === "year" ){
+	if ( unit === "year" ) {
 		date = new gdateGdate.calendars[ calendar ]( date ).startOfYear().toDate();
-	} else if ( unit === "month" ){
+	} else if ( unit === "month" ) {
 		date = new gdateGdate.calendars[ calendar ]( date ).startOfMonth().toDate();
 	} else {
 		date = new Date( date.getTime() );

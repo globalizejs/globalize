@@ -6,42 +6,44 @@ define([
 var months = [ 8, 9, 10, 11, 12, 13, 1, 2, 3,
 	4, 5, 7, 6, "7-leap" ],
 	monthsReversed = {};
-months.forEach( function( value, i ) { monthsReversed[value] = i; } );
+months.forEach( function( value, i ) { monthsReversed[ value ] = i; } );
 
-function addDay(d, n){
-	var ret = new Date (d.getTime());
+function addDay( d, n ) {
+	var ret = new Date ( d.getTime() );
 	ret.setDate( ret.getDate() + n );
 	return ret;
 }
 
-function HebrewDate() { this._init.apply(this, arguments); }
+function HebrewDate() { this._init.apply( this, arguments ); }
 HebrewDate.prototype = new Gdate();
 
 HebrewDate.prototype.constructor = Gdate.calendars.hebrew = HebrewDate;
-HebrewDate.prototype.nextYear = function(n) {
-  if (arguments.length === 0){
+HebrewDate.prototype.nextYear = function( n ) {
+  if ( arguments.length === 0 ) {
 		n = 1;
 	}
+
 	// don't coerce monthType; each year is different
 	return new HebrewDate( this._era, this._year + n, this._month, this._date );
 };
-HebrewDate.prototype.nextMonth = function(n) {
+HebrewDate.prototype.nextMonth = function( n ) {
 	var ret,
 		hd = civ2heb( this._d ),
-		roshchodesh = addDay(this._d, -hd.d + 1),
+		roshchodesh = addDay( this._d, -hd.d + 1 ),
+
 		//  the min/max() correct for the possibility of other month being too short
 		daysinlastmonth = Math.max( civ2heb( addDay( roshchodesh, -1 ) ).daysinmonth, hd.d ),
 		nextroshchodesh = addDay( roshchodesh, hd.daysinmonth ),
 		daysintonextmonth = Math.min( hd.d, civ2heb( nextroshchodesh ).daysinmonth );
-  if (arguments.length === 0){
+  if ( arguments.length === 0 ) {
 		n = 1;
 	}
-	if (n === 0 ){
+	if ( n === 0 ) {
 		return new HebrewDate ( this );
-	}else if ( n === 1 ){
+	}else if ( n === 1 ) {
 		return new HebrewDate( addDay( roshchodesh, hd.daysinmonth + daysintonextmonth - 1 ) );
-	}else if ( n === -1 ){
-		return new HebrewDate( addDay( this._d, -daysinlastmonth) );
+	}else if ( n === -1 ) {
+		return new HebrewDate( addDay( this._d, -daysinlastmonth ) );
 	}else if ( n > 0 ) {
 		ret = this.nextMonth( 1 ).nextMonth( n - 1 ); // anything wrong with tail recursion?
 	}else /*  n < 0 */ {
@@ -50,6 +52,7 @@ HebrewDate.prototype.nextMonth = function(n) {
 	if ( ret._date === this._date ) {
 		return ret;
 	}
+
 	// have to deal with dates that were coerced too far back by going through short months
 	return new HebrewDate ( this._era, ret._year, ret._month, this._date, ret._monthType );
 };
@@ -62,9 +65,9 @@ HebrewDate.prototype._coerceMonth = function( m, y ) {
 	roshchodesh = civ2heb( heb2civ({ y: y, m: m, d:1 }) );
 	this._setDate( heb2civ({ y: y, m: m, d: roshchodesh.daysinmonth }) );
 };
-HebrewDate.prototype._setDate = function(d) {
+HebrewDate.prototype._setDate = function( d ) {
 	var hd = civ2heb( d );
-  if ( hd.y < 1 || isNaN(d.getTime()) ){ // no dates before Creation
+  if ( hd.y < 1 || isNaN( d.getTime() ) ) { // no dates before Creation
     this._era = NaN;
     this._year = NaN;
     this._month = NaN;
@@ -83,11 +86,11 @@ HebrewDate.prototype._setDate = function(d) {
 		this._d = d;
   }
 };
-HebrewDate.prototype._setFields = function(era, year, month, date, monthType) {
+HebrewDate.prototype._setFields = function( era, year, month, date, monthType ) {
 	var m,
 		htoday = civ2heb( new Date() );
 
-	if ( monthType !== undefined ){
+	if ( monthType !== undefined ) {
 		month = month + "-leap";
 	}
 	if ( year == null ) {
@@ -100,7 +103,7 @@ HebrewDate.prototype._setFields = function(era, year, month, date, monthType) {
 	}else if ( month in monthsReversed ) {
 		m = monthsReversed[month];
 	}else {
-		this._setDate( new Date(NaN) );
+		this._setDate( new Date( NaN ) );
 		return;
 	}
 	if ( date == null ) {
@@ -117,14 +120,14 @@ HebrewDate.prototype._setFields = function(era, year, month, date, monthType) {
 	this._coerceMonth( m, year );
 };
 
-function pesach(year) {
+function pesach( year ) {
 	var a, b, c, m,
 		mar;	// "day in March" on which Pesach falls
 
-	a = Math.floor( (12 * year + 17) % 19 );
+	a = Math.floor( ( 12 * year + 17 ) % 19 );
 	b = Math.floor( year % 4 );
 	m = 32.044093161144 + 1.5542417966212 * a +  b / 4 - 0.0031777940220923 * year;
-	if (m < 0) {
+	if ( m < 0 ) {
 		m -= 1;
 	}
 	mar = Math.floor( m );
@@ -133,7 +136,7 @@ function pesach(year) {
 	}
 	m -= mar;
 
-	c = Math.floor( ( mar + 3 * year + 5 * b + 5 ) % 7);
+	c = Math.floor( ( mar + 3 * year + 5 * b + 5 ) % 7 );
 	if ( c === 0 && a > 11 && m >= 0.89772376543210 ) {
 		mar++;
 	}else if ( c === 1 && a > 6 && m >= 0.63287037037037 ) {
@@ -146,17 +149,17 @@ function pesach(year) {
 	return mar;
 }
 
+// true if a civil leap year
 function leap( y ) {
-	// civil leap year
 	return ( ( y % 400 === 0 ) || ( y % 100 !== 0 && y % 4 === 0 ) );
 }
 
-function hyearlength ( hy ){
-	// length of Hebrew year
+// length of Hebrew year
+function hyearlength ( hy ) {
 	return pesach( hy ) - pesach( hy - 1 ) + 365 + ( leap( hy - 3760 ) ? 1 : 0 );
 }
 
-function correctedmonth ( hm, hy ){
+function correctedmonth ( hm, hy ) {
 	var isleap = hyearlength( hy ) > 360;
 	if ( isleap && hm === 11 ) {
 		return hm + 2;
@@ -166,6 +169,7 @@ function correctedmonth ( hm, hy ){
 		return hm;
 	}
 }
+
 // takes a Date object, returns an object with
 // { m: hebrewmonth, d: hebrewdate, y: hebrewyear,
 //   daysinmonth: number of days in this Hebrew month }
@@ -181,13 +185,13 @@ function civ2heb( date ) {
 		y -= 1;
 	}
 
-	d += Math.floor( 7 * m / 12 + 30 * (m - 1) ); // day in March
+	d += Math.floor( 7 * m / 12 + 30 * ( m - 1 ) ); // day in March
 	hy = y + 3760;	// get Hebrew year
 	p = pesach( hy );
-	if (d <= p - 15) { // before 1 Nisan
+	if ( d <= p - 15 ) { // before 1 Nisan
 		anchor = p;
 		d += 365;
-		if ( leap(y) ) {
+		if ( leap( y ) ) {
 			d++;
 		}
 		y -= 1;
@@ -200,7 +204,7 @@ function civ2heb( date ) {
 	d -= p - 15;
 	anchor -= p - 12;
 	y++;
-	if ( leap( y ) ){
+	if ( leap( y ) ) {
 		anchor++;
 	}
 
@@ -223,7 +227,7 @@ function civ2heb( date ) {
 		days = 29;
 	}
 	if ( m === 11 && anchor >= 30 ) {
-		if (d > 30) {
+		if ( d > 30 ) {
 			adarType = 2;	// Adar 2
 			d -= 30;
 		}else {
@@ -246,8 +250,9 @@ function civ2heb( date ) {
 // Assumes that the months are valid, except for the following:
 // Unicode assumes that m===11 becomes m=13 in leap years (plain Adar translates to Adar II).
 // In regular years, both m===12 and m===13 become m=11 (Adar I and Adar II translate to Adar).
-function heb2civ( h ){
+function heb2civ( h ) {
 	var d, day, isleap, m, p, yearlength, yeartype;
+
 	// dates through Cheshvan are completely determined by pesach
 	if ( h.m < 6 ) {
 		return new Date ( h.y - 3760, 2, pesach( h.y ) - 15 + h.d + Math.ceil( h.m * 29.5 ) );
@@ -261,17 +266,18 @@ function heb2civ( h ){
 	isleap = yearlength > 360;
 	m = correctedmonth( h.m, h.y );
 	day = p - 15 + h.d + Math.ceil( m * 29.5 ) + yeartype;
-	if (m > 11) {
+	if ( m > 11 ) {
 		day -= 29; // we added an extra month in there (in leap years, there is no plain Adar)
 	}
-	d = new Date (h.y - 3761, 2, day);
+	d = new Date ( h.y - 3761, 2, day );
+
 	// if the hebrew date was valid but wrong
 	// (Cheshvan or Kislev 30 in a haser year; Adar I 30 in a non-leap year)
 	// then move it back a day to the 29th
 	// we won't try to correct an actually invalid date
-	if ( h.d < 30 || civ2heb( d ).m === m ){
+	if ( h.d < 30 || civ2heb( d ).m === m ) {
 		return d; // it worked
 	}
-	return new Date (h.y - 3761, 2, day - 1);
+	return new Date ( h.y - 3761, 2, day - 1 );
 }
 });

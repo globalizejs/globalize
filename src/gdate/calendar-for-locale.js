@@ -35,22 +35,24 @@ var definedCalendars = [ // http://www.unicode.org/repos/cldr/trunk/common/bcp47
 return function( cldr ) {
 	var cal = cldr.attributes[ "u-ca" ];
 
-	if ( cal && definedCalendars.indexOf( cal ) !== -1) {
+	if ( cal && definedCalendars.indexOf( cal ) !== -1 ) {
 		if ( cal === "gregory" ) {
 			cal = "gregorian";
-		}else if (cal === "islamicc") {
+		}else if ( cal === "islamicc" ) {
 			cal = "islamic-civil";
 		}
 		return cal;
 	}
 
 	cal = cldr.get( [ "supplemental/calendarPreferenceData", cldr.attributes.region ] );
+
 	// It might be worth passing in a list of available calendars and returning
 	// the first one on both lists.
 	// But for now, just return the most preferred
-	if (cal) {
+	if ( cal ) {
 		return cal.split( " " )[0];
 	}
+
 	// Return the default calendar
 	return "gregorian";
 };

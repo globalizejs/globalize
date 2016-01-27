@@ -36,16 +36,16 @@ Gdate.winterSolstice = function( now, next  ) {
 	);
 };
 
-function sunLongitude( time ){
+function sunLongitude( time ) {
 	return normTAU( trueSunAnomaly( time ) + SUN_OMEGA_G );
 }
 Gdate.sunLongitude = sunLongitude;
 
-function ms2jd( time ){
+function ms2jd( time ) {
 	return ( time - JD_EPOCH_MS ) / DAY_MS;
 }
 Gdate.ms2jd = ms2jd;
-function jd2ms ( jd ){
+function jd2ms ( jd ) {
 	return ( jd * DAY_MS ) + JD_EPOCH_MS;
 }
 Gdate.ms2jd = ms2jd;
@@ -54,7 +54,7 @@ Gdate.jd2date = function( jd ) { return new Date( jd2ms ( jd ) ); };
 
 /* returns the time of the next (if next is true) or
     last (if next is false) new moon from the time now */
-function newMoon ( now, next ){
+function newMoon ( now, next ) {
 	return timeOfAngle(
 		moonAge,
 		0,
@@ -71,12 +71,14 @@ Gdate.newMoon = newMoon;
  * The true anomaly takes the eccentricity of the orbit
  * into account.
  */
-function meanSunAnomaly ( time ){
+function meanSunAnomaly ( time ) {
 	var day = time  / DAY_MS,
 		epochAngle = normTAU( TAU * day / TROPICAL_YEAR );
 	return normTAU( epochAngle + SUN_ETA_G - SUN_OMEGA_G );
 }
-function trueSunAnomaly( time ){
+
+function trueSunAnomaly( time ) {
+
 	// From formulas in http://www.stargazing.net/kepler/kepler.html
 	var meanAnomaly = meanSunAnomaly ( time );
 	return meanAnomaly +
@@ -89,7 +91,7 @@ function trueSunAnomaly( time ){
 /* see the ICU CalendarAstronomer method getMoonPosition */
 /* unfortunately, their source used degrees for the constants,
    so there's a lot of conversions here */
-function moonAge( time ){
+function moonAge( time ) {
 	var  annual, center, day, evection, meanAnomalySun,
 		meanLongitude, meanAnomalyMoon, moonEclipLong,
 		moonLongitude, nodeLongitude, sunLong, x, y, variation;
@@ -98,7 +100,7 @@ function moonAge( time ){
 	day = ms2jd ( time ) - JD_SUN_EPOCH; // days since the calculation epoch
 	meanLongitude = normTAU( day * 13.1763966 * DEG2RAD + MOON_L0 );
 	meanAnomalyMoon = normTAU( meanLongitude - day * 0.1114041 * DEG2RAD - MOON_P0 );
-	evection = 1.2739 * DEG2RAD * Math.sin( 2 * (meanLongitude - sunLong ) - meanAnomalyMoon );
+	evection = 1.2739 * DEG2RAD * Math.sin( 2 * ( meanLongitude - sunLong ) - meanAnomalyMoon );
 	annual = 0.1858 * DEG2RAD * Math.sin( meanAnomalySun );
 	meanAnomalyMoon += evection - annual - 0.3700 * DEG2RAD * Math.sin( meanAnomalySun );
 	center = 6.2886 * DEG2RAD * Math.sin( meanAnomalyMoon ) +
@@ -106,13 +108,14 @@ function moonAge( time ){
 	moonLongitude = meanLongitude + evection + center - annual;
 	variation = 0.6583 * DEG2RAD * Math.sin( 2 * ( moonLongitude - sunLong ) );
 	moonLongitude += variation;
+
 	// the ascending node is the point where the ecliptic crosses the moon's orbit
 	nodeLongitude = normTAU ( MOON_N0 - day * 0.0529529 * DEG2RAD ) -
 		0.16 * DEG2RAD * Math.sin( meanAnomalySun );
 	x = Math.cos ( moonLongitude - nodeLongitude );
 	y = Math.sin ( moonLongitude - nodeLongitude );
-	moonEclipLong = Math.atan2( y * Math.cos( MOON_I ), x) + nodeLongitude;
-	return normTAU( moonEclipLong - sunLong);
+	moonEclipLong = Math.atan2( y * Math.cos( MOON_I ), x ) + nodeLongitude;
+	return normTAU( moonEclipLong - sunLong );
 }
 
 /* given a function func( time ) that returns an angle, uses interpolation
@@ -121,7 +124,7 @@ function moonAge( time ){
  * before (next === false) the initial time.
  * period is the approximate periodicity of func, used for the initial estimate
  */
-function timeOfAngle( func, target, now, period, next ){
+function timeOfAngle( func, target, now, period, next ) {
 	 var value = func( now );
 	 return zeroOfFunc (
 		func,
@@ -132,15 +135,15 @@ function timeOfAngle( func, target, now, period, next ){
 		value + TAU
 	 );
 }
-function zeroOfFunc( func, target, t1, f1, t2, f2 ){
+function zeroOfFunc( func, target, t1, f1, t2, f2 ) {
 	var f, t;
-	 if ( closeEnoughTime ( t1, t2) || closeEnoughAngle( f1, target ) ) {
+	 if ( closeEnoughTime ( t1, t2 ) || closeEnoughAngle( f1, target ) ) {
 		 return t1;
 	 }
 	 if ( target < f1 ) { // bring the angle into range
 		 target += TAU;
 	 }
-	 t = t1 + ( t2 - t1 ) * (target - f1 ) / ( f2 - f1 ); // false-position interpolation
+	 t = t1 + ( t2 - t1 ) * ( target - f1 ) / ( f2 - f1 ); // false-position interpolation
 	 f = func ( t );
 	 if ( f < f1 ) { // bring the angle into range
 		 f += TAU;
@@ -158,8 +161,8 @@ function closeEnoughAngle( f1, f2 ) {
 	return Math.abs( f1 - f2 ) < 1e-5;
 }
 
+// constrain to [0..TAU)
 function normTAU( angle ) {
-	// constrain to [0..TAU)
 	return angle - TAU * Math.floor( angle / TAU );
 }
 
