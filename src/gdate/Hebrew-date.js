@@ -51,7 +51,7 @@ HebrewDate.prototype.nextMonth = function(n) {
 		return ret;
 	}
 	// have to deal with dates that were coerced too far back by going through short months
-	return new HebrewDate ( this._era, ret._year, ret._month, this._date );
+	return new HebrewDate ( this._era, ret._year, ret._month, this._date, ret._monthType );
 };
 HebrewDate.prototype._coerceMonth = function( m, y ) {
 	var roshchodesh,
@@ -68,7 +68,7 @@ HebrewDate.prototype._setDate = function(d) {
     this._era = NaN;
     this._year = NaN;
     this._month = NaN;
-	this._monthType = undefined;
+		this._monthType = undefined;
     this._date = NaN;
 		this._d = new Date( NaN );
   }else {
@@ -83,10 +83,13 @@ HebrewDate.prototype._setDate = function(d) {
 		this._d = d;
   }
 };
-HebrewDate.prototype._setFields = function(era, year, month, date) {
+HebrewDate.prototype._setFields = function(era, year, month, date, monthType) {
 	var m,
 		htoday = civ2heb( new Date() );
 
+	if ( monthType !== undefined ){
+		month = month + "-leap";
+	}
 	if ( year == null ) {
 		year = htoday.y;
 	}else if ( year < 1 ) {
