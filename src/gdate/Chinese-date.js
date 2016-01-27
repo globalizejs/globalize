@@ -103,9 +103,10 @@ define([
 				break;
 			}
 		}
-		// if i is months.length here, the month wasn't found
+		// if i is months.length here, the month wasn't found. That's a bug
 		if (i >= months.length){
-			console.error(this, i, gy, months, 'not found');
+			/* console.error(this, i, gy, months, "not found"); */
+			return new ChineseDate ( new Date( NaN ) );
 		}
 		if (n === 0 ){
 			return new ChineseDate ( this );
