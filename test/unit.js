@@ -17,6 +17,7 @@ require([
 	"./unit/gdate/Gregorian-date",
 	"./unit/gdate/Hebrew-date",
 	"./unit/gdate/Islamic-date",
+	"./unit/gdate/Chinese-date",
 
 	// date
 	"./unit/date/expand-pattern",

@@ -94,14 +94,19 @@ define([
 			gy = cy2sui ( this._era, this._year, this._month, this._monthType ),
 			months = getMonths( gy );
 
+		if (arguments.length === 0){
+			n = 1;
+		}
 		// find the current month
 		for ( i = 0; i < months.length; ++i ){
 			if (this._month === months[i].m && this._monthType === months[i].leap ){
 				break;
 			}
 		}
-		// if i is months.length here, there's a bug. Should we check for it?
-
+		// if i is months.length here, the month wasn't found
+		if (i >= months.length){
+			console.error(this, i, gy, months, 'not found');
+		}
 		if (n === 0 ){
 			return new ChineseDate ( this );
 		}else if ( n === 1 ){
@@ -132,23 +137,23 @@ define([
 
 	ChineseDate.prototype._setDate = function(d) {
 		var i, nextMonths,
-			cd = ms2cd( d.getTime() ),
+			cd = d2cd( d ),
 			months = getMonths( d.getFullYear() );
-		if ( cd > months[ months.length ].newMoon ){
+		if ( cd > months[ months.length - 1 ].newMoon ){
 			nextMonths = getMonths( d.getFullYear() + 1 );
 			if ( cd >= nextMonths[0].newMoon ){
 				// d is actually in the next year
 				months = nextMonths;
 			}
 		}
-		for ( i = months.length - 1; i >= 0; --i ){
+		for ( i = 0; i < months.length ; ++i ){
 			if ( cd >= months[i].newMoon ){
 				this._era = months[i].e;
 				this._year = months[i].y;
 				this._month = months[i].m;
 				this._monthType = months[i].leap;
 				this._date = cd - months[i].newMoon + 1;
-				this._d = new Date( cd2ms( cd ) );
+				this._d = cd2d( cd );
 			}
 		}
 	};
@@ -160,7 +165,7 @@ define([
 			months = getMonths ( gy );
 				// find the current month
 		for ( i = 0; i < months.length; ++i ){
-			if (this.month === months[i].m && monthType === months[i].leap ){
+			if ( month === months[i].m && monthType === months[i].leap ){
 				break;
 			}
 			if ( month === months[i].m ){
@@ -186,7 +191,7 @@ define([
 			this._monthType = months[i].leap;
 			this._date = date;
 			this._coerceMonth( i, gy ); // make sure date isn't too high
-			this._d = new Date( cd2ms( months[i].newMoon + this._date - 1) );
+			this._d = cd2d( months[i].newMoon + this._date - 1);
 		}
 	};
 
@@ -211,9 +216,9 @@ define([
 	function winterSolstice( y ){
 		if ( !( y in sui ) ){
 			sui[y] = [];
-			sui[y].solstice = Gdate.winterSolstice( new Date(y, 11, 20).getTime(), true );
+			sui[y].solstice = ms2cd( Gdate.winterSolstice( new Date(y, 11, 20).getTime(), true ) );
 		}
-		return sui[y];
+		return sui[y].solstice;
 	}
 
 	function getMonths( y ){
@@ -232,7 +237,7 @@ define([
 
 		// fill in the new moons
 		for ( d = winterSolstice( y - 1 ) + 1;;){
-			newMoon = ms2cd ( newMoon( cd2ms( d ) ), true );
+			newMoon = ms2cd ( Gdate.newMoon( cd2ms( d ), true ) );
 			if ( newMoon > endYear ){
 				break;
 			}
@@ -257,19 +262,18 @@ define([
 			foundLeap = false;
 			for ( i = 0; i < 13; ++i ){
 				// last month is always 11, not a leap month
-				if ( !foundLeap && m < 12 &&
+				if ( !foundLeap && i < 12 &&
 					noSolarTerm(sui[y][i].newMoon, sui[y][ i + 1 ].newMoon) ){
 					sui[y][i].m = m;
 					sui[y][i].leap = "leap";
 					sui[y][i].y = ( m === 11 || m === 12 ) ? lastcy.y : cy.y;
 					sui[y][i].e = ( m === 11 || m === 12 ) ? lastcy.e : cy.e;
 					foundLeap = true;
-				}
-				++m;
-				if ( m > 12 ){
-					m = 1;
-				}
-				if ( sui[y][i].leap === undefined ) {
+				} else {
+					++m;
+					if ( m > 12 ){
+						m = 1;
+					}
 					sui[y][i].m = m;
 					sui[y][i].y = ( m === 12 ) ? lastcy.y : cy.y;
 					sui[y][i].e = ( m === 12 ) ? lastcy.e : cy.e;
@@ -295,8 +299,20 @@ define([
 		return Math.floor ( ( t - 1454860800000 ) / 86400000 );
 	}
 
-	function cd2ms ( d ){
-		return d * 86400000 + 1454860800000;
+	function cd2ms ( cd ){
+		return cd * 86400000 + 1454860800000;
+	}
+
+	// Date objects are created relative to local time (new Date(y,m,d) is midnight, local time)
+	// so we need to correct this to get the dates right, to midnight Beijing time
+	function d2cd ( d ){
+		return ms2cd( d.getTime() - d.getTimezoneOffset() * 60 * 1000 - 8 * 3600000 );
+	}
+
+	function cd2d ( cd ){
+		var d = new Date( cd2ms( cd ) + 8 * 3600000 );
+		d.setHours( d.getHours() + d.getTimezoneOffset() / 60 );
+		return d;
 	}
 
 	function gy2cy( y ){
