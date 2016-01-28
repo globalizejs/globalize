@@ -35,6 +35,7 @@ require([
 	"./unit/date/tokenizer-hebrew",
 	"./unit/date/parse",
 	"./unit/date/parse-hebrew",
+	"./unit/date/parse-chinese",
 
 	// number
 	"./unit/number/pattern-properties",
