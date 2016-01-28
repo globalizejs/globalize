@@ -78,7 +78,7 @@ define([
 	// e is the era number (as defined above).
 	// The array also has a field solstice that is the chinese day number of the winter solstice
 	var sui = {};
-
+Gdate.sui = sui; // TODO: remove this! 
 	function ChineseDate() { this._init.apply( this, arguments ); }
 	ChineseDate.prototype = new Gdate();
 

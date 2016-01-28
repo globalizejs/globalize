@@ -3,14 +3,21 @@ define([
 	"src/gdate/Chinese-date",
 ], function( GDate ) {
 
-var date, chinese, i;
+var date, chinese, i, newyear;
 date = new Date( 2017, 6, 24 ); // 2 month6bis, to test leap years
 chinese = new GDate.calendars.chinese( date );
+newyear = new GDate.calendars.chinese( new Date( 2015, 1, 19 ) );
 
 QUnit.module( "Chinese GDate" );
 
 QUnit.test( "Date created correctly", function( assert ) {
 	assert.equal( chinese.toDate().getTime(), date.getTime() );
+});
+
+QUnit.test( "New Years correct", function( assert ) {
+	assert.equal( newyear.getYear(), 32 );
+	assert.equal( newyear.getMonth(), 1 );
+	assert.equal( newyear.getDate(), 1 );
 });
 
 QUnit.test( "getEra correct", function( assert ) {

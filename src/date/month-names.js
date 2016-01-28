@@ -43,13 +43,16 @@ return function( months, type, length, calendar, cldr ) {
 	]);
 
 	if ( monthPatterns ) {
+		if ( !months ) {
+			months= [];
+		}
 
 	// Only 12-month calendars use this type of formatting
 		for ( i = 1; i <= 12; ++i ) {
 
 		// Predefine numeric months.
-			if ( !months ) {
-					months[i] = "{0}";
+			if ( !( i in months ) ) {
+				months[i] = "{0}";
 			}
 			for ( pattern in monthPatterns ) {
 				months[ i + "-" + pattern ] = monthPatterns[ pattern ].replace( "{0}", months[i] );

@@ -29,6 +29,7 @@ require([
 
 	"./unit/date/format",
 	"./unit/date/format-hebrew",
+	"./unit/date/format-chinese",
 
 	"./unit/date/tokenizer",
 	"./unit/date/tokenizer-hebrew",
