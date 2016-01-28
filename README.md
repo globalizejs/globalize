@@ -364,6 +364,24 @@ handle dependencies and CLDR loading manually yourself.
 
 ## API
 
+### Bidi engine module
+
+- ** Globalize.bidiEngine( opt ) `**
+
+  Initialize Bidi engine.
+  ```javascript
+  var bidiEngine = Globalize.bidiEngine( options );
+  
+- **`bidiEng.doBidiReorder( [input]sourceText, [output, optional]sourceToTargetMap, [output, optional]levels ) `**
+
+  Returns reordered text.
+  
+  ```javascript
+  bidiEngine.doBidiReorder( "a(b)cA<B>C&123" ); 
+  // > "123&C<B>Aa(b)c" (upper case stands for Arabic or Hebrew)
+
+  [Read more...](doc/api/bidi-engine/bidi-engine.md)
+
 ### Core module
 
 - **`Globalize.load( cldrJSONData, ... )`**

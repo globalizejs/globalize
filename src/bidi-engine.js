@@ -4,6 +4,11 @@ define([
 ], function( Globalize, bidiUnicodeTypes ) {
 
 /**
+ * Unicode Bidi algorithm compliant Bidi engine.
+ * For reference see http://unicode.org/reports/tr9/
+*/
+
+/**
  * constructor ( options )
  *
  * Initializes Bidi engine
@@ -86,6 +91,9 @@ Globalize.prototype.bidiEngine = function( options ) {
 		}
 	};
 
+/**
+ * for reference see 3.2 in http://unicode.org/reports/tr9/
+*/
 	var _getCharType = function( ch ) {
 		var charCode = ch.charCodeAt(), range = charCode >> 8,
 			rangeIdx = _UNICODE_RANGES_MAP[ range ];
@@ -114,6 +122,9 @@ Globalize.prototype.bidiEngine = function( options ) {
 		return false;
 	};
 
+/**
+ * for reference see 3.3.4 & 3.3.5 in http://unicode.org/reports/tr9/
+*/
 	var _resolveCharType = function( chars, types, resolvedTypes, idx ) {
 		var cType = types[idx], wType, nType, len, i;
 		switch ( cType ) {
@@ -251,7 +262,9 @@ Globalize.prototype.bidiEngine = function( options ) {
 		sourceToTargetMap && sourceToTargetMap.reverse();
 		return charArray.join( "" );
 	};
-
+/**
+ * for reference see 3.3 in http://unicode.org/reports/tr9/
+*/
 	var _computeLevels = function( chars, levels, params ) {
 		var len = chars.length, prevState, newState = 0, newLevel, action, condition,
 			stateTable = _dir ? _STATE_TABLE_RTL : _STATE_TABLE_LTR,
@@ -304,6 +317,9 @@ Globalize.prototype.bidiEngine = function( options ) {
 		}
 	};
 
+/**
+ * for reference see 3.4 in http://unicode.org/reports/tr9/
+*/
 	var _invertByLevel = function( level, charArray, sourceToTargetMap, levels, params ) {
 		if ( params.hiLevel < level ) {
 			return;
@@ -336,6 +352,9 @@ Globalize.prototype.bidiEngine = function( options ) {
 		}
 	};
 
+/**
+ * for reference see 7 & BD16 in http://unicode.org/reports/tr9/
+*/
 	var _symmetricSwap = function( charArray, levels, params ) {
 		if ( params.hiLevel !== 0 && _isSymmetricSwapping ) {
 			for ( var i = 0, idx; i < charArray.length; i++ ) {
@@ -443,12 +462,12 @@ Globalize.prototype.bidiEngine = function( options ) {
  * allowed values: true(Visual mode), false(Logical mode)
  * - isInputRtl [boolean]:
  * allowed values true(Right-to-left direction), false (Left-to-right directiion),
- * undefined(Contectual direction, i.e.direction defined by first strong character of input string)
+ * undefined(Contextual direction, i.e.direction defined by first strong character of input string)
  * - isOutputVisual [boolean] (defaults to false):
  * allowed values: true(Visual mode), false(Logical mode)
  * - isOutputRtl [boolean]:
  * allowed values true(Right-to-left direction), false (Left-to-right directiion),
- * undefined(Contectual direction, i.e.direction defined by first strong character of input string)
+ * undefined(Contextual direction, i.e.direction defined by first strong character of input string)
  * - isSymmetricSwapping [boolean] (defaults to false):
  * allowed values true(needs symmetric swapping), false (no need in symmetric swapping),
  */

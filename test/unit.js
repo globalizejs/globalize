@@ -1,6 +1,9 @@
 require([
 	"qunit",
 
+	// Bidi engine
+	"./unit/bidi-engine/reordering",
+
 	// core
 	"./unit/core",
 	"./unit/core/locale",
