@@ -15,14 +15,7 @@ define([
 	}
 
 	function realDate ( year, month, date ){
-		var ret = new Date();
-		ret.setUTCFullYear( year );
-		ret.setUTCMonth ( month );
-		ret.setUTCDate ( date );
-		ret.setUTCHours ( 0 );
-		ret.setUTCMinutes ( 0 );
-		ret.setUTCSeconds ( 0 );
-		return ret;
+		return new Date ( Date.UTC( year, month, date ) );
 	}
 
 	var date = realDate ( 2015, 1, 1 ),
