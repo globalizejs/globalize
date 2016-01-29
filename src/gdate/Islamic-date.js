@@ -54,29 +54,8 @@ IslamicDate.prototype._setDate = function( d ) {
   }
 };
 IslamicDate.prototype._setFields = function( era, year, month, date ) {
-	var m = parseInt ( month, 10 ),
-		itoday = fromJD( Gdate.date2jd( new Date() ) );
-
-	era = 0; // only one era
-	if ( year == null ) {
-		year = itoday.y;
-	}else if ( year < 1 ) {
-		year = 1;
-	}
-	if ( month == null ) {
-		m = itoday.m;
-	}else if ( m < 1 ) {
-		m = 1;
-	}else if ( m > 12 ) {
-		m = 12;
-	}
-	if ( date == null ) {
-		date = itoday.d;
-	}else if ( date < 1 ) {
-		date = 1;
-	}
-	this._setDate( Gdate.jd2date( toJD( year, m, date ) ) );
-	this._coerceMonth( m, year );
+	this._setDate( Gdate.jd2date( toJD( year, month, date ) ) );
+	this._coerceMonth( month, year );
 };
 
 function leapYear ( year ) {

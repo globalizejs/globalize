@@ -87,29 +87,16 @@ HebrewDate.prototype._setDate = function( d ) {
   }
 };
 HebrewDate.prototype._setFields = function( era, year, month, date, monthType ) {
-	var m,
-		htoday = civ2heb( new Date() );
+	var htoday, m;
 
 	if ( monthType !== undefined ) {
 		month = month + "-leap";
 	}
-	if ( year == null ) {
-		year = htoday.y;
-	}else if ( year < 1 ) {
-		year = 1;
-	}
-	if ( month == null ) {
-		m = htoday.m;
-	}else if ( month in monthsReversed ) {
+	if ( month in monthsReversed ) {
 		m = monthsReversed[month];
 	}else {
 		this._setDate( new Date( NaN ) );
 		return;
-	}
-	if ( date == null ) {
-		date = htoday.d;
-	}else if ( date < 1 ) {
-		date = 1;
 	}
 	htoday = {
 		y: year,

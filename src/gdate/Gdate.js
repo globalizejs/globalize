@@ -50,11 +50,34 @@ Gdate.prototype = {
 		return d;
 	},
 	_init: function( era, year, month, date, monthType ) {
+		var self = this,
+			today = function(){ // lazy create today's date
+				var ret = new self.constructor( new Date() );
+				today = function() { return ret; };
+				return ret;
+			};
 		if ( era instanceof Date ) {
 			this._setDate( era );
 		}else if ( era instanceof Gdate ) {
 			this._setDate( era.toDate() );
 		}else {
+			// set defaults; see the algorithm at https://gist.github.com/dwachss/4f9a6c77c8feb8e2ad09
+			if ( date == null && ( month !== null || year !== null ) ) {
+				date = 1;
+			} else if ( date == null ) {
+				date = today().getDate();
+			}
+			if ( month == null && year !== null ) {
+				month = 1;
+			} else if ( month == null) {
+				month = today().getMonth();
+			}
+			if ( year == null ) {
+				year = today().getYear();
+			}
+			if ( era == null ) {
+				era = today().getEra();
+			}
 			this._setFields( era, year, month, date, monthType );
 		}
 	},

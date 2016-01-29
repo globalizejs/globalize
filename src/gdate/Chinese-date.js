@@ -166,24 +166,10 @@ Gdate.sui = sui; // TODO: remove this!
 	};
 
 	ChineseDate.prototype._setFields = function( era, year, month, date, monthType ) {
-		var i, gy, months,
+		var i,
 			maybe = 0, // possible match for the month
-			today = new ChineseDate( new Date() );
-
-		if ( era == null ) {
-			era = today.getEra();
-		}
-		if ( year == null ) {
-			year = today.getYear();
-		}
-		if ( month == null ) {
-			month = today.getMonth();
-		}
-		if ( date == null ) {
-			date = today.getDate();
-		}
-		gy = cy2sui ( era, year, month, monthType );
-		months = getMonths ( gy );
+			gy = cy2sui ( era, year, month, monthType ),
+			months = getMonths ( gy );
 
 		// find the current month
 		for ( i = 0; i < months.length; ++i ) {
