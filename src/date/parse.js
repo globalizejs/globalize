@@ -30,8 +30,8 @@ return function( value, tokens, properties ) {
 		MINUTE = 4,
 		SECOND = 5,
 		MILLISECONDS = 6,
-		date = new Date(),
-		gdate = new Gdate.calendars[ properties.calendar ]( date ),
+		date = new Date( 2015, 0, 1 ), // a date that lets us set month without overflow
+		gdate = new Gdate.calendars[ properties.calendar ]( new Date() ),
 		truncateAt = [],
 		units = [ "year", "month", "day", "hour", "minute", "second", "milliseconds" ];
 
@@ -263,6 +263,7 @@ return function( value, tokens, properties ) {
 		month = [ gdate.getMonth(), gdate.getMonthType() ];
 	} else {
 		month = month.split( "-" );
+		month[0] = parseInt( month[0], 10 ); // coerce to number
 	}
 	if ( day == null ) {
 		day = gdate.getDate();
