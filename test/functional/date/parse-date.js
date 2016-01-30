@@ -20,7 +20,7 @@ define([
 	enNumbers, enTimeZoneNames, ptCaGregorian, ptNumbers, likelySubtags, numberingSystems, timeData,
 	weekData, util ) {
 
-var ar, date;
+var ar, date, FakeDate;
 
 function extraSetup() {
 	Globalize.load(
@@ -37,6 +37,36 @@ function extraSetup() {
 		weekData
 	);
 }
+
+FakeDate = (function( Date ) {
+	function FakeDate() {
+		var date;
+		if ( arguments.length === 0 ) {
+			return FakeDate.today;
+		}
+		if ( arguments.length === 1 ) {
+			date = new Date( arguments[ 0 ] );
+		} else if ( arguments.length === 2 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ] );
+		} else if ( arguments.length === 3 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ] );
+		} else if ( arguments.length === 4 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ] );
+		} else if ( arguments.length === 5 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ], arguments[ 4 ] );
+		} else if ( arguments.length === 6 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ], arguments[ 4 ], arguments[ 5 ] );
+		} else if ( arguments.length === 7 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ], arguments[ 4 ], arguments[ 5 ], arguments[ 6 ] );
+		}
+
+		/* jshint proto:true */
+		date.__proto__ = FakeDate.prototype;
+		return date;
+	}
+	FakeDate.prototype = FakeDate.today = new Date();
+	return FakeDate;
+})( Date );
 
 QUnit.module( ".parseDate( value, options )", {
 	setup: function() {
@@ -140,7 +170,15 @@ QUnit.test( "should parse date presets", function( assert ) {
 });
 
 QUnit.test( "should parse date correctly in leap year", function( assert ) {
+	var OrigDate;
+
 	extraSetup();
+
+	/* globals Date:true */
+	// Use a leap year and a day of month greater than 28
+	OrigDate = Date;
+	Date = FakeDate;
+	FakeDate.today = new Date( 2016, 0, 29 );
 
 	date = new Date( 2015, 1, 15 );
 	date = startOf( date, "day" );
@@ -148,6 +186,8 @@ QUnit.test( "should parse date correctly in leap year", function( assert ) {
 	assertParseDate( assert, "February 15, 2015", { date: "long" }, date );
 	assertParseDate( assert, "Feb 15, 2015", { date: "medium" }, date );
 	assertParseDate( assert, "2/15/15", { date: "short" }, date );
+
+	Date = OrigDate;
 });
 
 QUnit.test( "should parse datetime presets", function( assert ) {
