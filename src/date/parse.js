@@ -21,7 +21,7 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, tokens, properties ) {
-	var amPm, day, daysOfYear, era, hour, hour12, timezoneOffset, valid,
+	var amPm, day, daysOfYear, month, era, hour, hour12, timezoneOffset, valid,
 		YEAR = 0,
 		MONTH = 1,
 		DAY = 2,
@@ -105,7 +105,10 @@ return function( value, tokens, properties ) {
 				if ( outOfRange( value, 1, 12 ) ) {
 					return false;
 				}
-				dateSetMonth( date, value - 1 );
+
+				// Setting the month later so that we have the correct year and can determine
+				// the correct last day of February in case of leap year.
+				month = value;
 				truncateAt.push( MONTH );
 				break;
 
@@ -245,6 +248,10 @@ return function( value, tokens, properties ) {
 
 		// 1 BC = year 0
 		date.setFullYear( date.getFullYear() * -1 + 1 );
+	}
+
+	if ( month !== undefined ) {
+		dateSetMonth( date, month - 1 );
 	}
 
 	if ( day !== undefined ) {

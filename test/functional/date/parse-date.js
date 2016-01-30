@@ -139,6 +139,17 @@ QUnit.test( "should parse date presets", function( assert ) {
 	assertParseDate( assert, "9/15/10", { date: "short" }, date );
 });
 
+QUnit.test( "should parse date correctly in leap year", function( assert ) {
+	extraSetup();
+
+	date = new Date( 2015, 1, 15 );
+	date = startOf( date, "day" );
+	assertParseDate( assert, "Wednesday, February 15, 2015", { date: "full" }, date );
+	assertParseDate( assert, "February 15, 2015", { date: "long" }, date );
+	assertParseDate( assert, "Feb 15, 2015", { date: "medium" }, date );
+	assertParseDate( assert, "2/15/15", { date: "short" }, date );
+});
+
 QUnit.test( "should parse datetime presets", function( assert ) {
 	extraSetup();
 
