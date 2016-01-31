@@ -188,6 +188,25 @@ QUnit.test( "should parse month (MMMMM|LLLLL)", function( assert ) {
 	assertParse( assert, "J", "LLLLL", cldr, date1 );
 });
 
+QUnit.test( "should parse February correctly in leap year", function( assert ) {
+	var OrigDate;
+
+	/* globals Date:true */
+	// Use a leap year and a day of month greater than 28
+	OrigDate = Date;
+	Date = FakeDate;
+	FakeDate.today = new Date( 2016, 0, 29 );
+
+	date1 = new Date();
+	date1.setMonth( 1 );
+	date1 = startOf( date1, "month" );
+	date1.setYear( 2015 );
+	assertParse( assert, "2/2015", "M/y", cldr, date1 );
+	assertParse( assert, "2/2015", "L/y", cldr, date1 );
+
+	Date = OrigDate;
+});
+
 /**
  *  Day
  */
