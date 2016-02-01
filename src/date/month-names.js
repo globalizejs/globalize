@@ -44,7 +44,7 @@ return function( months, type, length, calendar, cldr ) {
 
 	if ( monthPatterns ) {
 		if ( !months ) {
-			months= [];
+			months = [];
 		}
 
 	// Only 12-month calendars use this type of formatting

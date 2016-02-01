@@ -22,7 +22,7 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, tokens, properties ) {
-	var amPm, daysOfYear, date, gdate, hour12, monthtype, valid,
+	var amPm, daysOfYear, gdate, hour12, monthtype, valid,
 		era = null, // defaults for date are handled by the gdate constructor
 		year = null,
 		month = null,
@@ -32,8 +32,6 @@ return function( value, tokens, properties ) {
 		seconds = 0,
 		ms = 0, // milliseconds
 		timezoneOffset = null;
-		
-		//gdate = new Gdate.calendars[ properties.calendar ]( new Date() ),
 
 	if ( !tokens.length ) {
 		return null;
@@ -243,16 +241,16 @@ return function( value, tokens, properties ) {
 	if ( isNaN( gdate.getYear() ) ) {
 		return null; // invalid date
 	}
-	if ( date != null && date !== gdate.getDate() ){
+	if ( date != null && date !== gdate.getDate() ) {
 		return null; // if the date was coerced to something other than what was set, it's an error
 	}
 	date = gdate.toDate(); // note: redefining date from a number to a Date!
-	
+
 	date.setHours( hours );
-	if ( timezoneOffset != null ){
-		minutes += timezoneOffset - date.getTimezoneOffset()
+	if ( timezoneOffset != null ) {
+		minutes += timezoneOffset - date.getTimezoneOffset();
 	}
-	date.setMinutes( minutes);
+	date.setMinutes( minutes );
 	date.setSeconds( seconds );
 	date.setMilliseconds( ms );
 
