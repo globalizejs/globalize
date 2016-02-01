@@ -60,7 +60,7 @@ Gdate.prototype = {
 			this._setDate( era );
 		} else if ( era instanceof Gdate ) {
 			this._setDate( era.toDate() );
-		} else if ( era == null && year == null && month == null && date == null ) {
+		} else if ( era != null && isNaN( era ) ) {
 			this._setDate( new Date( NaN ) ) ;
 		} else if ( year ==  null && month == null && date == null ) {
 			this._setDate ( new Date() );

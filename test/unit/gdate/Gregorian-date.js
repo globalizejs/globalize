@@ -18,6 +18,8 @@ QUnit.test( "Default parameters", function( assert) {
 	assert.equal( new ctor( null, 2014 ).getMonth(), 1 );
 	assert.equal( new ctor( null, 2014, 1 ).getDate(), 1 );
 	assert.equal( new ctor( null, null, 1 ).getYear(), new Date().getFullYear() );
+	assert.equal( new ctor().getYear(), new Date().getFullYear() );
+	assert.ok( isNaN( new ctor( NaN ).getYear() ) );
 });
 
 QUnit.test( "getEra correct", function( assert ) {
