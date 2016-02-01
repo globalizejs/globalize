@@ -55,11 +55,6 @@ Cldr.load( likelySubtags, {
 
 QUnit.module( "Globalize (constructor)" );
 
-QUnit.test( "runtimeBind should work with anonymous function", function( assert ) {
-	var fn = function() { return "passed"; };
-	assert.equal( Globalize._runtimeBind({}, {}, fn, {})(), "passed" );
-});
-
 QUnit.test( "should allow String locale", function( assert ) {
 	var en = new Globalize( "en" );
 	assert.ok( en instanceof Globalize );
