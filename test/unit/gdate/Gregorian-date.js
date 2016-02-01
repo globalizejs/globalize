@@ -13,6 +13,13 @@ QUnit.test( "Date created correctly", function( assert ) {
 	assert.equal( gregorian.toDate().getTime(), date.getTime() );
 });
 
+QUnit.test( "Default parameters", function( assert) {
+	var ctor = Gdate.calendars.gregorian;
+	assert.equal( new ctor( null, 2014 ).getMonth(), 1 );
+	assert.equal( new ctor( null, 2014, 1 ).getDate(), 1 );
+	assert.equal( new ctor( null, null, 1 ).getYear(), new Date().getFullYear() );
+});
+
 QUnit.test( "getEra correct", function( assert ) {
 	assert.equal( gregorian.getEra(), 1 );
 });
@@ -39,6 +46,7 @@ for (i = -2; i < 3; ++i){
 	(function (j){
 		QUnit.test( "nextMonth " + i, function( assert ) {
 			assert.equal( gregorian.nextMonth(j).getMonth(), 1 + ( j + 12 ) % 12 );
+			assert.equal( gregorian.nextMonth(j).getDate(), 1 );
 		});
 	})(i);
 }

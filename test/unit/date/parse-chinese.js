@@ -42,7 +42,7 @@ Cldr.load(
 	weekData
 );
 
-cldr = new Cldr( "en-u-ca-Chinese" );
+cldr = new Cldr( "en-u-ca-chinese" );
 
 QUnit.module( "Chinese Calendar Date Parse" );
 
@@ -59,39 +59,50 @@ QUnit.module( "Chinese Calendar Date Parse" );
  */
 
 QUnit.test( "should parse month (M|L) with no padding", function( assert ) {
-	date1 = new Gdate.calendars.chinese( 0, 5776, 1, 1 );
-	assertParse( assert, "1 5776", "M y", cldr, date1 );
-	assertParse( assert, "1 5776", "L y", cldr, date1 );
-	date2 = new Gdate.calendars.chinese( 0, 5776, "7-leap", 1 );
-	assertParse( assert, "7 5776", "M y", cldr, date2 );
-	assertParse( assert, "7 5776", "L y", cldr, date2 );
+	var date1, date2;
+
+	// 1 month6bis 34 cycle 78, to test leap years
+	date1 = new Gdate.calendars.chinese(new Date( 2017, 6, 23 ) );
+	assertParse( assert, "6bis 34", "M y", cldr, date1 );
+	assertParse( assert, "6bis 34", "L y", cldr, date1 );
+
+	// 1 month1 32 cycle 78, new years
+	date2 = new Gdate.calendars.chinese( new Date( 2015, 1, 19 ) );
+	assertParse( assert, "1 32", "M y", cldr, date2 );
+	assertParse( assert, "1 32", "L y", cldr, date2 );
 });
 
 QUnit.test( "should parse month (MM|LL) with padding", function( assert ) {
-	date1 = new Gdate.calendars.chinese( 0, 5776, 1, 1 );
-	assertParse( assert, "01 5776", "MM y", cldr, date1 );
-	assertParse( assert, "01 5776", "LL y", cldr, date1 );
+	date1 = new Gdate.calendars.chinese( new Date( 2015, 1, 19 ) );
+	assertParse( assert, "01 32", "MM y", cldr, date1 );
+	assertParse( assert, "01 32", "LL y", cldr, date1 );
 });
 
 QUnit.test( "should parse month (MMM|LLL)", function( assert ) {
-	date1 = new Gdate.calendars.chinese( 0, 5776, 1, 1 );
-	assertParse( assert, "Tishri 5776", "MMM y", cldr, date1 );
-	assertParse( assert, "Tishri 5776", "LLL y", cldr, date1 );
-	date2 = new Gdate.calendars.chinese( 0, 5776, 7, 1, "leap" );
-	assertParse( assert, "Adar II 5776", "MMM y", cldr, date2 );
-	assertParse( assert, "Adar II 5776", "LLL y", cldr, date2 );
+	date1 = new Gdate.calendars.chinese( new Date( 2017, 6, 23 ) );
+	assertParse( assert, "Mo6bis 34", "MMM y", cldr, date1 );
+	assertParse( assert, "Mo6bis 34", "LLL y", cldr, date1 );
+	date2 = new Gdate.calendars.chinese( new Date( 2015, 1, 19 ) );
+	assertParse( assert, "Mo1 32", "MMM y", cldr, date2 );
+	assertParse( assert, "Mo1 32", "LLL y", cldr, date2 );
 });
 
 QUnit.test( "should parse month (MMMM|LLLL)", function( assert ) {
-	date1 = new Gdate.calendars.chinese( 0, 5776, 1, 1 );
-	assertParse( assert, "Tishri 5776", "MMMM y", cldr, date1 );
-	assertParse( assert, "Tishri 5776", "LLLL y", cldr, date1 );
+	date1 = new Gdate.calendars.chinese( new Date( 2017, 6, 23 ) );
+	assertParse( assert, "Month6bis 34", "MMMM y", cldr, date1 );
+	assertParse( assert, "Month6bis 34", "LLLL y", cldr, date1 );
+	date2 = new Gdate.calendars.chinese( new Date( 2015, 1, 19 ) );
+	assertParse( assert, "Month1 32", "MMMM y", cldr, date2 );
+	assertParse( assert, "Month1 32", "LLLL y", cldr, date2 );
 });
 
 QUnit.test( "should parse month (MMMMM|LLLLL)", function( assert ) {
-	date1 = new Gdate.calendars.chinese( 0, 5776, 1, 1 );
-	assertParse( assert, "1 5776", "MMMMM y", cldr, date1 );
-	assertParse( assert, "1 5776", "LLLLL y", cldr, date1 );
+	date1 = new Gdate.calendars.chinese( new Date( 2017, 6, 23 ) );
+	assertParse( assert, "6b 34", "MMMMM y", cldr, date1 );
+	assertParse( assert, "6b 34", "LLLLL y", cldr, date1 );
+	date2 = new Gdate.calendars.chinese( new Date( 2015, 1, 19 ) );
+	assertParse( assert, "1 32", "MMMMM y", cldr, date2 );
+	assertParse( assert, "1 32", "LLLLL y", cldr, date2 );
 });
 
 /**
@@ -99,33 +110,25 @@ QUnit.test( "should parse month (MMMMM|LLLLL)", function( assert ) {
  */
 
 QUnit.test( "should parse day (d) with no padding", function( assert ) {
-	date1 = new Gdate.calendars.chinese( 0, 5776, 1, 2 );
-	assertParse( assert, "2 1 5776", "d M y", cldr, date1 );
-
-	date2 = new Gdate.calendars.chinese( 0, 5776, "7-leap", 29 );
-	assertParse( assert, "30 7 5776", "d M y", cldr, null );
-	assertParse( assert, "29 7 5776", "d M y", cldr, date2 );
-
-	date2 = new Gdate.calendars.chinese( 0, 5775, 7, 29 );
-	assertParse( assert, "30 7 5775", "d M y", cldr, null );
-	assertParse( assert, "29 7 5775", "d M y", cldr, date2 );
-
+	date1 = new Gdate.calendars.chinese( new Date( 2017, 6, 24 ) );
+	assertParse( assert, "2 6bis 34", "d M y", cldr, date1 );
+	assertParse( assert, "31 6bis 34", "d M y", cldr, null );
 });
 
 QUnit.test( "should parse day (dd) with padding", function( assert ) {
-	date1 = new Gdate.calendars.chinese( 0, 5776, 1, 2 );
-	assertParse( assert, "02 1 5776", "dd M y", cldr, date1 );
+	date1 = new Gdate.calendars.chinese( new Date( 2017, 6, 24 ) );
+	assertParse( assert, "02 6bis 34", "dd M y", cldr, date1 );
 });
 
 QUnit.test( "should parse day of year (D) with no padding", function( assert ) {
-	date1 = new Gdate.calendars.hebrew( 0, 5776, 6, 14 );
-	assertParse( assert, "163 5776", "D y", cldr, date1 );
+	date1 = new Gdate.calendars.chinese( new Date( 2016, 2, 25 ) );
+	assertParse( assert, "47 33", "D y", cldr, date1 );
 });
 
 QUnit.test( "should parse day of year (DD|DDD) with padding", function( assert ) {
-	date1 = new Gdate.calendars.chinese( 0, 5776, 1, 2 );
-	assertParse( assert, "02 5776", "DD y", cldr, date1 );
-	assertParse( assert, "002 5776", "DDD y", cldr, date1 );
+	date2 = new Gdate.calendars.chinese( new Date( 2015, 1, 19 ) );
+	assertParse( assert, "01 32", "DD y", cldr, date2 );
+	assertParse( assert, "001 32", "DDD y", cldr, date2 );
 });
 
 });

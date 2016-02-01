@@ -40,11 +40,7 @@ IslamicDate.prototype._coerceMonth = function( m, y ) {
 IslamicDate.prototype._setDate = function( d ) {
 	var id = fromJD( Gdate.date2jd( d ) );
   if ( id.y < 1 || isNaN( d.getTime() ) ) { // no dates before Epoch
-    this._era = NaN;
-    this._year = NaN;
-    this._month = undefined;
-    this._date = NaN;
-		this._d = new Date( NaN );
+    this._setInvalid();
   }else {
 		this._era = 0;
 		this._year = id.y;

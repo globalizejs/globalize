@@ -68,12 +68,7 @@ HebrewDate.prototype._coerceMonth = function( m, y ) {
 HebrewDate.prototype._setDate = function( d ) {
 	var hd = civ2heb( d );
   if ( hd.y < 1 || isNaN( d.getTime() ) ) { // no dates before Creation
-    this._era = NaN;
-    this._year = NaN;
-    this._month = NaN;
-		this._monthType = undefined;
-    this._date = NaN;
-		this._d = new Date( NaN );
+		this._setInvalid();
   }else {
 		this._era = 0;
 		this._year = hd.y;

@@ -187,12 +187,7 @@ Gdate.sui = sui; // TODO: remove this!
 			i = maybe;
 		}
 		if ( i === months.length ) {
-			this._era = NaN;
-			this._year = NaN;
-			this._month = NaN;
-			this._monthType = undefined;
-			this._date = NaN;
-			this._d = new Date( NaN );
+			this._setInvalid();
 		} else {
 			this._era = era;
 			this._year = year;
