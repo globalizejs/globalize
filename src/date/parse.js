@@ -22,25 +22,25 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
 return function( value, tokens, properties ) {
-	var amPm, day, daysOfYear, era, hour, hour12, month, timezoneOffset, valid, year,
-		YEAR = 0,
-		MONTH = 1,
-		DAY = 2,
-		HOUR = 3,
-		MINUTE = 4,
-		SECOND = 5,
-		MILLISECONDS = 6,
-		date = new Date( 2015, 0, 1 ), // a date that lets us set month without overflow
-		gdate = new Gdate.calendars[ properties.calendar ]( new Date() ),
-		truncateAt = [],
-		units = [ "year", "month", "day", "hour", "minute", "second", "milliseconds" ];
+	var amPm, daysOfYear, date, gdate, hour12, monthtype, valid,
+		era = null, // defaults for date are handled by the gdate constructor
+		year = null,
+		month = null,
+		date  = null,
+		hours = 0, // default time is midnight
+		minutes = 0,
+		seconds = 0,
+		ms = 0, // milliseconds
+		timezoneOffset = null;
+		
+		//gdate = new Gdate.calendars[ properties.calendar ]( new Date() ),
 
 	if ( !tokens.length ) {
 		return null;
 	}
 
 	valid = tokens.every(function( token ) {
-		var century, chr, value, length;
+		var century, chr, length, gtoday, value;
 
 		if ( token.type === "literal" ) {
 
@@ -62,7 +62,6 @@ return function( value, tokens, properties ) {
 
 			// Era
 			case "G":
-				truncateAt.push( YEAR );
 				era = +token.value;
 				break;
 
@@ -76,14 +75,14 @@ return function( value, tokens, properties ) {
 
 					// mimic dojo/date/locale: choose century to apply, according to a sliding
 					// window of 80 years before and 20 years after present year.
-					century = Math.floor( date.getFullYear() / 100 ) * 100;
+					gtoday = new Gdate.calendars[ properties.calendar ]( new Date() ),
+					century = Math.floor( gtoday.getYear() / 100 ) * 100;
 					value += century;
-					if ( value > date.getFullYear() + 20 ) {
+					if ( value > gtoday.getYear() + 20 ) {
 						value -= 100;
 					}
 				}
 				year = value;
-				truncateAt.push( YEAR );
 				break;
 
 			case "Y": // Year in "Week of Year"
@@ -99,11 +98,7 @@ return function( value, tokens, properties ) {
 			// Month
 			case "M":
 			case "L":
-
-				// token.value may include the month type as a "-"
-				// delimited suffix, so force it to be a string
-				month = "" + token.value;
-				truncateAt.push( MONTH );
+				month = token.value;
 				break;
 
 			// Week (skip)
@@ -113,13 +108,11 @@ return function( value, tokens, properties ) {
 
 			// Day
 			case "d":
-				day = token.value;
-				truncateAt.push( DAY );
+				date = token.value;
 				break;
 
 			case "D":
 				daysOfYear = token.value;
-				truncateAt.push( DAY );
 				break;
 
 			case "F":
@@ -148,9 +141,8 @@ return function( value, tokens, properties ) {
 				if ( outOfRange( value, 1, 12 ) ) {
 					return false;
 				}
-				hour = hour12 = true;
-				date.setHours( value === 12 ? 0 : value );
-				truncateAt.push( HOUR );
+				hour12 = true;
+				hours = ( value === 12 ? 0 : value );
 				break;
 
 			case "K": // 0-11
@@ -158,9 +150,8 @@ return function( value, tokens, properties ) {
 				if ( outOfRange( value, 0, 11 ) ) {
 					return false;
 				}
-				hour = hour12 = true;
-				date.setHours( value );
-				truncateAt.push( HOUR );
+				hour12 = true;
+				hours = value;
 				break;
 
 			case "k": // 1-24
@@ -168,9 +159,8 @@ return function( value, tokens, properties ) {
 				if ( outOfRange( value, 1, 24 ) ) {
 					return false;
 				}
-				hour = true;
-				date.setHours( value === 24 ? 0 : value );
-				truncateAt.push( HOUR );
+				hour12 = false;
+				hours = ( value === 24 ? 0 : value );
 				break;
 
 			case "H": // 0-23
@@ -178,9 +168,8 @@ return function( value, tokens, properties ) {
 				if ( outOfRange( value, 0, 23 ) ) {
 					return false;
 				}
-				hour = true;
-				date.setHours( value );
-				truncateAt.push( HOUR );
+				hour12 = false;
+				hours = value;
 				break;
 
 			// Minute
@@ -189,8 +178,7 @@ return function( value, tokens, properties ) {
 				if ( outOfRange( value, 0, 59 ) ) {
 					return false;
 				}
-				date.setMinutes( value );
-				truncateAt.push( MINUTE );
+				minutes = value;
 				break;
 
 			// Second
@@ -199,20 +187,16 @@ return function( value, tokens, properties ) {
 				if ( outOfRange( value, 0, 59 ) ) {
 					return false;
 				}
-				date.setSeconds( value );
-				truncateAt.push( SECOND );
+				seconds = value;
 				break;
 
 			case "A":
-				date.setHours( 0 );
-				date.setMinutes( 0 );
-				date.setSeconds( 0 );
+			hours = minutes = seconds = 0;
 
 			/* falls through */
 			case "S":
 				value = Math.round( token.value * Math.pow( 10, 3 - length ) );
-				date.setMilliseconds( value );
-				truncateAt.push( MILLISECONDS );
+				ms = value;
 				break;
 
 			// Zone
@@ -221,7 +205,7 @@ return function( value, tokens, properties ) {
 			case "O":
 			case "X":
 			case "x":
-				timezoneOffset = token.value - date.getTimezoneOffset();
+				timezoneOffset = token.value;
 				break;
 		}
 
@@ -234,56 +218,43 @@ return function( value, tokens, properties ) {
 
 	// 12-hour format needs AM or PM, 24-hour format doesn't, ie. return null
 	// if amPm && !hour12 || !amPm && hour12.
-	if ( hour && !( !amPm ^ hour12 ) ) {
+	if ( amPm && hour12 === false || !amPm && hour12 === true ) {
 		return null;
 	}
 
 	if ( hour12 && amPm === "pm" ) {
-		date.setHours( date.getHours() + 12 );
+		hours += 12;
 	}
 
-	// Unspecified units use today's values and
-	// truncate date at the most precise unit defined. Eg.
-	// If value is "12/31", and pattern is "MM/dd":
-	// => new Gdate( <current era>, <current Year>, 12, 31, 0, 0, 0, 0 );
-	if ( era == null ) {
-		era = gdate.getEra();
+	if ( typeof month === "string" ) {
+		month = month.split( "-" ); // split out the "leap" part
+		monthtype = month[ 1 ];
+		month = parseInt( month[0], 10 ); // coerce to number
 	}
-	if ( year == null ) {
-		year = gdate.getYear();
-	}
+	gdate = new Gdate.calendars[ properties.calendar ]( era, year, month, date, monthtype );
+
 	if ( daysOfYear !== undefined ) {
-		gdate = new Gdate.calendars[ properties.calendar ]( era, year, gdate.getMonth(), 1 );
+		year = gdate.getYear();
 		gdate = gdate.startOfYear().nextDate( daysOfYear - 1 );
 		if ( gdate.getYear() !== year ) {
 			return null;
 		}
 	}
-	if ( month == null ) {
-		month = [ gdate.getMonth(), gdate.getMonthType() ];
-	} else {
-		month = month.split( "-" );
-		month[0] = parseInt( month[0], 10 ); // coerce to number
+	if ( isNaN( gdate.getYear() ) ) {
+		return null; // invalid date
 	}
-	if ( day == null ) {
-		day = gdate.getDate();
+	if ( date != null && date !== gdate.getDate() ){
+		return null; // if the date was coerced to something other than what was set, it's an error
 	}
-	gdate = new Gdate.calendars[ properties.calendar ]( era, year, month[0], day, month[1] );
-	if ( isNaN( gdate.getYear() ) || gdate.getDate() !== day ) {
-
-		// Question: do we really need to do this check,
-		// or can we rely on Gdate to correct out-of-bounds values?
-		// Question: when should this return null and when false?
-		return null;
+	date = gdate.toDate(); // note: redefining date from a number to a Date!
+	
+	date.setHours( hours );
+	if ( timezoneOffset != null ){
+		minutes += timezoneOffset - date.getTimezoneOffset()
 	}
-	date.setFullYear( gdate.toDate().getFullYear() );
-	date.setMonth( gdate.toDate().getMonth() );
-	date.setDate( gdate.toDate().getDate() );
-	truncateAt = Math.max.apply( null, truncateAt );
-	date = dateStartOf( date, units[ truncateAt ], properties.calendar );
-	if ( timezoneOffset ) {
-		date.setMinutes( date.getMinutes() + timezoneOffset );
-	}
+	date.setMinutes( minutes);
+	date.setSeconds( seconds );
+	date.setMilliseconds( ms );
 
 	return date;
 };

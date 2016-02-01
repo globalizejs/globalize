@@ -414,6 +414,7 @@ QUnit.test( "should parse hour (jj) using preferred hour format for the locale (
 
 QUnit.test( "should parse minute (m) with no padding", function( assert ) {
 	date1 = new Date();
+	date1.setHours( 0 );
 	date1.setMinutes( 5 );
 	date1 = startOf( date1, "minute", "gregorian" );
 	assertParse( assert, "5", "m", cldr, date1 );
@@ -421,6 +422,7 @@ QUnit.test( "should parse minute (m) with no padding", function( assert ) {
 
 QUnit.test( "should parse minute (mm) with padding", function( assert ) {
 	date1 = new Date();
+	date1.setHours( 0 );
 	date1.setMinutes( 5 );
 	date1 = startOf( date1, "minute", "gregorian" );
 	assertParse( assert, "05", "mm", cldr, date1 );
@@ -432,6 +434,8 @@ QUnit.test( "should parse minute (mm) with padding", function( assert ) {
 
 QUnit.test( "should parse second (s) with no padding", function( assert ) {
 	date1 = new Date();
+	date1.setHours( 0 );
+	date1.setMinutes( 0 );
 	date1.setSeconds( 59 );
 	date1 = startOf( date1, "second", "gregorian" );
 	assertParse( assert, "59", "s", cldr, date1 );
@@ -439,6 +443,8 @@ QUnit.test( "should parse second (s) with no padding", function( assert ) {
 
 QUnit.test( "should parse second (ss) with padding", function( assert ) {
 	date1 = new Date();
+	date1.setHours( 0 );
+	date1.setMinutes( 0 );
 	date1.setSeconds( 59 );
 	date1 = startOf( date1, "second", "gregorian" );
 	assertParse( assert, "59", "ss", cldr, date1 );
@@ -446,6 +452,8 @@ QUnit.test( "should parse second (ss) with padding", function( assert ) {
 
 QUnit.test( "should parse milliseconds (S+)", function( assert ) {
 	date1 = new Date();
+	date1.setHours( 0 );
+	date1.setMinutes( 0 );
 	date1.setSeconds( 0 );
 	date1.setMilliseconds( 400 );
 	assertParse( assert, "0 4", "s S", cldr, date1 );
