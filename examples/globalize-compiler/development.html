@@ -38,6 +38,14 @@
     <script src="node_modules/globalize/node_modules/cldrjs/dist/cldr.js"></script>
     <script src="node_modules/globalize/node_modules/cldrjs/dist/cldr/event.js"></script>
     <script src="node_modules/globalize/node_modules/cldrjs/dist/cldr/supplemental.js"></script>
+    <!--
+    npm@3 installs flat by default differently from npm@1 and npm@2, so either
+    the below or the above will work. Don't do this at your application, pick
+    one.
+    -->
+    <script src="node_modules/cldrjs/dist/cldr.js"></script>
+    <script src="node_modules/cldrjs/dist/cldr/event.js"></script>
+    <script src="node_modules/cldrjs/dist/cldr/supplemental.js"></script>
 
     <!--
     Next, we load Globalize and its modules. Note they are already available on
