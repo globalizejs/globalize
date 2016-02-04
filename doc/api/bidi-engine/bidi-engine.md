@@ -32,6 +32,7 @@ undefined for 'conextual' i.e.direction defined by first strong character of inp
 	isSymmetricSwapping: true
   };
   var bidiEngine = Globalize.bidiEngine( options );
+```
 
 ## .doBidiReorder( sourceText, sourceToTargetMap, levels );
 
@@ -49,13 +50,14 @@ of corresponding characters in source and returned (reordered) strings
 ** levels **
 Output optional parameter - Array containing Bidi levels of characters in source string
 
-  ```javascript
+```javascript
   var sourceToTargetMap = [], levels = [];
-  var bidiEngine = Globalize.bidiEngine( {isInputVisual: true, isSymmetricSwapping: true} );
-  var reorderedString = bidiEngine.doBidiReorder( "a(b)cA<B>C& 123", sourceToTargetMap, levels ); 
-  // reorderedString > "123 &C<B>Aa(b)c" (upper case stands for Arabic or Hebrew)
-  // sourceToTargetMap >
-  // levels >
+  var bidiEngine = Globalize.bidiEngine( {isInputVisual: true, isOutputRtl: false} );
+  var reorderedString = bidiEngine.doBidiReorder( "abcABC", sourceToTargetMap, levels ); 
+  // reorderedString > "abcCBA" (upper case stands for Arabic or Hebrew)
+  // sourceToTargetMap > [ 0, 1, 2 ,5, 4, 3 ]
+  // levels > [ 0, 0, 0, 1, 1, 1 ]
+```
 
 ## .setOptions( options );
 
@@ -71,8 +73,7 @@ A JSON object with optional parameters defining Bidi reordering
 
 For details see above, Globalize.bidiEngine
 
-  ```javascript
-
+```javascript
 var bidiEngine = Globalize.bidiEngine( );
 var options = [];
 options.isInputVisual = false;
@@ -82,3 +83,4 @@ options.isInputRtl = true;
 bidiEngine.setOptions( options );
 
 var ret = bidiEngine.doBidiReorder( "Input text" );
+```

@@ -1,34 +1,7 @@
 define([
-	"./core",
+	"./core-runtime",
 	"./bidi/unicode-types"
 ], function( Globalize, bidiUnicodeTypes ) {
-
-/**
- * Unicode Bidi algorithm compliant Bidi engine.
- * For reference see http://unicode.org/reports/tr9/
-*/
-
-/**
- * constructor ( options )
- *
- * Initializes Bidi engine
- *
- * @options [Object]: See 'setOptions' below for detailed description.
- * options are cashed between invocation of 'doBidiReorder' method
- *
- * sample usage pattern of BidiEngine:
- * var opt = {
- * 	isInputVisual: true,
- * 	isInputRtl: false,
- * 	isOutputVisual: false,
- * 	isOutputRtl: false,
- * 	isSymmetricSwapping: true
- * }
- * var sourceToTarget = [], levels = [];
- * var bidiEng = Globalize.bidiEngine(opt);
- * var src = "text string to be reordered";
- * var ret = bidiEng.doBidiReorder(src, sourceToTarget, levels);
- */
 
 Globalize.bidiEngine =
 Globalize.prototype.bidiEngine = function( options ) {
@@ -91,8 +64,6 @@ Globalize.prototype.bidiEngine = function( options ) {
 		}
 	};
 
-	// for reference see 3.2 in http://unicode.org/reports/tr9/
-	//
 	var _getCharType = function( ch ) {
 		var charCode = ch.charCodeAt(), range = charCode >> 8,
 			rangeIdx = _UNICODE_RANGES_MAP[ range ];
@@ -101,12 +72,12 @@ Globalize.prototype.bidiEngine = function( options ) {
 			return _UNICODE_TYPES[ ( rangeIdx * 256 ) + ( charCode & 0xFF ) ];
 		} else if ( range === 0xFC || range === 0xFD ) {
 			return "AL";
-		} else if ( _LTR_RANGES_REG_EXPR.test( range ) ) { //unlikely case
+		} else if ( _LTR_RANGES_REG_EXPR.test( range ) ) {
 			return "L";
-		}  else if ( range === 8 ) { // even less likely
+		}  else if ( range === 8 ) {
 			return "R";
 		}
-		return "N"; //undefined type, mark as neutral
+		return "N";
 	};
 
 	var _isContextualDirRtl = function( text ) {
@@ -121,8 +92,6 @@ Globalize.prototype.bidiEngine = function( options ) {
 		return false;
 	};
 
-	// for reference see 3.3.4 & 3.3.5 in http://unicode.org/reports/tr9/
-	//
 	var _resolveCharType = function( chars, types, resolvedTypes, index ) {
 		var cType = types[ index ], wType, nType, i, len;
 		switch ( cType ) {
@@ -188,7 +157,7 @@ Globalize.prototype.bidiEngine = function( options ) {
 				break;
 
 			case "NSM":
-				if ( _isInVisual && !_isInRtl ) { //V->L
+				if ( _isInVisual && !_isInRtl ) {
 					len = types.length;
 					i = index + 1;
 					while ( i < len && types[ i ] === "NSM" ) {
@@ -261,8 +230,6 @@ Globalize.prototype.bidiEngine = function( options ) {
 		return charArray.join( "" );
 	};
 
-	// For reference see 3.3 in http://unicode.org/reports/tr9/
-	//
 	var _computeLevels = function( chars, levels, params ) {
 		var action, condition, i, index, newLevel, prevState,
 			condPos = -1,
@@ -319,8 +286,6 @@ Globalize.prototype.bidiEngine = function( options ) {
 		}
 	};
 
-	// for reference see 3.4 in http://unicode.org/reports/tr9/
-	//
 	var _invertByLevel = function( level, charArray, sourceToTargetMap, levels, params ) {
 		if ( params.hiLevel < level ) {
 			return;
@@ -356,8 +321,6 @@ Globalize.prototype.bidiEngine = function( options ) {
 		}
 	};
 
-	// for reference see 7 & BD16 in http://unicode.org/reports/tr9/
-	//
 	var _symmetricSwap = function( charArray, levels, params ) {
 		if ( params.hiLevel !== 0 && _isSymmetricSwapping ) {
 			for ( var i = 0, index; i < charArray.length; i++ ) {
@@ -385,68 +348,45 @@ Globalize.prototype.bidiEngine = function( options ) {
 		return charArray.join( "" );
 	};
 
-	// doBidiReorder( text, sourceToTargetMap, levels )
-	// Performs Bidi reordering by implementing Unicode Bidi algorithm.
-	// Returns reordered string
-	// @text [String]:
-	// - input string to be reordered, this is input parameter
-	// $sourceToTargetMap [Array] (optional)
-	// - resultant mapping between input and output strings, this is output parameter
-	// $levels [Array] (optional)
-	// - array of calculated Bidi levels, , this is output parameter
 	this.bidiEngine.doBidiReorder = function( text, sourceToTargetMap, levels ) {
 		_init( text, sourceToTargetMap );
 		if ( !_isInVisual && _isOutVisual && !_isOutRtl ) {
-
-			// LLTR->VLTR, LRTL->VLTR
 			_dir = _isInRtl ? DIR_RTL : DIR_LTR;
 			text = _reorder( text, sourceToTargetMap, levels );
 		} else if ( _isInVisual && _isOutVisual && ( _isInRtl ^ _isOutRtl ) ) {
-
-			// VRTL->VLTR, VLTR->VRTL
 			_dir = _isInRtl ? DIR_RTL : DIR_LTR;
 			text = _invertString( text, sourceToTargetMap, levels );
 		} else if ( !_isInVisual && _isOutVisual && _isOutRtl ) {
-
-			// LLTR->VRTL, LRTL->VRTL
 			_dir = _isInRtl ? DIR_RTL : DIR_LTR;
 			text = _reorder( text, sourceToTargetMap, levels );
 			text = _invertString( text, sourceToTargetMap );
 		} else if ( _isInVisual && !_isInRtl && !_isOutVisual && !_isOutRtl ) {
-
-			// VLTR->LLTR
 			_dir = DIR_LTR;
 			text = _reorder( text, sourceToTargetMap, levels );
 		} else if ( _isInVisual && !_isOutVisual && ( _isInRtl ^ _isOutRtl ) ) {
-
-			// VLTR->LRTL, VRTL->LLTR
 			text = _invertString( text, sourceToTargetMap );
-			if ( _isInRtl ) { //LLTR -> VLTR
+			if ( _isInRtl ) {
 				_dir = DIR_LTR;
 				text = _reorder( text, sourceToTargetMap, levels );
-			} else { //LRTL -> VRTL
+			} else {
 				_dir = DIR_RTL;
 				text = _reorder( text, sourceToTargetMap, levels );
 				text = _invertString( text, sourceToTargetMap );
 			}
 		} else if ( _isInVisual && _isInRtl && !_isOutVisual && _isOutRtl ) {
-
-			//  VRTL->LRTL
 			_dir = DIR_RTL;
 			text = _reorder( text, sourceToTargetMap, levels );
 			text = _invertString( text, sourceToTargetMap );
 		} else if ( !_isInVisual && !_isOutVisual && ( _isInRtl ^ _isOutRtl ) ) {
-
-			// LRTL->LLTR, LLTR->LRTL
 			var isSymmetricSwappingOrig = _isSymmetricSwapping;
-			if ( _isInRtl ) { //LRTL->LLTR
+			if ( _isInRtl ) {
 				_dir = DIR_RTL;
 				text = _reorder( text, sourceToTargetMap, levels );
 				_dir = DIR_LTR;
 				_isSymmetricSwapping = false;
 				text = _reorder( text, sourceToTargetMap, levels );
 				_isSymmetricSwapping = isSymmetricSwappingOrig;
-			} else { //LLTR->LRTL
+			} else {
 				_dir = DIR_LTR;
 				text = _reorder( text, sourceToTargetMap, levels );
 				text = _invertString( text, sourceToTargetMap );
@@ -459,24 +399,6 @@ Globalize.prototype.bidiEngine = function( options ) {
 		}
 		return text;
 	};
-
-	// setOptions( options )
-	// Sets options for Bidi conversion
-	// @options [Object]:
-	// - isInputVisual [boolean] (defaults to false):
-	// allowed values: true(Visual mode), false(Logical mode)
-	// - isInputRtl [boolean]:
-	// allowed values true(Right-to-left direction), false (Left-to-right directiion),
-	// undefined(Contectual direction, i.e.direction defined by first strong character
-	// of input string)
-	// - isOutputVisual [boolean] (defaults to false):
-	// allowed values: true(Visual mode), false(Logical mode)
-	// - isOutputRtl [boolean]:
-	// allowed values true(Right-to-left direction), false (Left-to-right directiion),
-	// undefined(Contectual direction, i.e.direction defined by first strong character
-	// of input string)
-	// - isSymmetricSwapping [boolean] (defaults to false):
-	// allowed values true(needs symmetric swapping), false (no need in symmetric swapping),
 
 	this.bidiEngine.setOptions = function( options ) {
 		if ( options ) {

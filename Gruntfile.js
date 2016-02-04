@@ -398,6 +398,20 @@ module.exports = function( grunt ) {
 							}
 						},
 						{
+							name: "globalize.bidi-engine",
+							include: [ "bidi-engine" ],
+							exclude: [
+								"./core"
+							],
+							create: true,
+							override: {
+								wrap: {
+									startFile: "src/build/intro-bidi-engine.js",
+									endFile: "src/build/outro.js"
+								}
+							}
+						},
+						{
 							name: "globalize-runtime",
 							include: [ "core-runtime" ],
 							create: true,
@@ -511,20 +525,15 @@ module.exports = function( grunt ) {
 							}
 						},
 						{
-							name: "globalize.bidi-engine",
-							include: [ "bidi-engine" ],
+							name: "globalize.bidi-engine-runtime",
+							include: [ "bidi-engine-runtime" ],
 							exclude: [
-								"cldr",
-								"cldr/event",
-								"cldr/supplemental",
-								"./core",
-								"./number",
-								"./plural"
+								"./core-runtime"
 							],
 							create: true,
 							override: {
 								wrap: {
-									startFile: "src/build/intro-bidi-engine.js",
+									startFile: "src/build/intro-bidi-engine-runtime.js",
 									endFile: "src/build/outro.js"
 								}
 							}
@@ -591,6 +600,7 @@ module.exports = function( grunt ) {
 					"tmp/globalize/message.min.js": [ "dist/globalize/message.js" ],
 					"tmp/globalize/relative-time.min.js": [ "dist/globalize/relative-time.js" ],
 					"tmp/globalize/unit.min.js": [ "dist/globalize/unit.js" ],
+					"tmp/globalize/bidi-engine.min.js": [ "dist/globalize/bidi-engine.js" ],
 
 					"tmp/globalize-runtime.min.js": [ "dist/globalize-runtime.js" ],
 					"tmp/globalize-runtime/currency.min.js": [
@@ -603,7 +613,9 @@ module.exports = function( grunt ) {
 					"tmp/globalize-runtime/relative-time.min.js": [
 						"dist/globalize-runtime/relative-time.js"
 					],
-					"tmp/globalize-runtime/unit.min.js": [ "dist/globalize-runtime/unit.js" ]
+					"tmp/globalize-runtime/unit.min.js": [ "dist/globalize-runtime/unit.js" ],
+					"tmp/globalize-runtime/bidi-engine.min.js":
+						[ "dist/globalize-runtime/bidi-engine.js" ]
 				}
 			}
 		},
