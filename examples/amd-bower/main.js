@@ -32,6 +32,7 @@ require([
 	"json!cldr-data/main/en/currencies.json",
 	"json!cldr-data/main/en/dateFields.json",
 	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/en/units.json",
 	"json!cldr-data/supplemental/currencyData.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
@@ -45,9 +46,10 @@ require([
 	"globalize/message",
 	"globalize/number",
 	"globalize/plural",
-	"globalize/relative-time"
-], function( Globalize, enGregorian, enCurrencies, enDateFields, enNumbers, currencyData, likelySubtags,
-	pluralsData, timeData, weekData, messages ) {
+	"globalize/relative-time",
+	"globalize/unit"
+], function( Globalize, enGregorian, enCurrencies, enDateFields, enNumbers, enUnits, currencyData,
+	likelySubtags, pluralsData, timeData, weekData, messages ) {
 
 	var en, like, number;
 
@@ -58,6 +60,7 @@ require([
 		enDateFields,
 		enGregorian,
 		enNumbers,
+		enUnits,
 		likelySubtags,
 		pluralsData,
 		timeData,

@@ -33,10 +33,11 @@
     </div>
 
     <!--
-    Load Globalize runtime and its runtime modules. Note they are already
-    available on this repository. If it's not, read Usage on Getting Started on
-    the root's README.md.
+    Note, we don't need cldrjs library anymore because the formatters have
+    already been created by the compilation step. More info below.
     -->
+
+    <!-- Load Globalize runtime and its runtime modules -->
     <script src="node_modules/globalize/dist/globalize-runtime.js"></script>
     <script src="node_modules/globalize/dist/globalize-runtime/message.js"></script>
     <script src="node_modules/globalize/dist/globalize-runtime/number.js"></script>
@@ -55,7 +56,7 @@
     <!--
     Then, load the compiled formatters.
 
-    Note, we don't need to feed Globalize on CLDR data anymore. Because, the
+    Note, we don't need to feed Globalize on CLDR data anymore because the
     formatters have already been created by the compilation step and their
     "snapshots" are available below.
     -->
