@@ -5,8 +5,8 @@
 		"currency-label": "Валюта",
 		"date-label": "Дата",
 		"relative-time-label": "Относительное время",
-		"unit-label": "Unit",
-		"message-1": "An example of a message using mixed number \"{number}\", currency \"{currency}\", date \"{date}\", relative time \"{relativeTime}\", and unit \"{unit}\".",
+		"unit-label": "Единица измерения",
+		"message-1": "Пример сообщения с числом \"{number}\", валютой \"{currency}\", датой \"{date}\", относительным временем \"{relativeTime}\" и единицей измерения \"{unit}\".",
 		"message-2": [
 			"Пример сообщения с поддержкой множественного числа:",
 			"{count, plural,",
