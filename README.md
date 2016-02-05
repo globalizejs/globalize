@@ -742,7 +742,7 @@ writing code, be sure to read [CONTRIBUTING.md](CONTRIBUTING.md).
 [StackOverflow with the "javascript-globalize" tag]: http://stackoverflow.com/tags/javascript-globalize
 
 For ideas where to start contributing, see the following queries to find what
-best suites your interest: [quick changes][], [new features][], [bug fixes][],
+best suites your interest: [quick change][], [new features][], [bug fixes][],
 [documentation improvements][], [date module][], [currency module][], [message
 module][], [number module][], [plural module][], [relative time module][]. Last
 but not least, feel free to [get in touch](http://irc.jquery.org/).
@@ -750,7 +750,7 @@ but not least, feel free to [get in touch](http://irc.jquery.org/).
 [bug fixes]: https://github.com/jquery/globalize/labels/bug
 [documentation improvements]: https://github.com/jquery/globalize/labels/docs
 [new features]: https://github.com/jquery/globalize/labels/new%20feature
-[quick changes]: https://github.com/jquery/globalize/labels/quick%20changes
+[quick change]: https://github.com/jquery/globalize/labels/quick%20change
 
 [currency module]: https://github.com/jquery/globalize/labels/currency%20module
 [date module]: https://github.com/jquery/globalize/labels/date%20module
