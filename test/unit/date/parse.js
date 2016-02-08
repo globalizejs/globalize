@@ -85,7 +85,6 @@ Cldr.load(
 );
 
 cldr = new Cldr( "en" );
-cldr.attributes.calendar = "gregorian";
 
 midnight = new Date();
 midnight = startOf( midnight, "day", "gregorian" );
