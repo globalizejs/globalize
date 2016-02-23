@@ -4,7 +4,7 @@ define([
 	"json!cldr-data/main/ar/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/numberingSystems.json",
-	"../../../functional/digit-shaper/shaper-testCases"
+	"../../../functional/digit-shaper/shaper-testCases-ar"
 ], function( Cldr, shapeContextual, arNumbers, likelySubtags,	numberingSystems, testCases ) {
 
 var ar, nuDigitsMap, context;

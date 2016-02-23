@@ -34,7 +34,7 @@ return function( value, properties ) {
 		case "National":
 			return shapeFromLatinToNational( value );
 		case "Contextual":
-			if ( locale.indexOf( "ar" ) === 0 ) {
+			if ( locale.indexOf( "ar" ) === 0 || locale.indexOf( "fa" ) === 0 ) {
 				return digitShaperShapeContextualAr( value, nuDigitsMap,
 						textDir === "rtl" ? 2 : 1 );
 			}
