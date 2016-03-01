@@ -13,7 +13,7 @@ module Globalize
 
       def with_translations(*locales)
         locales = translated_locales if locales.empty?
-        preload(:translations).joins(:translations).readonly(false).with_locales(locales)
+        preload(:translations).joins(:translations).readonly(false).with_locales(locales).uniq
       end
 
       def with_required_attributes

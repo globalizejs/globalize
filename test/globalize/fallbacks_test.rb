@@ -215,6 +215,27 @@ class FallbacksTest < MiniTest::Spec
       assert_equal translations, user.name_translations
     end
   end
+  
+  describe 'query with fallbacks' do
+    it 'does not result in duplicated records' do
+      I18n.fallbacks.clear
+      I18n.fallbacks.map :en => [ :de, :fr ]
+      I18n.locale = :en
+      
+      product = Product.create(:name => 'foooooooo')
+      with_locale(:de) { product.name = 'bar' }
+      product.save!
+      
+      assert_equal 1, Product.with_translations.where(id: product.id).length
+      assert_equal 'foooooooo', Product.find(product.id).name
+      
+      I18n.locale = :de
+      assert_equal 'bar', Product.find(product.id).name
+      
+      I18n.locale = :fr
+      assert_equal 'foooooooo', Product.find(product.id).name
+    end
+  end
 end
 # TODO should validate_presence_of take fallbacks into account? maybe we need
 #   an extra validation call, or more options for validate_presence_of.
