@@ -1,4 +1,3 @@
-require 'pry'
 module Globalize
   module ActiveRecord
     module AdapterDirty
