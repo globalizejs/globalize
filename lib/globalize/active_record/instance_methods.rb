@@ -19,24 +19,12 @@ module Globalize
         with_given_locale(attributes) { super }
       end
 
+
+
       def write_attribute(name, value, options = {})
         return super(name, value) unless translated?(name)
 
         options = {:locale => Globalize.locale}.merge(options)
-
-        # Dirty tracking, paraphrased from
-        # ActiveRecord::AttributeMethods::Dirty#write_attribute.
-        name_str = name.to_s
-        if attribute_changed?(name_str)
-          # If there's already a change, delete it if this undoes the change.
-          old = changed_attributes[name_str]
-          @changed_attributes.delete(name_str) if value == old
-        else
-          # If there's not a change yet, record it.
-          old = globalize.fetch(options[:locale], name)
-          old = old.dup if old.duplicable?
-          @changed_attributes[name_str] = old if value != old
-        end
 
         globalize.write(options[:locale], name, value)
       end
@@ -148,11 +136,16 @@ module Globalize
       end
 
       def save(*)
-        Globalize.with_locale(translation.locale || I18n.default_locale) do
+        result = Globalize.with_locale(translation.locale || I18n.default_locale) do
           without_fallbacks do
             super
           end
         end
+        if result
+          globalize.clear_dirty
+        end
+
+        result
       end
 
       def column_for_attribute name

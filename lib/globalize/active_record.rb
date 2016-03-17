@@ -2,6 +2,7 @@ module Globalize
   module ActiveRecord
     autoload :ActMacro,        'globalize/active_record/act_macro'
     autoload :Adapter,         'globalize/active_record/adapter'
+    autoload :AdapterDirty,    'globalize/active_record/adapter_dirty'
     autoload :Attributes,      'globalize/active_record/attributes'
     autoload :ClassMethods,    'globalize/active_record/class_methods'
     autoload :Exceptions,      'globalize/active_record/exceptions'

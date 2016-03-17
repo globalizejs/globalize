@@ -134,6 +134,27 @@ class FallbacksTest < MiniTest::Spec
 
       assert_equal [:de], task.translations.map(&:locale).sort
     end
+    it "bug with same translations" do
+      I18n.fallbacks.map 'de-DE' => [ 'en-US' ]
+      post = Post.create(:title => 'Titel')
+      post.attributes = { :title => 'title', :locale => :'en-US' }
+      post.attributes = { :title => 'Titel', :locale => :'de-DE' }
+      post.save
+      post.reload
+
+      assert_equal 2, post.translations.size
+      assert_translated post, :'de-DE', :title, 'Titel'
+      assert_translated post, :'en-US', :title, 'title'
+
+      post.attributes = { :title => 'Titel', :locale => :'en-US' }
+      post.attributes = { :title => 'title', :locale => :'de-DE' }
+      post.save
+      post.reload
+
+      assert_equal 2, post.translations.size
+      assert_translated post, :'de-DE', :title, 'title'
+      assert_translated post, :'en-US', :title, 'Titel'
+    end
   end
 
   describe 'model with :fallbacks_for_empty_translations => true' do
@@ -213,6 +234,27 @@ class FallbacksTest < MiniTest::Spec
 
       translations = {:en => 'John', :de => nil}.stringify_keys!
       assert_equal translations, user.name_translations
+    end
+  end
+  
+  describe 'query with fallbacks' do
+    it 'does not result in duplicated records' do
+      I18n.fallbacks.clear
+      I18n.fallbacks.map :en => [ :de, :fr ]
+      I18n.locale = :en
+      
+      product = Product.create(:name => 'foooooooo')
+      with_locale(:de) { product.name = 'bar' }
+      product.save!
+      
+      assert_equal 1, Product.with_translations.where(id: product.id).length
+      assert_equal 'foooooooo', Product.find(product.id).name
+      
+      I18n.locale = :de
+      assert_equal 'bar', Product.find(product.id).name
+      
+      I18n.locale = :fr
+      assert_equal 'foooooooo', Product.find(product.id).name
     end
   end
 end

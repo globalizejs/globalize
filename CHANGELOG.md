@@ -5,6 +5,7 @@
 * Replaced `after_` callbacks with `before_` callbacks and set `autosave: true` by default. [#341](https://github.com/globalize/globalize/pull/341) by [Andrew Volozhanin](https://github.com/scarfacedeb)
 * Add [RequestStore](https://github.com/steveklabnik/request_store) to make Globalize thread-safe again [#420](https://github.com/globalize/globalize/pull/420)
 * Join the translations table when ordering by translated attributes (https://github.com/globalize/globalize/pull/447). (thanks [Thomas Maas](https://github.com/thomasmaas) & [Michal Cichra](https://github.com/mikz)).
+* Add `unique` to `with_translation` to prevent duplicates if fallbacks are defined and the queried locale is not the fallback language. [#489](https://github.com/globalize/globalize/pull/489) by [krisdigital](https://github.com/krisdigital)
 
 ## 5.0.1 (2015-02-15)
 
