@@ -1,9 +1,7 @@
 define([
 	"./numbering-system",
-	"../common/create-error/unsupported-feature",
-	"./numbering-system-rules-fn"
-], function( numberNumberingSystem, createErrorUnsupportedFeature,
-				numberNumberingSystemRulesFn ) {
+	"../common/create-error/unsupported-feature"
+], function( numberNumberingSystem, createErrorUnsupportedFeature ) {
 
 /**
  * nuMap( cldr )
@@ -23,11 +21,7 @@ return function( cldr ) {
 	aux = cldr.supplemental([ "numberingSystems", nu ]);
 
 	if ( aux._type !== "numeric" ) {
-		if ( aux._type === "algorithmic" ) {
-			return numberNumberingSystemRulesFn( aux._rules );
-		} else {
-			throw createErrorUnsupportedFeature( "`" + aux._type + "` numbering system" );
-		}
+		throw createErrorUnsupportedFeature( "`" + aux._type + "` numbering system" );
 	}
 
 	return aux._digits;

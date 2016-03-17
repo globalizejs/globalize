@@ -1,7 +1,7 @@
 {
   "name": "globalize",
-  "version": "1.1.0-rc.7",
-  "description": "A JavaScript library for internationalization and localization that leverage the official Unicode CLDR JSON data.",
+  "version": "1.1.1",
+  "description": "A JavaScript library for internationalization and localization that leverages the official Unicode CLDR JSON data.",
   "keywords": [
     "utility",
     "globalization",
@@ -65,7 +65,7 @@
     "url": "http://github.com/jquery/globalize/issues"
   },
   "dependencies": {
-    "cldrjs": "0.4.3"
+    "cldrjs": "0.4.4"
   },
   "peerDependencies": {
     "cldr-data": ">=25"
@@ -87,6 +87,9 @@
     "grunt-jscs": "1.8.0",
     "gzip-js": "0.3.2",
     "matchdep": "0.3.0"
+  },
+  "commitplease": {
+    "nohook": true
   },
   "license": "MIT",
   "scripts": {

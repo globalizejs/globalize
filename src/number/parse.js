@@ -24,10 +24,6 @@ return function( value, properties ) {
 	negativeSuffix = properties[ 3 ];
 	invertedNuDigitsMap = properties[ 4 ];
 
-	if ( typeof invertedNuDigitsMap === "function" ) {
-		return invertedNuDigitsMap( value, true );
-	}
-
 	// Infinite number.
 	if ( aux = value.match( infinitySymbol ) ) {
 

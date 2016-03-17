@@ -41,10 +41,6 @@ return function( number, properties ) {
 		return nanSymbol;
 	}
 
-	if ( typeof nuDigitsMap === "function" ) {
-		return nuDigitsMap( number, false );
-	}
-
 	if ( number < 0 ) {
 		pattern = properties[ 12 ];
 		prefix = properties[ 13 ];

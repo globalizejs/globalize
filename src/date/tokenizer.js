@@ -401,6 +401,10 @@ return function( value, numberParser, properties ) {
 		return true;
 	});
 
+	if ( value !== "" ) {
+		valid = false;
+	}
+
 	return valid ? tokens : [];
 };
 
