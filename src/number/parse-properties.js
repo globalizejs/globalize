@@ -24,7 +24,9 @@ return function( pattern, cldr ) {
 	pattern = pattern.split( ";" );
 	negativePattern = pattern[ 1 ] || "-" + pattern[ 0 ];
 	negativeProperties = numberPatternProperties( negativePattern );
-	if ( nuDigitsMap ) {
+	if ( typeof nuDigitsMap === "function" ) {
+		invertedNuDigitsMap = nuDigitsMap;
+	} else if ( nuDigitsMap ) {
 		invertedNuDigitsMap = nuDigitsMap.split( "" ).reduce(function( object, localizedDigit, i ) {
 			object[ localizedDigit ] = String( i );
 			return object;
