@@ -21,8 +21,7 @@ A JSON object including one of the following.
 > list `full`, `long`, `medium`, or `short` represented by date, time, or
 > datetime.  Instead, they are an open-ended list of patterns containing
 > only date field information, and in a canonical order. For a complete list of 
-> skeleton patterns [check the unicode CLDR documentation](http://www.unicode.o
-> rg/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table).
+> skeleton patterns [check the unicode CLDR documentation](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table).
 > 
 > For example:
 >
