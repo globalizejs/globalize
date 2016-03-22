@@ -17,6 +17,9 @@ QUnit.module( ".formatMessage( path [, variables] )", {
 				greetings: {
 					hello: "Hello, {name}"
 				}
+			},
+			he: {
+				breadcrumb: "{0} >> {1} >> {2}",
 			}
 		});
 	},
@@ -45,6 +48,18 @@ QUnit.test( "should format a message", function( assert ) {
 	assert.equal( Globalize( "en" ).formatMessage( "greetings/hello", {
 		name: "Beethoven"
 	}), "Hello, Beethoven" );
+});
+
+QUnit.test( "should format a message", function( assert ) {
+	assert.equal( Globalize( "en" ).formatMessage( "greetings/hello", {
+		name: "Beethoven"
+	}), "Hello, Beethoven" );
+});
+
+QUnit.test( "should support Bidi structured text", function( assert ) {
+	assert.equal( Globalize( "he" ).formatMessage( "breadcrumb", true,
+	[ "Mozart", "Bethoven", "Dvorzak" ]
+	), "\u200FMozart\u200F >> \u200FBethoven\u200F >> \u200FDvorzak\u200F" );
 });
 
 });

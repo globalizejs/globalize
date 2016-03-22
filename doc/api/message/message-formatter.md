@@ -1,4 +1,4 @@
-## .messageFormatter( path ) ➡ function([ variables ])
+## .messageFormatter( path, isStructuredBidiText ) ➡ function([ variables ])
 
 Return a function that formats a message (using ICU message format pattern)
 given its path and a set of variables into a user-readable string. It supports
@@ -13,6 +13,15 @@ messages data.
 
 String or Array containing the path of the message content, eg.
 `"greetings/bye"`, or `[ "greetings", "bye" ]`.
+
+**isStructuredBidiText**
+
+Boolean value indicating that Bidi structuring should be imposed on formatted message.
+Special Unicode Bidi marks are inserted depending on locale in order to preserve the text 
+flow of structured message which corresponds give local (from right-to-left for Bidi scripts 
+like Arabic, Hebrew or Pharsi and left-to-right otherwise.
+For more info on Bidi structured text see: 
+http://cldr.unicode.org/development/development-process/design-proposals/bidi-handling-of-structured-text
 
 **variables** (optional)
 
@@ -212,6 +221,15 @@ likeFormatter( 2 );
 likeFormatter( 3 );
 // > "You and 2 others liked this"
 ```
+#### Bidi structured meessage
+	Globalize.loadMessages({
+		ar: { breadcrumb: "{0} >> {1} >> {2}" }		
+	}); 
+bidiFormatter = Globalize( "ar" ).messageFormatter( "breadcrumb", true );
+
+bidiFormatter( "First", "Second", "Third" );
+// > "Third << Second << First"
+
 
 Read on [SlexAxton/messageFormatter.js][] for more information on regard of ICU
 MessageFormat.
