@@ -1,4 +1,4 @@
-define([
+﻿define([
 	"globalize",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
@@ -57,7 +57,7 @@ QUnit.test( "should format a message", function( assert ) {
 });
 
 QUnit.test( "should support Bidi structured text", function( assert ) {
-	assert.equal( Globalize( "he" ).formatMessage( "breadcrumb", true,
+	assert.equal( Globalize( "he" ).formatMessage( "breadcrumb", {"setBiDiSupport": true},
 	[ "Mozart", "Bethoven", "Dvorzak" ]
 	), "\u200FMozart\u200F >> \u200FBethoven\u200F >> \u200FDvorzak\u200F" );
 });

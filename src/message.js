@@ -56,10 +56,12 @@ Globalize.loadMessages = function( json ) {
  *
  * @path [String or Array]
  *
+ * @options [object]
+ *
  * Format a message given its path.
  */
 Globalize.messageFormatter =
-Globalize.prototype.messageFormatter = function( path, isStructuredBidiText ) {
+Globalize.prototype.messageFormatter = function( path, options ) {
 	var cldr, messageFormat, formatter, message, pluralGenerator, returnFn,
 		args = slice.call( arguments, 0 );
 
@@ -88,7 +90,7 @@ Globalize.prototype.messageFormatter = function( path, isStructuredBidiText ) {
 		createErrorPluralModulePresence;
 
 	messageFormat = new MessageFormat( cldr.locale, pluralGenerator );
-	if ( typeof isStructuredBidiText === "boolean" && isStructuredBidiText ) {
+	if ( options && ( options.setBiDiSupport === true ) ) {
 		messageFormat.setBiDiSupport( true );
 	}
 	formatter = messageFormat.compile( message );
@@ -112,7 +114,7 @@ Globalize.prototype.messageFormatter = function( path, isStructuredBidiText ) {
  */
 Globalize.formatMessage =
 Globalize.prototype.formatMessage = function( path /* , variables */ ) {
-	return ( arguments[ 1 ] && typeof arguments[ 1 ] === "boolean" ) ?
+	return ( arguments[ 1 ] && arguments[ 1 ].setBiDiSupport === true ) ?
 		this.messageFormatter( path, arguments[ 1 ] ).apply( {}, slice.call( arguments, 2 ) ) :
 		this.messageFormatter( path ).apply( {}, slice.call( arguments, 1 ) );
 };
