@@ -92,7 +92,7 @@ return function( options, cldr ) {
 			}
 		}
 
-		distance *= 1.25 * (maxLength - minLength + 1);
+		distance *= 1.25 * ( maxLength - minLength + 1 );
 
 		if ( formatA.length === formatB.length ) {
 			distance *= 0.5;
