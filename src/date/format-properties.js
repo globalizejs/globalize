@@ -119,6 +119,8 @@ return function( pattern, cldr ) {
 						chr === "M" ? "format" : "stand-alone",
 						widths[ length - 3 ]
 					]);
+				} else {
+					formatNumber = true;
 				}
 				properties.months[ chr ][ length ] = dateMonthNames(
 					properties.months[ chr ][ length ],
@@ -127,9 +129,6 @@ return function( pattern, cldr ) {
 					properties.calendar,
 					cldr
 				);
-				if ( length <= 2 ) {
-					formatNumber = true;
-				}
 				break;
 
 			// Week - Week of Year (w) or Week of Month (W).

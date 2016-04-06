@@ -96,12 +96,10 @@ return function( date, numberFormatters, properties ) {
 			// Quarter
 			case "Q":
 			case "q":
-
-        // There's no good way to do this with a generalized date.
+				// There's no good way to do this with a generalized date.
 				// We have to approximate this, assuming a 12-month year and
 				// month numbers that correspond to the correct period of the year
-				ret = Math.min( parseInt( gdate.getMonth(), 10 ), 12 );
-				ret = Math.ceil( ret / 3 );
+				ret = Math.ceil( gdate.getMonth() / 3 );
 				if ( length > 2 ) {
 					ret = properties.quarters[ chr ][ length ][ ret ];
 				}

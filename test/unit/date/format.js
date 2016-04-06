@@ -61,7 +61,7 @@ QUnit.assert.dateFormat = function( date, pattern, cldr, expected ) {
 	var pad,
 		numberFormatters = [],
 		properties = formatProperties( pattern, cldr );
-		
+
 	// Create simple number formatters for this test purposes.
 	for ( pad in properties.numberFormatters ) {
 		numberFormatters[ pad ] = simpleFormatter( pad );
