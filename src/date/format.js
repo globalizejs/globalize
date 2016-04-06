@@ -96,7 +96,8 @@ return function( date, numberFormatters, properties ) {
 			// Quarter
 			case "Q":
 			case "q":
-				// There's no good way to do this with a generalized date.
+
+			// There's no good way to do this with a generalized date.
 				// We have to approximate this, assuming a 12-month year and
 				// month numbers that correspond to the correct period of the year
 				ret = Math.ceil( gdate.getMonth() / 3 );
