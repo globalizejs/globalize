@@ -86,6 +86,12 @@ Globalize.locale = function( locale ) {
 	return this.cldr;
 };
 
+Globalize._messageFmts = {};
+
+Globalize.addMessageFormatterFunction = function( name, fn ) {
+	Globalize._messageFmts[name] = fn;
+};
+
 /**
  * Optimization to avoid duplicating some internal functions across modules.
  */

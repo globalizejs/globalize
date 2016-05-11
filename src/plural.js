@@ -48,7 +48,7 @@ Globalize.prototype.plural = function( value, options ) {
  */
 Globalize.pluralGenerator =
 Globalize.prototype.pluralGenerator = function( options ) {
-	var args, cldr, isOrdinal, plural, returnFn, type;
+	var args, cldr, isOrdinal, isCardinal, plural, returnFn, type;
 
 	validateParameterTypePlainObject( options, "options" );
 
@@ -62,18 +62,29 @@ Globalize.prototype.pluralGenerator = function( options ) {
 
 	validateDefaultLocale( cldr );
 
-	isOrdinal = type === "ordinal";
+	isOrdinal = type === "ordinal" || type === "both";
+	isCardinal = type === "cardinal" || type === "both";
 
 	cldr.on( "get", validateCldr );
-	cldr.supplemental([ "plurals-type-" + type, "{language}" ]);
+	if ( isOrdinal ) {
+		cldr.supplemental([ "plurals-type-ordinal", "{language}" ]);
+	}
+	if ( isCardinal ) {
+		cldr.supplemental([ "plurals-type-cardinal", "{language}" ]);
+	}
 	cldr.off( "get", validateCldr );
 
 	MakePlural.rules = {};
-	MakePlural.rules[ type ] = cldr.supplemental( "plurals-type-" + type );
+	if ( isOrdinal ) {
+		MakePlural.rules.ordinal = cldr.supplemental( "plurals-type-ordinal" );
+	}
+	if ( isCardinal ) {
+		MakePlural.rules.cardinal = cldr.supplemental( "plurals-type-cardinal" );
+	}
 
 	plural = new MakePlural( cldr.attributes.language, {
 		"ordinals": isOrdinal,
-		"cardinals": !isOrdinal
+		"cardinals": isCardinal
 	});
 
 	returnFn = pluralGeneratorFn( plural );

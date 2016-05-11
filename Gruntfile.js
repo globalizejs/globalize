@@ -132,7 +132,8 @@ module.exports = function( grunt ) {
 				paths: {
 					cldr: "../external/cldrjs/dist/cldr",
 					"make-plural": "../external/make-plural/make-plural",
-					messageformat: "../external/messageformat/messageformat",
+					"messageformat-parser": "../node_modules/messageformat-parser/parser",
+					"reserved-words": "../node_modules/reserved-words/lib/reserved-words",
 					"zoned-date-time": "../node_modules/zoned-date-time/src/zoned-date-time"
 				},
 				shim: {
@@ -151,8 +152,7 @@ module.exports = function( grunt ) {
 				//    Only for root id's (the ones in src, not in src's subpaths). Note there's no
 				//    conditional code checking for this type.
 				onBuildWrite: function( id, path, contents ) {
-					var messageformat,
-						name = camelCase( id.replace( /util\/|common\//, "" ) );
+					var name = camelCase( id.replace( /util\/|common\//, "" ) );
 
 					// MakePlural
 					if ( ( /make-plural/ ).test( id ) ) {
@@ -200,67 +200,38 @@ module.exports = function( grunt ) {
 								"/* jshint ignore:end */"
 							].join( "\n" ) );
 
-					// messageformat
-					} else if ( ( /messageformat/ ).test( id ) ) {
+					// messageformat-parser
+					} else if ( ( /messageformat-parser/.test( id ) ) ) {
+
 						return contents
-
-							// Remove browserify wrappers.
-							.replace( /^\(function\(f\)\{if\(typeof exports==="object"&&type.*/, "" )
-							.replace( "},{}],2:[function(require,module,exports){", "" )
-							.replace( /\},\{"\.\/messageformat-parser":1,"make-plural\/plural.*/, "" )
-							.replace( /\},\{\}\]\},\{\},\[2\]\)\(2\)[\s\S]*?$/, "" )
-
-							// Set `MessageFormat.plurals` and remove `make-plural/plurals`
-							// completely. This is populated by Globalize on demand.
-							.replace( /var _cp = \[[\s\S]*?$/, "" )
-							.replace(
-								"MessageFormat.plurals = require('make-plural/plurals')",
-								"MessageFormat.plurals = {}"
-							)
-
-							// Set `MessageFormat._parse`
-							.replace(
-								"MessageFormat._parse = require('./messageformat-parser').parse;",
-								""
-							)
-							.replace( /module\.exports = \(function\(\) \{([\s\S]*?)\n\}\)\(\);/, [
-								"MessageFormat._parse = (function() {",
-								"$1",
-								"}()).parse;"
-							].join( "\n" ) )
-
-							// Remove unused code.
-							.replace( /if \(!pluralFunc\) \{\n[\s\S]*?\n  \}/, "" )
-							.replace( /if \(!locale\) \{\n[\s\S]*?  \}\n/, "this.lc = [locale];" )
-							.replace( /(MessageFormat\.formatters) = \{[\s\S]*?\n\};/, "$1 = {};" )
-							.replace( /MessageFormat\.prototype\.setIntlSupport[\s\S]*?\n\};/, "" )
-
-							// Wrap everything into a var assignment.
-							.replace( "module.exports = MessageFormat;", "" )
 							.replace( /^/, [
-								"var MessageFormat;",
-								"/* jshint ignore:start */",
-								"MessageFormat = (function() {"
+								"var Parser;",
+								"/* jshint ignore:start */\n",
+								"Parser = (function() {"
 							].join( "\n" ) )
+							.replace( "module.exports = ", "return " )
 							.replace( /$/, [
-								"return MessageFormat;",
 								"}());",
 								"/* jshint ignore:end */"
 							].join( "\n" ) );
 
-					// message-runtime
-					} else if ( ( /message-runtime/ ).test( id ) ) {
-						messageformat = require( "./external/messageformat/messageformat" );
-						delete messageformat.prototype.runtime.fmt;
-						delete messageformat.prototype.runtime.pluralFuncs;
-						contents = contents.replace( "Globalize._messageFormat = {};", [
-							"/* jshint ignore:start */",
-							"Globalize._messageFormat = (function() {",
-							messageformat.prototype.runtime.toString(),
-							"return {number: number, plural: plural, select: select};",
-							"}());",
-							"/* jshint ignore:end */"
-						].join( "\n" ) );
+					// reserved-words
+					} else if ( ( /reserved-words/.test( id ) ) ) {
+
+						return contents
+							.replace( /^/, [
+								"var reserved;",
+								"/* jshint ignore:start */\n",
+								"reserved = (function() {",
+								"var exports = {};"
+							].join( "\n" ) )
+							.replace( "var assert = require\('assert'\);", "" )
+							.replace( /^\s*assert\(.*;\s*$/gm, "" )
+							.replace( /$/, [
+								"return exports;",
+								"}());",
+								"/* jshint ignore:end */"
+							].join( "\n" ) );
 
 					// ZonedDateTime
 					} else if ( ( /zoned-date-time/ ).test( id ) ) {

@@ -74,6 +74,14 @@ Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 	return returnFn;
 };
 
+Globalize.addMessageFormatterFunction( "relativetime", function( unit, form ) {
+	var options = {};
+	if ( form ) {
+		options.form = form;
+	}
+	return this.relativeTimeFormatter( unit, options );
+});
+
 return Globalize;
 
 });

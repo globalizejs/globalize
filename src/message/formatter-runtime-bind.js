@@ -1,8 +1,7 @@
 define(function() {
 
-return function( cldr, messageformatter ) {
-	var locale = cldr.locale,
-		origToString = messageformatter.toString;
+return function( cldr, messageformatter, runtime, pluralType, locale, embeddedFormatters ) {
+	var origToString = messageformatter.toString;
 
 	messageformatter.toString = function() {
 		var argNames, argValues, output,
@@ -11,24 +10,28 @@ return function( cldr, messageformatter ) {
 		// Properly adjust SlexAxton/messageformat.js compiled variables with Globalize variables:
 		output = origToString.call( messageformatter );
 
-		if ( /number\(/.test( output ) ) {
+		if ( runtime.number ) {
 			args.number = "messageFormat.number";
 		}
 
-		if ( /plural\(/.test( output ) ) {
+		if ( runtime.plural ) {
 			args.plural = "messageFormat.plural";
 		}
 
-		if ( /select\(/.test( output ) ) {
+		if ( runtime.select ) {
 			args.select = "messageFormat.select";
 		}
 
-		output.replace( /pluralFuncs(\[([^\]]+)\]|\.([a-zA-Z]+))/, function( match ) {
-			args.pluralFuncs = "{" +
-				"\"" + locale + "\": Globalize(\"" + locale + "\").pluralGenerator()" +
-				"}";
-			return match;
-		});
+		if ( embeddedFormatters.length ) {
+			args.fmt = "[" + embeddedFormatters.map( function( fn ) {
+				return fn.generatorString();
+			} ).join( ", " ) + "]";
+		}
+
+		if ( pluralType !== false ) {
+			args[locale] = "Globalize(\"" + locale + "\")." +
+				"pluralGenerator( { type: \"" + pluralType + "\" } )";
+		}
 
 		argNames = Object.keys( args ).join( ", " );
 		argValues = Object.keys( args ).map(function( key ) {

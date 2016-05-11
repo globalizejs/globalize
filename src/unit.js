@@ -69,6 +69,14 @@ Globalize.prototype.unitFormatter = function( unit, options ) {
 	return returnFn;
 };
 
+Globalize.addMessageFormatterFunction( "unit", function( unit, form ) {
+	var options = {};
+	if ( form ) {
+		options.form = form;
+	}
+	return this.unitFormatter( unit, options );
+});
+
 return Globalize;
 
 });

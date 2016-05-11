@@ -100,6 +100,14 @@ Globalize.prototype.numberFormatter = function( options ) {
 	return returnFn;
 };
 
+Globalize.addMessageFormatterFunction( "number", function( style ) {
+	var options = {};
+	if ( style ) {
+		options.style = style;
+	}
+	return this.numberFormatter( options );
+});
+
 /**
  * .numberParser( [options] )
  *

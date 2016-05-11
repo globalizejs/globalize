@@ -91,6 +91,14 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 	return returnFn;
 };
 
+Globalize.addMessageFormatterFunction( "currency", function( currency, style ) {
+	var options = {};
+	if ( style ) {
+		options.style = style;
+	}
+	return this.currencyFormatter( currency, options );
+});
+
 /**
  * .currencyParser( currency [, options] )
  *
