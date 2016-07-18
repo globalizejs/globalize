@@ -1,4 +1,4 @@
-## .messageFormatter( path, options ) ➡ function([ variables ])
+## .messageFormatter( path [, options] ) ➡ function([ variables ])
 
 Return a function that formats a message (using ICU message format pattern)
 given its path and a set of variables into a user-readable string. It supports
@@ -16,22 +16,22 @@ String or Array containing the path of the message content, eg.
 
 **options** (optional)
 
-Options should be an Objects, where each property can be referenced by name.
-The possible property having name recognizable by messageFormatter is "setBiDiSupport".
-It should have Boolean value indicating whether Bidi structuring is to be imposed on formatted 
-message (like {"setBiDiSupport": true}).
-Special Unicode Bidi marks are inserted depending on locale in order to preserve the text 
-flow of structured message which corresponds give local (from right-to-left for Bidi scripts 
-like Arabic, Hebrew or Pharsi and left-to-right otherwise.
-For more info on Bidi structured text see: 
-http://cldr.unicode.org/development/development-process/design-proposals/bidi-handling-of-structured-text
+A JSON object including none or any of the following options.
+
+> **setBiDiSupport** Optional
+>
+> Boolean (default `false`) enable or disable the addition of Unicode BiDi
+> control characters to all input to preserve the the integrity of the output
+> when mixing LTR and RTL text, e.g., `{ setBiDiSupport: true }`.
+>
+> For more information on BiDi structured text see:
+> http://cldr.unicode.org/development/development-process/design-proposals/bidi-handling-of-structured-text
 
 **variables** (optional)
 
-Variables can be Objects, where each property can be referenced by name inside a
-message; or Arrays, where each entry of the Array can be used inside a message,
-using numeric indices. When passing one or more arguments of other types,
-they're converted to an Array and used as such.
+A JSON object or an Array. When it's a JSON object, each key corresponds to a
+message variable. When it's an Array, each item corresponds to a message
+variable using numeric indices.
 
 ### Example
 
@@ -82,10 +82,6 @@ formatter = Globalize( "en" ).messageFormatter( "hello" );
 
 // Numbered variables using Array.
 formatter([ "Wolfgang", "Amadeus", "Mozart" ]);
-// > "Hello, Wolfgang Amadeus Mozart"
-
-// Numbered variables using function arguments.
-formatter( "Wolfgang", "Amadeus", "Mozart" );
 // > "Hello, Wolfgang Amadeus Mozart"
 
 // Named variables using Object key-value pairs.
@@ -224,15 +220,15 @@ likeFormatter( 2 );
 likeFormatter( 3 );
 // > "You and 2 others liked this"
 ```
-#### Bidi structured meessage
-	Globalize.loadMessages({
-		ar: { breadcrumb: "{0} >> {1} >> {2}" }		
-	}); 
-bidiFormatter = Globalize( "ar" ).messageFormatter( "breadcrumb", {"setBiDiSupport": true} );
+
+#### BiDi structured meessage
+Globalize.loadMessages({
+  ar: { breadcrumb: "{0} >> {1} >> {2}" }
+}); 
+bidiFormatter = Globalize( "ar" ).messageFormatter( "breadcrumb", { setBiDiSupport: true } );
 
 bidiFormatter( "First", "Second", "Third" );
 // > "Third << Second << First"
-
 
 Read on [SlexAxton/messageFormatter.js][] for more information on regard of ICU
 MessageFormat.

@@ -10,15 +10,16 @@ Globalize._messageFormat = {};
 Globalize._validateParameterTypeMessageVariables = validateParameterTypeMessageVariables;
 
 Globalize.messageFormatter =
-Globalize.prototype.messageFormatter = function( /* path */ ) {
+Globalize.prototype.messageFormatter = function( path, options ) {
+	options = options || {};
 	return Globalize[
-		runtimeKey( "messageFormatter", this._locale, [].slice.call( arguments, 0 ) )
+		runtimeKey( "messageFormatter", this._locale, [ path, options ] )
 	];
 };
 
 Globalize.formatMessage =
-Globalize.prototype.formatMessage = function( path /* , variables */ ) {
-	return this.messageFormatter( path ).apply( {}, [].slice.call( arguments, 1 ) );
+Globalize.prototype.formatMessage = function( path, variables, options ) {
+	return this.messageFormatter( path, options ).apply( {}, [ variables ] );
 };
 
 return Globalize;

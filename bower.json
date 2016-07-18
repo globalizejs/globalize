@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "es5-shim": "3.4.0",
-    "make-plural": "eemeli/make-plural.js#^3.0.0-rc4",
+    "make-plural": "eemeli/make-plural.js#3.0.0",
     "messageformat": "SlexAxton/messageformat.js#v0.3.0",
     "qunit": "1.18.0",
     "requirejs": "2.1.20",

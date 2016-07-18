@@ -484,7 +484,7 @@ Read more details about locale at [UTS#35 locale][].
 
   [Read more...](doc/api/message/load-messages.md)
 
-- **`.messageFormatter( path ) ➡ function( [variables] )`**
+- **`.messageFormatter( path [, options] ) ➡ function( [variables] )`**
 
   Return a function that formats a message (using ICU message format pattern)
   given its path and a set of variables into a user-readable string. It supports
@@ -500,9 +500,9 @@ Read more details about locale at [UTS#35 locale][].
 
   [Read more...](doc/api/message/message-formatter.md)
 
-- **`.formatMessage( path [, variables ] )`**
+- **`.formatMessage( path [, variables, options ] )`**
 
-  Alias for `.messageFormatter( path )([ variables ])`.
+  Alias for `.messageFormatter( path [, options] )([ variables ])`.
 
 ### Number module
 

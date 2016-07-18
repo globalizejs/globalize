@@ -22,8 +22,6 @@ define([
 	validateParameterPresence, validateParameterType, validateParameterTypePlainObject, Globalize,
 	messageFormatterFn, messageFormatterRuntimeBind, alwaysArray ) {
 
-var slice = [].slice;
-
 /**
  * .loadMessages( json )
  *
@@ -62,18 +60,20 @@ Globalize.loadMessages = function( json ) {
  */
 Globalize.messageFormatter =
 Globalize.prototype.messageFormatter = function( path, options ) {
-	var cldr, messageFormat, formatter, message, pluralGenerator, returnFn,
-		args = slice.call( arguments, 0 );
+	var args, cldr, formatter, message, messageFormat, pluralGenerator, returnFn;
 
 	validateParameterPresence( path, "path" );
 	validateParameterType( path, "path", typeof path === "string" || Array.isArray( path ),
 		"a String nor an Array" );
 
-	path = alwaysArray( path );
 	cldr = this.cldr;
+	options = options || {};
 
 	validateDefaultLocale( cldr );
 	validateMessageBundle( cldr );
+
+	args = [ path, options ];
+	path = alwaysArray( path );
 
 	message = cldr.get( [ "globalize-messages/{bundle}" ].concat( path ) );
 	validateMessagePresence( path, message );
@@ -104,19 +104,19 @@ Globalize.prototype.messageFormatter = function( path, options ) {
 };
 
 /**
- * .formatMessage( path [, variables] )
+ * .formatMessage( path [, variables, options] )
  *
  * @path [String or Array]
  *
  * @variables [Number, String, Array or Object]
  *
+ * @options [object]
+ *
  * Format a message given its path.
  */
 Globalize.formatMessage =
-Globalize.prototype.formatMessage = function( path /* , variables */ ) {
-	return ( arguments[ 1 ] && arguments[ 1 ].setBiDiSupport === true ) ?
-		this.messageFormatter( path, arguments[ 1 ] ).apply( {}, slice.call( arguments, 2 ) ) :
-		this.messageFormatter( path ).apply( {}, slice.call( arguments, 1 ) );
+Globalize.prototype.formatMessage = function( path, variables, options ) {
+	return this.messageFormatter( path, options ).apply( {}, [ variables ] );
 };
 
 return Globalize;
