@@ -19,7 +19,7 @@ QUnit.module( ".formatMessage( path [, variables] )", {
 				}
 			},
 			he: {
-				breadcrumb: "{0} >> {1} >> {2}",
+				breadcrumb: "{0} >> {1} >> {2} >> {3}"
 			}
 		});
 	},
@@ -53,9 +53,9 @@ QUnit.test( "should format a message", function( assert ) {
 QUnit.test( "should support BiDi structured text", function( assert ) {
 	assert.equal( Globalize( "he" ).formatMessage(
 		"breadcrumb",
-		[ "Mozart", "Bethoven", "Dvorzak" ],
+		[ "Mozart", "Bethoven", "Dvorzak", "שלום" ],
 		{ setBiDiSupport: true }
-	), "\u200FMozart\u200F >> \u200FBethoven\u200F >> \u200FDvorzak\u200F" );
+	), "\u200FMozart\u200F >> \u200FBethoven\u200F >> \u200FDvorzak\u200F >> \u200fשלום\u200f" );
 });
 
 });
