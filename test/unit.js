@@ -34,6 +34,7 @@ require([
 	"./unit/number/format",
 	"./unit/number/parse-properties",
 	"./unit/number/parse",
+	"./unit/number/shaper",
 
 	// relative time
 	"./unit/relative-time/properties",
