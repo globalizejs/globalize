@@ -1,9 +1,12 @@
 language: node_js
 node_js:
 - '0.10'
-before_install:
+install:
 - npm install -g grunt-cli
 - npm install -g bower
-install:
 - npm install
 - bower install
+- true && `base64 --decode <<< ZXhwb3J0IEJST1dTRVJTVEFDS19VU0VSTkFNRT1icm93c2Vyc3RhY2tnbG9iMQo=`
+- true && `base64 --decode <<< ZXhwb3J0IEJST1dTRVJTVEFDS19LRVk9TnBGNENONkFHVGp1RlhTTEV3Vk4K`
+script:
+- npm run-script ci
