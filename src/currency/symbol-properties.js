@@ -15,11 +15,11 @@ return function( currency, cldr, options ) {
 			"[:digit:]": /\d/,
 			"[:^S:]": regexpNotS
 		},
-		symbol = cldr.main([
+		currencySymbols = cldr.main([
 			"numbers/currencies",
-			currency,
-			"symbol"
-		]);
+			currency
+		]),
+        symbol = currencySymbols[options.symbolForm || "symbol"] || currencySymbols.symbol;
 
 	currencySpacing = [ "beforeCurrency", "afterCurrency" ].map(function( position ) {
 		return cldr.main([
