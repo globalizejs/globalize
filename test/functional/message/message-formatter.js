@@ -2,12 +2,13 @@ define([
 	"globalize",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
+	"json!cldr-data/supplemental/ordinals.json",
 	"../../util",
 
 	"cldr/unresolved",
 	"globalize/message",
 	"globalize/plural"
-], function( Globalize, likelySubtags, plurals, util ) {
+], function( Globalize, likelySubtags, plurals, ordinals, util ) {
 
 QUnit.assert.messageFormatter = function( locale, path, variables, expected ) {
 	if ( arguments.length === 3 ) {
@@ -28,6 +29,7 @@ QUnit.module( ".messageFormatter( path )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		Globalize.load( plurals );
+		Globalize.load( ordinals );
 		Globalize.loadMessages({
 			root: {
 				amen: "Amen"
@@ -60,7 +62,11 @@ QUnit.module( ".messageFormatter( path )", {
 					"    one {one task}",
 					"  other {# tasks}",
 					"} remaining"
-				]
+				],
+				ordinal: [
+					"{cat, selectordinal, one{#st} two{#nd} few{#rd} other{#th} }",
+					"category"
+				],
 			},
 			"en-GB": {},
 			fr: {},
@@ -173,6 +179,23 @@ QUnit.test( "should support ICU message format", function( assert ) {
 	}), "You and Beethoven liked this" );
 
 	assert.equal( like({ count: 3 }), "You and 2 others liked this" );
+
+	// Selectordinal
+	assert.messageFormatter( "en", "ordinal", {
+		cat: 1,
+	}, "1st category" );
+
+	assert.messageFormatter( "en", "ordinal", {
+		cat: 2,
+	}, "2nd category" );
+
+	assert.messageFormatter( "en", "ordinal", {
+		cat: 3,
+	}, "3rd category" );
+
+	assert.messageFormatter( "en", "ordinal", {
+		cat: 4,
+	}, "4th category" );
 });
 
 // Reference #473
@@ -213,7 +236,7 @@ QUnit.test( "should allow for runtime compilation", function( assert ) {
 		function( runtimeArgs ) {
 			assert.equal(
 				runtimeArgs[ 0 ].toString(),
-				"(function( number, plural, pluralFuncs ) {\n  return function (d) { return plural(d.count, 1, pluralFuncs.en, { 0: function() { return \"Be the first to like this\";}, 1: function() { return \"You liked this\";}, one: function() { return \"You and \" + d.someone + \" liked this\";}, other: function() { return \"You and \" + number(d.count, 1) + \" others liked this\";} }); }\n})(messageFormat.number, messageFormat.plural, {\"en\": Globalize(\"en\").pluralGenerator()})"
+				"(function( number, plural, pluralFuncs ) {\n  return function (d) { return plural(d.count, 1, pluralFuncs.en, { 0: function() { return \"Be the first to like this\";}, 1: function() { return \"You liked this\";}, one: function() { return \"You and \" + d.someone + \" liked this\";}, other: function() { return \"You and \" + number(d.count, 1) + \" others liked this\";} }); }\n})(messageFormat.number, messageFormat.plural, {\"en\": Globalize(\"en\").pluralGenerator( { type: \"both\" } )})"
 			);
 		}
 	);

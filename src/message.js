@@ -84,7 +84,7 @@ Globalize.prototype.messageFormatter = function( path ) {
 
 	// Is plural module present? Yes, use its generator. Nope, use an error generator.
 	pluralGenerator = this.plural !== undefined ?
-		this.pluralGenerator() :
+		this.pluralGenerator( { type: "both" } ) :
 		createErrorPluralModulePresence;
 
 	formatter = new MessageFormat( cldr.locale, pluralGenerator ).compile( message );

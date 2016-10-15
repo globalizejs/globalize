@@ -2,16 +2,18 @@ define([
 	"globalize",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/plurals.json",
+	"json!cldr-data/supplemental/ordinals.json",
 	"../../util",
 
 	"globalize/message",
 	"globalize/plural"
-], function( Globalize, likelySubtags, plurals, util ) {
+], function( Globalize, likelySubtags, plurals, ordinals, util ) {
 
 QUnit.module( ".formatMessage( path [, variables] )", {
 	setup: function() {
 		Globalize.load( likelySubtags );
 		Globalize.load( plurals );
+		Globalize.load( ordinals );
 		Globalize.loadMessages({
 			en: {
 				greetings: {
