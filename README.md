@@ -183,6 +183,8 @@ Globalize("es").formatDate(new Date());
 // > "27/11/2015"
 ```
 
+Note `cldr-data` is an optional module, read [CLDR content](#cldr-content) section below for more information on how to get CLDR from different sources.
+
 Read the [Locales section](#locales) for more information about supported locales. For AMD, bower and other usage examples, see [Examples section](#examples).
 
 ### Installation
@@ -194,7 +196,7 @@ and download the latest available Globalize package.
 
 *By using a package manager...*
 
-Use bower `bower install globalize`, or npm `npm install globalize cldr-data`.
+Use bower `bower install globalize`, or npm `npm install globalize`.
 
 *By using source files...*
 
@@ -405,7 +407,7 @@ Figure out the deduced information by looking at the
 ```js
 var Globalize = require( "globalize" );
 Globalize.load( require( "cldr-data" ).entireSupplemental() );
-Globalize("en").cldr.attributes.maxLanguageId;
+Globalize( "en" ).cldr.attributes.maxLanguageId;
 // > "en-Latn-US"
 ```
 

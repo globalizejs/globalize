@@ -8,10 +8,10 @@
     "bower.json"
   ],
   "dependencies": {
-    "cldrjs": "^0.4.4",
-    "cldr-data": ">=25"
+    "cldrjs": "^0.4.4"
   },
   "devDependencies": {
+    "cldr-data": ">=25",
     "es5-shim": "3.4.0",
     "make-plural": "eemeli/make-plural.js#3.0.0",
     "messageformat": "SlexAxton/messageformat.js#v0.3.0-1",
