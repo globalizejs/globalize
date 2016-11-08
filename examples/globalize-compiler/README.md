@@ -14,7 +14,7 @@ the Cldrjs library) and the [Globalize Compiler][].
 npm install
 ```
 
-[Globalize Compiler]: https://github.com/jquery-support/globalize-compiler
+[Globalize Compiler]: https://github.com/globalizejs/globalize-compiler
 
 ## Running the example
 
@@ -42,4 +42,4 @@ CLDR data in production here.
 1. Understand the demo by reading the source code. We have comments there for
 you.
 
-[Globalize Compiler documentation]: https://github.com/jquery-support/globalize-compiler#README
+[Globalize Compiler documentation]: https://github.com/globalizejs/globalize-compiler#README

@@ -1,8 +1,8 @@
 # Globalize
 
-[![Build Status](https://secure.travis-ci.org/jquery/globalize.svg?branch=master)](http://travis-ci.org/jquery/globalize)
-[![devDependency Status](https://david-dm.org/jquery/globalize/status.svg)](https://david-dm.org/jquery/globalize#info=dependencies)
-[![devDependency Status](https://david-dm.org/jquery/globalize/dev-status.svg)](https://david-dm.org/jquery/globalize#info=devDependencies)
+[![Build Status](https://secure.travis-ci.org/globalizejs/globalize.svg?branch=master)](http://travis-ci.org/globalizejs/globalize)
+[![devDependency Status](https://david-dm.org/globalizejs/globalize/status.svg)](https://david-dm.org/globalizejs/globalize#info=dependencies)
+[![devDependency Status](https://david-dm.org/globalizejs/globalize/dev-status.svg)](https://david-dm.org/globalizejs/globalize#info=devDependencies)
 
 A JavaScript library for internationalization and localization that leverage the
 official [Unicode CLDR](http://cldr.unicode.org/) JSON data. The library works both for the browser and as a
@@ -191,7 +191,7 @@ Read the [Locales section](#locales) for more information about supported locale
 
 *By downloading a ZIP or a TAR.GZ...*
 
-Click the github [releases tab](https://github.com/jquery/globalize/releases)
+Click the github [releases tab](https://github.com/globalizejs/globalize/releases)
 and download the latest available Globalize package.
 
 *By using a package manager...*
@@ -200,7 +200,7 @@ Use bower `bower install globalize`, or npm `npm install globalize`.
 
 *By using source files...*
 
-1. `git clone https://github.com/jquery/globalize.git`.
+1. `git clone https://github.com/globalizejs/globalize.git`.
 1. [Build the distribution files](#build).
 
 ### Requirements
@@ -316,7 +316,7 @@ To illustrate, see our [Basic Globalize Compiler example][].
 For information about the Globalize Compiler CLI or its JavaScript API, see the
 [Globalize Compiler documentation][].
 
-[Globalize Compiler documentation]: https://github.com/jquery-support/globalize-compiler#README
+[Globalize Compiler documentation]: https://github.com/globalizejs/globalize-compiler#README
 
 ### Examples
 
@@ -749,17 +749,17 @@ best suites your interest: [quick change][], [new features][], [bug fixes][],
 module][], [number module][], [plural module][], [relative time module][]. Last
 but not least, feel free to [get in touch](http://irc.jquery.org/).
 
-[bug fixes]: https://github.com/jquery/globalize/labels/bug
-[documentation improvements]: https://github.com/jquery/globalize/labels/docs
-[new features]: https://github.com/jquery/globalize/labels/new%20feature
-[quick change]: https://github.com/jquery/globalize/labels/quick%20change
+[bug fixes]: https://github.com/globalizejs/globalize/labels/bug
+[documentation improvements]: https://github.com/globalizejs/globalize/labels/docs
+[new features]: https://github.com/globalizejs/globalize/labels/new%20feature
+[quick change]: https://github.com/globalizejs/globalize/labels/quick%20change
 
-[currency module]: https://github.com/jquery/globalize/labels/currency%20module
-[date module]: https://github.com/jquery/globalize/labels/date%20module
-[message module]: https://github.com/jquery/globalize/labels/message%20module
-[number module]: https://github.com/jquery/globalize/labels/number%20module
-[plural module]: https://github.com/jquery/globalize/labels/plural%20module
-[relative time module]: https://github.com/jquery/globalize/labels/relative%20time%20module
+[currency module]: https://github.com/globalizejs/globalize/labels/currency%20module
+[date module]: https://github.com/globalizejs/globalize/labels/date%20module
+[message module]: https://github.com/globalizejs/globalize/labels/message%20module
+[number module]: https://github.com/globalizejs/globalize/labels/number%20module
+[plural module]: https://github.com/globalizejs/globalize/labels/plural%20module
+[relative time module]: https://github.com/globalizejs/globalize/labels/relative%20time%20module
 
 ### Roadmap
 
@@ -775,8 +775,8 @@ find:
   accomplish now. Releases are published following semver rules as often as
   possible.
 
-[Ongoing work]: https://github.com/jquery/globalize/labels/Current%20Sprint
-[Everything else]: https://github.com/jquery/globalize/issues?utf8=%E2%9C%93&q=is%3Aopen+-label%3A%22Current+Sprint%22+
+[Ongoing work]: https://github.com/globalizejs/globalize/labels/Current%20Sprint
+[Everything else]: https://github.com/globalizejs/globalize/issues?utf8=%E2%9C%93&q=is%3Aopen+-label%3A%22Current+Sprint%22+
 
 ## Development
 
