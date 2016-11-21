@@ -1,7 +1,8 @@
 define([
-	"./number-re",
-	"../util/regexp/escape"
-], function( numberNumberRe, regexpEscape ) {
+	"../util/regexp/cf-g",
+	"../util/regexp/dash-g",
+	"../util/regexp/zs-g"
+], function( regexpCfG, regexpDashG, regexpZsG ) {
 
 /**
  * parse( value, properties )
@@ -15,103 +16,124 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
 return function( value, properties ) {
-	var aux, infinitySymbol, invertedNuDigitsMap, invertedSymbolMap, localizedDigitRe,
-		localizedSymbolsRe, negativePrefix, negativeSuffix, number, prefix, suffix;
+	var grammar, invertedNuDigitsMap, invertedSymbolMap, negative, number, prefix, prefixNSuffix,
+		suffix, tokenizer, valid;
 
-	infinitySymbol = properties[ 0 ];
-	invertedSymbolMap = properties[ 1 ];
-	negativePrefix = properties[ 2 ];
-	negativeSuffix = properties[ 3 ];
-	invertedNuDigitsMap = properties[ 4 ];
+	// Grammar:
+	// - Value <=           NaN | PositiveNumber | NegativeNumber
+	// - PositiveNumber <=  PositivePrefix NumberOrInf PositiveSufix
+	// - NegativeNumber <=  NegativePrefix NumberOrInf
+	// - NumberOrInf <=     Number | Inf
+	grammar = [
+		[ "nan" ],
+		[ "prefix", "infinity", "suffix" ],
+		[ "prefix", "number", "suffix" ],
+		[ "negativePrefix", "infinity", "negativeSuffix" ],
+		[ "negativePrefix", "number", "negativeSuffix" ]
+	];
 
-	// Infinite number.
-	if ( aux = value.match( infinitySymbol ) ) {
+	invertedSymbolMap = properties[ 0 ];
+	invertedNuDigitsMap = properties[ 1 ] || {};
+	tokenizer = properties[ 2 ];
 
-		number = Infinity;
-		prefix = value.slice( 0, aux.length );
-		suffix = value.slice( aux.length + 1 );
+	// Loose Matching:
+	// - Ignore all format characters, which includes RLM, LRM or ALM used to control BIDI
+	//   formatting.
+	// - Map all characters in [:Zs:] to U+0020 SPACE;
+	// - Map all characters in [:Dash:] to U+002D HYPHEN-MINUS;
+	value = value
+		.replace( regexpCfG, "" )
+		.replace( regexpDashG, "-" )
+		.replace( regexpZsG, " " );
 
-	// Finite number.
-	} else {
+	function parse( type ) {
+		return function( lexeme ) {
 
-		// TODO: Create it during setup, i.e., make it a property.
-		localizedSymbolsRe = new RegExp(
-			Object.keys( invertedSymbolMap ).map(function( localizedSymbol ) {
-				return regexpEscape( localizedSymbol );
-			}).join( "|" ),
-			"g"
-		);
+			// Reverse localized symbols and numbering system.
+			lexeme = lexeme.split( "" ).map(function( character ) {
+				return invertedSymbolMap[ character ] ||
+					invertedNuDigitsMap[ character ] ||
+					character;
+			}).join( "" );
 
-		// Reverse localized symbols.
-		value = value.replace( localizedSymbolsRe, function( localizedSymbol ) {
-			return invertedSymbolMap[ localizedSymbol ];
-		});
+			switch ( type ) {
+				case "infinity":
+					number = Infinity;
+					break;
 
-		// Reverse localized numbering system.
-		if ( invertedNuDigitsMap ) {
+				case "nan":
+					number = NaN;
+					break;
 
-			// TODO: Create it during setup, i.e., make it a property.
-			localizedDigitRe = new RegExp(
-				Object.keys( invertedNuDigitsMap ).map(function( localizedDigit ) {
-					return regexpEscape( localizedDigit );
-				}).join( "|" ),
-				"g"
-			);
-			value = value.replace( localizedDigitRe, function( localizedDigit ) {
-				return invertedNuDigitsMap[ localizedDigit ];
+				case "number":
+
+					// Remove grouping separators.
+					lexeme = lexeme.replace( /,/g, "" );
+
+					number = +lexeme;
+					break;
+
+				case "prefix":
+				case "negativePrefix":
+					prefix = lexeme;
+					break;
+
+				case "suffix":
+					suffix = lexeme;
+					break;
+
+				case "negativeSuffix":
+					suffix = lexeme;
+					negative = true;
+					break;
+
+				// This should never be reached.
+				default:
+					throw new Error( "Internal error" );
+			}
+			return "";
+		};
+	}
+
+	function tokenizeNParse( _value, grammar ) {
+		return grammar.some(function( statement ) {
+			var value = _value;
+			statement.every(function( type ) {
+				if ( value.match( tokenizer[ type ] ) === null ) {
+					return false;
+				}
+
+				// Consume and parse it.
+				value = value.replace( tokenizer[ type ], parse( type ) );
+				return true;
 			});
-		}
 
-		// Add padding zero to leading decimal.
-		if ( value.charAt( 0 ) === "." ) {
-			value = "0" + value;
-		}
+			// Note: .every() return value above is ignored, because what counts in the end is
+			// whether value is entirely consumed.
+			return !value.length;
+		});
+	}
 
-		// Is it a valid number?
-		value = value.match( numberNumberRe );
-		if ( !value ) {
+	valid = tokenizeNParse( value, grammar );
 
-			// Invalid number.
-			return NaN;
-		}
+	// NaN
+	if ( !valid || isNaN( number ) ) {
+		return NaN;
+	}
 
-		prefix = value[ 1 ];
-		suffix = value[ 6 ];
+	prefixNSuffix = "" + prefix + suffix;
 
-		// Remove grouping separators.
-		number = value[ 2 ].replace( /,/g, "" );
+	// Percent
+	if ( prefixNSuffix.indexOf( "%" ) !== -1 ) {
+		number /= 100;
 
-		// Scientific notation
-		if ( value[ 5 ] ) {
-			number += value[ 5 ];
-		}
-
-		number = +number;
-
-		// Is it a valid number?
-		if ( isNaN( number ) ) {
-
-			// Invalid number.
-			return NaN;
-		}
-
-		// Percent
-		if ( value[ 0 ].indexOf( "%" ) !== -1 ) {
-			number /= 100;
-			suffix = suffix.replace( "%", "" );
-
-		// Per mille
-		} else if ( value[ 0 ].indexOf( "\u2030" ) !== -1 ) {
-			number /= 1000;
-			suffix = suffix.replace( "\u2030", "" );
-		}
+	// Per mille
+	} else if ( prefixNSuffix.indexOf( "\u2030" ) !== -1 ) {
+		number /= 1000;
 	}
 
 	// Negative number
-	// "If there is an explicit negative subpattern, it serves only to specify the negative prefix
-	// and suffix. If there is no explicit negative subpattern, the negative subpattern is the
-	// localized minus sign prefixed to the positive subpattern" UTS#35
-	if ( prefix === negativePrefix && suffix === negativeSuffix ) {
+	if ( negative ) {
 		number *= -1;
 	}
 

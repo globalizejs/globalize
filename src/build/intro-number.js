@@ -37,7 +37,6 @@
 }(this, function( Cldr, Globalize ) {
 
 var createError = Globalize._createError,
-	objectExtend = Globalize._objectExtend,
 	regexpEscape = Globalize._regexpEscape,
 	runtimeBind = Globalize._runtimeBind,
 	stringPad = Globalize._stringPad,

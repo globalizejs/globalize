@@ -25,11 +25,11 @@ return function( pattern ) {
 	}
 
 	prefix = pattern[ 1 ];
-	padding = pattern[ 3 ];
-	integerFractionOrSignificantPattern = pattern[ 4 ];
-	significantPattern = pattern[ 8 ];
-	scientificNotation = pattern[ 9 ];
-	suffix = pattern[ 10 ];
+	padding = pattern[ 4 ];
+	integerFractionOrSignificantPattern = pattern[ 5 ];
+	significantPattern = pattern[ 9 ];
+	scientificNotation = pattern[ 10 ];
+	suffix = pattern[ 11 ];
 
 	// Significant digit format
 	if ( significantPattern ) {
@@ -41,8 +41,8 @@ return function( pattern ) {
 
 	// Integer and fractional format
 	} else {
-		fractionPattern = pattern[ 7 ];
-		integerPattern = pattern[ 6 ];
+		fractionPattern = pattern[ 8 ];
+		integerPattern = pattern[ 7 ];
 
 		if ( fractionPattern ) {
 

@@ -5,18 +5,19 @@ define([
 	"json!cldr-data/main/ar/numbers.json",
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/es/numbers.json",
+	"json!cldr-data/main/fa/numbers.json",
 	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/numberingSystems.json",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, format, properties, arNumbers, enNumbers, esNumbers, zhNumbers, likelySubtags,
-	numberingSystems ) {
+], function( Cldr, format, properties, arNumbers, enNumbers, esNumbers, faNumbers, zhNumbers,
+	likelySubtags, numberingSystems ) {
 
 // 1: Earth average diameter according to:
 // http://www.wolframalpha.com/input/?i=earth+diameter
-var ar, en, es, zh,
+var ar, en, es, fa, zh,
 	deci = 0.1,
 	earthDiameter = 12735, /* 1 */
 	pi = 3.14159265359;
@@ -25,6 +26,7 @@ Cldr.load(
 	arNumbers,
 	enNumbers,
 	esNumbers,
+	faNumbers,
 	zhNumbers,
 	likelySubtags,
 	numberingSystems
@@ -33,6 +35,7 @@ Cldr.load(
 ar = new Cldr( "ar" );
 en = new Cldr( "en" );
 es = new Cldr( "es" );
+fa = new Cldr( "fa" );
 zh = new Cldr( "zh-u-nu-native" );
 
 QUnit.module( "Number Format" );
@@ -201,6 +204,9 @@ QUnit.test( "should format negative decimal", function( assert ) {
 	assert.equal( format( -pi, properties( "@@#", en ) ), "-3.14" );
 	assert.equal( format( -pi, properties( "@@#;(@@#)", en ) ), "(3.14)" );
 
+	// The U+002D HYPHEN-MINUS sign shall be localized.
+	assert.equal( format( -pi, properties( "0.##", fa ) ), "\u200e\u2212۳٫۱۴" );
+
 	// The number of digits, minimal digits, and other characteristics shall be ignored in the negative subpattern.
 	assert.equal( format( -pi, properties( "0.##;(0)", en ) ), "(3.14)" );
 	assert.equal( format( -pi, properties( "@@#;(0)", en ) ), "(3.14)" );
@@ -292,6 +298,9 @@ QUnit.test( "should format infinite numbers", function( assert ) {
 
 QUnit.test( "should format literal (')", function( assert ) {
 	assert.equal( format( 69900, properties( "'$'#,##0", en ) ), "$69,900" );
+
+	// Make sure quoted characters (in this case, minus sign) aren't localized.
+	assert.equal( format( -pi, properties( "0.##;'-'0.##", fa ) ), "-۳٫۱۴" );
 });
 
 });

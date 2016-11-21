@@ -34,16 +34,17 @@ define(function() {
  *  0: number_pattern_re
  *  1: prefix
  *  2: -
- *  3: padding
- *  4: (integer_fraction_pattern | significant_pattern)
- *  5: integer_fraction_pattern
- *  6: integer_pattern
- *  7: fraction_pattern
- *  8: significant_pattern
- *  9: scientific_notation
- * 10: suffix
- * 11: -
+ *  3: -
+ *  4: padding
+ *  5: (integer_fraction_pattern | significant_pattern)
+ *  6: integer_fraction_pattern
+ *  7: integer_pattern
+ *  8: fraction_pattern
+ *  9: significant_pattern
+ * 10: scientific_notation
+ * 11: suffix
+ * 12: -
  */
-return ( /^(('[^']+'|''|[^*#@0,.E])*)(\*.)?((([#,]*[0,]*0+)(\.0*[0-9]*#*)?)|([#,]*@+#*))(E\+?0+)?(('[^']+'|''|[^*#@0,.E])*)$/ );
+return ( /^(('([^']|'')*'|[^*#@0,.E])*)(\*.)?((([#,]*[0,]*0+)(\.0*[0-9]*#*)?)|([#,]*@+#*))(E\+?0+)?(('[^']+'|''|[^*#@0,.E])*)$/ );
 
 });

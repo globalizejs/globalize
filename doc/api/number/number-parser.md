@@ -58,19 +58,73 @@ esParser( "3,14" );
 Some more examples.
 
 ```javascript
-var parser = Globalize( "en" ).numberParser();
+var enParser = Globalize( "en" ).numberParser();
 
-parser( "12,735.00" );
+enParser( "12,735" );
 // > 12735
 
-parser( "6.626E-34" );
-// > 6.626e-34
+enParser( "12,735.00" );
+// > 12735
 
-parser( "∞" );
+Globalize( "en" ).numberParser({ style: "percent" })( "100%" );
+// > 1
+
+enParser( "∞" );
 // > Infinity
 
-parser( "invalid-stuff" );
+enParser( "-3" );
+// > -3
+
+enParser( "-∞" );
+// > -Infinity
+
+enParser( "invalid-stuff" );
 // > NaN
+
+enParser( "invalid-stuff-that-includes-number-123" );
+// > NaN
+
+enParser( "invalid-stuff-123-that-includes-number" );
+// > NaN
+
+enParser( "123-invalid-stuff-that-includes-number" );
+// > NaN
+
+// Invalid decimal separator. (note `.` is used as decimal separator for English)
+enParser( "3,14" );
+// > NaN
+
+// Invalid grouping separator position.
+enParser( "127,35.00" );
+// > NaN
+```
+
+Loose matching examples.
+
+```js
+var svParser = Globalize( "sv" ).numberParser();
+
+// Swedish uses NO-BREAK-SPACE U+00A0 as grouping separator.
+svParser( "1\xA0000,50" );
+// > 1000.5
+
+// The parser is lenient and accepts various space characters like regular space
+// SPACE U+0020. Technically, it accepts any character of the Unicode general
+// category [:Zs:].
+svParser( "1 000,50" );
+// > 1000.5
+
+var fiParser = Globalize( "fi" ).numberParser();
+
+// Finish uses MINUS SIGN U+2212 for the minus sign.
+fiParser( "\u22123" );
+// > -3
+
+// The parser is lenient and accepts various hyphen characters like regular
+// HYPHEN-MINUS U+002D. Technically, it accepts any character of the Unicode
+// general category [:Dash:].
+fiParser( "-3" );
+// > -3
 ```
 
 For improved performance on iterations, first create the parser. Then, reuse it

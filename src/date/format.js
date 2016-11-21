@@ -5,9 +5,10 @@ define([
 	"./pattern-re",
 	"./start-of",
 	"./timezone-hour-format",
-	"./week-days"
+	"./week-days",
+	"../util/remove-literal-quotes"
 ], function( dateDayOfWeek, dateDayOfYear, dateMillisecondsInDay, datePatternRe, dateStartOf,
-	dateTimezoneHourFormat, dateWeekDays ) {
+	dateTimezoneHourFormat, dateWeekDays, removeLiteralQuotes ) {
 
 /**
  * format( date, properties )
@@ -248,11 +249,7 @@ return function( date, numberFormatters, properties ) {
 
 			// ' literals.
 			case "'":
-				current = current.replace( /''/, "'" );
-				if ( length > 2 ) {
-					current = current.slice( 1, -1 );
-				}
-				ret = current;
+				ret = removeLiteralQuotes( current );
 				break;
 
 			// Anything else is considered a literal, including [ ,:/.@#], chinese, japonese, and

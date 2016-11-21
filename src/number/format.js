@@ -1,9 +1,10 @@
 define([
 	"./format/grouping-separator",
 	"./format/integer-fraction-digits",
-	"./format/significant-digits"
+	"./format/significant-digits",
+	"../util/remove-literal-quotes"
 ], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits,
-	numberFormatSignificantDigits ) {
+	numberFormatSignificantDigits, removeLiteralQuotes ) {
 
 /**
  * format( number, properties )
@@ -101,11 +102,7 @@ return function( number, properties ) {
 
 		// Literals
 		if ( literal ) {
-			literal = literal.replace( /''/, "'" );
-			if ( literal.length > 2 ) {
-				literal = literal.slice( 1, -1 );
-			}
-			return literal;
+			return removeLiteralQuotes( literal );
 		}
 
 		// Symbols

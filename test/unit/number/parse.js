@@ -35,7 +35,7 @@ ar = new Cldr( "ar" );
 en = new Cldr( "en" );
 es = new Cldr( "es" );
 pt = new Cldr( "pt" );
-ru = new Cldr( "sv" );
+ru = new Cldr( "ru" );
 sv = new Cldr( "sv" );
 zh = new Cldr( "zh-u-nu-native" );
 
@@ -55,13 +55,29 @@ QUnit.test( "should parse zero-padded integers", function( assert ) {
 
 QUnit.test( "should parse grouping separators", function( assert ) {
 	assert.equal( parse( "12,735", properties( "#,##0.#", en ) ), 12735 );
+	assert.equal( parse( "12735", properties( "#,##0.#", en ) ), 12735 );
 	assert.equal( parse( "1,2,7,35", properties( "#,#,#0.#", en ) ), 12735 );
 	assert.equal( parse( "12.735", properties( "#,##0", es ) ), 12735 );
+});
+
+QUnit.test( "should parse invalid grouping separators as NaN", function( assert ) {
+	assert.deepEqual( parse( "1,2735", properties( "#,##0.#", en ) ), NaN );
+	assert.deepEqual( parse( "1,2,735", properties( "#,#,#0.#", en ) ), NaN );
+	assert.deepEqual( parse( "1,27,35", properties( "#,#,#0.#", en ) ), NaN );
+	assert.deepEqual( parse( "12,7,35", properties( "#,#,#0.#", en ) ), NaN );
+	assert.deepEqual( parse( "1.2735", properties( "#,##0", es ) ), NaN );
 });
 
 QUnit.test( "should parse negative integers", function( assert ) {
 	assert.equal( parse( "-3", properties( "0", en ) ), -3 );
 	assert.equal( parse( "(3)", properties( "0;(0)", en ) ), -3 );
+	assert.equal( parse( "-3", properties( "0", sv ) ), -3 );
+	assert.equal( parse( "\u22123", properties( "0", sv ) ), -3 );
+});
+
+QUnit.test( "should parse mixed non breaking space and breaking space", function( assert ) {
+	assert.equal( parse( "12\xA0735", properties( "#,##0", sv ) ), 12735 );
+	assert.equal( parse( "12 735", properties( "#,##0", sv ) ), 12735 );
 });
 
 /**
@@ -74,6 +90,11 @@ QUnit.test( "should parse decimals", function( assert ) {
 	assert.equal( parse( "٣٫١٤", properties( "0.##", ar ) ), 3.14 );
 	assert.equal( parse( "三.一四", properties( "0.##", zh ) ), 3.14 );
 	assert.equal( parse( "3.00", properties( "0.##", en ) ), 3 );
+});
+
+QUnit.test( "should parse invalid decimals as NaN", function( assert ) {
+	assert.deepEqual( parse( "3,14", properties( "0.#", en ) ), NaN );
+	assert.deepEqual( parse( "3.14", properties( "0.#", es ) ), NaN );
 });
 
 QUnit.test( "should parse zero-padded decimals", function( assert ) {
@@ -109,6 +130,7 @@ QUnit.test( "should parse percent", function( assert ) {
 	assert.equal( parse( "100%", properties( "0%", en ) ), 1 );
 	assert.equal( parse( "0.5%", properties( "##0.#%", en ) ), 0.005 );
 	assert.equal( parse( "0.5%", properties( "##0.#%", en ) ), 0.005 );
+	assert.equal( parse( "%100", properties( "%0", en ) ), 1 );
 });
 
 QUnit.test( "should localize percent symbol (%)", function( assert ) {
@@ -146,14 +168,6 @@ QUnit.test( "should parse negative mille", function( assert ) {
 });
 
 /**
- *  Scientific notation
- */
-QUnit.test( "should parse scientific notation numbers", function( assert ) {
-	assert.equal( parse( "3E-3", properties( "0", en ) ), 0.003 );
-	assert.equal( parse( "3×10^−3", properties( "0", sv ) ), 0.003 );
-});
-
-/**
  *  Infinite number
  */
 QUnit.test( "should parse infinite numbers", function( assert ) {
@@ -165,10 +179,23 @@ QUnit.test( "should parse infinite numbers", function( assert ) {
 /**
  *  NaN
  */
-
-QUnit.test( "should parse invalid numbers as NaN", function( assert ) {
-	assert.deepEqual( parse( "invalid", properties( "0", en ) ), NaN );
+QUnit.test( "should parse NaN", function( assert ) {
 	assert.deepEqual( parse( "NaN", properties( "0", en ) ), NaN );
+});
+
+/**
+ *  Prefix
+ */
+QUnit.test( "should parse invalid prefix as NaN", function( assert ) {
+	assert.deepEqual( parse( "invalid", properties( "0", en ) ), NaN );
+	assert.deepEqual( parse( "garbage123", properties( "0", en ) ), NaN );
+});
+
+/**
+ *  Suffix
+ */
+QUnit.test( "should parse invalid suffix as NaN", function( assert ) {
+	assert.deepEqual( parse( "123garbage", properties( "0", en ) ), NaN );
 });
 
 });

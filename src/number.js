@@ -16,6 +16,7 @@ define([
 	"./number/parse-properties",
 	"./number/pattern",
 	"./number/symbol",
+	"./util/remove-literal-quotes",
 	"./util/string/pad",
 
 	"cldr/event",
@@ -24,7 +25,7 @@ define([
 	validateDefaultLocale, validateParameterPresence, validateParameterRange,
 	validateParameterTypeNumber, validateParameterTypePlainObject, validateParameterTypeString,
 	numberFormatterFn, numberFormatProperties, numberNumberingSystem, numberParserFn,
-	numberParseProperties, numberPattern, numberSymbol, stringPad ) {
+	numberParseProperties, numberPattern, numberSymbol, removeLiteralQuotes, stringPad ) {
 
 function validateDigits( properties ) {
 	var minimumIntegerDigits = properties[ 2 ],
@@ -125,7 +126,7 @@ Globalize.prototype.numberParser = function( options ) {
 		pattern = numberPattern( options.style || "decimal", cldr );
 	}
 
-	properties = numberParseProperties( pattern, cldr );
+	properties = numberParseProperties( pattern, cldr, options );
 
 	cldr.off( "get", validateCldr );
 
@@ -177,6 +178,7 @@ Globalize._createErrorUnsupportedFeature = createErrorUnsupportedFeature;
 Globalize._numberNumberingSystem = numberNumberingSystem;
 Globalize._numberPattern = numberPattern;
 Globalize._numberSymbol = numberSymbol;
+Globalize._removeLiteralQuotes = removeLiteralQuotes;
 Globalize._stringPad = stringPad;
 Globalize._validateParameterTypeNumber = validateParameterTypeNumber;
 Globalize._validateParameterTypeString = validateParameterTypeString;

@@ -1,8 +1,9 @@
 define([
 	"./pattern-re",
 	"../util/regexp/escape",
-	"../util/regexp/n"
-], function( datePatternRe, regexpEscape, regexpN ) {
+	"../util/regexp/n",
+	"../util/remove-literal-quotes"
+], function( datePatternRe, regexpEscape, regexpN, removeLiteralQuotes ) {
 
 /**
  * tokenizer( value, pattern, properties )
@@ -368,11 +369,7 @@ return function( value, numberParser, properties ) {
 
 			case "'":
 				token.type = "literal";
-				current = current.replace( /''/, "'" );
-				if ( length > 2 ) {
-					current = current.slice( 1, -1 );
-				}
-				tokenRe = new RegExp( regexpEscape( current ) );
+				tokenRe = new RegExp( regexpEscape( removeLiteralQuotes( current ) ) );
 				break;
 
 			default:

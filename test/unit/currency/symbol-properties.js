@@ -37,6 +37,7 @@ QUnit.module( "Currency Symbol Properties" );
 QUnit.test( "should return pattern replacing `¤` with the appropriate currency symbol literal", function( assert ) {
 	assert.deepEqual( symbolProperties( "USD", en, {} ), { pattern: "'$'#,##0.00" } );
 	assert.deepEqual( symbolProperties( "EUR", en, {} ), { pattern: "'€'#,##0.00" } );
+	assert.deepEqual( symbolProperties( "CLF", en, {} ), { pattern: "'CLF' #,##0.0000" } );
 	assert.deepEqual( symbolProperties( "USD", de, {} ), { pattern: "#,##0.00 '$'" } );
 	assert.deepEqual( symbolProperties( "EUR", de, {} ), { pattern: "#,##0.00 '€'" } );
 	assert.deepEqual( symbolProperties( "USD", zh, {} ), { pattern: "'US$'#,##0.00" } );

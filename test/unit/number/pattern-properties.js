@@ -20,6 +20,8 @@ QUnit.test( "should return prefix", function( assert ) {
 	assert.equal( properties( "0", en )[ 0 ], "" );
 	assert.equal( properties( "foo 0", en )[ 0 ], "foo " );
 	assert.equal( properties( "-0", en )[ 0 ], "-" );
+	assert.equal( properties( "'-'0", en )[ 0 ], "'-'" );
+	assert.equal( properties( "-'$'0", en )[ 0 ], "-'$'" );
 });
 
 QUnit.test( "should return minimumIntegerDigits", function( assert ) {

@@ -41,4 +41,5 @@ QUnit.test( "should allow different round options", function( assert ) {
 QUnit.test( "should handle inaccurate floating point arithmetics", function( assert ) {
 	assert.equal( formatSignificantDigits( 0.00012345, 1, 3, round ), "0.000123" );
 });
+
 });

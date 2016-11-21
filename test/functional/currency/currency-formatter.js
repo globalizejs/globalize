@@ -84,6 +84,10 @@ QUnit.test( "should return a currency formatter", function( assert ) {
 	assert.equal( de.currencyFormatter( "USD" )( teslaS ), "69.900,00 $" );
 	assert.equal( zh.currencyFormatter( "USD" )( teslaS ), "US$69,900.00" );
 
+	assert.equal( Globalize.currencyFormatter( "USD" )( -teslaS ), "-$69,900.00" );
+	assert.equal( de.currencyFormatter( "USD" )( -teslaS ), "-69.900,00 $" );
+	assert.equal( zh.currencyFormatter( "USD" )( -teslaS ), "-US$69,900.00" );
+
 	assert.equal( Globalize.currencyFormatter( "USD", code )( teslaS ), "69,900.00 USD" );
 	assert.equal( de.currencyFormatter( "USD", code )( teslaS ), "69.900,00 USD" );
 	assert.equal( zh.currencyFormatter( "USD", code )( teslaS ), "69,900.00USD" );
