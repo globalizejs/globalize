@@ -1,46 +1,35 @@
 define(function() {
 
-return function( cldr, messageformatter, runtime, pluralType, locale, embeddedFormatters ) {
-	var origToString = messageformatter.toString;
+return function( messageformatter, formatterSrc, runtime, pluralType, locale, formatters ) {
+	var hasFormatters = formatters.length > 0;
 
 	messageformatter.toString = function() {
-		var argNames, argValues, output,
-			args = {};
-
-		// Properly adjust SlexAxton/messageformat.js compiled variables with Globalize variables:
-		output = origToString.call( messageformatter );
+		var locals = [];
+		var argCount = 0,
+			args = [];
 
 		if ( runtime.number ) {
-			args.number = "messageFormat.number";
+			locals.push( "var number = messageFormat.number;" );
 		}
 
 		if ( runtime.plural ) {
-			args.plural = "messageFormat.plural";
+			locals.push( "var plural = messageFormat.plural;" );
 		}
 
 		if ( runtime.select ) {
-			args.select = "messageFormat.select";
-		}
-
-		if ( embeddedFormatters.length ) {
-			args.fmt = "[" + embeddedFormatters.map( function( fn ) {
-				return fn.generatorString();
-			} ).join( ", " ) + "]";
+			locals.push( "var select = messageFormat.select;" );
 		}
 
 		if ( pluralType !== false ) {
-			args[locale] = "Globalize(\"" + locale + "\")." +
-				"pluralGenerator( { type: \"" + pluralType + "\" } )";
+			args.push( locale );
+			argCount++;
 		}
 
-		argNames = Object.keys( args ).join( ", " );
-		argValues = Object.keys( args ).map(function( key ) {
-			return args[ key ];
-		}).join( ", " );
-
-		return "(function( " + argNames + " ) {\n" +
-			"  return " + output + "\n" +
-			"})(" + argValues + ")";
+		return "(function( " + args.join( ", " ) + " ) {\n" +
+			( locals.length ? ( locals.join( "\n" ) + "\n" ) : "" ) +
+			( hasFormatters ? "  var fmt = [].slice.call( arguments, " + argCount + " );\n" : "" ) +
+			"  return " + formatterSrc + "\n" +
+			"})";
 	};
 
 	return messageformatter;

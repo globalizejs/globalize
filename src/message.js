@@ -109,16 +109,19 @@ Globalize.prototype.messageFormatter = function( path ) {
 
 	/* jshint evil:true */
 	formatter = new Function(
-		"number, plural, select, fmt", messageCompiler.funcname( cldr.locale ),
-		"return " + formatterSrc )(
-			runtime.number, runtime.plural, runtime.select, compiler.formatters, pluralGenerator
-		);
+		"number, plural, select", messageCompiler.funcname( cldr.locale ),
+		"  var fmt = [].slice.call( arguments, 4 );\n" +
+		"  return " + formatterSrc + "\n"
+	);
 
-	returnFn = messageFormatterFn( formatter );
+	returnFn = messageFormatterFn.apply( this, [
+		formatter,
+		runtime.number, runtime.plural, runtime.select, pluralGenerator
+	].concat( compiler.formatters ) );
 
 	var runtimeArgs = [
 		messageFormatterRuntimeBind(
-			cldr, formatter, compiler.runtime, pluralType, cldr.locale, compiler.formatters
+			formatter, formatterSrc, compiler.runtime, pluralType, cldr.locale, compiler.formatters
 		)
 	];
 

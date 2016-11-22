@@ -3,6 +3,7 @@ define([
 ], function( validateParameterTypeMessageVariables ) {
 
 return function( formatter ) {
+	formatter = formatter.apply( null, [].slice.call( arguments, 1 ) );
 	return function messageFormatter( variables ) {
 		if ( typeof variables === "number" || typeof variables === "string" ) {
 			variables = [].slice.call( arguments, 0 );
