@@ -115,14 +115,15 @@ Globalize.prototype.messageFormatter = function( path ) {
 	);
 
 	returnFn = messageFormatterFn.apply( this, [
-		formatter,
+		formatter, "call",
 		runtime.number, runtime.plural, runtime.select, pluralGenerator
 	].concat( compiler.formatters ) );
 
 	var runtimeArgs = [
 		messageFormatterRuntimeBind(
 			formatter, formatterSrc, compiler.runtime, pluralType, cldr.locale, compiler.formatters
-		)
+		),
+		"call"
 	];
 
 	if ( pluralGenerator ) {
