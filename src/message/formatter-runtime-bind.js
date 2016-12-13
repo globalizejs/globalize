@@ -25,7 +25,8 @@ return function( cldr, messageformatter ) {
 
 		output.replace( /pluralFuncs(\[([^\]]+)\]|\.([a-zA-Z]+))/, function( match ) {
 			args.pluralFuncs = "{" +
-				"\"" + locale + "\": Globalize(\"" + locale + "\").pluralGenerator()" +
+				"\"" + locale + "\": Globalize(\"" + locale + "\")." +
+				"pluralGenerator( { type: \"both\" } )" +
 				"}";
 			return match;
 		});

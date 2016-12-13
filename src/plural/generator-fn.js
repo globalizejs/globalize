@@ -4,11 +4,11 @@ define([
 ], function( validateParameterPresence, validateParameterTypeNumber ) {
 
 return function( plural ) {
-	return function pluralGenerator( value ) {
+	return function pluralGenerator( value, ord ) {
 		validateParameterPresence( value, "value" );
 		validateParameterTypeNumber( value, "value" );
 
-		return plural( value );
+		return plural( value, ord );
 	};
 };
 

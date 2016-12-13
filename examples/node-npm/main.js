@@ -11,6 +11,7 @@ Globalize.load(
 	require( "cldr-data/supplemental/currencyData" ),
 	require( "cldr-data/supplemental/likelySubtags" ),
 	require( "cldr-data/supplemental/plurals" ),
+	require( "cldr-data/supplemental/ordinals" ),
 	require( "cldr-data/supplemental/timeData" ),
 	require( "cldr-data/supplemental/weekData" )
 );
