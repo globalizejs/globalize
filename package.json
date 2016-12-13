@@ -52,6 +52,7 @@
   "files": [
     "CONTRIBUTING.md",
     "dist/",
+    "!dist/.build",
     "doc/",
     "examples/",
     "LICENSE.txt",

@@ -1,5 +1,6 @@
 .sizecache.json
-bower_components/
-external
-node_modules
+.tmp-globalize-webpack/
+dist/.build/
+external/
+node_modules/
 tmp/
