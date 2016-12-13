@@ -45,7 +45,7 @@ You can use the instance method `.numberParser()`, which uses the instance
 locale.
 
 ```javascript
-var enParser = Globalize( "ar" ).numberParser(),
+var enParser = Globalize( "en" ).numberParser(),
   esParser = Globalize( "es" ).numberParser();
 
 enParser( "3.14" );
