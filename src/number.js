@@ -17,6 +17,7 @@ define([
 	"./number/pattern",
 	"./number/symbol",
 	"./util/string/pad",
+	"./number/shaper",
 
 	"cldr/event",
 	"cldr/supplemental"
@@ -24,7 +25,7 @@ define([
 	validateDefaultLocale, validateParameterPresence, validateParameterRange,
 	validateParameterTypeNumber, validateParameterTypePlainObject, validateParameterTypeString,
 	numberFormatterFn, numberFormatProperties, numberNumberingSystem, numberParserFn,
-	numberParseProperties, numberPattern, numberSymbol, stringPad ) {
+	numberParseProperties, numberPattern, numberSymbol, stringPad, numberShaper ) {
 
 function validateDigits( properties ) {
 	var minimumIntegerDigits = properties[ 2 ],
@@ -168,6 +169,35 @@ Globalize.prototype.parseNumber = function( value, options ) {
 	validateParameterTypeString( value, "value" );
 
 	return this.numberParser( options )( value );
+};
+
+/**
+ * .shapeNumber( value, shaperType [, textDir] )
+ *
+ * @value [String] string containing digits to be shaped.
+ *
+ * @shaperType [String] type of the shaper to be used.
+ *  Allowed values:
+ *   1."National"
+ *   2."Nominal"
+ *   3."Contextual"
+ *
+ * @textDir [String] direction of the input text.
+ *  Allowed values:
+ *   1. "ltr"
+ *   2. "rtl"
+ *   3. "auto"
+ *
+ * Return string containing the shaped digits according to the given shaperType & textDir.
+ */
+Globalize.shapeNumber =
+Globalize.prototype.shapeNumber = function( value, shaperType, textDir ) {
+	validateParameterPresence( value, "value" );
+	validateParameterTypeString( value, "value" );
+	validateParameterPresence( shaperType, "shaperType" );
+	validateParameterTypeString( shaperType, "shaperType" );
+
+	return numberShaper.shape( value, shaperType, textDir );
 };
 
 /**

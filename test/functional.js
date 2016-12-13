@@ -25,6 +25,7 @@ require([
 	"./functional/number/number-parser",
 	"./functional/number/format-number",
 	"./functional/number/parse-number",
+	"./functional/number/shape-number",
 
 	// plural
 	"./functional/plural/plural",
