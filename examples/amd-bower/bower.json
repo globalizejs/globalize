@@ -1,7 +1,8 @@
 {
   "name": "globalize-hello-world-amd-bower",
   "dependencies": {
-    "globalize": "1.1.x"
+    "cldr-data": "*",
+    "globalize": ">=1.2.0-a <2.0.0"
   },
   "devDependencies": {
     "requirejs": "2.1.14",
