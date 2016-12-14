@@ -25,7 +25,7 @@
 	} else if ( typeof exports === "object" ) {
 
 		// Node, CommonJS
-		module.exports = factory( require( "cldrjs" ), require( "globalize" ) );
+		module.exports = factory( require( "cldrjs" ), require( "../globalize" ) );
 	} else {
 
 		// Global
