@@ -52,9 +52,13 @@ function error {
 
 function update_authors {
 	h1 Update AUTHORS file
-	grunt update-authors > /dev/null &&
+	grunt update-authors > /dev/null
+	if [ -z "$(git diff)" ]; then
+		echo No updates for AUTHORS file needed...
+	else
 		git commit -a -m 'AUTHORS: Update' > /dev/null &&
-		git show --stat
+			git show --stat
+	fi
 }
 
 function update_version {
