@@ -39,6 +39,7 @@
 
 var createErrorUnsupportedFeature = Globalize._createErrorUnsupportedFeature,
 	regexpEscape = Globalize._regexpEscape,
+	removeLiteralQuotes = Globalize._removeLiteralQuotes,
 	runtimeKey = Globalize._runtimeKey,
 	stringPad = Globalize._stringPad,
 	validateParameterPresence = Globalize._validateParameterPresence,
