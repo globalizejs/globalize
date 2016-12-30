@@ -58,6 +58,8 @@ QUnit.test( "should parse grouping separators", function( assert ) {
 	assert.equal( parse( "12735", properties( "#,##0.#", en ) ), 12735 );
 	assert.equal( parse( "1,2,7,35", properties( "#,#,#0.#", en ) ), 12735 );
 	assert.equal( parse( "12.735", properties( "#,##0", es ) ), 12735 );
+	assert.equal( parse( "1000", properties( "#,##0", en ) ), 1000 );
+	assert.equal( parse( "1000", properties( "#,##,##0", en ) ), 1000 );
 });
 
 QUnit.test( "should parse invalid grouping separators as NaN", function( assert ) {
@@ -131,6 +133,7 @@ QUnit.test( "should parse percent", function( assert ) {
 	assert.equal( parse( "0.5%", properties( "##0.#%", en ) ), 0.005 );
 	assert.equal( parse( "0.5%", properties( "##0.#%", en ) ), 0.005 );
 	assert.equal( parse( "%100", properties( "%0", en ) ), 1 );
+	assert.deepEqual( parse( "1", properties( "0%", en ) ), NaN );
 });
 
 QUnit.test( "should localize percent symbol (%)", function( assert ) {
