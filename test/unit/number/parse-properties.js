@@ -105,7 +105,7 @@ QUnit.test( "should return number tokenizer", function( assert ) {
 
 	assert.deepEqual(
 		properties( "#,##,##0.##", en )[ 2 ].number,
-		/^((\d{1,2}((,\d{2})*(,\d{3}))?|\d+))?(\.\d+)?/
+		/^((\d{1,2}((,\d{2})*(,\d{3}))|\d+))?(\.\d+)?/
 	);
 
 	assert.deepEqual(

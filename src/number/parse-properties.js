@@ -111,7 +111,7 @@ return function( pattern, cldr, options ) {
 	//
 	// digits_w_1_grouping_separators =  regexp(\d{1,3}(,\d{3})+)
 	//
-	// digits_w_2_grouping_separators =  regexp(\d{1,2}((,\d{2})*(,\d{3}))?)
+	// digits_w_2_grouping_separators =  regexp(\d{1,2}((,\d{2})*(,\d{3})))
 
 	// Integer part
 	numberTokenizer = digitsRe + "+";
@@ -121,7 +121,7 @@ return function( pattern, cldr, options ) {
 		if ( secondaryGroupingSize ) {
 			aux = digitsRe + "{1," + secondaryGroupingSize + "}((" + groupingSeparatorRe +
 				digitsRe + "{" + secondaryGroupingSize + "})*(" + groupingSeparatorRe +
-				digitsRe + "{" + primaryGroupingSize + "}))?";
+				digitsRe + "{" + primaryGroupingSize + "}))";
 		} else {
 			aux = digitsRe + "{1," + primaryGroupingSize + "}(" + groupingSeparatorRe +
 				digitsRe + "{" + primaryGroupingSize + "})+";
