@@ -183,7 +183,7 @@ Globalize("es").formatDate(new Date());
 // > "27/11/2015"
 ```
 
-Note `cldr-data` is an optional module, read [CLDR content](#cldr-content) section below for more information on how to get CLDR from different sources.
+Note `cldr-data` is an optional module, read [CLDR content](#2-cldr-content) section below for more information on how to get CLDR from different sources.
 
 Read the [Locales section](#locales) for more information about supported locales. For AMD, bower and other usage examples, see [Examples section](#examples).
 
