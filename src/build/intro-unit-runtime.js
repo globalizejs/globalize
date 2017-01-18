@@ -15,6 +15,8 @@
  */
 (function( root, factory ) {
 
+	"use strict";
+
 	// UMD returnExports
 	if ( typeof define === "function" && define.amd ) {
 
@@ -38,6 +40,8 @@
 		factory( root.Globalize );
 	}
 }(this, function( Globalize ) {
+
+	"use strict";
 
 var formatMessage = Globalize._formatMessage,
 	runtimeKey = Globalize._runtimeKey,
