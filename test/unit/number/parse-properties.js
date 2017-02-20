@@ -91,26 +91,26 @@ QUnit.test( "should return negativeSuffix tokenizer", function( assert ) {
 
 QUnit.test( "should return number tokenizer", function( assert ) {
 	assert.deepEqual( properties( "0", en )[ 2 ].number, /^\d+/ );
-	assert.deepEqual( properties( "0.##", en )[ 2 ].number, /^(\d+)?(\.\d+)?/ );
+	assert.deepEqual( properties( "0.##", en )[ 2 ].number, /^(\d+(\.\d+)?|(\d+)?\.\d+)/ );
 
 	assert.deepEqual(
 		properties( "#,##0.##", en )[ 2 ].number,
-		/^((\d{1,3}(,\d{3})+|\d+))?(\.\d+)?/
+		/^((\d{1,3}(,\d{3})+|\d+)(\.\d+)?|((\d{1,3}(,\d{3})+|\d+))?\.\d+)/
 	);
 
 	assert.deepEqual(
 		properties( "#,##0.##", es )[ 2 ].number,
-		/^((\d{1,3}(\.\d{3})+|\d+))?(,\d+)?/
+		/^((\d{1,3}(\.\d{3})+|\d+)(,\d+)?|((\d{1,3}(\.\d{3})+|\d+))?,\d+)/
 	);
 
 	assert.deepEqual(
 		properties( "#,##,##0.##", en )[ 2 ].number,
-		/^((\d{1,2}((,\d{2})*(,\d{3}))|\d+))?(\.\d+)?/
+		/^((\d{1,2}((,\d{2})*(,\d{3}))|\d+)(\.\d+)?|((\d{1,2}((,\d{2})*(,\d{3}))|\d+))?\.\d+)/
 	);
 
 	assert.deepEqual(
 		properties( "#,##0.##", sv )[ 2 ].number,
-		/^((\d{1,3}( \d{3})+|\d+))?(,\d+)?/
+		/^((\d{1,3}( \d{3})+|\d+)(,\d+)?|((\d{1,3}( \d{3})+|\d+))?,\d+)/
 	);
 });
 

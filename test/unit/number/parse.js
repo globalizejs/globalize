@@ -49,6 +49,10 @@ QUnit.test( "should parse integers", function( assert ) {
 	assert.equal( parse( "3", properties( "0", en ) ), 3 );
 });
 
+QUnit.test( "should parse invalid integers as NaN", function( assert ) {
+	assert.deepEqual( parse( "", properties( "0", en ) ), NaN );
+});
+
 QUnit.test( "should parse zero-padded integers", function( assert ) {
 	assert.equal( parse( "003", properties( "000", en ) ), 3 );
 });
@@ -95,6 +99,7 @@ QUnit.test( "should parse decimals", function( assert ) {
 });
 
 QUnit.test( "should parse invalid decimals as NaN", function( assert ) {
+	assert.deepEqual( parse( "", properties( "0.#", en ) ), NaN );
 	assert.deepEqual( parse( "3,14", properties( "0.#", en ) ), NaN );
 	assert.deepEqual( parse( "3.14", properties( "0.#", es ) ), NaN );
 });

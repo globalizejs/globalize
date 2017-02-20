@@ -83,7 +83,7 @@ QUnit.test( "should allow for runtime compilation", function( assert ) {
 					nan: /^NaN/,
 					negativePrefix: /^-/,
 					negativeSuffix: /^/,
-					number: /^((\d{1,3}(,\d{3})+|\d+))?(\.\d+)?/,
+					number: /^((\d{1,3}(,\d{3})+|\d+)(\.\d+)?|((\d{1,3}(,\d{3})+|\d+))?\.\d+)/,
 					prefix: /^/,
 					suffix: /^/
 				}

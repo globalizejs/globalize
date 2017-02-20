@@ -135,10 +135,14 @@ return function( pattern, cldr, options ) {
 	if ( !isNaN( minimumSignificantDigits * maximumSignificantDigits ) || /* 1 */
 				maximumFractionDigits /* 2 */ ) {
 
-		// Handle non-padded decimals, e.g., `".12"` => `0.12` by making the integer part optional.
-		numberTokenizer = "(" + numberTokenizer + ")?";
+		aux = decimalSymbolRe + digitsRe + "+";
+		numberTokenizer = numberTokenizer + "(" + aux + ")?" +
 
-		numberTokenizer += "(" + decimalSymbolRe + digitsRe + "+)?";
+			// Handle non-padded decimals, e.g., `".12"` => `0.12` by making the integer part
+			// optional.
+			"|(" + numberTokenizer + ")?" + aux;
+
+		numberTokenizer = "(" + numberTokenizer + ")";
 	}
 
 	// 0: @invertedSymbolMap [Object] Inverted symbol map.
