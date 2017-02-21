@@ -164,7 +164,7 @@ return function( value, numberParser, properties ) {
 				return null;
 			}
 
-			// array of pairs [key, value].
+			// array of pairs [key, value] sorted by desc value length.
 			array.some(function( item ) {
 				var valueRe = item[ 1 ];
 				if ( valueRe.test( value ) ) {

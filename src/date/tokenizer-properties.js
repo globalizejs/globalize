@@ -49,10 +49,12 @@ return function( pattern, cldr, timeZone ) {
 			value = objectFilter( value, /^am|^pm/ );
 		}
 
-		// Transform object into array of pairs [key, /value/].
+		// Transform object into array of pairs [key, /value/], sort by desc value length.
 		if ( isPlainObject( value ) ) {
 			value = Object.keys( value ).map(function( key ) {
 				return [ key, new RegExp( "^" + looseMatching( value[ key ] ) ) ];
+			}).sort(function( a, b ) {
+				return b[ 1 ].source.length - a[ 1 ].source.length;
 			});
 
 		// If typeof value === "string".

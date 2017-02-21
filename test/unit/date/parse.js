@@ -14,6 +14,8 @@ define([
 	"json!cldr-data/main/fr/ca-gregorian.json",
 	"json!cldr-data/main/fr/numbers.json",
 	"json!cldr-data/main/fr/timeZoneNames.json",
+	"json!cldr-data/main/tr/ca-gregorian.json",
+	"json!cldr-data/main/tr/numbers.json",
 	"json!cldr-data/main/zh/ca-gregorian.json",
 	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
@@ -26,8 +28,8 @@ define([
 	"cldr/supplemental"
 ], function( Cldr, parse, parseProperties, startOf, tokenizer, dateTokenizerProperties,
 	enCaGregorian, enNumbers, enTimeZoneNames, enGbCaGregorian, enGbNumbers, enGbTimeZoneNames,
-	frCaGregorian, frNumbers, frTimeZoneNames, zhCaGregorian, zhNumbers, likelySubtags, timeData,
-	weekData, ianaTimezoneData, util ) {
+	frCaGregorian, frNumbers, frTimeZoneNames, trCaGregorian, trNumbers, zhCaGregorian, zhNumbers,
+	likelySubtags, timeData, weekData, ianaTimezoneData, util ) {
 
 var cldr, date1, date2, fr, midnight, zh;
 
@@ -73,6 +75,8 @@ Cldr.load(
 	frCaGregorian,
 	frNumbers,
 	frTimeZoneNames,
+	trCaGregorian,
+	trNumbers,
 	zhCaGregorian,
 	zhNumbers,
 	likelySubtags,
@@ -293,6 +297,81 @@ QUnit.test( "should parse day of year (DD|DDD) with padding", function( assert )
 	date1 = startOf( date1, "day" );
 	assert.dateParse( "02", "DD", cldr, date1 );
 	assert.dateParse( "002", "DDD", cldr, date1 );
+});
+
+/**
+ *  Week day
+ */
+
+QUnit.test( "should format local day of week (e|c) with no padding", function( assert ) {
+	date1 = new Date( 1982, 0, 2 );
+	date2 = new Date( 2010, 8, 15 );
+	assert.dateParse( "1/2/82 7" , "M/d/yy e", cldr, date1 );
+	assert.dateParse( "9/15/10 4" , "M/d/yy e", cldr, date2 );
+	assert.dateParse( "1/2/82 7" , "M/d/yy c", cldr, date1 );
+	assert.dateParse( "9/15/10 4" , "M/d/yy c", cldr, date2 );
+});
+
+QUnit.test( "should format local day of week (ee|cc) with padding", function( assert ) {
+	date1 = new Date( 1982, 0, 2 );
+	date2 = new Date( 2010, 8, 15 );
+	assert.dateParse( "1/2/82 07" , "M/d/yy ee", cldr, date1 );
+	assert.dateParse( "9/15/10 04" , "M/d/yy ee", cldr, date2 );
+	assert.dateParse( "1/2/82 07" , "M/d/yy cc", cldr, date1 );
+	assert.dateParse( "9/15/10 04" , "M/d/yy cc", cldr, date2 );
+});
+
+QUnit.test( "should format local day of week (E|EE|EEE|eee|ccc)", function( assert ) {
+	date1 = new Date( 1982, 0, 2 );
+	date2 = new Date( 2010, 8, 15 );
+	assert.dateParse( "1/2/82 Sat" , "M/d/yy E", cldr, date1 );
+	assert.dateParse( "9/15/10 Wed" , "M/d/yy E", cldr, date2 );
+	assert.dateParse( "1/2/82 Sat" , "M/d/yy EE", cldr, date1 );
+	assert.dateParse( "9/15/10 Wed" , "M/d/yy EE", cldr, date2 );
+	assert.dateParse( "1/2/82 Sat" , "M/d/yy EEE", cldr, date1 );
+	assert.dateParse( "9/15/10 Wed" , "M/d/yy EEE", cldr, date2 );
+	assert.dateParse( "1/2/82 Sat" , "M/d/yy eee", cldr, date1 );
+	assert.dateParse( "9/15/10 Wed" , "M/d/yy eee", cldr, date2 );
+	assert.dateParse( "1/2/82 Sat" , "M/d/yy ccc", cldr, date1 );
+	assert.dateParse( "9/15/10 Wed" , "M/d/yy ccc", cldr, date2 );
+});
+
+QUnit.test( "should format local day of week (EEEE|eeee|cccc)", function( assert ) {
+	var tr;
+	date1 = new Date( 1982, 0, 2 );
+	date2 = new Date( 2010, 8, 15 );
+	assert.dateParse( "1/2/82 Saturday" , "M/d/yy EEEE", cldr, date1 );
+	assert.dateParse( "9/15/10 Wednesday" , "M/d/yy EEEE", cldr, date2 );
+	assert.dateParse( "1/2/82 Saturday" , "M/d/yy eeee", cldr, date1 );
+	assert.dateParse( "9/15/10 Wednesday" , "M/d/yy eeee", cldr, date2 );
+	assert.dateParse( "1/2/82 Saturday" , "M/d/yy cccc", cldr, date1 );
+	assert.dateParse( "9/15/10 Wednesday" , "M/d/yy cccc", cldr, date2 );
+
+	// Special test for #690 parseDate fails on Turkish full datetime with Monday or Saturday.
+	tr = new Cldr( "tr" );
+	assert.dateParse( "1/2/82 Cumartesi" , "M/d/yy EEEE", tr, date1 );
+});
+
+QUnit.test( "should format local day of week (EEEEE|eeeee|ccccc)", function( assert ) {
+	date1 = new Date( 1982, 0, 2 );
+	date2 = new Date( 2010, 8, 15 );
+	assert.dateParse( "1/2/82 S" , "M/d/yy EEEEE", cldr, date1 );
+	assert.dateParse( "9/15/10 W" , "M/d/yy EEEEE", cldr, date2 );
+	assert.dateParse( "1/2/82 S" , "M/d/yy eeeee", cldr, date1 );
+	assert.dateParse( "9/15/10 W" , "M/d/yy eeeee", cldr, date2 );
+	assert.dateParse( "1/2/82 S" , "M/d/yy ccccc", cldr, date1 );
+	assert.dateParse( "9/15/10 W" , "M/d/yy ccccc", cldr, date2 );
+});
+
+QUnit.test( "should format local day of week (EEEEEE|eeeeee|cccccc)", function( assert ) {
+	date1 = new Date( 1982, 0, 2 );
+	date2 = new Date( 2010, 8, 15 );
+	assert.dateParse( "1/2/82 Sa" , "M/d/yy EEEEEE", cldr, date1 );
+	assert.dateParse( "9/15/10 We" , "M/d/yy EEEEEE", cldr, date2 );
+	assert.dateParse( "1/2/82 Sa" , "M/d/yy eeeeee", cldr, date1 );
+	assert.dateParse( "9/15/10 We" , "M/d/yy eeeeee", cldr, date2 );
+	assert.dateParse( "1/2/82 Sa" , "M/d/yy cccccc", cldr, date1 );
+	assert.dateParse( "9/15/10 We" , "M/d/yy cccccc", cldr, date2 );
 });
 
 /**
