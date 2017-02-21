@@ -520,13 +520,13 @@ QUnit.test( "should parse timezone (Z)", function( assert ) {
 	assertParseTimezone( assert, "-0300", "Z", cldr, 180 );
 	assertParseTimezone( assert, "-0300", "ZZ", cldr, 180 );
 	assertParseTimezone( assert, "-0300", "ZZZ", cldr, 180 );
-	assertParseTimezone( assert, "GMT-03:00","ZZZZ" , cldr, 180 );
+	assertParseTimezone( assert, "GMT-03:00", "ZZZZ" , cldr, 180 );
 	assertParseTimezone( assert, "-03:00", "ZZZZZ", cldr, 180 );
 
 	assertParseTimezone( assert, "+1100", "Z", cldr, -660 );
 	assertParseTimezone( assert, "+1100", "ZZ", cldr, -660 );
 	assertParseTimezone( assert, "+1100", "ZZZ", cldr, -660 );
-	assertParseTimezone( assert, "GMT+11:00","ZZZZ" , cldr, -660 );
+	assertParseTimezone( assert, "GMT+11:00", "ZZZZ" , cldr, -660 );
 	assertParseTimezone( assert, "+11:00", "ZZZZZ", cldr, -660 );
 });
 
@@ -535,10 +535,10 @@ QUnit.test( "should parse timezone (O)", function( assert ) {
 	assertParseTimezone( assert, "GMT", "OOOO", cldr, 0 );
 
 	assertParseTimezone( assert, "GMT-3", "O", cldr, 180 );
-	assertParseTimezone( assert, "GMT-03:00","OOOO" , cldr, 180 );
+	assertParseTimezone( assert, "GMT-03:00", "OOOO" , cldr, 180 );
 
 	assertParseTimezone( assert, "GMT+11", "O", cldr, -660 );
-	assertParseTimezone( assert, "GMT+11:00","OOOO" , cldr, -660 );
+	assertParseTimezone( assert, "GMT+11:00", "OOOO" , cldr, -660 );
 });
 
 QUnit.test( "should parse timezone (X)", function( assert ) {
