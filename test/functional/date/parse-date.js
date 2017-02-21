@@ -160,6 +160,8 @@ QUnit.test( "should parse raw pattern", function( assert ) {
 });
 
 QUnit.test( "should parse a formatted date (reverse operation test)", function( assert ) {
+	var OrigDate;
+
 	extraSetup();
 
 	ar = Globalize( "ar" );
@@ -168,6 +170,18 @@ QUnit.test( "should parse a formatted date (reverse operation test)", function( 
 	date = startOf( date, "minute" );
 	assert.deepEqual( Globalize.parseDate( Globalize.formatDate( date, { datetime: "full" } ), { datetime: "full" } ), date );
 	assert.deepEqual( ar.parseDate( ar.formatDate( date, { datetime: "full" } ), { datetime: "full" } ), date );
+
+	// Test #689 - special test when target date and today are in different DST rules.
+	// Note it was arbitrarily chosen O, other timezone patterns are supposed to pass too.
+	// date1 = a DST date (or vice-versa depending on the running environment).
+	// FakeDate.today = a standard time date (or vice-versa depending on the running environment).
+	/* globals Date:true */
+	OrigDate = Date;
+	Date = util.FakeDate;
+	date = new Date( 2017, 6, 1, 12, 0 );
+	util.FakeDate.today = new Date( 2017, 0, 1 );
+	assert.deepEqual( Globalize.parseDate( Globalize.formatDate( date, { datetime: "full" } ), { datetime: "full" } ), date );
+	Date = OrigDate;
 });
 
 });

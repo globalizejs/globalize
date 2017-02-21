@@ -227,7 +227,7 @@ return function( value, tokens, properties ) {
 			case "O":
 			case "X":
 			case "x":
-				timezoneOffset = token.value - date.getTimezoneOffset();
+				timezoneOffset = token.value;
 				break;
 		}
 
@@ -271,8 +271,8 @@ return function( value, tokens, properties ) {
 		date.setHours( date.getHours() + 12 );
 	}
 
-	if ( timezoneOffset ) {
-		date.setMinutes( date.getMinutes() + timezoneOffset );
+	if ( timezoneOffset !== undefined ) {
+		date.setMinutes( date.getMinutes() + timezoneOffset - date.getTimezoneOffset() );
 	}
 
 	// Truncate date at the most precise unit defined. Eg.
