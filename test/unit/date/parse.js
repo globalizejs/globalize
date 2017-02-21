@@ -569,4 +569,11 @@ QUnit.test( "should parse literal (')", function( assert ) {
 	assertParse( assert, "09 o'clock AM", "hh 'o''clock' a", cldr, date );
 });
 
+QUnit.test( "should parse invalid literal as null", function( assert ) {
+	assertParse( assert, "2-20-2017", "M/d/y", cldr, null );
+	assertParse( assert, "2a20a2017", "M/d/y", cldr, null );
+	assertParse( assert, "2/20/2017", "M-d-y", cldr, null );
+	assertParse( assert, "2/20/2017x5xAM", "M/d/y h a", cldr, null );
+});
+
 });

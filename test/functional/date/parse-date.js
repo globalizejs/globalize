@@ -122,10 +122,10 @@ QUnit.test( "should parse time presets", function( assert ) {
 	date.setSeconds( 7 );
 	date = startOf( date, "second" );
 	assertParseDate( assert, "5:35:07 PM", { time: "medium" }, date );
-	assertParseDate( assert, "٥،٣٥،٠٧ م", { time: "medium" }, date, ar );
+	assertParseDate( assert, "٥:٣٥:٠٧ م", { time: "medium" }, date, ar );
 	date = startOf( date, "minute" );
 	assertParseDate( assert, "5:35 PM", { time: "short" }, date );
-	assertParseDate( assert, "٥،٣٥ م", { time: "short" }, date, ar );
+	assertParseDate( assert, "٥:٣٥ م", { time: "short" }, date, ar );
 });
 
 QUnit.test( "should parse date presets", function( assert ) {

@@ -374,7 +374,7 @@ return function( value, numberParser, properties ) {
 
 			default:
 				token.type = "literal";
-				tokenRe = /./;
+				tokenRe = new RegExp( regexpEscape( current ) );
 		}
 
 		if ( !tokenRe ) {

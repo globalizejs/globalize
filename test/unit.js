@@ -1,6 +1,9 @@
 require([
 	"qunit",
 
+	// util
+	"./unit/util/regexp/escape",
+
 	// core
 	"./unit/core",
 	"./unit/core/locale",
