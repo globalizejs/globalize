@@ -2,7 +2,9 @@ define([
 	"cldr"
 ], function( Cldr ) {
 
-var allTypes = {
+var allTypes, FakeDate;
+
+allTypes = {
 	array: [],
 	cldr: new Cldr( "en" ),
 	date: new Date(),
@@ -12,6 +14,36 @@ var allTypes = {
 	plainObject: {},
 	string: "foo"
 };
+
+FakeDate = (function( Date ) {
+	function FakeDate() {
+		var date;
+		if ( arguments.length === 0 ) {
+			return FakeDate.today;
+		}
+		if ( arguments.length === 1 ) {
+			date = new Date( arguments[ 0 ] );
+		} else if ( arguments.length === 2 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ] );
+		} else if ( arguments.length === 3 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ] );
+		} else if ( arguments.length === 4 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ] );
+		} else if ( arguments.length === 5 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ], arguments[ 4 ] );
+		} else if ( arguments.length === 6 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ], arguments[ 4 ], arguments[ 5 ] );
+		} else if ( arguments.length === 7 ) {
+			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ], arguments[ 4 ], arguments[ 5 ], arguments[ 6 ] );
+		}
+
+		/* jshint proto:true */
+		date.__proto__ = FakeDate.prototype;
+		return date;
+	}
+	FakeDate.prototype = FakeDate.today = new Date();
+	return FakeDate;
+})( Date );
 
 function assertParameterType( assert, type, name, fn ) {
 	Object.keys( allTypes ).filter( not( type ) ).forEach(function( type ) {
@@ -183,7 +215,9 @@ return {
 	resetCldrContent: function() {
 		Cldr._resolved = {};
 		Cldr._raw = {};
-	}
+	},
+
+	FakeDate: FakeDate
 };
 
 });

@@ -10,13 +10,14 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+	"../../util",
 
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, parse, parseProperties, startOf, tokenizer, numberTokenizerProperties,
-	enCaGregorian, enNumbers, likelySubtags, timeData, weekData ) {
+	enCaGregorian, enNumbers, likelySubtags, timeData, weekData, util ) {
 
-var cldr, date1, date2, FakeDate, midnight;
+var cldr, date1, date2, midnight;
 
 function assertParse( assert, stringDate, pattern, cldr, date ) {
 	var tokenizerProperties, tokens;
@@ -40,36 +41,6 @@ function assertParseTimezone( assert, stringDate, pattern, cldr, timezoneOffset 
 	assert.equal( parsedTimezoneOffset, timezoneOffset, "stringDate `" + stringDate +
 		"` pattern `" + pattern + "`" );
 }
-
-FakeDate = (function( Date ) {
-	function FakeDate() {
-		var date;
-		if ( arguments.length === 0 ) {
-			return FakeDate.today;
-		}
-		if ( arguments.length === 1 ) {
-			date = new Date( arguments[ 0 ] );
-		} else if ( arguments.length === 2 ) {
-			date = new Date( arguments[ 0 ], arguments[ 1 ] );
-		} else if ( arguments.length === 3 ) {
-			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ] );
-		} else if ( arguments.length === 4 ) {
-			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ] );
-		} else if ( arguments.length === 5 ) {
-			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ], arguments[ 4 ] );
-		} else if ( arguments.length === 6 ) {
-			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ], arguments[ 4 ], arguments[ 5 ] );
-		} else if ( arguments.length === 7 ) {
-			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ], arguments[ 4 ], arguments[ 5 ], arguments[ 6 ] );
-		}
-
-		/* jshint proto:true */
-		date.__proto__ = FakeDate.prototype;
-		return date;
-	}
-	FakeDate.prototype = FakeDate.today = new Date();
-	return FakeDate;
-})( Date );
 
 // Simple number parser for this test purposes.
 function simpleNumberParser( value ) {
@@ -194,8 +165,8 @@ QUnit.test( "should parse February correctly in leap year", function( assert ) {
 	/* globals Date:true */
 	// Use a leap year and a day of month greater than 28
 	OrigDate = Date;
-	Date = FakeDate;
-	FakeDate.today = new Date( 2016, 0, 29 );
+	Date = util.FakeDate;
+	util.FakeDate.today = new Date( 2016, 0, 29 );
 
 	date1 = new Date();
 	date1.setMonth( 1 );
@@ -222,17 +193,17 @@ QUnit.test( "should parse day (d) with no padding", function( assert ) {
 	/* globals Date:true */
 	// Test #323 - Day parsing must use the correct day range given its corresponding month/year.
 	OrigDate = Date;
-	Date = FakeDate;
+	Date = util.FakeDate;
 
 	date1 = new Date( 2014, 1, 28 );
 	date1 = startOf( date1, "day" );
-	FakeDate.today = new Date( 2014, 1 );
+	util.FakeDate.today = new Date( 2014, 1 );
 	assertParse( assert, "29", "d", cldr, null );
 	assertParse( assert, "28", "d", cldr, date1 );
 
 	date2 = new Date( 2016, 1, 29 );
 	date2 = startOf( date2, "day" );
-	FakeDate.today = new Date( 2016, 1 );
+	util.FakeDate.today = new Date( 2016, 1 );
 	assertParse( assert, "30", "d", cldr, null );
 	assertParse( assert, "29", "d", cldr, date2 );
 
@@ -258,14 +229,14 @@ QUnit.test( "should parse day of year (D) with no padding", function( assert ) {
 	/* globals Date:true */
 	// Test #323 - Day of year parsing must use the correct day range given leap year into account.
 	OrigDate = Date;
-	Date = FakeDate;
+	Date = util.FakeDate;
 
-	FakeDate.today = new Date( 2014, 1 );
+	util.FakeDate.today = new Date( 2014, 1 );
 	assertParse( assert, "366", "D", cldr, null );
 
 	// date1 = last day of 2016
 	date1 = new Date( 2017, 0, 0 );
-	FakeDate.today = new Date( 2016, 1 );
+	util.FakeDate.today = new Date( 2016, 1 );
 	assertParse( assert, "366", "D", cldr, date1 );
 
 	Date = OrigDate;
