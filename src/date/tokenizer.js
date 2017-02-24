@@ -120,7 +120,16 @@ return function( value, numberParser, properties ) {
 
 				// Unicode equivalent to /\d\d?/
 				numeric = true;
-				return tokenRe = new RegExp( "(" + regexpN.source + ")(" + regexpN.source + ")?" );
+				return tokenRe = new RegExp( "(" + regexpN.source + "){1,2}" );
+			}
+		}
+
+		function oneOrTwoDigitsIfLengthOneOrTwo() {
+			if ( length === 1 || length === 2 ) {
+
+				// Unicode equivalent to /\d\d?/
+				numeric = true;
+				return tokenRe = new RegExp( "(" + regexpN.source + "){1,2}" );
 			}
 		}
 
@@ -129,7 +138,7 @@ return function( value, numberParser, properties ) {
 
 				// Unicode equivalent to /\d\d/
 				numeric = true;
-				return tokenRe = new RegExp( "(" + regexpN.source + ")(" + regexpN.source + ")" );
+				return tokenRe = new RegExp( "(" + regexpN.source + "){2}" );
 			}
 		}
 
@@ -194,8 +203,11 @@ return function( value, numberParser, properties ) {
 					tokenRe = new RegExp( "(" + regexpN.source + ")+" );
 				} else if ( length === 2 ) {
 
-					// Unicode equivalent to /\d\d/
-					tokenRe = new RegExp( "(" + regexpN.source + ")(" + regexpN.source + ")" );
+					// Lenient parsing: there's no year pattern to indicate non-zero-padded 2-digits
+					// year, so parser accepts both zero-padded and non-zero-padded for `yy`.
+					//
+					// Unicode equivalent to /\d\d?/
+					tokenRe = new RegExp( "(" + regexpN.source + "){1,2}" );
 				} else {
 
 					// Unicode equivalent to /\d{length,}/
@@ -209,11 +221,12 @@ return function( value, numberParser, properties ) {
 
 				// number l=1:{1}, l=2:{2}.
 				// lookup l=3...
-				oneDigitIfLengthOne() || twoDigitsIfLengthTwo() || lookup([
-					"gregorian/quarters",
-					chr === "Q" ? "format" : "stand-alone",
-					widths[ length - 3 ]
-				]);
+				oneDigitIfLengthOne() || twoDigitsIfLengthTwo() ||
+					lookup([
+						"gregorian/quarters",
+						chr === "Q" ? "format" : "stand-alone",
+						widths[ length - 3 ]
+					]);
 				break;
 
 			// Month
@@ -222,7 +235,11 @@ return function( value, numberParser, properties ) {
 
 				// number l=1:{1,2}, l=2:{2}.
 				// lookup l=3...
-				oneOrTwoDigitsIfLengthOne() || twoDigitsIfLengthTwo() || lookup([
+				//
+				// Lenient parsing: skeleton "yMd" (i.e., one M) may include MM for the pattern,
+				// therefore parser accepts both zero-padded and non-zero-padded for M and MM.
+				// Similar for L.
+				oneOrTwoDigitsIfLengthOneOrTwo() || lookup([
 					"gregorian/months",
 					chr === "M" ? "format" : "stand-alone",
 					widths[ length - 3 ]
@@ -235,7 +252,7 @@ return function( value, numberParser, properties ) {
 				// number {l,3}.
 				if ( length <= 3 ) {
 
-					// Unicode equivalent to /\d{length,3}/
+					// Equivalent to /\d{length,3}/
 					numeric = true;
 					tokenRe = new RegExp( "(" + regexpN.source + "){" + length + ",3}" );
 				}
@@ -290,8 +307,14 @@ return function( value, numberParser, properties ) {
 				]);
 				break;
 
-			// Week, Day, Hour, Minute, or Second
+			// Week
 			case "w":
+
+				// number l1:{1,2}, l2:{2}.
+				oneOrTwoDigitsIfLengthOne() || twoDigitsIfLengthTwo();
+				break;
+
+			// Day, Hour, Minute, or Second
 			case "d":
 			case "h":
 			case "H":
@@ -302,7 +325,17 @@ return function( value, numberParser, properties ) {
 			case "s":
 
 				// number l1:{1,2}, l2:{2}.
-				oneOrTwoDigitsIfLengthOne() || twoDigitsIfLengthTwo();
+				//
+				// Lenient parsing:
+				// - skeleton "hms" (i.e., one m) always includes mm for the pattern, i.e., it's
+				//   impossible to use a different skeleton to parse non-zero-padded minutes,
+				//   therefore parser accepts both zero-padded and non-zero-padded for m. Similar
+				//   for seconds s.
+				// - skeleton "hms" (i.e., one h) may include h or hh for the pattern, i.e., it's
+				//   impossible to use a different skeleton to parser non-zero-padded hours for some
+				//   locales, therefore parser accepts both zero-padded and non-zero-padded for h.
+				//   Similar for d (in skeleton yMd).
+				oneOrTwoDigitsIfLengthOneOrTwo();
 				break;
 
 			case "S":
