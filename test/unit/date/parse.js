@@ -207,6 +207,11 @@ QUnit.test( "should parse day (d) with no padding", function( assert ) {
 	assertParse( assert, "30", "d", cldr, null );
 	assertParse( assert, "29", "d", cldr, date2 );
 
+	// Test #612 - Incorrect date parsing by pattern when days in month of
+	// parsing date less than a today's day.
+	util.FakeDate.today = new Date( 2016, 11, 31 );
+	assertParse( assert, "2/2/2015", "M/d/y", cldr, new Date( 2015, 1, 2 ) );
+
 	Date = OrigDate;
 });
 
