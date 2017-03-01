@@ -12,8 +12,10 @@ require([
 
 	// date
 	"./functional/date/date-formatter",
+	"./functional/date/date-to-parts-formatter",
 	"./functional/date/date-parser",
 	"./functional/date/format-date",
+	"./functional/date/format-date-to-parts",
 	"./functional/date/parse-date",
 
 	// message
