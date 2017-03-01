@@ -5,17 +5,15 @@ define([
 	"./common/validate/parameter-type/string",
 	"./core-runtime",
 	"./date/format",
-	"./date/formatter-fn",
 	"./date/parse",
 	"./date/parser-fn",
 	"./date/tokenizer",
 
 	"./number-runtime"
 ], function( runtimeKey, validateParameterPresence, validateParameterTypeDate,
-	validateParameterTypeString, Globalize, dateFormat, dateFormatterFn, dateParse, dateParserFn,
+	validateParameterTypeString, Globalize, dateFormat, dateParse, dateParserFn,
 	dateTokenizer ) {
 
-Globalize._dateFormatterFn = dateFormatterFn;
 Globalize._dateParserFn = dateParserFn;
 Globalize._dateFormat = dateFormat;
 Globalize._dateParser = dateParse;
@@ -24,8 +22,19 @@ Globalize._validateParameterTypeDate = validateParameterTypeDate;
 
 Globalize.dateFormatter =
 Globalize.prototype.dateFormatter = function( options ) {
+	var formatterFn = this.dateToPartsFormatter( options );
+	return function() {
+		var parts = formatterFn.apply( this, arguments );
+		return parts.map( function( part ) {
+			return part.value;
+		}).join( "" );
+	};
+};
+
+Globalize.dateToPartsFormatter =
+Globalize.prototype.dateToPartsFormatter = function( options ) {
 	options = options || { skeleton: "yMd" };
-	return Globalize[ runtimeKey( "dateFormatter", this._locale, [ options ] ) ];
+	return Globalize[ runtimeKey( "dateToPartsFormatter", this._locale, [ options ] ) ];
 };
 
 Globalize.dateParser =
@@ -40,6 +49,14 @@ Globalize.prototype.formatDate = function( value, options ) {
 	validateParameterTypeDate( value, "value" );
 
 	return this.dateFormatter( options )( value );
+};
+
+Globalize.formatDateToParts =
+Globalize.prototype.formatDateToParts = function( value, options ) {
+	validateParameterPresence( value, "value" );
+	validateParameterTypeDate( value, "value" );
+
+	return this.dateToPartsFormatter( options )( value );
 };
 
 Globalize.parseDate =

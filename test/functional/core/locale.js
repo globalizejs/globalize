@@ -27,6 +27,10 @@ QUnit.test( "should validate whether default locale is defined on static calls",
 	});
 
 	util.assertDefaultLocalePresence( assert, function() {
+		Globalize.formatDateToParts( new Date() );
+	});
+
+	util.assertDefaultLocalePresence( assert, function() {
 		Globalize.parseDate( "15" );
 	});
 
