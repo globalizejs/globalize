@@ -10,7 +10,7 @@ define([
 	"./common/validate/parameter-type/string",
 	"./core",
 	"./date/expand-pattern",
-	"./date/formatter-fn",
+	"./date/to-parts-formatter-fn",
 	"./date/format-properties",
 	"./date/parser-fn",
 	"./date/parse-properties",
@@ -21,7 +21,7 @@ define([
 	"./number"
 ], function( Cldr, runtimeBind, validate, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterTypeDate, validateParameterTypePlainObject,
-	validateParameterTypeString, Globalize, dateExpandPattern, dateFormatterFn,
+	validateParameterTypeString, Globalize, dateExpandPattern, dateToPartsFormatterFn,
 	dateFormatProperties, dateParserFn, dateParseProperties, dateTokenizerProperties ) {
 
 function validateRequiredCldr( path, value ) {
@@ -77,6 +77,33 @@ function validateOptionsSkeleton( pattern, skeleton ) {
  */
 Globalize.dateFormatter =
 Globalize.prototype.dateFormatter = function( options ) {
+	var formatterFn = this.dateToPartsFormatter( options );
+	return function() {
+		var parts = formatterFn.apply( this, arguments );
+		return parts.map( function( part ) {
+			return part.value;
+		}).join( "" );
+	};
+};
+
+/**
+ * .dateToPartsFormatter( options )
+ *
+ * @options [Object] see date/expand_pattern for more info.
+ *
+ * Return a date formatter function (of the form below) according to the given options and the
+ * default/instance locale.
+ *
+ * fn( value )
+ *
+ * @value [Date]
+ *
+ * Return a function that formats a date to parts according to the given `format`
+ * and the default/instance
+ * locale.
+ */
+Globalize.dateToPartsFormatter =
+Globalize.prototype.dateToPartsFormatter = function( options ) {
 	var args, cldr, numberFormatters, pad, pattern, properties, returnFn;
 
 	validateParameterTypePlainObject( options, "options" );
@@ -104,7 +131,7 @@ Globalize.prototype.dateFormatter = function( options ) {
 		});
 	}
 
-	returnFn = dateFormatterFn( numberFormatters, properties );
+	returnFn = dateToPartsFormatterFn( numberFormatters, properties );
 
 	runtimeBind( args, cldr, returnFn, [ numberFormatters, properties ] );
 
@@ -164,6 +191,23 @@ Globalize.prototype.formatDate = function( value, options ) {
 	validateParameterTypeDate( value, "value" );
 
 	return this.dateFormatter( options )( value );
+};
+
+/**
+ * .formatDateToParts( value, options )
+ *
+ * @value [Date]
+ *
+ * @options [Object] see date/expand_pattern for more info.
+ *
+ * Formats a date or number to parts according to the given options and the default/instance locale.
+ */
+Globalize.formatDateToParts =
+Globalize.prototype.formatDateToParts = function( value, options ) {
+	validateParameterPresence( value, "value" );
+	validateParameterTypeDate( value, "value" );
+
+	return this.dateToPartsFormatter( options )( value );
 };
 
 /**
