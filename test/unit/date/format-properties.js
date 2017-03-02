@@ -115,6 +115,7 @@ QUnit.test( "should return days properties for day of week (eee..eeeeee|ccc..ccc
 
 QUnit.test( "should return dayPeriods property for period (a)", function( assert ) {
 	assert.ok( "dayPeriods" in properties( "a", cldr ) );
+	assert.equal( Object.keys(properties( "a", cldr ).dayPeriods).length, 2 );
 });
 
 });

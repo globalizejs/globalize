@@ -93,16 +93,8 @@ QUnit.test( "should allow for runtime compilation", function( assert ) {
 			pad2NumberFormatter( runtimeArgs[ 0 ][ 2 ] );
 			assert.deepEqual( runtimeArgs[ 1 ], {
 				"dayPeriods": {
-					"afternoon1": "in the afternoon",
 					"am": "AM",
-					"am-alt-variant": "am",
-					"evening1": "in the evening",
-					"midnight": "midnight",
-					"morning1": "in the morning",
-					"night1": "at night",
-					"noon": "noon",
-					"pm": "PM",
-					"pm-alt-variant": "pm"
+					"pm": "PM"
 				},
 				"pattern": "h:mm:ss a",
 				"timeSeparator": ":"
@@ -165,16 +157,8 @@ QUnit.test( "should allow for runtime compilation", function( assert ) {
 			pad2NumberFormatter( runtimeArgs[ 0 ][ 2 ] );
 			assert.deepEqual( runtimeArgs[ 1 ], {
 				"dayPeriods": {
-					"afternoon1": "in the afternoon",
 					"am": "AM",
-					"am-alt-variant": "am",
-					"evening1": "in the evening",
-					"midnight": "midnight",
-					"morning1": "in the morning",
-					"night1": "at night",
-					"noon": "noon",
-					"pm": "PM",
-					"pm-alt-variant": "pm"
+					"pm": "PM"
 				},
 				"days": {
 					"E": {

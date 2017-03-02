@@ -7,6 +7,8 @@ define([
 	"src/date/tokenizer-properties",
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/zh/ca-gregorian.json",
+	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
@@ -15,9 +17,9 @@ define([
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, parse, parseProperties, startOf, tokenizer, numberTokenizerProperties,
-	enCaGregorian, enNumbers, likelySubtags, timeData, weekData, util ) {
+	enCaGregorian, enNumbers, zhCaGregorian, zhNumbers, likelySubtags, timeData, weekData, util ) {
 
-var cldr, date1, date2, midnight;
+var cldr, date1, date2, midnight, zh;
 
 function assertParse( assert, stringDate, pattern, cldr, date ) {
 	var tokenizerProperties, tokens;
@@ -50,12 +52,15 @@ function simpleNumberParser( value ) {
 Cldr.load(
 	enCaGregorian,
 	enNumbers,
+	zhCaGregorian,
+	zhNumbers,
 	likelySubtags,
 	timeData,
 	weekData
 );
 
 cldr = new Cldr( "en" );
+zh = new Cldr( "zh" );
 
 midnight = new Date();
 midnight = startOf( midnight, "day" );
@@ -269,6 +274,8 @@ QUnit.test( "should parse period (a)", function( assert ) {
 	date2 = startOf( date2, "hour" );
 	assertParse( assert, "5 AM", "h a", cldr, date1 );
 	assertParse( assert, "5 PM", "h a", cldr, date2 );
+	assertParse( assert, "上午5", "ah", zh, date1 );
+	assertParse( assert, "下午5", "ah", zh, date2 );
 });
 
 /**

@@ -185,9 +185,14 @@ return function( pattern, cldr ) {
 
 			// Period (AM or PM)
 			case "a":
-				properties.dayPeriods = cldr.main(
-					"dates/calendars/gregorian/dayPeriods/format/wide"
-				);
+				properties.dayPeriods = {
+					am: cldr.main(
+						"dates/calendars/gregorian/dayPeriods/format/wide/am"
+					),
+					pm: cldr.main(
+						"dates/calendars/gregorian/dayPeriods/format/wide/pm"
+					)
+				};
 				break;
 
 			// Hour

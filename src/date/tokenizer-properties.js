@@ -1,8 +1,9 @@
 define([
 	"./pattern-re",
 	"../common/create-error/unsupported-feature",
-	"../number/symbol"
-], function( datePatternRe, createErrorUnsupportedFeature, numberSymbol ) {
+	"../number/symbol",
+	"../util/object/filter"
+], function( datePatternRe, createErrorUnsupportedFeature, numberSymbol, objectFilter ) {
 
 /**
  * tokenizerProperties( pattern, cldr )
@@ -126,9 +127,13 @@ return function( pattern, cldr ) {
 
 			// Period (AM or PM)
 			case "a":
-				cldr.main([
+				cldr.main(
 					"dates/calendars/gregorian/dayPeriods/format/wide"
-				]);
+				);
+				properties[ "gregorian/dayPeriods/format/wide" ] = objectFilter(
+					properties[ "gregorian/dayPeriods/format/wide" ],
+					/^am|^pm/
+				);
 				break;
 
 			// Zone
