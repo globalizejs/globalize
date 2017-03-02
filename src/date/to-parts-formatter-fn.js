@@ -5,7 +5,7 @@ define([
 ], function( validateParameterPresence, validateParameterTypeDate, dateFormat ) {
 
 return function( numberFormatters, properties ) {
-	return function dateFormatter( value ) {
+	return function dateToPartsFormatter( value ) {
 		validateParameterPresence( value, "value" );
 		validateParameterTypeDate( value, "value" );
 
