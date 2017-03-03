@@ -12,6 +12,18 @@ document.getElementById( "date" ).textContent = Globalize.formatDate( new Date()
 number = Globalize.numberFormatter();
 document.getElementById( "number" ).textContent = number( 12345.6789 );
 
+// Use Globalize to format dates to parts.
+document.getElementById( "dateToParts" ).innerHTML = Globalize.formatDateToParts( new Date(), {
+	datetime: "medium"
+}).map(function( part ) {
+	switch(part.type) {
+		case "month": return "<strong>" + part.value + "</strong>";
+		default: return part.value;
+	}
+}).reduce(function( memo, value ) {
+	return memo + value;
+});
+
 // Use Globalize to format currencies.
 document.getElementById( "currency" ).textContent = Globalize.formatCurrency( 69900, "USD" );
 

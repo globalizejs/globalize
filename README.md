@@ -446,6 +446,24 @@ Read more details about locale at [UTS#35 locale][].
 
   [Read more...](doc/api/date/date-formatter.md)
 
+- **.dateToPartsFormatter( [options] )`**
+
+  Return a function that formats a date into parts tokens according to the given `options`. The
+  default formatting is numeric year, month, and day (i.e., `{ skeleton: "yMd" }`.
+
+  ```javascript
+  .dateToPartsFormatter()( new Date() )
+  // > [
+  //   { "type": "month", "value": "3" },
+  //   { "type": "literal", "value": "/" },
+  //   { "type": "day", "value": "17" },
+  //   { "type": "literal", "value": "/" },
+  //   { "type": "year", "value": "2017" }
+  // ]
+  ```
+
+  [Read more...](doc/api/date/date-to-parts-formatter.md)
+
 - **`.dateParser( [options] )`**
 
   Return a function that parses a string representing a date into a JavaScript Date object according
@@ -474,6 +492,10 @@ Read more details about locale at [UTS#35 locale][].
 - **`.formatDate( value [, options] )`**
 
   Alias for `.dateFormatter( [options] )( value )`.
+
+- **`.formatDateToParts( value [, options] )`**
+
+  Alias for `.dateToPartsFormatter( [options] )( value )`.
 
 - **`.parseDate( value [, options] )`**
 

@@ -93,4 +93,13 @@ QUnit.test( "should return a formatter", function( assert ) {
 	assert.equal( Globalize.dateFormatter({ skeleton: "yQQQhm" })( date ), "Q3 2010, 5:35 PM" );
 });
 
+QUnit.test( "should augment a skeleton", function( assert ) {
+	extraSetup();
+
+	assert.equal( Globalize.dateFormatter({ skeleton: "yMMMMd" })( date ), "September 15, 2010" );
+	assert.equal( Globalize.dateFormatter({ skeleton: "MMMMd" })( date ), "September 15" );
+	assert.equal( Globalize.dateFormatter({ skeleton: "MMMM" })( date ), "September" );
+	assert.equal( Globalize.dateFormatter({ skeleton: "EEEE" })( date ), "Wednesday" );
+});
+
 });
