@@ -7,16 +7,18 @@ define([
 	"./date/format",
 	"./date/parse",
 	"./date/parser-fn",
+	"./date/to-parts-formatter-fn",
 	"./date/tokenizer",
 
 	"./number-runtime"
 ], function( runtimeKey, validateParameterPresence, validateParameterTypeDate,
 	validateParameterTypeString, Globalize, dateFormat, dateParse, dateParserFn,
-	dateTokenizer ) {
+	dateToPartsFormatterFn, dateTokenizer ) {
 
-Globalize._dateParserFn = dateParserFn;
 Globalize._dateFormat = dateFormat;
 Globalize._dateParser = dateParse;
+Globalize._dateParserFn = dateParserFn;
+Globalize._dateToPartsFormatterFn = dateToPartsFormatterFn;
 Globalize._dateTokenizer = dateTokenizer;
 Globalize._validateParameterTypeDate = validateParameterTypeDate;
 

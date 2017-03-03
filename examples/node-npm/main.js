@@ -22,6 +22,9 @@ Globalize.locale( "en" );
 // Use Globalize to format dates.
 console.log( Globalize.formatDate( new Date(), { datetime: "medium" } ) );
 
+// Use Globalize to format dates to parts.
+console.log( Globalize.formatDateToParts( new Date(), { datetime: "medium" } ) );
+
 // Use Globalize to format numbers.
 console.log( Globalize.formatNumber( 12345.6789 ) );
 

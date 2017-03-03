@@ -4,6 +4,7 @@
 		"number-label": "Número",
 		"currency-label": "Moeda",
 		"date-label": "Data",
+		"date-to-parts-label": "Data (note o mês em negrito, a marcação HTML foi adicionada usando formatDateToParts)",
 		"relative-time-label": "Tempo relativo",
 		"unit-label": "Unit",
 		"message-1": "Um exemplo de mensagem com mistura de número \"{number}\", moeda \"{currency}\", data \"{date}\", tempo relativo \"{relativeTime}\", e unidade \"{unit}\".",

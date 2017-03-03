@@ -89,7 +89,7 @@ var enFormatter = Globalize( "en" ).dateFormatter(),
   deFormatter = Globalize( "de" ).dateFormatter();
 
 enFormatter( new Date( 2010, 10, 30, 17, 55 ) );
-// > "11/30/2010, 5:55 PM"
+// > "11/30/2010"
 
 deFormatter( new Date( 2010, 10, 30, 17, 55 ) );
 // > "30.11.2010"

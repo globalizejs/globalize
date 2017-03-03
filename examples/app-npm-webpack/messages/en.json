@@ -4,6 +4,7 @@
 		"number-label": "Number",
 		"currency-label": "Currency",
 		"date-label": "Date",
+		"date-to-parts-label": "Date (note the highlighted month, the markup was added using formatDateToParts)",
 		"relative-time-label": "Relative Time",
 		"unit-label": "Unit",
 		"message-1": "An example of a message using mixed number \"{number}\", currency \"{currency}\", date \"{date}\", relative time \"{relativeTime}\", and unit \"{unit}\".",

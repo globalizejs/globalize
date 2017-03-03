@@ -66,11 +66,44 @@ QUnit.test( "should validate parameters", function( assert ) {
 			Globalize.formatDateToParts( date, invalidPattern );
 		};
 	});
+
+	assert.throws(function() {
+		Globalize.formatDateToParts(date, { date: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*date.*invalid-stuff/ );
+
+	assert.throws(function() {
+		Globalize.formatDateToParts(date, { time: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*time.*invalid-stuff/ );
+
+	assert.throws(function() {
+		Globalize.formatDateToParts(date, { datetime: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*datetime.*invalid-stuff/ );
+
+	assert.throws(function() {
+		Globalize.formatDateToParts(date, { skeleton: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*skeleton.*invalid-stuff/ );
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
+	Globalize.load({
+		"main": {
+			"en": {
+				"dates": {
+					"calendars": {
+						"gregorian": {
+							"dateTimeFormats": {
+								"availableFormats": {
+									"MMMd": "MMM d"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
 	util.assertCldrContent( assert, function() {
-		Globalize.formatDateToParts( date );
+		Globalize.formatDateToParts( date, { skeleton: "MMMd" });
 	});
 });
 
@@ -85,7 +118,7 @@ QUnit.test( "should format skeleton to parts", function( assert ) {
 			"value": "15"
 		}
 	]);
-	
+
 	assert.deepEqual( Globalize.formatDateToParts( date, { skeleton: "Ed" } ), [
 		{
 			"type": "day",
@@ -100,7 +133,7 @@ QUnit.test( "should format skeleton to parts", function( assert ) {
 			"value": "Wed"
 		}
 	]);
-	
+
 	assert.deepEqual( Globalize.formatDateToParts( date, { skeleton: "Ehms" } ), [
 		{
 			"type": "weekday",
@@ -128,20 +161,19 @@ QUnit.test( "should format skeleton to parts", function( assert ) {
 		},
 		{
 			"type": "second",
-     		"value": "07"
+			"value": "07"
 		},
-   		{
-     		"type": "literal",
-     		"value": " "
-   		},
-   		{
-    		 "type": "dayperiod",
-    		 "value": "PM"
-   		}
+		{
+			"type": "literal",
+			"value": " "
+		},
+		{
+			"type": "dayperiod",
+			"value": "PM"
+		}
 	]);
 
-	assert.deepEqual( Globalize.formatDateToParts( date, { skeleton: "GyMMMEd" } ), 
-	[
+	assert.deepEqual( Globalize.formatDateToParts( date, { skeleton: "GyMMMEd" } ), [
 		{
 			"type": "weekday",
 			"value": "Wed"
@@ -179,9 +211,8 @@ QUnit.test( "should format skeleton to parts", function( assert ) {
 			"value": "AD"
 		}
 	]);
-	
-	assert.deepEqual( Globalize.formatDateToParts( date, { skeleton: "yMd" } ),
-	[
+
+	assert.deepEqual( Globalize.formatDateToParts( date, { skeleton: "yMd" } ), [
 		{
 			"type": "month",
 			"value": "9"
@@ -203,9 +234,8 @@ QUnit.test( "should format skeleton to parts", function( assert ) {
 			"value": "2010"
 		}
 	]);
-	
-	assert.deepEqual( Globalize.formatDateToParts( date, { skeleton: "yQQQ" } ), 
-	[
+
+	assert.deepEqual( Globalize.formatDateToParts( date, { skeleton: "yQQQ" } ), [
 		{
 			"type": "quarter",
 			"value": "Q3"
@@ -218,10 +248,9 @@ QUnit.test( "should format skeleton to parts", function( assert ) {
 			"type": "year",
 			"value": "2010"
 		}
- 	]);
-	
-	assert.deepEqual( ar.formatDateToParts( date, { skeleton: "yQQQ" } ),
-	[
+	]);
+
+	assert.deepEqual( ar.formatDateToParts( date, { skeleton: "yQQQ" } ), [
 		{
 			"type": "quarter",
 			"value": "الربع الثالث"
@@ -237,8 +266,7 @@ QUnit.test( "should format skeleton to parts", function( assert ) {
 	]);
 
 	// Via instance .formatDateToParts().
-	assert.deepEqual( Globalize( "pt" ).formatDateToParts( date, { skeleton: "Ehms" } ),  
-	[
+	assert.deepEqual( Globalize( "pt" ).formatDateToParts( date, { skeleton: "Ehms" } ), [
 		{
 			"type": "weekday",
 			"value": "qua"
@@ -275,10 +303,9 @@ QUnit.test( "should format skeleton to parts", function( assert ) {
 			"type": "dayperiod",
 			"value": "PM"
 		}
- 	]);
-	
-	assert.deepEqual( Globalize( "pt" ).formatDateToParts( date, { skeleton: "GyMMMEd" } ),
-	[
+	]);
+
+	assert.deepEqual( Globalize( "pt" ).formatDateToParts( date, { skeleton: "GyMMMEd" } ), [
 		{
 			"type": "weekday",
 			"value": "qua"
@@ -323,8 +350,7 @@ QUnit.test( "should format time presets", function( assert ) {
 
 	ar = Globalize( "ar" );
 
-	assert.deepEqual( Globalize.formatDateToParts( date, { time: "medium" } ),
-	[
+	assert.deepEqual( Globalize.formatDateToParts( date, { time: "medium" } ), [
 		{
 			"type": "hour",
 			"value": "5"
@@ -353,10 +379,9 @@ QUnit.test( "should format time presets", function( assert ) {
 			"type": "dayperiod",
 			"value": "PM"
 		}
- 	]);
+	]);
 
-	assert.deepEqual( ar.formatDateToParts( date, { time: "medium" } ),
-	[
+	assert.deepEqual( ar.formatDateToParts( date, { time: "medium" } ), [
 		{
 			"type": "hour",
 			"value": "٥"
@@ -387,8 +412,7 @@ QUnit.test( "should format time presets", function( assert ) {
 		}
 	]);
 
-	assert.deepEqual( Globalize.formatDateToParts( date, { time: "short" } ), 
-	 [
+	assert.deepEqual( Globalize.formatDateToParts( date, { time: "short" } ), [
 		{
 			"type": "hour",
 			"value": "5"
@@ -409,10 +433,9 @@ QUnit.test( "should format time presets", function( assert ) {
 			"type": "dayperiod",
 			"value": "PM"
 		}
- 	]);
-	
-	assert.deepEqual( ar.formatDateToParts( date, { time: "short" } ),
-	[
+	]);
+
+	assert.deepEqual( ar.formatDateToParts( date, { time: "short" } ), [
 		{
 			"type": "hour",
 			"value": "٥"
@@ -433,7 +456,7 @@ QUnit.test( "should format time presets", function( assert ) {
 			"type": "dayperiod",
 			"value": "م"
 		}
- 	]);
+	]);
 });
 
 QUnit.test( "should format date presets", function( assert ) {
@@ -519,36 +542,34 @@ QUnit.test( "should format date presets", function( assert ) {
 		}
 	]);
 
-	assert.deepEqual( Globalize.formatDateToParts( date, { date: "short" } ),
-	[
-	   {
-	     "type": "month",
-	     "value": "9"
-	   },
-	   {
-	     "type": "literal",
-	     "value": "/"
-	   },
-	   {
-	     "type": "day",
-	     "value": "15"
-	   },
-	   {
-	     "type": "literal",
-	     "value": "/"
-	   },
-	   {
-	     "type": "year",
-	     "value": "10"
-	   }
-	 ]);
+	assert.deepEqual( Globalize.formatDateToParts( date, { date: "short" } ), [
+		{
+			"type": "month",
+			"value": "9"
+		},
+		{
+			"type": "literal",
+			"value": "/"
+		},
+		{
+			"type": "day",
+			"value": "15"
+		},
+		{
+			"type": "literal",
+			"value": "/"
+		},
+		{
+			"type": "year",
+			"value": "10"
+		}
+	]);
 });
 
 QUnit.test( "should format datetime presets", function( assert ) {
 	extraSetup();
 
-	assert.deepEqual( Globalize.formatDateToParts( date, { datetime: "medium" } ),
-	[
+	assert.deepEqual( Globalize.formatDateToParts( date, { datetime: "medium" } ), [
 		{
 			"type": "month",
 			"value": "Sep"
@@ -607,8 +628,7 @@ QUnit.test( "should format datetime presets", function( assert ) {
 QUnit.test( "should format raw patterns", function( assert ) {
 	extraSetup();
 
-	assert.deepEqual( Globalize.formatDateToParts( date, { raw: "E, MMM d, y G" } ),
-	[
+	assert.deepEqual( Globalize.formatDateToParts( date, { raw: "E, MMM d, y G" } ), [
 		{
 			"type": "weekday",
 			"value": "Wed"

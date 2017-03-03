@@ -4,6 +4,7 @@
 		"number-label": "Zahl",
 		"currency-label": "Währung",
 		"date-label": "Datum",
+		"date-to-parts-label": "Datum (beachten Sie den hervorgehobenen Monat, das Markup wurde mit dateToPartsFormatter hinzugefügt)",
 		"relative-time-label": "Relative Zeit",
 		"unit-label": "Einheit",
 		"message-1": "Ein Beispiel mit Zahl \"{number}\", Währung \"{currency}\", Datum \"{date}\", relative Zeit \"{relativeTime}\", und Einheit \"{unit}\".",
