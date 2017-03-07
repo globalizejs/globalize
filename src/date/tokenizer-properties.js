@@ -14,22 +14,12 @@ define([
  *
  * Return Object with data that will be used by tokenizer.
  */
-return function( pattern, cldr, timeZone ) {
+return function( pattern, cldr ) {
 	var properties = {
 			pattern: pattern,
 			timeSeparator: numberSymbol( "timeSeparator", cldr )
 		},
 		widths = [ "abbreviated", "wide", "narrow" ];
-
-	if ( timeZone ) {
-		var getTimeZoneData = function( timeZoneData ) {
-			if ( timeZoneData.name && timeZoneData.name === timeZone ) {
-				return true;
-			}
-			return false;
-		};
-		properties.timeZoneData = cldr.get( "globalize-iana/zones" ).filter( getTimeZoneData )[0];
-	}
 
 	function populateProperties( path, value ) {
 

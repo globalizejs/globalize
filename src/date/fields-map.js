@@ -15,7 +15,7 @@ return objectInvert({
 	"hour": "hHkK",
 	"minute": "m",
 	"second": "sSA",
-	"zone": "zOxX"
+	"zone": "zvVOxX"
 }, function( object, key, value ) {
 	value.split( "" ).forEach(function( symbol ) {
 		object[ symbol ] = key;

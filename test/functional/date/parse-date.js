@@ -13,12 +13,13 @@ define([
 	"json!cldr-data/supplemental/numberingSystems.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+	"json!iana-tz-data.json",
 	"../../util",
 
 	"globalize/date"
 ], function( Globalize, startOf, arCaGregorian, arNumbers, arTimeZoneNames, enCaGregorian,
 	enNumbers, enTimeZoneNames, ptCaGregorian, ptNumbers, likelySubtags, numberingSystems, timeData,
-	weekData, util ) {
+	weekData, ianaTimezoneData, util ) {
 
 var ar, date;
 
@@ -36,6 +37,7 @@ function extraSetup() {
 		timeData,
 		weekData
 	);
+	Globalize.loadIANATimeZone( ianaTimezoneData );
 }
 
 QUnit.module( ".parseDate( value, options )", {
@@ -86,6 +88,9 @@ QUnit.test( "should validate parameters", function( assert ) {
 	assert.throws(function() {
 		Globalize.parseDate( "15", { skeleton: "invalid-stuff" });
 	}, /E_INVALID_OPTIONS.*skeleton.*invalid-stuff/ );
+
+	// FIXME: Test passing {timeZone} only.
+	// FIXME: Test passing invalid {timeZone}s.
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
@@ -203,6 +208,20 @@ QUnit.test( "should parse a formatted date (reverse operation test)", function( 
 	date = startOf( date, "minute" );
 	assert.deepEqual( Globalize.parseDate( Globalize.formatDate( date, { datetime: "full" } ), { datetime: "full" } ), date );
 	assert.deepEqual( ar.parseDate( ar.formatDate( date, { datetime: "full" } ), { datetime: "full" } ), date );
+
+	// Testing DST edge cases...
+	// Note we can't reliably parse overlapping times (daylight to standard cases). For example, we
+	// can't reliably parse "2/18/2017 11:00 PM" for America/Sao_Paulo into
+	// "2017-02-19T01:00:00.000Z" or "2017-02-19T02:00:00.000Z" without providing the zone string,
+	// e.g., 11:00 PM BRT or 11:00 PM BRST (both times are valid). Therefore, formatting either one
+	// should return back the parsed string.
+	assert.deepEqual(
+		Globalize.formatDate(
+			Globalize.parseDate( "2/18/2017 11:00 PM", { raw: "M/d/y h:mm a", timeZone: "America/Sao_Paulo" } ),
+			{ raw: "M/d/y h:mm a", timeZone: "America/Sao_Paulo" }
+		),
+		"2/18/2017 11:00 PM"
+	);
 
 	// Test #689 - special test when target date and today are in different DST rules.
 	// Note it was arbitrarily chosen O, other timezone patterns are supposed to pass too.
