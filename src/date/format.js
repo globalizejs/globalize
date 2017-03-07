@@ -7,9 +7,10 @@ define([
 	"./start-of",
 	"./timezone-hour-format",
 	"./week-days",
-	"../util/remove-literal-quotes"
+	"../util/remove-literal-quotes",
+	"../util/globalize-date"
 ], function( dateDayOfWeek, dateDayOfYear, dateFieldsMap, dateMillisecondsInDay, datePatternRe,
-	dateStartOf, dateTimezoneHourFormat, dateWeekDays, removeLiteralQuotes ) {
+	dateStartOf, dateTimezoneHourFormat, dateWeekDays, removeLiteralQuotes, GlobalizeDate ) {
 
 /**
  * format( date, properties )
@@ -26,6 +27,11 @@ return function( date, numberFormatters, properties ) {
 	var parts = [];
 
 	var timeSeparator = properties.timeSeparator;
+
+	// create globalize date with given timezone data
+	if ( properties.timeZoneData ) {
+		date = new GlobalizeDate( date, properties.timeZoneData );
+	}
 
 	properties.pattern.replace( datePatternRe, function( current ) {
 		var dateField, type, value,
@@ -210,6 +216,39 @@ return function( date, numberFormatters, properties ) {
 
 			// Zone
 			case "z":
+
+				// z...zzz: "{shortRegion}", eg. "PST" or "PDT".
+				// zzzz: "{regionName} {Standard Time}" or "{regionName} {Daylight Time}",
+				// eg. "Pacific Standard Time" or "Pacific Daylight Time".
+				// TODO: date.isDST() FIXME
+				if ( date.isDST && properties.standardTzName ) {
+					value = date.isDST() && properties.daylightTzName ?
+						properties.daylightTzName : properties.standardTzName;
+					break;
+				}
+
+			/* falls through */
+			case "v":
+
+				//v...vvv: "{shortRegion}", eg. "PT".
+				//vvvv: "{regionName} {Time}",
+				//eg. "Pacific Time"
+				if ( properties.genericTzName ) {
+					value = properties.genericTzName;
+					break;
+				}
+
+			/* falls through */
+			case "V":
+
+				//VVVV: "{explarCity} {Time}",
+				//eg. "Los Angeles Time"
+				if ( properties.timeZoneName ) {
+					value = properties.timeZoneName;
+					break;
+				}
+
+			/* falls through */
 			case "O":
 
 				// O: "{gmtFormat}+H;{gmtFormat}-H" or "{gmtZeroFormat}", eg. "GMT-8" or "GMT".

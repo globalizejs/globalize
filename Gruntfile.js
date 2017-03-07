@@ -255,8 +255,14 @@ module.exports = function( grunt ) {
 						.replace( rdefineEnd, "" ) /* 2 */
 						.replace( /define\(\[[^\]]+\]\)[\W\n]+$/, "" ); /* 3 */
 
+					// Type b (not as simple as a single return)
+					if ( [ "util/globalize-date" ].indexOf( id ) !== -1 ) {
+						contents = "var " + name[ 0 ].toUpperCase() +
+							name.slice( 1 ) + " = (function() {" +
+							contents + "}());";
+
 					// Type a (single return)
-					if ( ( /\// ).test( id ) ) {
+					} else if ( ( /\// ).test( id ) ) {
 						contents = contents
 							.replace( /\nreturn/, "\nvar " + name + " =" );
 					}
