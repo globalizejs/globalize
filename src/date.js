@@ -35,6 +35,24 @@ function validateRequiredCldr( path, value ) {
 }
 
 /**
+ * .loadIANA( json )
+ *
+ * @json [JSON]
+ *
+ * Load IANA data.
+ */
+Globalize.loadIANA = function( json ) {
+	var customData = {
+			"globalize-iana": json
+		};
+
+	validateParameterPresence( json, "json" );
+	validateParameterTypePlainObject( json, "json" );
+
+	Cldr.load( customData );
+};
+
+/**
  * .dateFormatter( options )
  *
  * @options [Object] see date/expand_pattern for more info.
@@ -51,7 +69,7 @@ function validateRequiredCldr( path, value ) {
  */
 Globalize.dateFormatter =
 Globalize.prototype.dateFormatter = function( options ) {
-	var args, cldr, numberFormatters, pad, pattern, properties, returnFn;
+	var args, cldr, numberFormatters, pad, pattern, properties, returnFn, timeZone;
 
 	validateParameterTypePlainObject( options, "options" );
 
@@ -62,9 +80,12 @@ Globalize.prototype.dateFormatter = function( options ) {
 
 	validateDefaultLocale( cldr );
 
+	timeZone = options.timeZone;
+	validateParameterTypeString( options.timeZone, "options.timeZone" );
+
 	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( options, cldr );
-	properties = dateFormatProperties( pattern, cldr );
+	properties = dateFormatProperties( pattern, cldr, timeZone );
 	cldr.off( "get", validateRequiredCldr );
 
 	// Create needed number formatters.
@@ -93,7 +114,7 @@ Globalize.prototype.dateFormatter = function( options ) {
  */
 Globalize.dateParser =
 Globalize.prototype.dateParser = function( options ) {
-	var args, cldr, numberParser, parseProperties, pattern, tokenizerProperties, returnFn;
+	var args, cldr, numberParser, parseProperties, pattern, tokenizerProperties, returnFn, timeZone;
 
 	validateParameterTypePlainObject( options, "options" );
 
@@ -103,6 +124,9 @@ Globalize.prototype.dateParser = function( options ) {
 	args = [ options ];
 
 	validateDefaultLocale( cldr );
+
+	timeZone = options.timeZone;
+	validateParameterTypeString( options.timeZone, "options.timeZone" );
 
 	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( options, cldr );
