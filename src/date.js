@@ -61,6 +61,24 @@ function validateOptionsSkeleton( pattern, skeleton ) {
 }
 
 /**
+ * .loadIANA( json )
+ *
+ * @json [JSON]
+ *
+ * Load IANA data.
+ */
+Globalize.loadIANA = function( json ) {
+	var customData = {
+			"globalize-iana": json
+		};
+
+	validateParameterPresence( json, "json" );
+	validateParameterTypePlainObject( json, "json" );
+
+	Cldr.load( customData );
+};
+
+/**
  * .dateFormatter( options )
  *
  * @options [Object] see date/expand_pattern for more info.
@@ -104,7 +122,7 @@ Globalize.prototype.dateFormatter = function( options ) {
  */
 Globalize.dateToPartsFormatter =
 Globalize.prototype.dateToPartsFormatter = function( options ) {
-	var args, cldr, numberFormatters, pad, pattern, properties, returnFn;
+	var args, cldr, numberFormatters, pad, pattern, properties, returnFn, timeZone;
 
 	validateParameterTypePlainObject( options, "options" );
 
@@ -114,12 +132,15 @@ Globalize.prototype.dateToPartsFormatter = function( options ) {
 	validateOptionsPreset( options );
 	validateDefaultLocale( cldr );
 
+	timeZone = options.timeZone;
+	validateParameterTypeString( options.timeZone, "options.timeZone" );
+
 	args = [ options ];
 
 	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( options, cldr );
 	validateOptionsSkeleton( pattern, options.skeleton );
-	properties = dateFormatProperties( pattern, cldr );
+	properties = dateFormatProperties( pattern, cldr, timeZone );
 	cldr.off( "get", validateRequiredCldr );
 
 	// Create needed number formatters.
@@ -148,7 +169,7 @@ Globalize.prototype.dateToPartsFormatter = function( options ) {
  */
 Globalize.dateParser =
 Globalize.prototype.dateParser = function( options ) {
-	var args, cldr, numberParser, parseProperties, pattern, tokenizerProperties, returnFn;
+	var args, cldr, numberParser, parseProperties, pattern, tokenizerProperties, returnFn, timeZone;
 
 	validateParameterTypePlainObject( options, "options" );
 
@@ -157,6 +178,9 @@ Globalize.prototype.dateParser = function( options ) {
 
 	validateOptionsPreset( options );
 	validateDefaultLocale( cldr );
+
+	timeZone = options.timeZone;
+	validateParameterTypeString( options.timeZone, "options.timeZone" );
 
 	args = [ options ];
 
