@@ -106,12 +106,12 @@ are: `full`, `long`, `medium`, and `short`.
 | `{ date: "full" }` | `"Monday, November 1, 2010"` |
 | `{ time: "short" }` | `"5:55 PM"` |
 | `{ time: "medium" }` | `"5:55:00 PM"` |
-| `{ time: "long" }` | `"5:55:00 PM GMT-2"` |
-| `{ time: "full" }` | `"5:55:00 PM GMT-02:00"` |
+| `{ time: "long" }` | `"5:55:00 PM PST"` |
+| `{ time: "full" }` | `"5:55:00 PM Pacific Standard Time"` |
 | `{ datetime: "short" }` | `"11/1/10, 5:55 PM"` |
 | `{ datetime: "medium" }` | `"Nov 1, 2010, 5:55:00 PM"` |
-| `{ datetime: "long" }` | `"November 1, 2010 at 5:55:00 PM GMT-2"` |
-| `{ datetime: "full" }` | `"Monday, November 1, 2010 at 5:55:00 PM GMT-02:00"` |
+| `{ datetime: "long" }` | `"November 1, 2010 at 5:55:00 PM PST"` |
+| `{ datetime: "full" }` | `"Monday, November 1, 2010 at 5:55:00 PM Pacific Standard Time"` |
 
 For comparison, follow the same formatter `{ datetime: "short" }` on different locales.
 
