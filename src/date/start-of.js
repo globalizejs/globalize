@@ -10,7 +10,7 @@ define(function() {
  * Returns the modified date
  */
 return function( date, unit ) {
-	date = new Date( date.getTime() );
+	date = date.isGloblizeDate ? date.clone() : new Date( date.getTime() );
 	switch ( unit ) {
 		case "year":
 			date.setMonth( 0 );

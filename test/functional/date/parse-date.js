@@ -86,6 +86,9 @@ QUnit.test( "should validate parameters", function( assert ) {
 	assert.throws(function() {
 		Globalize.parseDate( "15", { skeleton: "invalid-stuff" });
 	}, /E_INVALID_OPTIONS.*skeleton.*invalid-stuff/ );
+
+	// FIXME: Test passing {timeZone} only.
+	// FIXME: Test passing invalid {timeZone}s.
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {

@@ -1,128 +1,143 @@
-
 define( function() {
-var GlobalizeDate = function( date, timeZonedata ) {
-	this.date = new Date( date.getTime() );
-	this.timeZoneData = timeZonedata;
-	this.setTime( this.date.getTime() - this.getTimeZoneAdjustment() * 60 * 1000 );
+
+function getUntilsIndex( original, untils ) {
+	var index = 0,
+		originalTime = original.getTime();
+
+	// TODO Should we do binary search for improved performance?
+	while ( index < untils.length - 1 && originalTime >= untils[ index ] ) {
+		index++;
+	}
+	return index;
+}
+
+var GlobalizeDate = function( date, timeZoneData ) {
+	this.original = new Date( date.getTime() );
+	this.local = new Date( date.getTime() );
+	this.isGloblizeDate = true;
+	this.timeZoneData = timeZoneData;
+	if ( !( timeZoneData.untils && timeZoneData.offsets && timeZoneData.isdsts ) ) {
+		throw new Error( "macacos robin" );
+	}
+	this.setTime( this.local.getTime() - this.getTimezoneOffset() * 60 * 1000 );
+};
+
+GlobalizeDate.prototype.setWrap = function( fn ) {
+	var offset1 = this.getTimezoneOffset();
+	var ret = fn();
+	this.original = new Date( this.getTime() );
+	var offset2 = this.getTimezoneOffset();
+	this.original.setMinutes( this.original.getMinutes() + offset2 - offset1 );
+	return ret;
+};
+
+GlobalizeDate.prototype.clone = function() {
+	return new GlobalizeDate( this.original, this.timeZoneData );
 };
 
 GlobalizeDate.prototype.getFullYear = function() {
-	return this.date.getUTCFullYear();
+	return this.local.getUTCFullYear();
 };
 
 GlobalizeDate.prototype.getMonth = function() {
-	return this.date.getUTCMonth();
-};
-
-GlobalizeDate.prototype.getDay = function() {
-	return this.date.getUTCDay();
+	return this.local.getUTCMonth();
 };
 
 GlobalizeDate.prototype.getDate = function() {
-	return this.date.getUTCDate();
+	return this.local.getUTCDate();
 };
 
-GlobalizeDate.prototype.getMinutes = function() {
-	return this.date.getUTCMinutes();
-};
-
-GlobalizeDate.prototype.getSeconds = function() {
-	return this.date.getUTCSeconds();
+GlobalizeDate.prototype.getDay = function() {
+	return this.local.getUTCDay();
 };
 
 GlobalizeDate.prototype.getHours = function() {
-	return this.date.getUTCHours();
+	return this.local.getUTCHours();
 };
 
 GlobalizeDate.prototype.getMinutes = function() {
-	return this.date.getUTCMinutes();
+	return this.local.getUTCMinutes();
 };
 
 GlobalizeDate.prototype.getSeconds = function() {
-	return this.date.getUTCSeconds();
+	return this.local.getUTCSeconds();
 };
 
 GlobalizeDate.prototype.getMilliseconds = function() {
-	return this.date.getUTCMilliseconds();
+	return this.local.getUTCMilliseconds();
 };
 
 GlobalizeDate.prototype.getTime = function() {
-	return this.date.getTime();
-};
-
-GlobalizeDate.prototype.setFullYear = function( year ) {
-	return this.date.setUTCFullYear( year );
-};
-
-GlobalizeDate.prototype.setMonth = function( month ) {
-	return this.date.setUTCMonth( month );
-};
-
-GlobalizeDate.prototype.setDay = function( date ) {
-	return this.date.setUTCDay( date );
-};
-
-GlobalizeDate.prototype.setDate = function( date ) {
-	return this.date.setUTCDate( date );
-};
-
-GlobalizeDate.prototype.setMinutes = function( minutes ) {
-	return this.date.setUTCMinutes( minutes );
-};
-
-GlobalizeDate.prototype.setSeconds = function( seconds ) {
-	return this.date.setUTCSeconds( seconds );
-};
-
-GlobalizeDate.prototype.setHours = function( hour ) {
-	return this.date.setUTCHours( hour );
-};
-
-GlobalizeDate.prototype.setMinutes = function( minutes ) {
-	return this.date.setUTCMinutes( minutes );
-};
-
-GlobalizeDate.prototype.setSeconds = function( seconds ) {
-	return this.date.setUTCSeconds( seconds );
-};
-
-GlobalizeDate.prototype.setMilliseconds = function( milliseconds ) {
-	return this.date.setUTCMilliseconds( milliseconds );
-};
-
-GlobalizeDate.prototype.setTime = function( time ) {
-	return this.date.setTime( time );
-};
-
-GlobalizeDate.prototype.isDST = function() {
-	return this.getStdOffset() !== -this.getTimeZoneAdjustment();
+	return this.local.getTime() + this.getTimezoneOffset() * 60 * 1000;
 };
 
 GlobalizeDate.prototype.getTimezoneOffset = function() {
-	return this.getTimeZoneAdjustment();
+	var index = getUntilsIndex( this.original, this.timeZoneData.untils );
+	return this.timeZoneData.offsets[ index ];
 };
 
-GlobalizeDate.prototype.getStdOffset = function() {
-	var stdOffset = -1;
-	if ( this.timeZoneData.offsets > 1 ) {
-		stdOffset *= Math.max(
-			this.timeZoneData.offsets[ this.timeZoneData.offsets.length - 1 ],
-			this.timeZoneData.offsets[ this.timeZoneData.offsets.length - 2 ]
-		);
-	} else {
-		stdOffset *= this.timeZoneData.offsets[ this.timeZoneData.offsets.length - 1 ];
-	}
-	return stdOffset;
+GlobalizeDate.prototype.setFullYear = function( year ) {
+	var local = this.local;
+	return this.setWrap(function() {
+		return local.setUTCFullYear( year );
+	});
 };
 
-GlobalizeDate.prototype.getTimeZoneAdjustment = function() {
-	var index = 0;
-	while ( index < this.timeZoneData.untils.length - 1 &&
-		this.date.getTime() >= this.timeZoneData.untils[ index ] ) {
-		index++;
-	}
-	return index === 0 ? 0 : this.timeZoneData.offsets[ index ];
+GlobalizeDate.prototype.setMonth = function( month ) {
+	var local = this.local;
+	return this.setWrap(function() {
+		return local.setUTCMonth( month );
+	});
+};
+
+GlobalizeDate.prototype.setDate = function( date ) {
+	var local = this.local;
+	return this.setWrap(function() {
+		return local.setUTCDate( date );
+	});
+};
+
+GlobalizeDate.prototype.setHours = function( hour ) {
+	var local = this.local;
+	return this.setWrap(function() {
+		return local.setUTCHours( hour );
+	});
+};
+
+GlobalizeDate.prototype.setMinutes = function( minutes ) {
+	var local = this.local;
+	return this.setWrap(function() {
+		return local.setUTCMinutes( minutes );
+	});
+};
+
+GlobalizeDate.prototype.setSeconds = function( seconds ) {
+	var local = this.local;
+
+	// setWrap is needed here just because abs(seconds) could be >= a minute.
+	return this.setWrap(function() {
+		return local.setUTCSeconds( seconds );
+	});
+};
+
+GlobalizeDate.prototype.setMilliseconds = function( milliseconds ) {
+	var local = this.local;
+
+	// setWrap is needed here just because abs(seconds) could be >= a minute.
+	return this.setWrap(function() {
+		return local.setUTCMilliseconds( milliseconds );
+	});
+};
+
+GlobalizeDate.prototype.setTime = function( time ) {
+	return this.local.setTime( time );
+};
+
+GlobalizeDate.prototype.isDST = function() {
+	var index = getUntilsIndex( this.original, this.timeZoneData.untils );
+	return Boolean( this.timeZoneData.isdsts[ index ] );
 };
 
 return GlobalizeDate;
+
 });

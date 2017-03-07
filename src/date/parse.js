@@ -34,7 +34,7 @@ return function( value, tokens, properties ) {
 		truncateAt = [],
 		units = [ "year", "month", "day", "hour", "minute", "second", "milliseconds" ];
 
-	// create globalize date with given timezone data
+	// Create globalize date with given timezone data.
 	if ( properties.timeZoneData ) {
 		date = new GlobalizeDate( date, properties.timeZoneData );
 	}
@@ -286,6 +286,11 @@ return function( value, tokens, properties ) {
 	// => new Date( <current Year>, 12, 31, 0, 0, 0, 0 );
 	truncateAt = Math.max.apply( null, truncateAt );
 	date = dateStartOf( date, units[ truncateAt ] );
+
+	// Get date back from globalize date.
+	if ( date.isGloblizeDate ) {
+		date = new Date( date.getTime() ); // FIXME can we improve this? E.g., toDate()
+	}
 
 	return date;
 };

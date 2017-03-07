@@ -20,6 +20,14 @@ Globalize._dateParser = dateParse;
 Globalize._dateTokenizer = dateTokenizer;
 Globalize._validateParameterTypeDate = validateParameterTypeDate;
 
+function optionsHasStyle( options ) {
+	return options.skeleton !== undefined ||
+		options.date !== undefined ||
+		options.time !== undefined ||
+		options.datetime !== undefined ||
+		options.raw !== undefined;
+}
+
 Globalize.dateFormatter =
 Globalize.prototype.dateFormatter = function( options ) {
 	var formatterFn = this.dateToPartsFormatter( options );
@@ -33,13 +41,19 @@ Globalize.prototype.dateFormatter = function( options ) {
 
 Globalize.dateToPartsFormatter =
 Globalize.prototype.dateToPartsFormatter = function( options ) {
-	options = options || { skeleton: "yMd" };
+	options = options || {};
+	if ( !optionsHasStyle( options ) ) {
+		options.skeleton = "yMd";
+	}
 	return Globalize[ runtimeKey( "dateToPartsFormatter", this._locale, [ options ] ) ];
 };
 
 Globalize.dateParser =
 Globalize.prototype.dateParser = function( options ) {
-	options = options || { skeleton: "yMd" };
+	options = options || {};
+	if ( !optionsHasStyle( options ) ) {
+		options.skeleton = "yMd";
+	}
 	return Globalize[ runtimeKey( "dateParser", this._locale, [ options ] ) ];
 };
 

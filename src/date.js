@@ -24,11 +24,23 @@ define([
 	validateParameterTypeString, Globalize, dateExpandPattern, dateToPartsFormatterFn,
 	dateFormatProperties, dateParserFn, dateParseProperties, dateTokenizerProperties ) {
 
+function optionsHasStyle( options ) {
+	return options.skeleton !== undefined ||
+		options.date !== undefined ||
+		options.time !== undefined ||
+		options.datetime !== undefined ||
+		options.raw !== undefined;
+}
+
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
 		skip: [
 			/dates\/calendars\/gregorian\/dateTimeFormats\/availableFormats/,
 			/dates\/calendars\/gregorian\/days\/.*\/short/,
+			/dates\/timeZoneNames\/zone/,
+			/dates\/timeZoneNames\/metazone/,
+			/globalize-iana/,
+			/supplemental\/metaZones/,
 			/supplemental\/timeData\/(?!001)/,
 			/supplemental\/weekData\/(?!001)/
 		]
@@ -60,14 +72,33 @@ function validateOptionsSkeleton( pattern, skeleton ) {
 	);
 }
 
+function validateRequiredIana( timeZone ) {
+	return function( path, value ) {
+
+		if ( !/globalize-iana/.test( path ) ) {
+			return;
+		}
+
+		validate(
+			"E_MISSING_IANA_TZ",
+			"Missing required IANA timezone content for `{timeZone}`: `{path}`.",
+			value,
+			{
+				path: path.replace( /globalize-iana\//, "" ),
+				timeZone: timeZone
+			}
+		);
+	};
+}
+
 /**
- * .loadIANA( json )
+ * .loadIANATimezone( json )
  *
  * @json [JSON]
  *
- * Load IANA data.
+ * Load IANA timezone data.
  */
-Globalize.loadIANA = function( json ) {
+Globalize.loadIANATimezone = function( json ) {
 	var customData = {
 			"globalize-iana": json
 		};
@@ -122,26 +153,36 @@ Globalize.prototype.dateFormatter = function( options ) {
  */
 Globalize.dateToPartsFormatter =
 Globalize.prototype.dateToPartsFormatter = function( options ) {
-	var args, cldr, numberFormatters, pad, pattern, properties, returnFn, timeZone;
+	var args, cldr, numberFormatters, pad, pattern, properties, returnFn,
+		timeZone;
 
 	validateParameterTypePlainObject( options, "options" );
 
 	cldr = this.cldr;
-	options = options || { skeleton: "yMd" };
+	options = options || {};
+	if ( !optionsHasStyle( options ) ) {
+		options.skeleton = "yMd";
+	}
 
 	validateOptionsPreset( options );
 	validateDefaultLocale( cldr );
 
 	timeZone = options.timeZone;
-	validateParameterTypeString( options.timeZone, "options.timeZone" );
+	validateParameterTypeString( timeZone, "options.timeZone" );
 
 	args = [ options ];
 
 	cldr.on( "get", validateRequiredCldr );
+	if ( timeZone ) {
+		cldr.on( "get", validateRequiredIana( timeZone ) );
+	}
 	pattern = dateExpandPattern( options, cldr );
 	validateOptionsSkeleton( pattern, options.skeleton );
 	properties = dateFormatProperties( pattern, cldr, timeZone );
 	cldr.off( "get", validateRequiredCldr );
+	if ( timeZone ) {
+		cldr.off( "get", validateRequiredIana( timeZone ) );
+	}
 
 	// Create needed number formatters.
 	numberFormatters = properties.numberFormatters;
@@ -169,27 +210,37 @@ Globalize.prototype.dateToPartsFormatter = function( options ) {
  */
 Globalize.dateParser =
 Globalize.prototype.dateParser = function( options ) {
-	var args, cldr, numberParser, parseProperties, pattern, tokenizerProperties, returnFn, timeZone;
+	var args, cldr, numberParser, parseProperties, pattern, returnFn, timeZone,
+		tokenizerProperties;
 
 	validateParameterTypePlainObject( options, "options" );
 
 	cldr = this.cldr;
-	options = options || { skeleton: "yMd" };
+	options = options || {};
+	if ( !optionsHasStyle( options ) ) {
+		options.skeleton = "yMd";
+	}
 
 	validateOptionsPreset( options );
 	validateDefaultLocale( cldr );
 
 	timeZone = options.timeZone;
-	validateParameterTypeString( options.timeZone, "options.timeZone" );
+	validateParameterTypeString( timeZone, "options.timeZone" );
 
 	args = [ options ];
 
 	cldr.on( "get", validateRequiredCldr );
+	if ( timeZone ) {
+		cldr.on( "get", validateRequiredIana( timeZone ) );
+	}
 	pattern = dateExpandPattern( options, cldr );
 	validateOptionsSkeleton( pattern, options.skeleton );
 	tokenizerProperties = dateTokenizerProperties( pattern, cldr );
-	parseProperties = dateParseProperties( cldr );
+	parseProperties = dateParseProperties( cldr, timeZone );
 	cldr.off( "get", validateRequiredCldr );
+	if ( timeZone ) {
+		cldr.off( "get", validateRequiredIana( timeZone ) );
+	}
 
 	numberParser = this.numberParser({ raw: "0" });
 
