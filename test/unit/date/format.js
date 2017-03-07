@@ -13,12 +13,13 @@ define([
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+	"json!cldr-data/supplemental/metaZones.json",
 
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, format, formatProperties, stringPad, deCaGregorian, enCaGregorian,
 	enTimeZoneNames, enGbCaGregorian, enInCaGregorian, ptCaGregorian, ruCaGregorian, likelySubtags,
-	timeData, weekData ) {
+	timeData, weekData, metaZones ) {
 
 var cldr,
 	year0 = new Date( -62167190400000 ),
@@ -52,15 +53,620 @@ Cldr.load(
 	ptCaGregorian,
 	ruCaGregorian,
 	timeData,
-	weekData
+	weekData,
+	metaZones
 );
 
 cldr = new Cldr( "en" );
 
+// test exemplerCity when metaZones not found for a given timeZone
+// zzzz: "{regionName} {Standard Time}" or "{regionName} {Daylight Time}"
+// z...zzz: fall back to "O" format
+// vvvv: "{regionName} {Time}"
+// v...vvv: fall back to "O" format
+
+Cldr.load({
+	"main": {
+		"en": {
+			"dates": {
+				"timeZoneNames": {
+					"zone": {
+						"Foo":{
+							"Bar":{
+								"exemplarCity": "Foo City"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+});
+
+// needed for magicDate
+Cldr.load({
+	"globalize-iana": {
+		"zones": [
+			{
+				"name": "America/Los_Angeles",
+				"abbrs": [
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PWT",
+				"PPT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST",
+				"PDT",
+				"PST"
+				],
+				"untils": [
+				-1633269600000,
+				-1615129200000,
+				-1601820000000,
+				-1583679600000,
+				-880207200000,
+				-769395600000,
+				-765385200000,
+				-687967140000,
+				-662655600000,
+				-620838000000,
+				-608137200000,
+				-589388400000,
+				-576082800000,
+				-557938800000,
+				-544633200000,
+				-526489200000,
+				-513183600000,
+				-495039600000,
+				-481734000000,
+				-463590000000,
+				-450284400000,
+				-431535600000,
+				-418230000000,
+				-400086000000,
+				-386780400000,
+				-368636400000,
+				-355330800000,
+				-337186800000,
+				-323881200000,
+				-305737200000,
+				-292431600000,
+				-273682800000,
+				-260982000000,
+				-242233200000,
+				-226508400000,
+				-210783600000,
+				-195058800000,
+				-179334000000,
+				-163609200000,
+				-147884400000,
+				-131554800000,
+				-116434800000,
+				-100105200000,
+				-84376800000,
+				-68655600000,
+				-52927200000,
+				-37206000000,
+				-21477600000,
+				-5756400000,
+				9972000000,
+				25693200000,
+				41421600000,
+				57747600000,
+				73476000000,
+				89197200000,
+				104925600000,
+				120646800000,
+				126698400000,
+				152096400000,
+				162381600000,
+				183546000000,
+				199274400000,
+				215600400000,
+				230724000000,
+				247050000000,
+				262778400000,
+				278499600000,
+				294228000000,
+				309949200000,
+				325677600000,
+				341398800000,
+				357127200000,
+				372848400000,
+				388576800000,
+				404902800000,
+				420026400000,
+				436352400000,
+				452080800000,
+				467802000000,
+				483530400000,
+				499251600000,
+				514980000000,
+				530701200000,
+				544615200000,
+				562150800000,
+				576064800000,
+				594205200000,
+				607514400000,
+				625654800000,
+				638964000000,
+				657104400000,
+				671018400000,
+				688554000000,
+				702468000000,
+				720003600000,
+				733917600000,
+				752058000000,
+				765367200000,
+				783507600000,
+				796816800000,
+				814957200000,
+				828871200000,
+				846406800000,
+				860320800000,
+				877856400000,
+				891770400000,
+				909306000000,
+				923220000000,
+				941360400000,
+				954669600000,
+				972810000000,
+				986119200000,
+				1004259600000,
+				1018173600000,
+				1035709200000,
+				1049623200000,
+				1067158800000,
+				1081072800000,
+				1099213200000,
+				1112522400000,
+				1130662800000,
+				1143972000000,
+				1162112400000,
+				1173607200000,
+				1194166800000,
+				1205056800000,
+				1225616400000,
+				1236506400000,
+				1257066000000,
+				1268560800000,
+				1289120400000,
+				1300010400000,
+				1320570000000,
+				1331460000000,
+				1352019600000,
+				1362909600000,
+				1383469200000,
+				1394359200000,
+				1414918800000,
+				1425808800000,
+				1446368400000,
+				1457863200000,
+				1478422800000,
+				1489312800000,
+				1509872400000,
+				1520762400000,
+				1541322000000,
+				1552212000000,
+				1572771600000,
+				1583661600000,
+				1604221200000,
+				1615716000000,
+				1636275600000,
+				1647165600000,
+				1667725200000,
+				1678615200000,
+				1699174800000,
+				1710064800000,
+				1730624400000,
+				1741514400000,
+				1762074000000,
+				1772964000000,
+				1793523600000,
+				1805018400000,
+				1825578000000,
+				1836468000000,
+				1857027600000,
+				1867917600000,
+				1888477200000,
+				1899367200000,
+				1919926800000,
+				1930816800000,
+				1951376400000,
+				1962871200000,
+				1983430800000,
+				1994320800000,
+				2014880400000,
+				2025770400000,
+				2046330000000,
+				2057220000000,
+				2077779600000,
+				2088669600000,
+				2109229200000,
+				2120119200000,
+				2140678800000,
+				null
+				],
+				"offsets": [
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480,
+				420,
+				480
+				],
+				"population": 15058000
+			}
+		]
+	}
+});
+
 QUnit.assert.dateFormat = function( date, pattern, cldr, expected ) {
+	this.dateFormatWithTimezone( date, pattern, undefined, cldr, expected );
+};
+
+QUnit.assert.dateFormatWithTimezone = function( date, pattern, timeZone, cldr, expected ) {
 	var pad,
 		numberFormatters = [],
-		properties = formatProperties( pattern, cldr );
+		properties = formatProperties( pattern, cldr, timeZone );
 
 	// Create simple number formatters for this test purposes.
 	for ( pad in properties.numberFormatters ) {
@@ -974,61 +1580,111 @@ QUnit.test( "should format various milliseconds (A+)", function( assert ) {
 /**
  *  Zone
  */
-
 QUnit.test( "should format timezone (z)", function( assert ) {
+
+	//Test for country with Daylight Savings and Standard time
+	//eg. Pacific Standard Time and Pacific Daylight Time
+	var date = new Date( 2017, 0, 1 );
+	assert.dateFormatWithTimezone( date, "z", "America/Los_Angeles", cldr, "PST" );
+	assert.dateFormatWithTimezone( date, "zz", "America/Los_Angeles", cldr, "PST" );
+	assert.dateFormatWithTimezone( date, "zzz", "America/Los_Angeles", cldr, "PST" );
+	assert.dateFormatWithTimezone( date, "zzzz", "America/Los_Angeles", cldr, "Pacific Standard Time" );
+
+	date = new Date( 2017, 6, 1 );
+	assert.dateFormatWithTimezone( date, "z", "America/Los_Angeles", cldr, "PDT" );
+	assert.dateFormatWithTimezone( date, "zz", "America/Los_Angeles", cldr, "PDT" );
+	assert.dateFormatWithTimezone( date, "zzz", "America/Los_Angeles", cldr, "PDT" );
+	assert.dateFormatWithTimezone( date, "zzzz", "America/Los_Angeles", cldr, "Pacific Daylight Time" );
+
+
+	//Test for country with only standard time
+	//eg. long: Indian Standard Time
+	//This test also covers the case where timezone name is undefined 
+	//like short timezone name for Asia/Calcutta and should fall through 'O' format
+	date = new FakeDate( 0 );
+	date.isDST = function(){
+		return false;
+	};
+	assert.dateFormatWithTimezone( date, "z", "Asia/Calcutta", cldr, "GMT" );
+	assert.dateFormatWithTimezone( date, "zz", "Asia/Calcutta", cldr, "GMT" );
+	assert.dateFormatWithTimezone( date, "zzz", "Asia/Calcutta", cldr, "GMT" );
+	assert.dateFormatWithTimezone( date, "zzzz", "Asia/Calcutta", cldr, "India Standard Time" );
+
+	date.isDST = function(){
+		return true;
+	};
+	assert.dateFormatWithTimezone( date, "z", "Asia/Calcutta", cldr, "GMT" );
+	assert.dateFormatWithTimezone( date, "zz", "Asia/Calcutta", cldr, "GMT" );
+	assert.dateFormatWithTimezone( date, "zzz", "Asia/Calcutta", cldr, "GMT" );
+	assert.dateFormatWithTimezone( date, "zzzz", "Asia/Calcutta", cldr, "India Standard Time" );
+
+	//fall through to 'O' format
+	//using "America/Argentina/Buenos_Aires" (https://en.wikipedia.org/wiki/America/Argentina/Buenos_Aires)
+	//which is deprecated in CLDR json and thus no metaZones data
+	date = new FakeDate( 0 );
+	assert.dateFormatWithTimezone( date, "z", "America/Argentina/Buenos_Aires", cldr, "GMT" );
+	assert.dateFormatWithTimezone( date, "zz", "America/Argentina/Buenos_Aires", cldr, "GMT" );
+	assert.dateFormatWithTimezone( date, "zzz", "America/Argentina/Buenos_Aires", cldr, "GMT" );
+	assert.dateFormatWithTimezone( date, "zzzz", "America/Argentina/Buenos_Aires", cldr, "GMT" );
+});
+
+QUnit.test( "should format timezone (v)", function( assert ) {
+	try {
+		var date = new Date( 2017, 5, 1 );
+		assert.dateFormatWithTimezone( date, "v", "America/Los_Angeles", cldr, "PT" );
+		assert.dateFormatWithTimezone( date, "vvvv", "America/Los_Angeles", cldr, "Pacific Time" );
+
+		//fall through 'VVVV' format
+		assert.dateFormatWithTimezone( date, "v", "Foo/Bar", cldr, "Foo City Time" );
+		assert.dateFormatWithTimezone( date, "vvvv", "Foo/Bar", cldr, "Foo City Time" );
+
+		//fall through to 'VVVV' format with "Unknown" exemplarCity
+		//using "America/Argentina/Buenos_Aires" (https://en.wikipedia.org/wiki/America/Argentina/Buenos_Aires)
+		//which is deprecated in CLDR json and thus no metaZones data
+		date = new FakeDate( 0 );
+		assert.dateFormatWithTimezone( date, "v", "America/Argentina/Buenos_Aires", cldr, "GMT" );
+		assert.dateFormatWithTimezone( date, "vvvv", "America/Argentina/Buenos_Aires", cldr, "GMT" );
+	} catch ( e ) {
+
+	/* jshint ignore:start */
+	console.log ( "Error: ", e.stack);
+
+	/* jshint ignore:end */
+
+	}
+});
+
+QUnit.test( "should format timezone (V)", function( assert ) {
+	var date = new Date( 2017, 5, 1 );
+	assert.dateFormatWithTimezone( date, "VV", "America/Los_Angeles", cldr, "America/Los_Angeles" );
+	assert.dateFormatWithTimezone( date, "VVV", "America/Los_Angeles", cldr, "Los Angeles" );
+	assert.dateFormatWithTimezone( date, "VVVV", "America/Los_Angeles", cldr, "Los Angeles Time" );
+
+	//fall through to 'VVVV' format with "Unknown" exemplarCity
+	//using "America/Argentina/Buenos_Aires" (https://en.wikipedia.org/wiki/America/Argentina/Buenos_Aires)
+	//which is deprecated in CLDR json and thus no metaZones data
+	date = new FakeDate( 0 );
+	assert.dateFormatWithTimezone( date, "VVV", "America/Argentina/Buenos_Aires", cldr, "Unknown City" );
+});
+
+QUnit.test( "should format timezone (O)", function( assert ) {
 	var date = new FakeDate( 0 );
-	assert.dateFormat( date, "z", cldr, [{
-		type: "zone",
-		value: "GMT"
-	}]);
-	assert.dateFormat( date, "zz", cldr, [{
-		type: "zone",
-		value: "GMT"
-	}]);
-	assert.dateFormat( date, "zzz", cldr, [{
-		type: "zone",
-		value: "GMT"
-	}]);
-	assert.dateFormat( date, "zzzz", cldr, [{
-		type: "zone",
-		value: "GMT"
-	}]);
+	assert.dateFormat( date, "O", cldr, "GMT" );
+	assert.dateFormat( date, "OO", cldr, "GMT" );
+	assert.dateFormat( date, "OOO", cldr, "GMT" );
+	assert.dateFormat( date, "OOOO", cldr, "GMT" );
 
 	date = new FakeDate( -3 );
-	assert.dateFormat( date, "z", cldr,[{
-		type: "zone",
-		value: "GMT-3"
-	}]);
-	assert.dateFormat( date, "zz", cldr,[{
-		type: "zone",
-		value: "GMT-3"
-	}]);
-	assert.dateFormat( date, "zzz", cldr,[{
-		type: "zone",
-		value: "GMT-3"
-	}]);
-	assert.dateFormat( date, "zzzz", cldr, [{
-		type: "zone",
-		value: "GMT-03:00"
-	}]);
+	assert.dateFormat( date, "O", cldr, "GMT-3" );
+	assert.dateFormat( date, "OO", cldr, "GMT-3" );
+	assert.dateFormat( date, "OOO", cldr, "GMT-3" );
+	assert.dateFormat( date, "OOOO", cldr, "GMT-03:00" );
 
 	date = new FakeDate( 11 );
-	assert.dateFormat( date, "z", cldr, [{
-		type: "zone",
-		value: "GMT+11"
-	}]);
-	assert.dateFormat( date, "zz", cldr, [{
-		type: "zone",
-		value: "GMT+11"
-	}]);
-	assert.dateFormat( date, "zzz", cldr, [{
-		type: "zone",
-		value: "GMT+11"
-	}]);
-	assert.dateFormat( date, "zzzz", cldr, [{
-		type: "zone",
-		value: "GMT+11:00"
-	}]);
+	assert.dateFormat( date, "O", cldr, "GMT+11" );
+	assert.dateFormat( date, "OO", cldr, "GMT+11" );
+	assert.dateFormat( date, "OOO", cldr, "GMT+11" );
+	assert.dateFormat( date, "OOOO", cldr, "GMT+11:00" );
 });
 
 QUnit.test( "should format timezone (Z)", function( assert ) {

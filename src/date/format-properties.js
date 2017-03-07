@@ -2,10 +2,11 @@ define([
 	"./first-day-of-week",
 	"./pattern-re",
 	"../common/create-error/unsupported-feature",
+	"../common/format-message",
 	"../number/symbol",
 	"../util/string/pad"
-], function( dateFirstDayOfWeek, datePatternRe, createErrorUnsupportedFeature, numberSymbol,
-	stringPad ) {
+], function( dateFirstDayOfWeek, datePatternRe, createErrorUnsupportedFeature, formatMessage,
+	numberSymbol, stringPad ) {
 
 /**
  * properties( pattern, cldr )
@@ -19,13 +20,23 @@ define([
  *
  * TODO Support other calendar types.
  */
-return function( pattern, cldr ) {
+return function( pattern, cldr, timeZone ) {
 	var properties = {
 			numberFormatters: {},
 			pattern: pattern,
 			timeSeparator: numberSymbol( "timeSeparator", cldr )
 		},
 		widths = [ "abbreviated", "wide", "narrow" ];
+
+	if ( timeZone ) {
+		var getTimeZoneData = function( timeZoneData ) {
+			if ( timeZoneData.name && timeZoneData.name === timeZone ) {
+				return true;
+			}
+			return false;
+		};
+		properties.timeZoneData = cldr.get( "globalize-iana/zones" ).filter( getTimeZoneData )[0];
+	}
 
 	function setNumberFormatterPattern( pad ) {
 		properties.numberFormatters[ pad ] = stringPad( "", pad );
@@ -34,7 +45,21 @@ return function( pattern, cldr ) {
 	pattern.replace( datePatternRe, function( current ) {
 		var formatNumber,
 			chr = current.charAt( 0 ),
-			length = current.length;
+			length = current.length,
+			metaZone,
+			standardTzName,
+			daylightTzName,
+			genericTzName;
+
+		if ( timeZone && ( chr === "v" || chr === "z" )) {
+
+			// The latest metazone data of the metazone array.
+			//TODO expand to support the historic metazones based on the given date.
+			metaZone = cldr.supplemental([
+				"metaZones/metazoneInfo/timezone", timeZone, 0,
+				"usesMetazone/_mzone"
+			]);
+		}
 
 		if ( chr === "j" ) {
 
@@ -47,6 +72,62 @@ return function( pattern, cldr ) {
 		if ( chr === "Z" && length === 4 ) {
 			chr = "O";
 			length = 4;
+		}
+
+		// z...zzz: fallback to "O"
+		// zzzz: fallback to "OOOO"
+		// http://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
+		if ( chr === "z" ) {
+			if ( metaZone ) {
+
+				//z...zzz: "{shortRegion}", eg. "PST" or "PDT".
+				//zzzz: "{regionName} {Standard Time}" or "{regionName} {Daylight Time}",
+				//eg. "Pacific Standard Time" or "Pacific Daylight Time".
+				standardTzName = cldr.main([
+					"dates/timeZoneNames/metazone",
+					metaZone,
+					length < 4 ? "short" : "long",
+					"standard"
+				]);
+				daylightTzName = cldr.main([
+					"dates/timeZoneNames/metazone",
+					metaZone,
+					length < 4 ? "short" : "long",
+					"daylight"
+				]);
+			}
+
+			//fall through "O" format
+			if ( !metaZone || !standardTzName ) {
+				chr = "O";
+				if ( length < 4 ) {
+					length = 1;
+				}
+			}
+		}
+
+		// v: fallback to "VVVV"
+		// vvvv: fallback to "VVVV"
+		// http://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
+		if ( chr === "v" ) {
+			if ( metaZone ) {
+
+				//v...vvv: "{shortRegion}", eg. "PT".
+				//vvvv: "{regionName} {Time}" or "{regionName} {Time}",
+				//eg. "Pacific Time"
+				genericTzName = cldr.main([
+					"dates/timeZoneNames/metazone",
+					metaZone,
+					length === 1 ? "short" : "long",
+					"generic"
+				]);
+			}
+
+			//fall through "V" format
+			if ( !metaZone || !genericTzName ) {
+				chr = "V";
+				length = 4;
+			}
 		}
 
 		switch ( chr ) {
@@ -213,6 +294,62 @@ return function( pattern, cldr ) {
 
 			// Zone
 			case "z":
+				properties.standardTzName = standardTzName;
+				properties.daylightTzName = daylightTzName;
+				break;
+
+			case "v":
+				if ( length !== 1 && length !== 4 ) {
+					throw createErrorUnsupportedFeature({
+						feature: "timezone pattern `" + pattern + "`"
+					});
+				}
+				properties.genericTzName = genericTzName;
+				break;
+
+			case "V":
+
+				if ( length === 1 ) {
+					throw createErrorUnsupportedFeature({
+						feature: "timezone pattern `" + pattern + "`"
+					});
+				}
+
+				if ( timeZone ) {
+					var timeZoneName;
+
+					if ( length === 2 ) {
+						timeZoneName = timeZone;
+					}
+
+					var exemplarCity = cldr.main([
+						"dates/timeZoneNames/zone", timeZone, "exemplarCity"
+					]);
+
+					if ( length === 3 ) {
+						if ( !exemplarCity ) {
+							exemplarCity = cldr.main([
+								"dates/timeZoneNames/zone/Etc/Unknown/exemplarCity"
+							]);
+						}
+						timeZoneName = exemplarCity;
+					}
+
+					if ( exemplarCity && length === 4 ) {
+						timeZoneName = formatMessage(
+							cldr.main(
+								"dates/timeZoneNames/regionFormat"
+							),
+							[ exemplarCity ]
+						);
+					}
+					if ( timeZoneName ) {
+						properties.timeZoneName = timeZoneName;
+						break;
+					}
+				}
+
+			/* falls through */
 			case "O":
 
 				// O: "{gmtFormat}+H;{gmtFormat}-H" or "{gmtZeroFormat}", eg. "GMT-8" or "GMT".
@@ -228,12 +365,6 @@ return function( pattern, cldr ) {
 				setNumberFormatterPattern( 1 );
 				setNumberFormatterPattern( 2 );
 				break;
-
-			case "v":
-			case "V":
-				throw createErrorUnsupportedFeature({
-					feature: "timezone pattern `" + chr + "`"
-				});
 		}
 
 		if ( formatNumber ) {
