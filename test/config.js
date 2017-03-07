@@ -4,6 +4,7 @@ var requirejs = {
 		cldr: "../external/cldrjs/dist/cldr",
 		"cldr-data": "../external/cldr-data",
 		globalize: "../dist/globalize",
+		"iana-tz-data": "../node_modules/iana-tz-data/iana-tz-data",
 		json: "../external/requirejs-plugins/src/json",
 		src: "../src",
 		text: "../external/requirejs-text/text"

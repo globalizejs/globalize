@@ -28,38 +28,54 @@ return function( pattern, cldr, timeZone ) {
 		},
 		widths = [ "abbreviated", "wide", "narrow" ];
 
-	if ( timeZone ) {
-		var getTimeZoneData = function( timeZoneData ) {
-			if ( timeZoneData.name && timeZoneData.name === timeZone ) {
-				return true;
-			}
-			return false;
-		};
-		properties.timeZoneData = cldr.get( "globalize-iana/zones" ).filter( getTimeZoneData )[0];
+	function getTimeZoneName( length, type ) {
+		var metaZone, result;
+
+		result = cldr.main([
+			"dates/timeZoneNames/zone",
+			timeZone,
+			length < 4 ? "short" : "long",
+			type
+		]);
+
+		if ( result ) {
+			return result;
+		}
+
+		// The latest metazone data of the metazone array.
+		// TODO expand to support the historic metazones based on the given date.
+		metaZone = cldr.supplemental([
+			"metaZones/metazoneInfo/timezone", timeZone, 0,
+			"usesMetazone/_mzone"
+		]);
+
+		return cldr.main([
+			"dates/timeZoneNames/metazone",
+			metaZone,
+			length < 4 ? "short" : "long",
+			type
+		]);
 	}
 
 	function setNumberFormatterPattern( pad ) {
 		properties.numberFormatters[ pad ] = stringPad( "", pad );
 	}
 
+	if ( timeZone ) {
+		properties.timeZoneData = {
+			offsets: cldr.get([ "globalize-iana/zoneData", timeZone, "offsets" ]),
+			untils: cldr.get([ "globalize-iana/zoneData", timeZone, "untils" ]),
+			isdsts: cldr.get([ "globalize-iana/zoneData", timeZone, "isdsts" ])
+		};
+	}
+
 	pattern.replace( datePatternRe, function( current ) {
 		var formatNumber,
 			chr = current.charAt( 0 ),
 			length = current.length,
-			metaZone,
 			standardTzName,
 			daylightTzName,
 			genericTzName;
-
-		if ( timeZone && ( chr === "v" || chr === "z" )) {
-
-			// The latest metazone data of the metazone array.
-			//TODO expand to support the historic metazones based on the given date.
-			metaZone = cldr.supplemental([
-				"metaZones/metazoneInfo/timezone", timeZone, 0,
-				"usesMetazone/_mzone"
-			]);
-		}
 
 		if ( chr === "j" ) {
 
@@ -74,31 +90,22 @@ return function( pattern, cldr, timeZone ) {
 			length = 4;
 		}
 
-		// z...zzz: fallback to "O"
-		// zzzz: fallback to "OOOO"
+		// z...zzz: "{shortRegion}", eg. "PST" or "PDT".
+		// zzzz: "{regionName} {Standard Time}" or "{regionName} {Daylight Time}",
+		//       e.g., "Pacific Standard Time" or "Pacific Daylight Time".
 		// http://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
 		if ( chr === "z" ) {
-			if ( metaZone ) {
-
-				//z...zzz: "{shortRegion}", eg. "PST" or "PDT".
-				//zzzz: "{regionName} {Standard Time}" or "{regionName} {Daylight Time}",
-				//eg. "Pacific Standard Time" or "Pacific Daylight Time".
-				standardTzName = cldr.main([
-					"dates/timeZoneNames/metazone",
-					metaZone,
-					length < 4 ? "short" : "long",
-					"standard"
-				]);
-				daylightTzName = cldr.main([
-					"dates/timeZoneNames/metazone",
-					metaZone,
-					length < 4 ? "short" : "long",
-					"daylight"
-				]);
+			standardTzName = getTimeZoneName( length, "standard" );
+			daylightTzName = getTimeZoneName( length, "daylight" );
+			if ( standardTzName ) {
+				properties.standardTzName = standardTzName;
+			}
+			if ( daylightTzName ) {
+				properties.daylightTzName = daylightTzName;
 			}
 
-			//fall through "O" format
-			if ( !metaZone || !standardTzName ) {
+			// Fall through the "O" format in case one name is missing.
+			if ( !standardTzName || !daylightTzName ) {
 				chr = "O";
 				if ( length < 4 ) {
 					length = 1;
@@ -106,25 +113,15 @@ return function( pattern, cldr, timeZone ) {
 			}
 		}
 
-		// v: fallback to "VVVV"
-		// vvvv: fallback to "VVVV"
+		// v...vvv: "{shortRegion}", eg. "PT".
+		// vvvv: "{regionName} {Time}" or "{regionName} {Time}",
+		// e.g., "Pacific Time"
 		// http://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
 		if ( chr === "v" ) {
-			if ( metaZone ) {
+			genericTzName = getTimeZoneName( length, "generic" );
 
-				//v...vvv: "{shortRegion}", eg. "PT".
-				//vvvv: "{regionName} {Time}" or "{regionName} {Time}",
-				//eg. "Pacific Time"
-				genericTzName = cldr.main([
-					"dates/timeZoneNames/metazone",
-					metaZone,
-					length === 1 ? "short" : "long",
-					"generic"
-				]);
-			}
-
-			//fall through "V" format
-			if ( !metaZone || !genericTzName ) {
+			// Fall back to "V" format.
+			if ( !genericTzName ) {
 				chr = "V";
 				length = 4;
 			}
@@ -293,11 +290,6 @@ return function( pattern, cldr, timeZone ) {
 				break;
 
 			// Zone
-			case "z":
-				properties.standardTzName = standardTzName;
-				properties.daylightTzName = daylightTzName;
-				break;
-
 			case "v":
 				if ( length !== 1 && length !== 4 ) {
 					throw createErrorUnsupportedFeature({
