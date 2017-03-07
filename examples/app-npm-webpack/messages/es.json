@@ -4,6 +4,7 @@
 		"number-label": "Número",
 		"currency-label": "Moneda",
 		"date-label": "Fecha",
+		"date-time-zone-label": "Fecha (en una zona horaria IANA específica, por ejemplo, America/Sao_Paulo)",
 		"date-to-parts-label": "Fecha (note el mes destacado en negro, el marcador de html se agregó utilizando dateToPartsFormatter)",
 		"relative-time-label": "Tiempo Relativo",
 		"unit-label": "Unidad",

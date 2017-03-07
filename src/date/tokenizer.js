@@ -42,6 +42,14 @@ return function( value, numberParser, properties ) {
 		tokens = [],
 		widths = [ "abbreviated", "wide", "narrow" ];
 
+	function regexpSourceSomeTerm( terms ) {
+		return "(" + terms.filter(function( item ) {
+			return item;
+		}).reduce(function( memo, item ) {
+			return memo + "|" + item;
+		}) + ")";
+	}
+
 	valid = properties.pattern.match( datePatternRe ).every(function( current ) {
 		var chr, length, numeric, tokenRe,
 			token = {};
@@ -159,7 +167,7 @@ return function( value, numberParser, properties ) {
 		}
 
 		token.type = current;
-		chr = current.charAt( 0 ),
+		chr = current.charAt( 0 );
 		length = current.length;
 
 		if ( chr === "Z" ) {
@@ -179,6 +187,38 @@ return function( value, numberParser, properties ) {
 				chr = "X";
 				length = 5;
 			}
+		}
+
+		if ( chr === "z" ) {
+			var standardTzName = properties.standardTzName;
+			var daylightTzName = properties.daylightTzName;
+			if ( standardTzName || daylightTzName ) {
+				token.value = null;
+				tokenRe = new RegExp(
+					regexpSourceSomeTerm([ standardTzName, daylightTzName ])
+				);
+			}
+		}
+
+		// v...vvv: "{shortRegion}", eg. "PT".
+		// vvvv: "{regionName} {Time}" or "{regionName} {Time}",
+		// e.g., "Pacific Time"
+		// http://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
+		if ( chr === "v" ) {
+			if ( properties.genericTzName ) {
+				token.value = null;
+				tokenRe = new RegExp( properties.genericTzName );
+
+			// Fall back to "V" format.
+			} else {
+				chr = "V";
+				length = 4;
+			}
+		}
+
+		if ( chr === "V" && properties.timeZoneName ) {
+			token.value = length === 2 ? properties.timeZoneName : null;
+			tokenRe = new RegExp( properties.timeZoneName );
 		}
 
 		switch ( chr ) {
@@ -357,7 +397,17 @@ return function( value, numberParser, properties ) {
 				break;
 
 			// Zone
+			case "v":
+			case "V":
 			case "z":
+				if ( tokenRe && new RegExp( "^" + tokenRe.source ).test( value ) ) {
+					break;
+				}
+				if ( current === "v" ) {
+					length = 1;
+				}
+
+			/* falls through */
 			case "O":
 
 				// O: "{gmtFormat}+H;{gmtFormat}-H" or "{gmtZeroFormat}", eg. "GMT-8" or "GMT".
@@ -415,6 +465,7 @@ return function( value, numberParser, properties ) {
 		}
 
 		// Get lexeme and consume it.
+		// TODO: Improve performance by reducing the abusive use of regexps.
 		value = value.replace( new RegExp( "^" + tokenRe.source ), function( lexeme ) {
 			token.lexeme = lexeme;
 			if ( numeric ) {

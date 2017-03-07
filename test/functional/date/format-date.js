@@ -9,15 +9,17 @@ define([
 	"json!cldr-data/main/pt/ca-gregorian.json",
 	"json!cldr-data/main/pt/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/metaZones.json",
 	"json!cldr-data/supplemental/numberingSystems.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+	"json!iana-tz-data.json",
 	"../../util",
 
 	"globalize/date"
 ], function( Globalize, arCaGregorian, arNumbers, arTimeZoneNames, enCaGregorian, enNumbers,
-	enTimeZoneNames, ptCaGregorian, ptNumbers, likelySubtags, numberingSystems, timeData, weekData,
-	util ) {
+	enTimeZoneNames, ptCaGregorian, ptNumbers, likelySubtags, metaZones, numberingSystems, timeData,
+	weekData, ianaTimezoneData, util ) {
 
 var ar,
 	date = new Date( 2010, 8, 15, 17, 35, 7, 369 );
@@ -30,12 +32,14 @@ function extraSetup() {
 		enCaGregorian,
 		enNumbers,
 		enTimeZoneNames,
+		metaZones,
 		numberingSystems,
 		ptCaGregorian,
 		ptNumbers,
 		timeData,
 		weekData
 	);
+	Globalize.loadTimeZone( ianaTimezoneData );
 }
 
 QUnit.module( ".formatDate( value, options )", {
@@ -50,7 +54,7 @@ QUnit.module( ".formatDate( value, options )", {
 	teardown: util.resetCldrContent
 });
 
-QUnit.test( "should validate parameters", function( assert ) {
+QUnit.test( "should validate parameters (1/2)", function( assert ) {
 	util.assertParameterPresence( assert, "value", function() {
 		Globalize.formatDate();
 	});
@@ -107,6 +111,17 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 	});
 });
 
+QUnit.test( "should validate parameters (2/2)", function( assert ) {
+	extraSetup();
+
+	// Use the default style when passing {timeZone} only.
+	assert.equal( Globalize.formatDate( new Date( "2010-09-15T08:00:00Z" ), { timeZone: "America/Los_Angeles"} ), "9/15/2010" );
+
+	assert.throws(function() {
+		Globalize.formatDate( date, { timeZone: "invalid-time-zone" });
+	}, /E_MISSING_IANA_TZ.*Missing required IANA timezone content.*invalid-time-zone/ );
+});
+
 QUnit.test( "should format skeleton", function( assert ) {
 	extraSetup();
 
@@ -156,6 +171,28 @@ QUnit.test( "should format raw patterns", function( assert ) {
 	extraSetup();
 
 	assert.equal( Globalize.formatDate( date, { raw: "E, MMM d, y G" } ), "Wed, Sep 15, 2010 AD" );
+});
+
+QUnit.test( "should format date in various timezones", function( assert ) {
+	var date = new Date( "2010-09-15T16:35:07.000Z" );
+	extraSetup();
+
+	assert.equal(
+		Globalize.formatDate( date, { datetime: "long", timeZone: "Etc/UTC" } ),
+		"September 15, 2010 at 4:35:07 PM GMT"
+	);
+	assert.equal(
+		Globalize.formatDate( date, { datetime: "long", timeZone: "Europe/Berlin" } ),
+		"September 15, 2010 at 6:35:07 PM GMT+2"
+	);
+	assert.equal(
+		Globalize.formatDate( date, { datetime: "long", timeZone: "America/Sao_Paulo" } ),
+		"September 15, 2010 at 1:35:07 PM GMT-3"
+	);
+	assert.equal(
+		Globalize.formatDate( date, { datetime: "long", timeZone: "America/Los_Angeles" } ),
+		"September 15, 2010 at 9:35:07 AM PDT"
+	);
 });
 
 });

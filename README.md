@@ -146,7 +146,7 @@ information on its usage.
 |---|--:|--:|---|
 | globalize.js | 1.5KB | 1.0KB | [Core library](#core-module) |
 | globalize/currency.js | 2.6KB | 0.6KB | [Currency module](#currency-module) provides currency formatting and parsing |
-| globalize/date.js | 5.1KB | 3.8KB | [Date module](#date-module) provides date formatting and parsing |
+| globalize/date.js | 7.7KB | 5.0KB | [Date module](#date-module) provides date formatting and parsing |
 | globalize/message.js | 5.4KB | 0.7KB | [Message module](#message-module) provides ICU message format support |
 | globalize/number.js | 3.8KB | 2.1KB | [Number module](#number-module) provides number formatting and parsing |
 | globalize/plural.js | 2.3KB | 0.4KB | [Plural module](#plural-module) provides pluralization support |
@@ -169,12 +169,13 @@ version of a browser is 24.x, we support the 24.x and 23.x versions.
 
 ## Getting Started
 
-    npm install globalize cldr-data
+    npm install globalize cldr-data iana-tz-data
 
 ```js
 var Globalize = require( "globalize" );
 Globalize.load( require( "cldr-data" ).entireSupplemental() );
 Globalize.load( require( "cldr-data" ).entireMainFor( "en", "es" ) );
+Globalize.loadTimeZone( require( "iana-tz-data" ) );
 
 Globalize("en").formatDate(new Date());
 // > "11/27/2015"
@@ -183,9 +184,17 @@ Globalize("es").formatDate(new Date());
 // > "27/11/2015"
 ```
 
-Note `cldr-data` is an optional module, read [CLDR content](#2-cldr-content) section below for more information on how to get CLDR from different sources.
+Note `cldr-data` is an optional module, read [CLDR content](#2-cldr-content)
+section below for more information on how to get CLDR from different sources.
 
-Read the [Locales section](#locales) for more information about supported locales. For AMD, bower and other usage examples, see [Examples section](#examples).
+The [`iana-tz-data`](https://github.com/rxaviers/iana-tz-data) module is only
+needed when IANA time zones (via `options.timeZone`) are used with date
+functions. Read [IANA time zone data](#3-iana-time-zone-data) below for more
+information.
+
+Read the [Locales section](#locales) for more information about supported
+locales. For AMD, bower and other usage examples, see [Examples
+section](#examples).
 
 ### Installation
 
@@ -245,7 +254,7 @@ requirements. See table below.
 |---|---|
 | Core module | cldr/supplemental/likelySubtags.json |
 | Currency module | cldr/main/`locale`/currencies.json<br>cldr/supplemental/currencyData.json<br>+CLDR JSON files from number module<br>+CLDR JSON files from plural module for name style support |
-| Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/main/`locale`/timeZoneNames.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json<br>+CLDR JSON files from number module |
+| Date module | cldr/main/`locale`/ca-gregorian.json<br>cldr/main/`locale`/timeZoneNames.json<br>cldr/supplemental/metaZones.json<br>cldr/supplemental/timeData.json<br>cldr/supplemental/weekData.json<br>+CLDR JSON files from number module |
 | Number module | cldr/main/`locale`/numbers.json<br>cldr/supplemental/numberingSystems.json |
 | Plural module | cldr/supplemental/plurals.json (for cardinals)<br>cldr/supplemental/ordinals.json (for ordinals) |
 | Relative time module | cldr/main/`locale`/dateFields.json<br>+CLDR JSON files from number and plural modules |
@@ -255,7 +264,25 @@ As an alternative to deducing this yourself, use this [online tool](http://johnn
 
 *(b) How am I supposed to get and load CLDR content?*
 
-Learn [how to get and load CLDR content...](doc/cldr.md).
+Learn [how to get and load CLDR content...](doc/cldr.md) and use
+[`Globalize.load()`](#core-module) to load it.
+
+#### 3. IANA time zone data
+
+The IANA time zone (tz) database, sometimes called the Olson database, is the
+standard data used by Unicode CLDR, ECMA-402, Linux, UNIX, Java, ICU, and
+others. It's used by Globalize to circumvent the JavaScript limitations with
+respect to manipulating date in time zones other than the user's environment.
+
+In short, feed Globalize on IANA time zone data if you need to format or parse
+dates in a specific time zone, independently of the user's environment, e.g.,
+`America/Los_Angeles`.
+
+It's important to note there's no official IANA time zone data in the JSON
+format. Therefore, [`iana-tz-data`](https://github.com/rxaviers/iana-tz-data)
+has been adopted for convenience.
+
+Learn more on [`Globalize.loadTimeZone()`](#date-module).
 
 ### Usage
 
@@ -422,6 +449,13 @@ Read more details about locale at [UTS#35 locale][].
 
 ### Date module
 
+- **`Globalize.loadTimeZone( ianaTzData )`**
+
+  This method allows you to load IANA time zone data to enable
+  `options.timeZone` feature on date formatters and parsers.
+
+  [Read more...](doc/api/date/load-iana-time-zone.md)
+
 - **`.dateFormatter( [options] )`**
 
   Return a function that formats a date according to the given `options`. The default formatting is
@@ -442,6 +476,12 @@ Read more details about locale at [UTS#35 locale][].
 
   .dateFormatter({ datetime: "medium" })( new Date() )
   // > "Nov 1, 2010, 5:55:00 PM"
+
+  .dateFormatter({ datetime: "full", timeZone: "America/New_York" })( new Date() );
+  // > "Monday, November 1, 2010 at 3:55:00 AM Eastern Daylight Time"
+
+  .dateFormatter({ datetime: "full", timeZone: "America/Los_Angeles" })( new Date() );
+  // > "Monday, November 1, 2010 at 12:55:00 AM Pacific Daylight Time"
   ```
 
   [Read more...](doc/api/date/date-formatter.md)

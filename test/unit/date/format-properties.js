@@ -2,24 +2,37 @@ define([
 	"cldr",
 	"src/date/format-properties",
 	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/main/en/timeZoneNames.json",
+	"json!cldr-data/main/en-GB/ca-gregorian.json",
+	"json!cldr-data/main/en-GB/timeZoneNames.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"json!cldr-data/supplemental/metaZones.json",
+	"json!iana-tz-data.json",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, properties, enCaGregorian, likelySubtags, timeData, weekData, metaZones ) {
+], function( Cldr, properties, enCaGregorian, enTimeZoneNames, enGbCaGregorian, enGbTimeZoneNames,
+	likelySubtags, timeData, weekData, metaZones, ianaTimezoneData ) {
 
 var cldr;
 
 Cldr.load(
 	enCaGregorian,
+	enTimeZoneNames,
+	enGbCaGregorian,
+	enGbTimeZoneNames,
 	likelySubtags,
 	timeData,
 	weekData,
 	metaZones
 );
+
+// Needed for globalizeDate.
+Cldr.load({
+	"globalize-iana": ianaTimezoneData
+});
 
 cldr = new Cldr( "en" );
 
@@ -124,54 +137,79 @@ QUnit.test( "should return dayPeriods property for period (a)", function( assert
  *  Zone
  */
 
-QUnit.test( "should return standardTzName and daylightTzName properties for zone (z|zz|zzz|zzzz|zzzzz)",
-		function( assert ) {
-	[ "z", "zz", "zzz", "zzzz", "zzzzz" ].forEach(function( pattern ) {
-		var timeZone = "America/Los_Angeles",
-			length = pattern.length;
-		assert.ok( "standardTzName" in properties( pattern, cldr, timeZone ) );
-		assert.ok( "daylightTzName" in properties( pattern, cldr, timeZone ) );
+QUnit.test( "should return properties for timezone (z)", function( assert ) {
+	var timeZone,
+		enGb = new Cldr( "en-GB" );
 
-		if ( length < 4 ) {
-			assert.equal( "PST", properties( pattern, cldr, timeZone ).standardTzName );
-			assert.equal( "PDT", properties( pattern, cldr, timeZone ).daylightTzName );
-		} else {
-			assert.equal( "Pacific Standard Time", properties( pattern, cldr, timeZone ).standardTzName );
-			assert.equal( "Pacific Daylight Time", properties( pattern, cldr, timeZone ).daylightTzName );
-		}
+	timeZone = "America/Los_Angeles";
+	[ "z", "zz", "zzz" ].forEach(function( pattern ) {
+		assert.equal( properties( pattern, cldr, timeZone ).standardTzName, "PST" );
+		assert.equal( properties( pattern, cldr, timeZone ).daylightTzName, "PDT" );
+	});
+	[ "zzzz" ].forEach(function( pattern ) {
+		assert.equal( properties( pattern, cldr, timeZone ).standardTzName, "Pacific Standard Time" );
+		assert.equal( properties( pattern, cldr, timeZone ).daylightTzName, "Pacific Daylight Time" );
+	});
+
+	// Test for ??:
+	timeZone = "Asia/Dubai";
+	[ "z", "zz", "zzz" ].forEach(function( pattern ) {
+		var formatProperties = properties( pattern, cldr, timeZone );
+		assert.ok( !( "standardTzName" in formatProperties ) );
+		assert.ok( !( "daylightTzName" in formatProperties ) );
+		assert.ok( "gmtFormat" in formatProperties );
+		assert.ok( "gmtZeroFormat" in formatProperties );
+		assert.ok( "tzLongHourFormat" in formatProperties );
+	});
+	[ "zzzz" ].forEach(function( pattern ) {
+		var formatProperties = properties( pattern, cldr, timeZone );
+		assert.equal( formatProperties.standardTzName, "Gulf Standard Time" );
+		assert.ok( !( "daylightTzName" in formatProperties ) );
+		assert.ok( "gmtFormat" in formatProperties );
+		assert.ok( "gmtZeroFormat" in formatProperties );
+		assert.ok( "tzLongHourFormat" in formatProperties );
+	});
+
+	// Test for two things:
+	// - daylightTzName using the zone data (primary), not the metazone (secondary try);
+	// - standardTzName being undefined, therefore requiring the O fallback properties;
+	timeZone = "Europe/London";
+	[ "z", "zz", "zzz" ].forEach(function( pattern ) {
+		var formatProperties = properties( pattern, enGb, timeZone );
+		assert.ok( !( "standardTzName" in formatProperties ) );
+		assert.equal( formatProperties.daylightTzName, "BST" );
+		assert.ok( "gmtFormat" in formatProperties );
+		assert.ok( "gmtZeroFormat" in formatProperties );
+		assert.ok( "tzLongHourFormat" in formatProperties );
+	});
+	[ "zzzz" ].forEach(function( pattern ) {
+		var formatProperties = properties( pattern, enGb, timeZone );
+		assert.ok( !( "standardTzName" in formatProperties ) );
+		assert.equal( formatProperties.daylightTzName, "British Summer Time" );
+		assert.ok( "gmtFormat" in formatProperties );
+		assert.ok( "gmtZeroFormat" in formatProperties );
+		assert.ok( "tzLongHourFormat" in formatProperties );
 	});
 });
 
-QUnit.test( "should return standardTzName and daylightTzName properties for zone (v|vvvv)",
-		function( assert ) {
-	[ "v", "vvvv" ].forEach(function( pattern ) {
-		var timeZone = "America/Los_Angeles",
-			length = pattern.length;
-		assert.ok( "genericTzName" in properties( pattern, cldr, timeZone ) );
-
-		if ( length === 1 ) {
-			assert.equal( "PT", properties( pattern, cldr, timeZone ).genericTzName );
-		} else if ( length === 4 ) {
-			assert.equal( "Pacific Time", properties( pattern, cldr, timeZone ).genericTzName );
-		}
-	});
+QUnit.test( "should return properties for timezone (v)", function( assert ) {
+	assert.equal( properties( "v", cldr, "America/Los_Angeles" ).genericTzName, "PT" );
+	assert.equal( properties( "vvvv", cldr, "America/Los_Angeles" ).genericTzName, "Pacific Time" );
 });
 
-QUnit.test( "should return standardTzName and daylightTzName properties for zone (VV|VVV|VVVV)",
-		function( assert ) {
-	[ "VV", "VVV", "VVVV" ].forEach(function( pattern ) {
-		var timeZone = "America/Los_Angeles",
-			length = pattern.length;
-		assert.ok( "timeZoneName" in properties( pattern, cldr, timeZone ) );
+QUnit.test( "should return properties for timezone (V)", function( assert ) {
+	assert.equal( properties( "VV", cldr, "America/Los_Angeles" ).timeZoneName, "America/Los_Angeles" );
+	assert.equal( properties( "VVV", cldr, "America/Los_Angeles" ).timeZoneName, "Los Angeles" );
+	assert.equal( properties( "VVVV", cldr, "America/Los_Angeles" ).timeZoneName, "Los Angeles Time" );
+	assert.equal( properties( "VVVV", cldr, "America/Sao_Paulo" ).timeZoneName, "Sao Paulo Time" );
+});
 
-		if ( length === 2 ) {
-			assert.equal( "America/Los_Angeles", properties( pattern, cldr, timeZone ).timeZoneName );
-		} else if ( length === 3 ) {
-			assert.equal( "Los Angeles", properties( pattern, cldr, timeZone ).timeZoneName );
-		} else if ( length === 4 ) {
-			assert.equal( "Los Angeles Time", properties( pattern, cldr, timeZone ).timeZoneName );
-		}
-	});
+QUnit.test( "should return properties.timeZoneData when using timeZone argument", function( assert ) {
+	var formatProperties = properties( "d", cldr, "America/Los_Angeles" );
+	assert.ok( "timeZoneData" in formatProperties );
+	assert.ok( "offsets" in formatProperties.timeZoneData() );
+	assert.ok( "untils" in formatProperties.timeZoneData() );
+	assert.ok( "isdsts" in formatProperties.timeZoneData() );
 });
 
 });

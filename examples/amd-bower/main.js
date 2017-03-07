@@ -9,6 +9,9 @@ require.config({
 		// Unicode CLDR JSON data.
 		"cldr-data": "./bower_components/cldr-data",
 
+		// IANA time zone data.
+		"iana-tz-data": "../bower_components/iana-tz-data/iana-tz-data",
+
 		// require.js plugin we'll use to fetch CLDR JSON content.
 		json: "./bower_components/requirejs-plugins/src/json",
 
@@ -32,13 +35,16 @@ require([
 	"json!cldr-data/main/en/currencies.json",
 	"json!cldr-data/main/en/dateFields.json",
 	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/en/timeZoneNames.json",
 	"json!cldr-data/main/en/units.json",
 	"json!cldr-data/supplemental/currencyData.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/metaZones.json",
 	"json!cldr-data/supplemental/plurals.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 	"json!messages/en.json",
+	"json!iana-tz-data.json",
 
 	// Extend Globalize with Date and Number modules.
 	"globalize/currency",
@@ -48,8 +54,9 @@ require([
 	"globalize/plural",
 	"globalize/relative-time",
 	"globalize/unit"
-], function( Globalize, enGregorian, enCurrencies, enDateFields, enNumbers, enUnits, currencyData,
-	likelySubtags, pluralsData, timeData, weekData, messages ) {
+], function( Globalize, enGregorian, enCurrencies, enDateFields, enNumbers,
+	enTimeZoneNames, enUnits, currencyData, likelySubtags, metaZones,
+	pluralsData, timeData, weekData, messages, ianaTzData ) {
 
 	var en, like, number;
 
@@ -60,13 +67,16 @@ require([
 		enDateFields,
 		enGregorian,
 		enNumbers,
+		enTimeZoneNames,
 		enUnits,
 		likelySubtags,
+		metaZones,
 		pluralsData,
 		timeData,
 		weekData
 	);
 	Globalize.loadMessages( messages );
+	Globalize.loadTimeZone( ianaTzData );
 
 	// Instantiate "en".
 	en = Globalize( "en" );
@@ -74,6 +84,12 @@ require([
 	// Use Globalize to format dates.
 	document.getElementById( "date" ).textContent = en.formatDate( new Date(), {
 		datetime: "medium"
+	});
+
+	// Use Globalize to format dates on specific time zone.
+	document.getElementById( "zonedDate" ).textContent = en.formatDate( new Date(), {
+		datetime: "full",
+		timeZone: "America/Sao_Paulo"
 	});
 
 	// Use Globalize to format dates to parts.

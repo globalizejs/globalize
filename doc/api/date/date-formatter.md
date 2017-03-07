@@ -54,6 +54,12 @@ A JSON object including one of the following.
 > [raw pattern (anything in the "Sym." column)](http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table)
 > eg. `{ raw: "dd/mm" }`. Note this is NOT recommended for i18n in general.
 > Use `skeleton` instead.
+>
+> **timeZone**
+>
+> String based on the time zone names of the [IANA time zone
+> database](https://www.iana.org/time-zones), such as `"Asia/Shanghai"`, `"Asia/Kolkata"`,
+> `"America/New_York"`.
 
 **value**
 
@@ -63,14 +69,11 @@ Date instance to be formatted, eg. `new Date()`;
 
 Prior to using any date methods, you must load
 `cldr/main/{locale}/ca-gregorian.json`, `cldr/main/{locale}/timeZoneNames.json`,
-`cldr/supplemental/timeData.json`, `cldr/supplemental/weekData.json`, and the
-CLDR content required by the number module. Read [CLDR content][] if you need
-more information.
+`cldr/supplemental/metaZones.json`, `cldr/supplemental/timeData.json`,
+`cldr/supplemental/weekData.json`, and the CLDR content required by the number
+module. Read [CLDR content][] if you need more information.
 
 [CLDR content]: ../../../README.md#2-cldr-content
-
-You can use the static method `Globalize.dateFormatter()`, which uses the default
-locale.
 
 ```javascript
 var formatter;
@@ -181,6 +184,26 @@ monthDayFormatter( date );
 
 hourMinuteSecondFormatter( date );
 // > "17:55:00"
+```
+
+Using specific timeZones, i.e., using `options.timezone`. Note that prior to using
+it, you must load IANA time zone data.
+
+```js
+Globalize.loadTimeZone( require( "iana-tz-data" ) );
+```
+
+```js
+Globalize.locale( "en" );
+
+Globalize.dateFormatter({ datetime: "medium", timeZone: "America/Los_Angeles" })( new Date() );
+// > "Nov 1, 2010, 12:55:00 PM"
+
+Globalize.dateFormatter({ datetime: "medium", timeZone: "America/Sao_Paulo" })( new Date() )
+// > "Nov 1, 2010, 5:55:00 PM"
+
+Globalize.dateFormatter({ datetime: "full", timeZone: "Europe/Berlin" })( new Date() )
+// > "Monday, November 1, 2010 at 8:55:00 PM Central European Standard Time"
 ```
 
 For improved performance on iterations, first create the formatter. Then, reuse
