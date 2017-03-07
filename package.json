@@ -89,7 +89,9 @@
     "grunt-git-authors": "^3.1.0",
     "grunt-jscs": "1.8.0",
     "gzip-js": "0.3.2",
-    "matchdep": "0.3.0"
+    "iana-tz-data": "0.0.4",
+    "matchdep": "0.3.0",
+    "zoned-date-time": "0.0.4"
   },
   "commitplease": {
     "nohook": true

@@ -4,14 +4,19 @@ define([
 	"src/date/tokenizer-properties",
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/en/timeZoneNames.json",
+	"json!cldr-data/main/en-GB/ca-gregorian.json",
+	"json!cldr-data/main/en-GB/numbers.json",
+	"json!cldr-data/main/en-GB/timeZoneNames.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/metaZones.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, tokenizer, tokenizerProperties, enCaGregorian, enNumbers, likelySubtags,
-	timeData, weekData ) {
+], function( Cldr, tokenizer, tokenizerProperties, enCaGregorian, enNumbers, enTimeZoneNames,
+	enGbCaGregorian, enGbNumbers, enGbTimeZoneNames, likelySubtags, metaZones, timeData, weekData ) {
 
 var cldr;
 
@@ -23,16 +28,43 @@ function simpleNumberParser( value ) {
 Cldr.load(
 	enCaGregorian,
 	enNumbers,
+	enTimeZoneNames,
+	enGbCaGregorian,
+	enGbNumbers,
+	enGbTimeZoneNames,
 	likelySubtags,
+	metaZones,
 	timeData,
 	weekData
 );
 
+Cldr.load({
+	"main": {
+		"en": {
+			"dates": {
+				"timeZoneNames": {
+					"zone": {
+						"Foo":{
+							"Baz":{
+								"exemplarCity": "Foo City"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+});
+
 cldr = new Cldr( "en" );
 
 QUnit.assert.dateTokenizer = function( value, pattern, cldr, expected ) {
+	this.dateWithTimeZoneTokenizer( value, pattern, cldr, null, expected );
+};
+
+QUnit.assert.dateWithTimeZoneTokenizer = function( value, pattern, cldr, timeZone, expected ) {
 	this.deepEqual(
-		tokenizer( value, simpleNumberParser, tokenizerProperties( pattern, cldr ) ),
+		tokenizer( value, simpleNumberParser, tokenizerProperties( pattern, cldr, timeZone ) ),
 		expected
 	);
 };
@@ -659,6 +691,46 @@ QUnit.test( "should tokenize milliseconds in a day (A+)", function( assert ) {
  */
 
 QUnit.test( "should tokenize timezone (z)", function( assert ) {
+	var enGb = new Cldr( "en-GB" );
+
+	assert.dateWithTimeZoneTokenizer( "PST", "z", cldr, "America/Los_Angeles", [{
+		lexeme: "PST",
+		type: "z",
+		value: null
+	}] );
+	assert.dateWithTimeZoneTokenizer( "PDT", "z", cldr, "America/Los_Angeles", [{
+		lexeme: "PDT",
+		type: "z",
+		value: null
+	}] );
+	assert.dateWithTimeZoneTokenizer( "BST", "z", enGb, "Europe/London", [{
+		lexeme: "BST",
+		type: "z",
+		value: null
+	}] );
+
+	assert.dateWithTimeZoneTokenizer( "Pacific Standard Time", "zzzz", cldr, "America/Los_Angeles", [{
+		lexeme: "Pacific Standard Time",
+		type: "zzzz",
+		value: null
+	}] );
+	assert.dateWithTimeZoneTokenizer( "Pacific Daylight Time", "zzzz", cldr, "America/Los_Angeles", [{
+		lexeme: "Pacific Daylight Time",
+		type: "zzzz",
+		value: null
+	}] );
+	assert.dateWithTimeZoneTokenizer( "British Summer Time", "zzzz", cldr, "Europe/London", [{
+		lexeme: "British Summer Time",
+		type: "zzzz",
+		value: null
+	}] );
+	assert.dateWithTimeZoneTokenizer( "Gulf Standard Time", "zzzz", cldr, "Asia/Dubai", [{
+		lexeme: "Gulf Standard Time",
+		type: "zzzz",
+		value: null
+	}] );
+
+	// Fall through 'O' format.
 	assert.dateTokenizer( "GMT", "z", cldr, [{
 		lexeme: "GMT",
 		type: "z",
@@ -688,6 +760,26 @@ QUnit.test( "should tokenize timezone (z)", function( assert ) {
 		lexeme: "GMT+11:00",
 		type: "zzzz",
 		value: -660
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT", "z", enGb, "Europe/London", [{
+		lexeme: "GMT",
+		type: "z",
+		value: 0
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT", "zzzz", enGb, "Europe/London", [{
+		lexeme: "GMT",
+		type: "zzzz",
+		value: 0
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-3", "z", cldr, "America/Los_Angeles", [{
+		lexeme: "GMT-3",
+		type: "z",
+		value: 180
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-03:00", "zzzz", cldr, "America/Los_Angeles", [{
+		lexeme: "GMT-03:00",
+		type: "zzzz",
+		value: 180
 	}] );
 });
 
@@ -772,6 +864,162 @@ QUnit.test( "should tokenize timezone (O)", function( assert ) {
 	}] );
 });
 
+QUnit.test( "should tokenize timezone (v)", function( assert ) {
+	assert.dateWithTimeZoneTokenizer( "PT", "v", cldr, "America/Los_Angeles", [{
+		lexeme: "PT",
+		type: "v",
+		value: null
+	}] );
+	assert.dateWithTimeZoneTokenizer( "Pacific Time", "vvvv", cldr, "America/Los_Angeles", [{
+		lexeme: "Pacific Time",
+		type: "vvvv",
+		value: null
+	}] );
+	assert.dateWithTimeZoneTokenizer( "PT", "v", cldr, "America/Los_Angeles", [{
+		lexeme: "PT",
+		type: "v",
+		value: null
+	}] );
+	assert.dateWithTimeZoneTokenizer( "Pacific Time", "vvvv", cldr, "America/Los_Angeles", [{
+		lexeme: "Pacific Time",
+		type: "vvvv",
+		value: null
+	}] );
+
+	// Use metazone.
+	assert.dateWithTimeZoneTokenizer( "Brasilia Time", "vvvv", cldr, "America/Sao_Paulo", [{
+		lexeme: "Brasilia Time",
+		type: "vvvv",
+		value: null
+	}] );
+
+	// Fall through 'VVVV' format.
+	assert.dateWithTimeZoneTokenizer( "Sao Paulo Time", "v", cldr, "America/Sao_Paulo", [{
+		lexeme: "Sao Paulo Time",
+		type: "v",
+		value: null
+	}] );
+	assert.dateWithTimeZoneTokenizer( "Foo City Time", "v", cldr, "Foo/Baz", [{
+		lexeme: "Foo City Time",
+		type: "v",
+		value: null
+	}] );
+	assert.dateWithTimeZoneTokenizer( "Foo City Time", "vvvv", cldr, "Foo/Baz", [{
+		lexeme: "Foo City Time",
+		type: "vvvv",
+		value: null
+	}] );
+
+	// Fall through 'O' and 'OOOO' formats.
+	assert.dateTokenizer( "GMT-8", "v", cldr, [{
+		lexeme: "GMT-8",
+		type: "v",
+		value: 480
+	}] );
+	assert.dateTokenizer( "GMT-3", "v", cldr, [{
+		lexeme: "GMT-3",
+		type: "v",
+		value: 180
+	}] );
+	assert.dateTokenizer( "GMT-08:00", "vvvv", cldr, [{
+		lexeme: "GMT-08:00",
+		type: "vvvv",
+		value: 480
+	}] );
+	assert.dateTokenizer( "GMT-03:00", "vvvv", cldr, [{
+		lexeme: "GMT-03:00",
+		type: "vvvv",
+		value: 180
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-8", "v", cldr, "America/Sao_Paulo", [{
+		lexeme: "GMT-8",
+		type: "v",
+		value: 480
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-3", "v", cldr, "America/Sao_Paulo", [{
+		lexeme: "GMT-3",
+		type: "v",
+		value: 180
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-08:00", "vvvv", cldr, "America/Sao_Paulo", [{
+		lexeme: "GMT-08:00",
+		type: "vvvv",
+		value: 480
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-03:00", "vvvv", cldr, "America/Sao_Paulo", [{
+		lexeme: "GMT-03:00",
+		type: "vvvv",
+		value: 180
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-8", "v", cldr, "Etc/GMT+8", [{
+		lexeme: "GMT-8",
+		type: "v",
+		value: 480
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-3", "v", cldr, "Etc/GMT+8", [{
+		lexeme: "GMT-3",
+		type: "v",
+		value: 180
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-08:00", "vvvv", cldr, "Etc/GMT+8", [{
+		lexeme: "GMT-08:00",
+		type: "vvvv",
+		value: 480
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-03:00", "vvvv", cldr, "Etc/GMT+8", [{
+		lexeme: "GMT-03:00",
+		type: "vvvv",
+		value: 180
+	}] );
+});
+
+QUnit.test( "should tokenize timezone (V)", function( assert ) {
+	assert.dateWithTimeZoneTokenizer( "America/Los_Angeles", "VV", cldr, "America/Los_Angeles", [{
+		lexeme: "America/Los_Angeles",
+		type: "VV",
+		value: "America/Los_Angeles"
+	}] );
+	assert.dateWithTimeZoneTokenizer( "Los Angeles", "VVV", cldr, "America/Los_Angeles", [{
+		lexeme: "Los Angeles",
+		type: "VVV",
+		value: null
+	}] );
+	assert.dateWithTimeZoneTokenizer( "Los Angeles Time", "VVVV", cldr, "America/Los_Angeles", [{
+		lexeme: "Los Angeles Time",
+		type: "VVVV",
+		value: null
+	}] );
+
+	// Fall through to 'VVV' format with "Unknown" exemplarCity.
+	assert.dateWithTimeZoneTokenizer( "Unknown City", "VVV", cldr, "Foo/Bar", [{
+		lexeme: "Unknown City",
+		type: "VVV",
+		value: null
+	}] );
+
+	// Fall through 'OOOO' format.
+	assert.dateWithTimeZoneTokenizer( "GMT-08:00", "VVVV", cldr, "America/Los_Angeles", [{
+		lexeme: "GMT-08:00",
+		type: "VVVV",
+		value: 480
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-03:00", "VVVV", cldr, "America/Los_Angeles", [{
+		lexeme: "GMT-03:00",
+		type: "VVVV",
+		value: 180
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-08:00", "VVVV", cldr, "Etc/GMT+8", [{
+		lexeme: "GMT-08:00",
+		type: "VVVV",
+		value: 480
+	}] );
+	assert.dateWithTimeZoneTokenizer( "GMT-03:00", "VVVV", cldr, "Etc/GMT+8", [{
+		lexeme: "GMT-03:00",
+		type: "VVVV",
+		value: 180
+	}] );
+});
+
 QUnit.test( "should tokenize timezone (X)", function( assert ) {
 	[ "X", "XX", "XXX", "XXXX", "XXXXX" ].forEach(function( X ) {
 		assert.dateTokenizer( "Z", X, cldr, [{
@@ -848,6 +1096,79 @@ QUnit.test( "should tokenize timezone (X)", function( assert ) {
 	assert.dateTokenizer( "+11:00", "XXXXX", cldr, [{
 		lexeme: "+11:00",
 		type: "XXXXX",
+		value: -660
+	}] );
+});
+
+QUnit.test( "should tokenize timezone (x)", function( assert ) {
+	assert.dateTokenizer( "-03", "x", cldr, [{
+		lexeme: "-03",
+		type: "x",
+		value: 180
+	}] );
+	assert.dateTokenizer( "-0300", "xx", cldr, [{
+		lexeme: "-0300",
+		type: "xx",
+		value: 180
+	}] );
+	assert.dateTokenizer( "-03:00", "xxx", cldr, [{
+		lexeme: "-03:00",
+		type: "xxx",
+		value: 180
+	}] );
+	assert.dateTokenizer( "-0300", "xxxx", cldr, [{
+		lexeme: "-0300",
+		type: "xxxx",
+		value: 180
+	}] );
+	assert.dateTokenizer( "-03:00", "xxxxx", cldr, [{
+		lexeme: "-03:00",
+		type: "xxxxx",
+		value: 180
+	}] );
+	assert.dateTokenizer( "+0530", "xx", cldr, [{
+		lexeme: "+0530",
+		type: "xx",
+		value: -330
+	}] );
+	assert.dateTokenizer( "+05:30", "xxx", cldr, [{
+		lexeme: "+05:30",
+		type: "xxx",
+		value: -330
+	}] );
+	assert.dateTokenizer( "+0530", "xxxx", cldr, [{
+		lexeme: "+0530",
+		type: "xxxx",
+		value: -330
+	}] );
+	assert.dateTokenizer( "+05:30", "xxxxx", cldr, [{
+		lexeme: "+05:30",
+		type: "xxxxx",
+		value: -330
+	}] );
+	assert.dateTokenizer( "+11", "x", cldr, [{
+		lexeme: "+11",
+		type: "x",
+		value: -660
+	}] );
+	assert.dateTokenizer( "+1100", "xx", cldr, [{
+		lexeme: "+1100",
+		type: "xx",
+		value: -660
+	}] );
+	assert.dateTokenizer( "+11:00", "xxx", cldr, [{
+		lexeme: "+11:00",
+		type: "xxx",
+		value: -660
+	}] );
+	assert.dateTokenizer( "+1100", "xxxx", cldr, [{
+		lexeme: "+1100",
+		type: "xxxx",
+		value: -660
+	}] );
+	assert.dateTokenizer( "+11:00", "xxxxx", cldr, [{
+		lexeme: "+11:00",
+		type: "xxxxx",
 		value: -660
 	}] );
 });

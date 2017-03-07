@@ -2,12 +2,13 @@
   "name": "basic-globalize-compiler",
   "private": true,
   "scripts": {
-    "build": "globalize-compiler -l en -c cldr.json -m messages.json -o compiled-formatters.js app.js"
+    "build": "globalize-compiler -l en -c cldr.json -m messages.json -z iana-tz-data.json -o compiled-formatters.js app.js"
   },
   "devDependencies": {
     "cldr-data": ">=25",
     "globalize": ">=1.3.0-a <2.0.0",
     "globalize-compiler": ">= 0.3.0-a <0.4.0",
+    "iana-tz-data": "^2017.1.0",
     "jquery": "latest"
   }
 }

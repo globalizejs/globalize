@@ -14,6 +14,19 @@
 			"dates": {
 				"calendars": {
 					"gregorian": {
+						"days": {
+							"format": {
+								"wide": {
+									"sun": "Sunday",
+									"mon": "Monday",
+									"tue": "Tuesday",
+									"wed": "Wednesday",
+									"thu": "Thursday",
+									"fri": "Friday",
+									"sat": "Saturday"
+								}
+							}
+						},
 						"months": {
 							"format": {
 								"abbreviated": {
@@ -29,7 +42,22 @@
 									"10": "Oct",
 									"11": "Nov",
 									"12": "Dec"
+								},
+								"wide": {
+									"1": "January",
+									"2": "February",
+									"3": "March",
+									"4": "April",
+									"5": "May",
+									"6": "June",
+									"7": "July",
+									"8": "August",
+									"9": "September",
+									"10": "October",
+									"11": "November",
+									"12": "December"
 								}
+
 							}
 						},
 						"dayPeriods": {
@@ -44,12 +72,15 @@
 							}
 						},
 						"dateFormats": {
+							"full": "EEEE, MMMM d, y",
 							"medium": "MMM d, y"
 						},
 						"timeFormats": {
+							"full": "h:mm:ss a zzzz",
 							"medium": "h:mm:ss a"
 						},
 						"dateTimeFormats": {
+							"full": "{1} 'at' {0}",
 							"medium": "{1}, {0}"
 						}
 					}
@@ -65,6 +96,17 @@
 						"relativeTime-type-past": {
 							"relativeTimePattern-count-one": "{0} second ago",
 							"relativeTimePattern-count-other": "{0} seconds ago"
+						}
+					}
+				},
+				"timeZoneNames": {
+					"metazone": {
+						"Brasilia": {
+							"long": {
+								"generic": "Brasilia Time",
+								"standard": "Brasilia Standard Time",
+								"daylight": "Brasilia Summer Time"
+							}
 						}
 					}
 				}
@@ -136,6 +178,21 @@
 		},
 		"likelySubtags": {
 			"en": "en-Latn-US"
+		},
+		"metaZones": {
+			"metazoneInfo": {
+				"timezone": {
+					"America": {
+						"Sao_Paulo": [
+							{
+								"usesMetazone": {
+									"_mzone": "Brasilia"
+								}
+							}
+						]
+					}
+				}
+			}
 		},
 		"plurals-type-cardinal": {
 			"en": {

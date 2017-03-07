@@ -123,7 +123,13 @@ module.exports = function( grunt ) {
 				paths: {
 					cldr: "../external/cldrjs/dist/cldr",
 					"make-plural": "../external/make-plural/make-plural",
-					messageformat: "../external/messageformat/messageformat"
+					messageformat: "../external/messageformat/messageformat",
+					"zoned-date-time": "../node_modules/zoned-date-time/src/zoned-date-time"
+				},
+				shim: {
+					"zoned-date-time": {
+						exports: "ZonedDateTime"
+					}
 				},
 				skipSemiColonInsertion: true,
 				skipModuleInsertion: true,
@@ -246,6 +252,14 @@ module.exports = function( grunt ) {
 							"}());",
 							"/* jshint ignore:end */"
 						].join( "\n" ) );
+
+					// ZonedDateTime
+					} else if ( ( /zoned-date-time/ ).test( id ) ) {
+						contents = contents.replace(
+							"module.exports = ZonedDateTime;",
+							"return ZonedDateTime;"
+						);
+						contents = "var ZonedDateTime = (function() {\n" + contents + "}());";
 					}
 
 					// 1, and 2: Remove define() wrap.

@@ -4,6 +4,7 @@
 		"number-label": "Number",
 		"currency-label": "Currency",
 		"date-label": "Date",
+		"date-time-zone-label": "Date (in a specific IANA time zone, e.g., America/Sao_Paulo)",
 		"date-to-parts-label": "Date (note the highlighted month, the markup was added using formatDateToParts)",
 		"relative-time-label": "Relative Time",
 		"unit-label": "Unit",

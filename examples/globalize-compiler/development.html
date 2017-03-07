@@ -18,6 +18,7 @@
         <h2>Demo output</h2>
         <p>Now: <span id="date"></span></p>
         <p>Now: <span id="dateToParts"></span> (note the highlighted month, the markup was added using formatDateToParts)</p>
+        <p>Now (in America/Sao_Paulo): <span id="zonedDate"></span></p>
         <p>A number: <span id="number"></span></p>
         <p>A currency: <span id="currency"></span></p>
         <p>Plural form of <span id="plural-number"></span> is <span id="plural-form"></span></p>
@@ -78,11 +79,13 @@
     // into the demo. So, you don't need to actually fetch it elsewhere.
     $.when(
       $.getJSON( "cldr.json" ),
-      $.getJSON( "messages.json" )
-    ).then(function( cldr, messages ) {
+      $.getJSON( "messages.json" ),
+      $.getJSON( "iana-tz-data.json" )
+    ).then(function( cldr, messages, ianaTzData ) {
 
       Globalize.load( cldr[ 0 ] );
       Globalize.loadMessages( messages[ 0 ] );
+      Globalize.loadIANATimeZone( ianaTzData[ 0 ] );
 
       // Load and execute our App.
       $.getScript( "app.js" );

@@ -1,4 +1,6 @@
-define(function() {
+define([
+	"zoned-date-time"
+], function( ZonedDateTime ) {
 
 /**
  * startOf changes the input to the beginning of the given unit.
@@ -10,7 +12,7 @@ define(function() {
  * Returns the modified date
  */
 return function( date, unit ) {
-	date = new Date( date.getTime() );
+	date = date instanceof ZonedDateTime ? date.clone() : new Date( date.getTime() );
 	switch ( unit ) {
 		case "year":
 			date.setMonth( 0 );

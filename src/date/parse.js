@@ -1,14 +1,14 @@
 define([
+	"zoned-date-time",
 	"./is-leap-year",
 	"./last-day-of-month",
 	"./pattern-re",
 	"./start-of",
 	"../common/create-error/unsupported-feature",
 	"../util/date/set-month",
-	"../util/out-of-range",
-	"../util/globalize-date"
-], function( dateIsLeapYear, dateLastDayOfMonth, datePatternRe, dateStartOf,
-	createErrorUnsupportedFeature, dateSetMonth, outOfRange, GlobalizeDate ) {
+	"../util/out-of-range"
+], function( ZonedDateTime, dateIsLeapYear, dateLastDayOfMonth, datePatternRe, dateStartOf,
+	createErrorUnsupportedFeature, dateSetMonth, outOfRange ) {
 
 /**
  * parse( value, tokens, properties )
@@ -34,9 +34,9 @@ return function( value, tokens, properties ) {
 		truncateAt = [],
 		units = [ "year", "month", "day", "hour", "minute", "second", "milliseconds" ];
 
-	// create globalize date with given timezone data
+	// Create globalize date with given timezone data.
 	if ( properties.timeZoneData ) {
-		date = new GlobalizeDate( date, properties.timeZoneData );
+		date = new ZonedDateTime( date, properties.timeZoneData() );
 	}
 
 	if ( !tokens.length ) {
@@ -228,12 +228,16 @@ return function( value, tokens, properties ) {
 				break;
 
 			// Zone
-			case "Z":
 			case "z":
+			case "Z":
 			case "O":
+			case "v":
+			case "V":
 			case "X":
 			case "x":
-				timezoneOffset = token.value;
+				if ( typeof token.value === "number" ) {
+					timezoneOffset = token.value;
+				}
 				break;
 		}
 
@@ -286,6 +290,13 @@ return function( value, tokens, properties ) {
 	// => new Date( <current Year>, 12, 31, 0, 0, 0, 0 );
 	truncateAt = Math.max.apply( null, truncateAt );
 	date = dateStartOf( date, units[ truncateAt ] );
+
+	// Get date back from globalize date.
+	if ( date instanceof ZonedDateTime ) {
+
+		// TODO can we improve this? E.g., toDate()
+		date = new Date( date.getTime() );
+	}
 
 	return date;
 };

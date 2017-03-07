@@ -26,7 +26,6 @@ require([
 	"./unit/date/format-properties",
 	"./unit/date/parse-properties",
 	"./unit/date/tokenizer-properties",
-	"./unit/date/globalize-date",
 
 	"./unit/date/format",
 	"./unit/date/tokenizer",
