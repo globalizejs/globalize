@@ -5,9 +5,10 @@ define([
 	"./start-of",
 	"../common/create-error/unsupported-feature",
 	"../util/date/set-month",
-	"../util/out-of-range"
+	"../util/out-of-range",
+	"../util/globalize-date"
 ], function( dateIsLeapYear, dateLastDayOfMonth, datePatternRe, dateStartOf,
-	createErrorUnsupportedFeature, dateSetMonth, outOfRange ) {
+	createErrorUnsupportedFeature, dateSetMonth, outOfRange, GlobalizeDate ) {
 
 /**
  * parse( value, tokens, properties )
@@ -32,6 +33,11 @@ return function( value, tokens, properties ) {
 		date = new Date(),
 		truncateAt = [],
 		units = [ "year", "month", "day", "hour", "minute", "second", "milliseconds" ];
+
+	// create globalize date with given timezone data
+	if ( properties.timeZoneData ) {
+		date = new GlobalizeDate( date, properties.timeZoneData );
+	}
 
 	if ( !tokens.length ) {
 		return null;
