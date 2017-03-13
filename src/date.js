@@ -1,6 +1,7 @@
 define([
 	"cldr",
 	"./common/runtime-bind",
+	"./common/validate",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
 	"./common/validate/parameter-presence",
@@ -18,10 +19,10 @@ define([
 	"cldr/event",
 	"cldr/supplemental",
 	"./number"
-], function( Cldr, runtimeBind, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeDate, validateParameterTypePlainObject, validateParameterTypeString,
-	Globalize, dateExpandPattern, dateFormatterFn, dateFormatProperties, dateParserFn,
-	dateParseProperties, dateTokenizerProperties ) {
+], function( Cldr, runtimeBind, validate, validateCldr, validateDefaultLocale,
+	validateParameterPresence, validateParameterTypeDate, validateParameterTypePlainObject,
+	validateParameterTypeString, Globalize, dateExpandPattern, dateFormatterFn,
+	dateFormatProperties, dateParserFn, dateParseProperties, dateTokenizerProperties ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -32,6 +33,31 @@ function validateRequiredCldr( path, value ) {
 			/supplemental\/weekData\/(?!001)/
 		]
 	});
+}
+
+function validateOptionsPreset( options ) {
+	validateOptionsPresetEach( "date", options );
+	validateOptionsPresetEach( "time", options );
+	validateOptionsPresetEach( "datetime", options );
+}
+
+function validateOptionsPresetEach( type, options ) {
+	var value = options[ type ];
+	validate(
+		"E_INVALID_OPTIONS",
+		"Invalid `{{type}: \"{value}\"}`.",
+		value === undefined || [ "short", "medium", "long", "full" ].indexOf( value ) !== -1,
+		{ type: type, value: value }
+	);
+}
+
+function validateOptionsSkeleton( pattern, skeleton ) {
+	validate(
+		"E_INVALID_OPTIONS",
+		"Invalid `{skeleton: \"{value}\"}` based on provided CLDR.",
+		skeleton === undefined || ( typeof pattern === "string" && pattern ),
+		{ type: "skeleton", value: skeleton }
+	);
 }
 
 /**
@@ -58,12 +84,14 @@ Globalize.prototype.dateFormatter = function( options ) {
 	cldr = this.cldr;
 	options = options || { skeleton: "yMd" };
 
-	args = [ options ];
-
+	validateOptionsPreset( options );
 	validateDefaultLocale( cldr );
+
+	args = [ options ];
 
 	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( options, cldr );
+	validateOptionsSkeleton( pattern, options.skeleton );
 	properties = dateFormatProperties( pattern, cldr );
 	cldr.off( "get", validateRequiredCldr );
 
@@ -100,12 +128,14 @@ Globalize.prototype.dateParser = function( options ) {
 	cldr = this.cldr;
 	options = options || { skeleton: "yMd" };
 
-	args = [ options ];
-
+	validateOptionsPreset( options );
 	validateDefaultLocale( cldr );
+
+	args = [ options ];
 
 	cldr.on( "get", validateRequiredCldr );
 	pattern = dateExpandPattern( options, cldr );
+	validateOptionsSkeleton( pattern, options.skeleton );
 	tokenizerProperties = dateTokenizerProperties( pattern, cldr );
 	parseProperties = dateParseProperties( cldr );
 	cldr.off( "get", validateRequiredCldr );

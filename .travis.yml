@@ -7,4 +7,3 @@ before_install:
 install:
 - npm install
 - bower install
-sudo: false

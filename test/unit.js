@@ -2,6 +2,7 @@ require([
 	"qunit",
 
 	// util
+	"./unit/util/object/invert",
 	"./unit/util/regexp/escape",
 
 	// core
@@ -16,6 +17,9 @@ require([
 	"./unit/currency/name-format",
 
 	// date
+	"./unit/date/expand-pattern/augment-format",
+	"./unit/date/expand-pattern/compare-formats",
+	"./unit/date/expand-pattern/get-best-match-pattern",
 	"./unit/date/expand-pattern",
 	"./unit/date/timezone-hour-format",
 

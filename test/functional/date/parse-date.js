@@ -70,11 +70,44 @@ QUnit.test( "should validate parameters", function( assert ) {
 			Globalize.parseDate( "15 Wed", invalidValue );
 		};
 	});
+
+	assert.throws(function() {
+		Globalize.parseDate( "15", { date: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*date.*invalid-stuff/ );
+
+	assert.throws(function() {
+		Globalize.parseDate( "15", { time: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*time.*invalid-stuff/ );
+
+	assert.throws(function() {
+		Globalize.parseDate( "15", { datetime: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*datetime.*invalid-stuff/ );
+
+	assert.throws(function() {
+		Globalize.parseDate( "15", { skeleton: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*skeleton.*invalid-stuff/ );
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
+	Globalize.load({
+		"main": {
+			"en": {
+				"dates": {
+					"calendars": {
+						"gregorian": {
+							"dateTimeFormats": {
+								"availableFormats": {
+									"MMMd": "MMM d"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
 	util.assertCldrContent( assert, function() {
-		Globalize.parseDate( "15" );
+		Globalize.parseDate( "Jan 15", { skeleton: "MMMd" } );
 	});
 });
 

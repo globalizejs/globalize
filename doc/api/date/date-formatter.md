@@ -126,7 +126,7 @@ For comparison, follow the same formatter `{ datetime: "short" }` on different l
 | *pt* | `"01/11/10 17:55"` |
 | *ar* | `"١‏/١١‏/٢٠١٠ ٥،٥٥ م"` |
 
-Use skeletons for more flexibility (see its description [above](#parameters)).
+Use open-ended skeletons for more flexibility (see its description [above](#parameters)). See some examples below.
 
 | `skeleton` | `Globalize( "en" ).dateFormatter( skeleton )( new Date( 2010, 10, 1, 17, 55 ) )` |
 | --- | --- |

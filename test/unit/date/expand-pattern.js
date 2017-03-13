@@ -5,18 +5,24 @@ define([
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/main/ru/ca-gregorian.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/timeData.json",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, expandPattern, deCaGregorian, enCaGregorian, ruCaGregorian, likelySubtags ) {
+], function( Cldr, expandPattern, deCaGregorian, enCaGregorian, ruCaGregorian, likelySubtags,
+	timeData ) {
 
 var de, en, ru;
 
-Cldr.load( deCaGregorian, enCaGregorian, ruCaGregorian, likelySubtags );
+Cldr.load( deCaGregorian, enCaGregorian, ruCaGregorian, likelySubtags, timeData );
 
 de = new Cldr( "de" );
 en = new Cldr( "en" );
 ru = new Cldr( "ru" );
+
+QUnit.assert.expandPattern = function( cldr, style, expected ) {
+	this.equal( expandPattern( style, cldr ), expected );
+};
 
 /**
  * Test actual patterns here
@@ -25,77 +31,69 @@ ru = new Cldr( "ru" );
 
 QUnit.module( "Date Expand Pattern" );
 
-
 QUnit.test( "should expand {skeleton: \"<skeleton>\"}", function( assert ) {
-	var cldrs = {
-		en: en,
-		de: de,
-		ru: ru
-	};
-	var cases = {
-		en: {
-			"GyMMMEd": "E, MMM d, y G",
-			"GyMMMEdhms": "E, MMM d, y G, h:mm:ss a",
-			"MMMMEdhm": "E, MMMM d 'at' h:mm a",
-			"hhmm": "hh:mm a",
-			"HHmm": "HH:mm",
-			"EHmss": "E HH:mm:ss",
-			"MMMMh": "LLLL, h a"
-		},
-		de: {
-			"yMMMMd": "d. MMMM y",
-			"MMMMd": "d. MMMM",
-			"MMMM": "LLLL",
-			"MMMMy": "MMMM y",
-			"EEEE": "cccc",
-			"cccc": "cccc",
-			"EEEEMMMMd": "EEEE, d. MMMM",
-			"ccccMMMMd": "EEEE, d. MMMM",
-			"HHmm": "HH:mm",
-			"EEEEHHmm": "EEEE, HH:mm",
-			"EEEEHmm": "EEEE, HH:mm",
-			"ccccHmm": "EEEE, HH:mm",
-			"MMMMEdhm": "E, d. MMMM 'um' h:mm a"
-		},
-		ru: {
-			"yMMMMd": "d MMMM y 'г'.",
-			"MMMMd": "d MMMM",
-			"MMMM": "LLLL",
-			"MMMMy": "LLLL y 'г'.",
-			"EEEE": "cccc",
-			"cccc": "cccc",
-			"EEEEMMMMd": "cccc, d MMMM",
-			"ccccMMMMd": "cccc, d MMMM",
-			"HHmm": "HH:mm",
-			"EEEEHHmm": "EEEE HH:mm",
-			"EEEEHmm": "EEEE HH:mm",
-			"ccccHHmm": "EEEE HH:mm",
-			"ccccHmm": "EEEE HH:mm",
-			"MMMMEdhm": "ccc, d MMMM, h:mm a"
-		}
-	};
-	Object.keys( cases ).forEach( function( locale ) {
-		Object.keys( cases[locale] ).forEach( function( skeleton ) {
-			var expected = cases[locale][skeleton];
-			assert.equal( expandPattern( {skeleton: skeleton}, cldrs[locale] ), expected, locale + ", " + skeleton );
-		} );
-	} );
+
+	// Direct map.
+	assert.expandPattern( en, { skeleton: "GyMMMEd" }, "E, MMM d, y G" );
+	assert.expandPattern( de, { skeleton: "MMMMd" }, "d. MMMM" );
+	assert.expandPattern( ru, { skeleton: "MMMMd" }, "d MMMM" );
+
+	// Preferred hour (j).
+	assert.expandPattern( en, { skeleton: "jmm" }, "h:mm a" );
+	assert.expandPattern( de, { skeleton: "jmm" }, "HH:mm" );
+	assert.expandPattern( ru, { skeleton: "jmm" }, "H:mm" );
+
+	// Best match the whole skeleton.
+	assert.expandPattern( en, { skeleton: "hhmm" }, "hh:mm a" );
+	assert.expandPattern( en, { skeleton: "HHmm" }, "HH:mm" );
+	assert.expandPattern( en, { skeleton: "EHmss" }, "E HH:mm:ss" );
+	assert.expandPattern( en, { skeleton: "yy" }, "yy" );
+	assert.expandPattern( de, { skeleton: "yMMMMd" }, "d. MMMM y" );
+	assert.expandPattern( de, { skeleton: "MMMM" }, "LLLL" );
+	assert.expandPattern( de, { skeleton: "MMMMy" }, "MMMM y" );
+	assert.expandPattern( de, { skeleton: "EEEE" }, "cccc" );
+	assert.expandPattern( de, { skeleton: "cccc" }, "cccc" );
+	assert.expandPattern( de, { skeleton: "EEEEMMMMd" }, "EEEE, d. MMMM" );
+	assert.expandPattern( de, { skeleton: "ccccMMMMd" }, "EEEE, d. MMMM" );
+	assert.expandPattern( de, { skeleton: "HHmm" }, "HH:mm" );
+	assert.expandPattern( de, { skeleton: "EEEEHHmm" }, "EEEE, HH:mm" );
+	assert.expandPattern( de, { skeleton: "EEEEHmm" }, "EEEE, HH:mm" );
+	assert.expandPattern( de, { skeleton: "ccccHmm" }, "EEEE, HH:mm" );
+	assert.expandPattern( ru, { skeleton: "yMMMMd" }, "d MMMM y 'г'." );
+	assert.expandPattern( ru, { skeleton: "MMMM" }, "LLLL" );
+	assert.expandPattern( ru, { skeleton: "MMMMy" }, "LLLL y 'г'." );
+	assert.expandPattern( ru, { skeleton: "EEEE" }, "cccc" );
+	assert.expandPattern( ru, { skeleton: "cccc" }, "cccc" );
+	assert.expandPattern( ru, { skeleton: "EEEEMMMMd" }, "cccc, d MMMM" );
+	assert.expandPattern( ru, { skeleton: "ccccMMMMd" }, "cccc, d MMMM" );
+	assert.expandPattern( ru, { skeleton: "HHmm" }, "HH:mm" );
+	assert.expandPattern( ru, { skeleton: "EEEEHHmm" }, "EEEE HH:mm" );
+	assert.expandPattern( ru, { skeleton: "EEEEHmm" }, "EEEE HH:mm" );
+	assert.expandPattern( ru, { skeleton: "ccccHHmm" }, "EEEE HH:mm" );
+	assert.expandPattern( ru, { skeleton: "ccccHmm" }, "EEEE HH:mm" );
+
+	// Best match the date and time parts individually then combine together.
+	assert.expandPattern( en, { skeleton: "GyMMMEdhms" }, "E, MMM d, y G, h:mm:ss a" );
+	assert.expandPattern( en, { skeleton: "MMMMEdhm" }, "E, MMMM d 'at' h:mm a" );
+	assert.expandPattern( en, { skeleton: "MMMMh" }, "LLLL 'at' h a" );
+	assert.expandPattern( de, { skeleton: "MMMMEdhm" }, "E, d. MMMM 'um' h:mm a" );
+	assert.expandPattern( ru, { skeleton: "MMMMEdhm" }, "ccc, d MMMM, h:mm a" );
 });
 
 QUnit.test( "should expand {date: \"(full, ...)\"}", function( assert ) {
-	assert.equal( expandPattern( { date: "full" }, en ), "EEEE, MMMM d, y" );
+	assert.expandPattern( en, { date: "full" }, "EEEE, MMMM d, y" );
 });
 
 QUnit.test( "should expand {time: \"(full, ...)\"}", function( assert ) {
-	assert.equal( expandPattern( { time: "full" }, en ), "h:mm:ss a zzzz" );
+	assert.expandPattern( en, { time: "full" }, "h:mm:ss a zzzz" );
 });
 
 QUnit.test( "should expand {datetime: \"(full, ...)\"}", function( assert ) {
-	assert.equal( expandPattern( { datetime: "full" }, en ), "EEEE, MMMM d, y 'at' h:mm:ss a zzzz" );
+	assert.expandPattern( en, { datetime: "full" }, "EEEE, MMMM d, y 'at' h:mm:ss a zzzz" );
 });
 
 QUnit.test( "should expand {raw: \"<pattern>\"}", function( assert ) {
-	assert.equal( expandPattern( { raw: "MMM d" }, en ), "MMM d" );
+	assert.expandPattern( en, { raw: "MMM d" }, "MMM d" );
 });
 
 });

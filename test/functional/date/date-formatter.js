@@ -42,11 +42,44 @@ QUnit.test( "should validate parameters", function( assert ) {
 			Globalize.dateFormatter( invalidPattern );
 		};
 	});
+
+	assert.throws(function() {
+		Globalize.dateFormatter({ date: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*date.*invalid-stuff/ );
+
+	assert.throws(function() {
+		Globalize.dateFormatter({ time: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*time.*invalid-stuff/ );
+
+	assert.throws(function() {
+		Globalize.dateFormatter({ datetime: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*datetime.*invalid-stuff/ );
+
+	assert.throws(function() {
+		Globalize.dateFormatter({ skeleton: "invalid-stuff" });
+	}, /E_INVALID_OPTIONS.*skeleton.*invalid-stuff/ );
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
+	Globalize.load({
+		"main": {
+			"en": {
+				"dates": {
+					"calendars": {
+						"gregorian": {
+							"dateTimeFormats": {
+								"availableFormats": {
+									"MMMd": "MMM d"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
 	util.assertCldrContent( assert, function() {
-		Globalize.dateFormatter();
+		Globalize.dateFormatter({ skeleton: "MMMd" });
 	});
 });
 
