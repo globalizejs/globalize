@@ -4,6 +4,7 @@
 		"number-label": "号码",
 		"currency-label": "币",
 		"date-label": "迄今",
+		"date-to-parts-label": "日期（注意强烈的月份，使用formatDateToParts添加标记）",
 		"relative-time-label": "相对时间",
 		"unit-label": "单元",
 		"message-1": "使用混合数\"{number}\"，货币\"{currency}\"，日期\"{date}\"，相对时间\"{relativeTime}\"和单元\"{unit}\"的消息的例子。",

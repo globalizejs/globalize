@@ -4,6 +4,7 @@
 		"number-label": "رقم",
 		"currency-label": "عملة",
 		"date-label": "تاريخ",
+		"date-to-parts-label": "التاريخ (لاحظ الشهر القوي، تمت إضافة الترميز باستخدام formatDateToParts)",
 		"relative-time-label": "الوقت النسبي",
 		"unit-label": "وحدة القياس",
 		"message-1": "مثال علي رسالة باستخدام رقم مختلط \"{number}\", عملة \"{currency}\", تاريخ \"{date}\", وقت نسبي \"{relativeTime}\", و وحدة قياس \"{unit}\" .",

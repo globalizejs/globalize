@@ -4,6 +4,7 @@
 		"number-label": "Число",
 		"currency-label": "Валюта",
 		"date-label": "Дата",
+		"date-to-parts-label": "Дата (обратите внимание на сильный месяц, разметка была добавлена с помощью formatDateToParts)",
 		"relative-time-label": "Относительное время",
 		"unit-label": "Единица измерения",
 		"message-1": "Пример сообщения с числом \"{number}\", валютой \"{currency}\", датой \"{date}\", относительным временем \"{relativeTime}\" и единицей измерения \"{unit}\".",
