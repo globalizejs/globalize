@@ -35,7 +35,7 @@
 	}
 }(this, function( Globalize ) {
 
-	"use strict";
+"use strict";
 
 var createError = Globalize._createError,
 	regexpEscape = Globalize._regexpEscape,

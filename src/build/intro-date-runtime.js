@@ -39,7 +39,7 @@
 	}
 }(this, function( Globalize ) {
 
-	"use strict";
+"use strict";
 
 var createErrorUnsupportedFeature = Globalize._createErrorUnsupportedFeature,
 	regexpEscape = Globalize._regexpEscape,

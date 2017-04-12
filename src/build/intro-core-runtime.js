@@ -33,4 +33,4 @@
 	}
 }( this, function() {
 
-	"use strict";
+"use strict";

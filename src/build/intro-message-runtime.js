@@ -35,7 +35,7 @@
 	}
 }(this, function( Globalize ) {
 
-	"use strict";
+"use strict";
 
 var runtimeKey = Globalize._runtimeKey,
 	validateParameterType = Globalize._validateParameterType;

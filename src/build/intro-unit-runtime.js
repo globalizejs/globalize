@@ -41,7 +41,7 @@
 	}
 }(this, function( Globalize ) {
 
-	"use strict";
+"use strict";
 
 var formatMessage = Globalize._formatMessage,
 	runtimeKey = Globalize._runtimeKey,
