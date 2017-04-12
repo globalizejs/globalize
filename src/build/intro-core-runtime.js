@@ -15,6 +15,8 @@
  */
 (function( root, factory ) {
 
+	"use strict";
+
 	// UMD returnExports
 	if ( typeof define === "function" && define.amd ) {
 
@@ -30,3 +32,5 @@
 		root.Globalize = factory();
 	}
 }( this, function() {
+
+	"use strict";
