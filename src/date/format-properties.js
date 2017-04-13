@@ -1,12 +1,13 @@
 define([
 	"./first-day-of-week",
+	"./get-time-zone-data",
 	"./pattern-re",
 	"../common/create-error/unsupported-feature",
 	"../common/format-message",
 	"../number/symbol",
 	"../util/string/pad"
-], function( dateFirstDayOfWeek, datePatternRe, createErrorUnsupportedFeature, formatMessage,
-	numberSymbol, stringPad ) {
+], function( dateFirstDayOfWeek, dateGetTimeZoneData, datePatternRe,
+	createErrorUnsupportedFeature, formatMessage, numberSymbol, stringPad ) {
 
 /**
  * properties( pattern, cldr )
@@ -62,11 +63,7 @@ return function( pattern, cldr, timeZone ) {
 	}
 
 	if ( timeZone ) {
-		properties.timeZoneData = {
-			offsets: cldr.get([ "globalize-iana/zoneData", timeZone, "offsets" ]),
-			untils: cldr.get([ "globalize-iana/zoneData", timeZone, "untils" ]),
-			isdsts: cldr.get([ "globalize-iana/zoneData", timeZone, "isdsts" ])
-		};
+		properties.timeZoneData = dateGetTimeZoneData( cldr, timeZone );
 	}
 
 	pattern.replace( datePatternRe, function( current ) {

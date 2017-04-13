@@ -221,9 +221,9 @@ QUnit.test( "should return timeZoneName properties for zone (VV|VVV|VVVV)", func
 QUnit.test( "should return timeZoneData properties when using timeZone for any pattern", function( assert ) {
 	var formatProperties = properties( "d", cldr, "America/Los_Angeles" );
 	assert.ok( "timeZoneData" in formatProperties );
-	assert.ok( "offsets" in formatProperties.timeZoneData );
-	assert.ok( "untils" in formatProperties.timeZoneData );
-	assert.ok( "isdsts" in formatProperties.timeZoneData );
+	assert.ok( "offsets" in formatProperties.timeZoneData() );
+	assert.ok( "untils" in formatProperties.timeZoneData() );
+	assert.ok( "isdsts" in formatProperties.timeZoneData() );
 });
 
 });

@@ -35,9 +35,9 @@ QUnit.test( "should return parse properties", function( assert ) {
 	properties = parseProperties( cldr, "America/Los_Angeles" );
 	assert.ok( "preferredTimeData" in properties );
 	assert.ok( "timeZoneData" in properties );
-	assert.ok( "offsets" in properties.timeZoneData );
-	assert.ok( "untils" in properties.timeZoneData );
-	assert.ok( "isdsts" in properties.timeZoneData );
+	assert.ok( "offsets" in properties.timeZoneData() );
+	assert.ok( "untils" in properties.timeZoneData() );
+	assert.ok( "isdsts" in properties.timeZoneData() );
 });
 
 });

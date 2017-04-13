@@ -30,7 +30,7 @@ return function( date, numberFormatters, properties ) {
 
 	// create globalize date with given timezone data
 	if ( properties.timeZoneData ) {
-		date = new GlobalizeDate( date, properties.timeZoneData );
+		date = new GlobalizeDate( date, properties.timeZoneData() );
 	}
 
 	properties.pattern.replace( datePatternRe, function( current ) {

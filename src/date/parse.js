@@ -36,7 +36,7 @@ return function( value, tokens, properties ) {
 
 	// Create globalize date with given timezone data.
 	if ( properties.timeZoneData ) {
-		date = new GlobalizeDate( date, properties.timeZoneData );
+		date = new GlobalizeDate( date, properties.timeZoneData() );
 	}
 
 	if ( !tokens.length ) {

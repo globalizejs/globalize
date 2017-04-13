@@ -1,4 +1,6 @@
-define(function() {
+define([
+	"./get-time-zone-data"
+], function( dateGetTimeZoneData ) {
 
 /**
  * parseProperties( cldr )
@@ -15,11 +17,7 @@ return function( cldr, timeZone ) {
 	};
 
 	if ( timeZone ) {
-		properties.timeZoneData = {
-			offsets: cldr.get([ "globalize-iana/zoneData", timeZone, "offsets" ]),
-			untils: cldr.get([ "globalize-iana/zoneData", timeZone, "untils" ]),
-			isdsts: cldr.get([ "globalize-iana/zoneData", timeZone, "isdsts" ])
-		};
+		properties.timeZoneData = dateGetTimeZoneData( cldr, timeZone );
 	}
 
 	return properties;
