@@ -89,7 +89,8 @@
     "grunt-git-authors": "^3.1.0",
     "grunt-jscs": "1.8.0",
     "gzip-js": "0.3.2",
-    "matchdep": "0.3.0"
+    "matchdep": "0.3.0",
+    "cldr-data": ">=25"
   },
   "commitplease": {
     "nohook": true
