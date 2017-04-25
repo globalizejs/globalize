@@ -148,6 +148,13 @@ formatter = Globalize.currencyFormatter( "USD", {
 
 formatter( 1.491 );
 // > "$1.50"
+
+formatter = Globalize.currencyFormatter( "USD", {
+  compact: "short"
+});
+
+formatter( 12830000000 );
+// > "$13B"
 ```
 
 For improved performance on iterations, first create the formatter. Then, reuse

@@ -550,6 +550,9 @@ Read more details about locale at [UTS#35 locale][].
 
   .numberFormatter({ style: "percent" })( 0.5 )
   // > "50%"
+
+  .numberFormatter({ compact: "short" })( 14305 )
+  // > "14K"
   ```
 
   [Read more...](doc/api/number/number-formatter.md)
