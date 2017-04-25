@@ -68,7 +68,7 @@ function validateDigits( properties ) {
  */
 Globalize.numberFormatter =
 Globalize.prototype.numberFormatter = function( options ) {
-	var args, cldr, pattern, properties, returnFn;
+	var args, cldr, pattern, pluralGenerator, properties, returnFn;
 
 	validateParameterTypePlainObject( options, "options" );
 
@@ -93,9 +93,14 @@ Globalize.prototype.numberFormatter = function( options ) {
 
 	validateDigits( properties );
 
-	returnFn = numberFormatterFn( properties );
-
-	runtimeBind( args, cldr, returnFn, [ properties ] );
+	if ( options.compact ) {
+		pluralGenerator = this.pluralGenerator();
+		returnFn = numberFormatterFn( properties, pluralGenerator );
+		runtimeBind( args, cldr, returnFn, [ properties, pluralGenerator ] );
+	} else {
+		returnFn = numberFormatterFn( properties );
+		runtimeBind( args, cldr, returnFn, [ properties ] );
+	}
 
 	return returnFn;
 };

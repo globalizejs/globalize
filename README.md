@@ -460,6 +460,9 @@ Return a function that formats a number according to the given options or locale
 
 .numberFormatter({ style: "percent" })( 0.5 )
 // > "50%"
+
+.numberFormatter({ compact: "short", maximumFractionDigits: 0 })( 14305 )
+// > "14K"
 ```
 
 [Read more...](doc/api/number/number-formatter.md)

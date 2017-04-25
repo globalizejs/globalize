@@ -30,6 +30,10 @@ Optional. String with rounding method `ceil`, `floor`, `round` (default), or `tr
 
 Optional. Boolean (default is true) value indicating whether a grouping separator should be used.
 
+#### options.compact
+
+Optional. String `short` or `long` indicating which compact number format should be used to represent the number.
+
 ### Examples
 
 #### Static Formatter
@@ -137,6 +141,30 @@ enFormatter( 0.0014 );
 
 frFormatter( 0.0005 );
 // > "0,05 %"
+```
+
+#### Formatting Compact Numbers
+
+Long numbers can be represented in a compact format, with `short` using abbreviated units and `long` using the full unit name.
+
+```javascript
+var shortFormatter = Globalize( "en" ).numberFormatter({
+  compact: "short",
+  maximumFractionDigits: 0,
+  style: "decimal"
+});
+
+var longFormatter = Globalize( "en" ).numberFormatter({
+  compact: "long",
+  maximumFractionDigits: 0,
+  style: "decimal"
+});
+
+shortFormatter( 27588910 );
+// > "28M"
+
+longFormatter( 27588910 );
+// > "28 million"
 ```
 
 #### Configuring Rounding
