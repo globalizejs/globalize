@@ -48,8 +48,7 @@ A JSON object including none or any of the following options.
 > **compact** Optional
 >
 > String `short` or `long` indicating which compact number format should be used
-> to represent the number. The compacting pattern may supercede specified
-> **minimumSignificantDigits** or **maximumSignificantDigits**.
+> to represent the number.
 
 ### Examples
 
@@ -169,13 +168,15 @@ Long numbers can be represented in a compact format, with `short` using abbrevia
 
 ```javascript
 var shortFormatter = Globalize( "en" ).numberFormatter({
-  style: "decimal",
-  compact: "short"
+  compact: "short",
+  maximumFractionDigits: 0,
+  style: "decimal"
 });
 
 var longFormatter = Globalize( "en" ).numberFormatter({
-  style: "decimal",
-  compact: "long"
+  compact: "long",
+  maximumFractionDigits: 0,
+  style: "decimal"
 });
 
 shortFormatter( 27588910 );

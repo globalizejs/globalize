@@ -40,6 +40,14 @@ zh = new Cldr( "zh-u-nu-native" );
 
 QUnit.module( "Number Format" );
 
+function oneOrOtherPluralGenerator( plural ) {
+  if ( plural === 1 ) {
+    return "one";
+  } else {
+    return "other";
+  }
+}
+
 /**
  *  Integers
  */
@@ -67,6 +75,71 @@ QUnit.test( "should format negative integer", function( assert ) {
 
 	// The number of digits, minimal digits, and other characteristics shall be ignored in the negative subpattern.
 	assert.equal( format( -earthDiameter, properties( "0;(0.0##)", en ) ), "(12735)" );
+});
+
+/**
+ *  Compact Numbers
+ */
+
+QUnit.test( "integers should format in compact mode", function( assert ) {
+	assert.equal( format( 273.7, properties( "#0", en, { compact: "short" } ) ), "274" );
+	assert.equal( format( 273.7, properties( "#0", en, { compact: "long" } ) ), "274" );
+	assert.equal( format( 273, properties( "#0", en, { compact: "short" } ) ), "273" );
+	assert.equal( format( 273, properties( "#0", en, { compact: "long" } ) ), "273" );
+	assert.equal( format( 573, properties( "#0", en, { compact: "short" } ) ), "573" );
+	assert.equal( format( 573, properties( "#0", en, { compact: "long" } ) ), "573" );
+	assert.equal( format( 1273, properties( "#0", en, { compact: "short" } ) ), "1K" );
+	assert.equal( format( 1273, properties( "#0", en, { compact: "long" } ) ), "1 thousand" );
+	assert.equal( format( 1273000, properties( "#0", es, {
+		compact: "long"
+	} ), oneOrOtherPluralGenerator ), "1 millón" );
+	assert.equal( format( 2273000, properties( "#0", es, {
+		compact: "long"
+	} ), oneOrOtherPluralGenerator ), "2 millones" );
+	assert.equal( format( 9999.9, properties( "#0", en, { compact: "long" } ) ), "10 thousand" );
+	assert.equal( format( 12735, properties( "#0", en, { compact: "short" } ) ), "13K" );
+	assert.equal( format( 12735, properties( "#0", en, { compact: "long" } ) ), "13 thousand" );
+	assert.equal( format( 127350, properties( "#0", en, { compact: "short" } ) ), "127K" );
+	assert.equal( format( 127350, properties( "#0", en, { compact: "long" } ) ), "127 thousand" );
+	assert.equal( format( 1273500, properties( "#0", en, { compact: "short" } ) ), "1M" );
+	assert.equal( format( 1273500, properties( "#0", en, { compact: "long" } ) ), "1 million" );
+	assert.equal( format( -1273500, properties( "#0", en, { compact: "short" } ) ), "-1M" );
+	assert.equal( format( -1273500, properties( "#0", en, { compact: "long" } ) ), "-1 million" );
+	assert.equal( format( -1273500, properties( "#0;(#0)", en, { compact: "short" } ) ), "(1M)" );
+	assert.equal( format( -1273500, properties( "#0;(#0)", en, { compact: "long" } ) ), "(1 million)" );
+});
+
+QUnit.test( "decimals should format in compact mode", function( assert ) {
+	assert.equal( format( 273.7, properties( "#0.#", en, { compact: "short" } ) ), "273.7" );
+	assert.equal( format( 273.7, properties( "#0.#", en, { compact: "long" } ) ), "273.7" );
+	assert.equal( format( 273, properties( "#0.#", en, { compact: "short" } ) ), "273" );
+	assert.equal( format( 273, properties( "#0.#", en, { compact: "long" } ) ), "273" );
+	assert.equal( format( 573, properties( "#0.#", en, { compact: "short" } ) ), "573" );
+	assert.equal( format( 573, properties( "#0.#", en, { compact: "long" } ) ), "573" );
+	assert.equal( format( 1273, properties( "#0.#", en, { compact: "short" } ) ), "1.3K" );
+	assert.equal( format( 1273, properties( "#0.#", en, { compact: "long" } ) ), "1.3 thousand" );
+	assert.equal( format( 1273000, properties( "#0.#", es, {
+		compact: "long"
+	} ), oneOrOtherPluralGenerator ), "1,3 millón" );
+	assert.equal( format( 2273000, properties( "#0.#", es, {
+		compact: "long"
+	} ), oneOrOtherPluralGenerator ), "2,3 millones" );
+	assert.equal( format( 9999.9, properties( "#0.#", en, { compact: "long" } ) ), "10 thousand" );
+	assert.equal( format( 12735, properties( "#0.#", en, { compact: "short" } ) ), "12.7K" );
+	assert.equal( format( 12735, properties( "#0.#", en, { compact: "long" } ) ), "12.7 thousand" );
+	assert.equal( format( 127350, properties( "#0.#", en, { compact: "short" } ) ), "127.4K" );
+	assert.equal( format( 127350, properties( "#0.#", en, { compact: "long" } ) ), "127.4 thousand" );
+	assert.equal( format( 1273500, properties( "#0.#", en, { compact: "short" } ) ), "1.3M" );
+	assert.equal( format( 1273500, properties( "#0.#", en, { compact: "long" } ) ), "1.3 million" );
+	assert.equal( format( -1273500, properties( "#0.#", en, { compact: "short" } ) ), "-1.3M" );
+	assert.equal( format( -1273500, properties( "#0.#", en, { compact: "long" } ) ), "-1.3 million" );
+	assert.equal( format( -1273500, properties( "#0.#;(#0.#)", en, { compact: "short" } ) ), "(1.3M)" );
+	assert.equal( format( -1273500, properties( "#0.#;(#0.#)", en, { compact: "long" } ) ), "(1.3 million)" );
+});
+
+QUnit.test( "percents should format in compact mode", function( assert ) {
+	assert.equal( format( 127, properties( "#0%", en, { compact: "short" } ) ), "13K%" );
+	assert.equal( format( 127, properties( "#0%", en, { compact: "long" } ) ), "13 thousand%" );
 });
 
 /**

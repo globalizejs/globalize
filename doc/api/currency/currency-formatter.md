@@ -150,6 +150,7 @@ formatter( 1.491 );
 // > "$1.50"
 
 formatter = Globalize.currencyFormatter( "USD", {
+  maximumFractionDigits: 0,
   compact: "short"
 });
 

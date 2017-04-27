@@ -2,9 +2,10 @@ define([
 	"./format/grouping-separator",
 	"./format/integer-fraction-digits",
 	"./format/significant-digits",
+	"./pattern-re",
 	"../util/remove-literal-quotes"
 ], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits,
-	numberFormatSignificantDigits, removeLiteralQuotes ) {
+	numberFormatSignificantDigits, numberPatternRe, removeLiteralQuotes ) {
 
 /**
  * format( number, properties )
@@ -16,11 +17,11 @@ define([
  * Return the formatted number.
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
-return function( number, properties ) {
+return function( number, properties, pluralGenerator ) {
 	var infinitySymbol, maximumFractionDigits, maximumSignificantDigits, minimumFractionDigits,
 	minimumIntegerDigits, minimumSignificantDigits, nanSymbol, nuDigitsMap, padding, prefix,
 	primaryGroupingSize, pattern, ret, round, roundIncrement, secondaryGroupingSize, suffix,
-	symbolMap;
+	symbolMap, compactMap;
 
 	padding = properties[ 1 ];
 	minimumIntegerDigits = properties[ 2 ];
@@ -36,6 +37,7 @@ return function( number, properties ) {
 	nanSymbol = properties[ 17 ];
 	symbolMap = properties[ 18 ];
 	nuDigitsMap = properties[ 19 ];
+	compactMap = properties[ 20 ];
 
 	// NaN
 	if ( isNaN( number ) ) {
@@ -57,8 +59,6 @@ return function( number, properties ) {
 		return prefix + infinitySymbol + suffix;
 	}
 
-	ret = prefix;
-
 	// Percent
 	if ( pattern.indexOf( "%" ) !== -1 ) {
 		number *= 100;
@@ -66,6 +66,29 @@ return function( number, properties ) {
 	// Per mille
 	} else if ( pattern.indexOf( "\u2030" ) !== -1 ) {
 		number *= 1000;
+	}
+
+	var compactPattern, compactDigits, compactProperties, divisor, pluralForm, rounded;
+	if ( compactMap ) {
+		var zeroes = Array(Math.floor(number).toString().length).join( "0" );
+		if ( zeroes.length >= 3 ) {
+			// use default plural form to perform initial decimal shift
+			compactPattern = compactMap[ "1" + zeroes + "-count-other" ];
+			compactDigits = compactPattern.split( "0" ).length - 1;
+			divisor = zeroes.length - ( compactDigits - 1 );
+			number = number / Math.pow( 10, divisor );
+
+			// calculate rounded value to determine plural form and extract correct pattern
+			rounded = parseInt(numberFormatIntegerFractionDigits( number, minimumIntegerDigits,
+				minimumFractionDigits, maximumFractionDigits, round, roundIncrement ));
+			pluralForm = pluralGenerator ? pluralGenerator(rounded) : "other";
+			compactPattern = compactMap[ "1" + zeroes + "-count-" + pluralForm ] || compactPattern;
+			compactProperties = compactPattern.match( numberPatternRe );
+
+			// update prefix/suffix with compact prefix/suffix
+			prefix += compactProperties[ 1 ];
+			suffix = compactProperties[ 11 ] + suffix;
+		}
 	}
 
 	// Significant digit format
@@ -87,6 +110,8 @@ return function( number, properties ) {
 		number = numberFormatGroupingSeparator( number, primaryGroupingSize,
 			secondaryGroupingSize );
 	}
+
+	ret = prefix;
 
 	ret += number;
 
