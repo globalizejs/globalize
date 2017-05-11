@@ -95,4 +95,9 @@ QUnit.test( "should accept custom number formatter", function( assert ) {
 	assert.equal( deUnitFormatter( 3.14159 ), "3,14 Meter" );
 });
 
+QUnit.test( "should generate different runtime key when using different numberFormatter", function( assert ) {
+	var formatter1 = Globalize.unitFormatter( "hour", { numberFormatter: Globalize.numberFormatter( { minimumIntegerDigits:1 } ) });
+	var formatter2 = Globalize.unitFormatter( "hour", { numberFormatter: Globalize.numberFormatter( { minimumIntegerDigits:2 } ) });
+	assert.notEqual( formatter1.runtimeKey, formatter2.runtimeKey );
+});
 });
