@@ -79,7 +79,7 @@ module.exports = function( grunt ) {
 			},
 			test: {
 				src: [ "test/*.js", "test/functional/**/*.js", "test/unit/**/*.js",
-					"!test/config.js" ],
+					"test/compiler/**/*.js", "!test/config.js", "!test/compiler/_compiled/**" ],
 				options: {
 					jshintrc: "test/.jshintrc"
 				}
@@ -94,8 +94,17 @@ module.exports = function( grunt ) {
 		jscs: {
 			source: [ "src/**/*.js", "!src/build/**" ],
 			grunt: "Gruntfile.js",
-			test: [ "test/*.js", "test/functional/**/*.js", "test/unit/**/*.js" ],
+			test: [ "test/*.js", "test/functional/**/*.js", "test/unit/**/*.js",
+				"test/compiler/**/*.js", "!test/compiler/_compiled/**" ],
 			dist: [ "dist/globalize*.js", "dist/globalize/*.js" ]
+		},
+		mochaTest: {
+			test: {
+				options: {
+					reporter: "spec"
+				},
+				src: [ "test/compiler/*.js" ]
+			}
 		},
 		qunit: {
 			functional: {
@@ -655,6 +664,7 @@ module.exports = function( grunt ) {
 		// TODO fix issues, enable
 		// "jscs:dist",
 		"test:functional",
+		"mochaTest",
 		"uglify",
 		"compare_size",
 		"commitplease"
