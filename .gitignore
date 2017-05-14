@@ -4,3 +4,4 @@ dist/.build/
 external/
 node_modules/
 tmp/
+test/compiler/_compiled/
