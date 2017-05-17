@@ -74,6 +74,8 @@
   },
   "devDependencies": {
     "cldr-data-downloader": "^0.2.5",
+    "glob": "^7.1.1",
+    "globalize-compiler": "^0.3.0-alpha.3",
     "grunt": "0.4.5",
     "grunt-check-dependencies": "0.6.0",
     "grunt-commitplease": "0.0.5",
@@ -88,8 +90,10 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-git-authors": "^3.1.0",
     "grunt-jscs": "1.8.0",
+    "grunt-mocha-test": "^0.13.2",
     "gzip-js": "0.3.2",
-    "matchdep": "0.3.0"
+    "matchdep": "0.3.0",
+    "mocha": "^3.3.0"
   },
   "commitplease": {
     "nohook": true

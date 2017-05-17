@@ -16,6 +16,10 @@
 	"globals": {
 		"define": false,
 		"require": false,
+		"module": false,
+		"__dirname": false,
+		"describe": false,
+		"it": false,
 		"QUnit": false
 	}
 }
