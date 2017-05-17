@@ -9,7 +9,7 @@ return function( args, cldr, fn, runtimeArgs ) {
 		fnName = functionName( fn ),
 		locale = cldr.locale;
 
-	// If name of the function is not available, this is most likely due uglification,
+	// If name of the function is not available, this is most likely due to uglification,
 	// which most likely means we are in production, and runtimeBind here is not necessary.
 	if ( !fnName ) {
 		return fn;

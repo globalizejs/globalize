@@ -10,19 +10,21 @@ define([
 	"./common/validate/parameter-type/string",
 	"./core",
 	"./date/expand-pattern",
-	"./date/to-parts-formatter-fn",
 	"./date/format-properties",
-	"./date/parser-fn",
+	"./date/formatter-fn",
 	"./date/parse-properties",
+	"./date/parser-fn",
 	"./date/tokenizer-properties",
+	"./date/to-parts-formatter-fn",
 
 	"cldr/event",
 	"cldr/supplemental",
 	"./number"
 ], function( Cldr, runtimeBind, validate, validateCldr, validateDefaultLocale,
 	validateParameterPresence, validateParameterTypeDate, validateParameterTypePlainObject,
-	validateParameterTypeString, Globalize, dateExpandPattern, dateToPartsFormatterFn,
-	dateFormatProperties, dateParserFn, dateParseProperties, dateTokenizerProperties ) {
+	validateParameterTypeString, Globalize, dateExpandPattern, dateFormatProperties,
+	dateFormatterFn, dateParseProperties, dateParserFn, dateTokenizerProperties,
+	dateToPartsFormatterFn ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -77,13 +79,18 @@ function validateOptionsSkeleton( pattern, skeleton ) {
  */
 Globalize.dateFormatter =
 Globalize.prototype.dateFormatter = function( options ) {
-	var formatterFn = this.dateToPartsFormatter( options );
-	return function() {
-		var parts = formatterFn.apply( this, arguments );
-		return parts.map( function( part ) {
-			return part.value;
-		}).join( "" );
-	};
+	var args, dateToPartsFormatter, returnFn;
+
+	validateParameterTypePlainObject( options, "options" );
+
+	options = options || { skeleton: "yMd" };
+	args = [ options ];
+
+	dateToPartsFormatter = this.dateToPartsFormatter( options );
+	returnFn = dateFormatterFn( dateToPartsFormatter );
+	runtimeBind( args, this.cldr, returnFn, [ dateToPartsFormatter ] );
+
+	return returnFn;
 };
 
 /**
