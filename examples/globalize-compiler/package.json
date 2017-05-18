@@ -10,5 +10,6 @@
     "globalize-compiler": ">= 0.3.0-a <0.4.0",
     "iana-tz-data": "^2017.1.0",
     "jquery": "latest"
-  }
+  },
+  "cldr-data-urls-filter": "(core|dates|numbers|units)"
 }

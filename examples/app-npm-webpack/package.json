@@ -13,5 +13,6 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack-config.js --hot --progress --colors --inline",
     "build": "webpack --production --config webpack-config.js"
-  }
+  },
+  "cldr-data-urls-filter": "(core|dates|numbers|units)"
 }
