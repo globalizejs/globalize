@@ -12,12 +12,13 @@ define([
 	"json!cldr-data/supplemental/numberingSystems.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+	"json!iana-tz-data.json",
 	"../../util",
 
 	"globalize/date"
 ], function( Globalize, arCaGregorian, arNumbers, arTimeZoneNames, enCaGregorian, enNumbers,
 	enTimeZoneNames, ptCaGregorian, ptNumbers, likelySubtags, numberingSystems, timeData, weekData,
-	util ) {
+	ianaTimezoneData, util ) {
 
 var ar,
 	date = new Date( 2010, 8, 15, 17, 35, 7, 369 );
@@ -36,6 +37,7 @@ function extraSetup() {
 		timeData,
 		weekData
 	);
+	Globalize.loadIANATimeZone( ianaTimezoneData );
 }
 
 QUnit.module( ".formatDateToParts( value, options )", {
@@ -50,7 +52,7 @@ QUnit.module( ".formatDateToParts( value, options )", {
 	teardown: util.resetCldrContent
 });
 
-QUnit.test( "should validate parameters", function( assert ) {
+QUnit.test( "should validate parameters (1/2)", function( assert ) {
 	util.assertParameterPresence( assert, "value", function() {
 		Globalize.formatDateToParts();
 	});
@@ -105,6 +107,23 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 	util.assertCldrContent( assert, function() {
 		Globalize.formatDateToParts( date, { skeleton: "MMMd" });
 	});
+});
+
+QUnit.test( "should validate parameters (2/2)", function( assert ) {
+	extraSetup();
+
+	// Use the default style when passing {timeZone} only.
+	assert.deepEqual( Globalize.formatDateToParts( new Date( "2010-09-15T08:00:00Z" ), { timeZone: "America/Los_Angeles"} ), [
+		{ type: "month", value: "9" },
+		{ type: "literal", value: "/" },
+		{ type: "day", value: "15" },
+		{ type: "literal", value: "/" },
+		{ type: "year", value: "2010" }
+	]);
+
+	assert.throws(function() {
+		Globalize.formatDateToParts( date, { timeZone: "invalid-time-zone" });
+	}, /E_MISSING_IANA_TZ.*Missing required IANA timezone content.*invalid-time-zone/ );
 });
 
 QUnit.test( "should format skeleton to parts", function( assert ) {

@@ -1,9 +1,12 @@
 define([
+	"./get-time-zone-name",
 	"./pattern-re",
 	"../common/create-error/unsupported-feature",
+	"../common/format-message",
 	"../number/symbol",
 	"../util/object/filter"
-], function( datePatternRe, createErrorUnsupportedFeature, numberSymbol, objectFilter ) {
+], function( dateGetTimeZoneName, datePatternRe, createErrorUnsupportedFeature, formatMessage,
+	numberSymbol, objectFilter ) {
 
 /**
  * tokenizerProperties( pattern, cldr )
@@ -14,7 +17,7 @@ define([
  *
  * Return Object with data that will be used by tokenizer.
  */
-return function( pattern, cldr ) {
+return function( pattern, cldr, timeZone ) {
 	var properties = {
 			pattern: pattern,
 			timeSeparator: numberSymbol( "timeSeparator", cldr )
@@ -23,6 +26,12 @@ return function( pattern, cldr ) {
 
 	function populateProperties( path, value ) {
 
+		// Skip
+		var skipRe = /(timeZoneNames\/zone|supplemental\/metaZones|timeZoneNames\/metazone|timeZoneNames\/regionFormat)/;
+		if ( skipRe.test( path ) ) {
+			return;
+		}
+
 		// The `dates` and `calendars` trim's purpose is to reduce properties' key size only.
 		properties[ path.replace( /^.*\/dates\//, "" ).replace( /calendars\//, "" ) ] = value;
 	}
@@ -30,14 +39,59 @@ return function( pattern, cldr ) {
 	cldr.on( "get", populateProperties );
 
 	pattern.match( datePatternRe ).forEach(function( current ) {
-		var chr, length;
+		var chr, daylightTzName, length, standardTzName;
 
-		chr = current.charAt( 0 ),
+		chr = current.charAt( 0 );
 		length = current.length;
 
 		if ( chr === "Z" && length < 5 ) {
 				chr = "O";
 				length = 4;
+		}
+
+		// z...zzz: "{shortRegion}", eg. "PST" or "PDT".
+		// zzzz: "{regionName} {Standard Time}" or "{regionName} {Daylight Time}",
+		//       e.g., "Pacific Standard Time" or "Pacific Daylight Time".
+		// http://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
+		if ( chr === "z" ) {
+			standardTzName = dateGetTimeZoneName( length, "standard", timeZone, cldr );
+			daylightTzName = dateGetTimeZoneName( length, "daylight", timeZone, cldr );
+			if ( standardTzName ) {
+				properties.standardTzName = standardTzName;
+			}
+			if ( daylightTzName ) {
+				properties.daylightTzName = daylightTzName;
+			}
+
+			// Fall through the "O" format in case one name is missing.
+			if ( !standardTzName || !daylightTzName ) {
+				chr = "O";
+				if ( length < 4 ) {
+					length = 1;
+				}
+			}
+		}
+
+		// v...vvv: "{shortRegion}", eg. "PT".
+		// vvvv: "{regionName} {Time}" or "{regionName} {Time}",
+		// e.g., "Pacific Time"
+		// http://unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
+		if ( chr === "v" ) {
+			if ( length !== 1 && length !== 4 ) {
+				throw createErrorUnsupportedFeature({
+					feature: "timezone pattern `" + pattern + "`"
+				});
+			}
+			var genericTzName = dateGetTimeZoneName( length, "generic", timeZone, cldr );
+			if ( genericTzName ) {
+				properties.genericTzName = genericTzName;
+				chr = "O";
+
+			// Fall back to "V" format.
+			} else {
+				chr = "V";
+				length = 4;
+			}
 		}
 
 		switch ( chr ) {
@@ -137,18 +191,55 @@ return function( pattern, cldr ) {
 				break;
 
 			// Zone
+			case "V":
+
+				if ( length === 1 ) {
+					throw createErrorUnsupportedFeature({
+						feature: "timezone pattern `" + pattern + "`"
+					});
+				}
+
+				if ( timeZone ) {
+					if ( length === 2 ) {
+						properties.timeZoneName = timeZone;
+						break;
+					}
+
+					var timeZoneName,
+						exemplarCity = cldr.main([
+							"dates/timeZoneNames/zone", timeZone, "exemplarCity"
+						]);
+
+					if ( length === 3 ) {
+						if ( !exemplarCity ) {
+							exemplarCity = cldr.main([
+								"dates/timeZoneNames/zone/Etc/Unknown/exemplarCity"
+							]);
+						}
+						timeZoneName = exemplarCity;
+					}
+
+					if ( exemplarCity && length === 4 ) {
+						timeZoneName = formatMessage(
+							cldr.main(
+								"dates/timeZoneNames/regionFormat"
+							),
+							[ exemplarCity ]
+						);
+					}
+
+					if ( timeZoneName ) {
+						properties.timeZoneName = timeZoneName;
+					}
+				}
+
+			/* falls through */
 			case "z":
 			case "O":
 				cldr.main( "dates/timeZoneNames/gmtFormat" );
 				cldr.main( "dates/timeZoneNames/gmtZeroFormat" );
 				cldr.main( "dates/timeZoneNames/hourFormat" );
 				break;
-
-			case "v":
-			case "V":
-				throw createErrorUnsupportedFeature({
-					feature: "timezone pattern `" + chr + "`"
-				});
 		}
 	});
 

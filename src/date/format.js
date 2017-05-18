@@ -1,4 +1,5 @@
 define([
+	"zoned-date-time",
 	"./day-of-week",
 	"./day-of-year",
 	"./fields-map",
@@ -8,8 +9,8 @@ define([
 	"./timezone-hour-format",
 	"./week-days",
 	"../util/remove-literal-quotes"
-], function( dateDayOfWeek, dateDayOfYear, dateFieldsMap, dateMillisecondsInDay, datePatternRe,
-	dateStartOf, dateTimezoneHourFormat, dateWeekDays, removeLiteralQuotes ) {
+], function( ZonedDateTime, dateDayOfWeek, dateDayOfYear, dateFieldsMap, dateMillisecondsInDay,
+	datePatternRe, dateStartOf, dateTimezoneHourFormat, dateWeekDays, removeLiteralQuotes ) {
 
 /**
  * format( date, properties )
@@ -26,6 +27,11 @@ return function( date, numberFormatters, properties ) {
 	var parts = [];
 
 	var timeSeparator = properties.timeSeparator;
+
+	// create globalize date with given timezone data
+	if ( properties.timeZoneData ) {
+		date = new ZonedDateTime( date, properties.timeZoneData() );
+	}
 
 	properties.pattern.replace( datePatternRe, function( current ) {
 		var dateField, type, value,
@@ -55,6 +61,23 @@ return function( date, numberFormatters, properties ) {
 			} else {
 				chr = "X";
 				length = 5;
+			}
+		}
+
+		// z...zzz: "{shortRegion}", e.g., "PST" or "PDT".
+		// zzzz: "{regionName} {Standard Time}" or "{regionName} {Daylight Time}",
+		//       e.g., "Pacific Standard Time" or "Pacific Daylight Time".
+		if ( chr === "z" ) {
+			if ( date.isDST ) {
+				value = date.isDST() ? properties.daylightTzName : properties.standardTzName;
+			}
+
+			// Fall back to "O" format.
+			if ( !value ) {
+				chr = "O";
+				if ( length < 4 ) {
+					length = 1;
+				}
 			}
 		}
 
@@ -210,6 +233,28 @@ return function( date, numberFormatters, properties ) {
 
 			// Zone
 			case "z":
+				break;
+
+			case "v":
+
+				// v...vvv: "{shortRegion}", eg. "PT".
+				// vvvv: "{regionName} {Time}",
+				//       e.g., "Pacific Time".
+				if ( properties.genericTzName ) {
+					value = properties.genericTzName;
+					break;
+				}
+
+			/* falls through */
+			case "V":
+
+				//VVVV: "{explarCity} {Time}", e.g., "Los Angeles Time"
+				if ( properties.timeZoneName ) {
+					value = properties.timeZoneName;
+					break;
+				}
+
+			/* falls through */
 			case "O":
 
 				// O: "{gmtFormat}+H;{gmtFormat}-H" or "{gmtZeroFormat}", eg. "GMT-8" or "GMT".

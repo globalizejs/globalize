@@ -123,7 +123,13 @@ module.exports = function( grunt ) {
 				paths: {
 					cldr: "../external/cldrjs/dist/cldr",
 					"make-plural": "../external/make-plural/make-plural",
-					messageformat: "../external/messageformat/messageformat"
+					messageformat: "../external/messageformat/messageformat",
+					"zoned-date-time": "../node_modules/zoned-date-time/src/zoned-date-time"
+				},
+				shim: {
+					"zoned-date-time": {
+						exports: "ZonedDateTime"
+					}
 				},
 				skipSemiColonInsertion: true,
 				skipModuleInsertion: true,
@@ -246,6 +252,14 @@ module.exports = function( grunt ) {
 							"}());",
 							"/* jshint ignore:end */"
 						].join( "\n" ) );
+
+					// ZonedDateTime
+					} else if ( ( /zoned-date-time/ ).test( id ) ) {
+						contents = contents.replace(
+							"module.exports = ZonedDateTime;",
+							"return ZonedDateTime;"
+						);
+						contents = "var ZonedDateTime = (function() {\n" + contents + "}());";
 					}
 
 					// 1, and 2: Remove define() wrap.
@@ -255,8 +269,14 @@ module.exports = function( grunt ) {
 						.replace( rdefineEnd, "" ) /* 2 */
 						.replace( /define\(\[[^\]]+\]\)[\W\n]+$/, "" ); /* 3 */
 
+					// Type b (not as simple as a single return)
+					if ( [ "util/globalize-date" ].indexOf( id ) !== -1 ) {
+						contents = "var " + name[ 0 ].toUpperCase() +
+							name.slice( 1 ) + " = (function() {" +
+							contents + "}());";
+
 					// Type a (single return)
-					if ( ( /\// ).test( id ) ) {
+					} else if ( ( /\// ).test( id ) ) {
 						contents = contents
 							.replace( /\nreturn/, "\nvar " + name + " =" );
 					}

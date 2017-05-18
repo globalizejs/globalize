@@ -4,6 +4,7 @@
 		"number-label": "رقم",
 		"currency-label": "عملة",
 		"date-label": "تاريخ",
+		"date-time-zone-label": "التاريخ (في منطقة زمنية محددة ل إيانا، على سبيل المثال، America/Sao_Paulo)",
 		"date-to-parts-label": "التاريخ (لاحظ الشهر القوي، تمت إضافة الترميز باستخدام formatDateToParts)",
 		"relative-time-label": "الوقت النسبي",
 		"unit-label": "وحدة القياس",
