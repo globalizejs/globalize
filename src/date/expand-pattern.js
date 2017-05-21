@@ -1,8 +1,9 @@
 define([
-	"../common/format-message",
 	"../common/create-error/invalid-parameter-value",
+	"../common/format-message",
+	"../common/validate/skeleton",
 	"./expand-pattern/get-best-match-pattern"
-], function( formatMessage, createErrorInvalidParameterValue,
+], function( createErrorInvalidParameterValue, formatMessage, validateSkeleton,
 	dateExpandPatternGetBestMatchPattern ) {
 
 /**
@@ -50,6 +51,8 @@ return function( options, cldr ) {
 			skeleton = skeleton.replace( /j/g, function() {
 				return cldr.supplemental.timeData.preferred();
 			});
+
+			validateSkeleton( skeleton );
 
 			// Try direct map (note that getBestMatchPattern handles it).
 			// ... or, try to "best match" the whole skeleton.
