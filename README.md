@@ -262,6 +262,8 @@ requirements. See table below.
 
 As an alternative to deducing this yourself, use this [online tool](http://johnnyreilly.github.io/globalize-so-what-cha-want/). The tool allows you to select the modules you're interested in using and tells you the Globalize files *and* CLDR JSON that you need.
 
+As an alternative to deducing this yourself, use this [online tool](http://johnnyreilly.github.io/globalize-so-what-cha-want/). The tool allows you to select the modules you're interested in using and tells you the Globalize files *and* CLDR JSON that you need. 
+
 *(b) How am I supposed to get and load CLDR content?*
 
 Learn [how to get and load CLDR content...](doc/cldr.md) and use
