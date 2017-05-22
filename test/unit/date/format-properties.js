@@ -159,7 +159,7 @@ QUnit.test( "should return properties for timezone (z)", function( assert ) {
 		assert.ok( !( "daylightTzName" in formatProperties ) );
 		assert.ok( "gmtFormat" in formatProperties );
 		assert.ok( "gmtZeroFormat" in formatProperties );
-		assert.ok( "tzLongHourFormat" in formatProperties );
+		assert.ok( "hourFormat" in formatProperties );
 	});
 	[ "zzzz" ].forEach(function( pattern ) {
 		var formatProperties = properties( pattern, cldr, timeZone );
@@ -167,7 +167,7 @@ QUnit.test( "should return properties for timezone (z)", function( assert ) {
 		assert.ok( !( "daylightTzName" in formatProperties ) );
 		assert.ok( "gmtFormat" in formatProperties );
 		assert.ok( "gmtZeroFormat" in formatProperties );
-		assert.ok( "tzLongHourFormat" in formatProperties );
+		assert.ok( "hourFormat" in formatProperties );
 	});
 
 	// Test for two things:
@@ -180,7 +180,7 @@ QUnit.test( "should return properties for timezone (z)", function( assert ) {
 		assert.equal( formatProperties.daylightTzName, "BST" );
 		assert.ok( "gmtFormat" in formatProperties );
 		assert.ok( "gmtZeroFormat" in formatProperties );
-		assert.ok( "tzLongHourFormat" in formatProperties );
+		assert.ok( "hourFormat" in formatProperties );
 	});
 	[ "zzzz" ].forEach(function( pattern ) {
 		var formatProperties = properties( pattern, enGb, timeZone );
@@ -188,7 +188,7 @@ QUnit.test( "should return properties for timezone (z)", function( assert ) {
 		assert.equal( formatProperties.daylightTzName, "British Summer Time" );
 		assert.ok( "gmtFormat" in formatProperties );
 		assert.ok( "gmtZeroFormat" in formatProperties );
-		assert.ok( "tzLongHourFormat" in formatProperties );
+		assert.ok( "hourFormat" in formatProperties );
 	});
 });
 

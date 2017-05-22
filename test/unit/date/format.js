@@ -1121,44 +1121,43 @@ QUnit.test( "should format timezone (z)", function( assert ) {
 	// Asia/Calcutta and should fall through 'O' format.
 	// isDST === false.
 	date = new Date( 2017, 0, 1 );
-	assert.dateFormatWithTimezone( date1, "z", "Asia/Calcutta", cldr, [{
+	assert.dateFormatWithTimezone( date, "z", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT+5"
+		value: "GMT+5:30"
 	}]);
-	assert.dateFormatWithTimezone( date1, "zz", "Asia/Calcutta", cldr, [{
+	assert.dateFormatWithTimezone( date, "zz", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT+5"
+		value: "GMT+5:30"
 	}]);
-	assert.dateFormatWithTimezone( date1, "zzz", "Asia/Calcutta", cldr, [{
+	assert.dateFormatWithTimezone( date, "zzz", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT+5"
+		value: "GMT+5:30"
 	}]);
-	assert.dateFormatWithTimezone( date1, "zzzz", "Asia/Calcutta", cldr, [{
+	assert.dateFormatWithTimezone( date, "zzzz", "Asia/Calcutta", cldr, [{
 		type: "zone",
 		value: "India Standard Time"
 	}]);
 
 	// isDST === true:
-	// FIXME it should be GMT+6[:30]
 	date = new Date( 1943, 0, 1 );
-	assert.dateFormatWithTimezone( date1, "z", "Asia/Calcutta", cldr, [{
+	assert.dateFormatWithTimezone( date, "z", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT+5"
+		value: "GMT+6:30"
 	}]);
-	assert.dateFormatWithTimezone( date1, "zz", "Asia/Calcutta", cldr, [{
+	assert.dateFormatWithTimezone( date, "zz", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT+5"
+		value: "GMT+6:30"
 	}]);
-	assert.dateFormatWithTimezone( date1, "zzz", "Asia/Calcutta", cldr, [{
+	assert.dateFormatWithTimezone( date, "zzz", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT+5"
-	}]);
-	assert.dateFormatWithTimezone( date1, "zzzz", "Asia/Calcutta", cldr, [{
-		type: "zone",
-		value: "India Standard Time"
+		value: "GMT+6:30"
 	}]);
 
 	// Fall through to 'O' format
+	assert.dateFormatWithTimezone( date, "zzzz", "Asia/Calcutta", cldr, [{
+		type: "zone",
+		value: "GMT+06:30"
+	}]);
 	assert.dateFormatWithTimezone( date1, "z", "Foo/Bar", cldr, [{
 		type: "zone",
 		value: "GMT"
@@ -1251,14 +1250,6 @@ QUnit.test( "should format timezone (O)", function( assert ) {
 		type: "zone",
 		value: "GMT" 
 	}]);
-	assert.dateFormat( date, "OO", cldr, [{
-		type: "zone",
-		value: "GMT" 
-	}]);
-	assert.dateFormat( date, "OOO", cldr, [{
-		type: "zone",
-		value: "GMT" 
-	}]);
 	assert.dateFormat( date, "OOOO", cldr, [{
 		type: "zone",
 		value: "GMT" 
@@ -1266,14 +1257,6 @@ QUnit.test( "should format timezone (O)", function( assert ) {
 
 	date = new FakeDate( -3 );
 	assert.dateFormat( date, "O", cldr, [{
-		type: "zone",
-		value: "GMT-3" 
-	}]);
-	assert.dateFormat( date, "OO", cldr, [{
-		type: "zone",
-		value: "GMT-3" 
-	}]);
-	assert.dateFormat( date, "OOO", cldr, [{
 		type: "zone",
 		value: "GMT-3" 
 	}]);
@@ -1287,17 +1270,30 @@ QUnit.test( "should format timezone (O)", function( assert ) {
 		type: "zone",
 		value: "GMT+11" 
 	}]);
-	assert.dateFormat( date, "OO", cldr, [{
-		type: "zone",
-		value: "GMT+11" 
-	}]);
-	assert.dateFormat( date, "OOO", cldr, [{
-		type: "zone",
-		value: "GMT+11" 
-	}]);
 	assert.dateFormat( date, "OOOO", cldr, [{
 		type: "zone",
 		value: "GMT+11:00" 
+	}]);
+
+	// TODO Support optional seconds.
+	date = new FakeDate( -7.883 );
+	assert.dateFormat( date, "O", cldr, [{
+		type: "zone",
+		value: "GMT-7:52" 
+	}]);
+	assert.dateFormat( date, "OOOO", cldr, [{
+		type: "zone",
+		value: "GMT-07:52" 
+	}]);
+
+	date = new FakeDate( 5.5 );
+	assert.dateFormat( date, "O", cldr, [{
+		type: "zone",
+		value: "GMT+5:30" 
+	}]);
+	assert.dateFormat( date, "OOOO", cldr, [{
+		type: "zone",
+		value: "GMT+05:30"
 	}]);
 });
 
@@ -1443,7 +1439,6 @@ QUnit.test( "should format timezone (X)", function( assert ) {
 	}]);
 
 	date = new FakeDate( 5.5 );
-
 	assert.dateFormat( date, "X", cldr, [{
 		type: "zone",
 		value: "+0530" 

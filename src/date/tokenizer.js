@@ -51,7 +51,7 @@ return function( value, numberParser, properties ) {
 	}
 
 	valid = properties.pattern.match( datePatternRe ).every(function( current ) {
-		var chr, length, numeric, tokenRe,
+		var aux, chr, length, numeric, tokenRe,
 			token = {};
 
 		function hourFormatParse( tokenRe, numberParser ) {
@@ -403,8 +403,8 @@ return function( value, numberParser, properties ) {
 				if ( tokenRe && new RegExp( "^" + tokenRe.source ).test( value ) ) {
 					break;
 				}
-				if ( current === "v" ) {
-					length = 1;
+				if ( chr === "V" && length === 2 ) {
+					break;
 				}
 
 			/* falls through */
@@ -416,12 +416,17 @@ return function( value, numberParser, properties ) {
 					token.value = 0;
 					tokenRe = new RegExp( properties[ "timeZoneNames/gmtZeroFormat" ] );
 				} else {
-					tokenRe = hourFormatRe(
-						length < 4 ? "+H;-H" : properties[ "timeZoneNames/hourFormat" ],
-						properties[ "timeZoneNames/gmtFormat" ],
-						timeSeparator
-					);
-					if ( !hourFormatParse( tokenRe, numberParser ) ) {
+					aux = properties[ "timeZoneNames/hourFormat" ].some(function( hourFormat ) {
+						tokenRe = hourFormatRe(
+							hourFormat,
+							properties[ "timeZoneNames/gmtFormat" ],
+							timeSeparator
+						);
+						if ( hourFormatParse( tokenRe, numberParser ) ) {
+							return true;
+						}
+					});
+					if ( !aux ) {
 						return null;
 					}
 				}

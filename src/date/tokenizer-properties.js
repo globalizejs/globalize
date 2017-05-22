@@ -1,12 +1,14 @@
 define([
 	"./get-time-zone-name",
 	"./pattern-re",
+	"./timezone-hour-format/h",
+	"./timezone-hour-format/hm",
 	"../common/create-error/unsupported-feature",
 	"../common/format-message",
 	"../number/symbol",
 	"../util/object/filter"
-], function( dateGetTimeZoneName, datePatternRe, createErrorUnsupportedFeature, formatMessage,
-	numberSymbol, objectFilter ) {
+], function( dateGetTimeZoneName, datePatternRe, dateTimezoneHourFormatH, dateTimezoneHourFormatHm,
+	createErrorUnsupportedFeature, formatMessage, numberSymbol, objectFilter ) {
 
 /**
  * tokenizerProperties( pattern, cldr )
@@ -39,7 +41,7 @@ return function( pattern, cldr, timeZone ) {
 	cldr.on( "get", populateProperties );
 
 	pattern.match( datePatternRe ).forEach(function( current ) {
-		var chr, daylightTzName, length, standardTzName;
+		var aux, chr, daylightTzName, length, standardTzName;
 
 		chr = current.charAt( 0 );
 		length = current.length;
@@ -233,12 +235,19 @@ return function( pattern, cldr, timeZone ) {
 					}
 				}
 
+				if ( current === "v" ) {
+					length = 1;
+				}
+
 			/* falls through */
 			case "z":
 			case "O":
 				cldr.main( "dates/timeZoneNames/gmtFormat" );
 				cldr.main( "dates/timeZoneNames/gmtZeroFormat" );
-				cldr.main( "dates/timeZoneNames/hourFormat" );
+				aux = cldr.main( "dates/timeZoneNames/hourFormat" );
+				properties[ "timeZoneNames/hourFormat" ] = length < 4 ?
+					[ dateTimezoneHourFormatH( aux ), dateTimezoneHourFormatHm( aux, "H" ) ] :
+					[ dateTimezoneHourFormatHm( aux, "HH" ) ];
 				break;
 		}
 	});

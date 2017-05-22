@@ -254,6 +254,10 @@ return function( date, numberFormatters, properties ) {
 					break;
 				}
 
+				if ( current === "v" ) {
+					length = 1;
+				}
+
 			/* falls through */
 			case "O":
 
@@ -262,9 +266,18 @@ return function( date, numberFormatters, properties ) {
 				if ( date.getTimezoneOffset() === 0 ) {
 					value = properties.gmtZeroFormat;
 				} else {
+
+					// If O..OOO and timezone offset has non-zero minutes, show minutes.
+					if ( length < 4 ) {
+						aux = date.getTimezoneOffset();
+						aux = properties.hourFormat[ aux % 60 - aux % 1 === 0 ? 0 : 1 ];
+					} else {
+						aux = properties.hourFormat;
+					}
+
 					value = dateTimezoneHourFormat(
 						date,
-						length < 4 ? "+H;-H" : properties.tzLongHourFormat,
+						aux,
 						timeSeparator,
 						numberFormatters
 					);

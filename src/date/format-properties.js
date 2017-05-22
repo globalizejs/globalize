@@ -2,13 +2,16 @@ define([
 	"./first-day-of-week",
 	"./get-time-zone-name",
 	"./pattern-re",
+	"./timezone-hour-format/h",
+	"./timezone-hour-format/hm",
 	"../common/create-error/unsupported-feature",
 	"../common/format-message",
 	"../common/runtime-cache-data-bind",
 	"../number/symbol",
 	"../util/string/pad"
-], function( dateFirstDayOfWeek, dateGetTimeZoneName, datePatternRe, createErrorUnsupportedFeature,
-	formatMessage, runtimeCacheDataBind, numberSymbol, stringPad ) {
+], function( dateFirstDayOfWeek, dateGetTimeZoneName, datePatternRe, dateTimezoneHourFormatH,
+	dateTimezoneHourFormatHm, createErrorUnsupportedFeature, formatMessage, runtimeCacheDataBind,
+	numberSymbol, stringPad ) {
 
 /**
  * properties( pattern, cldr )
@@ -43,7 +46,7 @@ return function( pattern, cldr, timeZone ) {
 	}
 
 	pattern.replace( datePatternRe, function( current ) {
-		var chr, daylightTzName, formatNumber, genericTzName, length, standardTzName;
+		var aux, chr, daylightTzName, formatNumber, genericTzName, length, standardTzName;
 
 		chr = current.charAt( 0 );
 		length = current.length;
@@ -313,6 +316,10 @@ return function( pattern, cldr, timeZone ) {
 					}
 				}
 
+				if ( current === "v" ) {
+					length = 1;
+				}
+
 			/* falls through */
 			case "O":
 
@@ -320,7 +327,13 @@ return function( pattern, cldr, timeZone ) {
 				// OOOO: "{gmtFormat}{hourFormat}" or "{gmtZeroFormat}", eg. "GMT-08:00" or "GMT".
 				properties.gmtFormat = cldr.main( "dates/timeZoneNames/gmtFormat" );
 				properties.gmtZeroFormat = cldr.main( "dates/timeZoneNames/gmtZeroFormat" );
-				properties.tzLongHourFormat = cldr.main( "dates/timeZoneNames/hourFormat" );
+
+				// Unofficial deduction of the hourFormat variations.
+				// Official spec is pending resolution: http://unicode.org/cldr/trac/ticket/8293
+				aux = cldr.main( "dates/timeZoneNames/hourFormat" );
+				properties.hourFormat = length < 4 ?
+					[ dateTimezoneHourFormatH( aux ), dateTimezoneHourFormatHm( aux, "H" ) ] :
+					dateTimezoneHourFormatHm( aux, "HH" );
 
 			/* falls through */
 			case "Z":
