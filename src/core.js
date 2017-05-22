@@ -66,6 +66,29 @@ Globalize.load = function() {
 };
 
 /**
+ * Globalize.getCldrData( baseUrl, fileName )
+ *
+ * @baseUrl [Url]
+ *
+ * @fileName [file name]
+ *
+ * Load cldr data from file to make everything easier
+*/
+
+Globalize.getCldrData = function (baseUrl, file) {
+	var jsondata =
+		$.ajax(
+			{
+				url: baseUrl + file,
+				async: false,
+				dataType: 'json'
+			}
+		).responseText;
+	this.load(JSON.parse(jsondata));
+
+};
+
+/**
  * Globalize.locale( [locale|cldr] )
  *
  * @locale [String]
