@@ -1420,18 +1420,34 @@ QUnit.test( "should format timezone (X)", function( assert ) {
 		value: "-03:00"
 	}]);
 
-	// TODO (see https://github.com/jquery/globalize/issues/339)
-	// date = new FakeDate( -7.883 );
-	// assert.dateFormat( date, "X", cldr, "-0752" );
-	// assert.dateFormat( date, "XX", cldr, "-0752" );
-	// assert.dateFormat( date, "XXX", cldr, "-07:52" );
-	// assert.dateFormat( date, "XXXX", cldr, "-075258" );
-	// assert.dateFormat( date, "XXXXX", cldr, "-07:52:58" );
+	date = new FakeDate( -7.883 );
+	assert.dateFormat( date, "X", cldr, [{
+		type: "zone",
+		value: "-0752" 
+	}]);
+	assert.dateFormat( date, "XX", cldr, [{
+		type: "zone",
+		value: "-0752" 
+	}]);
+	assert.dateFormat( date, "XXX", cldr, [{
+		type: "zone",
+		value: "-07:52" 
+	}]);
+	assert.dateFormat( date, "XXXX", cldr, [{
+		type: "zone",
+		value: "-075258" 
+	}]);
+	assert.dateFormat( date, "XXXXX", cldr, [{
+		type: "zone",
+		value: "-07:52:58" 
+	}]);
 
 	date = new FakeDate( 5.5 );
 
-	// TODO (see https://github.com/jquery/globalize/issues/339)
-	// assert.dateFormat( date, "X", cldr, "+0530" );
+	assert.dateFormat( date, "X", cldr, [{
+		type: "zone",
+		value: "+0530" 
+	}]);
 	assert.dateFormat( date, "XX", cldr, [{
 		type: "zone",
 		value: "+0530"
@@ -1517,18 +1533,34 @@ QUnit.test( "should format timezone (x)", function( assert ) {
 		value: "-03:00"
 	}]);
 
-	// TODO (see https://github.com/jquery/globalize/issues/339)
-	// date = new FakeDate( -7.883 );
-	// assert.dateFormat( date, "x", cldr, "-0752" );
-	// assert.dateFormat( date, "xx", cldr, "-0752" );
-	// assert.dateFormat( date, "xxx", cldr, "-07:52" );
-	// assert.dateFormat( date, "xxxx", cldr, "-075258" );
-	// assert.dateFormat( date, "xxxxx", cldr, "-07:52:58" );
+	date = new FakeDate( -7.883 );
+	assert.dateFormat( date, "x", cldr, [{
+		type: "zone",
+		value: "-0752" 
+	}]);
+	assert.dateFormat( date, "xx", cldr, [{
+		type: "zone",
+		value: "-0752" 
+	}]);
+	assert.dateFormat( date, "xxx", cldr, [{
+		type: "zone",
+		value: "-07:52" 
+	}]);
+	assert.dateFormat( date, "xxxx", cldr, [{
+		type: "zone",
+		value: "-075258" 
+	}]);
+	assert.dateFormat( date, "xxxxx", cldr, [{
+		type: "zone",
+		value: "-07:52:58" 
+	}]);
 
 	date = new FakeDate( 5.5 );
 
-	// TODO (see https://github.com/jquery/globalize/issues/339)
-	// assert.dateFormat( date, "x", cldr, "+0530" );
+	assert.dateFormat( date, "x", cldr, [{
+		type: "zone",
+		value: "+0530" 
+	}]);
 	assert.dateFormat( date, "xx", cldr, [{
 		type: "zone",
 		value: "+0530"

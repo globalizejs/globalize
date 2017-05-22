@@ -34,7 +34,7 @@ return function( date, numberFormatters, properties ) {
 	}
 
 	properties.pattern.replace( datePatternRe, function( current ) {
-		var dateField, type, value,
+		var aux, dateField, type, value,
 			chr = current.charAt( 0 ),
 			length = current.length;
 
@@ -283,10 +283,32 @@ return function( date, numberFormatters, properties ) {
 			/* falls through */
 			case "x":
 
-				// x: hourFormat("+HH;-HH")
-				// xx or xxxx: hourFormat("+HHmm;-HHmm")
-				// xxx or xxxxx: hourFormat("+HH:mm;-HH:mm")
-				value = length === 1 ? "+HH;-HH" : ( length % 2 ? "+HH:mm;-HH:mm" : "+HHmm;-HHmm" );
+				// x: hourFormat("+HH[mm];-HH[mm]")
+				// xx: hourFormat("+HHmm;-HHmm")
+				// xxx: hourFormat("+HH:mm;-HH:mm")
+				// xxxx: hourFormat("+HHmm[ss];-HHmm[ss]")
+				// xxxxx: hourFormat("+HH:mm[:ss];-HH:mm[:ss]")
+				aux = date.getTimezoneOffset();
+
+				// If x and timezone offset has non-zero minutes, use xx (i.e., show minutes).
+				if ( length === 1 && aux % 60 - aux % 1 !== 0 ) {
+					length += 1;
+				}
+
+				// If (xxxx or xxxxx) and timezone offset has zero seconds, use xx or xxx
+				// respectively (i.e., don't show optional seconds).
+				if ( ( length === 4 || length === 5 ) && aux % 1 === 0 ) {
+					length -= 2;
+				}
+
+				value = [
+					"+HH;-HH",
+					"+HHmm;-HHmm",
+					"+HH:mm;-HH:mm",
+					"+HHmmss;-HHmmss",
+					"+HH:mm:ss;-HH:mm:ss"
+				][ length - 1 ];
+
 				value = dateTimezoneHourFormat( date, value, ":" );
 				break;
 
