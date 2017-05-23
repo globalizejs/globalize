@@ -6,9 +6,12 @@ define([
 	"../common/create-error/unsupported-feature",
 	"../common/format-message",
 	"../number/symbol",
+	"../util/is-plain-object",
+	"../util/loose-matching",
 	"../util/object/filter"
 ], function( dateGetTimeZoneName, datePatternRe, dateTimezoneHourFormatH, dateTimezoneHourFormatHm,
-	createErrorUnsupportedFeature, formatMessage, numberSymbol, objectFilter ) {
+	createErrorUnsupportedFeature, formatMessage, numberSymbol, isPlainObject, looseMatching,
+	objectFilter ) {
 
 /**
  * tokenizerProperties( pattern, cldr )
@@ -21,7 +24,7 @@ define([
  */
 return function( pattern, cldr, timeZone ) {
 	var properties = {
-			pattern: pattern,
+			pattern: looseMatching( pattern ),
 			timeSeparator: numberSymbol( "timeSeparator", cldr )
 		},
 		widths = [ "abbreviated", "wide", "narrow" ];
@@ -34,8 +37,29 @@ return function( pattern, cldr, timeZone ) {
 			return;
 		}
 
+		if ( !value ) {
+			return;
+		}
+
 		// The `dates` and `calendars` trim's purpose is to reduce properties' key size only.
-		properties[ path.replace( /^.*\/dates\//, "" ).replace( /calendars\//, "" ) ] = value;
+		path = path.replace( /^.*\/dates\//, "" ).replace( /calendars\//, "" );
+
+		// Specific filter for "gregorian/dayPeriods/format/wide".
+		if ( path === "gregorian/dayPeriods/format/wide" ) {
+			value = objectFilter( value, /^am|^pm/ );
+		}
+
+		// Transform object into array of pairs [key, /value/].
+		if ( isPlainObject( value ) ) {
+			value = Object.keys( value ).map(function( key ) {
+				return [ key, new RegExp( "^" + looseMatching( value[ key ] ) ) ];
+			});
+
+		// If typeof value === "string".
+		} else {
+			value = looseMatching( value );
+		}
+		properties[ path ] = value;
 	}
 
 	cldr.on( "get", populateProperties );
@@ -59,10 +83,10 @@ return function( pattern, cldr, timeZone ) {
 			standardTzName = dateGetTimeZoneName( length, "standard", timeZone, cldr );
 			daylightTzName = dateGetTimeZoneName( length, "daylight", timeZone, cldr );
 			if ( standardTzName ) {
-				properties.standardTzName = standardTzName;
+				properties.standardTzName = looseMatching( standardTzName );
 			}
 			if ( daylightTzName ) {
-				properties.daylightTzName = daylightTzName;
+				properties.daylightTzName = looseMatching( daylightTzName );
 			}
 
 			// Fall through the "O" format in case one name is missing.
@@ -86,7 +110,7 @@ return function( pattern, cldr, timeZone ) {
 			}
 			var genericTzName = dateGetTimeZoneName( length, "generic", timeZone, cldr );
 			if ( genericTzName ) {
-				properties.genericTzName = genericTzName;
+				properties.genericTzName = looseMatching( genericTzName );
 				chr = "O";
 
 			// Fall back to "V" format.
@@ -186,10 +210,6 @@ return function( pattern, cldr, timeZone ) {
 				cldr.main(
 					"dates/calendars/gregorian/dayPeriods/format/wide"
 				);
-				properties[ "gregorian/dayPeriods/format/wide" ] = objectFilter(
-					properties[ "gregorian/dayPeriods/format/wide" ],
-					/^am|^pm/
-				);
 				break;
 
 			// Zone
@@ -203,6 +223,8 @@ return function( pattern, cldr, timeZone ) {
 
 				if ( timeZone ) {
 					if ( length === 2 ) {
+
+						// Skip looseMatching processing since timeZone is a canonical posix value.
 						properties.timeZoneName = timeZone;
 						break;
 					}
@@ -231,7 +253,7 @@ return function( pattern, cldr, timeZone ) {
 					}
 
 					if ( timeZoneName ) {
-						properties.timeZoneName = timeZoneName;
+						properties.timeZoneName = looseMatching( timeZoneName );
 					}
 				}
 
@@ -244,7 +266,8 @@ return function( pattern, cldr, timeZone ) {
 			case "O":
 				cldr.main( "dates/timeZoneNames/gmtFormat" );
 				cldr.main( "dates/timeZoneNames/gmtZeroFormat" );
-				aux = cldr.main( "dates/timeZoneNames/hourFormat" );
+				cldr.main( "dates/timeZoneNames/hourFormat" );
+				aux = properties[ "timeZoneNames/hourFormat" ];
 				properties[ "timeZoneNames/hourFormat" ] = length < 4 ?
 					[ dateTimezoneHourFormatH( aux ), dateTimezoneHourFormatHm( aux, "H" ) ] :
 					[ dateTimezoneHourFormatHm( aux, "HH" ) ];

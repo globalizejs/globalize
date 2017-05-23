@@ -150,6 +150,9 @@ QUnit.test( "should parse skeleton", function( assert ) {
 	assertParseDate( assert, "9/15/2010", { skeleton: "yMd" }, date );
 	assertParseDate( assert, "الأربعاء، ١٥ سبتمبر، ٢٠١٠ م", { skeleton: "GyMMMEd" }, date, ar );
 
+	// Loose matching: ignore control characters.
+	assertParseDate( assert, "١٥/٩/٢٠١٠", { skeleton: "yMd" }, date, ar );
+
 	date = new Date( 2010, 0 );
 	date = startOf( date, "year" );
 	assertParseDate( assert, "Q3 2010", { skeleton: "yQQQ" }, date );

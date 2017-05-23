@@ -11,6 +11,9 @@ define([
 	"json!cldr-data/main/en-GB/ca-gregorian.json",
 	"json!cldr-data/main/en-GB/numbers.json",
 	"json!cldr-data/main/en-GB/timeZoneNames.json",
+	"json!cldr-data/main/fr/ca-gregorian.json",
+	"json!cldr-data/main/fr/numbers.json",
+	"json!cldr-data/main/fr/timeZoneNames.json",
 	"json!cldr-data/main/zh/ca-gregorian.json",
 	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
@@ -23,9 +26,10 @@ define([
 	"cldr/supplemental"
 ], function( Cldr, parse, parseProperties, startOf, tokenizer, dateTokenizerProperties,
 	enCaGregorian, enNumbers, enTimeZoneNames, enGbCaGregorian, enGbNumbers, enGbTimeZoneNames,
-	zhCaGregorian, zhNumbers, likelySubtags, timeData, weekData, ianaTimezoneData, util ) {
+	frCaGregorian, frNumbers, frTimeZoneNames, zhCaGregorian, zhNumbers, likelySubtags, timeData,
+	weekData, ianaTimezoneData, util ) {
 
-var cldr, date1, date2, midnight, zh;
+var cldr, date1, date2, fr, midnight, zh;
 
 QUnit.assert.dateParse = function( stringDate, pattern, cldr, expected ) {
 	this.dateParseWithTimezone( stringDate, pattern, undefined, cldr, expected );
@@ -66,6 +70,9 @@ Cldr.load(
 	enGbCaGregorian,
 	enGbNumbers,
 	enGbTimeZoneNames,
+	frCaGregorian,
+	frNumbers,
+	frTimeZoneNames,
 	zhCaGregorian,
 	zhNumbers,
 	likelySubtags,
@@ -79,6 +86,7 @@ Cldr.load({
 });
 
 cldr = new Cldr( "en" );
+fr = new Cldr( "fr" );
 zh = new Cldr( "zh" );
 
 midnight = new Date();
@@ -242,12 +250,6 @@ QUnit.test( "should parse day (d) with no padding", function( assert ) {
 	util.FakeDate.today = new Date( 2016, 1 );
 	assert.dateParse( "30", "d", cldr, null );
 	assert.dateParse( "29", "d", cldr, date2 );
-
-	// Test #612 - Incorrect parsing when days in today's month is bigger than
-	// the parsing month.
-	util.FakeDate.today = new Date( 2016, 11, 31 );
-	assert.dateParse( "2/2/2015", "M/d/y", cldr, new Date( 2015, 1, 2 ) );
-
 	Date = OrigDate;
 });
 
@@ -308,6 +310,26 @@ QUnit.test( "should parse period (a)", function( assert ) {
 	assert.dateParse( "5 PM", "h a", cldr, date2 );
 	assert.dateParse( "上午5", "ah", zh, date1 );
 	assert.dateParse( "下午5", "ah", zh, date2 );
+});
+
+/**
+ * Date composite
+ */
+
+QUnit.test( "should parse composite of date fields", function( assert ) {
+	var OrigDate;
+
+	// Test #612 - Incorrect parsing when days in today's month is bigger than
+	// the parsing month.
+	OrigDate = Date;
+	Date = util.FakeDate;
+	util.FakeDate.today = new Date( 2016, 11, 31 );
+	assert.dateParse( "2/2/2015", "M/d/y", cldr, new Date( 2015, 1, 2 ) );
+	Date = OrigDate;
+
+	// Loose matching: ignore control characters.
+	date1 = new Date( 2010, 8, 15 );
+	assert.dateParse( "15/9/2010", "d\u200f/M\u200f/y", cldr, date1 );
 });
 
 /**
@@ -706,6 +728,10 @@ QUnit.test( "should parse timezone (O)", function( assert ) {
 
 	assert.timezoneParse( "GMT+11", "O", cldr, -660 );
 	assert.timezoneParse( "GMT+11:00", "OOOO" , cldr, -660 );
+
+	// Loose matching: normalize [:Dash:] category.
+	assert.timezoneParse( "UTC-7", "O", fr, 420 );
+	assert.timezoneParse( "UTC\u22127", "O", fr, 420 );
 });
 
 QUnit.test( "should parse timezone (v)", function( assert ) {

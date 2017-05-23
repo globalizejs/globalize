@@ -16,6 +16,7 @@ define([
 	"./number/parse-properties",
 	"./number/pattern",
 	"./number/symbol",
+	"./util/loose-matching",
 	"./util/remove-literal-quotes",
 	"./util/string/pad",
 
@@ -25,7 +26,8 @@ define([
 	validateDefaultLocale, validateParameterPresence, validateParameterRange,
 	validateParameterTypeNumber, validateParameterTypePlainObject, validateParameterTypeString,
 	numberFormatterFn, numberFormatProperties, numberNumberingSystem, numberParserFn,
-	numberParseProperties, numberPattern, numberSymbol, removeLiteralQuotes, stringPad ) {
+	numberParseProperties, numberPattern, numberSymbol, looseMatching, removeLiteralQuotes,
+	stringPad ) {
 
 function validateDigits( properties ) {
 	var minimumIntegerDigits = properties[ 2 ],
@@ -178,6 +180,7 @@ Globalize._createErrorUnsupportedFeature = createErrorUnsupportedFeature;
 Globalize._numberNumberingSystem = numberNumberingSystem;
 Globalize._numberPattern = numberPattern;
 Globalize._numberSymbol = numberSymbol;
+Globalize._looseMatching = looseMatching;
 Globalize._removeLiteralQuotes = removeLiteralQuotes;
 Globalize._stringPad = stringPad;
 Globalize._validateParameterTypeNumber = validateParameterTypeNumber;

@@ -9,13 +9,16 @@ define([
 	"./number/formatter-fn",
 	"./number/parse",
 	"./number/parser-fn",
+	"./util/loose-matching",
 	"./util/number/round",
 	"./util/remove-literal-quotes"
 ], function( runtimeKey, createErrorUnsupportedFeature, validateParameterPresence,
 	validateParameterTypeNumber, validateParameterTypeString, Globalize, numberFormat,
-	numberFormatterFn, numberParse, numberParserFn, numberRound, removeLiteralQuotes ) {
+	numberFormatterFn, numberParse, numberParserFn, looseMatching, numberRound,
+	removeLiteralQuotes ) {
 
 Globalize._createErrorUnsupportedFeature = createErrorUnsupportedFeature;
+Globalize._looseMatching = looseMatching;
 Globalize._numberFormat = numberFormat;
 Globalize._numberFormatterFn = numberFormatterFn;
 Globalize._numberParse = numberParse;

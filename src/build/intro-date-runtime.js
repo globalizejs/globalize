@@ -42,6 +42,7 @@
 "use strict";
 
 var createErrorUnsupportedFeature = Globalize._createErrorUnsupportedFeature,
+	looseMatching = Globalize._looseMatching,
 	regexpEscape = Globalize._regexpEscape,
 	removeLiteralQuotes = Globalize._removeLiteralQuotes,
 	runtimeKey = Globalize._runtimeKey,

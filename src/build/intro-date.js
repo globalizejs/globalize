@@ -40,6 +40,8 @@
 var createError = Globalize._createError,
 	createErrorUnsupportedFeature = Globalize._createErrorUnsupportedFeature,
 	formatMessage = Globalize._formatMessage,
+	isPlainObject = Globalize._isPlainObject,
+	looseMatching = Globalize._looseMatching,
 	numberSymbol = Globalize._numberSymbol,
 	regexpEscape = Globalize._regexpEscape,
 	removeLiteralQuotes = Globalize._removeLiteralQuotes,
