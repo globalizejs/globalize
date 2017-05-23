@@ -73,18 +73,34 @@ QUnit.test( "should validate parameters (1/2)", function( assert ) {
 
 	assert.throws(function() {
 		Globalize.formatDate(date, { date: "invalid-stuff" });
+	}, function( error ) {
+		return error.code === "E_INVALID_OPTIONS" &&
+			error.type === "date" &&
+			error.value === "invalid-stuff";
 	}, /E_INVALID_OPTIONS.*date.*invalid-stuff/ );
 
 	assert.throws(function() {
 		Globalize.formatDate(date, { time: "invalid-stuff" });
+	}, function( error ) {
+		return error.code === "E_INVALID_OPTIONS" &&
+			error.type === "time" &&
+			error.value === "invalid-stuff";
 	}, /E_INVALID_OPTIONS.*time.*invalid-stuff/ );
 
 	assert.throws(function() {
 		Globalize.formatDate(date, { datetime: "invalid-stuff" });
+	}, function( error ) {
+		return error.code === "E_INVALID_OPTIONS" &&
+			error.type === "datetime" &&
+			error.value === "invalid-stuff";
 	}, /E_INVALID_OPTIONS.*datetime.*invalid-stuff/ );
 
 	assert.throws(function() {
 		Globalize.formatDate(date, { skeleton: "invalid-stuff" });
+	}, function( error ) {
+		return error.code === "E_INVALID_OPTIONS" &&
+			error.type === "skeleton" &&
+			error.value === "invalid-stuff";
 	}, /E_INVALID_OPTIONS.*skeleton.*invalid-stuff/ );
 });
 

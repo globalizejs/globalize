@@ -19,10 +19,11 @@ return function validateSkeleton( skeleton ) {
 	// I.e., check for invalid characters.
 	skeleton.replace( /[^GyYuUrQqMLlwWEecdDFghHKkmsSAzZOvVXx]/, function( field ) {
 		throw createError(
-			"E_INVALID_OPTIONS", "Invalid field `{field}` of skeleton `{skeleton}`",
+			"E_INVALID_OPTIONS", "Invalid field `{invalidField}` of skeleton `{value}`",
 			{
-				field: field,
-				skeleton: skeleton
+				invalidField: field,
+				type: "skeleton",
+				value: skeleton
 			}
 		);
 	});
@@ -33,10 +34,11 @@ return function validateSkeleton( skeleton ) {
 	skeleton.split( "" ).every(function( field ) {
 		if ( fieldsPosMap[ field ] < last ) {
 			throw createError(
-				"E_INVALID_OPTIONS", "Invalid order `{field}` of skeleton `{skeleton}`",
+				"E_INVALID_OPTIONS", "Invalid order `{invalidField}` of skeleton `{value}`",
 				{
-					field: field,
-					skeleton: skeleton
+					invalidField: field,
+					type: "skeleton",
+					value: skeleton
 				}
 			);
 		}
