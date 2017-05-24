@@ -493,6 +493,10 @@ return function( value, numberParser, properties ) {
 			return false;
 		}
 
+		if ( numeric && isNaN( token.value ) ) {
+			return false;
+		}
+
 		tokens.push( token );
 		return true;
 	});

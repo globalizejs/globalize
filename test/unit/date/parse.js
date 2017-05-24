@@ -409,6 +409,9 @@ QUnit.test( "should parse composite of date fields", function( assert ) {
 	// Loose matching: ignore control characters.
 	date1 = new Date( 2010, 8, 15 );
 	assert.dateParse( "15/9/2010", "d\u200f/M\u200f/y", cldr, date1 );
+
+	// Test #696 - Mix of numbering systems.
+	assert.dateParse( "15/٧/2010", "d/M/y", cldr, null );
 });
 
 /**

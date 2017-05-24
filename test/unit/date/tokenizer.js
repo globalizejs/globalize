@@ -342,6 +342,9 @@ QUnit.test( "should tokenize day (d) with no padding", function( assert ) {
 		lexeme: "2",
 		value: 2
 	}] );
+
+	// Test #696 - Mix of numbering systems.
+	assert.dateTokenizer( "٧", "d", cldr, [] );
 });
 
 QUnit.test( "should tokenize day (dd) with padding", function( assert ) {
