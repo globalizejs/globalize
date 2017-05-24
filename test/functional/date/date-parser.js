@@ -112,31 +112,4 @@ QUnit.test( "should return a parser", function( assert ) {
 		new Date( 2010, 8, 15 ) );
 });
 
-QUnit.test( "should allow for runtime compilation", function( assert ) {
-	extraSetup();
-
-	util.assertRuntimeBind(
-		assert,
-		Globalize.dateParser(),
-		"b1892925885",
-		"Globalize(\"en\").dateParser({\"skeleton\":\"yMd\"})",
-		function( runtimeArgs ) {
-			util.assertRuntimeBind(
-				assert,
-				runtimeArgs[ 0 ],
-				"b1293124635",
-				"Globalize(\"en\").numberParser({\"raw\":\"0\"})",
-				function() {}
-			);
-			assert.deepEqual( runtimeArgs[ 1 ], {
-				"preferredTimeData": "h"
-			});
-			assert.deepEqual( runtimeArgs[ 2 ], {
-				"pattern": "M/d/y",
-				"timeSeparator": ":"
-			});
-		}
-	);
-});
-
 });

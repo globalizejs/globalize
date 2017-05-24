@@ -77,45 +77,4 @@ QUnit.test( "should return a formatter", function( assert ) {
 	assert.equal( Globalize.numberFormatter()( pi ), "3.142" );
 });
 
-QUnit.test( "should allow for runtime compilation", function( assert ) {
-	extraSetup();
-
-	util.assertRuntimeBind(
-		assert,
-		Globalize.numberFormatter(),
-		"b468386326",
-		"Globalize(\"en\").numberFormatter({})",
-		function( runtimeArgs ) {
-			assert.equal( JSON.stringify( runtimeArgs[ 0 ] ), "[\"\",null,1,0,3,null,null," +
-				"null,3,null,\"\",\"#,##0.###\",\"-#,##0.###\",\"-\",\"\",null,\"∞\",\"NaN\",{" +
-				"\".\":\".\",\",\":\",\",\"%\":\"%\",\"+\":\"+\",\"-\":\"-\",\"E\":\"E\",\"‰\":" +
-				"\"‰\"},null]"
-			);
-			assert.ok( "generatorString" in runtimeArgs[ 0 ][ 15 ] );
-			assert.equal( runtimeArgs[ 0 ][ 15 ].generatorString(), "numberRound()" );
-		}
-	);
-
-	util.assertRuntimeBind(
-		assert,
-		Globalize.numberFormatter({
-			minimumFractionDigits: 2,
-			maximumFractionDigits: 5,
-			round: "floor"
-		}),
-		"b533554001",
-		"Globalize(\"en\").numberFormatter({\"minimumFractionDigits\":2,\"maximumFractionDigits" +
-			"\":5,\"round\":\"floor\"})",
-		function( runtimeArgs ) {
-			assert.equal( JSON.stringify( runtimeArgs[ 0 ] ), "[\"\",null,1,2,5,null,null,null,3" +
-				",null,\"\",\"#,##0.###\",\"-#,##0.###\",\"-\",\"\",null,\"∞\",\"NaN\",{\".\":" +
-				"\".\",\",\":\",\",\"%\":\"%\",\"+\":\"+\",\"-\":\"-\",\"E\":\"E\",\"‰\":\"‰\"" +
-				"},null]"
-			);
-			assert.ok( "generatorString" in runtimeArgs[ 0 ][ 15 ] );
-			assert.equal( runtimeArgs[ 0 ][ 15 ].generatorString(), "numberRound(\"floor\")" );
-		}
-	);
-});
-
 });
