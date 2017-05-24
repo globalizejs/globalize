@@ -12,6 +12,7 @@ define([
 	"./number/formatter-fn",
 	"./number/format-properties",
 	"./number/numbering-system",
+	"./number/numbering-system-digits-map",
 	"./number/parser-fn",
 	"./number/parse-properties",
 	"./number/pattern",
@@ -25,9 +26,9 @@ define([
 ], function( Globalize, createErrorUnsupportedFeature, runtimeBind, validateCldr,
 	validateDefaultLocale, validateParameterPresence, validateParameterRange,
 	validateParameterTypeNumber, validateParameterTypePlainObject, validateParameterTypeString,
-	numberFormatterFn, numberFormatProperties, numberNumberingSystem, numberParserFn,
-	numberParseProperties, numberPattern, numberSymbol, looseMatching, removeLiteralQuotes,
-	stringPad ) {
+	numberFormatterFn, numberFormatProperties, numberNumberingSystem,
+	numberNumberingSystemDigitsMap, numberParserFn, numberParseProperties, numberPattern,
+	numberSymbol, looseMatching, removeLiteralQuotes, stringPad ) {
 
 function validateDigits( properties ) {
 	var minimumIntegerDigits = properties[ 2 ],
@@ -178,6 +179,7 @@ Globalize.prototype.parseNumber = function( value, options ) {
  */
 Globalize._createErrorUnsupportedFeature = createErrorUnsupportedFeature;
 Globalize._numberNumberingSystem = numberNumberingSystem;
+Globalize._numberNumberingSystemDigitsMap = numberNumberingSystemDigitsMap;
 Globalize._numberPattern = numberPattern;
 Globalize._numberSymbol = numberSymbol;
 Globalize._looseMatching = looseMatching;

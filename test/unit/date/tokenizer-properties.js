@@ -136,68 +136,73 @@ QUnit.test( "should return properties for timezone (z)", function( assert ) {
 	properties = tokenizerProperties( "z", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 	properties = tokenizerProperties( "zzzz", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "z", cldr, "America/Los_Angeles" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"standardTzName",
-		"daylightTzName",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
+		"standardOrDaylightTzName",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 	properties = tokenizerProperties( "zzzz", cldr, "America/Los_Angeles" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"standardTzName",
-		"daylightTzName",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
+		"standardOrDaylightTzName",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "z", enGb, "Europe/London" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"daylightTzName",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
+		"standardOrDaylightTzName",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 	properties = tokenizerProperties( "zzzz", cldr, "Europe/London" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"daylightTzName",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
+		"standardOrDaylightTzName",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "zzzz", cldr, "Asia/Dubai" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"standardTzName",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
+		"standardOrDaylightTzName",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 });
 
@@ -205,25 +210,28 @@ QUnit.test( "should return properties for timezone (Z)", function( assert ) {
 	properties = tokenizerProperties( "Z", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "ZZZZ", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "ZZZZZ", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator"
+		"digitsRe",
+		"x"
 	]);
 });
 
@@ -231,19 +239,21 @@ QUnit.test( "should return properties for timezone (O)", function( assert ) {
 	properties = tokenizerProperties( "O", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "OOOO", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 });
 
@@ -251,79 +261,90 @@ QUnit.test( "should return properties for timezone (v)", function( assert ) {
 	properties = tokenizerProperties( "v", cldr, "America/Los_Angeles" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
+		"digitsRe",
 		"genericTzName",
-		"timeZoneNames/gmtFormat",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 	properties = tokenizerProperties( "vvvv", cldr, "America/Los_Angeles" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
+		"digitsRe",
 		"genericTzName",
-		"timeZoneNames/gmtFormat",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	// Use metazone.
 	properties = tokenizerProperties( "vvvv", cldr, "America/Sao_Paulo" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
+		"digitsRe",
 		"genericTzName",
-		"timeZoneNames/gmtFormat",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	// Fall through 'VVVV' format.
 	properties = tokenizerProperties( "v", cldr, "America/Sao_Paulo" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
+		"digitsRe",
 		"timeZoneName",
-		"timeZoneNames/gmtFormat",
+		"timeZoneNameRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "v", cldr, "Foo/Baz" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
+		"digitsRe",
 		"timeZoneName",
-		"timeZoneNames/gmtFormat",
+		"timeZoneNameRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 	properties = tokenizerProperties( "vvvv", cldr, "Foo/Baz" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
+		"digitsRe",
 		"timeZoneName",
-		"timeZoneNames/gmtFormat",
+		"timeZoneNameRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	// Fall through 'O' and 'OOOO' formats.
 	properties = tokenizerProperties( "v", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 	properties = tokenizerProperties( "vvvv", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"timeZoneNames/gmtFormat",
+		"digitsRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 });
 
@@ -332,50 +353,59 @@ QUnit.test( "should return properties for timezone (V)", function( assert ) {
 	properties = tokenizerProperties( "VV", cldr, "America/Los_Angeles" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
-		"timeZoneName"
+		"digitsRe",
+		"timeZoneName",
+		"timeZoneNameRe"
 	]);
 
 	properties = tokenizerProperties( "VVV", cldr, "America/Los_Angeles" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
+		"digitsRe",
 		"timeZoneName",
-		"timeZoneNames/gmtFormat",
+		"timeZoneNameRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "VVVV", cldr, "America/Los_Angeles" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
+		"digitsRe",
 		"timeZoneName",
-		"timeZoneNames/gmtFormat",
+		"timeZoneNameRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	// Fall through to 'VVV' format with "Unknown" exemplarCity.
 	properties = tokenizerProperties( "VVV", cldr, "Foo/Bar" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
+		"digitsRe",
 		"timeZoneName",
-		"timeZoneNames/gmtFormat",
+		"timeZoneNameRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 
 	// Fall through 'OOOO' format.
 	properties = tokenizerProperties( "VVVV", cldr, "America/Los_Angeles" );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator",
+		"digitsRe",
 		"timeZoneName",
-		"timeZoneNames/gmtFormat",
+		"timeZoneNameRe",
 		"timeZoneNames/gmtZeroFormat",
-		"timeZoneNames/hourFormat"
+		"timeZoneNames/hourFormat",
+		"timeZoneNames/gmtZeroFormatRe",
+		"x"
 	]);
 });
 
@@ -383,31 +413,36 @@ QUnit.test( "should return properties for timezone (X)", function( assert ) {
 	properties = tokenizerProperties( "X", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator"
+		"digitsRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "XX", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator"
+		"digitsRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "XXX", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator"
+		"digitsRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "XXXX", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator"
+		"digitsRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "XXXXX", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator"
+		"digitsRe",
+		"x"
 	]);
 });
 
@@ -415,31 +450,36 @@ QUnit.test( "should return properties for timezone (x)", function( assert ) {
 	properties = tokenizerProperties( "x", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator"
+		"digitsRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "xx", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator"
+		"digitsRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "xxx", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator"
+		"digitsRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "xxxx", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator"
+		"digitsRe",
+		"x"
 	]);
 
 	properties = tokenizerProperties( "xxxxx", cldr );
 	assert.deepEqual( Object.keys( properties ), [
 		"pattern",
-		"timeSeparator"
+		"digitsRe",
+		"x"
 	]);
 });
 
