@@ -11,29 +11,29 @@ Scott González <scott.gonzalez@gmail.com>
 Kyle Florence <kyle.florence@gmail.com>
 Manraj Singh <manrajsinghgrover@gmail.com>
 Tobie Langel <tobie.langel@gmail.com>
+Nikola Kovacs <nikola.kovacs@gmail.com>
 John Reilly <johnny_reilly@hotmail.com>
 Nova Patch <patch.nova@gmail.com>
-Sean Cady <sean.cady@ge.com>
+Yasuhiro Yoshida <yasuhiro.yoppu@gmail.com>
 Wes Cravens <wesley.r.cravens@gmail.com>
 Oleg Gulverdashvili <ctapbiumabp@gmail.com>
-Andrew Lunny <alunny@twitter.com>
 Michael Birtwell <michael.birtwell@starleaf.com>
+Sean Cady <sean.cady@ge.com>
 Rob Garrison <wowmotty@gmail.com>
 Karan Sharma <karan1276@gmail.com>
-Yasuhiro Yoshida <yasuhiro.yoppu@gmail.com>
-Pavel Karoukin <pavel@karoukin.us>
 Kris Borchers <kris.borchers@gmail.com>
-Isaac Durazo <isaacdurazo@gmail.com>
+Pavel Karoukin <pavel@karoukin.us>
+Andrew Lunny <alunny@twitter.com>
 Ed Sanders <ejsanders@gmail.com>
 manj <nikita.melnikov.fw@gmail.com>
 Kevin Kirsche <Kev.Kirsche+GitHub@gmail.com>
 Grégoire Castre <castre@doxense.com>
 Tobias Nießen <tniessen@tnie.de>
 Arvind Kalyan <arvchamp@gmail.com>
-Manikandan, Ramalingam Kandaswamy <rajavelmani@gmail.com>
-Luke Page <luke.a.page@gmail.com>
 Stephen Walther <Swalther@Microsoft.com>
+Luke Page <luke.a.page@gmail.com>
 Lee Nave <github-navels@sneakemail.com>
+Manikandan, Ramalingam Kandaswamy <rajavelmani@gmail.com>
 Mateusz Bożyk <mateusz.bozyk@gmail.com>
 Arthur Verschaeve <contact@arthurverschaeve.be>
 Riku Nieminen <rikunieminen@gmail.com>
@@ -47,17 +47,17 @@ Andreas Blixt <me@blixt.org>
 Reza Payami <reza_payami@yahoo.com>
 Artur Eshenbrener <strate@yandex.ru>
 Marat Dyatko <marat.dyatko@klarna.com>
-Retsam <Retsam@users.noreply.github.com>
+Brahim Arkni <brahim.arkni@gmail.com>
 Tomasz Peczek <tpeczek@gmail.com>
 Robert Plummer <robertleeplummerjr@gmail.com>
 Fredrik Blomqvist <fblomqvist@gmail.com>
 Christian Vuerings <vueringschristian@gmail.com>
 David De Sloovere <david.desloovere@hotmail.com>
-Brahim Arkni <brahim.arkni@gmail.com>
+Retsam <Retsam@users.noreply.github.com>
 Boris Moore <BorisMoore@gmail.com>
-Nikola Kovacs <nikola.kovacs@gmail.com>
 Amanpreet Singh <apsdehal@gmail.com>
-John Resig <jeresig@gmail.com>
 Devang Negandhi <devangnegandhi@gmail.com>
+John Resig <jeresig@gmail.com>
 Oleg Gaidarenko <markelog@gmail.com>
+Isaac Durazo <isaacdurazo@gmail.com>
 Juan Soto <juansoto@fastmail.fm>
