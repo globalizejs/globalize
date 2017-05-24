@@ -60,25 +60,39 @@ return function( value, numberParser, properties ) {
 			token = {};
 
 		function hourFormatParse( tokenRe, numberParser ) {
-			var aux = value.match( tokenRe );
+			var aux, isPositive,
+				match = value.match( tokenRe );
 			numberParser = numberParser || function( value ) {
 				return +value;
 			};
 
-			if ( !aux ) {
+			if ( !match ) {
 				return false;
 			}
 
+			isPositive = match[ 1 ];
+
 			// hourFormat containing H only, e.g., `+H;-H`
-			if ( aux.length < 8 ) {
-				token.value =
-					( aux[ 1 ] ? -numberParser( aux[ 1 ] ) : numberParser( aux[ 4 ] ) ) * 60;
+			if ( match.length < 6 ) {
+				aux = isPositive ? 1 : 3;
+				token.value = numberParser( match[ aux ] ) * 60;
 
 			// hourFormat containing H and m, e.g., `+HHmm;-HHmm`
+			} else if ( match.length < 10 ) {
+				aux = isPositive ? [ 1, 3 ] : [ 5, 7 ];
+				token.value = numberParser( match[ aux[ 0 ] ] ) * 60 +
+					numberParser( match[ aux[ 1 ] ] );
+
+			// hourFormat containing H, m, and s e.g., `+HHmmss;-HHmmss`
 			} else {
-				token.value =
-					( aux[ 1 ] ? -numberParser( aux[ 1 ] ) : numberParser( aux[ 7 ] ) ) * 60 +
-					( aux[ 1 ] ? -numberParser( aux[ 4 ] ) : numberParser( aux[ 10 ] ) );
+				aux = isPositive ? [ 1, 3, 5 ] : [ 7, 9, 11 ];
+				token.value = numberParser( match[ aux[ 0 ] ] ) * 60 +
+					numberParser( match[ aux[ 1 ] ] ) +
+					numberParser( match[ aux[ 2 ] ] ) / 60;
+			}
+
+			if ( isPositive ) {
+				token.value *= -1;
 			}
 
 			return true;
@@ -103,10 +117,10 @@ return function( value, numberParser, properties ) {
 				.replace( "+", "\\+" )
 
 				// Unicode equivalent to (\\d\\d)
-				.replace( /HH|mm/g, "((" + regexpN.source + ")(" + regexpN.source + "))" )
+				.replace( /HH|mm|ss/g, "((" + regexpN.source + "){2})" )
 
 				// Unicode equivalent to (\\d\\d?)
-				.replace( /H|m/g, "((" + regexpN.source + ")(" + regexpN.source + ")?)" );
+				.replace( /H|m/g, "((" + regexpN.source + "){1,2})" );
 
 			if ( timeSeparator ) {
 				re = re.replace( /:/g, timeSeparator );
@@ -454,13 +468,24 @@ return function( value, numberParser, properties ) {
 			/* falls through */
 			case "x":
 
-				// x: hourFormat("+HH;-HH")
-				// xx or xxxx: hourFormat("+HHmm;-HHmm")
-				// xxx or xxxxx: hourFormat("+HH:mm;-HH:mm")
-				tokenRe = hourFormatRe(
-					length === 1 ? "+HH;-HH" : ( length % 2 ? "+HH:mm;-HH:mm" : "+HHmm;-HHmm" )
-				);
-				if ( !hourFormatParse( tokenRe ) ) {
+				// x: hourFormat("+HH[mm];-HH[mm]")
+				// xx: hourFormat("+HHmm;-HHmm")
+				// xxx: hourFormat("+HH:mm;-HH:mm")
+				// xxxx: hourFormat("+HHmm[ss];-HHmm[ss]")
+				// xxxxx: hourFormat("+HH:mm[:ss];-HH:mm[:ss]")
+				aux = [
+					[ "+HHmm;-HHmm", "+HH;-HH" ],
+					[ "+HHmm;-HHmm" ],
+					[ "+HH:mm;-HH:mm" ],
+					[ "+HHmmss;-HHmmss", "+HHmm;-HHmm" ],
+					[ "+HH:mm:ss;-HH:mm:ss", "+HH:mm;-HH:mm" ]
+				][ length - 1 ].some(function( hourFormat ) {
+					tokenRe = hourFormatRe( hourFormat );
+					if ( hourFormatParse( tokenRe ) ) {
+						return true;
+					}
+				});
+				if ( !aux ) {
 					return null;
 				}
 				break;

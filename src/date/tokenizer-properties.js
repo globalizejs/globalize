@@ -271,7 +271,7 @@ return function( pattern, cldr, timeZone ) {
 				cldr.main( "dates/timeZoneNames/hourFormat" );
 				aux = properties[ "timeZoneNames/hourFormat" ];
 				properties[ "timeZoneNames/hourFormat" ] = length < 4 ?
-					[ dateTimezoneHourFormatH( aux ), dateTimezoneHourFormatHm( aux, "H" ) ] :
+					[ dateTimezoneHourFormatHm( aux, "H" ), dateTimezoneHourFormatH( aux ) ] :
 					[ dateTimezoneHourFormatHm( aux, "HH" ) ];
 				break;
 		}

@@ -1131,6 +1131,7 @@ QUnit.test( "should parse timezone (x)", function( assert ) {
 	assert.timezoneParse( "-0300", "xxxx", cldr, 180 );
 	assert.timezoneParse( "-03:00", "xxxxx", cldr, 180 );
 
+	assert.timezoneParse( "+0530", "x", cldr, -330 );
 	assert.timezoneParse( "+0530", "xx", cldr, -330 );
 	assert.timezoneParse( "+05:30", "xxx", cldr, -330 );
 	assert.timezoneParse( "+0530", "xxxx", cldr, -330 );
@@ -1141,6 +1142,20 @@ QUnit.test( "should parse timezone (x)", function( assert ) {
 	assert.timezoneParse( "+11:00", "xxx", cldr, -660 );
 	assert.timezoneParse( "+1100", "xxxx", cldr, -660 );
 	assert.timezoneParse( "+11:00", "xxxxx", cldr, -660 );
+
+	assert.timezoneParse( "-0752", "x", cldr, 472 );
+	assert.timezoneParse( "-0752", "xx", cldr, 472 );
+	assert.timezoneParse( "-07:52", "xxx", cldr, 472 );
+	assert.timezoneParse( "-075258", "xxxx", cldr, 472 );
+	assert.timezoneParse( "-07:52:58", "xxxxx", cldr, 472 );
+
+	assert.timezoneParse( "+0752", "x", cldr, -472 );
+	assert.timezoneParse( "+0752", "xx", cldr, -472 );
+	assert.timezoneParse( "+07:52", "xxx", cldr, -472 );
+	assert.timezoneParse( "+075258", "xxxx", cldr, -472 );
+	assert.timezoneParse( "+07:52:58", "xxxxx", cldr, -472 );
+
+
 });
 
 QUnit.test( "should parse date according to passed timeZone in various datetime patterns",
