@@ -56,11 +56,13 @@ Globalize.loadMessages = function( json ) {
  *
  * @path [String or Array]
  *
+ * @options [object]
+ *
  * Format a message given its path.
  */
 Globalize.messageFormatter =
-Globalize.prototype.messageFormatter = function( path ) {
-	var cldr, formatter, message, pluralGenerator, returnFn,
+Globalize.prototype.messageFormatter = function( path, options ) {
+	var cldr, messageFormat, formatter, message, pluralGenerator, returnFn,
 		args = slice.call( arguments, 0 );
 
 	validateParameterPresence( path, "path" );
@@ -87,7 +89,11 @@ Globalize.prototype.messageFormatter = function( path ) {
 		this.pluralGenerator() :
 		createErrorPluralModulePresence;
 
-	formatter = new MessageFormat( cldr.locale, pluralGenerator ).compile( message );
+	messageFormat = new MessageFormat( cldr.locale, pluralGenerator );
+	if ( options && ( options.setBiDiSupport === true ) ) {
+		messageFormat.setBiDiSupport( true );
+	}
+	formatter = messageFormat.compile( message );
 
 	returnFn = messageFormatterFn( formatter );
 
@@ -108,7 +114,9 @@ Globalize.prototype.messageFormatter = function( path ) {
  */
 Globalize.formatMessage =
 Globalize.prototype.formatMessage = function( path /* , variables */ ) {
-	return this.messageFormatter( path ).apply( {}, slice.call( arguments, 1 ) );
+	return ( arguments[ 1 ] && arguments[ 1 ].setBiDiSupport === true ) ?
+		this.messageFormatter( path, arguments[ 1 ] ).apply( {}, slice.call( arguments, 2 ) ) :
+		this.messageFormatter( path ).apply( {}, slice.call( arguments, 1 ) );
 };
 
 return Globalize;
