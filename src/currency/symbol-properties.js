@@ -1,8 +1,18 @@
 define([
 	"./supplemental-override",
 	"../number/numbering-system",
-	"../util/regexp/not-s"
-], function( currencySupplementalOverride, numberNumberingSystem, regexpNotS ) {
+	"../util/regexp/not-s",
+	"../util/regexp/letter"
+], function( currencySupplementalOverride, numberNumberingSystem, regexpNotS, regexpLetter ) {
+
+/**
+ * The default currencySpacing used when CLDR data does not have currencySpacing.
+ */
+var defaultCurrencySpacing = {
+	currencyMatch: "[:letter:]",
+	surroundingMatch: "[:digit:]",
+	insertBetween: " "
+};
 
 /**
  * symbolProperties( currency, cldr )
@@ -13,7 +23,8 @@ return function( currency, cldr, options ) {
 	var currencySpacing, pattern,
 		regexp = {
 			"[:digit:]": /\d/,
-			"[:^S:]": regexpNotS
+			"[:^S:]": regexpNotS,
+			"[:letter:]": regexpLetter
 		},
 		symbol = cldr.main([
 			"numbers/currencies",
@@ -30,11 +41,38 @@ return function( currency, cldr, options ) {
 		]);
 	});
 
+	// Overwrite everything with the defaults unless
+	// both beforeCurrency and afterCurrency were found in CLDR.
+	// This is consistent with ICU4J and ICU.
+	if ( !currencySpacing[0] || !currencySpacing[1] ) {
+		currencySpacing = [
+			defaultCurrencySpacing,
+			defaultCurrencySpacing
+		];
+	}
+
 	pattern = cldr.main([
 		"numbers",
 		"currencyFormats-numberSystem-" + numberNumberingSystem( cldr ),
 		options.style === "accounting" ? "accounting" : "standard"
 	]);
+
+	if ( pattern === undefined ) {
+
+		// Fall back to standard format
+		pattern = cldr.main([
+			"numbers",
+			"currencyFormats-numberSystem-" + numberNumberingSystem( cldr ),
+			"standard"
+		]);
+
+		// Alternatively, fall back to latin, like ICU4J
+		/* pattern = cldr.main([
+			"numbers",
+			"currencyFormats-numberSystem-latn",
+			options.style === "accounting" ? "accounting" : "standard"
+		]); */
+	}
 
 	pattern =
 
