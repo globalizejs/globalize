@@ -64,6 +64,9 @@ QUnit.module( ".messageFormatter( path )", {
 			},
 			"en-GB": {},
 			fr: {},
+			he: {
+				helloArray: "\u05e9\u05dc\u05d5\u05dd, {0} & {1}"
+			},
 			pt: {
 				amen: "Amém"
 			},
@@ -173,6 +176,13 @@ QUnit.test( "should support ICU message format", function( assert ) {
 	}), "You and Beethoven liked this" );
 
 	assert.equal( like({ count: 3 }), "You and 2 others liked this" );
+});
+
+QUnit.test( "should support Bidi structured text", function( assert ) {
+	assert.equal(
+		Globalize( "he" ).messageFormatter( "helloArray", true )( "Beethoven", "Mozart" ),
+		"\u05e9\u05dc\u05d5\u05dd, \u200FBeethoven\u200F & \u200FMozart\u200F"
+	);
 });
 
 // Reference #473
