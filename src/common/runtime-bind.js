@@ -1,11 +1,12 @@
 define([
 	"./runtime-key",
+	"./runtime-stringify",
 	"../util/function-name"
-], function( runtimeKey, functionName ) {
+], function( runtimeKey, runtimeStringify, functionName ) {
 
 return function( args, cldr, fn, runtimeArgs ) {
 
-	var argsStr = JSON.stringify( args ),
+	var argsStr = runtimeStringify( args ),
 		fnName = functionName( fn ),
 		locale = cldr.locale;
 

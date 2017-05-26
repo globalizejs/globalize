@@ -28,10 +28,9 @@ module.exports = {
 			{ formatter: Globalize.unitFormatter( "hour", {
 				numberFormatter: Globalize.numberFormatter( { minimumIntegerDigits: 1 } )
 			} ), args: [ 3 ] },
-			// TODO: Fails because of https://github.com/globalizejs/globalize/issues/704
-			/* { formatter: Globalize.unitFormatter( "hour", {
+			{ formatter: Globalize.unitFormatter( "hour", {
 				numberFormatter: Globalize.numberFormatter( { minimumIntegerDigits: 2 } )
-			} ), args: [ 3 ] } */
+			} ), args: [ 3 ] },
 
 			{ formatter: en.unitFormatter( "day" ), args: [ 1 ] },
 			{ formatter: en.unitFormatter( "day" ), args: [ 100 ] },
