@@ -2,7 +2,7 @@
   "name": "basic-globalize-compiler",
   "private": true,
   "scripts": {
-    "build": "globalize-compiler -l en -c cldr.json -m messages.json -z iana-tz-data.json -o compiled-formatters.js app.js"
+    "build": "globalize-compiler -l en -m messages.json -o compiled-formatters.js app.js"
   },
   "devDependencies": {
     "cldr-data": ">=25",
