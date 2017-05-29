@@ -8,11 +8,11 @@ The returned function is invoked with one argument: the Number `value` to be for
 
 #### currency
 
-3-letter currency code as defined by ISO 4217, eg. `USD`.
+3-letter currency code as defined by ISO 4217, eg. `"USD"`.
 
 #### options.style
 
-Optional. String `symbol` (default), `accounting`, `code` or `name`. See [`.numberFormatter( [options] )`](../number/number-formatter.md)  for more options.
+Optional. String `"symbol"` (default), `"accounting"`, `"code"` or `"name"`. See [`.numberFormatter( [options] )`](../number/number-formatter.md)  for more options.
 
 #### value
 
@@ -26,6 +26,8 @@ Prior to using any currency methods, you must load `cldr/main/{locale}/currencie
 
 [CLDR content]: ../../../README.md#2-cldr-content
 
+#### Using the default options
+
 You can use the static method `Globalize.currencyFormatter()`, which uses the default locale.
 
 ```javascript
@@ -36,7 +38,6 @@ formatter = Globalize.currencyFormatter( "USD" );
 
 formatter( 9.99 );
 // > "$9.99"
-
 ```
 
 #### Instance Formatter
@@ -65,6 +66,18 @@ For comparison, follow the formatting output of different symbols in different l
 | `.currencyFormatter( "JPY" )( 1 )` | `¥1`         | `1 ¥`       | `JP¥ 1`      |
 | `.currencyFormatter( "GBP" )( 1 )` | `£1.00`      | `1,00 £`    | `£ 1.00`     |
 | `.currencyFormatter( "BRL" )( 1 )` | `R$1.00`     | `1,00 R$`   | `R$ 1.00`    |
+
+#### Using alternative `options.symbolForm`
+
+Using the narrow symbol form, the same symbols may be used for multiple currencies. Thus the symbol may be ambiguous, and should only be used where the context is clear.
+
+```js
+Globalize( "en" ).currencyFormatter( "HKD" )( 1 );
+// > "HK$1.00"
+
+Globalize( "en" ).currencyFormatter( "HKD", { symbolForm: "narrow" } )( 1 );
+// > "$1.00"
+```
 
 #### Configuring style
 

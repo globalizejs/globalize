@@ -23,7 +23,10 @@ define([
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
-		skip: [ /supplemental\/currencyData\/fractions\/[A-Za-z]{3}$/ ]
+		skip: [
+			/numbers\/currencies\/[^/]+\/symbol-alt-/,
+			/supplemental\/currencyData\/fractions\/[A-Za-z]{3}$/
+		]
 	});
 }
 
