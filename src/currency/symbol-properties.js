@@ -10,16 +10,25 @@ define([
  * Return pattern replacing `¤` with the appropriate currency symbol literal.
  */
 return function( currency, cldr, options ) {
-	var currencySpacing, pattern,
+	var currencySpacing, pattern, symbol,
+		symbolEntries = [ "symbol" ],
 		regexp = {
 			"[:digit:]": /\d/,
 			"[:^S:]": regexpNotS
-		},
-		currencySymbols = cldr.main([
+		};
+
+	// If options.symbolForm === "narrow" was passed, prepend it.
+	if ( options.symbolForm === "narrow" ) {
+		symbolEntries.unshift( "symbol-alt-narrow" );
+	}
+
+	symbolEntries.some(function( symbolEntry ) {
+		return symbol = cldr.main([
 			"numbers/currencies",
-			currency
-		]),
-        symbol = currencySymbols[options.symbolForm || "symbol"] || currencySymbols.symbol;
+			currency,
+			symbolEntry
+		]);
+	});
 
 	currencySpacing = [ "beforeCurrency", "afterCurrency" ].map(function( position ) {
 		return cldr.main([

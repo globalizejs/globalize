@@ -19,8 +19,8 @@ define([
 
 var accounting = { style: "accounting" },
 	code = { style: "code" },
-    name = { style: "name" },
-	narrow = { symbolForm: "symbol-alt-narrow" },
+	name = { style: "name" },
+	narrow = { symbolForm: "narrow" },
 	teslaS = 69900;
 
 function extraSetup() {
@@ -89,6 +89,8 @@ QUnit.test( "should return a currency formatter", function( assert ) {
 	assert.equal( de.currencyFormatter( "USD" )( -teslaS ), "-69.900,00 $" );
 	assert.equal( zh.currencyFormatter( "USD" )( -teslaS ), "-US$69,900.00" );
 
+	assert.equal( Globalize.currencyFormatter( "HKD", narrow )( teslaS ), "$69,900.00" );
+
 	assert.equal( Globalize.currencyFormatter( "USD", code )( teslaS ), "69,900.00 USD" );
 	assert.equal( de.currencyFormatter( "USD", code )( teslaS ), "69.900,00 USD" );
 	assert.equal( zh.currencyFormatter( "USD", code )( teslaS ), "69,900.00USD" );
@@ -98,15 +100,6 @@ QUnit.test( "should return a currency formatter", function( assert ) {
 	assert.equal( zh.currencyFormatter( "USD", name )( teslaS ), "69,900.00美元" );
 
 	assert.equal( Globalize.currencyFormatter( "USD", accounting )( -1 ), "($1.00)" );
-});
-
-QUnit.test( "should use the supplied symbolForm, falling back to standard if none is found", function( assert ) {
-
-    extraSetup();
-
-    assert.equal( Globalize.currencyFormatter( "HKD", narrow )( teslaS ), "$69,900.00" );
-    assert.equal( Globalize.currencyFormatter( "CHF", narrow )( teslaS ), "CHF 69,900.00" );
-
 });
 
 // The number of decimal places and the rounding for each currency is not locale-specific data.

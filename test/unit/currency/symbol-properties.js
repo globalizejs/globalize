@@ -42,12 +42,28 @@ QUnit.test( "should return pattern replacing `¤` with the appropriate currency 
 	assert.deepEqual( symbolProperties( "EUR", de, {} ), { pattern: "#,##0.00 '€'" } );
 	assert.deepEqual( symbolProperties( "USD", zh, {} ), { pattern: "'US$'#,##0.00" } );
 	assert.deepEqual( symbolProperties( "EUR", zh, {} ), { pattern: "'€'#,##0.00" } );
+	assert.deepEqual( symbolProperties( "RUB", en, {} ), { pattern: "'RUB' #,##0.00" } );
 
 	assert.deepEqual( symbolProperties( "USD", en, {
 		style: "accounting"
 	}), {
 		pattern: "'$'#,##0.00;('$'#,##0.00)"
 	});
+});
+
+QUnit.test( "Should use the supplied symbolForm, falling back to standard if none is found", function( assert ) {
+	assert.deepEqual(
+		symbolProperties( "RUB", en, { symbolForm: "narrow" } ),
+		{ pattern: "'₽'#,##0.00" }
+	);
+	assert.deepEqual(
+		symbolProperties( "HKD", en, { symbolForm: "narrow" } ),
+		{ pattern: "'$'#,##0.00" }
+	);
+	assert.deepEqual(
+		symbolProperties( "CHF", en, { symbolForm: "narrow" } ),
+		{ pattern: "'CHF' #,##0.00" }
+	);
 });
 
 });
