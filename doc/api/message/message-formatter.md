@@ -1,30 +1,23 @@
 ## .messageFormatter( path ) ➡ function([ variables ])
 
-Return a function that formats a message (using ICU message format pattern)
-given its path and a set of variables into a user-readable string. It supports
-pluralization and gender inflections.
+Return a function that formats a message (using ICU message format pattern) given its path and a set of variables into a user-readable string. It supports pluralization and gender inflections.
 
 Use [`Globalize.loadMessages( json )`](./load-messages.md) to load
 messages data.
 
 ### Parameters
 
-**path**
+#### path
 
-String or Array containing the path of the message content, eg.
-`"greetings/bye"`, or `[ "greetings", "bye" ]`.
+String or Array containing the path of the message content, eg., `"greetings/bye"`, or `[ "greetings", "bye" ]`.
 
-**variables** (optional)
+#### variables
 
-Variables can be Objects, where each property can be referenced by name inside a
-message; or Arrays, where each entry of the Array can be used inside a message,
-using numeric indices. When passing one or more arguments of other types,
-they're converted to an Array and used as such.
+Optional. Variables can be Objects, where each property can be referenced by name inside a message; or Arrays, where each entry of the Array can be used inside a message, using numeric indices. When passing one or more arguments of other types, they're converted to an Array and used as such.
 
 ### Example
 
-You can use the static method `Globalize.messageFormatter()`, which uses the default
-locale.
+You can use the static method `Globalize.messageFormatter()`, which uses the default locale.
 
 ```javascript
 var formatter;
@@ -118,10 +111,7 @@ formatter({
 
 #### Plural inflections
 
-It uses the plural forms `zero`, `one`, `two`, `few`, `many`, or `other`
-(required). Note English only uses `one` and `other`.  So, including `zero` will
-never get called, even when the number is 0. For more information see
-[`.pluralGenerator()`](../plural/plural-generator.md).
+It uses the plural forms `zero`, `one`, `two`, `few`, `many`, or `other` (required). Note English only uses `one` and `other`. So, including `zero` will never get called, even when the number is 0. For more information see [`.pluralGenerator()`](../plural/plural-generator.md).
 
 ```javascript
 var numberFormatter, taskFormatter,
@@ -213,7 +203,6 @@ likeFormatter( 3 );
 // > "You and 2 others liked this"
 ```
 
-Read on [SlexAxton/messageFormatter.js][] for more information on regard of ICU
-MessageFormat.
+Read on [SlexAxton/messageFormatter.js][] for more information on regard of ICU MessageFormat.
 
 [SlexAxton/messageFormatter.js]: https://github.com/SlexAxton/messageformat.js/#no-frills

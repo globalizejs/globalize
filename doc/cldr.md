@@ -4,10 +4,7 @@
 
 *By downloading the JSON packages individually...*
 
-Unicode CLDR is available as JSON at https://github.com/unicode-cldr/ (after
-this [json-packaging proposal][] took place). Please, read
-https://github.com/unicode-cldr/cldr-json for more information about package
-organization.
+Unicode CLDR is available as JSON at https://github.com/unicode-cldr/ (after this [json-packaging proposal][] took place). Please, read https://github.com/unicode-cldr/cldr-json for more information about package organization.
 
 [json-packaging proposal]: http://cldr.unicode.org/development/development-process/design-proposals/json-packaging
 
@@ -15,8 +12,7 @@ organization.
 
 `cldr-data` can be used for convenience. It always downloads from the correct source.
 
-Use bower `bower install cldr-data` ([detailed instructions][]) or npm `npm
-install cldr-data`. For more information, see:
+Use bower `bower install cldr-data` ([detailed instructions][]) or npm `npm install cldr-data`. For more information, see:
 
 - https://github.com/rxaviers/cldr-data-npm
 - https://github.com/rxaviers/cldr-data-bower
@@ -25,9 +21,7 @@ install cldr-data`. For more information, see:
 
 ## How do I load CLDR data into Globalize?
 
-The short answer is by using `Globalize.load()` and passing the JSON data as the
-first argument. Below, follow several examples on how this could be
-accomplished.
+The short answer is by using `Globalize.load()` and passing the JSON data as the first argument. Below, follow several examples on how this could be accomplished.
 
 Example of embedding CLDR JSON data:
 

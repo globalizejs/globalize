@@ -1,7 +1,6 @@
 ## E_MISSING_PLURAL_MODULE
 
-Thrown when plural module is needed, but not loaded, eg. formatting currencies
-using plural messages.
+Thrown when plural module is needed, but not loaded, eg. formatting currencies using plural messages.
 
 Error object:
 

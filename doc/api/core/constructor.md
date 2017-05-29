@@ -2,16 +2,15 @@
 
 Create a Globalize instance.
 
-**locale|cldr**
+### Parameters
 
-Locale string or [Cldr instance](https://github.com/rxaviers/cldrjs) of the
-instance.
+#### locale|cldr
+
+Locale string or [Cldr instance](https://github.com/rxaviers/cldrjs) of the instance.
 
 ### Example
 
-Prior to creating any Globalize instance, you must load
-`cldr/supplemental/likelySubtags.json`. Read [CLDR content][] if you need more
-information.
+Prior to creating any Globalize instance, you must load `cldr/supplemental/likelySubtags.json`. Read [CLDR content][] if you need more information.
 
 [CLDR content]: ../../../README.md#2-cldr-content
 
@@ -26,5 +25,4 @@ en.formatNumber( 3.1415 );
 
 pt.formatNumber( 3.1415 );
 // > 3,142
-
 ```
