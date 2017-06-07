@@ -1,14 +1,43 @@
 define([
 	"globalize",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/numberingSystems.json",
+	"json!cldr-data/supplemental/currencyData.json",
 	"json!cldr-data/supplemental/plurals.json",
 	"json!cldr-data/supplemental/ordinals.json",
+	"json!cldr-data/supplemental/timeData.json",
+	"json!cldr-data/supplemental/weekData.json",
+	"json!cldr-data/main/en/numbers.json",
+	"json!cldr-data/main/en/units.json",
+	"json!cldr-data/main/en/currencies.json",
+	"json!cldr-data/main/en/ca-gregorian.json",
+	"json!cldr-data/main/en/timeZoneNames.json",
+	"json!cldr-data/main/en/dateFields.json",
+	"json!iana-tz-data.json",
 	"../../util",
 
 	"cldr/unresolved",
 	"globalize/message",
 	"globalize/plural"
-], function( Globalize, likelySubtags, plurals, ordinals, util ) {
+], function( Globalize, likelySubtags, numberingSystems, currencyData, plurals,
+	ordinals, timeData, weekData, enNumbers, enUnitFields, enCurrencies, enCaGregorian,
+	enTimeZoneNames, enDateFields, ianaTimezoneData, util ) {
+
+function extraSetup() {
+	Globalize.load(
+		numberingSystems,
+		currencyData,
+		enNumbers,
+		enUnitFields,
+		enCurrencies,
+		timeData,
+		weekData,
+		enCaGregorian,
+		enTimeZoneNames,
+		enDateFields
+	);
+	Globalize.loadTimeZone( ianaTimezoneData );
+}
 
 QUnit.assert.messageFormatter = function( locale, path, variables, expected ) {
 	if ( arguments.length === 3 ) {
@@ -67,6 +96,31 @@ QUnit.module( ".messageFormatter( path )", {
 					"{cat, selectordinal, one{#st} two{#nd} few{#rd} other{#th} }",
 					"category"
 				],
+				date: {
+					date: "date: {x, date, long}",
+					time: "time: {x, time, long}",
+					datetime: "datetime: {x, datetime, long}"
+				},
+				relativetime: {
+					default: "relativetime: {x, relativetime, minute}",
+					short: "relativetime short: {x, relativetime, minute, short}",
+					narrow: "relativetime narrow: {x, relativetime, minute, narrow}"
+				},
+				number: {
+					decimal: "number decimal: {x, number}",
+					percent: "number percent: {x, number, percent}"
+				},
+				currency: {
+					symbol: "currency symbol: {x, currency, USD}",
+					accounting: "currency accounting: {x, currency, USD, accounting}",
+					code: "currency code: {x, currency, USD, code}",
+					name: "currency name: {x, currency, USD, name}"
+				},
+				unit: {
+					long: "unit long: {x, unit, second, long}",
+					short: "unit short: {x, unit, second, short}",
+					narrow: "unit narrow: {x, unit, second, narrow}"
+				}
 			},
 			"en-GB": {},
 			fr: {},
@@ -196,6 +250,71 @@ QUnit.test( "should support ICU message format", function( assert ) {
 	assert.messageFormatter( "en", "ordinal", {
 		cat: 4,
 	}, "4th category" );
+});
+
+QUnit.test( "should support formatters in messages", function( assert ) {
+	extraSetup();
+
+	var date = new Date( 2010, 8, 15, 17, 35, 7, 369 );
+
+	assert.messageFormatter( "en", "date/date", {
+		x: date,
+	}, "date: September 15, 2010" );
+	assert.messageFormatter( "en", "date/time", {
+		x: date,
+	}, "time: 5:35:07 PM GMT+2" );
+	assert.messageFormatter( "en", "date/datetime", {
+		x: date,
+	}, "datetime: September 15, 2010 at 5:35:07 PM GMT+2" );
+
+	assert.messageFormatter( "en", "relativetime/default", {
+		x: 2,
+	}, "relativetime: in 2 minutes" );
+	assert.messageFormatter( "en", "relativetime/default", {
+		x: -2,
+	}, "relativetime: 2 minutes ago" );
+	assert.messageFormatter( "en", "relativetime/short", {
+		x: 2,
+	}, "relativetime short: in 2 min." );
+	assert.messageFormatter( "en", "relativetime/short", {
+		x: -2,
+	}, "relativetime short: 2 min. ago" );
+	assert.messageFormatter( "en", "relativetime/narrow", {
+		x: 2,
+	}, "relativetime narrow: in 2 min." );
+	assert.messageFormatter( "en", "relativetime/narrow", {
+		x: -2,
+	}, "relativetime narrow: 2 min. ago" );
+
+	assert.messageFormatter( "en", "number/decimal", {
+		x: 0.5,
+	}, "number decimal: 0.5" );
+	assert.messageFormatter( "en", "number/percent", {
+		x: 0.5,
+	}, "number percent: 50%" );
+
+	assert.messageFormatter( "en", "currency/symbol", {
+		x: 100,
+	}, "currency symbol: $100.00" );
+	assert.messageFormatter( "en", "currency/accounting", {
+		x: 100,
+	}, "currency accounting: $100.00" );
+	assert.messageFormatter( "en", "currency/code", {
+		x: 100,
+	}, "currency code: 100.00 USD" );
+	assert.messageFormatter( "en", "currency/name", {
+		x: 100,
+	}, "currency name: 100.00 US dollars" );
+
+	assert.messageFormatter( "en", "unit/long", {
+		x: 42,
+	}, "unit long: 42 seconds" );
+	assert.messageFormatter( "en", "unit/short", {
+		x: 42,
+	}, "unit short: 42 sec" );
+	assert.messageFormatter( "en", "unit/narrow", {
+		x: 42,
+	}, "unit narrow: 42s" );
 });
 
 // Reference #473
