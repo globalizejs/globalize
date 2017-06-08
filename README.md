@@ -178,6 +178,19 @@ As an alternative to deducing this yourself, use this [online tool](http://johnn
 
 [cldr.js]: https://github.com/rxaviers/cldrjs
 
+| Module | Dependencies (load in order) |
+|---|---|
+| Core module | Cldrjs |
+| Currency module | globalize.js (core), globalize/number.js, and globalize/plural.js (only required for "code" or "name" styles) |
+| Date module | globalize.js (core) and globalize/number.js |
+| Message module | globalize.js (core) and globalize/plural.js (if using messages that need pluralization support) |
+| Number module | globalize.js (core) |
+| Plural | globalize.js (core) |
+| Relative time module | globalize.js (core), globalize/number.js, and globalize/plural.js |
+| Unit module | globalize.js (core), globalize/number.js, and globalize/plural.js |
+
+Use [this page](http://johnnyreilly.github.io/globalize-so-what-cha-want/) for more details on which Cldrjs file and CLDR data to include.
+
 #### 2. CLDR content
 
 Globalize is the i18n software (the engine). Unicode CLDR is the i18n content (the fuel). You need to feed Globalize on the appropriate portions of CLDR prior to using it.
