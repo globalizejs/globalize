@@ -1,43 +1,115 @@
 #! /bin/bash
 
+SCRIPT_ROOT=`dirname $0`
+
+function abort {
+	echo Quiting...
+	exit 1
+}
+
+function process_args {
+	while [[ $# -gt 0 ]]; do
+		key="$1"
+		case $key in
+			major|minor|patch|premajor|preminor|prepatch|prerelease)
+			NEXT=$key
+			;;
+			--prerelease-identifier=*)
+			PRERELEASE_IDENTIFIER="${key#*=}"
+			;;
+			-h|--help)
+			HELP=true
+			;;
+			*)
+			UNKNOWN="$1"
+			;;
+		esac
+		shift
+	done
+	if [ :$NEXT = : -a :$HELP = : ]; then
+		echo 'You must choose a version bump type.'
+		HELP=true
+	fi
+	if [ ! -z "$UNKNOWN" ]; then
+		echo 'Illegal option: '$UNKNOWN
+		HELP=true
+	fi
+	if [ :$HELP = :true ]; then
+		echo 'Usage:'
+		echo '   version major | minor | patch | premajor | preminor | prepatch | prerelease'
+		echo '           [--prerelease-identifier=<identifier>]'
+		echo ''
+		echo '   major, minor, patch, premajor, preminor, prepatch, prerelease'
+		echo '      Type of bump, see semver for more details'
+		echo ''
+		echo '   --prerelease-identifier=<identifier>'
+		echo '      String argument that will append the value of the string as a prerelease'
+		echo '      identifier, e.g., beta. The default is alpha.'
+		echo ''
+		echo '   -h, --help'
+		echo '      Show this help.'
+		exit 1
+	fi
+	VERSION=$(node $SCRIPT_ROOT/lib/version_inc.js $NEXT $PRERELEASE_IDENTIFIER)
+	TARGET_BRANCH=b$VERSION
+	PRERELEASE_IDENTIFIER=alpha
+}
+
 function assertions {
-	if [ -z "$1" ]; then
-		echo Usage: $0 "<version>"
-		exit 1
-	fi
-
-	if ! git diff --quiet --exit-code; then
+	if ! git diff-index --quiet HEAD; then
 		echo Current branch "isn't" clean. Use '`git status` for more details.'
-		echo Quiting...
-		exit 1
+		abort
 	fi
 
-	if git rev-parse --verify --quiet $1 > /dev/null; then
-		echo 'Target tag `'$1'` already exists.'
-		echo Quiting...
-		exit 1
+	if git rev-parse --verify --quiet refs/tags/$VERSION > /dev/null; then
+		echo 'Target tag `'$VERSION'` already exists.'
+		abort
+	fi
+
+	assert_git_origin
+
+	if git ls-remote --exit-code origin refs/tags/$VERSION > /dev/null; then
+		echo 'Target tag `'$VERSION'` already exists in *origin*.'
+		abort
+	fi
+
+	if npm show globalize versions | grep "'"$VERSION"'" >/dev/null; then
+		echo 'Target npm version `'$VERSION'` already exists.'
+		abort
 	fi
 
 	if [ ! -z `git branch --list $TARGET_BRANCH` ]; then
 		echo 'Target branch `'$TARGET_BRANCH'` already exists.'
-		echo Quiting...
-		exit 1
+		abort
 	fi
 
 	CURRENT_BRANCH=`git name-rev --name-only HEAD`
 	if [ :$CURRENT_BRANCH != :master ]; then
 		echo 'Current branch `'$CURRENT_BRANCH'`' "isn't" '`master`.'
-		echo Quiting...
-		exit 1
+		abort
 	fi
 
-	echo Preparing release for '`'$1'`'
+	echo Preparing release for '`'$VERSION'`'
 	echo -n Proceed? "[Y|n] "
 	read input
 	test :$input = :N -o :$input = :n && exit 1
 
 	h1 Test
 	grunt
+}
+
+function assert_git_origin {
+	# Abort unless origin points to git@github.com:globalizejs/globalize.git.
+	if [ :`git config remote.origin.url` != :git@github.com:globalizejs/globalize.git ]; then
+		echo 'remote.origin.url should be `git@github.com:globalizejs/globalize.git`.'
+		abort
+	fi
+
+	echo 'Fetching origin ('`git config remote.origin.url`')'
+	if ! git fetch origin; then
+		echo "Couldn't"' fetch origin.'
+		abort
+	fi
 }
 
 function h1 {
@@ -63,8 +135,8 @@ function update_authors {
 
 function update_version {
 	h1 Update package.json '`versions`' attribute
-	sed -i.orig 's/"version": "[^"]\+"/"version": "'$1'"/' package.json &&
-		git commit -a -m $1 &&
+	node $SCRIPT_ROOT/lib/version_update.js $VERSION &&
+		git commit -a -m $VERSION &&
 		git show
 }
 
@@ -81,8 +153,8 @@ function build {
 }
 
 function tag {
-	h1 'Tag `'$1'` (detached)'
-	git tag -a -m $1 $1 > /dev/null
+	h1 'Tag `'$VERSION'` (detached)'
+	git tag -a -m $VERSION $VERSION > /dev/null
 }
 
 function checkout_back_to_master {
@@ -99,12 +171,11 @@ function final_message {
 	echo git branch -D $TARGET_BRANCH
 }
 
-TARGET_BRANCH=b$1
-
-assertions $1 &&
+process_args "$@" &&
+	assertions &&
 	update_authors &&
-	update_version $1 &&
+	update_version &&
 	git checkout -b $TARGET_BRANCH &&
 	build &&
-	tag $1 &&
+	tag &&
 	final_message
