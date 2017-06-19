@@ -75,7 +75,9 @@ deFormatter( new Date( 2010, 10, 30, 17, 55 ) );
 // > "30.11.2010"
 ```
 
-Use convenient presets for `date`, `time`, or `datetime`. Their possible values are: `full`, `long`, `medium`, and `short`.
+#### Using short, medium, long, and full presets
+
+Use convenient presets for `date`, `time`, or `datetime`. Their possible values are: `short`, `medium`, `long`, and `full`.
 
 | `presetValue`            | `Globalize( "en" ).dateFormatter( presetValue )( new Date( 2010, 10, 1, 17, 55 ) )` |
 | ------------------------ | ---------------------------------------- |
@@ -104,6 +106,8 @@ For comparison, follow the same formatter `{ datetime: "short" }` on different l
 | *de*             | `"01.11.10 17:55"`                       |
 | *pt*             | `"01/11/10 17:55"`                       |
 | *ar*             | `"١‏/١١‏/٢٠١٠ ٥،٥٥ م"`                   |
+
+#### Using open-ended skeletons
 
 Use open-ended skeletons for more flexibility (see its description [above](#parameters)). See some examples below.
 
@@ -162,6 +166,8 @@ hourMinuteSecondFormatter( date );
 // > "17:55:00"
 ```
 
+#### Using time zones
+
 Using specific timeZones, i.e., using `options.timezone`. Note that prior to using it, you must load IANA time zone data.
 
 ```js
@@ -180,6 +186,8 @@ Globalize.dateFormatter({ datetime: "medium", timeZone: "America/Sao_Paulo" })( 
 Globalize.dateFormatter({ datetime: "full", timeZone: "Europe/Berlin" })( new Date() )
 // > "Monday, November 1, 2010 at 8:55:00 PM Central European Standard Time"
 ```
+
+#### Note on performance
 
 For improved performance on iterations, first create the formatter. Then, reuse it on each loop.
 
