@@ -45,7 +45,7 @@ zhSimplified = new Cldr( "zh" );
 QUnit.module( "Number Format" );
 
 function oneOrOtherPluralGenerator( plural ) {
-  if ( plural === '1' ) {
+  if ( plural === "1" ) {
     return "one";
   } else {
     return "other";
@@ -159,19 +159,19 @@ QUnit.test( "decimals should support rounding in compact mode", function( assert
 		compact: "short",
 		maximumFractionDigits: 2,
 		minimumFractionDigits: 1,
-		round: 'ceil'
+		round: "ceil"
 	} ) ), "12.74K" );
 	assert.equal( format( 12735, properties( "#0.##", en, {
 		compact: "short",
 		maximumFractionDigits: 2,
 		minimumFractionDigits: 1,
-		round: 'floor'
+		round: "floor"
 	} ) ), "12.73K" );
 	assert.equal( format( 12735, properties( "#0.##", en, {
 		compact: "short",
 		maximumFractionDigits: 2,
 		minimumFractionDigits: 1,
-		round: 'truncate'
+		round: "truncate"
 	} ) ), "12.73K" );
 });
 
