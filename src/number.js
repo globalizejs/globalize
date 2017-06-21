@@ -94,7 +94,6 @@ Globalize.prototype.numberFormatter = function( options ) {
 	validateDigits( properties );
 
 	if ( options.compact ) {
-		// following the pattern I saw in currency, is injecting it here the right approach?
 		pluralGenerator = this.pluralGenerator();
 		returnFn = numberFormatterFn( properties, pluralGenerator );
 		runtimeBind( args, cldr, returnFn, [ properties, pluralGenerator ] );

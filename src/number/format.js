@@ -76,15 +76,16 @@ return function( number, properties, pluralGenerator ) {
 	// Compact mode: initial number digit processing
 	if ( compactMap ) {
 		originalNumber = number;
-		zeroes = Array(Math.floor(number).toString().length).join( "0" );
+		zeroes = Array( Math.floor( number ).toString().length ).join( "0" );
 		if ( zeroes.length >= 3 ) {
+
 			// use default plural form to perform initial decimal shift
 			compactPattern = compactMap[ "1" + zeroes + "-count-other" ];
 			compactDigits = compactPattern.split( "0" ).length - 1;
 			divisor = zeroes.length - ( compactDigits - 1 );
 			number = number / Math.pow( 10, divisor );
 
-			// Some languages specify no pattern for certain digit lengths (represented by "0" pattern).
+			// Some languages specify no pattern for certain digit lengths, represented as "0".
 			// If no pattern, original number should remain uncompacted.
 			if ( compactPattern === "0" ) {
 				number = originalNumber;
@@ -105,14 +106,14 @@ return function( number, properties, pluralGenerator ) {
 
 	// Compact mode: apply formatting
 	if ( compactMap && zeroes.length >= 3 ) {
-		pluralForm = pluralGenerator ? pluralGenerator(number) : "other";
+		pluralForm = pluralGenerator ? pluralGenerator( number ) : "other";
 		compactPattern = compactMap[ "1" + zeroes + "-count-" + pluralForm ] || compactPattern;
 
-		// Some languages specify no pattern for certain digit lengths (represented by "0" pattern).
-		//  Only apply compact pattern if one is specified.
+		// Some languages specify no pattern for certain digit lengths, represented as "0".
+		// Only apply compact pattern if one is specified.
 		if ( compactPattern !== "0" ) {
 			compactProperties = compactPattern.match( numberCompactPatternRe );
-		
+
 			// update prefix/suffix with compact prefix/suffix
 			prefix += compactProperties[ 1 ];
 			suffix = compactProperties[ 11 ] + suffix;
