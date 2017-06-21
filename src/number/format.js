@@ -70,12 +70,13 @@ return function( number, properties, pluralGenerator ) {
 		number *= 1000;
 	}
 
-	var compactPattern, compactDigits, compactProperties, divisor, pluralForm, rounded,
+	var compactPattern, compactDigits, compactProperties, divisor, pluralForm, zeroes,
 	originalNumber;
 
+	// Compact mode: initial number digit processing
 	if ( compactMap ) {
 		originalNumber = number;
-		var zeroes = Array(Math.floor(number).toString().length).join( "0" );
+		zeroes = Array(Math.floor(number).toString().length).join( "0" );
 		if ( zeroes.length >= 3 ) {
 			// use default plural form to perform initial decimal shift
 			compactPattern = compactMap[ "1" + zeroes + "-count-other" ];
@@ -83,22 +84,10 @@ return function( number, properties, pluralGenerator ) {
 			divisor = zeroes.length - ( compactDigits - 1 );
 			number = number / Math.pow( 10, divisor );
 
-			// calculate rounded value to determine plural form and extract correct pattern
-			rounded = parseInt(numberFormatIntegerFractionDigits( number, minimumIntegerDigits,
-				minimumFractionDigits, maximumFractionDigits, round, roundIncrement ));
-			pluralForm = pluralGenerator ? pluralGenerator(rounded) : "other";
-			compactPattern = compactMap[ "1" + zeroes + "-count-" + pluralForm ] || compactPattern;
-
 			// Some languages specify no pattern for certain digit lengths (represented by "0" pattern).
-			// If no pattern, return original number uncompacted. Otherwise, apply compact pattern.
+			// If no pattern, original number should remain uncompacted.
 			if ( compactPattern === "0" ) {
 				number = originalNumber;
-			} else {
-				compactProperties = compactPattern.match( numberCompactPatternRe );
-			
-				// update prefix/suffix with compact prefix/suffix
-				prefix += compactProperties[ 1 ];
-				suffix = compactProperties[ 11 ] + suffix;
 			}
 		}
 	}
@@ -112,6 +101,22 @@ return function( number, properties, pluralGenerator ) {
 	} else {
 		number = numberFormatIntegerFractionDigits( number, minimumIntegerDigits,
 			minimumFractionDigits, maximumFractionDigits, round, roundIncrement );
+	}
+
+	// Compact mode: apply formatting
+	if ( compactMap && zeroes.length >= 3 ) {
+		pluralForm = pluralGenerator ? pluralGenerator(number) : "other";
+		compactPattern = compactMap[ "1" + zeroes + "-count-" + pluralForm ] || compactPattern;
+
+		// Some languages specify no pattern for certain digit lengths (represented by "0" pattern).
+		//  Only apply compact pattern if one is specified.
+		if ( compactPattern !== "0" ) {
+			compactProperties = compactPattern.match( numberCompactPatternRe );
+		
+			// update prefix/suffix with compact prefix/suffix
+			prefix += compactProperties[ 1 ];
+			suffix = compactProperties[ 11 ] + suffix;
+		}
 	}
 
 	// Remove the possible number minus sign

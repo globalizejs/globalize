@@ -45,7 +45,7 @@ zhSimplified = new Cldr( "zh" );
 QUnit.module( "Number Format" );
 
 function oneOrOtherPluralGenerator( plural ) {
-  if ( plural === 1 ) {
+  if ( plural === '1' ) {
     return "one";
   } else {
     return "other";
@@ -132,7 +132,7 @@ QUnit.test( "decimals should format in compact mode", function( assert ) {
 	assert.equal( format( 1273, properties( "#0.#", en, { compact: "long" } ) ), "1.3 thousand" );
 	assert.equal( format( 1273000, properties( "#0.#", es, {
 		compact: "long"
-	} ), oneOrOtherPluralGenerator ), "1,3 millón" );
+	} ), oneOrOtherPluralGenerator ), "1,3 millones" );
 	assert.equal( format( 2273000, properties( "#0.#", es, {
 		compact: "long"
 	} ), oneOrOtherPluralGenerator ), "2,3 millones" );
@@ -149,7 +149,39 @@ QUnit.test( "decimals should format in compact mode", function( assert ) {
 	assert.equal( format( -1273500, properties( "#0.#;(#0.#)", en, { compact: "long" } ) ), "(1.3 million)" );
 });
 
-QUnit.test( "integers should handle default pattern in compact mode", function( assert ) {
+QUnit.test( "decimals should support rounding in compact mode", function( assert ) {
+	assert.equal( format( 12735, properties( "#0.##", en, {
+		compact: "short",
+		maximumFractionDigits: 2,
+		minimumFractionDigits: 1
+	} ) ), "12.74K" );
+	assert.equal( format( 12735, properties( "#0.##", en, {
+		compact: "short",
+		maximumFractionDigits: 2,
+		minimumFractionDigits: 1,
+		round: 'ceil'
+	} ) ), "12.74K" );
+	assert.equal( format( 12735, properties( "#0.##", en, {
+		compact: "short",
+		maximumFractionDigits: 2,
+		minimumFractionDigits: 1,
+		round: 'floor'
+	} ) ), "12.73K" );
+	assert.equal( format( 12735, properties( "#0.##", en, {
+		compact: "short",
+		maximumFractionDigits: 2,
+		minimumFractionDigits: 1,
+		round: 'truncate'
+	} ) ), "12.73K" );
+});
+
+QUnit.test( "integers should support significant digits in compact mode", function( assert ) {
+	assert.equal( format( 12735, properties( "@@@", en, { compact: "short" } ) ), "12.7K" );
+	assert.equal( format( 12735, properties( "@@", en, { compact: "short" } ) ), "13K" );
+	assert.equal( format( 12735, properties( "@", en, { compact: "short" } ) ), "10K" );
+});
+
+QUnit.test( "integers should handle default (no) pattern in compact mode", function( assert ) {
 	assert.equal( format( 2737, properties( "#0.#", zhSimplified, { compact: "short" } ) ), "2737" );
 	assert.equal( format( 2737, properties( "#0.#", zhSimplified, { compact: "long" } ) ), "2737" );
 	assert.equal( format( 27371, properties( "#0.#", zhSimplified, { compact: "short" } ) ), "2.7万" );
