@@ -1,4 +1,5 @@
 define([
+	"zoned-date-time",
 	"./day-of-week",
 	"./day-of-year",
 	"./fields-map",
@@ -8,8 +9,8 @@ define([
 	"./timezone-hour-format",
 	"./week-days",
 	"../util/remove-literal-quotes"
-], function( dateDayOfWeek, dateDayOfYear, dateFieldsMap, dateMillisecondsInDay, datePatternRe,
-	dateStartOf, dateTimezoneHourFormat, dateWeekDays, removeLiteralQuotes ) {
+], function( ZonedDateTime, dateDayOfWeek, dateDayOfYear, dateFieldsMap, dateMillisecondsInDay,
+	datePatternRe, dateStartOf, dateTimezoneHourFormat, dateWeekDays, removeLiteralQuotes ) {
 
 /**
  * format( date, properties )
@@ -27,8 +28,13 @@ return function( date, numberFormatters, properties ) {
 
 	var timeSeparator = properties.timeSeparator;
 
+	// create globalize date with given timezone data
+	if ( properties.timeZoneData ) {
+		date = new ZonedDateTime( date, properties.timeZoneData() );
+	}
+
 	properties.pattern.replace( datePatternRe, function( current ) {
-		var dateField, type, value,
+		var aux, dateField, type, value,
 			chr = current.charAt( 0 ),
 			length = current.length;
 
@@ -55,6 +61,23 @@ return function( date, numberFormatters, properties ) {
 			} else {
 				chr = "X";
 				length = 5;
+			}
+		}
+
+		// z...zzz: "{shortRegion}", e.g., "PST" or "PDT".
+		// zzzz: "{regionName} {Standard Time}" or "{regionName} {Daylight Time}",
+		//       e.g., "Pacific Standard Time" or "Pacific Daylight Time".
+		if ( chr === "z" ) {
+			if ( date.isDST ) {
+				value = date.isDST() ? properties.daylightTzName : properties.standardTzName;
+			}
+
+			// Fall back to "O" format.
+			if ( !value ) {
+				chr = "O";
+				if ( length < 4 ) {
+					length = 1;
+				}
 			}
 		}
 
@@ -210,6 +233,32 @@ return function( date, numberFormatters, properties ) {
 
 			// Zone
 			case "z":
+				break;
+
+			case "v":
+
+				// v...vvv: "{shortRegion}", eg. "PT".
+				// vvvv: "{regionName} {Time}",
+				//       e.g., "Pacific Time".
+				if ( properties.genericTzName ) {
+					value = properties.genericTzName;
+					break;
+				}
+
+			/* falls through */
+			case "V":
+
+				//VVVV: "{explarCity} {Time}", e.g., "Los Angeles Time"
+				if ( properties.timeZoneName ) {
+					value = properties.timeZoneName;
+					break;
+				}
+
+				if ( current === "v" ) {
+					length = 1;
+				}
+
+			/* falls through */
 			case "O":
 
 				// O: "{gmtFormat}+H;{gmtFormat}-H" or "{gmtZeroFormat}", eg. "GMT-8" or "GMT".
@@ -217,9 +266,18 @@ return function( date, numberFormatters, properties ) {
 				if ( date.getTimezoneOffset() === 0 ) {
 					value = properties.gmtZeroFormat;
 				} else {
+
+					// If O..OOO and timezone offset has non-zero minutes, show minutes.
+					if ( length < 4 ) {
+						aux = date.getTimezoneOffset();
+						aux = properties.hourFormat[ aux % 60 - aux % 1 === 0 ? 0 : 1 ];
+					} else {
+						aux = properties.hourFormat;
+					}
+
 					value = dateTimezoneHourFormat(
 						date,
-						length < 4 ? "+H;-H" : properties.tzLongHourFormat,
+						aux,
 						timeSeparator,
 						numberFormatters
 					);
@@ -238,10 +296,32 @@ return function( date, numberFormatters, properties ) {
 			/* falls through */
 			case "x":
 
-				// x: hourFormat("+HH;-HH")
-				// xx or xxxx: hourFormat("+HHmm;-HHmm")
-				// xxx or xxxxx: hourFormat("+HH:mm;-HH:mm")
-				value = length === 1 ? "+HH;-HH" : ( length % 2 ? "+HH:mm;-HH:mm" : "+HHmm;-HHmm" );
+				// x: hourFormat("+HH[mm];-HH[mm]")
+				// xx: hourFormat("+HHmm;-HHmm")
+				// xxx: hourFormat("+HH:mm;-HH:mm")
+				// xxxx: hourFormat("+HHmm[ss];-HHmm[ss]")
+				// xxxxx: hourFormat("+HH:mm[:ss];-HH:mm[:ss]")
+				aux = date.getTimezoneOffset();
+
+				// If x and timezone offset has non-zero minutes, use xx (i.e., show minutes).
+				if ( length === 1 && aux % 60 - aux % 1 !== 0 ) {
+					length += 1;
+				}
+
+				// If (xxxx or xxxxx) and timezone offset has zero seconds, use xx or xxx
+				// respectively (i.e., don't show optional seconds).
+				if ( ( length === 4 || length === 5 ) && aux % 1 === 0 ) {
+					length -= 2;
+				}
+
+				value = [
+					"+HH;-HH",
+					"+HHmm;-HHmm",
+					"+HH:mm;-HH:mm",
+					"+HHmmss;-HHmmss",
+					"+HH:mm:ss;-HH:mm:ss"
+				][ length - 1 ];
+
 				value = dateTimezoneHourFormat( date, value, ":" );
 				break;
 

@@ -11,6 +11,4 @@ Error object:
 
 - description "Missing rules to deduce plural form of \`{value}\`"
  
- Thrown when the plural form (also known as plural group) is not found for the
- given value. This error is very unlikely to occur and is related to incomplete
- or invalid CLDR `supplemental/plurals-type-cardinal/{language}` data.
+ Thrown when the plural form (also known as plural group) is not found for the given value. This error is very unlikely to occur and is related to incomplete or invalid CLDR `supplemental/plurals-type-cardinal/{language}` data.

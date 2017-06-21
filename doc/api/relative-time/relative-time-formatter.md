@@ -1,37 +1,31 @@
 ## .relativeTimeFormatter( unit [, options] ) ➜ function( value )
 
-Returns a function that formats a relative time according to the given unit, options, and the
-default/instance locale.
+Returns a function that formats a relative time according to the given unit, options, and the default/instance locale.
 
-The returned function is invoked with one argument: the number `value` to
-be formatted.
+The returned function is invoked with one argument: the number `value` to be formatted.
 
 ### Parameters
 
-**unit**
+#### unit
 
 String value indicating the unit to be formatted. eg. "day", "week", "month", etc.
 
-**options**
+#### options.form
 
-- form: [String] eg. "short" or "narrow". Or falsy for default long form
+String, e.g., `"short"` or `"narrow"`, or falsy for default long form.
 
-**value**
+#### value
 
 The number to be formatted.
 
 
 ### Example
 
-Prior to using any relative time methods, you must load
-`cldr/main/{locale}/dateFields.json` and the
-CLDR content required by the number and plural modules. Read [CLDR content][] if you need
-more information.
+Prior to using any relative time methods, you must load `cldr/main/{locale}/dateFields.json` and the CLDR content required by the number and plural modules. Read [CLDR content][] if you need more information.
 
 [CLDR content]: ../../../README.md#2-cldr-content
 
-You can use the static method `Globalize.relativeTimeFormatter()`, which uses the default
-locale.
+You can use the static method `Globalize.relativeTimeFormatter()`, which uses the default locale.
 
 ```javascript
 var formatter;

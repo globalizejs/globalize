@@ -2,14 +2,12 @@ define([
 	"./format-properties",
 	"./symbol/inverted-map",
 	"../util/always-array",
+	"../util/loose-matching",
 	"../util/object/map",
-	"../util/regexp/cf-g",
-	"../util/regexp/dash-g",
 	"../util/regexp/escape",
-	"../util/regexp/zs-g",
 	"../util/remove-literal-quotes"
-], function( numberFormatProperties, numberSymbolInvertedMap, alwaysArray, objectMap, regexpCfG,
-	regexpDashG, regexpEscape, regexpZsG, removeLiteralQuotes ) {
+], function( numberFormatProperties, numberSymbolInvertedMap, alwaysArray, looseMatching, objectMap,
+	regexpEscape, removeLiteralQuotes ) {
 
 /**
  * parseProperties( pattern, cldr )
@@ -30,18 +28,6 @@ return function( pattern, cldr, options ) {
 		minimumSignificantDigits, nanSymbol, negativePrefix, negativeSuffix, nuDigitsMap,
 		numberTokenizer, prefix, primaryGroupingSize, secondaryGroupingSize, suffix, symbolMap,
 		formatProperties = numberFormatProperties( pattern, cldr, options );
-
-	// Loose Matching:
-	// - Ignore all format characters, which includes RLM, LRM or ALM used to control BIDI
-	//   formatting.
-	// - Map all characters in [:Zs:] to U+0020 SPACE;
-	// - Map all characters in [:Dash:] to U+002D HYPHEN-MINUS;
-	function looseMatching( value ) {
-		return value
-			.replace( regexpCfG, "" )
-			.replace( regexpDashG, "-" )
-			.replace( regexpZsG, " " );
-	}
 
 	prefix = looseMatching( formatProperties[ 0 ] );
 	maximumFractionDigits = formatProperties[ 4 ];

@@ -68,42 +68,4 @@ QUnit.test( "should format using word if available", function( assert ) {
 	assert.equal( de.relativeTimeFormatter( "day" )( 2 ), "übermorgen" );
 });
 
-QUnit.test( "should allow for runtime compilation", function( assert ) {
-	util.assertRuntimeBind(
-		assert,
-		Globalize.relativeTimeFormatter( "day" ),
-		"b687161418",
-		"Globalize(\"en\").relativeTimeFormatter(\"day\",{})",
-		function( runtimeArgs ) {
-			util.assertRuntimeBind(
-				assert,
-				runtimeArgs[ 0 ],
-				"b468386326",
-				"Globalize(\"en\").numberFormatter({})",
-				function() {}
-			);
-			util.assertRuntimeBind(
-				assert,
-				runtimeArgs[ 1 ],
-				"a1662346136",
-				"Globalize(\"en\").pluralGenerator({})",
-				function() {}
-			);
-			assert.deepEqual( runtimeArgs[ 2 ], {
-				"relativeTime-type-future": {
-					"relativeTimePattern-count-one": "in {0} day",
-					"relativeTimePattern-count-other": "in {0} days"
-				},
-				"relativeTime-type-past": {
-					"relativeTimePattern-count-one": "{0} day ago",
-					"relativeTimePattern-count-other": "{0} days ago"
-				},
-				"relative-type--1": "yesterday",
-				"relative-type-0": "today",
-				"relative-type-1": "tomorrow"
-			});
-		}
-	);
-});
-
 });

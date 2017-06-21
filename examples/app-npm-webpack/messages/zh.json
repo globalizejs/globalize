@@ -4,6 +4,7 @@
 		"number-label": "号码",
 		"currency-label": "币",
 		"date-label": "迄今",
+		"date-time-zone-label": "日期（在特定的IANA时区，例如America / Sao_Paulo）",
 		"date-to-parts-label": "日期（注意强烈的月份，使用formatDateToParts添加标记）",
 		"relative-time-label": "相对时间",
 		"unit-label": "单元",

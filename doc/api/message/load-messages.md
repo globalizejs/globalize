@@ -15,21 +15,15 @@ The first level of keys must be locales. For example:
 }
 ```
 
-ICU MessageFormat pattern is supported: variable replacement, gender and plural
-inflections. For more information see [`.messageFormatter( path ) ➡ function([
-variables ])`](./message-formatter.md).
+ICU MessageFormat pattern is supported: variable replacement, gender and plural inflections. For more information see [`.messageFormatter( path ) ➡ function([ variables ])`](./message-formatter.md).
 
-The provided messages are stored along side other cldr data, under the
-"globalize-messages" key. This allows Globalize to reuse the traversal methods
-provided by cldrjs. You can inspect this data using
-`cldrjs.get("globalize-messages")`.
+The provided messages are stored along side other cldr data, under the "globalize-messages" key. This allows Globalize to reuse the traversal methods provided by cldrjs. You can inspect this data using `cldrjs.get("globalize-messages")`.
 
 ### Parameters
 
-**json**
+#### json
 
-JSON object of messages data. Keys can use any character, except `/`, `{` and
-`}`. Values (i.e., the message content itself) can contain any character.
+JSON object of messages data. Keys can use any character, except `/`, `{` and `}`. Values (i.e., the message content itself) can contain any character.
 
 ### Example
 
@@ -49,8 +43,7 @@ Globalize( "pt" ).formatMessage( "greetings/hello" );
 
 #### Multiline strings
 
-Use Arrays as a convenience for multiline strings. The lines will be joined by a
-space.
+Use Arrays as a convenience for multiline strings. The lines will be joined by a space.
 
 ```javascript
 Globalize.loadMessages({
@@ -103,13 +96,9 @@ Globalize( "pt-PT" ).formatMessage( "amen" );
 // > "Amém"
 ```
 
-Note that `de`, `en`, `en-GB`, `fr`, and `pt-PT` are empty. `.formatMessage()`
-inherits `pt-PT` messages from `pt` (`pt-PT` ➡ `pt`), and it inherits the other
-messages from root, eg. `en-GB` ➡ `en-001` ➡ `en` ➡ `root`. Yes, `root` is the
-last bundle of the parent lookup.
+Note that `de`, `en`, `en-GB`, `fr`, and `pt-PT` are empty. `.formatMessage()` inherits `pt-PT` messages from `pt` (`pt-PT` ➡ `pt`), and it inherits the other messages from root, eg. `en-GB` ➡ `en-001` ➡ `en` ➡ `root`. Yes, `root` is the last bundle of the parent lookup.
 
-Attention: On browsers, message inheritance only works if the optional
-dependency `cldr/unresolved` is loaded.
+Attention: On browsers, message inheritance only works if the optional dependency `cldr/unresolved` is loaded.
 
 ```html
 <script src="cldr/unresolved.js"></script>

@@ -1,8 +1,6 @@
 define([
-	"../util/regexp/cf-g",
-	"../util/regexp/dash-g",
-	"../util/regexp/zs-g"
-], function( regexpCfG, regexpDashG, regexpZsG ) {
+	"../util/loose-matching"
+], function( looseMatching ) {
 
 /**
  * parse( value, properties )
@@ -36,15 +34,7 @@ return function( value, properties ) {
 	invertedNuDigitsMap = properties[ 1 ] || {};
 	tokenizer = properties[ 2 ];
 
-	// Loose Matching:
-	// - Ignore all format characters, which includes RLM, LRM or ALM used to control BIDI
-	//   formatting.
-	// - Map all characters in [:Zs:] to U+0020 SPACE;
-	// - Map all characters in [:Dash:] to U+002D HYPHEN-MINUS;
-	value = value
-		.replace( regexpCfG, "" )
-		.replace( regexpDashG, "-" )
-		.replace( regexpZsG, " " );
+	value = looseMatching( value );
 
 	function parse( type ) {
 		return function( lexeme ) {

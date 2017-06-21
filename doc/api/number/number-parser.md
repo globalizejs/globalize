@@ -1,35 +1,26 @@
 ## .numberParser( [options] ) ➜ function( value )
 
-Return a function that parses a String representing a number according to the
-given options. If value is invalid, `NaN` is returned.
+Return a function that parses a String representing a number according to the given options. If value is invalid, `NaN` is returned.
 
-The returned function is invoked with one argument: the String representing a
-number `value` to be parsed.
+The returned function is invoked with one argument: the String representing a number `value` to be parsed.
 
 ### Parameters
 
-**options** Optional
+#### options
 
-A JSON object including none or any of the following options.
+See [.numberFormatter() options](./number-formatter.md#parameters).
 
-> **style** Optional
->
-> String `decimal` (default), or `percent`.
-
-**value**
+#### value
 
 String with number to be parsed, eg. `"3.14"`.
 
 ### Example
 
-Prior to using any number methods, you must load
-`cldr/main/{locale}/numbers.json` and `cldr/supplemental/numberingSystems.json`.
-Read [CLDR content][] if you need more information.
+Prior to using any number methods, you must load `cldr/main/{locale}/numbers.json` and `cldr/supplemental/numberingSystems.json`. Read [CLDR content][] if you need more information.
 
 [CLDR content]: ../../../README.md#2-cldr-content
 
-You can use the static method `Globalize.numberParser()`, which uses the
-default locale.
+You can use the static method `Globalize.numberParser()`, which uses the default locale.
 
 ```javascript
 var parser;
@@ -41,8 +32,7 @@ parser( "3.14" );
 // > 3.14
 ```
 
-You can use the instance method `.numberParser()`, which uses the instance
-locale.
+You can use the instance method `.numberParser()`, which uses the instance locale.
 
 ```javascript
 var enParser = Globalize( "en" ).numberParser(),

@@ -5,43 +5,57 @@ define([
 	"./common/validate/parameter-type/string",
 	"./core-runtime",
 	"./date/format",
+	"./date/formatter-fn",
 	"./date/parse",
 	"./date/parser-fn",
-	"./date/to-parts-formatter-fn",
 	"./date/tokenizer",
+	"./date/to-parts-formatter-fn",
 
 	"./number-runtime"
 ], function( runtimeKey, validateParameterPresence, validateParameterTypeDate,
-	validateParameterTypeString, Globalize, dateFormat, dateParse, dateParserFn,
+	validateParameterTypeString, Globalize, dateFormat, dateFormatterFn, dateParse, dateParserFn,
 	dateToPartsFormatterFn, dateTokenizer ) {
 
 Globalize._dateFormat = dateFormat;
+Globalize._dateFormatterFn = dateFormatterFn;
 Globalize._dateParser = dateParse;
 Globalize._dateParserFn = dateParserFn;
-Globalize._dateToPartsFormatterFn = dateToPartsFormatterFn;
 Globalize._dateTokenizer = dateTokenizer;
+Globalize._dateToPartsFormatterFn = dateToPartsFormatterFn;
 Globalize._validateParameterTypeDate = validateParameterTypeDate;
+
+function optionsHasStyle( options ) {
+	return options.skeleton !== undefined ||
+		options.date !== undefined ||
+		options.time !== undefined ||
+		options.datetime !== undefined ||
+		options.raw !== undefined;
+}
 
 Globalize.dateFormatter =
 Globalize.prototype.dateFormatter = function( options ) {
-	var formatterFn = this.dateToPartsFormatter( options );
-	return function() {
-		var parts = formatterFn.apply( this, arguments );
-		return parts.map( function( part ) {
-			return part.value;
-		}).join( "" );
-	};
+	options = options || {};
+	if ( !optionsHasStyle( options ) ) {
+		options.skeleton = "yMd";
+	}
+	return Globalize[ runtimeKey( "dateFormatter", this._locale, [ options ] ) ];
 };
 
 Globalize.dateToPartsFormatter =
 Globalize.prototype.dateToPartsFormatter = function( options ) {
-	options = options || { skeleton: "yMd" };
+	options = options || {};
+	if ( !optionsHasStyle( options ) ) {
+		options.skeleton = "yMd";
+	}
 	return Globalize[ runtimeKey( "dateToPartsFormatter", this._locale, [ options ] ) ];
 };
 
 Globalize.dateParser =
 Globalize.prototype.dateParser = function( options ) {
-	options = options || { skeleton: "yMd" };
+	options = options || {};
+	if ( !optionsHasStyle( options ) ) {
+		options.skeleton = "yMd";
+	}
 	return Globalize[ runtimeKey( "dateParser", this._locale, [ options ] ) ];
 };
 

@@ -8,6 +8,12 @@ document.getElementById( "date" ).textContent = Globalize.formatDate( new Date()
 	datetime: "medium"
 });
 
+// Use Globalize to format dates on specific time zone.
+document.getElementById( "zonedDate" ).textContent = Globalize.formatDate( new Date(), {
+	datetime: "full",
+	timeZone: "America/Sao_Paulo"
+});
+
 // Use Globalize to format dates to parts.
 document.getElementById( "dateToParts" ).innerHTML = Globalize.formatDateToParts( new Date(), {
 	datetime: "medium"

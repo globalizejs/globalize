@@ -20,19 +20,4 @@ QUnit.module( ".pluralGenerator()", {
 	teardown: util.resetCldrContent
 });
 
-QUnit.test( "should allow for runtime compilation", function( assert ) {
-	util.assertRuntimeBind(
-		assert,
-		Globalize.pluralGenerator(),
-		"a1662346136",
-		"Globalize(\"en\").pluralGenerator({})",
-		function( runtimeArgs ) {
-			assert.equal( runtimeArgs[ 0 ].toString(), "function(n) {   var s = " +
-				"String(n).split(\'.\'), v0 = !s[1];\n  return (n == 1 && v0) ? " +
-				"\'one\' : \'other\';\n}"
-			);
-		}
-	);
-});
-
 });

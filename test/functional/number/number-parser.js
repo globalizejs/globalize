@@ -58,38 +58,4 @@ QUnit.test( "should return parser", function( assert ) {
 	})( "%50" ), 0.5 );
 });
 
-QUnit.test( "should allow for runtime compilation", function( assert ) {
-	extraSetup();
-
-	util.assertRuntimeBind(
-		assert,
-		Globalize.numberParser(),
-		"b1965900303",
-		"Globalize(\"en\").numberParser({})",
-		function( runtimeArgs ) {
-			assert.deepEqual( runtimeArgs[ 0 ], [
-				{
-					".": ".",
-					",": ",",
-					"%": "%",
-					"+": "+",
-					"-": "-",
-					"E": "E",
-					"‰": "‰"
-				},
-				undefined,
-				{
-					infinity: /^∞/,
-					nan: /^NaN/,
-					negativePrefix: /^-/,
-					negativeSuffix: /^/,
-					number: /^((\d{1,3}(,\d{3})+|\d+)(\.\d+)?|((\d{1,3}(,\d{3})+|\d+))?\.\d+)/,
-					prefix: /^/,
-					suffix: /^/
-				}
-			]);
-		}
-	);
-});
-
 });

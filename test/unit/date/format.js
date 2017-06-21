@@ -7,18 +7,21 @@ define([
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/main/en/timeZoneNames.json",
 	"json!cldr-data/main/en-GB/ca-gregorian.json",
+	"json!cldr-data/main/en-GB/timeZoneNames.json",
 	"json!cldr-data/main/en-IN/ca-gregorian.json",
 	"json!cldr-data/main/pt/ca-gregorian.json",
 	"json!cldr-data/main/ru/ca-gregorian.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
+	"json!cldr-data/supplemental/metaZones.json",
 	"json!cldr-data/supplemental/timeData.json",
 	"json!cldr-data/supplemental/weekData.json",
+	"json!iana-tz-data.json",
 
 	"cldr/event",
 	"cldr/supplemental"
 ], function( Cldr, format, formatProperties, stringPad, deCaGregorian, enCaGregorian,
-	enTimeZoneNames, enGbCaGregorian, enInCaGregorian, ptCaGregorian, ruCaGregorian, likelySubtags,
-	timeData, weekData ) {
+	enTimeZoneNames, enGbCaGregorian, enGbTimeZoneNames, enInCaGregorian, ptCaGregorian,
+	ruCaGregorian, likelySubtags, metaZones, timeData, weekData, ianaTimezoneData ) {
 
 var cldr,
 	year0 = new Date( -62167190400000 ),
@@ -46,21 +49,67 @@ Cldr.load(
 	deCaGregorian,
 	enCaGregorian,
 	enGbCaGregorian,
+	enGbTimeZoneNames,
 	enInCaGregorian,
 	enTimeZoneNames,
-	likelySubtags,
 	ptCaGregorian,
 	ruCaGregorian,
+	likelySubtags,
+	metaZones,
 	timeData,
 	weekData
 );
 
 cldr = new Cldr( "en" );
 
+Cldr.load({
+	"main": {
+		"en": {
+			"dates": {
+				"timeZoneNames": {
+					"zone": {
+						"Foo":{
+							"Baz":{
+								"exemplarCity": "Foo City"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+});
+
+// Needed for globalizeDate.
+Cldr.load({
+	"globalize-iana": ianaTimezoneData
+}, {
+	"globalize-iana": {
+		"zoneData": {
+			"Foo": {
+				"Bar": {
+					offsets: ianaTimezoneData.zoneData.UTC.offsets,
+					untils: ianaTimezoneData.zoneData.UTC.untils,
+					isdsts: ianaTimezoneData.zoneData.UTC.isdsts
+				},
+				"Baz": {
+					offsets: ianaTimezoneData.zoneData.UTC.offsets,
+					untils: ianaTimezoneData.zoneData.UTC.untils,
+					isdsts: ianaTimezoneData.zoneData.UTC.isdsts
+				}
+			}
+		}
+	}
+});
+
 QUnit.assert.dateFormat = function( date, pattern, cldr, expected ) {
+	this.dateFormatWithTimezone( date, pattern, undefined, cldr, expected );
+};
+
+QUnit.assert.dateFormatWithTimezone = function( date, pattern, timeZone, cldr, expected ) {
 	var pad,
 		numberFormatters = [],
-		properties = formatProperties( pattern, cldr );
+		properties = formatProperties( pattern, cldr, timeZone );
 
 	// Create simple number formatters for this test purposes.
 	for ( pad in properties.numberFormatters ) {
@@ -974,60 +1023,156 @@ QUnit.test( "should format various milliseconds (A+)", function( assert ) {
 /**
  *  Zone
  */
-
 QUnit.test( "should format timezone (z)", function( assert ) {
-	var date = new FakeDate( 0 );
-	assert.dateFormat( date, "z", cldr, [{
+	var date,
+		enGb = new Cldr( "en-GB" );
+
+	// Test for country with Daylight Savings and Standard time, e.g., Pacific Standard Time and
+	// Pacific Daylight Time.
+	date = new Date( 2017, 0, 1 );
+	assert.dateFormatWithTimezone( date, "z", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "PST"
+	}]);
+	assert.dateFormatWithTimezone( date, "zz", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "PST"
+	}]);
+	assert.dateFormatWithTimezone( date, "zzz", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "PST"
+	}]);
+	assert.dateFormatWithTimezone( date, "zzzz", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "Pacific Standard Time"
+	}]);
+
+	date = new Date( 2017, 6, 1 );
+	assert.dateFormatWithTimezone( date, "z", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "PDT"
+	}]);
+	assert.dateFormatWithTimezone( date, "zz", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "PDT"
+	}]);
+	assert.dateFormatWithTimezone( date, "zzz", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "PDT"
+	}]);
+	assert.dateFormatWithTimezone( date, "zzzz", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "Pacific Daylight Time"
+	}]);
+
+	date = new Date( 2017, 0, 1 );
+	assert.dateFormatWithTimezone( date, "zzzz", "Asia/Dubai", cldr, [{
+		type: "zone",
+		value: "Gulf Standard Time"
+	}]);
+
+	date = new Date( 2017, 6, 1 );
+	assert.dateFormatWithTimezone( date, "zzzz", "Asia/Dubai", cldr, [{
+		type: "zone",
+		value: "Gulf Standard Time"
+	}]);
+
+	// Test for two things:
+	// - daylightTzName using the zone data (primary), not the metazone (secondary try);
+	// - standardTzName being undefined, therefore requiring the O fallback properties;
+	date = new Date( "2015-06-01T12:32:46" );
+	assert.dateFormatWithTimezone( date, "z", "Europe/London", enGb, [{
+		type: "zone",
+		value: "BST"
+	}]);
+	assert.dateFormatWithTimezone( date, "zz", "Europe/London", enGb, [{
+		type: "zone",
+		value: "BST"
+	}]);
+	assert.dateFormatWithTimezone( date, "zzz", "Europe/London", enGb, [{
+		type: "zone",
+		value: "BST"
+	}]);
+	assert.dateFormatWithTimezone( date, "zzzz", "Europe/London", enGb, [{
+		type: "zone",
+		value: "British Summer Time"
+	}]);
+
+	date = new Date( "2015-01-01T12:32:46" );
+	assert.dateFormatWithTimezone( date, "z", "Europe/London", enGb, [{
 		type: "zone",
 		value: "GMT"
 	}]);
-	assert.dateFormat( date, "zz", cldr, [{
+	assert.dateFormatWithTimezone( date, "zz", "Europe/London", enGb, [{
 		type: "zone",
 		value: "GMT"
 	}]);
-	assert.dateFormat( date, "zzz", cldr, [{
+	assert.dateFormatWithTimezone( date, "zzz", "Europe/London", enGb, [{
 		type: "zone",
 		value: "GMT"
 	}]);
-	assert.dateFormat( date, "zzzz", cldr, [{
+	assert.dateFormatWithTimezone( date, "zzzz", "Europe/London", enGb, [{
 		type: "zone",
 		value: "GMT"
 	}]);
 
-	date = new FakeDate( -3 );
-	assert.dateFormat( date, "z", cldr,[{
+	// Test for country with only standard time, e.g., long: Indian Standard Time.
+	// This test also covers the case where timezone name is undefined like short timezone name for
+	// Asia/Calcutta and should fall through 'O' format.
+	// isDST === false.
+	date = new Date( 2017, 0, 1 );
+	assert.dateFormatWithTimezone( date, "z", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT-3"
+		value: "GMT+5:30"
 	}]);
-	assert.dateFormat( date, "zz", cldr,[{
+	assert.dateFormatWithTimezone( date, "zz", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT-3"
+		value: "GMT+5:30"
 	}]);
-	assert.dateFormat( date, "zzz", cldr,[{
+	assert.dateFormatWithTimezone( date, "zzz", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT-3"
+		value: "GMT+5:30"
 	}]);
-	assert.dateFormat( date, "zzzz", cldr, [{
+	assert.dateFormatWithTimezone( date, "zzzz", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT-03:00"
+		value: "India Standard Time"
 	}]);
 
-	date = new FakeDate( 11 );
-	assert.dateFormat( date, "z", cldr, [{
+	// isDST === true:
+	date = new Date( 1943, 0, 1 );
+	assert.dateFormatWithTimezone( date, "z", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT+11"
+		value: "GMT+6:30"
 	}]);
-	assert.dateFormat( date, "zz", cldr, [{
+	assert.dateFormatWithTimezone( date, "zz", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT+11"
+		value: "GMT+6:30"
 	}]);
-	assert.dateFormat( date, "zzz", cldr, [{
+	assert.dateFormatWithTimezone( date, "zzz", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT+11"
+		value: "GMT+6:30"
 	}]);
-	assert.dateFormat( date, "zzzz", cldr, [{
+
+	// Fall through to 'O' format
+	assert.dateFormatWithTimezone( date, "zzzz", "Asia/Calcutta", cldr, [{
 		type: "zone",
-		value: "GMT+11:00"
+		value: "GMT+06:30"
+	}]);
+	assert.dateFormatWithTimezone( date1, "z", "Foo/Bar", cldr, [{
+		type: "zone",
+		value: "GMT"
+	}]);
+	assert.dateFormatWithTimezone( date1, "zz", "Foo/Bar", cldr, [{
+		type: "zone",
+		value: "GMT"
+	}]);
+	assert.dateFormatWithTimezone( date1, "zzz", "Foo/Bar", cldr, [{
+		type: "zone",
+		value: "GMT"
+	}]);
+	assert.dateFormatWithTimezone( date1, "zzzz", "Foo/Bar", cldr, [{
+		type: "zone",
+		value: "GMT"
 	}]);
 });
 
@@ -1103,31 +1248,126 @@ QUnit.test( "should format timezone (O)", function( assert ) {
 	var date = new FakeDate( 0 );
 	assert.dateFormat( date, "O", cldr, [{
 		type: "zone",
-		value: "GMT"
+		value: "GMT" 
 	}]);
 	assert.dateFormat( date, "OOOO", cldr, [{
 		type: "zone",
-		value: "GMT"
+		value: "GMT" 
 	}]);
 
 	date = new FakeDate( -3 );
 	assert.dateFormat( date, "O", cldr, [{
 		type: "zone",
-		value: "GMT-3"
+		value: "GMT-3" 
 	}]);
 	assert.dateFormat( date, "OOOO", cldr, [{
 		type: "zone",
-		value: "GMT-03:00"
+		value: "GMT-03:00" 
 	}]);
 
 	date = new FakeDate( 11 );
 	assert.dateFormat( date, "O", cldr, [{
 		type: "zone",
-		value: "GMT+11"
+		value: "GMT+11" 
 	}]);
 	assert.dateFormat( date, "OOOO", cldr, [{
 		type: "zone",
-		value: "GMT+11:00"
+		value: "GMT+11:00" 
+	}]);
+
+	// TODO Support optional seconds.
+	date = new FakeDate( -7.883 );
+	assert.dateFormat( date, "O", cldr, [{
+		type: "zone",
+		value: "GMT-7:52" 
+	}]);
+	assert.dateFormat( date, "OOOO", cldr, [{
+		type: "zone",
+		value: "GMT-07:52" 
+	}]);
+
+	date = new FakeDate( 5.5 );
+	assert.dateFormat( date, "O", cldr, [{
+		type: "zone",
+		value: "GMT+5:30" 
+	}]);
+	assert.dateFormat( date, "OOOO", cldr, [{
+		type: "zone",
+		value: "GMT+05:30"
+	}]);
+});
+
+QUnit.test( "should format timezone (v)", function( assert ) {
+	var date = new Date( 2017, 5, 1 );
+	assert.dateFormatWithTimezone( date, "v", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "PT"
+	}]);
+	assert.dateFormatWithTimezone( date, "vvvv", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "Pacific Time"
+	}]);
+
+	// Use metazone.
+	assert.dateFormatWithTimezone( date, "vvvv", "America/Sao_Paulo", cldr, [{
+		type: "zone",
+		value: "Brasilia Time"
+	}]);
+
+	// Fall through 'VVVV' format.
+	assert.dateFormatWithTimezone( date, "v", "America/Sao_Paulo", cldr, [{
+		type: "zone",
+		value: "Sao Paulo Time"
+	}]);
+	assert.dateFormatWithTimezone( date, "v", "Foo/Baz", cldr, [{
+		type: "zone",
+		value: "Foo City Time"
+	}]);
+	assert.dateFormatWithTimezone( date, "vvvv", "Foo/Baz", cldr, [{
+		type: "zone",
+		value: "Foo City Time"
+	}]);
+
+	// Fall through 'O' and 'OOOO' formats.
+	assert.dateFormatWithTimezone( date, "v", "Etc/GMT+8", cldr, [{
+		type: "zone",
+		value: "GMT-8"
+	}]);
+	assert.dateFormatWithTimezone( date, "vvvv", "Etc/GMT+8", cldr, [{
+		type: "zone",
+		value: "GMT-08:00"
+	}]);
+});
+
+QUnit.test( "should format timezone (V)", function( assert ) {
+	var date = new Date( 2017, 5, 1 );
+	assert.dateFormatWithTimezone( date, "VV", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "America/Los_Angeles"
+	}]);
+	assert.dateFormatWithTimezone( date, "VVV", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "Los Angeles"
+	}]);
+	assert.dateFormatWithTimezone( date, "VVVV", "America/Los_Angeles", cldr, [{
+		type: "zone",
+		value: "Los Angeles Time"
+	}]);
+	assert.dateFormatWithTimezone( date, "VVVV", "America/Sao_Paulo", cldr, [{
+		type: "zone",
+		value: "Sao Paulo Time"
+	}]);
+
+	// Fall through 'VVV' format with "Unknown" exemplarCity.
+	assert.dateFormatWithTimezone( date, "VVV", "Foo/Bar", cldr, [{
+		type: "zone",
+		value: "Unknown City"
+	}]);
+
+	// Fall through 'OOOO' format.
+	assert.dateFormatWithTimezone( date, "VVVV", "Etc/GMT+8", cldr, [{
+		type: "zone",
+		value: "GMT-08:00"
 	}]);
 });
 
@@ -1176,18 +1416,33 @@ QUnit.test( "should format timezone (X)", function( assert ) {
 		value: "-03:00"
 	}]);
 
-	// TODO (see https://github.com/jquery/globalize/issues/339)
-	// date = new FakeDate( -7.883 );
-	// assert.dateFormat( date, "X", cldr, "-0752" );
-	// assert.dateFormat( date, "XX", cldr, "-0752" );
-	// assert.dateFormat( date, "XXX", cldr, "-07:52" );
-	// assert.dateFormat( date, "XXXX", cldr, "-075258" );
-	// assert.dateFormat( date, "XXXXX", cldr, "-07:52:58" );
+	date = new FakeDate( -7.883 );
+	assert.dateFormat( date, "X", cldr, [{
+		type: "zone",
+		value: "-0752" 
+	}]);
+	assert.dateFormat( date, "XX", cldr, [{
+		type: "zone",
+		value: "-0752" 
+	}]);
+	assert.dateFormat( date, "XXX", cldr, [{
+		type: "zone",
+		value: "-07:52" 
+	}]);
+	assert.dateFormat( date, "XXXX", cldr, [{
+		type: "zone",
+		value: "-075258" 
+	}]);
+	assert.dateFormat( date, "XXXXX", cldr, [{
+		type: "zone",
+		value: "-07:52:58" 
+	}]);
 
 	date = new FakeDate( 5.5 );
-
-	// TODO (see https://github.com/jquery/globalize/issues/339)
-	// assert.dateFormat( date, "X", cldr, "+0530" );
+	assert.dateFormat( date, "X", cldr, [{
+		type: "zone",
+		value: "+0530" 
+	}]);
 	assert.dateFormat( date, "XX", cldr, [{
 		type: "zone",
 		value: "+0530"
@@ -1273,18 +1528,34 @@ QUnit.test( "should format timezone (x)", function( assert ) {
 		value: "-03:00"
 	}]);
 
-	// TODO (see https://github.com/jquery/globalize/issues/339)
-	// date = new FakeDate( -7.883 );
-	// assert.dateFormat( date, "x", cldr, "-0752" );
-	// assert.dateFormat( date, "xx", cldr, "-0752" );
-	// assert.dateFormat( date, "xxx", cldr, "-07:52" );
-	// assert.dateFormat( date, "xxxx", cldr, "-075258" );
-	// assert.dateFormat( date, "xxxxx", cldr, "-07:52:58" );
+	date = new FakeDate( -7.883 );
+	assert.dateFormat( date, "x", cldr, [{
+		type: "zone",
+		value: "-0752" 
+	}]);
+	assert.dateFormat( date, "xx", cldr, [{
+		type: "zone",
+		value: "-0752" 
+	}]);
+	assert.dateFormat( date, "xxx", cldr, [{
+		type: "zone",
+		value: "-07:52" 
+	}]);
+	assert.dateFormat( date, "xxxx", cldr, [{
+		type: "zone",
+		value: "-075258" 
+	}]);
+	assert.dateFormat( date, "xxxxx", cldr, [{
+		type: "zone",
+		value: "-07:52:58" 
+	}]);
 
 	date = new FakeDate( 5.5 );
 
-	// TODO (see https://github.com/jquery/globalize/issues/339)
-	// assert.dateFormat( date, "x", cldr, "+0530" );
+	assert.dateFormat( date, "x", cldr, [{
+		type: "zone",
+		value: "+0530" 
+	}]);
 	assert.dateFormat( date, "xx", cldr, [{
 		type: "zone",
 		value: "+0530"
@@ -1401,7 +1672,3 @@ QUnit.test( "should format literal (')", function( assert ) {
 });
 
 });
-
-
-
-

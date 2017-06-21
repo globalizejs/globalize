@@ -1,19 +1,16 @@
 ## Globalize.load( cldrJSONData, ... )
 
-This method allows you to load CLDR JSON locale data. `Globalize.load()` is a
-proxy to `Cldr.load()`.
+This method allows you to load CLDR JSON locale data. `Globalize.load()` is a proxy to `Cldr.load()`.
 
-This method can be called as many time as needed. All passed JSON objects are
-deeply merged internally.
+This method can be called as many time as needed. All passed JSON objects are deeply merged internally.
 
 For more information, see https://github.com/rxaviers/cldrjs#readme.
 
 ### Parameters
 
-**cldrJSONData**
+#### cldrJSONData
 
-A JSON object with CLDR data. See [Getting Started](#../../../README.md#2-cldr-content)
-for more information.
+A JSON object with CLDR data. See [Getting Started](#../../../README.md#2-cldr-content) for more information.
 
 ### Example
 

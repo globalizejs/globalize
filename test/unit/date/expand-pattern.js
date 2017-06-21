@@ -43,41 +43,60 @@ QUnit.test( "should expand {skeleton: \"<skeleton>\"}", function( assert ) {
 	assert.expandPattern( de, { skeleton: "jmm" }, "HH:mm" );
 	assert.expandPattern( ru, { skeleton: "jmm" }, "H:mm" );
 
-	// Best match the whole skeleton.
+	// Best matches the whole skeleton.
 	assert.expandPattern( en, { skeleton: "hhmm" }, "hh:mm a" );
 	assert.expandPattern( en, { skeleton: "HHmm" }, "HH:mm" );
 	assert.expandPattern( en, { skeleton: "EHmss" }, "E HH:mm:ss" );
 	assert.expandPattern( en, { skeleton: "yy" }, "yy" );
 	assert.expandPattern( de, { skeleton: "yMMMMd" }, "d. MMMM y" );
 	assert.expandPattern( de, { skeleton: "MMMM" }, "LLLL" );
-	assert.expandPattern( de, { skeleton: "MMMMy" }, "MMMM y" );
+	assert.expandPattern( de, { skeleton: "yMMMM" }, "MMMM y" );
 	assert.expandPattern( de, { skeleton: "EEEE" }, "cccc" );
 	assert.expandPattern( de, { skeleton: "cccc" }, "cccc" );
-	assert.expandPattern( de, { skeleton: "EEEEMMMMd" }, "EEEE, d. MMMM" );
-	assert.expandPattern( de, { skeleton: "ccccMMMMd" }, "EEEE, d. MMMM" );
+	assert.expandPattern( de, { skeleton: "MMMMEEEEd" }, "EEEE, d. MMMM" );
+	assert.expandPattern( de, { skeleton: "MMMMccccd" }, "EEEE, d. MMMM" );
 	assert.expandPattern( de, { skeleton: "HHmm" }, "HH:mm" );
 	assert.expandPattern( de, { skeleton: "EEEEHHmm" }, "EEEE, HH:mm" );
 	assert.expandPattern( de, { skeleton: "EEEEHmm" }, "EEEE, HH:mm" );
 	assert.expandPattern( de, { skeleton: "ccccHmm" }, "EEEE, HH:mm" );
 	assert.expandPattern( ru, { skeleton: "yMMMMd" }, "d MMMM y 'г'." );
 	assert.expandPattern( ru, { skeleton: "MMMM" }, "LLLL" );
-	assert.expandPattern( ru, { skeleton: "MMMMy" }, "LLLL y 'г'." );
+	assert.expandPattern( ru, { skeleton: "yMMMM" }, "LLLL y 'г'." );
 	assert.expandPattern( ru, { skeleton: "EEEE" }, "cccc" );
 	assert.expandPattern( ru, { skeleton: "cccc" }, "cccc" );
-	assert.expandPattern( ru, { skeleton: "EEEEMMMMd" }, "cccc, d MMMM" );
-	assert.expandPattern( ru, { skeleton: "ccccMMMMd" }, "cccc, d MMMM" );
+	assert.expandPattern( ru, { skeleton: "MMMMEEEEd" }, "cccc, d MMMM" );
+	assert.expandPattern( ru, { skeleton: "MMMMccccd" }, "cccc, d MMMM" );
 	assert.expandPattern( ru, { skeleton: "HHmm" }, "HH:mm" );
 	assert.expandPattern( ru, { skeleton: "EEEEHHmm" }, "EEEE HH:mm" );
 	assert.expandPattern( ru, { skeleton: "EEEEHmm" }, "EEEE HH:mm" );
 	assert.expandPattern( ru, { skeleton: "ccccHHmm" }, "EEEE HH:mm" );
 	assert.expandPattern( ru, { skeleton: "ccccHmm" }, "EEEE HH:mm" );
 
-	// Best match the date and time parts individually then combine together.
+	// Best matches the date and time parts individually then combine them together.
 	assert.expandPattern( en, { skeleton: "GyMMMEdhms" }, "E, MMM d, y G, h:mm:ss a" );
 	assert.expandPattern( en, { skeleton: "MMMMEdhm" }, "E, MMMM d 'at' h:mm a" );
 	assert.expandPattern( en, { skeleton: "MMMMh" }, "LLLL 'at' h a" );
 	assert.expandPattern( de, { skeleton: "MMMMEdhm" }, "E, d. MMMM 'um' h:mm a" );
 	assert.expandPattern( ru, { skeleton: "MMMMEdhm" }, "ccc, d MMMM, h:mm a" );
+});
+
+QUnit.test( "should throw exception on invalid skeletons", function( assert ) {
+	// Invalid characters.
+	assert.throws(function() {
+		expandPattern({ skeleton: "MMM d" }, en );
+	});
+	assert.throws(function() {
+		expandPattern({ skeleton: "MM/dd" }, en );
+	});
+
+	// Invalid order.
+	assert.throws(function() {
+		expandPattern({ skeleton: "dM" }, en );
+	});
+	assert.throws(function() {
+		expandPattern({ skeleton: "My" }, en );
+		expandPattern({ skeleton: "MMMy" }, en );
+	});
 });
 
 QUnit.test( "should expand {date: \"(full, ...)\"}", function( assert ) {

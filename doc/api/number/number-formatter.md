@@ -2,66 +2,47 @@
 
 Return a function that formats a number according to the given options.
 
-The returned function is invoked with one argument: the Number `value` to be
-formatted.
+The returned function is invoked with one argument: the Number `value` to be formatted.
 
 ### Parameters
 
-**options** Optional
+#### options.style
 
-A JSON object including none or any of the following options.
+Optional. String `decimal` (default), or `percent`.
 
-> **style** Optional
->
-> String `decimal` (default), or `percent`.
->
-> **minimumIntegerDigits** Optional
->
-> Non-negative integer Number value indicating the minimum integer digits to be
-> used. Numbers will be padded with leading zeroes if necessary.
->
-> **minimumFractionDigits** and **maximumFractionDigits** Optional
->
-> Non-negative integer Number values indicating the minimum and maximum fraction
-> digits to be used. Numbers will be rounded or padded with trailing zeroes if
-> necessary. Either one or both of these properties must be present. If they
-> are, they will override minimum and maximum fraction digits derived from the
-> CLDR patterns.
->
-> **minimumSignificantDigits** and **maximumSignificantDigits** Optional
->
-> Positive integer Number values indicating the minimum and maximum fraction
-> digits to be shown. Either none or both of these properties are present. If
-> they are, they override minimum and maximum integer and fraction digits. The
-> formatter uses however many integer and fraction digits are required to
-> display the specified number of significant digits.
->
-> **round** Optional
->
-> String with rounding method `ceil`, `floor`, `round` (default), or `truncate`.
->
-> **useGrouping** Optional
->
-> Boolean (default is true) value indicating whether a grouping separator should
-> be used.
->
-> **compact** Optional
->
-> String `short` or `long` indicating which compact number format should be used
-> to represent the number.
+#### options.minimumIntegerDigits 
+
+Optional. Non-negative integer Number value indicating the minimum integer digits to be used. Numbers will be padded with leading zeroes if necessary.
+
+#### options.minimumFractionDigits, options.maximumFractionDigits
+
+Optional. Non-negative integer Number values indicating the minimum and maximum fraction digits to be used. Numbers will be rounded or padded with trailing zeroes if necessary. Either one or both of these properties must be present. If they are, they will override minimum and maximum fraction digits derived from the CLDR patterns.
+
+#### options.minimumSignificantDigits, options.maximumSignificantDigits
+
+Optional. Positive integer Number values indicating the minimum and maximum fraction digits to be shown. Either none or both of these properties are present. If they are, they override minimum and maximum integer and fraction digits. The formatter uses however many integer and fraction digits are required to display the specified number of significant digits.
+
+#### options.round
+
+Optional. String with rounding method `ceil`, `floor`, `round` (default), or `truncate`.
+
+#### options.useGrouping
+
+Optional. Boolean (default is true) value indicating whether a grouping separator should be used.
+
+#### options.compact
+
+Optional. String `short` or `long` indicating which compact number format should be used to represent the number.
 
 ### Examples
 
 #### Static Formatter
 
-Prior to using any number methods, you must load
-`cldr/main/{locale}/numbers.json` and `cldr/supplemental/numberingSystems.json`.
-Read [CLDR content][] if you need more information.
+Prior to using any number methods, you must load `cldr/main/{locale}/numbers.json` and `cldr/supplemental/numberingSystems.json`. Read [CLDR content][] if you need more information.
 
 [CLDR content]: ../../../README.md#2-cldr-content
 
-You can use the static method `Globalize.numberFormatter()`, which uses the
-default locale.
+You can use the static method `Globalize.numberFormatter()`, which uses the default locale.
 
 ```javascript
 var formatter;

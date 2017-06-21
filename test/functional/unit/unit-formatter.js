@@ -95,38 +95,4 @@ QUnit.test( "should accept custom number formatter", function( assert ) {
 	assert.equal( deUnitFormatter( 3.14159 ), "3,14 Meter" );
 });
 
-QUnit.test( "should allow for runtime compilation", function( assert ) {
-	util.assertRuntimeBind(
-		assert,
-		Globalize.unitFormatter( "day", { form: "long" } ),
-		"b1844277225",
-		"Globalize(\"en\").unitFormatter(\"day\",{\"form\":\"long\"})",
-		function( runtimeArgs ) {
-			util.assertRuntimeBind(
-				assert,
-				runtimeArgs[ 0 ],
-				"b468386326",
-				"Globalize(\"en\").numberFormatter({})",
-				function() {}
-			);
-			util.assertRuntimeBind(
-				assert,
-				runtimeArgs[ 1 ],
-				"a1662346136",
-				"Globalize(\"en\").pluralGenerator({})",
-				function() {}
-			);
-			assert.deepEqual( runtimeArgs[ 2 ], {
-				"compoundUnitPattern": "{0} per {1}",
-				"unitProperties": {
-					"displayName": "days",
-					"one": "{0} day",
-					"other": "{0} days",
-					"perUnitPattern": "{0} per day"
-				}
-			});
-		}
-	);
-});
-
 });

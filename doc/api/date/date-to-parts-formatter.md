@@ -1,19 +1,16 @@
 ## .dateToPartsFormatter( [options] ) ➜ function( value )
 
-Return a function that formats a date into parts tokens according to the given
-`options`. The default formatting is numeric year, month, and day (i.e., `{
-skeleton: "yMd" }`.
+Return a function that formats a date into parts tokens according to the given `options`. The default formatting is numeric year, month, and day (i.e., `{ skeleton: "yMd" }`.
 
-The returned function is invoked with one argument: the Date instance `value` to
-be formatted.
+The returned function is invoked with one argument: the Date instance `value` to be formatted.
 
 ### Parameters
 
-**options**
+#### options
 
 Please, see [.dateFormatter() options](./date-formatter.md#parameters).
 
-**value**
+#### value
 
 Date instance to be formatted, eg. `new Date()`;
 
@@ -78,16 +75,11 @@ Possible types are the following:
 
 ### Example
 
-Prior to using any date methods, you must load
-`cldr/main/{locale}/ca-gregorian.json`, `cldr/main/{locale}/timeZoneNames.json`,
-`cldr/supplemental/timeData.json`, `cldr/supplemental/weekData.json`, and the
-CLDR content required by the number module. Read [CLDR content][] if you need
-more information.
+Prior to using any date methods, you must load `cldr/main/{locale}/ca-gregorian.json`, `cldr/main/{locale}/timeZoneNames.json`, `cldr/supplemental/timeData.json`, `cldr/supplemental/weekData.json`, and the CLDR content required by the number module. Read [CLDR content][] if you need more information.
 
 [CLDR content]: ../../../README.md#2-cldr-content
 
-You can use the static method `Globalize.dateToPartsFormatter()`, which uses the
-default locale.
+You can use the static method `Globalize.dateToPartsFormatter()`, which uses the default locale.
 
 ```javascript
 var formatter;
@@ -130,10 +122,7 @@ deFormatter( new Date( 2010, 10, 30 ) );
 // ]
 ```
 
-The information is available separately and it can be formatted and concatenated
-again in a customized way. For example by using [`Array.prototype.map()`][],
-[arrow functions][], a [switch statement][], [template literals][], and
-[`Array.prototype.reduce()`][].
+The information is available separately and it can be formatted and concatenated again in a customized way. For example by using [`Array.prototype.map()`][], [arrow functions][], a [switch statement][], [template literals][], and [`Array.prototype.reduce()`][].
 
 [`Array.prototype.map()`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 [arrow functions]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
@@ -156,12 +145,9 @@ formatter( new Date( 2010, 10, 30, 17, 55 ) ).map(({type, value}) => {
 // > "11/30/<strong>10</strong>, 5:55 PM"
 ```
 
-Please, see [.dateFormatter() example](./date-formatter.md#example) for
-additional examples such as using `date`, `time`, `datetime`, and `skeleton`
-options.
+Please, see [.dateFormatter() example](./date-formatter.md#example) for additional examples such as using `date`, `time`, `datetime`, and `skeleton` options.
 
-For improved performance on iterations, first create the formatter. Then, reuse
-it on each loop.
+For improved performance on iterations, first create the formatter. Then, reuse it on each loop.
 
 ```javascript
 // In an application, this array could have a few hundred entries

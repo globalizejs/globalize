@@ -138,24 +138,4 @@ QUnit.test( "should return a currency formatter, overriden by user options",
 	})( 12345 ), "12,345 Chilean units of account (UF)" );
 });
 
-QUnit.test( "should allow for runtime compilation", function( assert ) {
-	extraSetup();
-
-	util.assertRuntimeBind(
-		assert,
-		Globalize.currencyFormatter( "USD" ),
-		"b1223214380",
-		"Globalize(\"en\").currencyFormatter(\"USD\",{})",
-		function( runtimeArgs ) {
-			util.assertRuntimeBind(
-				assert,
-				runtimeArgs[ 0 ],
-				"b957349717",
-				"Globalize(\"en\").numberFormatter({\"raw\":\"\'$\'#,##0.00\"})",
-				function() {}
-			);
-		}
-	);
-});
-
 });

@@ -1,39 +1,34 @@
-## .unitFormatter( unit, options ) ➜ function( value )
+## .unitFormatter( unit [, options] ) ➜ function( value )
 
-Returns a function that formats a unit according to the given unit, options, and the
-default/instance locale.
+Returns a function that formats a unit according to the given unit, options, and the default/instance locale.
 
-The returned function is invoked with one argument: the number `value` to
-be formatted.
+The returned function is invoked with one argument: the number `value` to be formatted.
 
 ### Parameters
 
-**unit**
+#### unit
 
-String value indicating the unit to be formatted. eg. "day", "week", "month", etc.
-Could also be a compound unit, eg. "mile-per-hour" or "mile/hour"
+String value indicating the unit to be formatted. eg. "day", "week", "month", etc. Could also be a compound unit, eg. "mile-per-hour" or "mile/hour"
 
-**options**
+#### options.form
 
-- form: [String] eg. "long", "short" or "narrow".
+Optional. String, e.g., `"long"` (default), `"short"` or `"narrow"`.
 
-- numberFormatter: [Function] a number formatter function. Defaults to Globalize
-  `.numberFormatter()` for the current locale using the default options.
+#### options.numberFormatter
 
-**value**
+Optional. A number formatter function. Defaults to `Globalize.numberFormatter()` for the current locale using the default options.
+
+#### value
 
 The number to be formatted.
 
 ### Example
 
-Prior to using any unit methods, you must load `cldr/main/{locale}/units.json` and the
-CLDR content required by the plural module. Read [CLDR content][] if you need
-more information.
+Prior to using any unit methods, you must load `cldr/main/{locale}/units.json` and the CLDR content required by the plural module. Read [CLDR content][] if you need more information.
 
 [CLDR content]: ../../../README.md#2-cldr-content
 
-You can use the static method `Globalize.unitFormatter()`, which uses the default
-locale.
+You can use the static method `Globalize.unitFormatter()`, which uses the default locale.
 
 ```javascript
 var customNumberFormatter, formatter;
