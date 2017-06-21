@@ -6,18 +6,19 @@ define([
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/es/numbers.json",
 	"json!cldr-data/main/fa/numbers.json",
+	"json!cldr-data/main/hu/numbers.json",
 	"json!cldr-data/main/zh/numbers.json",
 	"json!cldr-data/supplemental/likelySubtags.json",
 	"json!cldr-data/supplemental/numberingSystems.json",
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, format, properties, arNumbers, enNumbers, esNumbers, faNumbers, zhNumbers,
-	likelySubtags, numberingSystems ) {
+], function( Cldr, format, properties, arNumbers, enNumbers, esNumbers, faNumbers, huNumbers,
+	zhNumbers, likelySubtags, numberingSystems ) {
 
 // 1: Earth average diameter according to:
 // http://www.wolframalpha.com/input/?i=earth+diameter
-var ar, en, es, fa, zh,
+var ar, en, es, fa, hu, zh,
 	deci = 0.1,
 	earthDiameter = 12735, /* 1 */
 	pi = 3.14159265359;
@@ -27,6 +28,7 @@ Cldr.load(
 	enNumbers,
 	esNumbers,
 	faNumbers,
+	huNumbers,
 	zhNumbers,
 	likelySubtags,
 	numberingSystems
@@ -36,6 +38,7 @@ ar = new Cldr( "ar" );
 en = new Cldr( "en" );
 es = new Cldr( "es" );
 fa = new Cldr( "fa" );
+hu = new Cldr( "hu" );
 zh = new Cldr( "zh-u-nu-native" );
 
 QUnit.module( "Number Format" );
@@ -107,6 +110,14 @@ QUnit.test( "integers should format in compact mode", function( assert ) {
 	assert.equal( format( -1273500, properties( "#0", en, { compact: "long" } ) ), "-1 million" );
 	assert.equal( format( -1273500, properties( "#0;(#0)", en, { compact: "short" } ) ), "(1M)" );
 	assert.equal( format( -1273500, properties( "#0;(#0)", en, { compact: "long" } ) ), "(1 million)" );
+
+	// some hungarian short formats have a terminating E, which is treated as a special
+	// character in non-compact formats
+	// \u00A0 is a unicode non-breaking space
+	assert.equal( format( 1273, properties( "#0", hu, { compact: "short" } ) ), "1\u00A0E" );
+	assert.equal( format( 1273, properties( "#0", hu, { compact: "long" } ) ), "1 ezer" );
+	assert.equal( format(9000000, properties( "#0", hu, { compact: "short" } ) ), "9\u00A0M" );
+	assert.equal( format(9000000, properties( "#0", hu, { compact: "long" } ) ), "9 millió" );
 });
 
 QUnit.test( "decimals should format in compact mode", function( assert ) {
