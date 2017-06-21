@@ -70,8 +70,11 @@ return function( number, properties, pluralGenerator ) {
 		number *= 1000;
 	}
 
-	var compactPattern, compactDigits, compactProperties, divisor, pluralForm, rounded;
+	var compactPattern, compactDigits, compactProperties, divisor, pluralForm, rounded,
+	originalNumber;
+
 	if ( compactMap ) {
+		originalNumber = number;
 		var zeroes = Array(Math.floor(number).toString().length).join( "0" );
 		if ( zeroes.length >= 3 ) {
 			// use default plural form to perform initial decimal shift
@@ -85,11 +88,18 @@ return function( number, properties, pluralGenerator ) {
 				minimumFractionDigits, maximumFractionDigits, round, roundIncrement ));
 			pluralForm = pluralGenerator ? pluralGenerator(rounded) : "other";
 			compactPattern = compactMap[ "1" + zeroes + "-count-" + pluralForm ] || compactPattern;
-			compactProperties = compactPattern.match( numberCompactPatternRe );
 
-			// update prefix/suffix with compact prefix/suffix
-			prefix += compactProperties[ 1 ];
-			suffix = compactProperties[ 11 ] + suffix;
+			// Some languages specify no pattern for certain digit lengths (represented by "0" pattern).
+			// If no pattern, return original number uncompacted. Otherwise, apply compact pattern.
+			if ( compactPattern === "0" ) {
+				number = originalNumber;
+			} else {
+				compactProperties = compactPattern.match( numberCompactPatternRe );
+			
+				// update prefix/suffix with compact prefix/suffix
+				prefix += compactProperties[ 1 ];
+				suffix = compactProperties[ 11 ] + suffix;
+			}
 		}
 	}
 

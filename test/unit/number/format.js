@@ -18,7 +18,7 @@ define([
 
 // 1: Earth average diameter according to:
 // http://www.wolframalpha.com/input/?i=earth+diameter
-var ar, en, es, fa, hu, zh,
+var ar, en, es, fa, hu, zh, zhSimplified,
 	deci = 0.1,
 	earthDiameter = 12735, /* 1 */
 	pi = 3.14159265359;
@@ -40,6 +40,7 @@ es = new Cldr( "es" );
 fa = new Cldr( "fa" );
 hu = new Cldr( "hu" );
 zh = new Cldr( "zh-u-nu-native" );
+zhSimplified = new Cldr( "zh" );
 
 QUnit.module( "Number Format" );
 
@@ -146,6 +147,13 @@ QUnit.test( "decimals should format in compact mode", function( assert ) {
 	assert.equal( format( -1273500, properties( "#0.#", en, { compact: "long" } ) ), "-1.3 million" );
 	assert.equal( format( -1273500, properties( "#0.#;(#0.#)", en, { compact: "short" } ) ), "(1.3M)" );
 	assert.equal( format( -1273500, properties( "#0.#;(#0.#)", en, { compact: "long" } ) ), "(1.3 million)" );
+});
+
+QUnit.test( "integers should handle default pattern in compact mode", function( assert ) {
+	assert.equal( format( 2737, properties( "#0.#", zhSimplified, { compact: "short" } ) ), "2737" );
+	assert.equal( format( 2737, properties( "#0.#", zhSimplified, { compact: "long" } ) ), "2737" );
+	assert.equal( format( 27371, properties( "#0.#", zhSimplified, { compact: "short" } ) ), "2.7万" );
+	assert.equal( format( 27371, properties( "#0.#", zhSimplified, { compact: "long" } ) ), "2.7万" );
 });
 
 QUnit.test( "percents should format in compact mode", function( assert ) {
