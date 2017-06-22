@@ -6,7 +6,7 @@ define([
 	"./symbol/map",
 	"./symbol/name",
 	"../util/number/round"
-], function( compactMap, numberNumberingSystemDigitsMap, numberPatternProperties, numberSymbol,
+], function( numberCompact, numberNumberingSystemDigitsMap, numberPatternProperties, numberSymbol,
 	numberSymbolMap, numberSymbolName, numberRound ) {
 
 /**
@@ -65,7 +65,7 @@ return function( pattern, cldr, options ) {
 	]);
 
 	if ( options.compact ) {
-		properties[20] = compactMap( options.compact, cldr );
+		properties[20] = numberCompact( options.compact, cldr );
 	}
 
 	getOptions( "minimumIntegerDigits", 2 );
