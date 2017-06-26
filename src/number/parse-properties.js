@@ -121,8 +121,9 @@ return function( pattern, cldr, options ) {
 	if ( !isNaN( minimumSignificantDigits * maximumSignificantDigits ) || /* 1 */
 				maximumFractionDigits /* 2 */ ) {
 
+		// 1: Handle trailing decimal separator, e.g., `"1." => `1``.
 		aux = decimalSymbolRe + digitsRe + "+";
-		numberTokenizer = numberTokenizer + "(" + aux + ")?" +
+		numberTokenizer = numberTokenizer + "(" + aux + "|" + decimalSymbolRe /* 1 */ + ")?" +
 
 			// Handle non-padded decimals, e.g., `".12"` => `0.12` by making the integer part
 			// optional.

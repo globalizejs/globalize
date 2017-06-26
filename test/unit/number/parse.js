@@ -109,6 +109,12 @@ QUnit.test( "should parse zero-padded decimals", function( assert ) {
 	assert.equal( parse( "0.10", properties( "0.00", en ) ), 0.1 );
 });
 
+QUnit.test( "should parse trailing decimal separator", function( assert ) {
+	assert.equal( parse( "1.", properties( "0.0", en ) ), 1 );
+	assert.equal( parse( "١٫", properties( "0.0", ar ) ), 1 );
+	assert.equal( parse( "1,", properties( "0.0", pt ) ), 1 );
+});
+
 QUnit.test( "should parse non-padded decimals", function( assert ) {
 	assert.equal( parse( ".14159", properties( "0.0", en ) ), 0.14159 );
 	assert.equal( parse( ".752", properties( "0.0", en ) ), 0.752 );
