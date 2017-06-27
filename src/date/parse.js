@@ -293,9 +293,7 @@ return function( value, tokens, properties ) {
 
 	// Get date back from globalize date.
 	if ( date instanceof ZonedDateTime ) {
-
-		// TODO can we improve this? E.g., toDate()
-		date = new Date( date.getTime() );
+		date = date.toDate();
 	}
 
 	return date;
