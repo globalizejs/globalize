@@ -35,23 +35,32 @@ return function( number, minimumIntegerDigits, minimumFractionDigits, maximumFra
 			number = round( number, { exponent: -maximumFractionDigits } );
 		}
 
-		// Use toFixed( maximumFractionDigits ) to make sure small numbers like 1e-7 are displayed
-		// using plain digits instead of scientific notation.
-		// 1: Remove leading decimal zeros.
-		// 2: Remove leading decimal separator.
-		number = number.toFixed( maximumFractionDigits )
-			.replace( /0+$/, "" ) /* 1 */
-			.replace( /\.$/, "" ) /* 2 */;
-
-		// Minimum fraction digits
-		if ( minimumFractionDigits ) {
-			number = String( number ).split( "." );
-			number[ 1 ] = stringPad( number[ 1 ] || "", minimumFractionDigits, true );
-			number = number.join( "." );
-		}
 	} else {
 		number = round( number );
-		number = String( number );
+	}
+
+	number = String( number );
+
+	// Maximum integer digits (post string phase)
+	if ( maximumFractionDigits && /e-/.test( number ) ) {
+
+		// Use toFixed( maximumFractionDigits ) to make sure small numbers like 1e-7 are
+		// displayed using plain digits instead of scientific notation.
+		// 1: Remove leading decimal zeros.
+		// 2: Remove leading decimal separator.
+		// Note: String() is still preferred so it doesn't mess up with a number precision
+		// unnecessarily, e.g., (123456789.123).toFixed(10) === "123456789.1229999959",
+		// String(123456789.123) === "123456789.123".
+		number = ( +number ).toFixed( maximumFractionDigits )
+			.replace( /0+$/, "" ) /* 1 */
+			.replace( /\.$/, "" ) /* 2 */;
+	}
+
+	// Minimum fraction digits (post string phase)
+	if ( minimumFractionDigits ) {
+		number = number.split( "." );
+		number[ 1 ] = stringPad( number[ 1 ] || "", minimumFractionDigits, true );
+		number = number.join( "." );
 	}
 
 	// Minimum integer digits

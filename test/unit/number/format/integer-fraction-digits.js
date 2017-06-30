@@ -79,6 +79,9 @@ QUnit.test( "should handle small numbers", function( assert ) {
 	assert.equal( formatIntegerFractionDigits( 2e-7, 1, 0, 10, round, null ), "0.0000002" );
 	assert.equal( formatIntegerFractionDigits( 1e-20, 1, 0, 20, round, null ), "0.00000000000000000001" );
 	assert.equal( formatIntegerFractionDigits( 9e-8, 1, 0, 7, round, null ), "0.0000001" );
+
+	// Make sure precision isn't wrongly messed up, e.g., 123456789.1229999959.
+	assert.equal( formatIntegerFractionDigits( 123456789.123, 1, 0, 10, round, null ), "123456789.123" );
 });
 
 });
