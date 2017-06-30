@@ -35,6 +35,14 @@ return function( number, minimumIntegerDigits, minimumFractionDigits, maximumFra
 			number = round( number, { exponent: -maximumFractionDigits } );
 		}
 
+		// Use toFixed( maximumFractionDigits ) to make sure small numbers like 1e-7 are displayed
+		// using plain digits instead of scientific notation.
+		// 1: Remove leading decimal zeros.
+		// 2: Remove leading decimal separator.
+		number = number.toFixed( maximumFractionDigits )
+			.replace( /0+$/, "" ) /* 1 */
+			.replace( /\.$/, "" ) /* 2 */;
+
 		// Minimum fraction digits
 		if ( minimumFractionDigits ) {
 			number = String( number ).split( "." );
@@ -43,9 +51,8 @@ return function( number, minimumIntegerDigits, minimumFractionDigits, maximumFra
 		}
 	} else {
 		number = round( number );
+		number = String( number );
 	}
-
-	number = String( number );
 
 	// Minimum integer digits
 	if ( minimumIntegerDigits ) {

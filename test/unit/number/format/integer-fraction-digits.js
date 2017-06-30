@@ -74,4 +74,11 @@ QUnit.test( "should handle inaccurate floating point arithmetics", function( ass
 	assert.equal( formatIntegerFractionDigits( 0.00015, 1, 1, 4, round, null ), "0.0002" );
 });
 
+// `2e-7` => `"2,e-7"` (#750)
+QUnit.test( "should handle small numbers", function( assert ) {
+	assert.equal( formatIntegerFractionDigits( 2e-7, 1, 0, 10, round, null ), "0.0000002" );
+	assert.equal( formatIntegerFractionDigits( 1e-20, 1, 0, 20, round, null ), "0.00000000000000000001" );
+	assert.equal( formatIntegerFractionDigits( 9e-8, 1, 0, 7, round, null ), "0.0000001" );
+});
+
 });
