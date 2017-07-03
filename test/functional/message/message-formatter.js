@@ -99,7 +99,11 @@ QUnit.module( ".messageFormatter( path )", {
 				date: {
 					date: "date: {x, date, long}",
 					time: "time: {x, time, long}",
-					datetime: "datetime: {x, datetime, long}"
+					datetime: "datetime: {x, datetime, long}",
+					raw: "date raw: {x, date,  y-M-d HH:mm:ss zzzz  }",
+					rawComma: "date raw comma: {x, date,  y-M-d, HH:mm:ss zzzz  }",
+					skeleton: "date skeleton: {x, date, skeleton, GyMMMEdhms}",
+					skeletonInvalid: "date skeleton: {x, date, skeleton}"
 				},
 				relativetime: {
 					default: "relativetime: {x, relativetime, minute}",
@@ -266,6 +270,18 @@ QUnit.test( "should support formatters in messages", function( assert ) {
 	assert.messageFormatter( "en", "date/datetime", {
 		x: date,
 	}, "datetime: September 15, 2010 at 5:35:07 PM GMT+2" );
+	assert.messageFormatter( "en", "date/raw", {
+		x: date,
+	}, "date raw:   2010-9-15 17:35:07 GMT+02:00  " );
+	assert.messageFormatter( "en", "date/rawComma", {
+		x: date,
+	}, "date raw comma:   2010-9-15, 17:35:07 GMT+02:00  " );
+	assert.messageFormatter( "en", "date/skeleton", {
+		x: date,
+	}, "date skeleton: Wed, Sep 15, 2010 AD, 5:35:07 PM" );
+	assert.messageFormatter( "en", "date/skeletonInvalid", {
+		x: date,
+	}, "date skeleton:  7174l4ton" );
 
 	assert.messageFormatter( "en", "relativetime/default", {
 		x: 2,

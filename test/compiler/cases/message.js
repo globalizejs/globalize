@@ -62,7 +62,11 @@ module.exports = {
 				date: {
 					date: "date: {x, date, long}",
 					time: "time: {x, time, long}",
-					datetime: "datetime: {x, datetime, long}"
+					datetime: "datetime: {x, datetime, long}",
+					raw: "date raw: {x, date,  y-M-d HH:mm:ss zzzz  }",
+					rawComma: "date raw comma: {x, date,  y-M-d, HH:mm:ss zzzz  }",
+					skeleton: "date skeleton: {x, date, skeleton, GyMMMEdhms}",
+					skeletonInvalid: "date skeleton: {x, date, skeleton}"
 				},
 				relativetime: {
 					default: "relativetime: {x, relativetime, minute}",

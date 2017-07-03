@@ -198,6 +198,10 @@ Compiler.prototype.compile = function( src, lc ) {
 
     // TODO: pc is only needed for validation, disable for now.
     var pc = { cardinal: [], ordinal: [] };
+
+    // Enable icu-compatible function parameter parsing so that commas
+    // can be used inside custom date formats.
+    pc.strictFunctionParams = true;
     var r = Parser.parse( src, pc ).map( function( token ) { return this.token( token ); }, this );
     return "function(d) { return " + ( r.join( " + " ) || "\"\"" ) + "; }";
 };

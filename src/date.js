@@ -55,12 +55,14 @@ function validateOptionsPreset( options ) {
 	validateOptionsPresetEach( "datetime", options );
 }
 
+var presets = [ "short", "medium", "long", "full" ];
+
 function validateOptionsPresetEach( type, options ) {
 	var value = options[ type ];
 	validate(
 		"E_INVALID_OPTIONS",
 		"Invalid `{{type}: \"{value}\"}`.",
-		value === undefined || [ "short", "medium", "long", "full" ].indexOf( value ) !== -1,
+		value === undefined || presets.indexOf( value ) !== -1,
 		{ type: type, value: value }
 	);
 }
@@ -214,10 +216,18 @@ Globalize.prototype.dateToPartsFormatter = function( options ) {
 	Globalize.addMessageFormatterFunction( type, function( p ) {
 		var options = {};
 		if ( p ) {
-			options[type] = p;
+			var trimmed = p.trim();
+			if ( presets.indexOf( trimmed ) !== -1 ) {
+				options[type] = trimmed;
+			} else if ( trimmed.indexOf( "skeleton" ) === 0 && trimmed.indexOf( "," ) !== -1 ) {
+				var splitArgs = p.split( ",", 2 );
+				options.skeleton = splitArgs[1].trim();
+			} else {
+				options.raw = p;
+			}
 		}
 		return this.dateFormatter( options );
-	});
+	}, { split: false, trim: false });
 });
 
 /**

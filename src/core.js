@@ -17,12 +17,13 @@ define([
 	"./util/object/extend",
 	"./util/regexp/escape",
 	"./util/string/pad",
+	"./util/formatterfn/options",
 
 	"cldr/event"
 ], function( Cldr, createError, formatMessage, runtimeBind, validate, validateCldr,
 	validateDefaultLocale, validateParameterPresence, validateParameterRange, validateParameterType,
 	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
-	isPlainObject, objectExtend, regexpEscape, stringPad ) {
+	isPlainObject, objectExtend, regexpEscape, stringPad, formatterfnOptions ) {
 
 function validateLikelySubtags( cldr ) {
 	cldr.once( "get", validateCldr );
@@ -88,8 +89,8 @@ Globalize.locale = function( locale ) {
 
 Globalize._messageFmts = {};
 
-Globalize.addMessageFormatterFunction = function( name, fn ) {
-	Globalize._messageFmts[name] = fn;
+Globalize.addMessageFormatterFunction = function( name, fn, options ) {
+	Globalize._messageFmts[name] = formatterfnOptions( fn, options );
 };
 
 /**
