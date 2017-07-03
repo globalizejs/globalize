@@ -6,8 +6,8 @@
   },
   "devDependencies": {
     "cldr-data": ">=25",
-    "globalize": ">=1.3.0-a <2.0.0",
-    "globalize-compiler": ">= 0.3.0-a <0.4.0",
+    "globalize": "^1.3.0",
+    "globalize-compiler": "^1.0.0",
     "iana-tz-data": "^2017.1.0",
     "jquery": "latest"
   },
