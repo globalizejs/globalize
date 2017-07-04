@@ -3,6 +3,7 @@ define([
 	"./common/create-error",
 	"./common/format-message",
 	"./common/runtime-bind",
+	"./common/runtime-version",
 	"./common/validate",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
@@ -19,7 +20,7 @@ define([
 	"./util/string/pad",
 
 	"cldr/event"
-], function( Cldr, createError, formatMessage, runtimeBind, validate, validateCldr,
+], function( Cldr, createError, formatMessage, runtimeBind, runtimeVersion, validate, validateCldr,
 	validateDefaultLocale, validateParameterPresence, validateParameterRange, validateParameterType,
 	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
 	isPlainObject, objectExtend, regexpEscape, stringPad ) {
@@ -85,6 +86,8 @@ Globalize.locale = function( locale ) {
 	}
 	return this.cldr;
 };
+
+Globalize.runtimeVersion = runtimeVersion;
 
 /**
  * Optimization to avoid duplicating some internal functions across modules.
