@@ -127,6 +127,14 @@ QUnit.test( "should return a currency formatter, overriden by user options",
 		minimumFractionDigits: 0
 	})( 12345 ), "CLF 12,345" );
 
+	assert.equal( Globalize.currencyFormatter( "JPY", {
+		maximumFractionDigits: 0
+	})( 12345 ), "¥12,345" );
+
+	assert.equal( Globalize.currencyFormatter( "JPY", {
+		minimumFractionDigits: 2
+	})( 12345 ), "¥12,345.00" );
+
 	assert.equal( Globalize.currencyFormatter( "CLF", {
 		style: "code",
 		minimumFractionDigits: 0
