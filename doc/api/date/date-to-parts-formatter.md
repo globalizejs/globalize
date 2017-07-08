@@ -21,7 +21,7 @@ An Array of objects containing the formatted date in parts. The returned structu
 ```js
 [
   { type: "day", value: "17" },
-  { type: "weekday", value "Monday" }
+  { type: "weekday", value: "Monday" }
 ]
 ```
 
