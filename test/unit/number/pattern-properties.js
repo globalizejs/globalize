@@ -32,13 +32,13 @@ QUnit.test( "should return minimumIntegerDigits", function( assert ) {
 });
 
 QUnit.test( "should return minimumFractionDigits", function( assert ) {
-	assert.equal( properties( "0", en )[ 3 ], undefined );
+	assert.equal( properties( "0", en )[ 3 ], 0 );
 	assert.equal( properties( "0.##", en )[ 3 ], 0 );
 	assert.equal( properties( "0.0#", en )[ 3 ], 1 );
 });
 
 QUnit.test( "should return maximumFractionDigits", function( assert ) {
-	assert.equal( properties( "0", en )[ 4 ], undefined );
+	assert.equal( properties( "0", en )[ 4 ], 0 );
 	assert.equal( properties( "0.##", en )[ 4 ], 2 );
 	assert.equal( properties( "0.0#", en )[ 4 ], 2 );
 });
