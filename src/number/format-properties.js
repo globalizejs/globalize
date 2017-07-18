@@ -1,12 +1,13 @@
 define([
+	"./compact",
 	"./numbering-system-digits-map",
 	"./pattern-properties",
 	"./symbol",
 	"./symbol/map",
 	"./symbol/name",
 	"../util/number/round"
-], function( numberNumberingSystemDigitsMap, numberPatternProperties, numberSymbol, numberSymbolMap,
-	numberSymbolName, numberRound ) {
+], function( numberCompact, numberNumberingSystemDigitsMap, numberPatternProperties, numberSymbol,
+	numberSymbolMap, numberSymbolName, numberRound ) {
 
 /**
  * formatProperties( pattern, cldr [, options] )
@@ -63,6 +64,10 @@ return function( pattern, cldr, options ) {
 		numberNumberingSystemDigitsMap( cldr )
 	]);
 
+	if ( options.compact ) {
+		properties[20] = numberCompact( options.compact, cldr );
+	}
+
 	getOptions( "minimumIntegerDigits", 2 );
 	getOptions( "minimumFractionDigits", 3 );
 	getOptions( "maximumFractionDigits", 4 );
@@ -98,6 +103,7 @@ return function( pattern, cldr, options ) {
 	// 17: @nanSymbol [String] NaN symbol.
 	// 18: @symbolMap [Object] A bunch of other symbols.
 	// 19: @nuDigitsMap [Array] Digits map if numbering system is different than `latn`.
+	// 20: @compactMap [Object] Map of per-digit-count format patterns for specified compact mode.
 	return properties;
 };
 
