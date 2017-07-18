@@ -121,6 +121,11 @@ QUnit.test( "integers should format in compact mode", function( assert ) {
 	assert.equal( format(9000000, properties( "#0", hu, { compact: "long" } ) ), "9 millió" );
 });
 
+QUnit.test( "unsupported numbers should apply no compacting in compact mode", function( assert ) {
+	assert.equal( format( 0.01, properties( "#0.##", en, { compact: "short" } ) ), "0.01" )
+	assert.equal( format( 1234000000000000, properties( "#0", en, { compact: "short" } ) ), "1234000000000000" )
+});
+
 QUnit.test( "decimals should format in compact mode", function( assert ) {
 	assert.equal( format( 273.7, properties( "#0.#", en, { compact: "short" } ) ), "273.7" );
 	assert.equal( format( 273.7, properties( "#0.#", en, { compact: "long" } ) ), "273.7" );
