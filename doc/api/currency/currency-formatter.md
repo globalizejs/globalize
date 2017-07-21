@@ -20,6 +20,8 @@ Number to be formatted, eg. `9.99`.
 
 ### Example
 
+#### Static Formatter
+
 Prior to using any currency methods, you must load `cldr/main/{locale}/currencies.json`, `cldr/supplemental/currencyData.json`, and the CLDR content required by the number module. If using plural messages, you also must load the CLDR content required by the plural module. Read [CLDR content][] if you need more information.
 
 [CLDR content]: ../../../README.md#2-cldr-content
@@ -36,6 +38,8 @@ formatter( 9.99 );
 // > "$9.99"
 
 ```
+
+#### Instance Formatter
 
 You can use the instance method `.currencyFormatter()`, which uses the instance locale.
 
@@ -61,6 +65,8 @@ For comparison, follow the formatting output of different symbols in different l
 | `.currencyFormatter( "JPY" )( 1 )` | `¥1`         | `1 ¥`       | `JP¥ 1`      |
 | `.currencyFormatter( "GBP" )( 1 )` | `£1.00`      | `1,00 £`    | `£ 1.00`     |
 | `.currencyFormatter( "BRL" )( 1 )` | `R$1.00`     | `1,00 R$`   | `R$ 1.00`    |
+
+#### Configuring style
 
 For the accounting variation of the symbol format, use `style: "accounting"`.
 
@@ -109,6 +115,8 @@ formatter( 9.99 );
 // > "9.99 USD"
 ```
 
+#### Configuring inherited number options
+
 Override the number of digits, grouping separators, rounding function or any other [`.numberFormatter()` options](../number/number-formatter.md).
 
 ```javascript
@@ -129,15 +137,38 @@ formatter = Globalize.currencyFormatter( "USD", {
 
 formatter( 1.491 );
 // > "$1.50"
+```
 
-formatter = Globalize.currencyFormatter( "USD", {
-  maximumFractionDigits: 0,
+#### Formatting Compact Currencies
+
+```js
+var shortFormatter = Globalize( "en" ).currencyFormatter( "USD", {
   compact: "short"
 });
 
-formatter( 12830000000 );
+var longFormatter = Globalize( "en" ).currencyFormatter( "USD", {
+  compact: "long"
+});
+
+shortFormatter( 12830000000 );
 // > "$13B"
+
+longFormatter( 12830000000 );
+// > "$13 billion"
 ```
+
+The minimumSignificantDigits and maximumSignificantDigits options are specially useful to control the number of digits to display.
+
+```js
+Globalize( "en" ).formatCurrency( 12830000000, "USD", {
+  compact: "short",
+  minimumSignificantDigits: 3,
+  maximumSignificantDigits: 3
+});
+// > "$12.8B"
+```
+
+#### Performance Suggestion
 
 For improved performance on iterations, first create the formatter. Then, reuse it on each loop.
 

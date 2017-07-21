@@ -65,6 +65,18 @@ return function( pattern, cldr, options ) {
 	]);
 
 	if ( options.compact ) {
+
+		// The compact digits number pattern is always `0+`, so override the following properties.
+		// Note: minimumIntegerDigits would actually range from `0` to `000` based on the scale of
+		// the value to be formatted, though we're always using 1 as a simplification, because the
+		// number won't be zero-padded since we chose the right format based on the scale, i.e.,
+		// we'd never see something like `003M` anyway.
+		properties[ 2 ] = negativeSuffix[ 2 ] = 1; // minimumIntegerDigits
+		properties[ 3 ] = negativeSuffix[ 3 ] = 0; // minimumFractionDigits
+		properties[ 4 ] = negativeSuffix[ 4 ] = 0; // maximumFractionDigits
+		properties[ 5 ] = negativeSuffix[ 5 ] = // minimumSignificantDigits &
+			properties[ 6 ] = negativeSuffix[ 6 ] = undefined ; // maximumSignificantDigits
+
 		properties[20] = numberCompact( options.compact, cldr );
 	}
 

@@ -149,15 +149,11 @@ Long numbers can be represented in a compact format, with `short` using abbrevia
 
 ```javascript
 var shortFormatter = Globalize( "en" ).numberFormatter({
-  compact: "short",
-  maximumFractionDigits: 0,
-  style: "decimal"
+  compact: "short"
 });
 
 var longFormatter = Globalize( "en" ).numberFormatter({
-  compact: "long",
-  maximumFractionDigits: 0,
-  style: "decimal"
+  compact: "long"
 });
 
 shortFormatter( 27588910 );
@@ -165,6 +161,17 @@ shortFormatter( 27588910 );
 
 longFormatter( 27588910 );
 // > "28 million"
+```
+
+The minimumSignificantDigits and maximumSignificantDigits options are specially useful to control the number of digits to display.
+
+```js
+Globalize( "en" ).formatNumber( 27588910, {
+  compact: "short",
+  minimumSignificantDigits: 3,
+  maximumSignificantDigits: 3
+});
+// > "27.6M"
 ```
 
 #### Configuring Rounding

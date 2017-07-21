@@ -1,11 +1,13 @@
 define([
+	"./compact-pattern-re",
 	"./format/grouping-separator",
 	"./format/integer-fraction-digits",
 	"./format/significant-digits",
 	"./pattern-re",
 	"../util/remove-literal-quotes"
-], function( numberFormatGroupingSeparator, numberFormatIntegerFractionDigits,
-	numberFormatSignificantDigits, numberPatternRe, removeLiteralQuotes ) {
+], function( numberCompactPatternRe, numberFormatGroupingSeparator,
+	numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternRe,
+	removeLiteralQuotes ) {
 
 /**
  * format( number, properties )
@@ -68,29 +70,24 @@ return function( number, properties, pluralGenerator ) {
 		number *= 1000;
 	}
 
-	var compactPattern, compactDigits, compactProperties, divisor, pluralForm, zeroes,
-	originalNumber;
+	var compactPattern, compactDigits, compactProperties, divisor, numberExponent, pluralForm;
 
 	// Compact mode: initial number digit processing
 	if ( compactMap ) {
-		originalNumber = number;
-		zeroes = Array( Math.floor( number ).toString().length ).join( "0" );
-		if ( zeroes.length >= 3 ) {
+		numberExponent = Math.floor( number ).toString().length - 1;
+		numberExponent = Math.min( numberExponent, compactMap.maxExponent );
 
-			// use default plural form to perform initial decimal shift
-			compactPattern = compactMap[ "1" + zeroes + "-count-other" ];
+		// Use default plural form to perform initial decimal shift
+		if ( numberExponent >= 3 ) {
+			compactPattern = compactMap[ numberExponent ] && compactMap[ numberExponent ].other;
+		}
 
-			if ( compactPattern ) {
-				compactDigits = compactPattern.split( "0" ).length - 1;
-				divisor = zeroes.length - ( compactDigits - 1 );
-				number = number / Math.pow( 10, divisor );
-
-				// Some languages specify no pattern for certain digit lengths, represented as "0".
-				// If no pattern, original number should remain uncompacted.
-				if ( compactPattern === "0" ) {
-					number = originalNumber;
-				}
-			}
+		if ( compactPattern === "0" ) {
+			compactPattern = null;
+		} else if ( compactPattern ) {
+			compactDigits = compactPattern.split( "0" ).length - 1;
+			divisor = numberExponent - ( compactDigits - 1 );
+			number = number / Math.pow( 10, divisor );
 		}
 	}
 
@@ -107,18 +104,16 @@ return function( number, properties, pluralGenerator ) {
 
 	// Compact mode: apply formatting
 	if ( compactMap && compactPattern ) {
-		pluralForm = pluralGenerator ? pluralGenerator( number ) : "other";
-		compactPattern = compactMap[ "1" + zeroes + "-count-" + pluralForm ] || compactPattern;
 
-		// Some languages specify no pattern for certain digit lengths, represented as "0".
-		// Only apply compact pattern if one is specified.
-		if ( compactPattern !== "0" ) {
-			compactProperties = compactPattern.match( numberPatternRe );
+		// Get plural form after possible roundings
+		pluralForm = pluralGenerator ? pluralGenerator( +number ) : "other";
 
-			// update prefix/suffix with compact prefix/suffix
-			prefix += compactProperties[ 1 ];
-			suffix = compactProperties[ 11 ] + suffix;
-		}
+		compactPattern = compactMap[ numberExponent ][ pluralForm ] || compactPattern;
+		compactProperties = compactPattern.match( numberCompactPatternRe );
+
+		// update prefix/suffix with compact prefix/suffix
+		prefix += compactProperties[ 1 ];
+		suffix = compactProperties[ 3 ] + suffix;
 	}
 
 	// Remove the possible number minus sign
