@@ -88,7 +88,7 @@ QUnit.test( "should return a formatter", function( assert ) {
 
 	assert.equal( Globalize.dateFormatter({ skeleton: "GyMMMEd" })( date ), "Wed, Sep 15, 2010 AD" );
 	assert.equal( Globalize.dateFormatter({ skeleton: "dhms" })( date ), "15, 5:35:07 PM" );
-	assert.equal( Globalize.dateFormatter({ skeleton: "GyMMMEdhms" })( date ), "Wed, Sep 15, 2010 AD, 5:35:07 PM" );
+	assert.equal( Globalize.dateFormatter({ skeleton: "GyMMMEdhmsSSS" })( date ), "Wed, Sep 15, 2010 AD, 5:35:07.369 PM" );
 	assert.equal( Globalize.dateFormatter({ skeleton: "Ems" })( date ), "Wed, 35:07" );
 	assert.equal( Globalize.dateFormatter({ skeleton: "yQQQhm" })( date ), "Q3 2010, 5:35 PM" );
 });

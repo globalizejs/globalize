@@ -47,6 +47,7 @@ QUnit.test( "should expand {skeleton: \"<skeleton>\"}", function( assert ) {
 	assert.expandPattern( en, { skeleton: "hhmm" }, "hh:mm a" );
 	assert.expandPattern( en, { skeleton: "HHmm" }, "HH:mm" );
 	assert.expandPattern( en, { skeleton: "EHmss" }, "E HH:mm:ss" );
+	assert.expandPattern( en, { skeleton: "hhmmssSS" }, "hh:mm:ss.SS a" );
 	assert.expandPattern( en, { skeleton: "yy" }, "yy" );
 	assert.expandPattern( de, { skeleton: "yMMMMd" }, "d. MMMM y" );
 	assert.expandPattern( de, { skeleton: "MMMM" }, "LLLL" );
@@ -56,6 +57,7 @@ QUnit.test( "should expand {skeleton: \"<skeleton>\"}", function( assert ) {
 	assert.expandPattern( de, { skeleton: "MMMMEEEEd" }, "EEEE, d. MMMM" );
 	assert.expandPattern( de, { skeleton: "MMMMccccd" }, "EEEE, d. MMMM" );
 	assert.expandPattern( de, { skeleton: "HHmm" }, "HH:mm" );
+	assert.expandPattern( de, { skeleton: "HHmmssSS" }, "HH:mm:ss,SS" );
 	assert.expandPattern( de, { skeleton: "EEEEHHmm" }, "EEEE, HH:mm" );
 	assert.expandPattern( de, { skeleton: "EEEEHmm" }, "EEEE, HH:mm" );
 	assert.expandPattern( de, { skeleton: "ccccHmm" }, "EEEE, HH:mm" );

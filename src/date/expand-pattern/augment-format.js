@@ -4,30 +4,42 @@ define([
 	"../../util/string/repeat"
 ], function( dateExpandPatternNormalizePatternType, datePatternRe, stringRepeat ) {
 
-return function( requestedSkeleton, bestMatchFormat ) {
-	var i, j, matchedType, matchedLength, requestedType, requestedLength,
+// See: http://www.unicode.org/reports/tr35/tr35-dates.html#Matching_Skeletons
+return function( requestedSkeleton, bestMatchFormat, decimalSeparator ) {
+	var i, j, bestMatchFormatParts, countOfFractionalSeconds, fractionalSecondMatch, matchedType,
+		matchedLength, requestedType, requestedLength, requestedSkeletonParts,
+		skeletonWithoutFractionalSeconds,
 
 		// Using an easier to read variable.
 		normalizePatternType = dateExpandPatternNormalizePatternType;
 
-	requestedSkeleton = requestedSkeleton.match( datePatternRe );
-	bestMatchFormat = bestMatchFormat.match( datePatternRe );
+	fractionalSecondMatch = requestedSkeleton.match( /S/g );
+	countOfFractionalSeconds = fractionalSecondMatch ? fractionalSecondMatch.length : 0;
+	skeletonWithoutFractionalSeconds = requestedSkeleton.replace( /S/g, "" );
 
-	for ( i = 0; i < bestMatchFormat.length; i++ ) {
-		matchedType = bestMatchFormat[i].charAt( 0 );
-		matchedLength = bestMatchFormat[i].length;
-		for ( j = 0; j < requestedSkeleton.length; j++ ) {
-			requestedType = requestedSkeleton[j].charAt( 0 );
-			requestedLength = requestedSkeleton[j].length;
+	requestedSkeletonParts = skeletonWithoutFractionalSeconds.match( datePatternRe );
+	bestMatchFormatParts = bestMatchFormat.match( datePatternRe );
+
+	for ( i = 0; i < bestMatchFormatParts.length; i++ ) {
+		matchedType = bestMatchFormatParts[i].charAt( 0 );
+		matchedLength = bestMatchFormatParts[i].length;
+		for ( j = 0; j < requestedSkeletonParts.length; j++ ) {
+			requestedType = requestedSkeletonParts[j].charAt( 0 );
+			requestedLength = requestedSkeletonParts[j].length;
 			if ( normalizePatternType( matchedType ) === normalizePatternType( requestedType ) &&
 				matchedLength < requestedLength
 			) {
-				bestMatchFormat[i] = stringRepeat( matchedType, requestedLength );
+				bestMatchFormatParts[i] = stringRepeat( matchedType, requestedLength );
 			}
+		}
+
+		if ( matchedType === "s" && countOfFractionalSeconds !== 0 ) {
+			bestMatchFormatParts[i] +=
+				decimalSeparator + stringRepeat( "S", countOfFractionalSeconds );
 		}
 	}
 
-	return bestMatchFormat.join( "" );
+	return bestMatchFormatParts.join( "" );
 };
 
 });
