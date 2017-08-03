@@ -29,7 +29,7 @@ module.exports = {
 
 			{ formatter: Globalize.dateFormatter({ skeleton: "GyMMMEd" }), args: [ date ] },
 			{ formatter: Globalize.dateFormatter({ skeleton: "dhms" }), args: [ date ] },
-			{ formatter: Globalize.dateFormatter({ skeleton: "GyMMMEdhms" }), args: [ date ] },
+			{ formatter: Globalize.dateFormatter({ skeleton: "GyMMMEdhmsSSS" }), args: [ date ] },
 			{ formatter: Globalize.dateFormatter({ skeleton: "Ems" }), args: [ date ] },
 			{ formatter: Globalize.dateFormatter({ skeleton: "yQQQhm" }), args: [ date ] },
 
