@@ -4,7 +4,7 @@ define([
 	"../../util/string/repeat"
 ], function( dateExpandPatternNormalizePatternType, datePatternRe, stringRepeat ) {
 
-function expandBestMatchFormat(skeletonWithoutFractionalSeconds, bestMatchFormat) {
+function expandBestMatchFormat( skeletonWithoutFractionalSeconds, bestMatchFormat ) {
 	var i, j, bestMatchFormatParts, matchedType, matchedLength, requestedType,
 		requestedLength, requestedSkeletonParts,
 
@@ -33,22 +33,22 @@ function expandBestMatchFormat(skeletonWithoutFractionalSeconds, bestMatchFormat
 
 // See: http://www.unicode.org/reports/tr35/tr35-dates.html#Matching_Skeletons
 return function( requestedSkeleton, bestMatchFormat, decimalSeparator ) {
-	var countOfFractionalSeconds, fractionalSecondMatch,lastSecondIdx,
-		skeletonWithoutFractionalSeconds,
+	var countOfFractionalSeconds, fractionalSecondMatch, lastSecondIdx,
+		skeletonWithoutFractionalSeconds;
 
 	fractionalSecondMatch = requestedSkeleton.match( /S/g );
 	countOfFractionalSeconds = fractionalSecondMatch ? fractionalSecondMatch.length : 0;
 	skeletonWithoutFractionalSeconds = requestedSkeleton.replace( /S/g, "" );
 
-	bestMatchFormat = expandBestMatchFormat(skeletonWithoutFractionalSeconds, bestMatchFormat);
+	bestMatchFormat = expandBestMatchFormat( skeletonWithoutFractionalSeconds, bestMatchFormat );
 
-	lastSecondIdx = bestMatchFormat.lastIndexOf("s");
-	if (lastSecondIdx !== -1 && countOfFractionalSeconds !== 0 ) {
+	lastSecondIdx = bestMatchFormat.lastIndexOf( "s" );
+	if ( lastSecondIdx !== -1 && countOfFractionalSeconds !== 0 ) {
 		bestMatchFormat =
-			bestMatchFormat.slice(0, lastSecondIdx + 1) +
+			bestMatchFormat.slice( 0, lastSecondIdx + 1 ) +
 			decimalSeparator +
 			stringRepeat( "S", countOfFractionalSeconds ) +
-			bestMatchFormat.slice(lastSecondIdx + 1);
+			bestMatchFormat.slice( lastSecondIdx + 1 );
 	}
 	return bestMatchFormat;
 };
