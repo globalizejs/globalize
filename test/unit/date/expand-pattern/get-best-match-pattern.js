@@ -30,6 +30,7 @@ QUnit.test( "should get best match pattern", function( assert ) {
 	assert.equal( getBestMatchPattern( en, "cccd" ), "d EEE" );
 	assert.equal( getBestMatchPattern( en, "ccccd" ), "d EEEE" );
 
+	assert.equal( getBestMatchPattern( en, "hhmms" ), "hh:mm:ss a" );
 	assert.equal( getBestMatchPattern( en, "hhmmsS" ), "hh:mm:ss.S a" );
 });
 

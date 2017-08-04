@@ -4,18 +4,12 @@ define([
 	"../../util/string/repeat"
 ], function( dateExpandPatternNormalizePatternType, datePatternRe, stringRepeat ) {
 
-// See: http://www.unicode.org/reports/tr35/tr35-dates.html#Matching_Skeletons
-return function( requestedSkeleton, bestMatchFormat, decimalSeparator ) {
-	var i, j, bestMatchFormatParts, countOfFractionalSeconds, fractionalSecondMatch, matchedType,
-		matchedLength, requestedType, requestedLength, requestedSkeletonParts,
-		skeletonWithoutFractionalSeconds,
+function expandBestMatchFormat(skeletonWithoutFractionalSeconds, bestMatchFormat) {
+	var i, j, bestMatchFormatParts, matchedType, matchedLength, requestedType,
+		requestedLength, requestedSkeletonParts,
 
 		// Using an easier to read variable.
 		normalizePatternType = dateExpandPatternNormalizePatternType;
-
-	fractionalSecondMatch = requestedSkeleton.match( /S/g );
-	countOfFractionalSeconds = fractionalSecondMatch ? fractionalSecondMatch.length : 0;
-	skeletonWithoutFractionalSeconds = requestedSkeleton.replace( /S/g, "" );
 
 	requestedSkeletonParts = skeletonWithoutFractionalSeconds.match( datePatternRe );
 	bestMatchFormatParts = bestMatchFormat.match( datePatternRe );
@@ -32,14 +26,31 @@ return function( requestedSkeleton, bestMatchFormat, decimalSeparator ) {
 				bestMatchFormatParts[i] = stringRepeat( matchedType, requestedLength );
 			}
 		}
-
-		if ( matchedType === "s" && countOfFractionalSeconds !== 0 ) {
-			bestMatchFormatParts[i] +=
-				decimalSeparator + stringRepeat( "S", countOfFractionalSeconds );
-		}
 	}
 
 	return bestMatchFormatParts.join( "" );
+}
+
+// See: http://www.unicode.org/reports/tr35/tr35-dates.html#Matching_Skeletons
+return function( requestedSkeleton, bestMatchFormat, decimalSeparator ) {
+	var countOfFractionalSeconds, fractionalSecondMatch,lastSecondIdx,
+		skeletonWithoutFractionalSeconds,
+
+	fractionalSecondMatch = requestedSkeleton.match( /S/g );
+	countOfFractionalSeconds = fractionalSecondMatch ? fractionalSecondMatch.length : 0;
+	skeletonWithoutFractionalSeconds = requestedSkeleton.replace( /S/g, "" );
+
+	bestMatchFormat = expandBestMatchFormat(skeletonWithoutFractionalSeconds, bestMatchFormat);
+
+	lastSecondIdx = bestMatchFormat.lastIndexOf("s");
+	if (lastSecondIdx !== -1 && countOfFractionalSeconds !== 0 ) {
+		bestMatchFormat =
+			bestMatchFormat.slice(0, lastSecondIdx + 1) +
+			decimalSeparator +
+			stringRepeat( "S", countOfFractionalSeconds ) +
+			bestMatchFormat.slice(lastSecondIdx + 1);
+	}
+	return bestMatchFormat;
 };
 
 });
