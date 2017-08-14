@@ -279,10 +279,8 @@ module.exports = function( grunt ) {
 						.replace( /define\(\[[^\]]+\]\)[\W\n]+$/, "" ); /* 3 */
 
 					// Type b (not as simple as a single return)
-					if ( [ "util/globalize-date" ].indexOf( id ) !== -1 ) {
-						contents = "var " + name[ 0 ].toUpperCase() +
-							name.slice( 1 ) + " = (function() {" +
-							contents + "}());";
+					if ( [ "expand-pattern/augment-format" ].indexOf( id ) !== -1 ) {
+						contents = "var " + name + " = (function() {" + contents + "}());";
 
 					// Type a (single return)
 					} else if ( ( /\// ).test( id ) ) {
