@@ -1,5 +1,8 @@
 var like, number;
 
+// Set default locale as "en".
+Globalize.locale( "en" );
+
 // Use Globalize to format dates.
 document.getElementById( "date" ).textContent = Globalize.formatDate( new Date(), {
 	datetime: "medium"
