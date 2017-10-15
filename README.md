@@ -3,6 +3,7 @@
 [![Build Status](https://secure.travis-ci.org/globalizejs/globalize.svg?branch=master)](http://travis-ci.org/globalizejs/globalize)
 [![devDependency Status](https://david-dm.org/globalizejs/globalize/status.svg)](https://david-dm.org/globalizejs/globalize#info=dependencies)
 [![devDependency Status](https://david-dm.org/globalizejs/globalize/dev-status.svg)](https://david-dm.org/globalizejs/globalize#info=devDependencies)
+[![jsDelivr Hits](https://data.jsdelivr.com/v1/package/npm/globalize/badge?style=rounded)](https://www.jsdelivr.com/package/npm/globalize)
 
 A JavaScript library for internationalization and localization that leverage the official [Unicode CLDR](http://cldr.unicode.org/) JSON data. The library works both for the browser and as a
 Node.js module.
