@@ -700,7 +700,7 @@ Our roadmap is the collection of all open issues and pull requests where you can
 ├── dist/ (consumable files, the built files)
 ├── external/ (external dependencies, eg. cldr.js, QUnit, RequireJS)
 ├── Gruntfile.js (Grunt tasks)
-├── LICENSE.txt (license file)
+├── LICENSE (license file)
 ├── package.json (metadata file)
 ├── README.md (doc file)
 ├── src/ (source code)

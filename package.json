@@ -59,7 +59,6 @@
     "!examples/**/.tmp-globalize-webpack",
     "!examples/plain-javascript/cldrjs",
     "!examples/plain-javascript/globalize",
-    "LICENSE.txt",
     "README.md"
   ],
   "repository": {
