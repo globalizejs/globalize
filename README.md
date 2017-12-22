@@ -99,7 +99,7 @@ We do NOT embed any i18n data within our library. However, we make it really eas
 | File                       | Minified + gzipped size | Runtime minified + gzipped size | Summary                                  |
 | -------------------------- | ----------------------: | ------------------------------: | ---------------------------------------- |
 | globalize.js               |                   1.5KB |                           1.0KB | [Core library](#core-module)             |
-| globalize/currency.js      |                   2.6KB |                           0.6KB | [Currency module](#currency-module) provides currency formatting and parsing |
+| globalize/currency.js      |                   2.6KB |                           0.6KB | [Currency module](#currency-module) provides currency formatting |
 | globalize/date.js          |                   7.6KB |                           4.3KB | [Date module](#date-module) provides date formatting and parsing |
 | globalize/message.js       |                   5.4KB |                           0.7KB | [Message module](#message-module) provides ICU message format support |
 | globalize/number.js        |                   3.8KB |                           2.1KB | [Number module](#number-module) provides number formatting and parsing |
