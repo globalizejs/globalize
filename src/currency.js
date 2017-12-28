@@ -94,17 +94,27 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 /**
  * .currencyParser( currency [, options] )
  *
- * @currency [String] 3-letter currency code as defined by ISO 4217.
- *
  * @options [Object] see currencyFormatter.
  *
  * Return the currency parser according to the given options and the default/instance locale.
  */
 Globalize.currencyParser =
-Globalize.prototype.currencyParser = function( /* currency, options */ ) {
+Globalize.prototype.currencyParser = function( options ) {
+	var args, numberParser, properties, returnFn;
 
-	// TODO implement parser.
+	validateParameterTypePlainObject( options, "options" );
 
+	options = options || {};
+
+	args = [ options ];
+
+	numberParser = this.numberParser( options );
+
+	// value.replace(/[^\d\.\,]/g, '');
+	// returnFn = numberParser(value)
+
+	runtimeBind( args, returnFn, [ numberParser, properties ] );
+	return returnFn
 };
 
 /**
@@ -131,15 +141,22 @@ Globalize.prototype.formatCurrency = function( value, currency, options ) {
  *
  * @value [String]
  *
- * @currency [String] 3-letter currency code as defined by ISO 4217.
- *
  * @options [Object]: See currencyFormatter.
  *
  * Return the parsed currency or NaN when value is invalid.
  */
 Globalize.parseCurrency =
-Globalize.prototype.parseCurrency = function( /* value, currency, options */ ) {
+Globalize.prototype.parseCurrency = function( value, options ) {
+	validateParameterPresence( value, "value" );
+
+	value = value.replace(/[^\d\.\,]/g, '');
+	value = this.numberParser(value)
+
+	// return this.currencyParser( options )( value );
+	return value;
 };
+
+
 
 return Globalize;
 
