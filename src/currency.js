@@ -149,10 +149,11 @@ Globalize.parseCurrency =
 Globalize.prototype.parseCurrency = function( value, options ) {
 	validateParameterPresence( value, "value" );
 
-	value = value.replace(/[^\d\.\,]/g, "");
-	value = this.numberParser(value);
+	value = value.replace( /[^\d\.\,]/g, "" );
+	value = this.numberParser( value );
 
 	this.currencyParser( options )( value );
+
 	return value;
 };
 
