@@ -114,7 +114,7 @@ Globalize.prototype.currencyParser = function( options ) {
 	// returnFn = numberParser(value)
 
 	runtimeBind( args, returnFn, [ numberParser, properties ] );
-	return returnFn
+	return returnFn;
 };
 
 /**
@@ -149,10 +149,10 @@ Globalize.parseCurrency =
 Globalize.prototype.parseCurrency = function( value, options ) {
 	validateParameterPresence( value, "value" );
 
-	value = value.replace(/[^\d\.\,]/g, '');
-	value = this.numberParser(value)
+	value = value.replace(/[^\d\.\,]/g, "");
+	value = this.numberParser(value);
 
-	// return this.currencyParser( options )( value );
+	this.currencyParser( options )( value );
 	return value;
 };
 
