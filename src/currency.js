@@ -157,7 +157,6 @@ Globalize.prototype.parseCurrency = function( value, options ) {
 	return value;
 };
 
-
 return Globalize;
 
 });
