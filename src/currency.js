@@ -148,7 +148,7 @@ Globalize.prototype.formatCurrency = function( value, currency, options ) {
 Globalize.parseCurrency =
 Globalize.prototype.parseCurrency = function( value, options ) {
 	validateParameterPresence( value, "value" );
-
+	
 	value = value.replace( /[^\d\.\,]/g, "" );
 	value = this.numberParser( value );
 
