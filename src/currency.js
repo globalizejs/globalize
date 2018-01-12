@@ -151,9 +151,8 @@ Globalize.prototype.parseCurrency = function( value, options ) {
 	value = value.replace( /[^\d\.\,\-]/g, "" );
 	if ( value[0] === "-" ) {
 		value = value.replace( "-", "" );
-		value = "-".concat(value);
-	}
-	else {
+		value = "-".concat( value );
+	} else {
 		value = value.replace( "-", "" );
 	}
 	value = this.numberParser( value );
