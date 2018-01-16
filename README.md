@@ -22,6 +22,7 @@ Node.js module.
   - [Performance](#performance)
   - [Compilation and the Runtime modules](#compilation-and-the-runtime-modules)
   - [Examples](#examples)
+  - [Community](#community)
 - [API](#api)
   - [Core](#core-module)
   - [Date module](#date-module)
@@ -269,6 +270,10 @@ If you're using a different tool than the one above, but you're comfortable usin
 If you're using none of the tools above, but instead you're using the plain and old script tags only, the following example may interest you. Note Globalize allows you to go low level like this. But, acknowledge that you'll need to handle dependencies and CLDR loading manually yourself.
 
 - [Basic example using plain JavaScript](examples/plain-javascript/): requires loading CLDR and handling dependencies manually.
+
+### Community
+
+You can find us on [Slack](https://globalizejs.slack.com/). If you're new, [join here](https://join.slack.com/t/globalizejs/shared_invite/enQtMjk4OTUwNzM1Nzk0LTk2YmY0YjY3Yzk4YzU3M2NkMDZjNThlNzcwNTkyNGJhNDhiNjdkMWUyN2Q2MjVmNTk0ZjkyNGQ3MWEyNzNmMWU).
 
 ## API
 
