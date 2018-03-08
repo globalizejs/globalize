@@ -164,7 +164,7 @@ Globalize.prototype.dateFormatter = function( options ) {
 Globalize.dateToPartsFormatter =
 Globalize.prototype.dateToPartsFormatter = function( options ) {
 	var args, cldr, numberFormatters, pad, pattern, properties, returnFn,
-		timeZone;
+		timeZone, ianaListener;
 
 	validateParameterTypePlainObject( options, "options" );
 
@@ -184,14 +184,15 @@ Globalize.prototype.dateToPartsFormatter = function( options ) {
 
 	cldr.on( "get", validateRequiredCldr );
 	if ( timeZone ) {
-		cldr.on( "get", validateRequiredIana( timeZone ) );
+		ianaListener = validateRequiredIana( timeZone );
+		cldr.on( "get", ianaListener );
 	}
 	pattern = dateExpandPattern( options, cldr );
 	validateOptionsSkeleton( pattern, options.skeleton );
 	properties = dateFormatProperties( pattern, cldr, timeZone );
 	cldr.off( "get", validateRequiredCldr );
-	if ( timeZone ) {
-		cldr.off( "get", validateRequiredIana( timeZone ) );
+	if ( ianaListener ) {
+		cldr.off( "get", ianaListener );
 	}
 
 	// Create needed number formatters.
