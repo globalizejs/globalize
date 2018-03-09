@@ -74,7 +74,7 @@ return function( number, properties, pluralGenerator ) {
 
 	// Compact mode: initial number digit processing
 	if ( compactMap ) {
-		numberExponent = Math.floor( number ).toString().length - 1;
+		numberExponent = Math.abs( Math.floor( number ) ).toString().length - 1;
 		numberExponent = Math.min( numberExponent, compactMap.maxExponent );
 
 		// Use default plural form to perform initial decimal shift
