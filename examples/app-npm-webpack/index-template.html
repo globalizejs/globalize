@@ -63,32 +63,5 @@
 	</p>
 </div>
 
-{%
-var hasShownLocaleHelp;
-for ( var chunk in o.htmlWebpackPlugin.files.chunks ) {
-	if ( /globalize-compiled-data-/.test( chunk ) && chunk !== "globalize-compiled-data-en" ) {
-		if ( !hasShownLocaleHelp ) {
-			hasShownLocaleHelp = true;
-%}
-<!--
-Load support for the `en` (English) locale.
-
-For displaying the application in a different locale, replace `en` with
-whatever other supported locale you want, e.g., `pt` (Portuguese).
-
-For supporting additional locales simultaneously and then having your
-application to change it dynamically, load the multiple files here. Then,
-use `Globalize.locale( <locale> )` in your application to dynamically set
-it.
--->
-{%		} %}
-<!-- <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script> -->
-{%	} else { %}
-<script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
-{%
-	}
-}
-%}
-
 </body>
 </html>
