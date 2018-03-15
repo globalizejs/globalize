@@ -1,4 +1,5 @@
 var webpack = require( "webpack" );
+var path = require("path");
 var CommonsChunkPlugin = require( "webpack/lib/optimize/CommonsChunkPlugin" );
 var HtmlWebpackPlugin = require( "html-webpack-plugin" );
 var GlobalizePlugin = require( "globalize-webpack-plugin" );
@@ -22,14 +23,13 @@ module.exports = {
 			"globalize/dist/globalize-runtime/unit"
 		]
 	} : "./app/index.js",
-	debug: !options.production,
 	output: {
-		path: options.production ? "./dist" : "./tmp",
+		path: path.join(__dirname, options.production ? "./dist" : "./tmp"),
 		publicPath: options.production ? "" : "http://localhost:8080/",
 		filename: options.production ? "app.[hash].js" : "app.js"
 	},
 	resolve: {
-		extensions: [ "", ".js" ]
+		extensions: [ ".js" ]
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -44,8 +44,7 @@ module.exports = {
 			output: "i18n/[locale].[hash].js"
 		})
 	].concat( options.production ? [
-		new webpack.optimize.DedupePlugin(),
-		new CommonsChunkPlugin( "vendor", "vendor.[hash].js" ),
+		new CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.[hash].js' }),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {
 				warnings: false
