@@ -5,11 +5,12 @@ var HtmlWebpackPlugin = require( "html-webpack-plugin" );
 var GlobalizePlugin = require( "globalize-webpack-plugin" );
 
 var options = {
-	production: process.env.NODE_ENV === 'production'
+	production: process.env.NODE_ENV === 'production',
+	globalizeCompiledDataRegex: new RegExp(/^(globalize\-compiled\-data)\-\S+$/),
 };
 
 function subLocaleNames (name) {
-	return name.replace(/^(globalize\-compiled\-data)\-\w+$/, '$1');
+	return name.replace(options.globalizeCompiledDataRegex, '$1');
 }
 
 module.exports = {
