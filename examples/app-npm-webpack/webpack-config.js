@@ -4,17 +4,15 @@ var CommonsChunkPlugin = require( "webpack/lib/optimize/CommonsChunkPlugin" );
 var HtmlWebpackPlugin = require( "html-webpack-plugin" );
 var GlobalizePlugin = require( "globalize-webpack-plugin" );
 
-var options = {
-	production: process.env.NODE_ENV === 'production',
-	globalizeCompiledDataRegex: new RegExp(/^(globalize\-compiled\-data)\-\S+$/),
-};
+var production = process.env.NODE_ENV === "production";
+var globalizeCompiledDataRegex = new RegExp( /^(globalize\-compiled\-data)\-\S+$/ );
 
-function subLocaleNames (name) {
-	return name.replace(options.globalizeCompiledDataRegex, '$1');
+function subLocaleNames( name ) {
+	return name.replace( globalizeCompiledDataRegex, "$1" );
 }
 
 module.exports = {
-	entry: options.production ?  {
+	entry: production ?  {
 		main: "./app/index.js",
 		vendor: [
 			"globalize",
@@ -28,10 +26,10 @@ module.exports = {
 		]
 	} : "./app/index.js",
 	output: {
-		path: path.join(__dirname, options.production ? "./dist" : "./tmp"),
-		publicPath: options.production ? "" : "http://localhost:8080/",
-		chunkFilename: '[name].js',
-		filename: options.production ? "app.[hash].js" : "app.js"
+		path: path.join( __dirname, production ? "./dist" : "./tmp" ),
+		publicPath: production ? "" : "http://localhost:8080/",
+		chunkFilename: "[name].js",
+		filename: production ? "app.[hash].js" : "app.js"
 	},
 	resolve: {
 		extensions: [ "*", ".js" ]
@@ -39,27 +37,26 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: "./index-template.html",
-			/* filter to a single compiled globalize language
-			 * change 'en' to language of choice or remove inject all languages
-			 * NOTE: last language will be set language
-			 */
-			chunks: ['vendor', 'globalize-compiled-data-en', 'main'],
-			chunksSortMode: function (c1, c2) {
-				var orderedChunks = ['vendor', 'globalize-compiled-data', 'main'];
-				var o1 = orderedChunks.indexOf(subLocaleNames(c1.names[0]));
-				var o2 = orderedChunks.indexOf(subLocaleNames(c2.names[0]));
+			// filter to a single compiled globalize language
+			// change 'en' to language of choice or remove inject all languages
+			// NOTE: last language will be set language
+			chunks: [ "vendor", "globalize-compiled-data-en", "main" ],
+			chunksSortMode: function ( c1, c2 ) {
+				var orderedChunks = [ "vendor", "globalize-compiled-data", "main" ];
+				var o1 = orderedChunks.indexOf( subLocaleNames( c1.names[ 0 ]));
+				var o2 = orderedChunks.indexOf( subLocaleNames( c2.names[ 0 ]));
 				return o1 - o2;
 			},
 		}),
 		new GlobalizePlugin({
-			production: options.production,
+			production: production,
 			developmentLocale: "en",
 			supportedLocales: [ "ar", "de", "en", "es", "pt", "ru", "zh" ],
 			messages: "messages/[locale].json",
 			output: "i18n/[locale].[hash].js"
 		})
-	].concat( options.production ? [
-		new CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.[hash].js' }),
+	].concat( production ? [
+		new CommonsChunkPlugin({ name: "vendor", filename: "vendor.[hash].js" }),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {
 				warnings: false
