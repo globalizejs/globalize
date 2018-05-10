@@ -257,7 +257,7 @@ For information about the Globalize Compiler CLI or its JavaScript API, see the 
 The fastest and easiest way to use Globalize is by integrating it into your existing tools.
 
 - [Application example using webpack and npm](examples/app-npm-webpack/): easy to get started, automated CLDR loading and precompilation for production, but requires npm and webpack knowledge.
-- [Application example using globalize-express middleware with any express web app](https://github.com/devangnegandhi/globalize-express/tree/master/example): easy to incorporate globalize as a middleware within your express web add. (also checkout [globalize-express](https://github.com/devangnegandhi/globalize))
+- [Application example using globalize-express middleware with any express web app](https://github.com/devangnegandhi/globalize-express/tree/master/example): easy to incorporate globalize as a middleware within your Express web app. (also checkout [globalize-express](https://github.com/devangnegandhi/globalize))
 
 If you're using a different tool than the one above, but you're comfortable using JavaScript modules (such as ES6 modules, CommonJS, or AMD) and package managers like npm or bower, you may want to check out the following examples. Note you'll need to compile your code for production yourself.
 
