@@ -14,10 +14,6 @@ define(function() {
 return function( number, precision, round ) {
 	var roundOrder;
 
-	// Get number at two extra significant figure precision.
-	number = number.toPrecision( precision + 2 );
-
-	// Then, round it to the required significant figure precision.
 	roundOrder = Math.ceil( Math.log( Math.abs( number ) ) / Math.log( 10 ) );
 	roundOrder -= precision;
 
