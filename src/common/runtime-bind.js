@@ -1,7 +1,8 @@
 define([
 	"./runtime-key",
-	"../util/function-name"
-], function( runtimeKey, functionName ) {
+	"../util/function-name",
+	"./runtime-version"
+], function( runtimeKey, functionName, runtimeVersion ) {
 
 return function( args, cldr, fn, runtimeArgs ) {
 
@@ -22,6 +23,8 @@ return function( args, cldr, fn, runtimeArgs ) {
 	};
 
 	fn.runtimeArgs = runtimeArgs;
+
+	fn.runtimeVersion = runtimeVersion;
 
 	return fn;
 };
