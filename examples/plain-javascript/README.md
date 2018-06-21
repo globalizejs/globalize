@@ -19,7 +19,7 @@ Started](../../README.md#dependencies), and the only one is
 [cldrjs](https://github.com/rxaviers/cldrjs). You are free to fetch it the way you want. But, as an
 exercise of this demo, we'll download it ourselves. So:
 
-1. Click at [Globalize releases tab](https://github.com/rxaviers/globalize/releases).
+1. Click at [Globalize releases tab](https://github.com/globalizejs/globalize/releases).
 1. Download the latest package.
 1. Unzip it.
 1. Rename the extracted directory `globalize` and move it alongside `index.html` and `README.md`.
