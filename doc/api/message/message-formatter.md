@@ -180,8 +180,8 @@ Globalize.loadMessages({
     likeIncludingMe: [
       "{0, plural, offset:1",
       "     =0 {Be the first to like this}",
-      "     =1 {You liked this}",
-      "    one {You and someone else liked this}",
+      "    one {You liked this}",
+      "     =2 {You and someone else liked this}",
       "  other {You and # others liked this}",
       "}"
     ]
