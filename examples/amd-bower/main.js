@@ -107,6 +107,11 @@ require([
 	// Use Globalize to format numbers.
 	number = en.numberFormatter();
 	document.getElementById( "number" ).textContent = number( 12345.6789 );
+	document.getElementById( "number-compact" ).textContent = en.formatNumber( 12345.6789, {
+		compact: "short",
+		minimumSignificantDigits: 1,
+		maximumSignificantDigits: 3
+	});
 
 	// Use Globalize to format currencies.
 	document.getElementById( "currency" ).textContent = en.formatCurrency( 69900, "USD" );

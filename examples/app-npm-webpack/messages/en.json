@@ -2,6 +2,7 @@
 	"en": {
 		"intro-1": "Use Globalize to internationalize your application.",
 		"number-label": "Number",
+		"number-compact-label": "Number (compact form)",
 		"currency-label": "Currency",
 		"date-label": "Date",
 		"date-time-zone-label": "Date (in a specific IANA time zone, e.g., America/Sao_Paulo)",

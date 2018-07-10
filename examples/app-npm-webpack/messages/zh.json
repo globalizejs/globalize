@@ -2,6 +2,7 @@
 	"zh": {
 		"intro-1": "使用Globalize的国际化应用程序",
 		"number-label": "号码",
+		"number-compact-label": "编号（紧凑形式）",
 		"currency-label": "币",
 		"date-label": "迄今",
 		"date-time-zone-label": "日期（在特定的IANA时区，例如America / Sao_Paulo）",

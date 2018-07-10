@@ -38,6 +38,13 @@ console.log( Globalize.formatDateToParts( new Date(), { datetime: "medium" } ) )
 // Use Globalize to format numbers.
 console.log( Globalize.formatNumber( 12345.6789 ) );
 
+// Use Globalize to format numbers (compact form).
+console.log( Globalize.formatNumber( 12345.6789, {
+	compact: "short",
+	minimumSignificantDigits: 1,
+	maximumSignificantDigits: 3
+}));
+
 // Use Globalize to format currencies.
 console.log( Globalize.formatCurrency( 69900, "USD" ) );
 
