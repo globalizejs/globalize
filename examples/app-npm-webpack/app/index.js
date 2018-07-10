@@ -5,6 +5,13 @@ var startTime = new Date();
 var numberFormatter = Globalize.numberFormatter({ maximumFractionDigits: 2 });
 document.getElementById( "number" ).textContent = numberFormatter( 12345.6789 );
 
+var numberCompactFormatter = Globalize.numberFormatter({
+	compact: "short",
+	minimumSignificantDigits: 1,
+	maximumSignificantDigits: 3
+});
+document.getElementById( "number-compact" ).textContent = numberCompactFormatter( 12345.6789 );
+
 var currencyFormatter = Globalize.currencyFormatter( "USD" );
 document.getElementById( "currency" ).textContent = currencyFormatter( 69900 );
 
@@ -41,6 +48,7 @@ document.getElementById( "unit" ).textContent = unitFormatter( 60 );
 // Messages.
 document.getElementById( "intro-1" ).textContent = Globalize.formatMessage( "intro-1" );
 document.getElementById( "number-label" ).textContent = Globalize.formatMessage( "number-label" );
+document.getElementById( "number-compact-label" ).textContent = Globalize.formatMessage( "number-compact-label" );
 document.getElementById( "currency-label" ).textContent = Globalize.formatMessage( "currency-label" );
 document.getElementById( "date-label" ).textContent = Globalize.formatMessage( "date-label" );
 document.getElementById( "date-time-zone-label" ).textContent = Globalize.formatMessage( "date-time-zone-label" );

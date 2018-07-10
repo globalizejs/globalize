@@ -2,6 +2,7 @@
 	"ar": {
 		"intro-1": "‫استخدم Globalize لتدويل تطبيقك.‬",
 		"number-label": "رقم",
+		"number-compact-label": "الرقم (شكل مدمج)",
 		"currency-label": "عملة",
 		"date-label": "تاريخ",
 		"date-time-zone-label": "التاريخ (في منطقة زمنية محددة ل إيانا، على سبيل المثال، America/Sao_Paulo)",

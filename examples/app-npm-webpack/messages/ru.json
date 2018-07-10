@@ -2,6 +2,7 @@
 	"ru": {
 		"intro-1": "Используйте Globalize для интернационализиции вашего приложения.",
 		"number-label": "Число",
+		"number-compact-label": "Число (компактная форма)",
 		"currency-label": "Валюта",
 		"date-label": "Дата",
 		"date-time-zone-label": "Дата (в определенном часовом поясе IANA, например, America/Sao_Paulo)",
