@@ -16,13 +16,14 @@ module.exports = {
 		return Globalize;
 	},
 	cases: function( Globalize ) {
+		var big = 99999999.99;
 		Globalize.locale( "en" );
 		return [
 			{ formatter: Globalize.numberFormatter(), args: [ Math.PI ] },
 			{ formatter: Globalize( "es" ).numberFormatter(), args: [ Math.PI ] },
 			{ formatter: Globalize( "ar" ).numberFormatter(), args: [ Math.PI ] },
 			{ formatter: Globalize( "zh-u-nu-native" ).numberFormatter(), args: [ Math.PI ] },
-			{ formatter: Globalize.numberFormatter(), args: [ 99999999.99 ] },
+			{ formatter: Globalize.numberFormatter(), args: [ big ] },
 
 			{ formatter: Globalize.numberFormatter( {
 				minimumIntegerDigits: 2,
@@ -51,10 +52,12 @@ module.exports = {
 				minimumSignificantDigits: 1,
 				maximumSignificantDigits: 3
 			} ), args: [ 0.00010001 ] },
-			{ formatter: Globalize.numberFormatter( { useGrouping: false } ), args: [ 99999999.99 ] },
+			{ formatter: Globalize.numberFormatter( { useGrouping: false } ), args: [ big ] },
 
 			{ formatter: Globalize.numberFormatter( { style: "percent" } ), args: [ Math.PI ] },
-			{ formatter: Globalize( "ar" ).numberFormatter( { style: "percent" } ), args: [ Math.PI ] }
+			{ formatter: Globalize( "ar" ).numberFormatter( { style: "percent" } ), args: [ Math.PI ] },
+			{ formatter: Globalize.numberFormatter( { compact: "short" } ), args: [ big ] },
+			{ formatter: Globalize.numberFormatter( { compact: "long" } ), args: [ big ] }
 		];
 	}
 };
