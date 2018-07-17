@@ -43,6 +43,12 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 	});
 });
 
+QUnit.test( "should throw unsupported exception if compact option is set", function( assert ) {
+	assert.throws(function() {
+		Globalize.numberParser({ compact: "short" });
+	}, /Unsupported.*compact number parsing/);
+});
+
 QUnit.test( "should return parser", function( assert ) {
 	extraSetup();
 
