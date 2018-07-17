@@ -156,6 +156,55 @@ QUnit.test( "should format skeleton", function( assert ) {
 	assert.equal( Globalize( "pt" ).formatDate( date, { skeleton: "GyMMMEd" } ), "qua, 15 de set de 2010 d.C." );
 });
 
+QUnit.test( "should format skeleton with dayPeriod & setPeriod", function( assert ) {
+	extraSetup();
+
+	ar = Globalize( "ar" );
+	var opts = {
+		skeleton: "hm",
+		dayPeriod: "C",
+		setPeriods: {
+			"00:00": "night1",
+			"01:00": "night2",
+			"03:00": "morning1",
+			"06:00": "morning2",
+			"12:00": "afternoon1",
+			"13:00": "afternoon2",
+			"18:00": "evening1"
+		}
+	};
+	assert.equal( ar.formatDate( date, opts ), "٥:٣٥ بعد الظهر" );
+	assert.equal( ar.formatDate( new Date( 2010, 10, 1, 0, 0 ), opts ), "١٢:٠٠ منتصف الليل" );
+	assert.equal( ar.formatDate( new Date( 2010, 10, 1, 1, 1 ), opts ), "١:٠١ ليلاً" );
+	assert.equal( ar.formatDate( new Date( 2010, 10, 1, 3, 2 ), opts ), "٣:٠٢ فجرا" );
+	assert.equal( ar.formatDate( new Date( 2010, 10, 1, 7, 0 ), opts ), "٧:٠٠ صباحًا" );
+	assert.equal( ar.formatDate( new Date( 2010, 10, 1, 12, 0 ), opts ), "١٢:٠٠ ظهرًا" );
+	assert.equal( ar.formatDate( new Date( 2010, 10, 1, 13, 0 ), opts ), "١:٠٠ بعد الظهر" );
+	assert.equal( ar.formatDate( new Date( 2010, 10, 1, 19, 0 ), opts ), "٧:٠٠ مساءً" );
+
+	// Via instance .formatDate().
+	opts = {
+		skeleton: "hm",
+		dayPeriod: "C",
+		setPeriods: {
+			"00:00": "night1",
+			"06:00": "morning1",
+			"12:00": "afternoon1",
+			"19:00": "evening1",
+			"23:23": "fake"
+		}
+	};
+	assert.equal( Globalize( "pt" ).formatDate( date, opts ), "5:35 da tarde" );
+	assert.equal( Globalize( "pt" ).formatDate( new Date( 2010, 10, 1, 5, 59 ), opts ), "5:59 da madrugada" );
+	assert.equal( Globalize( "pt" ).formatDate( new Date( 2010, 10, 1, 12, 0 ), opts ), "12:00 da tarde" );
+	assert.equal( Globalize( "pt" ).formatDate( new Date( 2010, 10, 1, 0, 0 ), opts ), "12:00 da madrugada" );
+	assert.equal( Globalize( "pt" ).formatDate( new Date( 2010, 10, 1, 7, 0 ), opts ), "7:00 da manhã" );
+	assert.equal( Globalize( "pt" ).formatDate( new Date( 2010, 10, 1, 22, 0 ), opts ), "10:00 da noite" );
+	// non-existent period will default back to "am" or "pm"
+	assert.equal( Globalize( "pt" ).formatDate( new Date( 2010, 10, 1, 23, 23 ), opts ), "11:23 PM" );
+
+});
+
 QUnit.test( "should format time presets", function( assert ) {
 	extraSetup();
 
