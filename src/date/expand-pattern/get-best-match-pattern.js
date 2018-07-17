@@ -1,10 +1,11 @@
 define([
 	"./augment-format",
-	"./compare-formats"
-], function( dateExpandPatternAugmentFormat, dateExpandPatternCompareFormats ) {
+	"./compare-formats",
+	"../../number/symbol"
+], function( dateExpandPatternAugmentFormat, dateExpandPatternCompareFormats, numberSymbol ) {
 
 return function( cldr, askedSkeleton ) {
-	var availableFormats, pattern, ratedFormats, skeleton,
+	var availableFormats, decimalSeparator, pattern, ratedFormats, skeleton,
 		path = "dates/calendars/gregorian/dateTimeFormats/availableFormats",
 
 		// Using easier to read variables.
@@ -34,7 +35,8 @@ return function( cldr, askedSkeleton ) {
 			});
 
 		if ( ratedFormats.length ) {
-			pattern = augmentFormat( askedSkeleton, ratedFormats[0].pattern );
+			decimalSeparator = numberSymbol( "decimal", cldr );
+			pattern = augmentFormat( askedSkeleton, ratedFormats[0].pattern, decimalSeparator );
 		}
 	}
 

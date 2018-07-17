@@ -144,6 +144,13 @@ QUnit.test( "should parse skeleton", function( assert ) {
 	date = startOf( date, "second" );
 	assertParseDate( assert, "Wed 5:35:07 PM", { skeleton: "Ehms" }, date );
 
+	date = new Date();
+	date.setHours( 17 );
+	date.setMinutes( 35 );
+	date.setSeconds( 7 );
+	date.setMilliseconds(734);
+	assertParseDate( assert, "Wed 5:35:07.734 PM", { skeleton: "EhmsSSS" }, date );
+
 	date = new Date( 2010, 8, 15 );
 	date = startOf( date, "day" );
 	assertParseDate( assert, "Wed, Sep 15, 2010 AD", { skeleton: "GyMMMEd" }, date );
