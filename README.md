@@ -97,15 +97,15 @@ We do NOT embed any i18n data within our library. However, we make it really eas
 
 ### Pick the modules you need
 
-| File                       | Minified + gzipped size | Runtime minified + gzipped size | Summary                                  |
-| -------------------------- | ----------------------: | ------------------------------: | ---------------------------------------- |
-| globalize.js               |                   1.5KB |                           1.0KB | [Core library](#core-module)             |
-| globalize/currency.js      |                   2.6KB |                           0.6KB | [Currency module](#currency-module) provides currency formatting |
-| globalize/date.js          |                   7.6KB |                           4.3KB | [Date module](#date-module) provides date formatting and parsing |
-| globalize/message.js       |                   5.4KB |                           0.7KB | [Message module](#message-module) provides ICU message format support |
-| globalize/number.js        |                   3.8KB |                           2.1KB | [Number module](#number-module) provides number formatting and parsing |
+| File                       | Minified + gzipped size | Runtime minified + gzipped size | Summary                                                      |
+| -------------------------- | ----------------------: | ------------------------------: | ------------------------------------------------------------ |
+| globalize.js               |                   1.5KB |                           1.0KB | [Core library](#core-module)                                 |
+| globalize/currency.js      |                   2.7KB |                           0.6KB | [Currency module](#currency-module) provides currency formatting |
+| globalize/date.js          |                   7.7KB |                           4.3KB | [Date module](#date-module) provides date formatting and parsing |
+| globalize/message.js       |                   5.3KB |                           0.7KB | [Message module](#message-module) provides ICU message format support |
+| globalize/number.js        |                   4.1KB |                           2.3KB | [Number module](#number-module) provides number formatting and parsing |
 | globalize/plural.js        |                   2.3KB |                           0.4KB | [Plural module](#plural-module) provides pluralization support |
-| globalize/relative-time.js |                   0.8KB |                           0.6KB | [Relative time module](#relative-time-module) provides relative time formatting support |
+| globalize/relative-time.js |                   0.8KB |                           0.5KB | [Relative time module](#relative-time-module) provides relative time formatting support |
 | globalize/unit.js          |                   0.9KB |                           0.6KB | [Unit module](#unit-module) provides unit formatting support |
 
 ### Browser Support
