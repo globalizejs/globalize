@@ -123,6 +123,11 @@ Globalize.prototype.numberParser = function( options ) {
 	args = [ options ];
 
 	validateDefaultLocale( cldr );
+	if ( options.compact ) {
+		throw createErrorUnsupportedFeature({
+			feature: "compact number parsing (not implemented)"
+		});
+	}
 
 	cldr.on( "get", validateCldr );
 
