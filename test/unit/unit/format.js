@@ -33,7 +33,7 @@ QUnit.assert.unitFormat = function ( value, unit, options, expected ) {
 	var unitProps = unitProperties( unit, options.form, cldr );
 
 	this.equal(
-		formatUnit( value, stubNumberFormatter, oneOrOtherPluralGenerator, unitProps ),
+		formatUnit( value, options.numberFormatter || stubNumberFormatter, oneOrOtherPluralGenerator, unitProps ),
 		expected
 	);
 };
@@ -107,11 +107,15 @@ QUnit.test( "Compound form (without category)", function ( assert ) {
 	assert.unitFormat( 100, "mile-per-hour", { form: "long" }, "100 miles per hour" );
 });
 
-QUnit.test( "Compund form (wihout precomputed)", function ( assert ) {
+QUnit.test( "Compound form (without precomputed)", function ( assert ) {
 	assert.unitFormat( 1, "length-foot-per-second", { form: "long" }, "1 foot per second" );
 	assert.unitFormat( 100, "length-foot-per-second", { form: "long" }, "100 feet per second" );
 	assert.unitFormat( 1, "megabyte-per-second", { form: "narrow" }, "1MB/s" );
 	assert.unitFormat( 100, "megabyte-per-second", { form: "narrow" }, "100MB/s" );
+
+  assert.unitFormat( 1.2345678910, "megabyte-per-second",
+		{ form: "narrow", numberFormatter: function (number) { return number.toFixed(1); }},
+		"1.2MB/s" );
 });
 
 QUnit.test( "Compound form (short)", function ( assert ) {
