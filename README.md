@@ -145,18 +145,21 @@ Read the [Locales section](#locales) for more information about supported locale
 
 ### Installation
 
-*By downloading a ZIP or a TAR.GZ...*
+#### Downloading a ZIP or tarball archive
 
-Click the github [releases tab](https://github.com/globalizejs/globalize/releases) and download the latest available Globalize package.
+Click the GitHub [releases tab](https://github.com/globalizejs/globalize/releases) and download the latest available Globalize package.
 
-*By using a package manager...*
+#### Using a package manager
 
-Use bower `bower install globalize`, or npm `npm install globalize`.
+You can use either npm or bower:
 
-*By using source files...*
+- `npm install globalize`
+- `bower install globalize`
 
-1. `git clone https://github.com/globalizejs/globalize.git`.
-2. [Build the distribution files](#build).
+#### Building from source
+
+1. `git clone https://github.com/globalizejs/globalize.git`
+2. [Build the distribution files](#build)
 
 ### Requirements
 
