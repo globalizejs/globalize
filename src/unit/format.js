@@ -25,7 +25,7 @@ define([
  */
 return function( value, numberFormatter, pluralGenerator, unitProperties ) {
 	var compoundUnitPattern = unitProperties.compoundUnitPattern, dividend, dividendProperties,
-		formattedValue, divisor, divisorProperties, message, pluralValue;
+		formattedValue, divisor, divisorProperties, message, pluralValue, oneProperty;
 
 	unitProperties = unitProperties.unitProperties;
 	formattedValue = numberFormatter( value );
@@ -35,9 +35,10 @@ return function( value, numberFormatter, pluralGenerator, unitProperties ) {
 	if ( unitProperties instanceof Array ) {
 		dividendProperties = unitProperties[ 0 ];
 		divisorProperties = unitProperties[ 1 ];
+		oneProperty = divisorProperties.hasOwnProperty( "one" ) ? "one" : "other";
 
 		dividend = formatMessage( dividendProperties[ pluralValue ], [ formattedValue ] );
-		divisor = formatMessage( divisorProperties.one, [ "" ] ).trim();
+		divisor = formatMessage( divisorProperties[oneProperty], [ "" ] ).trim();
 
 		return formatMessage( compoundUnitPattern, [ dividend, divisor ] );
 	}

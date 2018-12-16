@@ -4,36 +4,49 @@ define([
 	"src/unit/format",
 	"src/unit/properties",
 	"json!cldr-data/main/en/units.json",
+	"json!cldr-data/main/ja/units.json",
 	"json!cldr-data/supplemental/likelySubtags.json"
-], function( Cldr, Globalize, formatUnit, unitProperties, enUnits, likelySubtags ) {
+], function( Cldr, Globalize, formatUnit, unitProperties, enUnits, jaUnits, likelySubtags ) {
 
-var cldr, globalize;
-
-Cldr.load( enUnits );
-Cldr.load( likelySubtags );
-
-globalize = new Globalize( "en" );
-cldr = globalize.cldr;
+var cldr, globalize, units, pluralGenerator;
 
 QUnit.module( "Unit Format" );
 
-function oneOrOtherPluralGenerator( plural ) {
-  if ( plural === 1 ) {
-    return "one";
-  } else {
+units = {
+  en: enUnits,
+  ja: jaUnits
+};
+
+pluralGenerator = {
+  en: function oneOrOtherPluralGenerator( plural ) {
+    if ( plural === 1 ) {
+      return "one";
+    } else {
+      return "other";
+    }
+  },
+  ja: function otherPluralGenerator() {
     return "other";
   }
-}
+};
 
 function stubNumberFormatter( number ) {
 	return number.toString();
 }
 
-QUnit.assert.unitFormat = function ( value, unit, options, expected ) {
+QUnit.assert.unitFormat = function ( value, unit, options, expected, language ) {
+  language = language || "en";
+
+  Cldr.load( units[ language ] );
+  Cldr.load( likelySubtags );
+
+  globalize = new Globalize( language );
+  cldr = globalize.cldr;
+
 	var unitProps = unitProperties( unit, options.form, cldr );
 
 	this.equal(
-		formatUnit( value, options.numberFormatter || stubNumberFormatter, oneOrOtherPluralGenerator, unitProps ),
+		formatUnit( value, options.numberFormatter || stubNumberFormatter, pluralGenerator[ language ], unitProps ),
 		expected
 	);
 };
@@ -130,6 +143,17 @@ QUnit.test( "Compound form (narrow)", function ( assert ) {
 	assert.unitFormat( 100, "speed-mile-per-hour", { form: "narrow" }, "100mph" );
 	assert.unitFormat( 1, "consumption-mile-per-gallon", { form: "narrow" }, "1mpg" );
 	assert.unitFormat( 100, "consumption-mile-per-gallon", { form: "narrow" }, "100mpg" );
+});
+
+QUnit.test( "Compound form (without precomputed) in language without 'one' unit", function ( assert ) {
+	assert.unitFormat( 1, "length-foot-per-second", { form: "long" }, "1 フィート毎秒", "ja" );
+	assert.unitFormat( 100, "length-foot-per-second", { form: "long" }, "100 フィート毎秒", "ja" );
+	assert.unitFormat( 1, "megabyte-per-second", { form: "narrow" }, "1MB/秒", "ja" );
+	assert.unitFormat( 100, "megabyte-per-second", { form: "narrow" }, "100MB/秒", "ja" );
+
+	assert.unitFormat( 1.2345678910, "megabyte-per-second",
+		{ form: "narrow", numberFormatter: function (number) { return number.toFixed(1); }},
+		"1.2MB/秒", "ja" );
 });
 
 });
