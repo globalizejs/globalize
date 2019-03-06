@@ -6,69 +6,73 @@ Eric Bréchemier <legalbox@eric.brechemier.name>
 Jörn Zaefferer <joern.zaefferer@gmail.com>
 Dave Reed <dareed@microsoft.com>
 Nikolaus Graf <nik@deck.cc>
-Nick Schonning <nschonni@gmail.com>
 Scott González <scott.gonzalez@gmail.com>
+Nick Schonning <nschonni@gmail.com>
 Kyle Florence <kyle.florence@gmail.com>
 Manraj Singh <manrajsinghgrover@gmail.com>
 Nova Patch <patch.nova@gmail.com>
 Tobie Langel <tobie.langel@gmail.com>
 Nikola Kovacs <nikola.kovacs@gmail.com>
-Rob Garrison <wowmotty@gmail.com>
 John Reilly <johnny_reilly@hotmail.com>
-Andrew Lunny <alunny@twitter.com>
-Wes Cravens <wesley.r.cravens@gmail.com>
-Kris Borchers <kris.borchers@gmail.com>
-Michael Birtwell <michael.birtwell@starleaf.com>
-Pavel Karoukin <pavel@karoukin.us>
-Yasuhiro Yoshida <yasuhiro.yoppu@gmail.com>
-Oleg Gulverdashvili <ctapbiumabp@gmail.com>
-Sean Cady <sean.cady@ge.com>
-shivijais <shivijais16@gmail.com>
+Rob Garrison <wowmotty@gmail.com>
 Karan Sharma <karan1276@gmail.com>
-Luke Page <luke.a.page@gmail.com>
-Alex Sexton <alexsexton@gmail.com>
-Christian Tellnes <christian@tellnes.no>
-Katie Sievert <ksievert@twitter.com>
-Brahim Arkni <brahim.arkni@gmail.com>
-Manikandan, Ramalingam Kandaswamy <rajavelmani@gmail.com>
-Amanpreet Singh <apsdehal@gmail.com>
-Zack Birkenbuel <zack.birkenbuel@hbo.com>
-Oleg Gaidarenko <markelog@gmail.com>
+Yasuhiro Yoshida <yasuhiro.yoppu@gmail.com>
+Andrew Lunny <alunny@twitter.com>
+Oleg Gulverdashvili <ctapbiumabp@gmail.com>
+Wes Cravens <wesley.r.cravens@gmail.com>
+Sean Cady <sean.cady@ge.com>
+Michael Birtwell <michael.birtwell@starleaf.com>
+shivijais <shivijais16@gmail.com>
+Pavel Karoukin <pavel@karoukin.us>
+Kris Borchers <kris.borchers@gmail.com>
 Isaac Durazo <isaacdurazo@gmail.com>
+Devang Negandhi <devangnegandhi@gmail.com>
+manj <nikita.melnikov.fw@gmail.com>
+Grégoire Castre <castre@doxense.com>
+Lee Nave <github-navels@sneakemail.com>
+Gethin Webster <gethin.webster@agilityworks.co.uk>
+Edward Salter <EdwardSalter@users.noreply.github.com>
+Ashish Shubham <ashubham@gmail.com>
+Brahim Arkni <brahim.arkni@gmail.com>
+gingerbbm <gingerbbm@users.noreply.github.com>
+Amanpreet Singh <apsdehal@gmail.com>
+z.ky <zky829@users.noreply.github.com>
+Oleg Gaidarenko <markelog@gmail.com>
+Phillip Wills <willsp@amazon.com>
 Ed Sanders <ejsanders@gmail.com>
-Matt York <york.matt@gmail.com>
+Jac <jacalata@users.noreply.github.com>
 Kevin Kirsche <Kev.Kirsche+GitHub@gmail.com>
-Reza Payami <reza_payami@yahoo.com>
+Adam Brons <ambrons@gmail.com>
 Tobias Nießen <tniessen@tnie.de>
 Arvind Kalyan <arvchamp@gmail.com>
 Juan Soto <juansoto@fastmail.fm>
-Kemal Ahmed <goatandsheep@users.noreply.github.com>
-Artur Eshenbrener <strate@yandex.ru>
-Adam Brons <ambrons@gmail.com>
+Luke Page <luke.a.page@gmail.com>
+Christian Tellnes <christian@tellnes.no>
+Alex Sexton <alexsexton@gmail.com>
 Mateusz Bożyk <mateusz.bozyk@gmail.com>
 Arthur Verschaeve <contact@arthurverschaeve.be>
 Riku Nieminen <rikunieminen@gmail.com>
-Marat Dyatko <marat.dyatko@klarna.com>
+Matt York <york.matt@gmail.com>
 Anne-Gaelle Colom <coloma@westminster.ac.uk>
 Raphael Amorim <rapha850@gmail.com>
 Peter Dave Hello <hsu@peterdavehello.org>
 Bao Ngo <bingo@planwise.com>
 Leonardo Balter <leonardo.balter@gmail.com>
 Andreas Blixt <me@blixt.org>
-Jac <jacalata@users.noreply.github.com>
-Retsam <Retsam@users.noreply.github.com>
-z.ky <zky829@users.noreply.github.com>
-Devang Negandhi <devangnegandhi@gmail.com>
+Kemal Ahmed <goatandsheep@users.noreply.github.com>
+FND <FND@users.noreply.github.com>
+Katie Sievert <ksievert@twitter.com>
+Manikandan, Ramalingam Kandaswamy <rajavelmani@gmail.com>
 Tomasz Peczek <tpeczek@gmail.com>
 Robert Plummer <robertleeplummerjr@gmail.com>
 Fredrik Blomqvist <fblomqvist@gmail.com>
 Christian Vuerings <vueringschristian@gmail.com>
 David De Sloovere <david.desloovere@hotmail.com>
-gingerbbm <gingerbbm@users.noreply.github.com>
+Zack Birkenbuel <zack.birkenbuel@hbo.com>
 Boris Moore <BorisMoore@gmail.com>
-manj <nikita.melnikov.fw@gmail.com>
-Grégoire Castre <castre@doxense.com>
+Reza Payami <reza_payami@yahoo.com>
+Artur Eshenbrener <strate@yandex.ru>
 John Resig <jeresig@gmail.com>
-Gethin Webster <gethin.webster@agilityworks.co.uk>
-Lee Nave <github-navels@sneakemail.com>
+Marat Dyatko <marat.dyatko@klarna.com>
+Retsam <Retsam@users.noreply.github.com>
 Stephen Walther <Swalther@Microsoft.com>
