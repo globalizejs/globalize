@@ -55,8 +55,9 @@
     "!dist/.build",
     "doc/",
     "examples/",
-    "!examples/**/bower_components",
     "!examples/**/.tmp-globalize-webpack",
+    "!examples/**/bower_components",
+    "!examples/**/node_modules",
     "!examples/plain-javascript/cldrjs",
     "!examples/plain-javascript/globalize",
     "README.md"
