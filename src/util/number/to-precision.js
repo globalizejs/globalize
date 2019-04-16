@@ -14,6 +14,10 @@ define(function() {
 return function( number, precision, round ) {
 	var roundOrder;
 
+	if ( number === 0 ) { // #706: do not feed zero to log()
+		return number;
+	}
+
 	roundOrder = Math.ceil( Math.log( Math.abs( number ) ) / Math.log( 10 ) );
 	roundOrder -= precision;
 
