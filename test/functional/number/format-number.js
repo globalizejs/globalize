@@ -104,6 +104,11 @@ QUnit.test( "should format decimal style", function( assert ) {
 	}), "0.0001" );
 
 	assert.equal( Globalize.formatNumber( 99999999.99, { useGrouping: false } ), "99999999.99" );
+
+	assert.equal( Globalize.formatNumber( 0, {
+		minimumSignificantDigits: 1,
+		maximumSignificantDigits: 3
+	}), "0.0" );
 });
 
 QUnit.test( "should format percent style", function( assert ) {
