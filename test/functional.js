@@ -8,7 +8,9 @@ require([
 
 	// currency
 	"./functional/currency/currency-formatter",
+	"./functional/currency/currency-to-parts-formatter",
 	"./functional/currency/format-currency",
+	"./functional/currency/format-currency-to-parts",
 
 	// date
 	"./functional/date/date-formatter",
@@ -24,8 +26,10 @@ require([
 
 	// number
 	"./functional/number/number-formatter",
+	"./functional/number/number-to-parts-formatter",
 	"./functional/number/number-parser",
 	"./functional/number/format-number",
+	"./functional/number/format-number-to-parts",
 	"./functional/number/parse-number",
 
 	// plural

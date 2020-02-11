@@ -1,5 +1,6 @@
 define([
 	"./core",
+	"./common/create-error/plural-module-presence",
 	"./common/runtime-bind",
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
@@ -7,19 +8,20 @@ define([
 	"./common/validate/parameter-type/currency",
 	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/plain-object",
-	"./currency/code-properties",
 	"./currency/formatter-fn",
 	"./currency/name-properties",
 	"./currency/symbol-properties",
+	"./currency/to-parts-formatter-fn",
 	"./util/object/omit",
-
 	"./number",
+
 	"cldr/event",
 	"cldr/supplemental"
-], function( Globalize, runtimeBind, validateCldr, validateDefaultLocale, validateParameterPresence,
-	validateParameterTypeCurrency, validateParameterTypeNumber, validateParameterTypePlainObject,
-	currencyCodeProperties, currencyFormatterFn, currencyNameProperties, currencySymbolProperties,
-	objectOmit ) {
+
+], function( Globalize, createErrorPluralModulePresence, runtimeBind, validateCldr,
+	validateDefaultLocale, validateParameterPresence, validateParameterTypeCurrency,
+	validateParameterTypeNumber, validateParameterTypePlainObject, currencyFormatterFn,
+	currencyNameProperties, currencySymbolProperties, currencyToPartsFormatterFn, objectOmit ) {
 
 function validateRequiredCldr( path, value ) {
 	validateCldr( path, value, {
@@ -44,7 +46,45 @@ function validateRequiredCldr( path, value ) {
  */
 Globalize.currencyFormatter =
 Globalize.prototype.currencyFormatter = function( currency, options ) {
-	var args, cldr, numberFormatter, pluralGenerator, properties, returnFn, style;
+	var args, currencyToPartsFormatter, returnFn;
+
+	validateParameterPresence( currency, "currency" );
+	validateParameterTypeCurrency( currency, "currency" );
+
+	validateParameterTypePlainObject( options, "options" );
+
+	options = options || {};
+	args = [ currency, options ];
+
+	currencyToPartsFormatter = this.currencyToPartsFormatter( currency, options );
+	returnFn = currencyFormatterFn( currencyToPartsFormatter );
+	runtimeBind( args, this.cldr, returnFn, [ currencyToPartsFormatter ] );
+
+	return returnFn;
+};
+
+/**
+ * .currencyToPartsFormatter( currency [, options] )
+ *
+ * @currency [String] 3-letter currency code as defined by ISO 4217.
+ *
+ * @options [Object]:
+ * - style: [String] "symbol" (default), "accounting", "code" or "name".
+ * - see also number/format options.
+ *
+ * Return a currency formatter function (of the form below) according to the given options and the
+ * default/instance locale.
+ *
+ * fn( value )
+ *
+ * @value [Number]
+ *
+ * Return a function that formats a currency to parts according to the given options
+ * and the default/instance locale.
+ */
+Globalize.currencyToPartsFormatter =
+Globalize.prototype.currencyToPartsFormatter = function( currency, options ) {
+	var args, cldr, numberToPartsFormatter, pluralGenerator, properties, returnFn, style;
 
 	validateParameterPresence( currency, "currency" );
 	validateParameterTypeCurrency( currency, "currency" );
@@ -64,10 +104,10 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 	try {
 		properties = ({
 			accounting: currencySymbolProperties,
-			code: currencyCodeProperties,
+			code: currencySymbolProperties,
 			name: currencyNameProperties,
 			symbol: currencySymbolProperties
-		}[ style] )( currency, cldr, options );
+		}[ style ] )( currency, cldr, options );
 	} finally {
 		cldr.off( "get", validateRequiredCldr );
 	}
@@ -76,22 +116,34 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 	options = objectOmit( options, "style" );
 	options.raw = properties.pattern;
 
-	// Return formatter when style is "symbol" or "accounting".
-	if ( style === "symbol" || style === "accounting" ) {
-		numberFormatter = this.numberFormatter( options );
+	// Return formatter when style is "symbol", "accounting", or "code".
+	if ( style === "symbol" || style === "accounting" || style === "code" ) {
+		numberToPartsFormatter = this.numberToPartsFormatter( options );
 
-		returnFn = currencyFormatterFn( numberFormatter );
+		returnFn = currencyToPartsFormatterFn( numberToPartsFormatter, properties.symbol );
 
-		runtimeBind( args, cldr, returnFn, [ numberFormatter ] );
+		runtimeBind( args, cldr, returnFn, [ numberToPartsFormatter, properties.symbol ] );
 
-	// Return formatter when style is "code" or "name".
+	// Return formatter when style is "name".
 	} else {
-		numberFormatter = this.numberFormatter( options );
-		pluralGenerator = this.pluralGenerator();
+		numberToPartsFormatter = this.numberToPartsFormatter( options );
 
-		returnFn = currencyFormatterFn( numberFormatter, pluralGenerator, properties );
+		// Is plural module present? Yes, use its generator. Nope, use an error generator.
+		pluralGenerator = this.plural !== undefined ?
+			this.pluralGenerator() :
+			createErrorPluralModulePresence;
 
-		runtimeBind( args, cldr, returnFn, [ numberFormatter, pluralGenerator, properties ] );
+		returnFn = currencyToPartsFormatterFn(
+			numberToPartsFormatter,
+			pluralGenerator,
+			properties
+		);
+
+		runtimeBind( args, cldr, returnFn, [
+			numberToPartsFormatter,
+			pluralGenerator,
+			properties
+		]);
 	}
 
 	return returnFn;
@@ -128,8 +180,25 @@ Globalize.formatCurrency =
 Globalize.prototype.formatCurrency = function( value, currency, options ) {
 	validateParameterPresence( value, "value" );
 	validateParameterTypeNumber( value, "value" );
-
 	return this.currencyFormatter( currency, options )( value );
+};
+
+/**
+ * .formatCurrencyToParts( value, currency [, options] )
+ *
+ * @value [Number] number to be formatted.
+ *
+ * @currency [String] 3-letter currency code as defined by ISO 4217.
+ *
+ * @options [Object] see currencyFormatter.
+ *
+ * Format a currency to parts according to the given options and the default/instance locale.
+ */
+Globalize.formatCurrencyToParts =
+Globalize.prototype.formatCurrencyToParts = function( value, currency, options ) {
+	validateParameterPresence( value, "value" );
+	validateParameterTypeNumber( value, "value" );
+	return this.currencyToPartsFormatter( currency, options )( value );
 };
 
 /**

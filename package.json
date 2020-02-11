@@ -75,7 +75,7 @@
   "devDependencies": {
     "cldr-data-downloader": "^0.3.1",
     "glob": "^7.1.2",
-    "globalize-compiler": "^1.1.0",
+    "globalize-compiler": "^1.1.1",
     "grunt": "1.0.1",
     "grunt-check-dependencies": "1.0.0",
     "grunt-commitplease": "0.0.6",

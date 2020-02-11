@@ -10,7 +10,6 @@ require([
 	"./unit/core/locale",
 
 	// currency
-	"./unit/currency/code-properties",
 	"./unit/currency/name-properties",
 	"./unit/currency/symbol-properties",
 

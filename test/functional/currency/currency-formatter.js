@@ -99,9 +99,9 @@ QUnit.test( "should return a currency formatter", function( assert ) {
 
 	assert.equal( Globalize.currencyFormatter( "HKD", narrow )( teslaS ), "$69,900.00" );
 
-	assert.equal( Globalize.currencyFormatter( "USD", code )( teslaS ), "69,900.00 USD" );
-	assert.equal( de.currencyFormatter( "USD", code )( teslaS ), "69.900,00 USD" );
-	assert.equal( zh.currencyFormatter( "USD", code )( teslaS ), "69,900.00USD" );
+	assert.equal( Globalize.currencyFormatter( "USD", code )( teslaS ), "USD 69,900.00" );
+	assert.equal( de.currencyFormatter( "USD", code )( teslaS ), "69.900,00 USD" );
+	assert.equal( zh.currencyFormatter( "USD", code )( teslaS ), "USD 69,900.00" );
 
 	assert.equal( Globalize.currencyFormatter( "USD", name )( teslaS ), "69,900.00 US dollars" );
 	assert.equal( de.currencyFormatter( "USD", name )( teslaS ), "69.900,00 US-Dollar" );
@@ -123,7 +123,7 @@ QUnit.test( "should return a currency formatter, overriden by Supplemental Curre
 	assert.equal( Globalize.currencyFormatter( "JPY" )( 12345.67 ), "¥12,346" );
 
 	assert.equal( Globalize.currencyFormatter( "CLF", code )( 12345.67 ),
-		"12,345.6700 CLF" );
+		"CLF 12,345.6700" );
 
 	assert.equal( Globalize.currencyFormatter( "CLF", name )( 12345.67 ),
 		"12,345.6700 Chilean units of account (UF)" );
@@ -149,7 +149,7 @@ QUnit.test( "should return a currency formatter, overriden by user options",
 	assert.equal( Globalize.currencyFormatter( "CLF", {
 		style: "code",
 		minimumFractionDigits: 0
-	})( 12345 ), "12,345 CLF" );
+	})( 12345 ), "CLF 12,345" );
 
 	assert.equal( Globalize.currencyFormatter( "CLF", {
 		style: "name",
