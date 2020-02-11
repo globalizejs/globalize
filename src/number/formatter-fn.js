@@ -1,15 +1,10 @@
 define([
-	"../common/validate/parameter-presence",
-	"../common/validate/parameter-type/number",
-	"./format"
-], function( validateParameterPresence, validateParameterTypeNumber, numberFormat ) {
+	"../common/parts/join"
+], function( partsJoin ) {
 
-return function( properties, pluralGenerator ) {
+return function( numberToPartsFormatter ) {
 	return function numberFormatter( value ) {
-		validateParameterPresence( value, "value" );
-		validateParameterTypeNumber( value, "value" );
-
-		return numberFormat( value, properties, pluralGenerator );
+		return partsJoin( numberToPartsFormatter( value ));
 	};
 };
 

@@ -9,13 +9,14 @@ define([
 	"./number/formatter-fn",
 	"./number/parse",
 	"./number/parser-fn",
+	"./number/to-parts-formatter-fn",
 	"./util/loose-matching",
 	"./util/number/round",
 	"./util/remove-literal-quotes"
 ], function( runtimeKey, createErrorUnsupportedFeature, validateParameterPresence,
 	validateParameterTypeNumber, validateParameterTypeString, Globalize, numberFormat,
-	numberFormatterFn, numberParse, numberParserFn, looseMatching, numberRound,
-	removeLiteralQuotes ) {
+	numberFormatterFn, numberParse, numberParserFn, numberToPartsFormatterFn, looseMatching,
+	numberRound, removeLiteralQuotes ) {
 
 Globalize._createErrorUnsupportedFeature = createErrorUnsupportedFeature;
 Globalize._looseMatching = looseMatching;
@@ -24,6 +25,7 @@ Globalize._numberFormatterFn = numberFormatterFn;
 Globalize._numberParse = numberParse;
 Globalize._numberParserFn = numberParserFn;
 Globalize._numberRound = numberRound;
+Globalize._numberToPartsFormatterFn = numberToPartsFormatterFn;
 Globalize._removeLiteralQuotes = removeLiteralQuotes;
 Globalize._validateParameterPresence = validateParameterPresence;
 Globalize._validateParameterTypeNumber = validateParameterTypeNumber;
@@ -44,6 +46,12 @@ Globalize.prototype.numberFormatter = function( options ) {
 	return cached( runtimeKey( "numberFormatter", this._locale, [ options ] ) );
 };
 
+Globalize.numberToPartsFormatter =
+Globalize.prototype.numberToPartsFormatter = function( options ) {
+	options = options || {};
+	return cached( runtimeKey( "numberToPartsFormatter", this._locale, [ options ] ) );
+};
+
 Globalize.numberParser =
 Globalize.prototype.numberParser = function( options ) {
 	options = options || {};
@@ -52,6 +60,14 @@ Globalize.prototype.numberParser = function( options ) {
 
 Globalize.formatNumber =
 Globalize.prototype.formatNumber = function( value, options ) {
+	validateParameterPresence( value, "value" );
+	validateParameterTypeNumber( value, "value" );
+
+	return this.numberFormatter( options )( value );
+};
+
+Globalize.formatNumberToParts =
+Globalize.prototype.formatNumberToParts = function( value, options ) {
 	validateParameterPresence( value, "value" );
 	validateParameterTypeNumber( value, "value" );
 

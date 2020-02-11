@@ -36,7 +36,6 @@ QUnit.module( "Currency Name Properties" );
 
 QUnit.test( "should return appropriate properties", function( assert ) {
 	assert.deepEqual( properties( "USD", en ), {
-		"currency": "USD",
 		"displayNames": {
 			"displayName": "US Dollar",
 			"displayName-count-one": "US dollar",
@@ -49,7 +48,6 @@ QUnit.test( "should return appropriate properties", function( assert ) {
 		}
 	});
 	assert.deepEqual( properties( "EUR", de ), {
-		"currency": "EUR",
 		"displayNames": {
 			"displayName": "Euro",
 			"displayName-count-one": "Euro",
@@ -62,7 +60,6 @@ QUnit.test( "should return appropriate properties", function( assert ) {
 		}
 	});
 	assert.deepEqual( properties( "CNY", zh ), {
-		"currency": "CNY",
 		"displayNames": {
 			"displayName": "人民币",
 			"displayName-count-other": "人民币"
@@ -76,7 +73,6 @@ QUnit.test( "should return appropriate properties", function( assert ) {
 	// The number of decimal places and the rounding for each currency is not locale-specific data.
 	// Those values are overriden by Supplemental Currency Data.
 	assert.deepEqual( properties( "CLF", en ), {
-		"currency": "CLF",
 		"displayNames": {
 			"displayName": "Chilean Unit of Account (UF)",
 			"displayName-count-one": "Chilean unit of account (UF)",

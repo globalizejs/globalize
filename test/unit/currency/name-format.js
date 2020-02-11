@@ -30,37 +30,112 @@ zh = new Cldr( "zh" );
 
 QUnit.module( "Currency Name Format" );
 
-QUnit.test( "should return appropriate properties", function( assert ) {
-	assert.deepEqual( format( "1", "one", properties( "USD", en ) ), "1 US dollar" );
-	assert.deepEqual( format( "2", "other", properties( "USD", en ) ), "2 US dollars" );
+QUnit.test( "should format currencies", function( assert ) {
+	assert.deepEqual( format( [{ type: "integer", value: "1" }], "one", properties( "USD", en ) ), [
+		{
+			"type": "integer",
+			"value": "1"
+		},
+		{
+			"type": "literal",
+			"value": " "
+		},
+		{
+			"type": "currency",
+			"value": "US dollar"
+		}
+	]);
+
+	assert.deepEqual( format( [{ type: "integer", value: "2" }], "other", properties( "USD", en ) ), [
+		{
+			"type": "integer",
+			"value": "2"
+		},
+		{
+			"type": "literal",
+			"value": " "
+		},
+		{
+			"type": "currency",
+			"value": "US dollars"
+		}
+	]);
 
 	// Test the fallback to displayNames by the lack of displayNames-count-*.
-	assert.deepEqual( format( "1", "something", {
+	assert.deepEqual( format( [{ type: "integer", value: "1" }], "something", {
 		"displayNames": {
 			"displayName": "US Dollar",
 		},
 		"unitPatterns": {
 			"unitPattern-count-other": "{0} {1}"
 		}
-	}), "1 US Dollar" );
+	}), [
+		{
+			"type": "integer",
+			"value": "1"
+		},
+		{
+			"type": "literal",
+			"value": " "
+		},
+		{
+			"type": "currency",
+			"value": "US Dollar"
+		}
+	]);
 
 	// Test the fallback to currency by the lack of displayName and displayName-count-*.
-	assert.deepEqual( format( "1", "something", {
+	assert.deepEqual( format( [{ type: "integer", value: "1" }], "something", {
 		"currency": "USD",
 		"unitPatterns": {
 			"unitPattern-count-other": "{0} {1}"
 		}
-	}), "1 USD" );
+	}), [
+		{
+			"type": "integer",
+			"value": "1"
+		},
+		{
+			"type": "literal",
+			"value": " "
+		},
+		{
+			"type": "currency",
+			"value": "USD"
+		}
+	]);
 
-	assert.deepEqual( format( "10", "other", properties( "CNY", zh ) ), "10人民币" );
+	assert.deepEqual( format( [{ type: "integer", value: "10" }], "other", properties( "CNY", zh ) ), [
+		{
+			"type": "integer",
+			"value": "10"
+		},
+		{
+			"type": "currency",
+			"value": "人民币"
+		}
+	]);
 
 	// Testing inverted unitPattern {1} {0}.
-	assert.deepEqual( format( "1", "other", {
+	assert.deepEqual( format( [{ type: "integer", value: "1" }], "other", {
 		"currency": "TZS",
 		"unitPatterns": {
 			"unitPattern-count-other": "{1} {0}"
 		}
-	}), "TZS 1" );
+	}), [
+		{
+			"type": "currency",
+			"value": "TZS"
+		},
+		{
+			"type": "literal",
+			"value": " "
+		},
+		{
+			"type": "integer",
+			"value": "1"
+		}
+	]);
 
 });
 

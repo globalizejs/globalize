@@ -2,6 +2,9 @@ define([
 	"cldr",
 	"./common/create-error",
 	"./common/format-message",
+	"./common/format-message-to-parts",
+	"./common/parts/join",
+	"./common/parts/push",
 	"./common/runtime-bind",
 	"./common/validate",
 	"./common/validate/cldr",
@@ -19,10 +22,11 @@ define([
 	"./util/string/pad",
 
 	"cldr/event"
-], function( Cldr, createError, formatMessage, runtimeBind, validate, validateCldr,
-	validateDefaultLocale, validateParameterPresence, validateParameterRange, validateParameterType,
-	validateParameterTypeLocale, validateParameterTypePlainObject, alwaysArray, alwaysCldr,
-	isPlainObject, objectExtend, regexpEscape, stringPad ) {
+], function( Cldr, createError, formatMessage, formatMessageToParts, partsJoin, partsPush,
+	runtimeBind, validate, validateCldr, validateDefaultLocale, validateParameterPresence,
+	validateParameterRange, validateParameterType, validateParameterTypeLocale,
+	validateParameterTypePlainObject, alwaysArray, alwaysCldr, isPlainObject, objectExtend,
+	regexpEscape, stringPad ) {
 
 function validateLikelySubtags( cldr ) {
 	cldr.once( "get", validateCldr );
@@ -92,8 +96,11 @@ Globalize.locale = function( locale ) {
 Globalize._alwaysArray = alwaysArray;
 Globalize._createError = createError;
 Globalize._formatMessage = formatMessage;
+Globalize._formatMessageToParts = formatMessageToParts;
 Globalize._isPlainObject = isPlainObject;
 Globalize._objectExtend = objectExtend;
+Globalize._partsJoin = partsJoin;
+Globalize._partsPush = partsPush;
 Globalize._regexpEscape = regexpEscape;
 Globalize._runtimeBind = runtimeBind;
 Globalize._stringPad = stringPad;

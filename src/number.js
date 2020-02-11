@@ -17,6 +17,7 @@ define([
 	"./number/parse-properties",
 	"./number/pattern",
 	"./number/symbol",
+	"./number/to-parts-formatter-fn",
 	"./util/loose-matching",
 	"./util/remove-literal-quotes",
 	"./util/string/pad",
@@ -28,7 +29,7 @@ define([
 	validateParameterTypeNumber, validateParameterTypePlainObject, validateParameterTypeString,
 	numberFormatterFn, numberFormatProperties, numberNumberingSystem,
 	numberNumberingSystemDigitsMap, numberParserFn, numberParseProperties, numberPattern,
-	numberSymbol, looseMatching, removeLiteralQuotes, stringPad ) {
+	numberSymbol, numberToPartsFormatterFn, looseMatching, removeLiteralQuotes, stringPad ) {
 
 function validateDigits( properties ) {
 	var minimumIntegerDigits = properties[ 2 ],
@@ -68,6 +69,32 @@ function validateDigits( properties ) {
  */
 Globalize.numberFormatter =
 Globalize.prototype.numberFormatter = function( options ) {
+	var args, numberToPartsFormatter, returnFn;
+
+	validateParameterTypePlainObject( options, "options" );
+
+	options = options || {};
+	args = [ options ];
+
+	numberToPartsFormatter = this.numberToPartsFormatter( options );
+	returnFn = numberFormatterFn( numberToPartsFormatter );
+	runtimeBind( args, this.cldr, returnFn, [ numberToPartsFormatter ] );
+
+	return returnFn;
+};
+
+/**
+ * .numberToPartsFormatter( [options] )
+ *
+ * @options [Object]:
+ * - style: [String] "symbol" (default), "accounting", "code" or "name".
+ * - see also number/format options.
+ *
+ * Return a function that formats a number to parts according to the given options and
+ * default/instance locale.
+ */
+Globalize.numberToPartsFormatter =
+Globalize.prototype.numberToPartsFormatter = function( options ) {
 	var args, cldr, fnArgs, pattern, properties, returnFn;
 
 	validateParameterTypePlainObject( options, "options" );
@@ -98,7 +125,7 @@ Globalize.prototype.numberFormatter = function( options ) {
 	if ( options.compact ) {
 		fnArgs.push( this.pluralGenerator() );
 	}
-	returnFn = numberFormatterFn.apply( null, fnArgs );
+	returnFn = numberToPartsFormatterFn.apply( null, fnArgs );
 	runtimeBind( args, cldr, returnFn, fnArgs );
 
 	return returnFn;
@@ -164,6 +191,23 @@ Globalize.prototype.formatNumber = function( value, options ) {
 	validateParameterTypeNumber( value, "value" );
 
 	return this.numberFormatter( options )( value );
+};
+
+/**
+ * .formatNumberToParts( value [, options] )
+ *
+ * @value [Number] number to be formatted.
+ *
+ * @options [Object]: see number/format-properties.
+ *
+ * Format a number to pars according to the given options and default/instance locale.
+ */
+Globalize.formatNumberToParts =
+Globalize.prototype.formatNumberToParts = function( value, options ) {
+	validateParameterPresence( value, "value" );
+	validateParameterTypeNumber( value, "value" );
+
+	return this.numberToPartsFormatter( options )( value );
 };
 
 /**

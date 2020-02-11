@@ -10,25 +10,30 @@ define([
  * Return pattern replacing `¤` with the appropriate currency symbol literal.
  */
 return function( currency, cldr, options ) {
-	var currencySpacing, pattern, symbol,
-		symbolEntries = [ "symbol" ],
+	var currencySpacing, pattern, symbol, symbolEntries,
 		regexp = {
 			"[:digit:]": /\d/,
 			"[:^S:]": regexpNotS
 		};
 
-	// If options.symbolForm === "narrow" was passed, prepend it.
-	if ( options.symbolForm === "narrow" ) {
-		symbolEntries.unshift( "symbol-alt-narrow" );
-	}
+	if ( options.style === "code" ) {
+		symbol = currency;
+	} else {
+		symbolEntries = [ "symbol" ];
 
-	symbolEntries.some(function( symbolEntry ) {
-		return symbol = cldr.main([
-			"numbers/currencies",
-			currency,
-			symbolEntry
-		]);
-	});
+		// If options.symbolForm === "narrow" was passed, prepend it.
+		if ( options.symbolForm === "narrow" ) {
+			symbolEntries.unshift( "symbol-alt-narrow" );
+		}
+
+		symbolEntries.some(function( symbolEntry ) {
+			return symbol = cldr.main([
+				"numbers/currencies",
+				currency,
+				symbolEntry
+			]);
+		});
+	}
 
 	currencySpacing = [ "beforeCurrency", "afterCurrency" ].map(function( position ) {
 		return cldr.main([
@@ -72,11 +77,12 @@ return function( currency, cldr, options ) {
 				}
 
 				return ( i ? insertBetween : "" ) + part + ( i ? "" : insertBetween );
-			}).join( "'" + symbol + "'" );
+			}).join( "\u00A4" );
 		}).join( ";" );
 
 	return {
-		pattern: pattern
+		pattern: pattern,
+		symbol: symbol
 	};
 };
 

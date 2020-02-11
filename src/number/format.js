@@ -4,10 +4,12 @@ define([
 	"./format/integer-fraction-digits",
 	"./format/significant-digits",
 	"./pattern-re",
+	"./symbol/name",
+	"../common/parts/push",
 	"../util/remove-literal-quotes"
 ], function( numberCompactPatternRe, numberFormatGroupingSeparator,
 	numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternRe,
-	removeLiteralQuotes ) {
+	numberSymbolName, partsPush, removeLiteralQuotes ) {
 
 /**
  * format( number, properties )
@@ -20,10 +22,10 @@ define([
  * ref: http://www.unicode.org/reports/tr35/tr35-numbers.html
  */
 return function( number, properties, pluralGenerator ) {
-	var compactMap, infinitySymbol, maximumFractionDigits, maximumSignificantDigits,
-	minimumFractionDigits, minimumIntegerDigits, minimumSignificantDigits, nanSymbol, nuDigitsMap,
-	padding, prefix, primaryGroupingSize, pattern, ret, round, roundIncrement,
-	secondaryGroupingSize, suffix, symbolMap;
+	var aux, compactMap, infinitySymbol, maximumFractionDigits, maximumSignificantDigits,
+		minimumFractionDigits, minimumIntegerDigits, minimumSignificantDigits, nanSymbol,
+		nuDigitsMap, padding, prefix, primaryGroupingSize, pattern, round, roundIncrement,
+		secondaryGroupingSize, stringToParts, suffix, symbolMap;
 
 	padding = properties[ 1 ];
 	minimumIntegerDigits = properties[ 2 ];
@@ -43,7 +45,7 @@ return function( number, properties, pluralGenerator ) {
 
 	// NaN
 	if ( isNaN( number ) ) {
-		return nanSymbol;
+		return [ { type: "nan", value: nanSymbol } ];
 	}
 
 	if ( number < 0 ) {
@@ -56,9 +58,68 @@ return function( number, properties, pluralGenerator ) {
 		suffix = properties[ 10 ];
 	}
 
+	// For prefix, suffix, and number parts.
+	stringToParts = function( string ) {
+		var numberType = "integer",
+			parts = [];
+
+		// TODO Move the tokenization of all parts that don't depend on number into
+		// format-properties.
+		string.replace( /('([^']|'')+'|'')|./g, function( character, literal ) {
+
+			// Literals
+			if ( literal ) {
+				partsPush( parts, "literal", removeLiteralQuotes( literal ) );
+				return;
+			}
+
+			// Currency symbol
+			if ( character === "\u00A4" ) {
+				partsPush( parts, "currency", character );
+				return;
+			}
+
+			// Symbols
+			character = character.replace( /[.,\-+E%\u2030]/, function( symbol ) {
+				if ( symbol === "." ) {
+					numberType = "fraction";
+				}
+				partsPush( parts, numberSymbolName[symbol], symbolMap[ symbol ] );
+
+				// "Erase" handled character.
+				return "";
+			});
+
+			// Number
+			character = character.replace( /[0-9]/, function( digit ) {
+
+				// Numbering system
+				if ( nuDigitsMap ) {
+					digit = nuDigitsMap[ +digit ];
+				}
+				partsPush( parts, numberType, digit );
+
+				// "Erase" handled character.
+				return "";
+			});
+
+			// Etc
+			character.replace( /./, function( etc ) {
+				partsPush( parts, "literal", etc );
+			});
+		});
+		return parts;
+	};
+
+	prefix = stringToParts( prefix );
+	suffix = stringToParts( suffix );
+
 	// Infinity
 	if ( !isFinite( number ) ) {
-		return prefix + infinitySymbol + suffix;
+		return prefix.concat(
+			{ type: "infinity", value: infinitySymbol },
+			suffix
+		);
 	}
 
 	// Percent
@@ -111,9 +172,30 @@ return function( number, properties, pluralGenerator ) {
 		compactPattern = compactMap[ numberExponent ][ pluralForm ] || compactPattern;
 		compactProperties = compactPattern.match( numberCompactPatternRe );
 
+		// TODO Move the tokenization of all parts that don't depend on number into
+		// format-properties.
+		aux = function( string ) {
+			var parts = [];
+			string.replace( /(\s+)|([^\s0]+)/g, function( garbage, space, compact ) {
+
+				// Literals
+				if ( space ) {
+					partsPush( parts, "literal", space );
+					return;
+				}
+
+				// Compact value
+				if ( compact ) {
+					partsPush( parts, "compact", compact );
+					return;
+				}
+			});
+			return parts;
+		};
+
 		// update prefix/suffix with compact prefix/suffix
-		prefix += compactProperties[ 1 ];
-		suffix = compactProperties[ 3 ] + suffix;
+		prefix = prefix.concat( aux( compactProperties[ 1 ] ) );
+		suffix = aux( compactProperties[ 3 ] ).concat( suffix );
 	}
 
 	// Remove the possible number minus sign
@@ -125,39 +207,16 @@ return function( number, properties, pluralGenerator ) {
 			secondaryGroupingSize );
 	}
 
-	ret = prefix;
-
-	ret += number;
-
 	// Scientific notation
 	// TODO implement here
 
 	// Padding/'([^']|'')+'|''|[.,\-+E%\u2030]/g
 	// TODO implement here
 
-	ret += suffix;
-
-	return ret.replace( /('([^']|'')+'|'')|./g, function( character, literal ) {
-
-		// Literals
-		if ( literal ) {
-			return removeLiteralQuotes( literal );
-		}
-
-		// Symbols
-		character = character.replace( /[.,\-+E%\u2030]/, function( symbol ) {
-			return symbolMap[ symbol ];
-		});
-
-		// Numbering system
-		if ( nuDigitsMap ) {
-			character = character.replace( /[0-9]/, function( digit ) {
-				return nuDigitsMap[ +digit ];
-			});
-		}
-
-		return character;
-	});
+	return prefix.concat(
+		stringToParts( number ),
+		suffix
+	);
 };
 
 });

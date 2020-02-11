@@ -99,11 +99,11 @@ We do NOT embed any i18n data within our library. However, we make it really eas
 
 | File                       | Minified + gzipped size | Runtime minified + gzipped size | Summary                                                      |
 | -------------------------- | ----------------------: | ------------------------------: | ------------------------------------------------------------ |
-| globalize.js               |                   1.5KB |                           1.0KB | [Core library](#core-module)                                 |
-| globalize/currency.js      |                   2.7KB |                           0.6KB | [Currency module](#currency-module) provides currency formatting |
+| globalize.js               |                   1.7KB |                           1.1KB | [Core library](#core-module)                                 |
+| globalize/currency.js      |                   3.0KB |                           0.7KB | [Currency module](#currency-module) provides currency formatting |
 | globalize/date.js          |                   7.7KB |                           4.3KB | [Date module](#date-module) provides date formatting and parsing |
 | globalize/message.js       |                   5.3KB |                           0.7KB | [Message module](#message-module) provides ICU message format support |
-| globalize/number.js        |                   4.1KB |                           2.3KB | [Number module](#number-module) provides number formatting and parsing |
+| globalize/number.js        |                   4.4KB |                           2.6KB | [Number module](#number-module) provides number formatting and parsing |
 | globalize/plural.js        |                   2.3KB |                           0.4KB | [Plural module](#plural-module) provides pluralization support |
 | globalize/relative-time.js |                   0.8KB |                           0.5KB | [Relative time module](#relative-time-module) provides relative time formatting support |
 | globalize/unit.js          |                   0.9KB |                           0.6KB | [Unit module](#unit-module) provides unit formatting support |
@@ -475,6 +475,21 @@ Return a function that formats a number according to the given options or locale
 
 [Read more...](doc/api/number/number-formatter.md)
 
+#### `.numberToPartsFormatter( [options] )`
+
+Return a function that formats a number into parts tokens according to the given options or locale's defaults.
+
+```javascript
+.numberToPartsFormatter()( new Date() )
+// > [
+//   { "type": "integer", "value": "3" },
+//   { "type": "decimal", "value": "." },
+//   { "type": "fraction", "value": "142" }
+// ]
+```
+
+[Read more...](doc/api/number/number-to-parts-formatter.md)
+
 #### `.numberParser( [options] )`
 
 Return a function that parses a string representing a number according to the given options or locale's defaults.
@@ -495,6 +510,10 @@ Return a function that parses a string representing a number according to the gi
 #### `.formatNumber( value [, options] )`
 
 Alias for `.numberFormatter( [options] )( value )`.
+
+#### `.formatNumberToParts( value [, options] )`
+
+Alias for `.numberToPartsFormatter( [options] )( value )`.
 
 #### `.parseNumber( value [, options] )`
 
@@ -525,9 +544,32 @@ Return a function that formats a currency according to the given options or loca
 
 [Read more...](doc/api/currency/currency-formatter.md)
 
+#### `.currencyToPartsFormatter( currency [, options] )`
+
+Return a function that formats a currency into parts tokens according to the given options or locale's defaults.
+
+```javascript
+.currencyToPartsFormatter()( new Date() )
+// > [
+//   { "type": "currency", "value": "USD" },
+//   { "type": "literal", "value": " " },
+//   { "type": "integer", "value": "69" },
+//   { "type": "group", "value": "," },
+//   { "type": "integer", "value": "900" },
+//   { "type": "decimal", "value": "." },
+//   { "type": "fraction", "value": "00" }
+// ]
+```
+
+[Read more...](doc/api/currency/currency-to-parts-formatter.md)
+
 #### `.formatCurrency( value, currency [, options] )`
 
 Alias for `.currencyFormatter( currency [, options] )( value )`.
+
+#### `.formatCurrencyToParts( value, currency [, options] )`
+
+Alias for `.currencyToPartsFormatter( currency [, options] )( value )`.
 
 ### Plural module
 

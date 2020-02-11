@@ -8,9 +8,11 @@ define([
 	"./start-of",
 	"./timezone-hour-format",
 	"./week-days",
+	"../common/parts/push",
 	"../util/remove-literal-quotes"
 ], function( ZonedDateTime, dateDayOfWeek, dateDayOfYear, dateFieldsMap, dateMillisecondsInDay,
-	datePatternRe, dateStartOf, dateTimezoneHourFormat, dateWeekDays, removeLiteralQuotes ) {
+	datePatternRe, dateStartOf, dateTimezoneHourFormat, dateWeekDays, partsPush,
+	removeLiteralQuotes ) {
 
 /**
  * format( date, properties )
@@ -348,14 +350,7 @@ return function( date, numberFormatters, properties ) {
 		dateField = dateFieldsMap[ chr ];
 		type = dateField ? dateField : "literal";
 
-		// Concat two consecutive literals
-		if ( type === "literal" && parts.length && parts[ parts.length - 1 ].type === "literal" ) {
-			parts[ parts.length - 1 ].value += value;
-			return;
-		}
-
-		parts.push( { type: type, value: value } );
-
+		partsPush( parts, type, value );
 	});
 
 	return parts;
