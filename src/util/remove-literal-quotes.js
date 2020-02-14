@@ -4,7 +4,7 @@ define(function() {
  * removeLiteralQuotes( string )
  *
  * Return:
- * - `` if input string is `''`.
+ * - `'` if input string is `''`.
  * - `o'clock` if input string is `'o''clock'`.
  * - `foo` if input string is `foo`, i.e., return the same value in case it isn't a single-quoted
  *   string.
@@ -14,7 +14,7 @@ return function( string ) {
 		return string;
 	}
 	if ( string === "''" ) {
-		return "";
+		return "'";
 	}
 	return string.replace( /''/g, "'" ).slice( 1, -1 );
 };
