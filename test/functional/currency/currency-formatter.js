@@ -73,6 +73,14 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 	});
 });
 
+QUnit.test( "should un-register event listener", function( assert ) {
+	try {
+		Globalize.currencyFormatter( "USD" );
+	} catch ( error ) {
+		assert.equal( Globalize.cldr.ee.getListeners( "get" ).length, 0 );
+	}
+});
+
 QUnit.test( "should return a currency formatter", function( assert ) {
 	var de, zh;
 
