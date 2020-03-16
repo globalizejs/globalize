@@ -34,6 +34,14 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 	});
 });
 
+QUnit.test( "should un-register event listener", function( assert ) {
+	try {
+		Globalize.formatRelativeTime( 1, "day" );
+	} catch ( error ) {
+		assert.equal( Globalize.cldr.ee.getListeners( "get" ).length, 0 );
+	}
+});
+
 QUnit.module( ".formatRelativeTime( value, unit [, options] )", {
 	setup: function( ) {
 		Globalize.load( likelySubtags, enDateFields, deDateFields,

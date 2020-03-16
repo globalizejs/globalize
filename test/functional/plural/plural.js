@@ -63,6 +63,14 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 	});
 });
 
+QUnit.test( "should un-register event listener", function( assert ) {
+	try {
+		Globalize.plural( 1 );
+	} catch ( error ) {
+		assert.equal( Globalize.cldr.ee.getListeners( "get" ).length, 0 );
+	}
+});
+
 QUnit.test( "should return plural form", function( assert ) {
 	extraSetup();
 	assert.equal( Globalize.plural( 0 ), "other" );

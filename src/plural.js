@@ -65,8 +65,11 @@ Globalize.prototype.pluralGenerator = function( options ) {
 	isOrdinal = type === "ordinal";
 
 	cldr.on( "get", validateCldr );
-	cldr.supplemental([ "plurals-type-" + type, "{language}" ]);
-	cldr.off( "get", validateCldr );
+	try {
+		cldr.supplemental([ "plurals-type-" + type, "{language}" ]);
+	} finally {
+		cldr.off( "get", validateCldr );
+	}
 
 	MakePlural.rules = {};
 	MakePlural.rules[ type ] = cldr.supplemental( "plurals-type-" + type );
