@@ -80,17 +80,18 @@ Globalize.prototype.numberFormatter = function( options ) {
 	validateDefaultLocale( cldr );
 
 	cldr.on( "get", validateCldr );
+	try {
+		if ( options.raw ) {
+			pattern = options.raw;
+		} else {
+			pattern = numberPattern( options.style || "decimal", cldr );
+		}
 
-	if ( options.raw ) {
-		pattern = options.raw;
-	} else {
-		pattern = numberPattern( options.style || "decimal", cldr );
+		properties = numberFormatProperties( pattern, cldr, options );
+		fnArgs = [ properties ];
+	} finally {
+		cldr.off( "get", validateCldr );
 	}
-
-	properties = numberFormatProperties( pattern, cldr, options );
-	fnArgs = [ properties ];
-
-	cldr.off( "get", validateCldr );
 
 	validateDigits( properties );
 

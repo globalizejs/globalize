@@ -106,6 +106,14 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 	});
 });
 
+QUnit.test( "should un-register event listener", function( assert ) {
+	try {
+		Globalize.dateParser({ skeleton: "invalid-stuff" });
+	} catch ( error ) {
+		assert.equal( Globalize.cldr.ee.getListeners( "get" ).length, 0 );
+	}
+});
+
 QUnit.test( "should return a parser", function( assert ) {
 	extraSetup();
 	assertParseDate( assert, "Wed, Sep 15, 2010 AD", { skeleton: "GyMMMEd" },

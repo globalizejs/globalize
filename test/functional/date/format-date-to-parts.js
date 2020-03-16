@@ -109,6 +109,14 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 	});
 });
 
+QUnit.test( "should un-register event listener", function( assert ) {
+	try {
+		Globalize.formatDateToParts( date, { skeleton: "invalid-stuff" } );
+	} catch ( error ) {
+		assert.equal( Globalize.cldr.ee.getListeners( "get" ).length, 0 );
+	}
+});
+
 QUnit.test( "should validate parameters (2/2)", function( assert ) {
 	extraSetup();
 
