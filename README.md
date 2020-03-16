@@ -276,7 +276,7 @@ If you're using none of the tools above, but instead you're using the plain and 
 
 ### Community
 
-You can find us on [Slack](https://globalizejs.slack.com/). If you're new, [join here](https://join.slack.com/t/globalizejs/shared_invite/enQtMjk4OTUwNzM1Nzk0LTk2YmY0YjY3Yzk4YzU3M2NkMDZjNThlNzcwNTkyNGJhNDhiNjdkMWUyN2Q2MjVmNTk0ZjkyNGQ3MWEyNzNmMWU).
+You can find us on [Slack](https://globalizejs.slack.com/). If you're new, [join here](https://join.slack.com/t/globalizejs/shared_invite/zt-3tc3js1e-ETn09rNHL_5fclun8jtckQ).
 
 ## API
 
