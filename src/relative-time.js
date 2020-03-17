@@ -61,9 +61,11 @@ Globalize.prototype.relativeTimeFormatter = function( unit, options ) {
 	validateDefaultLocale( cldr );
 
 	cldr.on( "get", validateCldr );
-	properties = relativeTimeProperties( unit, cldr, options );
-	cldr.off( "get", validateCldr );
-
+	try {
+		properties = relativeTimeProperties( unit, cldr, options );
+	} finally {
+		cldr.off( "get", validateCldr );
+	}
 	numberFormatter = this.numberFormatter( options );
 	pluralGenerator = this.pluralGenerator();
 

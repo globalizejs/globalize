@@ -60,6 +60,14 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 	});
 });
 
+QUnit.test( "should un-register event listener", function( assert ) {
+	try {
+		Globalize.formatNumber( pi );
+	} catch ( error ) {
+		assert.equal( Globalize.cldr.ee.getListeners( "get" ).length, 0 );
+	}
+});
+
 QUnit.test( "should format decimal style", function( assert ) {
 	extraSetup();
 

@@ -61,13 +61,16 @@ Globalize.prototype.currencyFormatter = function( currency, options ) {
 
 	// Get properties given style ("symbol" default, "code" or "name").
 	cldr.on( "get", validateRequiredCldr );
-	properties = ({
-		accounting: currencySymbolProperties,
-		code: currencyCodeProperties,
-		name: currencyNameProperties,
-		symbol: currencySymbolProperties
-	}[ style ] )( currency, cldr, options );
-	cldr.off( "get", validateRequiredCldr );
+	try {
+		properties = ({
+			accounting: currencySymbolProperties,
+			code: currencyCodeProperties,
+			name: currencyNameProperties,
+			symbol: currencySymbolProperties
+		}[ style] )( currency, cldr, options );
+	} finally {
+		cldr.off( "get", validateRequiredCldr );
+	}
 
 	// options = options minus style, plus raw pattern.
 	options = objectOmit( options, "style" );
