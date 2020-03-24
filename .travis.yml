@@ -6,4 +6,5 @@ before_install:
 - npm install -g bower
 install:
 - npm install
+- npm ls || echo # Avoid that `npm ls` aborts
 - bower install
