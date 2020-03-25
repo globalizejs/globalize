@@ -168,6 +168,7 @@ function final_message {
 	echo git push --tags origin
 	echo npm publish
 	echo git checkout master
+	echo git push origin master
 	echo git branch -D $TARGET_BRANCH
 }
 
