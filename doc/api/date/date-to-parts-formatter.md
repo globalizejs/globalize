@@ -60,7 +60,7 @@ Possible types are the following:
 
   The string used for the second, e.g., `"07"` or `"42"`.
 
-- `timeZoneName`
+- `zone`
 
   The string used for the name of the time zone, e.g., `"EST".`
 
