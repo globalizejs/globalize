@@ -31,7 +31,7 @@ Possible types are the following:
 
   The string used for the day, e.g., `"17"`, `"١٦"`.
 
-- `dayPeriod`
+- `dayperiod`
 
   The string used for the day period, e.g., `"AM"`, `"PM"`.
 
