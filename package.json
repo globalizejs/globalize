@@ -31,10 +31,10 @@
     "CLDR",
     "JSON"
   ],
-  "homepage": "https://github.com/jquery/globalize",
+  "homepage": "https://github.com/globalizejs/globalize",
   "author": {
-    "name": "jQuery Foundation and other contributors",
-    "url": "https://github.com/jquery/jquery/blob/master/AUTHORS.txt"
+    "name": "OpenJS Foundation and other contributors",
+    "url": "https://github.com/globalizejs/globalize/blob/master/AUTHORS.txt"
   },
   "maintainers": [
     {
@@ -64,10 +64,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/jquery/globalize.git"
+    "url": "git://github.com/globalizejs/globalize.git"
   },
   "bugs": {
-    "url": "http://github.com/jquery/globalize/issues"
+    "url": "https://github.com/globalizejs/globalize/issues"
   },
   "dependencies": {
     "cldrjs": "^0.5.4"
