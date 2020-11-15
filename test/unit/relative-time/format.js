@@ -19,14 +19,14 @@ cldr = new Cldr( "en" );
 QUnit.module( "Relative Time Format" );
 
 function mockNumberFormatter(assert, expectedValue) {
-	return function ( value ) {
+	return function( value ) {
 		assert.equal( value, expectedValue );
 		return expectedValue.toString();
 	};
 }
 
 function mockPluralGenerator(plural) {
-	return function () {
+	return function() {
 		return plural;
 	};
 }

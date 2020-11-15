@@ -36,7 +36,7 @@ return function( cldr, askedSkeleton ) {
 
 		if ( ratedFormats.length ) {
 			decimalSeparator = numberSymbol( "decimal", cldr );
-			pattern = augmentFormat( askedSkeleton, ratedFormats[0].pattern, decimalSeparator );
+			pattern = augmentFormat( askedSkeleton, ratedFormats[ 0 ].pattern, decimalSeparator );
 		}
 	}
 

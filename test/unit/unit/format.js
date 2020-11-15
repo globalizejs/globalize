@@ -34,7 +34,7 @@ function stubNumberFormatter( number ) {
 	return number.toString();
 }
 
-QUnit.assert.unitFormat = function ( value, unit, options, expected, language ) {
+QUnit.assert.unitFormat = function( value, unit, options, expected, language ) {
   language = language || "en";
 
   Cldr.load( units[ language ] );
@@ -108,51 +108,61 @@ QUnit.test( "Narrow form", function( assert ) {
 	assert.unitFormat( 2, "year", { form: "narrow" }, "2y" );
 });
 
-QUnit.test( "Compound form (long)", function ( assert ) {
+QUnit.test( "Compound form (long)", function( assert ) {
 	assert.unitFormat( 1, "speed-mile-per-hour", { form: "long" }, "1 mile per hour" );
 	assert.unitFormat( 100, "speed-mile-per-hour", { form: "long" }, "100 miles per hour" );
 	assert.unitFormat( 1, "consumption-mile-per-gallon", { form: "long" }, "1 mile per gallon" );
 	assert.unitFormat( 100, "consumption-mile-per-gallon", { form: "long" }, "100 miles per gallon" );
 });
 
-QUnit.test( "Compound form (without category)", function ( assert ) {
+QUnit.test( "Compound form (without category)", function( assert ) {
 	assert.unitFormat( 1, "mile-per-hour", { form: "long" }, "1 mile per hour" );
 	assert.unitFormat( 100, "mile-per-hour", { form: "long" }, "100 miles per hour" );
 });
 
-QUnit.test( "Compound form (without precomputed)", function ( assert ) {
+QUnit.test( "Compound form (without precomputed)", function( assert ) {
 	assert.unitFormat( 1, "length-foot-per-second", { form: "long" }, "1 foot per second" );
 	assert.unitFormat( 100, "length-foot-per-second", { form: "long" }, "100 feet per second" );
 	assert.unitFormat( 1, "megabyte-per-second", { form: "narrow" }, "1MB/s" );
 	assert.unitFormat( 100, "megabyte-per-second", { form: "narrow" }, "100MB/s" );
 
   assert.unitFormat( 1.2345678910, "megabyte-per-second",
-		{ form: "narrow", numberFormatter: function (number) { return number.toFixed(1); }},
+		{
+			form: "narrow",
+			numberFormatter: function( number ) {
+				return number.toFixed(1);
+			}
+		},
 		"1.2MB/s" );
 });
 
-QUnit.test( "Compound form (short)", function ( assert ) {
+QUnit.test( "Compound form (short)", function( assert ) {
 	assert.unitFormat( 1, "speed-mile-per-hour", { form: "short" }, "1 mph" );
 	assert.unitFormat( 100, "speed-mile-per-hour", { form: "short" }, "100 mph" );
 	assert.unitFormat( 1, "consumption-mile-per-gallon", { form: "short" }, "1 mpg" );
 	assert.unitFormat( 100, "consumption-mile-per-gallon", { form: "short" }, "100 mpg" );
 });
 
-QUnit.test( "Compound form (narrow)", function ( assert ) {
+QUnit.test( "Compound form (narrow)", function( assert ) {
 	assert.unitFormat( 1, "speed-mile-per-hour", { form: "narrow" }, "1mph" );
 	assert.unitFormat( 100, "speed-mile-per-hour", { form: "narrow" }, "100mph" );
 	assert.unitFormat( 1, "consumption-mile-per-gallon", { form: "narrow" }, "1mpg" );
 	assert.unitFormat( 100, "consumption-mile-per-gallon", { form: "narrow" }, "100mpg" );
 });
 
-QUnit.test( "Compound form (without precomputed) in language without 'one' unit", function ( assert ) {
+QUnit.test( "Compound form (without precomputed) in language without 'one' unit", function( assert ) {
 	assert.unitFormat( 1, "length-foot-per-second", { form: "long" }, "1 フィート毎秒", "ja" );
 	assert.unitFormat( 100, "length-foot-per-second", { form: "long" }, "100 フィート毎秒", "ja" );
 	assert.unitFormat( 1, "megabyte-per-second", { form: "narrow" }, "1MB/秒", "ja" );
 	assert.unitFormat( 100, "megabyte-per-second", { form: "narrow" }, "100MB/秒", "ja" );
 
 	assert.unitFormat( 1.2345678910, "megabyte-per-second",
-		{ form: "narrow", numberFormatter: function (number) { return number.toFixed(1); }},
+		{
+			form: "narrow",
+			numberFormatter: function( number ) {
+				return number.toFixed(1);
+			}
+		},
 		"1.2MB/秒", "ja" );
 });
 

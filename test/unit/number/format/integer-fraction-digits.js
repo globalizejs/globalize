@@ -10,9 +10,8 @@ var ceil = round( "ceil" ),
 	earthDiameter = 12735, /* 1 */
 	floor = round( "floor" ),
 	pi = 3.14159265359,
-	truncate = round( "truncate" );
-
-round = round( "round" ),
+	truncate = round( "truncate" ),
+	round = round( "round" );
 
 QUnit.module( "Number Integer and Fraction Format" );
 

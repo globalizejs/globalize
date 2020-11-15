@@ -70,7 +70,7 @@ QUnit.test( "should return pattern replacing `¤` with the appropriate currency 
 
 	assert.deepEqual( symbolProperties( "USD", en, {
 		style: "accounting"
-	}),{
+	}), {
 		"pattern": "¤#,##0.00;(¤#,##0.00)",
 		"symbol": "$"
 	});

@@ -84,7 +84,7 @@ return function( number, properties, pluralGenerator ) {
 				if ( symbol === "." ) {
 					numberType = "fraction";
 				}
-				partsPush( parts, numberSymbolName[symbol], symbolMap[ symbol ] );
+				partsPush( parts, numberSymbolName[ symbol ], symbolMap[ symbol ] );
 
 				// "Erase" handled character.
 				return "";

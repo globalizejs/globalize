@@ -141,7 +141,7 @@ return function( pattern, cldr, options ) {
 		invertedNuDigitsMap,
 		{
 			infinity: new RegExp( "^" + regexpEscape( infinitySymbol ) ),
-			nan:  new RegExp( "^" + regexpEscape( nanSymbol ) ),
+			nan: new RegExp( "^" + regexpEscape( nanSymbol ) ),
 			negativePrefix: new RegExp( "^" + regexpEscape( negativePrefix ) ),
 			negativeSuffix: new RegExp( "^" + regexpEscape( negativeSuffix ) ),
 			number: new RegExp( "^" + numberTokenizer ),

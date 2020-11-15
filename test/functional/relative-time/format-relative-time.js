@@ -86,7 +86,7 @@ QUnit.test( "should format long form in past", function( assert ) {
 	assert.equal( en.formatRelativeTime( -2, "week" ), "2 weeks ago" );
 });
 
-QUnit.test( "should format long form in future", function ( assert ) {
+QUnit.test( "should format long form in future", function( assert ) {
 	assert.equal( en.formatRelativeTime( 3, "year" ), "in 3 years" );
 });
 

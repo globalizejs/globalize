@@ -30,8 +30,8 @@ Cldr.load({
 			"dates": {
 				"timeZoneNames": {
 					"zone": {
-						"Foo":{
-							"Baz":{
+						"Foo": {
+							"Baz": {
 								"exemplarCity": "Foo City"
 							}
 						}

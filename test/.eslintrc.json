@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "extends": "../.eslintrc.json",
+  "env": {
+    "node": true,
+    "amd": true,
+    "mocha": true
+  },
+  "globals": {
+    "QUnit": "readonly"
+  },
+  "rules": {
+    "array-bracket-spacing": "off",
+    "comma-dangle": "off",
+    "max-len": "off"
+  }
+}

@@ -75,9 +75,9 @@ return function( pattern, cldr, options ) {
 		properties[ 3 ] = 0; // minimumFractionDigits
 		properties[ 4 ] = 0; // maximumFractionDigits
 		properties[ 5 ] = // minimumSignificantDigits &
-			properties[ 6 ] = undefined ; // maximumSignificantDigits
+			properties[ 6 ] = undefined; // maximumSignificantDigits
 
-		properties[20] = numberCompact( options.compact, cldr );
+		properties[ 20 ] = numberCompact( options.compact, cldr );
 	}
 
 	getOptions( "minimumIntegerDigits", 2 );

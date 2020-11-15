@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-spacing */
 define([
 	"cldr",
 	"src/number/format",
@@ -1881,7 +1882,7 @@ QUnit.test( "should format numbers in compact mode", function( assert ) {
 
 	assert.deepEqual( format( 1273000, properties( "0", es, {
 		compact: "long"
-	 } ), esPluralGenerator ), [
+	} ), esPluralGenerator ), [
 		{
 			"type": "integer",
 			"value": "1"

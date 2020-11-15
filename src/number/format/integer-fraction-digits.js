@@ -53,7 +53,7 @@ return function( number, minimumIntegerDigits, minimumFractionDigits, maximumFra
 		// String(123456789.123) === "123456789.123".
 		number = ( +number ).toFixed( maximumFractionDigits )
 			.replace( /0+$/, "" ) /* 1 */
-			.replace( /\.$/, "" ) /* 2 */;
+			.replace( /\.$/, "" ); /* 2 */
 	}
 
 	// Minimum fraction digits (post string phase)

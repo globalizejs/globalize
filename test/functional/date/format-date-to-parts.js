@@ -121,7 +121,7 @@ QUnit.test( "should validate parameters (2/2)", function( assert ) {
 	extraSetup();
 
 	// Use the default style when passing {timeZone} only.
-	assert.deepEqual( Globalize.formatDateToParts( new Date( "2010-09-15T08:00:00Z" ), { timeZone: "America/Los_Angeles"} ), [
+	assert.deepEqual( Globalize.formatDateToParts( new Date( "2010-09-15T08:00:00Z" ), { timeZone: "America/Los_Angeles" } ), [
 		{ type: "month", value: "9" },
 		{ type: "literal", value: "/" },
 		{ type: "day", value: "15" },
@@ -489,7 +489,7 @@ QUnit.test( "should format time presets", function( assert ) {
 QUnit.test( "should format date presets", function( assert ) {
 	extraSetup();
 
-	assert.deepEqual( Globalize.formatDateToParts( date, { date: "full" } ), 
+	assert.deepEqual( Globalize.formatDateToParts( date, { date: "full" } ),
 	[
 		{
 			"type": "weekday",
@@ -519,7 +519,7 @@ QUnit.test( "should format date presets", function( assert ) {
 			"type": "year",
 			"value": "2010"
 		}
- 	]);
+	]);
 
 	assert.deepEqual( Globalize.formatDateToParts( date, { date: "long" } ),
 	[
