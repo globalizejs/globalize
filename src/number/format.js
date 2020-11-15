@@ -3,12 +3,11 @@ define([
 	"./format/grouping-separator",
 	"./format/integer-fraction-digits",
 	"./format/significant-digits",
-	"./pattern-re",
 	"./symbol/name",
 	"../common/parts/push",
 	"../util/remove-literal-quotes"
 ], function( numberCompactPatternRe, numberFormatGroupingSeparator,
-	numberFormatIntegerFractionDigits, numberFormatSignificantDigits, numberPatternRe,
+	numberFormatIntegerFractionDigits, numberFormatSignificantDigits,
 	numberSymbolName, partsPush, removeLiteralQuotes ) {
 
 /**
@@ -24,10 +23,9 @@ define([
 return function( number, properties, pluralGenerator ) {
 	var aux, compactMap, infinitySymbol, maximumFractionDigits, maximumSignificantDigits,
 		minimumFractionDigits, minimumIntegerDigits, minimumSignificantDigits, nanSymbol,
-		nuDigitsMap, padding, prefix, primaryGroupingSize, pattern, round, roundIncrement,
+		nuDigitsMap, prefix, primaryGroupingSize, pattern, round, roundIncrement,
 		secondaryGroupingSize, stringToParts, suffix, symbolMap;
 
-	padding = properties[ 1 ];
 	minimumIntegerDigits = properties[ 2 ];
 	minimumFractionDigits = properties[ 3 ];
 	maximumFractionDigits = properties[ 4 ];
@@ -176,7 +174,7 @@ return function( number, properties, pluralGenerator ) {
 		// format-properties.
 		aux = function( string ) {
 			var parts = [];
-			string.replace( /(\s+)|([^\s0]+)/g, function( garbage, space, compact ) {
+			string.replace( /(\s+)|([^\s0]+)/g, function( _garbage, space, compact ) {
 
 				// Literals
 				if ( space ) {

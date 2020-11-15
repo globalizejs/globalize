@@ -4,10 +4,9 @@ define([
 	"./pattern-properties",
 	"./symbol",
 	"./symbol/map",
-	"./symbol/name",
 	"../util/number/round"
 ], function( numberCompact, numberNumberingSystemDigitsMap, numberPatternProperties, numberSymbol,
-	numberSymbolMap, numberSymbolName, numberRound ) {
+	numberSymbolMap, numberRound ) {
 
 /**
  * formatProperties( pattern, cldr [, options] )

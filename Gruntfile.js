@@ -8,7 +8,7 @@ module.exports = function( grunt ) {
 		pkg = grunt.file.readJSON( "package.json" );
 
 	function camelCase( input ) {
-		return input.toLowerCase().replace( /[-/](.)/g, function( match, group1 ) {
+		return input.toLowerCase().replace( /[-/](.)/g, function( _match, group1 ) {
 			return group1.toUpperCase();
 		});
 	}
@@ -121,7 +121,7 @@ module.exports = function( grunt ) {
 				// b) "Module" means the define wrappers are removed, but content is untouched.
 				//    Only for root id's (the ones in src, not in src's subpaths). Note there's no
 				//    conditional code checking for this type.
-				onBuildWrite: function( id, path, contents ) {
+				onBuildWrite: function( id, _path, contents ) {
 					var messageformat,
 						name = camelCase( id.replace( /util\/|common\//, "" ) );
 

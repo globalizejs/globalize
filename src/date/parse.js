@@ -2,12 +2,11 @@ define([
 	"zoned-date-time",
 	"./is-leap-year",
 	"./last-day-of-month",
-	"./pattern-re",
 	"./start-of",
 	"../common/create-error/unsupported-feature",
 	"../util/date/set-month",
 	"../util/out-of-range"
-], function( ZonedDateTime, dateIsLeapYear, dateLastDayOfMonth, datePatternRe, dateStartOf,
+], function( ZonedDateTime, dateIsLeapYear, dateLastDayOfMonth, dateStartOf,
 	createErrorUnsupportedFeature, dateSetMonth, outOfRange ) {
 
 /**
@@ -21,7 +20,7 @@ define([
  *
  * ref: http://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
  */
-return function( value, tokens, properties ) {
+return function( _value, tokens, properties ) {
 	var amPm, day, daysOfYear, month, era, hour, hour12, timezoneOffset, valid,
 		YEAR = 0,
 		MONTH = 1,

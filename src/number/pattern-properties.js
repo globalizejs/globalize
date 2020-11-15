@@ -33,7 +33,7 @@ return function( pattern ) {
 
 	// Significant digit format
 	if ( significantPattern ) {
-		significantPattern.replace( /(@+)(#*)/, function( match, minimumSignificantDigitsMatch, maximumSignificantDigitsMatch ) {
+		significantPattern.replace( /(@+)(#*)/, function( _match, minimumSignificantDigitsMatch, maximumSignificantDigitsMatch ) {
 			minimumSignificantDigits = minimumSignificantDigitsMatch.length;
 			maximumSignificantDigits = minimumSignificantDigits +
 				maximumSignificantDigitsMatch.length;

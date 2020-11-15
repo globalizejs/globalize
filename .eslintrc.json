@@ -3,7 +3,6 @@
   "extends": "jquery",
   "rules": {
     "lines-around-comment": ["error", { "ignorePattern": "falls through" }],
-    "no-unused-vars": "off",
     "space-in-parens": "off"
   },
   "overrides": [
@@ -34,6 +33,7 @@
         "max-len": "off",
         "no-multiple-empty-lines": "off",
         "no-nested-ternary": "off",
+        "no-unused-vars": "off",
         "wrap-iife": "off"
       }
     }

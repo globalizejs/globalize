@@ -1,12 +1,11 @@
 define([
 	"./format-properties",
 	"./symbol/inverted-map",
-	"../util/always-array",
 	"../util/loose-matching",
 	"../util/object/map",
 	"../util/regexp/escape",
 	"../util/remove-literal-quotes"
-], function( numberFormatProperties, numberSymbolInvertedMap, alwaysArray, looseMatching, objectMap,
+], function( numberFormatProperties, numberSymbolInvertedMap, looseMatching, objectMap,
 	regexpEscape, removeLiteralQuotes ) {
 
 /**

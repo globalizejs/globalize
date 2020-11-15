@@ -1,6 +1,5 @@
 define([
 	"globalize",
-	"src/date/start-of",
 	"json!cldr-data/main/en/ca-gregorian.json",
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/main/pt/ca-gregorian.json",
@@ -12,7 +11,7 @@ define([
 	"../../util",
 
 	"globalize/date"
-], function( Globalize, startOf, enCaGregorian, enNumbers, ptCaGregorian, ptNumbers, likelySubtags,
+], function( Globalize, enCaGregorian, enNumbers, ptCaGregorian, ptNumbers, likelySubtags,
 	numberingSystems, timeData, weekData, util ) {
 
 function assertParseDate( assert, input, options, output ) {
