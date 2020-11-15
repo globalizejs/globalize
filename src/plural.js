@@ -5,7 +5,6 @@ define([
 	"./common/validate/cldr",
 	"./common/validate/default-locale",
 	"./common/validate/parameter-presence",
-	"./common/validate/parameter-type",
 	"./common/validate/parameter-type/number",
 	"./common/validate/parameter-type/plain-object",
 	"./common/validate/parameter-type/plural-type",
@@ -14,8 +13,8 @@ define([
 
 	"cldr/event",
 	"cldr/supplemental"
-], function( Cldr, MakePlural, runtimeBind, validateCldr, validateDefaultLocale,
-	validateParameterPresence, validateParameterType, validateParameterTypeNumber,
+], function( _Cldr, MakePlural, runtimeBind, validateCldr, validateDefaultLocale,
+	validateParameterPresence, validateParameterTypeNumber,
 	validateParameterTypePlainObject, validateParameterTypePluralType, Globalize,
 	pluralGeneratorFn ) {
 

@@ -1,7 +1,6 @@
 define([
 	"cldr",
 	"messageformat",
-	"./common/create-error",
 	"./common/create-error/plural-module-presence",
 	"./common/runtime-bind",
 	"./common/validate/default-locale",
@@ -17,7 +16,7 @@ define([
 	"./util/always-array",
 
 	"cldr/event"
-], function( Cldr, MessageFormat, createError, createErrorPluralModulePresence, runtimeBind,
+], function( Cldr, MessageFormat, createErrorPluralModulePresence, runtimeBind,
 	validateDefaultLocale, validateMessageBundle, validateMessagePresence, validateMessageType,
 	validateParameterPresence, validateParameterType, validateParameterTypePlainObject, Globalize,
 	messageFormatterFn, messageFormatterRuntimeBind, alwaysArray ) {

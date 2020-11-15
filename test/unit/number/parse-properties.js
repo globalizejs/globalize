@@ -13,7 +13,7 @@ define([
 ], function( Cldr, properties, arNumbers, enNumbers, esNumbers, faNumbers, svNumbers,
 	likelySubtags ) {
 
-var ar, fa, en, es, sv;
+var ar, en, es, sv;
 
 Cldr.load(
 	arNumbers,
@@ -27,7 +27,6 @@ Cldr.load(
 ar = new Cldr( "ar" );
 en = new Cldr( "en" );
 es = new Cldr( "es" );
-fa = new Cldr( "fa" );
 sv = new Cldr( "sv" );
 
 QUnit.module( "Number Parse Properties" );
