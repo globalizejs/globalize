@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 var requirejs = {
 	paths: {
 		qunit: "../external/qunit/qunit/qunit",

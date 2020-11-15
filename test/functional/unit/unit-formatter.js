@@ -96,8 +96,8 @@ QUnit.test( "should accept custom number formatter", function( assert ) {
 });
 
 QUnit.test( "should generate different runtime key when using different numberFormatter", function( assert ) {
-	var formatter1 = Globalize.unitFormatter( "hour", { numberFormatter: Globalize.numberFormatter( { minimumIntegerDigits:1 } ) });
-	var formatter2 = Globalize.unitFormatter( "hour", { numberFormatter: Globalize.numberFormatter( { minimumIntegerDigits:2 } ) });
+	var formatter1 = Globalize.unitFormatter( "hour", { numberFormatter: Globalize.numberFormatter( { minimumIntegerDigits: 1 } ) });
+	var formatter2 = Globalize.unitFormatter( "hour", { numberFormatter: Globalize.numberFormatter( { minimumIntegerDigits: 2 } ) });
 	assert.notEqual( formatter1.runtimeKey, formatter2.runtimeKey );
 });
 });

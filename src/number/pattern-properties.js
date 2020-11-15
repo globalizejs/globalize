@@ -59,7 +59,7 @@ return function( pattern ) {
 
 			// Maximum fraction digits
 			// 1: ignore decimal character
-			maximumFractionDigits = fractionPattern.length - 1 /* 1 */;
+			maximumFractionDigits = fractionPattern.length - 1; /* 1 */
 		} else {
 			minimumFractionDigits = 0;
 			maximumFractionDigits = 0;

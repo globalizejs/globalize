@@ -254,6 +254,7 @@ return function( pattern, cldr, timeZone ) {
 
 					// Note: if short day names are not explicitly specified, abbreviated day
 					// names are used instead http://www.unicode.org/reports/tr35/tr35-dates.html#months_days_quarters_eras
+					// eslint-disable-next-line no-unused-expressions
 					cldr.main([
 						"dates/calendars/gregorian/days",
 						[ chr === "c" ? "stand-alone" : "format" ],

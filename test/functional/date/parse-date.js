@@ -119,7 +119,7 @@ QUnit.test( "should validate parameters (2/2)", function( assert ) {
 	extraSetup();
 
 	// Use the default style when passing {timeZone} only.
-	assert.deepEqual( Globalize.parseDate( "5/17/2017", { timeZone: "America/Los_Angeles"} ), new Date( "2017-05-17T07:00:00.000Z" ) );
+	assert.deepEqual( Globalize.parseDate( "5/17/2017", { timeZone: "America/Los_Angeles" } ), new Date( "2017-05-17T07:00:00.000Z" ) );
 
 	assert.throws(function() {
 		Globalize.parseDate( "15", { timeZone: "invalid-time-zone" });

@@ -123,8 +123,8 @@ QUnit.test( "should return a formatter", function( assert ) {
 			"type": "era",
 			"value": "AD"
 		}
-	]); 
-	 assert.deepEqual( Globalize.dateToPartsFormatter({ skeleton: "dhms" })( date ), [
+	]);
+	assert.deepEqual( Globalize.dateToPartsFormatter({ skeleton: "dhms" })( date ), [
 		{
 			"type": "day",
 			"value": "15"
@@ -161,7 +161,7 @@ QUnit.test( "should return a formatter", function( assert ) {
 			"type": "dayperiod",
 			"value": "PM"
 		}
-	]);   
+	]);
 	assert.deepEqual( Globalize.dateToPartsFormatter({ skeleton: "GyMMMEdhms" })( date ), [
 		{
 			"type": "weekday",

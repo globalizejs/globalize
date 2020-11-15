@@ -1,0 +1,41 @@
+{
+  "root": true,
+  "extends": "jquery",
+  "rules": {
+    "lines-around-comment": ["error", { "ignorePattern": "falls through" }],
+    "no-unused-vars": "off",
+    "space-in-parens": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "script/**/*.js"
+      ],
+      "extends": "jquery",
+      "env": {
+        "node": true
+      }
+    },
+    {
+      "files": [
+        "dist/**/*.js"
+      ],
+      "env": {
+        "amd": true,
+        "node": true
+      },
+      "globals": {
+        "Cldr": "readonly",
+        "Globalize": "readonly"
+      },
+      "rules": {
+        "array-bracket-spacing": "off",
+        "computed-property-spacing": "off",
+        "max-len": "off",
+        "no-multiple-empty-lines": "off",
+        "no-nested-ternary": "off",
+        "wrap-iife": "off"
+      }
+    }
+  ]
+}

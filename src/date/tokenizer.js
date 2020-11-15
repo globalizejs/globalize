@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 define([
 	"./pattern-re",
 	"../util/loose-matching",

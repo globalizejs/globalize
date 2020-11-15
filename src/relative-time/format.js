@@ -24,8 +24,8 @@ return function( value, numberFormatter, pluralGenerator, properties ) {
 		return message;
 	}
 
-	relativeTime = value <= 0 ? properties[ "relativeTime-type-past" ]
-		: properties[ "relativeTime-type-future" ];
+	relativeTime = value <= 0 ? properties[ "relativeTime-type-past" ] :
+		properties[ "relativeTime-type-future" ];
 
 	value = Math.abs( value );
 

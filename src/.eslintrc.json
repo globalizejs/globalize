@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "extends": "../.eslintrc.json",
+  "env": {
+    "amd": true
+  },
+  "rules": {
+    "no-nested-ternary": "off"
+  }
+}

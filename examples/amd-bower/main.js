@@ -95,12 +95,12 @@ require([
 	// Use Globalize to format dates to parts.
 	document.getElementById( "dateToParts" ).innerHTML = en.formatDateToParts( new Date(), {
 		datetime: "medium"
-	}).map(function( part ) {
-		switch(part.type) {
+	}).map( function( part ) {
+		switch ( part.type ) {
 			case "month": return "<strong>" + part.value + "</strong>";
 			default: return part.value;
 		}
-	}).reduce(function( memo, value ) {
+	}).reduce( function( memo, value ) {
 		return memo + value;
 	});
 

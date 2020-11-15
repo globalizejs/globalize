@@ -1,3 +1,4 @@
+/* eslint-env node */
 module.exports = function( grunt ) {
 
 	"use strict";
@@ -64,39 +65,9 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
-		jshint: {
-			source: {
-				src: [ "src/**/*.js", "!src/build/**" ],
-				options: {
-					jshintrc: "src/.jshintrc"
-				}
-			},
-			grunt: {
-				src: [ "Gruntfile.js" ],
-				options: {
-					jshintrc: ".jshintrc"
-				}
-			},
-			test: {
-				src: [ "test/*.js", "test/functional/**/*.js", "test/unit/**/*.js",
-					"test/compiler/**/*.js", "!test/config.js", "!test/compiler/_compiled/**" ],
-				options: {
-					jshintrc: "test/.jshintrc"
-				}
-			},
-			dist: {
-				src: [ "dist/globalize*.js", "dist/globalize/*.js" ],
-				options: {
-					jshintrc: "src/.dist-jshintrc"
-				}
-			}
-		},
-		jscs: {
-			source: [ "src/**/*.js", "!src/build/**" ],
-			grunt: "Gruntfile.js",
-			test: [ "test/*.js", "test/functional/**/*.js", "test/unit/**/*.js",
-				"test/compiler/**/*.js", "!test/compiler/_compiled/**" ],
-			dist: [ "dist/globalize*.js", "dist/globalize/*.js" ]
+		eslint: {
+			main: ".",
+			dist: "dist/"
 		},
 		mochaTest: {
 			test: {
@@ -179,25 +150,25 @@ module.exports = function( grunt ) {
 							// Replace its wrapper into var assignment.
 							.replace( /\(function \(global\) \{/, [
 								"var MakePlural;",
-								"/* jshint ignore:start */",
+								"/* eslint-disable */",
 								"MakePlural = (function() {"
 							].join( "\n" ) )
 							.replace( /if \(\(typeof module !== 'undefined'[\s\S]*/, [
 								"return MakePlural;",
 								"}());",
-								"/* jshint ignore:end */"
+								"/* eslint-enable */"
 							].join( "\n" ) )
 
 							// Wrap everything into a var assignment.
 							.replace( /^/, [
 								"var MakePlural;",
-								"/* jshint ignore:start */",
+								"/* eslint-disable */",
 								"MakePlural = (function() {"
 							].join( "\n" ) )
 							.replace( /$/, [
 								"return MakePlural;",
 								"}());",
-								"/* jshint ignore:end */"
+								"/* eslint-enable */"
 							].join( "\n" ) );
 
 					// messageformat
@@ -239,13 +210,13 @@ module.exports = function( grunt ) {
 							.replace( "module.exports = MessageFormat;", "" )
 							.replace( /^/, [
 								"var MessageFormat;",
-								"/* jshint ignore:start */",
+								"/* eslint-disable */",
 								"MessageFormat = (function() {"
 							].join( "\n" ) )
 							.replace( /$/, [
 								"return MessageFormat;",
 								"}());",
-								"/* jshint ignore:end */"
+								"/* eslint-enable */"
 							].join( "\n" ) );
 
 					// message-runtime
@@ -254,12 +225,12 @@ module.exports = function( grunt ) {
 						delete messageformat.prototype.runtime.fmt;
 						delete messageformat.prototype.runtime.pluralFuncs;
 						contents = contents.replace( "Globalize._messageFormat = {};", [
-							"/* jshint ignore:start */",
+							"/* eslint-disable */",
 							"Globalize._messageFormat = (function() {",
 							messageformat.prototype.runtime.toString(),
 							"return {number: number, plural: plural, select: select};",
 							"}());",
-							"/* jshint ignore:end */"
+							"/* eslint-enable */"
 						].join( "\n" ) );
 
 					// ZonedDateTime
@@ -665,22 +636,14 @@ module.exports = function( grunt ) {
 
 	// Default task.
 	grunt.registerTask( "default", [
-		"jshint:grunt",
-		"jshint:source",
-		"jshint:test",
-		"jscs:grunt",
-		"jscs:source",
+		"eslint:main",
 
-		// TODO fix issues, enable
-		//"jscs:test",
 		"test:unit",
 		"clean",
 		"requirejs",
 		"copy",
-		"jshint:dist",
+		"eslint:dist",
 
-		// TODO fix issues, enable
-		// "jscs:dist",
 		"test:functional",
 		"mochaTest",
 		"uglify",

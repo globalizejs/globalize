@@ -37,7 +37,6 @@ FakeDate = (function( Date ) {
 			date = new Date( arguments[ 0 ], arguments[ 1 ], arguments[ 2 ], arguments[ 3 ], arguments[ 4 ], arguments[ 5 ], arguments[ 6 ] );
 		}
 
-		/* jshint proto:true */
 		date.__proto__ = FakeDate.prototype;
 		return date;
 	}

@@ -38,7 +38,7 @@ return function( value, numberFormatter, pluralGenerator, unitProperties ) {
 		oneProperty = divisorProperties.hasOwnProperty( "one" ) ? "one" : "other";
 
 		dividend = formatMessage( dividendProperties[ pluralValue ], [ formattedValue ] );
-		divisor = formatMessage( divisorProperties[oneProperty], [ "" ] ).trim();
+		divisor = formatMessage( divisorProperties[ oneProperty ], [ "" ] ).trim();
 
 		return formatMessage( compoundUnitPattern, [ dividend, divisor ] );
 	}

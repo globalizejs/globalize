@@ -15,15 +15,15 @@ function expandBestMatchFormat( skeletonWithoutFractionalSeconds, bestMatchForma
 	bestMatchFormatParts = bestMatchFormat.match( datePatternRe );
 
 	for ( i = 0; i < bestMatchFormatParts.length; i++ ) {
-		matchedType = bestMatchFormatParts[i].charAt( 0 );
-		matchedLength = bestMatchFormatParts[i].length;
+		matchedType = bestMatchFormatParts[ i ].charAt( 0 );
+		matchedLength = bestMatchFormatParts[ i ].length;
 		for ( j = 0; j < requestedSkeletonParts.length; j++ ) {
-			requestedType = requestedSkeletonParts[j].charAt( 0 );
-			requestedLength = requestedSkeletonParts[j].length;
+			requestedType = requestedSkeletonParts[ j ].charAt( 0 );
+			requestedLength = requestedSkeletonParts[ j ].length;
 			if ( normalizePatternType( matchedType ) === normalizePatternType( requestedType ) &&
 				matchedLength < requestedLength
 			) {
-				bestMatchFormatParts[i] = stringRepeat( matchedType, requestedLength );
+				bestMatchFormatParts[ i ] = stringRepeat( matchedType, requestedLength );
 			}
 		}
 	}
