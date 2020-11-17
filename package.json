@@ -95,8 +95,9 @@
     "iana-tz-data": ">=2017.0.0",
     "matchdep": "1.0.1",
     "mocha": "^3.4.2",
+    "qunit": "2.12.0",
     "semver": "^5.3.0",
-    "zoned-date-time": "1.0.0"
+    "zoned-date-time": "1.1.0"
   },
   "commitplease": {
     "nohook": true

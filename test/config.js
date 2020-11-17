@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 var requirejs = {
 	paths: {
-		qunit: "../external/qunit/qunit/qunit",
+		qunit: "../node_modules/qunit/qunit/qunit",
 		cldr: "../external/cldrjs/dist/cldr",
 		"cldr-data": "../external/cldr-data",
 		globalize: "../dist/globalize",
