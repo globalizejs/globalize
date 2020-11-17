@@ -236,7 +236,8 @@ module.exports = function( grunt ) {
 					// ZonedDateTime
 					} else if ( ( /zoned-date-time/ ).test( id ) ) {
 						contents = contents.replace(
-							"module.exports = ZonedDateTime;",
+							"if (typeof module !== \"undefined\" && module.exports) {\n" +
+								"  module.exports = ZonedDateTime;\n}",
 							"return ZonedDateTime;"
 						);
 						contents = "var ZonedDateTime = (function() {\n" + contents + "}());";
