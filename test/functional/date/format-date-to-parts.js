@@ -41,7 +41,7 @@ function extraSetup() {
 }
 
 QUnit.module( ".formatDateToParts( value, options )", {
-	setup: function() {
+	beforeEach: function() {
 		Globalize.load( likelySubtags, {
 			main: {
 				en: {}
@@ -49,7 +49,7 @@ QUnit.module( ".formatDateToParts( value, options )", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should validate parameters (1/2)", function( assert ) {

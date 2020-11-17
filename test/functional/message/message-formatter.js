@@ -25,7 +25,7 @@ QUnit.assert.messageBundlePresence = function( fn ) {
 };
 
 QUnit.module( ".messageFormatter( path )", {
-	setup: function() {
+	beforeEach: function() {
 		Globalize.load( likelySubtags );
 		Globalize.load( plurals );
 		Globalize.loadMessages({
@@ -73,7 +73,7 @@ QUnit.module( ".messageFormatter( path )", {
 			}
 		});
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should pass test's prerequisites", function( assert ) {

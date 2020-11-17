@@ -17,7 +17,7 @@ define( [
 var de, en;
 
 QUnit.module( ".fomatRelativeTime( value, unit [, options] ) - no CLDR", {
-	setup: function( ) {
+	beforeEach: function() {
 		Globalize.load( likelySubtags, {
 			main: {
 				en: {}
@@ -25,7 +25,7 @@ QUnit.module( ".fomatRelativeTime( value, unit [, options] ) - no CLDR", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
@@ -43,7 +43,7 @@ QUnit.test( "should un-register event listener", function( assert ) {
 });
 
 QUnit.module( ".formatRelativeTime( value, unit [, options] )", {
-	setup: function( ) {
+	beforeEach: function() {
 		Globalize.load( likelySubtags, enDateFields, deDateFields,
 			numberingSystems, enNumbers, deNumbers,
 			plurals );
@@ -51,7 +51,7 @@ QUnit.module( ".formatRelativeTime( value, unit [, options] )", {
 		de = new Globalize( "de" );
 		en = new Globalize( "en" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should validate value argument presence", function( assert ) {

@@ -9,7 +9,7 @@ define([
 ], function( Globalize, likelySubtags, plurals, util ) {
 
 QUnit.module( ".formatMessage( path [, variables] )", {
-	setup: function() {
+	beforeEach: function() {
 		Globalize.load( likelySubtags );
 		Globalize.load( plurals );
 		Globalize.loadMessages({
@@ -20,7 +20,7 @@ QUnit.module( ".formatMessage( path [, variables] )", {
 			}
 		});
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should validate parameters", function( assert ) {

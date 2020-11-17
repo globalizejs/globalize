@@ -16,11 +16,11 @@ define( [
 var de, en;
 
 QUnit.module( ".formatUnit( value, unit, options ) - no CLDR", {
-	setup: function() {
+	beforeEach: function() {
 		Globalize.load( enUnitFields, likelySubtags );
 		Globalize.locale( "en" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
@@ -30,13 +30,13 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 });
 
 QUnit.module( ".formatUnit( value, unit, options )", {
-	setup: function() {
+	beforeEach: function() {
 		Globalize.load( enNumbers, deNumbers, enUnitFields, deUnitFields, likelySubtags,
 			numberingSystems, plurals );
 		de = new Globalize( "de" );
 		en = new Globalize( "en" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should validate value argument presence", function( assert ) {

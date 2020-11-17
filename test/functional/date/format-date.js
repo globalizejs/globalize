@@ -43,7 +43,7 @@ function extraSetup() {
 }
 
 QUnit.module( ".formatDate( value, options )", {
-	setup: function() {
+	beforeEach: function() {
 		Globalize.load( likelySubtags, {
 			main: {
 				en: {}
@@ -51,7 +51,7 @@ QUnit.module( ".formatDate( value, options )", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should validate parameters (1/2)", function( assert ) {
