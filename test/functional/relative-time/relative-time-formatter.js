@@ -17,7 +17,7 @@ define( [
 var en, de;
 
 QUnit.module( ".relativeTimeFormatter( unit [, options] ) - no CLDR", {
-	setup: function( ) {
+	beforeEach: function() {
 		Globalize.load( likelySubtags, {
 			main: {
 				en: {}
@@ -25,7 +25,7 @@ QUnit.module( ".relativeTimeFormatter( unit [, options] ) - no CLDR", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should validate CLDR content", function( assert ) {
@@ -35,7 +35,7 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 });
 
 QUnit.module( ".relativeTimeFormatter( unit [, options] )", {
-	setup: function( ) {
+	beforeEach: function() {
 		Globalize.load( likelySubtags, enDateFields, deDateFields,
 			numberingSystems, enNumbers, deNumbers,
 			plurals );
@@ -43,7 +43,7 @@ QUnit.module( ".relativeTimeFormatter( unit [, options] )", {
 		en = new Globalize( "en" );
 		de = new Globalize( "de" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should validate unit argument presence", function( assert ) {

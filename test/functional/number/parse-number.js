@@ -31,7 +31,7 @@ function extraSetup() {
 }
 
 QUnit.module( ".parseNumber( value [, options] )", {
-	setup: function() {
+	beforeEach: function() {
 		Globalize.load( likelySubtags, {
 			main: {
 				ar: {},
@@ -51,7 +51,7 @@ QUnit.module( ".parseNumber( value [, options] )", {
 		zh = new Globalize( "zh-u-nu-native" );
 		Globalize.locale( "en" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should validate parameters", function( assert ) {

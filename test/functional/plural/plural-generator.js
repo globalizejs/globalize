@@ -9,7 +9,7 @@ define([
 ], function( Globalize, likelySubtags, plurals, ordinals, util ) {
 
 QUnit.module( ".pluralGenerator()", {
-	setup: function() {
+	beforeEach: function() {
 		Globalize.load( likelySubtags, plurals, ordinals, {
 			main: {
 				en: {}
@@ -17,7 +17,7 @@ QUnit.module( ".pluralGenerator()", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 });

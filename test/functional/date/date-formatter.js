@@ -25,7 +25,7 @@ function extraSetup() {
 }
 
 QUnit.module( ".dateFormatter( pattern )", {
-	setup: function() {
+	beforeEach: function() {
 		Globalize.load( likelySubtags, {
 			main: {
 				en: {}
@@ -33,7 +33,7 @@ QUnit.module( ".dateFormatter( pattern )", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 QUnit.test( "should validate parameters", function( assert ) {

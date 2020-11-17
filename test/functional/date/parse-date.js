@@ -43,7 +43,7 @@ function extraSetup() {
 }
 
 QUnit.module( ".parseDate( value, options )", {
-	setup: function() {
+	beforeEach: function() {
 		Globalize.load( likelySubtags, {
 			main: {
 				en: {}
@@ -51,7 +51,7 @@ QUnit.module( ".parseDate( value, options )", {
 		});
 		Globalize.locale( "en" );
 	},
-	teardown: util.resetCldrContent
+	afterEach: util.resetCldrContent
 });
 
 function assertParseDate( assert, input, options, output, globalize ) {
