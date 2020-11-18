@@ -33,9 +33,9 @@ module.exports = function( grunt ) {
 			order: "count"
 		},
 		commitplease: {
-			last50: {
+			last: {
 				options: {
-					committish: "-n 50"
+					committish: "-n 5"
 				}
 			}
 		},
