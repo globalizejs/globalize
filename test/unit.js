@@ -4,6 +4,7 @@ require([
 	// util
 	"./unit/util/object/invert",
 	"./unit/util/regexp/escape",
+	"./unit/util/regexp/not-s-and-z",
 
 	// core
 	"./unit/core",
