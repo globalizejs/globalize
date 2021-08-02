@@ -35,7 +35,7 @@ module.exports = function( grunt ) {
 		commitplease: {
 			last: {
 				options: {
-					committish: "-n 5"
+					committish: "-n 2"
 				}
 			}
 		},
