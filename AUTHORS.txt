@@ -6,6 +6,7 @@ Eric Bréchemier <legalbox@eric.brechemier.name>
 Jörn Zaefferer <joern.zaefferer@gmail.com>
 Dave Reed <dareed@microsoft.com>
 Nikolaus Graf <nik@deck.cc>
+Timo Tijhof <krinklemail@gmail.com>
 Scott González <scott.gonzalez@gmail.com>
 Nick Schonning <nschonni@gmail.com>
 Kyle Florence <kyle.florence@gmail.com>
@@ -26,6 +27,8 @@ Kris Borchers <kris.borchers@gmail.com>
 Yasuhiro Yoshida <yasuhiro.yoppu@gmail.com>
 Oleg Gulverdashvili <ctapbiumabp@gmail.com>
 Sean Cady <sean.cady@ge.com>
+Andrey Stukalin <apstukalin@gmail.com>
+Éric Hernández <65465670+OfficialURL@users.noreply.github.com>
 Georgi Tsaklev <morwoen@users.noreply.github.com>
 Daniel Friesen <d@danf.ca>
 robaw <38808938+robaw@users.noreply.github.com>
