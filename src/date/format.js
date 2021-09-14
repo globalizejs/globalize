@@ -146,9 +146,8 @@ return function( date, numberFormatters, properties ) {
 
 				// Week of Year.
 				// woy = ceil( ( doy + dow of 1/1 ) / 7 ) - minDaysStuff ? 1 : 0.
-				// TODO should pad on ww? Not documented, but I guess so.
 				value = dateDayOfWeek( dateStartOf( date, "year" ), properties.firstDay );
-				value = Math.ceil( ( dateDayOfYear( date ) + value ) / 7 ) -
+				value = Math.ceil( ( dateDayOfYear( date ) + 1 + value ) / 7 ) -
 					( 7 - value >= properties.minDays ? 0 : 1 );
 				break;
 

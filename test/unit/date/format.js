@@ -485,6 +485,14 @@ QUnit.test( "should format week of year (w) with no padding", function( assert )
 		type: "week",
 		value: "38"
 	}]);
+	assert.dateFormat( new Date( 2021, 0, 3 ), "w", cldr, [{
+		type: "week",
+		value: "2"
+	}]);
+	assert.dateFormat( new Date( 2021, 0, 4 ), "w", new Cldr( "de" ), [{
+		type: "week",
+		value: "1"
+	}]);
 });
 
 QUnit.test( "should format week of year (ww) with padding", function( assert ) {
