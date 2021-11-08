@@ -41,7 +41,7 @@ QUnit.test( "should expand {skeleton: \"<skeleton>\"}", function( assert ) {
 	// Preferred hour (j).
 	assert.expandPattern( en, { skeleton: "jmm" }, "h:mm a" );
 	assert.expandPattern( de, { skeleton: "jmm" }, "HH:mm" );
-	assert.expandPattern( ru, { skeleton: "jmm" }, "H:mm" );
+	assert.expandPattern( ru, { skeleton: "jmm" }, "HH:mm" );
 
 	// Best matches the whole skeleton.
 	assert.expandPattern( en, { skeleton: "hhmm" }, "hh:mm a" );

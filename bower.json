@@ -11,7 +11,6 @@
     "cldrjs": "^0.5.4"
   },
   "devDependencies": {
-    "cldr-data": ">=25",
     "es5-shim": "3.4.0",
     "make-plural": "eemeli/make-plural.js#3.0.0",
     "messageformat": "SlexAxton/messageformat.js#v0.3.0-1",

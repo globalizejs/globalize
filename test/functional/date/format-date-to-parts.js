@@ -296,7 +296,7 @@ QUnit.test( "should format skeleton to parts", function( assert ) {
 	assert.deepEqual( Globalize( "pt" ).formatDateToParts( date, { skeleton: "Ehms" } ), [
 		{
 			"type": "weekday",
-			"value": "qua"
+			"value": "qua."
 		},
 		{
 			"type": "literal",
@@ -335,7 +335,7 @@ QUnit.test( "should format skeleton to parts", function( assert ) {
 	assert.deepEqual( Globalize( "pt" ).formatDateToParts( date, { skeleton: "GyMMMEd" } ), [
 		{
 			"type": "weekday",
-			"value": "qua"
+			"value": "qua."
 		},
 		{
 			"type": "literal",
@@ -351,7 +351,7 @@ QUnit.test( "should format skeleton to parts", function( assert ) {
 		},
 		{
 			"type": "month",
-			"value": "set"
+			"value": "set."
 		},
 		{
 			"type": "literal",

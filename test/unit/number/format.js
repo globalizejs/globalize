@@ -1426,7 +1426,7 @@ QUnit.test( "should localize percent symbol (%)", function( assert ) {
 		},
 		{
 			"type": "percentSign",
-			"value": "٪"
+			"value": "٪؜"
 		}
 	]);
 });

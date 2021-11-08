@@ -4,17 +4,17 @@ module.exports = {
 
 		Globalize.load(
 			// core
-			require( "../../../external/cldr-data/supplemental/likelySubtags.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/likelySubtags.json" ),
 			// unit
-			require( "../../../external/cldr-data/main/en/units.json" ),
-			require( "../../../external/cldr-data/main/de/units.json" ),
+			require( "../../../node_modules/cldr-data/main/en/units.json" ),
+			require( "../../../node_modules/cldr-data/main/de/units.json" ),
 			// number
-			require( "../../../external/cldr-data/main/en/numbers.json" ),
-			require( "../../../external/cldr-data/main/de/numbers.json" ),
-			require( "../../../external/cldr-data/supplemental/numberingSystems.json" ),
+			require( "../../../node_modules/cldr-data/main/en/numbers.json" ),
+			require( "../../../node_modules/cldr-data/main/de/numbers.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/numberingSystems.json" ),
 			// plural
-			require( "../../../external/cldr-data/supplemental/plurals.json" ),
-			require( "../../../external/cldr-data/supplemental/ordinals.json" )
+			require( "../../../node_modules/cldr-data/supplemental/plurals.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/ordinals.json" )
 		);
 
 		return Globalize;

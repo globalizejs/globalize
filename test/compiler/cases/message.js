@@ -4,7 +4,7 @@ module.exports = {
 
 		Globalize.load(
 			// core
-			require( "../../../external/cldr-data/supplemental/likelySubtags.json" )
+			require( "../../../node_modules/cldr-data/supplemental/likelySubtags.json" )
 		);
 
 		Globalize.loadMessages({

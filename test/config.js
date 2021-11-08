@@ -3,7 +3,7 @@ var requirejs = {
 	paths: {
 		qunit: "../node_modules/qunit/qunit/qunit",
 		cldr: "../external/cldrjs/dist/cldr",
-		"cldr-data": "../external/cldr-data",
+		"cldr-data": "../node_modules/cldr-data",
 		globalize: "../dist/globalize",
 		"iana-tz-data": "../node_modules/iana-tz-data/iana-tz-data",
 		json: "../external/requirejs-plugins/src/json",
