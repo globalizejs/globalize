@@ -123,7 +123,7 @@ QUnit.test( "should format percent style", function( assert ) {
 	extraSetup();
 
 	assert.equal( Globalize.formatNumber( pi, { style: "percent" } ), "314%" );
-	assert.equal( Globalize( "ar" ).formatNumber( pi, { style: "percent" } ), "٣١٤٪" );
+	assert.equal( Globalize( "ar" ).formatNumber( pi, { style: "percent" } ), "٣١٤٪؜" );
 });
 
 });

@@ -4,20 +4,20 @@ module.exports = {
 
 		Globalize.load(
 			// core
-			require( "../../../external/cldr-data/supplemental/likelySubtags.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/likelySubtags.json" ),
 			// currency
-			require( "../../../external/cldr-data/main/en/currencies.json" ),
-			require( "../../../external/cldr-data/main/de/currencies.json" ),
-			require( "../../../external/cldr-data/main/zh/currencies.json" ),
-			require( "../../../external/cldr-data/supplemental/currencyData.json" ),
+			require( "../../../node_modules/cldr-data/main/en/currencies.json" ),
+			require( "../../../node_modules/cldr-data/main/de/currencies.json" ),
+			require( "../../../node_modules/cldr-data/main/zh/currencies.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/currencyData.json" ),
 			// number
-			require( "../../../external/cldr-data/main/en/numbers.json" ),
-			require( "../../../external/cldr-data/main/de/numbers.json" ),
-			require( "../../../external/cldr-data/main/zh/numbers.json" ),
-			require( "../../../external/cldr-data/supplemental/numberingSystems.json" ),
+			require( "../../../node_modules/cldr-data/main/en/numbers.json" ),
+			require( "../../../node_modules/cldr-data/main/de/numbers.json" ),
+			require( "../../../node_modules/cldr-data/main/zh/numbers.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/numberingSystems.json" ),
 			// plural
-			require( "../../../external/cldr-data/supplemental/plurals.json" ),
-			require( "../../../external/cldr-data/supplemental/ordinals.json" )
+			require( "../../../node_modules/cldr-data/supplemental/plurals.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/ordinals.json" )
 		);
 
 		return Globalize;

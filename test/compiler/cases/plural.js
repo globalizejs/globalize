@@ -4,10 +4,10 @@ module.exports = {
 
 		Globalize.load(
 			// core
-			require( "../../../external/cldr-data/supplemental/likelySubtags.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/likelySubtags.json" ),
 			// plural
-			require( "../../../external/cldr-data/supplemental/plurals.json" ),
-			require( "../../../external/cldr-data/supplemental/ordinals.json" )
+			require( "../../../node_modules/cldr-data/supplemental/plurals.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/ordinals.json" )
 		);
 
 		return Globalize;

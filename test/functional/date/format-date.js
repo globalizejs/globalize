@@ -152,8 +152,8 @@ QUnit.test( "should format skeleton", function( assert ) {
 	assert.equal( ar.formatDate( date, { skeleton: "yQQQ" } ), "الربع الثالث ٢٠١٠" );
 
 	// Via instance .formatDate().
-	assert.equal( Globalize( "pt" ).formatDate( date, { skeleton: "Ehms" } ), "qua, 5:35:07 PM" );
-	assert.equal( Globalize( "pt" ).formatDate( date, { skeleton: "GyMMMEd" } ), "qua, 15 de set de 2010 d.C." );
+	assert.equal( Globalize( "pt" ).formatDate( date, { skeleton: "Ehms" } ), "qua., 5:35:07 PM" );
+	assert.equal( Globalize( "pt" ).formatDate( date, { skeleton: "GyMMMEd" } ), "qua., 15 de set. de 2010 d.C." );
 });
 
 QUnit.test( "should format time presets", function( assert ) {
@@ -195,7 +195,7 @@ QUnit.test( "should format date in various timezones", function( assert ) {
 
 	assert.equal(
 		Globalize.formatDate( date, { datetime: "long", timeZone: "Etc/UTC" } ),
-		"September 15, 2010 at 4:35:07 PM GMT"
+		"September 15, 2010 at 4:35:07 PM UTC"
 	);
 	assert.equal(
 		Globalize.formatDate( date, { datetime: "long", timeZone: "Europe/Berlin" } ),

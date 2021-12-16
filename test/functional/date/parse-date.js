@@ -155,7 +155,7 @@ QUnit.test( "should parse skeleton", function( assert ) {
 	date = startOf( date, "day" );
 	assertParseDate( assert, "Wed, Sep 15, 2010 AD", { skeleton: "GyMMMEd" }, date );
 	assertParseDate( assert, "9/15/2010", { skeleton: "yMd" }, date );
-	assertParseDate( assert, "الأربعاء، ١٥ سبتمبر، ٢٠١٠ م", { skeleton: "GyMMMEd" }, date, ar );
+	assertParseDate( assert, "الأربعاء، ١٥ سبتمبر ٢٠١٠ م", { skeleton: "GyMMMEd" }, date, ar );
 
 	// Loose matching: ignore control characters.
 	assertParseDate( assert, "١٥/٩/٢٠١٠", { skeleton: "yMd" }, date, ar );
@@ -166,7 +166,7 @@ QUnit.test( "should parse skeleton", function( assert ) {
 	assertParseDate( assert, "الربع الثالث ٢٠١٠", { skeleton: "yQQQ" }, date, ar );
 
 	// Via instance globalize.parseDate().
-	assert.deepEqual( Globalize( "pt" ).parseDate( "2010 T3", { skeleton: "yQQQ" } ), date, "{ skeleton: \"yQQQ\" }" );
+	assert.deepEqual( Globalize( "pt" ).parseDate( "T3 de 2010", { skeleton: "yQQQ" } ), date, "{ skeleton: \"yQQQ\" }" );
 });
 
 QUnit.test( "should parse time presets", function( assert ) {

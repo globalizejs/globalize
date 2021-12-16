@@ -4,16 +4,16 @@ module.exports = {
 
 		Globalize.load(
 			// core
-			require( "../../../external/cldr-data/supplemental/likelySubtags.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/likelySubtags.json" ),
 			// date
-			require( "../../../external/cldr-data/main/en/ca-gregorian.json" ),
-			require( "../../../external/cldr-data/main/en/timeZoneNames.json" ),
-			require( "../../../external/cldr-data/supplemental/metaZones.json" ),
-			require( "../../../external/cldr-data/supplemental/timeData.json" ),
-			require( "../../../external/cldr-data/supplemental/weekData.json" ),
+			require( "../../../node_modules/cldr-data/main/en/ca-gregorian.json" ),
+			require( "../../../node_modules/cldr-data/main/en/timeZoneNames.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/metaZones.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/timeData.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/weekData.json" ),
 			// number
-			require( "../../../external/cldr-data/main/en/numbers.json" ),
-			require( "../../../external/cldr-data/supplemental/numberingSystems.json" )
+			require( "../../../node_modules/cldr-data/main/en/numbers.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/numberingSystems.json" )
 		);
 
 		Globalize.loadTimeZone( require( "iana-tz-data" ) );

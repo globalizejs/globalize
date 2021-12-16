@@ -4,13 +4,13 @@ module.exports = {
 
 		Globalize.load(
 			// core
-			require( "../../../external/cldr-data/supplemental/likelySubtags.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/likelySubtags.json" ),
 			// number
-			require( "../../../external/cldr-data/main/ar/numbers.json" ),
-			require( "../../../external/cldr-data/main/en/numbers.json" ),
-			require( "../../../external/cldr-data/main/es/numbers.json" ),
-			require( "../../../external/cldr-data/main/zh/numbers.json" ),
-			require( "../../../external/cldr-data/supplemental/numberingSystems.json" )
+			require( "../../../node_modules/cldr-data/main/ar/numbers.json" ),
+			require( "../../../node_modules/cldr-data/main/en/numbers.json" ),
+			require( "../../../node_modules/cldr-data/main/es/numbers.json" ),
+			require( "../../../node_modules/cldr-data/main/zh/numbers.json" ),
+			require( "../../../node_modules/cldr-data/supplemental/numberingSystems.json" )
 		);
 
 		return Globalize;

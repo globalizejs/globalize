@@ -329,7 +329,7 @@ QUnit.test( "should format percent style", function( assert ) {
 		},
 		{
 			"type": "percentSign",
-			"value": "٪"
+			"value": "٪؜"
 		}
 	]);
 });

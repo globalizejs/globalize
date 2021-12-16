@@ -153,8 +153,8 @@ QUnit.test( "Compound form (narrow)", function( assert ) {
 QUnit.test( "Compound form (without precomputed) in language without 'one' unit", function( assert ) {
 	assert.unitFormat( 1, "length-foot-per-second", { form: "long" }, "1 フィート毎秒", "ja" );
 	assert.unitFormat( 100, "length-foot-per-second", { form: "long" }, "100 フィート毎秒", "ja" );
-	assert.unitFormat( 1, "megabyte-per-second", { form: "narrow" }, "1MB/秒", "ja" );
-	assert.unitFormat( 100, "megabyte-per-second", { form: "narrow" }, "100MB/秒", "ja" );
+	assert.unitFormat( 1, "megabyte-per-second", { form: "narrow" }, "1MB/s", "ja" );
+	assert.unitFormat( 100, "megabyte-per-second", { form: "narrow" }, "100MB/s", "ja" );
 
 	assert.unitFormat( 1.2345678910, "megabyte-per-second",
 		{
@@ -163,7 +163,7 @@ QUnit.test( "Compound form (without precomputed) in language without 'one' unit"
 				return number.toFixed(1);
 			}
 		},
-		"1.2MB/秒", "ja" );
+		"1.2MB/s", "ja" );
 });
 
 });
