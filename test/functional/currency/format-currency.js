@@ -1,5 +1,7 @@
 define([
 	"globalize",
+	"json!cldr-data/main/de/currencies.json",
+	"json!cldr-data/main/de/numbers.json",
 	"json!cldr-data/main/en/currencies.json",
 	"json!cldr-data/main/en/numbers.json",
 	"json!cldr-data/supplemental/currencyData.json",
@@ -9,13 +11,15 @@ define([
 
 	"globalize/currency",
 	"globalize/number"
-], function( Globalize, enCurrencies, enNumbers, currencyData, likelySubtags, plurals, util ) {
+], function( Globalize, deCurrencies, deNumbers, enCurrencies, enNumbers, currencyData, likelySubtags, plurals, util ) {
 
 var teslaS = 69900;
 
 function extraSetup() {
 	Globalize.load(
 		currencyData,
+		deCurrencies,
+		deNumbers,
 		enCurrencies,
 		enNumbers,
 		plurals
@@ -71,6 +75,13 @@ QUnit.test( "should validate CLDR content", function( assert ) {
 QUnit.test( "should format currencies", function( assert ) {
 	extraSetup();
 	assert.equal( Globalize.formatCurrency( teslaS, "USD" ), "$69,900.00" );
+});
+
+QUnit.test( "should format currencies with string literals in the format", function( assert ) {
+	// https://github.com/globalizejs/globalize/issues/917
+	extraSetup();
+	var de = Globalize( "de" );
+	assert.equal( de.currencyFormatter( "EUR", { compact: "short" } )( 1210000 ), "1\u00A0Mio.\u00A0€" );
 });
 
 });
