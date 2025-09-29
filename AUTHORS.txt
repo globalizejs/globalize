@@ -16,6 +16,7 @@ Tobie Langel <tobie.langel@gmail.com>
 Nikola Kovacs <nikola.kovacs@gmail.com>
 Rob Garrison <wowmotty@gmail.com>
 John Reilly <johnny_reilly@hotmail.com>
+Andrey Stukalin <apstukalin@gmail.com>
 hmizutanitsi <hmizutanitsi@gmail.com>
 shivijais <shivijais16@gmail.com>
 Pavel Karoukin <pavel@karoukin.us>
@@ -27,7 +28,11 @@ Kris Borchers <kris.borchers@gmail.com>
 Yasuhiro Yoshida <yasuhiro.yoppu@gmail.com>
 Oleg Gulverdashvili <ctapbiumabp@gmail.com>
 Sean Cady <sean.cady@ge.com>
-Andrey Stukalin <apstukalin@gmail.com>
+Rafael Xavier De Souza <rafael.xavier@medable.com>
+Ulises Gascón <ulisesgascongonzalez@gmail.com>
+movermeyer-stripe <movermeyer@stripe.com>
+Baoshuo Ren <i@baoshuo.ren>
+zhavoronkov.evgeny <nightskylark@users.noreply.github.com>
 Éric Hernández <65465670+OfficialURL@users.noreply.github.com>
 Georgi Tsaklev <morwoen@users.noreply.github.com>
 Daniel Friesen <d@danf.ca>
