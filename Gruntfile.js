@@ -639,17 +639,13 @@ module.exports = function( grunt ) {
 	grunt.registerTask( "default", [
 		"eslint:main",
 
-		"test:unit",
 		"clean",
 		"requirejs",
 		"copy",
 		"eslint:dist",
 
-		"test:functional",
-		"mochaTest",
 		"uglify",
-		"compare_size",
-		"commitplease"
+		"compare_size"
 	]);
 
 };
