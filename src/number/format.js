@@ -174,11 +174,11 @@ return function( number, properties, pluralGenerator ) {
 		// format-properties.
 		aux = function( string ) {
 			var parts = [];
-			string.replace( /(\s+)|([^\s0]+)/g, function( _garbage, space, compact ) {
+			string.replace( /('(?:[^']|'')+'|''|\s+)|([^\s'0]+)/g, function( _garbage, literal, compact ) {
 
 				// Literals
-				if ( space ) {
-					partsPush( parts, "literal", space );
+				if ( literal ) {
+					partsPush( parts, "literal", removeLiteralQuotes( literal ) );
 					return;
 				}
 
