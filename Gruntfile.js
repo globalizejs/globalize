@@ -205,7 +205,14 @@ module.exports = function( grunt ) {
 							.replace( /if \(!locale\) \{\n[\s\S]*?  \}\n/, "this.lc = [locale];" )
 							.replace( /(MessageFormat\.formatters) = \{[\s\S]*?\n\};/, "$1 = {};" )
 							.replace( /MessageFormat\.prototype\.setIntlSupport[\s\S]*?\n\};/, "" )
-
+							
+							// Reference the format type handler by key lookup
+							// instead of inlining the key into the generated source.
+							.replace(
+								"return 'fmt.' + ast.key + '(' + args.join(', ') + ')';",
+								"return 'fmt[' + JSON.stringify(ast.key) + " +
+									"'](' + args.join(', ') + ')';"
+							)
 							// Wrap everything into a var assignment.
 							.replace( "module.exports = MessageFormat;", "" )
 							.replace( /^/, [
